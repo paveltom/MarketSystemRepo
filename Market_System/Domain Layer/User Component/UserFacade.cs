@@ -54,5 +54,18 @@ namespace Market_System.Domain_Layer.User_Component
 
             throw new ArgumentException("Incorrect login information has been provided");
         }
+
+        public void Logout(string username)
+        {
+            foreach(User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    user.Logout();
+                }
+            }
+
+            throw new ArgumentException("You're already logged-out");
+        }
     }
 }
