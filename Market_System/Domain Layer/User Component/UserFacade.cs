@@ -67,5 +67,19 @@ namespace Market_System.Domain_Layer.User_Component
 
             throw new ArgumentException("You're already logged-out");
         }
+
+
+        public void register(string username, string password)
+        {
+            foreach (User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    throw new Exception("a user with same name exists, please change name!");
+                }
+            }
+            users.Add(new User(username));
+            userRepo.register(username, password);
+        }
     }
 }

@@ -48,5 +48,10 @@ namespace Market_System.Domain_Layer.User_Component
             }
             return false;
         }
+
+        public void register(string username, string password)
+        {
+            userDatabase.Add(username, password);
+        }
     }
 }

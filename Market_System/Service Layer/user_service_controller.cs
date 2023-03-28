@@ -55,8 +55,19 @@ namespace Market_System.Service_Layer
         }
 
       
-        public void register() // 1.3
+        public string register(string username,string password) // 1.3
         {
+            try
+            {
+                market_System.register(username,password);
+                
+                return "registered succesfully";
+            }
+
+            catch (Exception e)
+            {
+                return e.Message;
+            }
 
         }
         public void add_product_to_basket()
