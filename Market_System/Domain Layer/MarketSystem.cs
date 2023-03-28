@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.Domain_Layer.User_Component;
+using Market_System.Domain_Layer.Store_Component;
 
 namespace Market_System.Domain_Layer
 {
     //TODO:: Implement as a Mediator.
     public sealed class MarketSystem
     {
+        private static UserFacade userFacade;
+        private static StoreFacade storeFacade;
         //This variable is going to store the Singleton Instance
         private static MarketSystem Instance = null;
 
@@ -27,6 +31,8 @@ namespace Market_System.Domain_Layer
                 { //Critical Section Start
                     if (Instance == null)
                     {
+                        userFacade = UserFacade.GetInstance();
+                        storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
                     }
                 } //Critical Section End
@@ -37,5 +43,18 @@ namespace Market_System.Domain_Layer
             //Return the Singleton Instance
             return Instance;
         }
+
+
+        public void Login(string username, string password)
+        {
+            try
+            {
+                userFacade.Login(username, password);
+            }
+
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
     }
-}
