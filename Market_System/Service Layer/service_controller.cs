@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Market_System.service_layer
+namespace Market_System.Service_Layer
 {
-    public class service_controller : service_layer_interface
+    public class Service_Controller : Service_Layer_Interface
     {
-        private user_service_controller usc;
-        private store_service_controller ssc;
-        public service_controller()
+        private User_Service_Controller usc;
+        private Store_Service_Controller ssc;
+        public Service_Controller()
         {
-            this.usc = new user_service_controller();
-            this.ssc = new store_service_controller();
+            this.usc = new User_Service_Controller();
+            this.ssc = new Store_Service_Controller();
         }
         public void add_product_to_basket()
         {

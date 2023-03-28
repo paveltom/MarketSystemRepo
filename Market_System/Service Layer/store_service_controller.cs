@@ -4,15 +4,15 @@ using System.Linq;
 using System.Web;
 using Market_System.Domain_Layer.Store_Component;
 
-namespace Market_System.service_layer
+namespace Market_System.Service_Layer
 {
-    public class store_service_controller
+    public class Store_Service_Controller
     {
         // private store_facade (domain)
-        private StoreFacade sf;
-        public store_service_controller()
+        private StoreFacade storeFacade;
+        public Store_Service_Controller()
         {
-            this.sf = new StoreFacade();
+            this.storeFacade = StoreFacade.GetInstance();
         }
 
         
