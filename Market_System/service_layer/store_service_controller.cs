@@ -9,10 +9,10 @@ namespace Market_System.service_layer
     public class store_service_controller
     {
         // private store_facade (domain)
-        private StoreFacade sf;
+        private StoreFacade storeFacade;
         public store_service_controller()
         {
-            this.sf = new StoreFacade();
+            this.storeFacade = StoreFacade.GetInstance();
         }
 
         

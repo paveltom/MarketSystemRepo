@@ -8,7 +8,6 @@ namespace Market_System.service_layer
 {
     interface service_layer_interface
     {
-
         public void check_out(); //I.3 מערכת
         public void check_delivery(); //I.4 מערכת
         public void login_member(); // 1.4

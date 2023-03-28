@@ -9,10 +9,10 @@ namespace Market_System.service_layer
     public class user_service_controller
     {
         //private user_facade (domain)
-        private UserFacade uf;
+        private UserFacade userFacade;
         public user_service_controller()
         {
-            this.uf = new UserFacade();
+            this.userFacade = UserFacade.GetInstance();
         }
 
         public void login_member()// 1.4
