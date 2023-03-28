@@ -57,5 +57,18 @@ namespace Market_System.Domain_Layer
                 throw e;
             }
         }
+
+        public void Logout(string username)
+        {
+            try
+            {
+                userFacade.Logout(username);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
