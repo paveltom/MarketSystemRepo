@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Market_System.service_layer
+namespace Market_System.Service_Layer
 {
     public class Service_Controller : Service_Layer_Interface
     {

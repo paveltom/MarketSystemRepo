@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using Market_System.Domain_Layer.User_Component;
 
-namespace Market_System.service_layer
+namespace Market_System.Service_Layer
 {
-    public class user_service_controller
+    public class User_Service_Controller
     {
         //private user_facade (domain)
         private UserFacade userFacade;
-        public user_service_controller()
+        public User_Service_Controller()
         {
             this.userFacade = UserFacade.GetInstance();
         }
