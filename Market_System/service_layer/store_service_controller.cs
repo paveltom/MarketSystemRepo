@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.Domain_Layer.Store_Component;
 
 namespace Market_System.service_layer
 {
     public class store_service_controller
     {
-        // private store_facade (domain)
+        private StoreFacade sf;// (domain)
         public store_service_controller()
         {
+            this.sf = new StoreFacade();
 
         }
 
         
         public void get_shop()
         {
-
+            //sf.getshop() example
         }
         public void get_products_from_shop()
         {

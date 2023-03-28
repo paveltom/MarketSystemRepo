@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.Domain_Layer.User_Component;
 
 namespace Market_System.service_layer
 {
     public class user_service_controller
     {
         //private user_facade (domain)
+        private UserFacade uf;
         public user_service_controller()
         {
-
+            this.uf = new UserFacade();
         }
 
         public void login_member()// 1.4
         {
+            // this.uf.login() example
         }
         public void login_guest()//1.1
         {
