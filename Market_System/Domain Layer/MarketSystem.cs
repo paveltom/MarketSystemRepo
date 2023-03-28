@@ -52,9 +52,10 @@ namespace Market_System.Domain_Layer
                 userFacade.Login(username, password);
             }
 
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
         }
     }
+}
