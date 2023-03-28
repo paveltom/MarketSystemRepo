@@ -7,6 +7,8 @@ namespace Market_System.Domain_Layer.User_Component
 {
     public class UserFacade
     {
+        private static UserRepo userRepo;
+        private static List<User> users;
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
 
@@ -26,6 +28,8 @@ namespace Market_System.Domain_Layer.User_Component
                 { //Critical Section Start
                     if (Instance == null)
                     {
+                        users = new List<User>();
+                        userRepo = UserRepo.GetInstance();
                         Instance = new UserFacade();
                     }
                 } //Critical Section End
@@ -35,6 +39,20 @@ namespace Market_System.Domain_Layer.User_Component
 
             //Return the Singleton Instance
             return Instance;
+        }
+
+        public void Login(string username, string password)
+        {
+            foreach(User user in users)
+            {
+                if(user.GetUsername().Equals(username) && userRepo.checkIfExists(username, password))
+                {
+                    user.Login();
+                    return;
+                }
+            }
+
+            throw new ArgumentException("Incorrect login information has been provided");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.Domain_Layer;
 using Market_System.Domain_Layer.User_Component;
 
 namespace Market_System.Service_Layer
@@ -9,15 +10,25 @@ namespace Market_System.Service_Layer
     public class User_Service_Controller
     {
         //private user_facade (domain)
-        private UserFacade userFacade;
+        private MarketSystem market_System;
         public User_Service_Controller()
         {
-            this.userFacade = UserFacade.GetInstance();
+            this.market_System = MarketSystem.GetInstance();
         }
 
-        public void login_member()// 1.4
+        //TODO:: CHANGE TO THROW A RESPONSE;
+        public string Login_Member(string username, string password) // 1.4
         {
-            //this.uf.login()  example
+            try
+            {
+                market_System.Login(username, password);
+                return "Logged-In succesfully";
+            }
+
+            catch(Exception e)
+            {
+                return e.Message;
+            }
         }
         public void login_guest()//1.1
         {

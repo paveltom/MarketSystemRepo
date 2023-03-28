@@ -6,7 +6,7 @@ using System.Web;
 namespace Market_System.Domain_Layer.User_Component
 {
     //TODO:: Impelement this as a State.
-    public class Manager
+    public class Manager : User_State
     {
     }
 }
