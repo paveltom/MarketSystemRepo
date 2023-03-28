@@ -183,10 +183,42 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Domain Layer\Communication Component\EmailNotification.cs" />
+    <Compile Include="Domain Layer\Communication Component\Message.cs" />
+    <Compile Include="Domain Layer\Communication Component\Notification.cs" />
+    <Compile Include="Domain Layer\Communication Component\NotificationFacade.cs" />
+    <Compile Include="Domain Layer\Communication Component\PopupNotification.cs" />
+    <Compile Include="Domain Layer\Communication Component\SpecialNotification.cs" />
+    <Compile Include="Domain Layer\ItemDTO.cs" />
+    <Compile Include="Domain Layer\MarketSystem.cs" />
+    <Compile Include="Domain Layer\Store Component\Employees.cs" />
+    <Compile Include="Domain Layer\Store Component\Product.cs" />
+    <Compile Include="Domain Layer\Store Component\Property.cs" />
+    <Compile Include="Domain Layer\Store Component\Purchase_Policy.cs" />
+    <Compile Include="Domain Layer\Store Component\Purchase_Strategy.cs" />
+    <Compile Include="Domain Layer\Store Component\Store.cs" />
+    <Compile Include="Domain Layer\Store Component\StoreFacade.cs" />
+    <Compile Include="Domain Layer\Store Component\StoreRepo.cs" />
+    <Compile Include="Domain Layer\User Component\Administrator.cs" />
+    <Compile Include="Domain Layer\User Component\Bucket.cs" />
+    <Compile Include="Domain Layer\User Component\Cart.cs" />
+    <Compile Include="Domain Layer\User Component\Guest.cs" />
+    <Compile Include="Domain Layer\User Component\Manager.cs" />
+    <Compile Include="Domain Layer\User Component\Member.cs" />
+    <Compile Include="Domain Layer\User Component\Owner.cs" />
+    <Compile Include="Domain Layer\User Component\PurchaseHistoryObj.cs" />
+    <Compile Include="Domain Layer\User Component\PurchaseRepo.cs" />
+    <Compile Include="Domain Layer\User Component\User.cs" />
+    <Compile Include="Domain Layer\User Component\UserFacade.cs" />
+    <Compile Include="Domain Layer\User Component\UserRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service_layer\service_controller.cs" />
+    <Compile Include="service_layer\service_layer_interface.cs" />
+    <Compile Include="service_layer\store_service_controller.cs" />
+    <Compile Include="service_layer\user_service_controller.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,12 +228,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
