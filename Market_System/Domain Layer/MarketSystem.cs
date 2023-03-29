@@ -77,7 +77,7 @@ namespace Market_System.Domain_Layer
         {
             try
             {
-                userFacade.Logout(username);
+                userFacade.register(username, password);
             }
 
             catch (Exception e)
