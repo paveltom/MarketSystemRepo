@@ -1,4 +1,9 @@
-﻿namespace IntroSE.Kanban.Backend.ServiceLayer
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Market_System.ServiceLayer
 {
     ///<summary>Class <c>Response</c> represents the result of a call to a void function. 
     ///If an exception was thrown, <c>ErrorOccured = true</c> and <c>ErrorMessage != null</c>. 
