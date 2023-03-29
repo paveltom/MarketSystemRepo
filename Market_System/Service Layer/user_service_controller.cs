@@ -13,7 +13,7 @@ namespace Market_System.Service_Layer
         //private user_facade (domain)
         private MarketSystem market_System;
         private string username; //TODO:: Change it later - to get this username from session-key
-
+        
         public User_Service_Controller()
         {
             this.market_System = MarketSystem.GetInstance();
@@ -37,6 +37,8 @@ namespace Market_System.Service_Layer
         }
         public void login_guest()//1.1
         {
+            market_System.login_guest();
+
         }
 
         //TODO:: CHANGE TO THROW A RESPONSE;
@@ -97,8 +99,12 @@ namespace Market_System.Service_Layer
         }
         public void get_purchase_history_of_a_member() //6.4
         {
+            
+
 
         }
+
+
 
 
 

@@ -81,5 +81,10 @@ namespace Market_System.Domain_Layer.User_Component
             users.Add(new User(username));
             userRepo.register(username, password);
         }
+
+        internal void Login_guset(string guest_name)
+        {
+            users.Add(new User(guest_name));
+        }
     }
 }

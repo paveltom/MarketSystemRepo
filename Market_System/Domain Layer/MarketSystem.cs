@@ -12,6 +12,7 @@ namespace Market_System.Domain_Layer
     {
         private static UserFacade userFacade;
         private static StoreFacade storeFacade;
+        private Random guest_id_generator;
 
         //This variable is going to store the Singleton Instance
         private static MarketSystem Instance = null;
@@ -35,6 +36,7 @@ namespace Market_System.Domain_Layer
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
+                        Instance.guest_id_generator = new Random();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -76,6 +78,20 @@ namespace Market_System.Domain_Layer
             try
             {
                 userFacade.Logout(username);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void login_guest()
+        {
+            string guest_name = "guest" + this.guest_id_generator.Next();
+            try
+            {
+                userFacade.Login_guset(guest_name);
             }
 
             catch (Exception e)
