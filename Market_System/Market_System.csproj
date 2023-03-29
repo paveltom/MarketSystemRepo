@@ -212,6 +212,7 @@
     <Compile Include="Domain Layer\User Component\User.cs" />
     <Compile Include="Domain Layer\User Component\UserFacade.cs" />
     <Compile Include="Domain Layer\User Component\UserRepo.cs" />
+    <Compile Include="Domain Layer\User Component\User_State.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
