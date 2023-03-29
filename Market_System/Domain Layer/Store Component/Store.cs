@@ -10,6 +10,7 @@ namespace Market_System.Domain_Layer.Store_Component
         //Implement all of the Property Methods here
         private Dictionary<int, int> products; //<product_id, quantity>
         private List<string> owners; //<Owner's_username>
+        private List<string> managers;
         private string founder; //founder's username
         private int store_ID;
 
@@ -18,6 +19,7 @@ namespace Market_System.Domain_Layer.Store_Component
             //TODO:: change it later to load the info from the database.
             products = new Dictionary<int, int>();
             owners = new List<string>();
+            managers = new List<string>();
             this.founder = founder;
             this.store_ID = store_ID;
         }
