@@ -216,10 +216,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="service_layer\service_controller.cs" />
-    <Compile Include="service_layer\service_layer_interface.cs" />
-    <Compile Include="service_layer\store_service_controller.cs" />
-    <Compile Include="service_layer\user_service_controller.cs" />
+    <Compile Include="Service Layer\service_controller.cs" />
+    <Compile Include="Service Layer\Service_Layer_Interface.cs" />
+    <Compile Include="Service Layer\store_service_controller.cs" />
+    <Compile Include="Service Layer\user_service_controller.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -294,5 +294,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
 </Project>
