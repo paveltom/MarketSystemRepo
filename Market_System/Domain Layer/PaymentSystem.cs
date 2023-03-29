@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.Domain_Layer.User_Component;
-using Market_System.Domain_Layer.Store_Component;
 
 namespace Market_System.Domain_Layer
 {
-    //TODO:: Implement as a Mediator.
-    public sealed class MarketSystem
+    public class PaymentSystem
     {
-        private static UserFacade userFacade;
-        private static StoreFacade storeFacade;
-
         //This variable is going to store the Singleton Instance
-        private static MarketSystem Instance = null;
+        private static PaymentSystem Instance = null;
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
         //The following Static Method is going to return the Singleton Instance
-        public static MarketSystem GetInstance()
+        public static PaymentSystem GetInstance()
         {
             //This is thread-Safe - Performing a double-lock check.
             if (Instance == null)
@@ -32,9 +26,7 @@ namespace Market_System.Domain_Layer
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        userFacade = UserFacade.GetInstance();
-                        storeFacade = StoreFacade.GetInstance();
-                        Instance = new MarketSystem();
+                        Instance = new PaymentSystem();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -45,43 +37,13 @@ namespace Market_System.Domain_Layer
             return Instance;
         }
 
-
-        public void Login(string username, string password)
+        public bool Pay(int total_Price, int payment_Amount)
         {
-            try
+            if (total_Price > payment_Amount)
             {
-                userFacade.Login(username, password);
+                return false;
             }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public void Logout(string username)
-        {
-            try
-            {
-                userFacade.Logout(username);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-        public void register(string username, string password)
-        {
-            try
-            {
-                userFacade.Logout(username);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return true;
         }
     }
 }

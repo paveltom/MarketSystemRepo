@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.Domain_Layer.User_Component;
-using Market_System.Domain_Layer.Store_Component;
 
 namespace Market_System.Domain_Layer
 {
-    //TODO:: Implement as a Mediator.
-    public sealed class MarketSystem
+    public class DeliverySystem
     {
-        private static UserFacade userFacade;
-        private static StoreFacade storeFacade;
+        private static int amount_Of_Deliveris_Remaining;
 
         //This variable is going to store the Singleton Instance
-        private static MarketSystem Instance = null;
+        private static DeliverySystem Instance = null;
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
         //The following Static Method is going to return the Singleton Instance
-        public static MarketSystem GetInstance()
+        public static DeliverySystem GetInstance()
         {
             //This is thread-Safe - Performing a double-lock check.
             if (Instance == null)
@@ -32,9 +28,8 @@ namespace Market_System.Domain_Layer
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        userFacade = UserFacade.GetInstance();
-                        storeFacade = StoreFacade.GetInstance();
-                        Instance = new MarketSystem();
+                        amount_Of_Deliveris_Remaining = 5;
+                        Instance = new DeliverySystem();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -45,43 +40,11 @@ namespace Market_System.Domain_Layer
             return Instance;
         }
 
-
-        public void Login(string username, string password)
+        //Currently there can be only 5 deliveries - just in order to check the system via TESTS(!)
+        public bool Delivery()
         {
-            try
-            {
-                userFacade.Login(username, password);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public void Logout(string username)
-        {
-            try
-            {
-                userFacade.Logout(username);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-        public void register(string username, string password)
-        {
-            try
-            {
-                userFacade.Logout(username);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
+            if (amount_Of_Deliveris_Remaining <= 0) return false;
+            return true;
         }
     }
 }
