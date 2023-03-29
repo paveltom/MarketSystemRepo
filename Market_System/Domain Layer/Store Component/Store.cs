@@ -8,5 +8,38 @@ namespace Market_System.Domain_Layer.Store_Component
     public class Store : Property
     {
         //Implement all of the Property Methods here
+        private Dictionary<int, int> products; //<product_id, quantity>
+        private List<string> owners; //<Owner's_username>
+        private string founder; //founder's username
+        private int store_ID;
+
+        public Store(string founder, int store_ID)
+        {
+            //TODO:: change it later to load the info from the database.
+            products = new Dictionary<int, int>();
+            owners = new List<string>();
+            this.founder = founder;
+            this.store_ID = store_ID;
+        }
+
+        public int GetStore_ID()
+        {
+            return this.store_ID;
+        }
+
+        public string GetFounder()
+        {
+            return this.founder;
+        }
+
+        public void Add_Product(int product_id, int quantity)
+        {
+            products.Add(product_id, quantity);
+        }
+
+        public void Remove_Product(int product_id)
+        {
+            products.Remove(product_id);
+        }
     }
 }

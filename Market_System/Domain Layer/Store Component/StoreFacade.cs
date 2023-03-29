@@ -9,6 +9,9 @@ namespace Market_System.Domain_Layer.Store_Component
     {
         //This variable is going to store the Singleton Instance
         private static StoreFacade Instance = null;
+        private static StoreRepo storeRepo;
+        private static List<Store> stores;
+
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
@@ -26,6 +29,8 @@ namespace Market_System.Domain_Layer.Store_Component
                 { //Critical Section Start
                     if (Instance == null)
                     {
+                        stores = new List<Store>();
+                        storeRepo = StoreRepo.GetInstance();
                         Instance = new StoreFacade();
                     }
                 } //Critical Section End
@@ -35,6 +40,42 @@ namespace Market_System.Domain_Layer.Store_Component
 
             //Return the Singleton Instance
             return Instance;
+        }
+
+        public void Add_New_Store(string username, int storeID)
+        {
+            try
+            {
+                storeRepo.AddStore(username, storeID);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Add_Product_To_Store(int store_ID, string founder, Product product, int quantity)
+        {
+            try
+            {
+                storeRepo.AddProduct(store_ID, founder, product, quantity);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Remove_Product_From_Store(int store_ID, string founder, Product product)
+        {
+            try
+            {
+                storeRepo.RemoveProduct(store_ID, founder, product);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

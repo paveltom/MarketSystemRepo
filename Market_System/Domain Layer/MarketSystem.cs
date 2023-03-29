@@ -99,5 +99,41 @@ namespace Market_System.Domain_Layer
                 throw e;
             }
         }
+
+        public void Add_New_Store(string username, int storeID)
+        {
+            try
+            {
+                storeFacade.Add_New_Store(username, storeID);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Add_Product_To_Store(int store_ID, string founder, Product product, int quantity)
+        {
+            try
+            {
+                storeFacade.Add_Product_To_Store(store_ID, founder, product, quantity);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Remove_Product_From_Store(int store_ID, string founder, Product product)
+        {
+            try
+            {
+                storeFacade.Remove_Product_From_Store(store_ID, founder, product);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
