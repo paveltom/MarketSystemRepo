@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Market_System.Domain_Layer.Store_Component;
+using Market_System.Domain_Layer;
+using Market_System.Service_Layer;
 
 namespace Market_System.Service_Layer
 {
     public class Store_Service_Controller
     {
         // private store_facade (domain)
-        private StoreFacade storeFacade;
+        private MarketSystem market_System;
+
         public Store_Service_Controller()
         {
-            this.storeFacade = StoreFacade.GetInstance();
+            this.market_System = MarketSystem.GetInstance();
         }
 
         
-        public void get_shop()
+        public void get_store()
         {
             // this.sf.getshop() example
         }
@@ -40,21 +43,48 @@ namespace Market_System.Service_Layer
         {
 
         }
-        public void open_new_store() // 3.2
+        public string open_new_store(string username, int store_ID) // 3.2
         {
+            try
+            {
+                market_System.Add_New_Store(username, store_ID);
+                return "Store has been opened succesfully";
+            }
 
+            catch(Exception e)
+            {
+                return e.Message;
+            }
         }
         public void comment_on_product() // 3.3
         {
 
         }
-        public void add_product_to_store() //4.1
+        public string add_product_to_store(int store_ID, string founder, Product product, int quantity) //4.1
         {
+            try
+            {
+                market_System.Add_Product_To_Store(store_ID, founder, product, quantity);
+                return "Product has been added succesfully";
+            }
 
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
-        public void remove_product_from_store() //4.1
+        public string remove_product_from_store(int store_ID, string founder, Product product) //4.1
         {
+            try
+            {
+                market_System.Remove_Product_From_Store(store_ID, founder, product);
+                return "Product has been removed succesfully";
+            }
 
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         public void edit_product_details() //4.1
         {
