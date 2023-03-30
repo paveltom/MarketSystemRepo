@@ -81,9 +81,18 @@ namespace Market_System.Service_Layer
         {
 
         }
-        public void assign_new_owner() // 4.4
+        public string assign_new_owner(string founder, string username, int store_ID) // 4.4
         {
+            try
+            {
+                market_System.Assign_New_Owner(founder, username, store_ID);
+                return "new owner has been assigned succesfully";
+            }
 
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         public void assign_new_manager() // 4.6
         {

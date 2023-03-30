@@ -77,5 +77,17 @@ namespace Market_System.Domain_Layer.Store_Component
                 throw e;
             }
         }
+
+        public void Assign_New_Owner(string founder, string username, int store_ID)
+        {
+            try
+            {
+                storeRepo.Assign_New_Owner(founder, username, store_ID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
