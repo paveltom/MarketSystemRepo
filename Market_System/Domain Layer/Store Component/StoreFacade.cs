@@ -101,5 +101,10 @@ namespace Market_System.Domain_Layer.Store_Component
                 throw e;
             }
         }
+        //this for tests
+        public void Destroy_me()
+        {
+            Instance = null;
+        }
     }
 }
