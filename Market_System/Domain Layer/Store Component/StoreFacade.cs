@@ -103,3 +103,8 @@ namespace Market_System.Domain_Layer.Store_Component
         }
     }
 }
+
+// ToDo:
+// stores have to concurrent??? ConcurrentBag<Store>
+
+// improve singleton implementation 

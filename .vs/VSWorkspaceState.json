@@ -2,7 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\Market_System",
-    "\\Market_System.Tests"
+    "\\Market_System\\Domain Layer"
   ],
   "PreviewInSolutionExplorer": false
 }
