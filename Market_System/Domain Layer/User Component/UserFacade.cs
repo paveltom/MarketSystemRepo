@@ -87,5 +87,16 @@ namespace Market_System.Domain_Layer.User_Component
             users.Add(new User(guest_name));
             //TODO:: remove the guest when he leaves...
         }
+
+        //this for tests , so after each test we can destroy the singleton to start brand new test without previous data
+        public void Destroy_me()
+        {
+            Instance = null;
+        }
+
+        public bool check_if_user_exists(string user_name,string pass)
+        {
+            return userRepo.checkIfExists(user_name, pass);
+        }
     }
 }
