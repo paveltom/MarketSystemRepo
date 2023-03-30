@@ -147,5 +147,17 @@ namespace Market_System.Domain_Layer
                 throw e;
             }
         }
+
+        public void Assign_New_Manager(string founder, string username, int store_ID)
+        {
+            try
+            {
+                storeFacade.Assign_New_Manager(founder, username, store_ID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

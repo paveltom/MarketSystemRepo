@@ -104,5 +104,18 @@ namespace Market_System.Domain_Layer.Store_Component
             }
             throw new Exception("Invalid data has been provided, either this owner already exists in this store.");
         }
+
+        public void Assign_New_Manager(string founder, string username, int store_ID)
+        {
+            foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
+            {
+                if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Key.Already_Has_Manager(username))
+                {
+                    pair.Key.Add_New_Manager(username);
+                    return;
+                }
+            }
+            throw new Exception("Invalid data has been provided, either this manager already exists in this store.");
+        }
     }
 }

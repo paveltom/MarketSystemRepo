@@ -94,9 +94,18 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        public void assign_new_manager() // 4.6
+        public string assign_new_manager(string founder, string username, int store_ID) // 4.6
         {
+            try
+            {
+                market_System.Assign_New_Manager(founder, username, store_ID);
+                return "new manager has been assigned succesfully";
+            }
 
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         public void edit_manger_permissions() //4.7
         {

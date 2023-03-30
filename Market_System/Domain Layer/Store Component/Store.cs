@@ -54,5 +54,16 @@ namespace Market_System.Domain_Layer.Store_Component
             if (owners.Contains(username)) return true;
             return false;
         }
+
+        public void Add_New_Manager(string username)
+        {
+            managers.Add(username);
+        }
+
+        public bool Already_Has_Manager(string username)
+        {
+            if (managers.Contains(username)) return true;
+            return false;
+        }
     }
 }
