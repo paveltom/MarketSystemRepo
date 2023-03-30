@@ -9,6 +9,17 @@ namespace Market_System.Domain_Layer.Store_Component
     {
         private String product_ID; // composed of 2 parts: *storeId*_*inStoreProductId* - 1234_9876 for exmpl
 
+        private String Name; 
+        private String Catagory;
+        private String Description;
+        private double Price;
+        private int Quantity;
+        private int ReservedQuantity;
+        private List<String> Comments;
+
+
+
+
         // =======Fields ToDo===========:
         // Price
         // Purchase_Policy productSpecificPolicy - ChainOfResponsibility 
@@ -18,10 +29,11 @@ namespace Market_System.Domain_Layer.Store_Component
         // Description
         // Attributes -  Dictionary<String>: {atb1: opt1->opt2->op3...., atb2: opt1->opt2....,...}
         // Comments
-        // Rating
+        // Rating - mabye private class/enum or somthing simpler
         // Size (x*y*z)
         // Weight
-        // 
+        // Catagory (mabye will be implementing by composition design pattern to support a sub catagoring.)
+
 
         public Product(String product_ID)
         {
@@ -43,4 +55,6 @@ namespace Market_System.Domain_Layer.Store_Component
 
 
     }
+
+ 
 }

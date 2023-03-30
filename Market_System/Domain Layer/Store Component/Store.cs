@@ -8,11 +8,22 @@ namespace Market_System.Domain_Layer.Store_Component
     public class Store : Property
     {
         //Implement all of the Property Methods here
+        private int store_ID;
+        private string name;
+
+
         private Dictionary<int, int> products; //<product_id, quantity>
         private List<string> owners; //<Owner's_username>
         private List<string> managers;
-        private string founder; //founder's username
-        private int store_ID;
+        private String founder; //founder's username
+       
+
+        // =======Fields ToDo===========:
+        // Attributes -  Dictionary<String>: {atb1: opt1->opt2->op3...., atb2: opt1->opt2....,...}
+        // *Comments
+
+
+
 
         public Store(string founder, int store_ID)
         {
@@ -65,5 +76,16 @@ namespace Market_System.Domain_Layer.Store_Component
             if (managers.Contains(username)) return true;
             return false;
         }
+
+
+        // ========Methods ToDo==========:
+        // passing a data for store representation (including what details?)
+        // passing a data for store content representation- what products availble for a buyer
+        // *maby should an additional store content view, a seperate view for a manager of the store
+        // 
+        // 
+
+        // ======more ideas=====
+        // 
     }
 }
