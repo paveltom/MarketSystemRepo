@@ -121,7 +121,7 @@ namespace Market_System.Tests.unit_tests
 
             TearDown();
         }
-/*
+
         [TestMethod]
         public void Logout_user_test_failure_1()
         {
@@ -130,6 +130,7 @@ namespace Market_System.Tests.unit_tests
             {
                 user_facade.register("test1", "pass");
                 user_facade.Login("test1", "pass");
+                user_facade.Logout("test1");
                 user_facade.Logout("test1");
                 Assert.Fail("This test should've failed - Already logged-out");
             }
@@ -141,7 +142,7 @@ namespace Market_System.Tests.unit_tests
 
             TearDown();
         }
-        */
+                
 
         [TestMethod]
         public void Logout_user_test_failure_2()
