@@ -8,7 +8,7 @@ namespace Market_System.Domain_Layer.User_Component
     //TODO:: Impelement this as a State.
     public class Manager : User_State
     {
-        public string GetUserState()
+        public string tostring()
         {
             return "Manager";
         }
