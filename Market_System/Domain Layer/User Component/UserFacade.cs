@@ -81,6 +81,7 @@ namespace Market_System.Domain_Layer.User_Component
             users.Add(new User(username));
             userRepo.register(username, password);
         }
+
         internal void add_product_to_basket(string product_id, string username)
         {
             foreach (User u in users)
