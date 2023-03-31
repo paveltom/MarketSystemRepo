@@ -8,5 +8,6 @@ namespace Market_System.Domain_Layer.User_Component
 {
     interface User_State
     {
+        public string tostring();
     }
 }
