@@ -61,6 +61,35 @@ namespace Market_System.Domain_Layer
             }
         }
 
+        internal void Add_Product_To_basket(string product_id,string username)
+        {
+
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+            if(check_if_availbe_from_store_facade(product_id)==true)
+            {
+                if(userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                {
+                    //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
+                    
+                    userFacade.add_product_to_basket(product_id, username);
+                    Market_System.Domain_Layer.User_Component.Cart cart= userFacade.get_cart(username);
+                    //  price  =  storefacade.calcualte_total_price(cart);
+                    double price = 0;
+                    userFacade.update_cart_total_price(username, price);
+                }
+                else
+                {
+                    throw new Exception("user is not logged in");
+                }
+            }
+            else
+            {
+                throw new Exception("product out of stock");
+            }
+
+        }
+
         public void Logout(string username)
         {
             try
@@ -158,6 +187,16 @@ namespace Market_System.Domain_Layer
             {
                 throw e;
             }
+        }
+
+        private bool check_if_availbe_from_store_facade(string product_id)
+        {
+            if(product_id.Equals("123456"))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         

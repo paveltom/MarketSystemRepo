@@ -12,5 +12,10 @@ namespace Market_System.Domain_Layer.User_Component
         {
             return "Member";
         }
+
+        public Member()
+        {
+
+        }
     }
 }
