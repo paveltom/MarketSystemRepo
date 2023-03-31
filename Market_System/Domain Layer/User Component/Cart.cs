@@ -53,5 +53,20 @@ namespace Market_System.Domain_Layer.User_Component
         {
             this.total_price = price;
         }
+
+        public Bucket get_basket(string store_id)
+        {
+            foreach (Bucket basket in this.baskets)
+            {
+                if (basket.get_store_id().Equals(store_id))
+                {
+
+                    return basket;
+                }
+
+            }
+
+            throw new Exception("basket does not exists");
+        }
     }
 }

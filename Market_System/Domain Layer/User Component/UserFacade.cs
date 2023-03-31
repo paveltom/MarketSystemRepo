@@ -61,11 +61,22 @@ namespace Market_System.Domain_Layer.User_Component
             {
                 if (user.GetUsername().Equals(username))
                 {
-                    user.Logout();
+                    if (!user.GetUserState().Equals("Guest"))
+                    {
+                        user.Logout();
+                        return;
+                    }
+                    else
+                    {
+
+                        throw new ArgumentException("You're already logged-out");
+                    }
+                    
                 }
             }
 
-            throw new ArgumentException("You're already logged-out");
+            throw new ArgumentException("user does not exists");
+
         }
 
 
@@ -82,7 +93,7 @@ namespace Market_System.Domain_Layer.User_Component
             userRepo.register(username, password);
         }
 
-        internal void add_product_to_basket(string product_id, string username)
+        public void add_product_to_basket(string product_id, string username)
         {
             foreach (User u in users)
             {
@@ -104,7 +115,7 @@ namespace Market_System.Domain_Layer.User_Component
             }
         }
 
-        internal Cart get_cart(string username)
+        public Cart get_cart(string username)
         {
             foreach (User u in users)
             {
