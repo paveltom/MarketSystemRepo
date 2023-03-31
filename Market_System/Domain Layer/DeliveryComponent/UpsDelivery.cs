@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_System.Domain_Layer.DeliveyProxy
+namespace Market_System.Domain_Layer.DeliveryComponent
 {
-    internal interface Interface1
+    internal interface UpsDelivery
     {
     }
 }

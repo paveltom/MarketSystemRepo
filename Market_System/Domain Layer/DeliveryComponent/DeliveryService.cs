@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_System.Domain_Layer.PaymentProxy
+namespace Market_System.Domain_Layer.DeliveryComponent
 {
-    internal interface PaymentInterface
+    internal interface DeliveryService
     {
     }
 }

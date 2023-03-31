@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_System.Domain_Layer.PaymentProxy
+namespace Market_System.Domain_Layer.PaymentComponent
 {
-    public class PayCashService_dummy : PaymentInterface
+    internal class PayCashService_Dummy : PaymentService
     {
-
-        public PayCashService_dummy() { }
-
         public bool pay(double amount)
         {
             if (amount > 0)
@@ -21,7 +18,6 @@ namespace Market_System.Domain_Layer.PaymentProxy
             {
                 return false;
             }
-
         }
     }
 }
