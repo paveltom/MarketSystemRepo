@@ -8,5 +8,6 @@ namespace Market_System.Domain_Layer.DeliveryComponent
 {
     internal interface DeliveryService
     {
+        public Boolean deliver(String address, double weight);
     }
 }

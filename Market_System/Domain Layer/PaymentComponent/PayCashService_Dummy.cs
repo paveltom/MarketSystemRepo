@@ -8,6 +8,9 @@ namespace Market_System.Domain_Layer.PaymentComponent
 {
     internal class PayCashService_Dummy : PaymentService
     {
+
+        public PayCashService_Dummy() { }
+
         public bool pay(double amount)
         {
             if (amount > 0)

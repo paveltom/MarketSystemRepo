@@ -16,6 +16,12 @@ namespace Market_System.Domain_Layer.PaymentComponent
             get { return paymentService; }
             set { paymentService = value; }
         }
+
+        public PaymentProxy(PaymentService paymentService)
+        {
+            PaymentService = paymentService;
+        }
+
         public Boolean pay(double amount)
         {
             return PaymentService.pay(amount);
