@@ -82,6 +82,42 @@ namespace Market_System.Domain_Layer.User_Component
             userRepo.register(username, password);
         }
 
+        internal void add_product_to_basket(string product_id, string username)
+        {
+            foreach (User u in users)
+            {
+              if (u.GetUsername().Equals(username))
+                {
+                    u.add_product_to_basket(product_id);
+                }
+            }
+        }
+
+        internal void update_cart_total_price(string username, double price)
+        {
+           foreach(User u in users)
+            {
+                if(u.GetUsername().Equals(username))
+                {
+                    u.update_total_price_of_cart(price);
+                }
+            }
+        }
+
+        internal Cart get_cart(string username)
+        {
+            foreach (User u in users)
+            {
+                if (u.GetUsername().Equals(username))
+                {
+                    return u.getcart();
+                }
+            }
+
+            throw new Exception("user does not exists");
+            
+        }
+
         internal void Login_guset(string guest_name)
         {
             users.Add(new User(guest_name));
@@ -97,6 +133,19 @@ namespace Market_System.Domain_Layer.User_Component
         public bool check_if_user_exists(string user_name,string pass)
         {
             return userRepo.checkIfExists(user_name, pass);
+        }
+
+        public bool check_if_user_is_logged_in(string username)
+        {
+            foreach(User u in users)
+            {
+                if(u.GetUsername().Equals(username))
+                {
+                    return u.get_user_state().tostring().Equals("member");
+                }
+            }
+            return false;
+
         }
     }
 }

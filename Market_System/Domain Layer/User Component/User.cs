@@ -10,6 +10,8 @@ namespace Market_System.Domain_Layer.User_Component
     {
         private string username;
         private User_State user_State;
+        private Cart my_cart;
+
 
         public User(string username)
         {
@@ -30,6 +32,26 @@ namespace Market_System.Domain_Layer.User_Component
         public void Logout()
         {
             this.user_State = new Guest();
+        }
+
+        public User_State get_user_state()
+        {
+            return this.user_State;
+        }
+
+        public void add_product_to_basket(string product_id)
+        {
+            this.my_cart.add_product(product_id);
+        }
+
+        internal Cart getcart()
+        {
+            return this.my_cart;
+        }
+
+        public void update_total_price_of_cart(double price)
+        {
+            this.my_cart.update_total_price(price);
         }
     }
 }
