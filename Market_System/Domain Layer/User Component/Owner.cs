@@ -6,7 +6,11 @@ using System.Web;
 namespace Market_System.Domain_Layer.User_Component
 {
     //TODO:: Impelement this as a State.
-    public class Owner
+    public class Owner : User_State
     {
+        public string GetUserState()
+        {
+            return "Owner";
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace Market_System.Domain_Layer.User_Component
             userRepo.register(username, password);
         }
 
-        internal void Login_guset(string guest_name)
+        public void Login_guset(string guest_name)
         {
             users.Add(new User(guest_name));
             //TODO:: remove the guest when he leaves...
@@ -97,6 +97,20 @@ namespace Market_System.Domain_Layer.User_Component
         public bool check_if_user_exists(string user_name,string pass)
         {
             return userRepo.checkIfExists(user_name, pass);
+        }
+
+        //[Throws Exception]
+        public string Get_User_State(string username)
+        {
+            foreach (User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    return user.GetUserState();
+                }
+            }
+
+            throw new Exception("User doesn't exist!");
         }
     }
 }
