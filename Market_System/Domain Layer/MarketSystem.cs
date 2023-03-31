@@ -181,7 +181,7 @@ namespace Market_System.Domain_Layer
         {
             try
             {
-                storeFacade.Assign_New_Manager(founder, username, store_ID);
+                storeFacade.Assign_New_Managaer(founder, username, store_ID);
             }
             catch (Exception e)
             {

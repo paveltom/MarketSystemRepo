@@ -135,17 +135,30 @@ namespace Market_System.Domain_Layer.User_Component
             return userRepo.checkIfExists(user_name, pass);
         }
 
+        //[Throws Exception]
+        public string Get_User_State(string username)
+        {
+            foreach (User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    return user.GetUserState();
+                }
+            }
+
+            throw new Exception("User doesn't exist!");
+        }
+
         public bool check_if_user_is_logged_in(string username)
         {
             foreach(User u in users)
             {
                 if(u.GetUsername().Equals(username))
                 {
-                    return u.get_user_state().tostring().Equals("member");
+                    return u.GetUserState().Equals("Member");
                 }
             }
             return false;
-
         }
     }
 }

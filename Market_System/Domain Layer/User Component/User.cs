@@ -33,10 +33,9 @@ namespace Market_System.Domain_Layer.User_Component
         {
             this.user_State = new Guest();
         }
-
-        public User_State get_user_state()
+        public string GetUserState()
         {
-            return this.user_State;
+            return this.user_State.GetUserState();
         }
 
         public void add_product_to_basket(string product_id)
