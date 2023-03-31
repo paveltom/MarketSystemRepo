@@ -106,7 +106,7 @@ namespace Market_System.Domain_Layer.User_Component
             {
                 if (user.GetUsername().Equals(username))
                 {
-                    return user.GetUserState();
+                    return user.get_user_state().tostring();
                 }
             }
 
