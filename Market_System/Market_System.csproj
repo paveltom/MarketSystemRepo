@@ -190,8 +190,14 @@
     <Compile Include="Domain Layer\Communication Component\NotificationFacade.cs" />
     <Compile Include="Domain Layer\Communication Component\PopupNotification.cs" />
     <Compile Include="Domain Layer\Communication Component\SpecialNotification.cs" />
+    <Compile Include="Domain Layer\DeliveryComponent\DeliveryProxy.cs" />
+    <Compile Include="Domain Layer\DeliveryComponent\DeliveryService.cs" />
+    <Compile Include="Domain Layer\DeliveryComponent\UpsDelivery.cs" />
     <Compile Include="Domain Layer\ItemDTO.cs" />
     <Compile Include="Domain Layer\MarketSystem.cs" />
+    <Compile Include="Domain Layer\PaymentComponent\PayCashService_Dummy.cs" />
+    <Compile Include="Domain Layer\PaymentComponent\PaymentProxy.cs" />
+    <Compile Include="Domain Layer\PaymentComponent\PaymentService.cs" />
     <Compile Include="Domain Layer\Store Component\Employees.cs" />
     <Compile Include="Domain Layer\Store Component\Product.cs" />
     <Compile Include="Domain Layer\Store Component\Property.cs" />

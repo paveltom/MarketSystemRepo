@@ -17,6 +17,7 @@ namespace Market_System.Domain_Layer.User_Component
         {
             this.username = username;
             user_State = new Guest();
+            this.my_cart = new Cart();
         }
 
         public string GetUsername()
