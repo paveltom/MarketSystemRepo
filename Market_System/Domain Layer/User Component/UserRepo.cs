@@ -39,6 +39,11 @@ namespace Market_System.Domain_Layer.User_Component
             return Instance;
         }
 
+        public void destroy_me()
+        {
+            Instance = null;
+        }
+
         public bool checkIfExists(string username, string password)
         {
             var pass = "";

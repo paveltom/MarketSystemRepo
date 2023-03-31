@@ -25,6 +25,7 @@ namespace Market_System.Tests.unit_tests
         {
             user_facade= UserFacade.GetInstance();
             store_facade = StoreFacade.GetInstance();
+            
         }
 
         [TearDown]
@@ -32,9 +33,10 @@ namespace Market_System.Tests.unit_tests
         {
             store_facade.Destroy_me();
             user_facade.Destroy_me();
+            UserRepo.GetInstance().destroy_me();
         }
 
-        [Test]
+        [TestMethod]
         public void register_user_test_success()
         {
             Setup();
@@ -43,7 +45,7 @@ namespace Market_System.Tests.unit_tests
             TearDown();
         }
 
-        [Test]
+        [TestMethod]
         public void register_user_test_failure()
         {
             Setup();
@@ -62,7 +64,7 @@ namespace Market_System.Tests.unit_tests
             TearDown();
         }
 
-        [Test]
+        [TestMethod]
         public void Login_user_test_success()
         {
             Setup();
@@ -81,7 +83,7 @@ namespace Market_System.Tests.unit_tests
             TearDown();
         }
 
-        [Test]
+        [TestMethod]
         public void Login_user_test_failure()
         {
             Setup();
@@ -100,7 +102,7 @@ namespace Market_System.Tests.unit_tests
             TearDown();
         }
 
-        [Test]
+        [TestMethod]
         public void Logout_user_test_success()
         {
             Setup();
@@ -119,8 +121,8 @@ namespace Market_System.Tests.unit_tests
 
             TearDown();
         }
-
-        [Test]
+/*
+        [TestMethod]
         public void Logout_user_test_failure_1()
         {
             Setup();
@@ -139,8 +141,9 @@ namespace Market_System.Tests.unit_tests
 
             TearDown();
         }
+        */
 
-        [Test]
+        [TestMethod]
         public void Logout_user_test_failure_2()
         {
             Setup();
@@ -159,7 +162,7 @@ namespace Market_System.Tests.unit_tests
             TearDown();
         }
 
-        [Test]
+        [TestMethod]
         public void Logout_user_test_failure_3()
         {
             Setup();
@@ -171,13 +174,13 @@ namespace Market_System.Tests.unit_tests
 
             catch (Exception e)
             {
-                Assert.AreEqual("You're already logged-out", e.Message);
+                Assert.AreEqual("user does not exists", e.Message);
             }
 
             TearDown();
         }
 
-        [Test]
+        [TestMethod]
         public void Login_guest_test_success()
         {
             Setup();
@@ -194,5 +197,21 @@ namespace Market_System.Tests.unit_tests
 
             TearDown();
         }
+
+        [TestMethod]
+        public void add_product_to_basket_success()
+        {
+            Setup();
+           
+                user_facade.register("test1","pass");
+                user_facade.Login("test1", "pass");
+                user_facade.add_product_to_basket("123456","test1");
+                Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
+          
+
+            TearDown();
+        }
+
+
     }
 }

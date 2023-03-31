@@ -17,6 +17,7 @@ namespace Market_System.Domain_Layer.User_Component
             this.id_generator = new Random();
             this.basket_id = id_generator.Next().ToString();
             this.store_id = store_id;
+            this.products = new List<string>();
         }
 
         public void add_product(string product_id)
@@ -27,6 +28,11 @@ namespace Market_System.Domain_Layer.User_Component
         public string get_store_id()
         {
             return this.store_id;
+        }
+
+        public bool check_if_product_exists(string product_id)
+        {
+            return this.products.Contains(product_id);
         }
 
 
