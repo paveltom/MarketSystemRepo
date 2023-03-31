@@ -118,7 +118,7 @@ namespace Market_System.Domain_Layer.User_Component
             
         }
 
-        internal void Login_guset(string guest_name)
+        public void Login_guset(string guest_name)
         {
             users.Add(new User(guest_name));
             //TODO:: remove the guest when he leaves...
