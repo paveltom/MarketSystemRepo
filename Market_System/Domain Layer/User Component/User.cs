@@ -32,9 +32,9 @@ namespace Market_System.Domain_Layer.User_Component
             this.user_State = new Guest();
         }
 
-        public string GetUserState()
+          public User_State get_user_state()
         {
-            return this.user_State.GetUserState();
+            return this.user_State;
         }
     }
 }
