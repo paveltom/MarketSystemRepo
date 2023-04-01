@@ -223,6 +223,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service Layer\Response.cs" />
+    <Compile Include="Service Layer\ResponseT.cs" />
     <Compile Include="Service Layer\service_controller.cs" />
     <Compile Include="Service Layer\Service_Layer_Interface.cs" />
     <Compile Include="Service Layer\store_service_controller.cs" />
