@@ -8,19 +8,13 @@ namespace Market_System.Domain_Layer
 {
     public class ItemDTO
     {
-        private string _catagory;
-        private string _description;
-        private double _price;
-        private string _name;
-        private int _itemId;
+        private string _itemId;
+        private int quantity;
 
-    public ItemDTO(Product product)
+    public ItemDTO(string id,int quantity)
         {
-            _description = product.GetDescription();
-            _catagory = product.GetCatagory();
-            _itemId = product.GetProductID();
-            _name = product.GetName();
-            _price = product.GetPrice();
+            this._itemId=id;
+            this.quantity=quantity;
         }
 
 
