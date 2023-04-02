@@ -183,5 +183,57 @@ namespace Market_System.Domain_Layer.User_Component
                 throw new Exception("user is not logged in! or he does not exists");
             }
         }
+
+        public void Check_Delivery(string username)
+        {
+            if (Check_Delivery_Availability(username))
+            {
+                return;
+            }
+            else
+            {
+                throw new Exception("Delivery is not available");
+            }
+        }
+
+        private bool Check_Delivery_Availability(string username)
+        {
+            //TODO:: Check here with the dilvery company...
+            //חשוב: לשריין את המשלוח פה.... !!!!!!
+            return true;
+        }
+
+        public void Check_Out(string username)
+        {
+            if (Check_Payment(username))
+            {
+                return;
+            }
+            else
+            {
+                throw new Exception("Payment has failed, either your cart is empty");
+            }
+        }
+        private bool Check_Payment(string username)
+        {
+            //TODO:: Check here with the payment company...
+            foreach(User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    Cart cart = user.getcart();
+                    if(cart == null) //Empty cart, no products...
+                    {
+                        return false; 
+                    }
+                    //get cart here and pay for the products here...
+                    //save in the history of purchases too!
+
+                    //if payment was successfull return true:
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

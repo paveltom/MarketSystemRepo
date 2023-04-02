@@ -53,9 +53,36 @@ namespace Market_System.Service_Layer
             throw new NotImplementedException();
         }
 
+        public Response check_delivery(string username, Cart cart)
+        {
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(username, cart));
+                return ok;
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
         public void check_delivery()
         {
             throw new NotImplementedException();
+        }
+
+        public Response check_out(string username, Cart cart)
+        {
+            try
+            {
+                usc.Check_Delivery(username, cart);
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username, cart));
+                return ok;
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public void check_out()
@@ -109,6 +136,11 @@ namespace Market_System.Service_Layer
             {
                 return Response<String>.FromError(e.Message);
             }
+        }
+
+        public void get_purchase_history_of_a_member()
+        {
+            throw new NotImplementedException();
         }
 
         public void get_shop()

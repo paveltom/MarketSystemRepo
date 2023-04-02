@@ -193,11 +193,13 @@
     <Compile Include="Domain Layer\DeliveryComponent\DeliveryProxy.cs" />
     <Compile Include="Domain Layer\DeliveryComponent\DeliveryService.cs" />
     <Compile Include="Domain Layer\DeliveryComponent\UpsDelivery.cs" />
+    <Compile Include="Domain Layer\DeliverySystem.cs" />
     <Compile Include="Domain Layer\ItemDTO.cs" />
     <Compile Include="Domain Layer\MarketSystem.cs" />
     <Compile Include="Domain Layer\PaymentComponent\PayCashService_Dummy.cs" />
     <Compile Include="Domain Layer\PaymentComponent\PaymentProxy.cs" />
     <Compile Include="Domain Layer\PaymentComponent\PaymentService.cs" />
+    <Compile Include="Domain Layer\PaymentSystem.cs" />
     <Compile Include="Domain Layer\Store Component\Employees.cs" />
     <Compile Include="Domain Layer\Store Component\Product.cs" />
     <Compile Include="Domain Layer\Store Component\Property.cs" />
@@ -213,6 +215,7 @@
     <Compile Include="Domain Layer\User Component\Manager.cs" />
     <Compile Include="Domain Layer\User Component\Member.cs" />
     <Compile Include="Domain Layer\User Component\Owner.cs" />
+    <Compile Include="Domain Layer\User Component\Permission.cs" />
     <Compile Include="Domain Layer\User Component\PurchaseHistoryObj.cs" />
     <Compile Include="Domain Layer\User Component\PurchaseRepo.cs" />
     <Compile Include="Domain Layer\User Component\User.cs" />

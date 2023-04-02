@@ -197,15 +197,59 @@ namespace Market_System.Tests.unit_tests
         [TestMethod]
         public void add_product_to_basket_success()
         {
-           
-                user_facade.register("test1","pass");
-                user_facade.Login("test1", "pass");
-                user_facade.add_product_to_basket("123456","test1");
-                Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
-          
-
+            user_facade.register("test1", "pass");
+            user_facade.Login("test1", "pass");
+            user_facade.add_product_to_basket("123456", "test1");
+            Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
         }
 
+        [TestMethod]
+        public void Check_Delivery_Success()
+        {
+            user_facade.register("test1", "pass");
+            user_facade.Login("test1", "pass");
+            try
+            {
+                user_facade.Check_Delivery("test1");
+            }
 
+            catch(Exception e)
+            {
+                Assert.Fail("Should've made the delivery possible, but failed due to error: " + e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void Check_Out_Success()
+        {
+            user_facade.register("test1", "pass");
+            user_facade.Login("test1", "pass");
+            user_facade.add_product_to_basket("123456", "test1");
+            try
+            {
+                user_facade.Check_Delivery("test1");
+            }
+
+            catch (Exception e)
+            {
+                Assert.Fail("Should've made the delivery possible, but failed due to error: " + e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void Check_Out_Failure()
+        {
+            user_facade.register("test1", "pass");
+            user_facade.Login("test1", "pass");
+            try
+            {
+                user_facade.Check_Delivery("test1");
+            }
+
+            catch (Exception e)
+            {
+                Assert.AreEqual("Payment has failed, either your cart is empty",  e.Message);
+            }
+        }
     }
 }
