@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Market_System.Domain_Layer.User_Component;
 using Market_System.Domain_Layer.Store_Component;
+using Market_System.Domain_Layer.PaymentComponent;
+using Market_System.Domain_Layer.DeliveryComponent;
 
 namespace Market_System.Domain_Layer
 {
@@ -213,7 +215,35 @@ namespace Market_System.Domain_Layer
            
         }
 
+        public string Check_Delivery(string username)
+        {
+            try 
+            {
+                userFacade.Check_Delivery(username);
+                return "Delivery is available";
+            }
 
+            catch(Exception e)
+            {
+                throw e;
+            }
+            
+        }
 
+        public string Check_Out(string username)
+        {
+            try 
+            {
+                userFacade.Check_Out(username);
+                return "Payment was successfull";
+            }
+
+            catch(Exception e)
+            {
+                //TODO:: לבטל שריון של ההזמנה!!!!
+                throw e;
+                throw new Exception("Delivery is not available");
+            }
+        }
     }
 }

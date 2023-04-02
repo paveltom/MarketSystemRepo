@@ -124,19 +124,36 @@ namespace Market_System.Service_Layer
 
         }
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username) //6.4
-        {
-          
+        {       
                 return market_System.get_purchase_history_of_a_member(username);
-                
-          
-          
-
-
         }
 
+        public string Check_Delivery(string username, Cart cart)
+        {
+            try
+            {
+                return market_System.Check_Delivery(username, cart);
+            }
 
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
 
+        public string Check_Out(string username, Cart cart)
+        {
+            try
+            {
+                return market_System.Check_Out(username, cart);
+                //TODO:: save the purcahse history... in the Purchase Repo
+                //PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, , ))
+            }
 
-
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
     }
 }

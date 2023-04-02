@@ -10,19 +10,19 @@ namespace Market_System.Domain_Layer.User_Component
     {
         private string basket_id;
         private string store_id;
-        private List<string> products;
+        private Dictionary<string, int> products;
         private Random id_generator;
         public Bucket(string store_id)
         {
             this.id_generator = new Random();
             this.basket_id = id_generator.Next().ToString();
             this.store_id = store_id;
-            this.products = new List<string>();
+            this.products = new Dictionary<string, int>();
         }
 
         public void add_product(string product_id)
         {
-            this.products.Add(product_id);
+            this.products.Add(product_id, products[product_id] + 1);
         }
 
         public string get_store_id()
@@ -32,10 +32,10 @@ namespace Market_System.Domain_Layer.User_Component
 
         public bool check_if_product_exists(string product_id)
         {
-            return this.products.Contains(product_id);
+            return this.products.ContainsKey(product_id);
         }
 
-        public List<string> get_products()
+        public Dictionary<string, int> get_products()
         {
             return this.products;
         }
