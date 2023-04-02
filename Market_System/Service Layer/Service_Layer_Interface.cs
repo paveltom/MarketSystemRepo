@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Market_System.ServiceLayer;
+
 
 namespace Market_System.Service_Layer
 {
@@ -10,17 +12,17 @@ namespace Market_System.Service_Layer
     {
         public void check_out(); //I.3 מערכת
         public void check_delivery(); //I.4 מערכת
-        public void login_member(); // 1.4
+        public Response login_member(string username,string pass); // 1.4
         public void login_guest(); //1.1
-        public void log_out(); //3.1
-        public void register(); // 1.3
+        public Response log_out(); //3.1
+        public Response register(string username, string pass); // 1.3
         public void get_shop();
         public void get_products_from_shop();
         public void search_product_by_category(); //2.2
         public void search_product_by_keyword(); //2.2
         public void search_product_by_name(); //2.2
         public void apply_purchase_policy(); //2.5
-        public void add_product_to_basket();
+        public Response add_product_to_basket(string product_id, string username);
         public void remove_product_from_basket();
         public void open_new_store(); // 3.2
         public void comment_on_product(); // 3.3
