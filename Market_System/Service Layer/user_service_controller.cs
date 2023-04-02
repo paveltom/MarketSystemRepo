@@ -73,8 +73,16 @@ namespace Market_System.Service_Layer
             }
 
         }
-        public void add_product_to_basket()
+        public string add_product_to_basket(string product_id,string username)
         {
+            try
+            {
+                return market_System.Add_Product_To_basket(product_id, username);
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
 
         }
         public void remove_product_from_basket()

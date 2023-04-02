@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_System.Domain_Layer.User_Component
+namespace Market_System.Domain_Layer.PaymentComponent
 {
-    interface User_State
+    internal interface PaymentService
     {
-        public string GetUserState();
+        public Boolean pay(double amount);
     }
 }

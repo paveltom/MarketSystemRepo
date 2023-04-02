@@ -13,7 +13,7 @@ namespace Market_System.ServiceLayer
             this.Value = value;
         }
 
-        internal static Response<T> FromValue(T value)
+        public static Response<T> FromValue(T value)
         {
             return new Response<T>(value, null);
         }
