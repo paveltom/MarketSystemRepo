@@ -45,8 +45,9 @@ namespace Market_System.Domain_Layer.Store_Component
             return this.founder;
         }
 
-        public void Add_Product(int product_id, int quantity)
+        public void Add_Product(string userID, List<string> productProperties)
         {
+            // validate userID first
             products.Add(product_id, quantity);
         }
 

@@ -42,11 +42,11 @@ namespace Market_System.Domain_Layer.Store_Component
             return Instance;
         }
 
-        public void Add_New_Store(string username, int storeID)
+        public void Add_New_Store(string userID, string storeID)
         {
             try
             {
-                storeRepo.AddStore(username, storeID);
+                storeRepo.AddStore(userID, storeID);
             }
             catch(Exception e)
             {
@@ -54,11 +54,12 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Add_Product_To_Store(int store_ID, string founder, Product product, int quantity)
+        public void Add_Product_To_Store(string storeID, string usertID, List<string> productProperties) //may be pass ItemDTO instead
         {
             try
             {
-                storeRepo.AddProduct(store_ID, founder, product, quantity);
+                Store currStore = storeRepo.getStore(storeID);
+                currStore.Add_Product(userID, productProperties);
             }
             catch (Exception e)
             {
@@ -66,11 +67,12 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Remove_Product_From_Store(int store_ID, string founder, Product product)
+        public void Remove_Product_From_Store(string store_ID, string userID, Product product)
         {
             try
             {
-                storeRepo.RemoveProduct(store_ID, founder, product);
+                Store currStore = storeRepo.getStore(storeID);
+                currStore.Remove_Product(userID, product.Product_ID);
             }
             catch (Exception e)
             {
@@ -78,11 +80,12 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Assign_New_Owner(string founder, string username, int store_ID)
+        public void Assign_New_Owner(string userID, string storeID, string newOwnerID)
         {
             try
             {
-                storeRepo.Assign_New_Owner(founder, username, store_ID);
+                Store currStore = storeRepo.getStore(storeID);
+                currStore.Add_New_Owner(userID, newOwnerID);
             }
             catch (Exception e)
             {
@@ -90,21 +93,49 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Assign_New_Managaer(string founder, string username, int store_ID)
+        public void Assign_New_Managaer(string userID, string storeID, string newManagerID)
         {
             try
             {
-                storeRepo.Assign_New_Manager(founder, username, store_ID);
+                Store currStore = storeRepo.getStore(storeID);
+                currStore.Add_New_Owner(userID, newManagerID);
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
+
+
+        public void CalculatePrice(List<ItemDTO> products)
+        {
+            try
+            {
+                throw new NotImplementedException("implement me please");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        public void Purchase(List<ItemDTO> products)
+        {
+            try
+            {
+                throw new NotImplementedException("implement me please");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+
     }
 }
 
 // ToDo:
 // stores have to concurrent??? ConcurrentBag<Store>
-
-// improve singleton implementation 

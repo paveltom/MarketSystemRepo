@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Market_System",
-    "\\Market_System\\Domain Layer"
+    "\\Market_System\\Domain Layer",
+    "\\Market_System\\Domain Layer\\Store Component"
   ],
+  "SelectedNode": "\\Market_System\\Domain Layer\\Store Component\\Product.cs",
   "PreviewInSolutionExplorer": false
 }
