@@ -78,15 +78,18 @@ namespace Market_System.Domain_Layer.Store_Component
             return false;
         }
 
-
         // ========Methods ToDo==========:
         // passing a data for store representation (including what details?)
         // passing a data for store content representation- what products availble for a buyer
         // *maby should an additional store content view, a seperate view for a manager of the store
-        // 
-        // 
+        // (search)-get products by name: getting all products with same name *or similar name
+        // (search)-get products by catagory: getting all products from that catagory
 
         // ======more ideas=====
-        // 
+        /*
+         *  .חיפוש מוצרים ללא התמקדות בחנות ספציפית, לפי שם המוצר, קטגוריה או מילות מפתח.
+         *  ניתן לסנן את התוצאות בהתאם למאפיינים כגון: טווח מחירים, דירוג המוצר, קטגוריה
+         * דירוג החנות וכד'.
+         */
     }
 }
