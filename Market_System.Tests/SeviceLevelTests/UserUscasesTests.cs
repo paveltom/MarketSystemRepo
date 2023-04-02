@@ -12,7 +12,7 @@ namespace Market_System.Tests.ServiceLevelTests
     /// Summary description for UserTests
     /// </summary>
     [TestClass]
-    public class UserTests
+    public class UserUscasesTests
     {
         public UserTests()
         {
@@ -82,16 +82,52 @@ namespace Market_System.Tests.ServiceLevelTests
             //tearDown
             //Service_Controller.
         }
+
+        public void FailUserRegistersUsedUserame()
+        {
+            //Setup: none
+
+            //Action:
+            //Response response =Service_Controller.register();
+
+            //Result:
+            //1.Response->not null meaning the registration completed without error
+            //2:chacking if member is now in the system by doing login.
+            //Response response2 = Service_Controller.login_member();
+
+            //tearDown
+            //Service_Controller.
+        }
+
+        public void FailUserRegistersUsedPassword()
+        {
+            //Setup: none
+
+            //Action:
+            //Response response =Service_Controller.register();
+
+            //Result:
+            //1.Response->not null meaning the registration completed without error
+            //2:chacking if member is now in the system by doing login.
+            //Response response2 = Service_Controller.login_member();
+
+            //tearDown
+            //Service_Controller.
+        }
+
     }
+
+
+
     /*points coming from writing tests:
      * 
      * 1.implementing a response, or other ansewring mechanizem that will pass service caller success/fail signal
-     * 2.implement register
+     * 2.complete service layer signatures and return values
      * 3.we talked about mabye the defult state of a user entering
      *   to the system should be automatycly guest.
      *   in order to let him see as fast as posibble products to keep him entreeged.
      *   also there is not much functionality being a user without pressing continue as guest.
-     * 4.add unregister(memberID);
-     * 
+     * 4.add unregister(memberID) function;
+     * 5.
      */
 }
