@@ -46,11 +46,12 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
+                Store currStore = storeRepo.getStore(storeID);
                 storeRepo.AddStore(userID, storeID);
             }
             catch(Exception e)
             {
-                throw e;
+                throw e; 
             }
         }
 
