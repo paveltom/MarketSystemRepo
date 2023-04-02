@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.ServiceLayer;
+
+
 
 namespace Market_System.Service_Layer
 {
@@ -14,9 +17,19 @@ namespace Market_System.Service_Layer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller();
         }
-        public void add_product_to_basket()
+        public Response add_product_to_basket(string product_id,string username)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id, username));
+                return ok;
+            }
+            catch(Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
+
+            
         }
 
         public void add_product_to_store()
@@ -99,14 +112,30 @@ namespace Market_System.Service_Layer
             throw new NotImplementedException();
         }
 
-        public void login_member()
+        public Response login_member(string username,string pass)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.Login_Member(username, pass));
+                return ok;
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public void log_out()
+        public Response log_out()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Response<string>.FromValue(this.usc.Logout());
+               
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public void open_new_store()
@@ -114,10 +143,18 @@ namespace Market_System.Service_Layer
             throw new NotImplementedException();
         }
 
-        public void register()
+        public Response register(string username,string pass)
         {
-            throw new NotImplementedException();
-        }
+             try
+            {
+                return Response<string>.FromValue(this.usc.register(username, pass));
+                 
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
+}
 
         public void remove_product_from_basket()
         {

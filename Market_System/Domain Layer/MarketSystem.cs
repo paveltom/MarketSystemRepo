@@ -61,7 +61,7 @@ namespace Market_System.Domain_Layer
             }
         }
 
-        internal void Add_Product_To_basket(string product_id,string username)
+        internal string Add_Product_To_basket(string product_id,string username)
         {
 
 
@@ -77,6 +77,7 @@ namespace Market_System.Domain_Layer
                     //  price  =  storefacade.calcualte_total_price(cart);
                     double price = 0;
                     userFacade.update_cart_total_price(username, price);
+                    return "added product id : " + product_id + " to " + username + "'s cart";
                 }
                 else
                 {
