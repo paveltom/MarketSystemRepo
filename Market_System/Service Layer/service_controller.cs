@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Market_System.ServiceLayer;
+using Market_System.Domain_Layer.User_Component;
 
 
 
@@ -97,9 +98,17 @@ namespace Market_System.Service_Layer
             throw new NotImplementedException();
         }
 
-        public void get_purchase_history_of_a_memebr()
+        public Response get_purchase_history_of_a_member(string username)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Response<List<PurchaseHistoryObj>>.FromValue(this.usc.get_purchase_history_of_a_member(username));
+
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public void get_shop()

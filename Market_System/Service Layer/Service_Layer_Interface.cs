@@ -35,7 +35,7 @@ namespace Market_System.Service_Layer
         public void close_store(); //4.9
         public void get_managers_of_store(); //4.11
         public void get_purchase_history_from_store(); //4.13
-        public void get_purchase_history_of_a_memebr(); //6.4
+        public void get_purchase_history_of_a_member(); //6.4
 
     }
 }

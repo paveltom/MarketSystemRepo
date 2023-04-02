@@ -14,7 +14,7 @@ namespace Market_System.Tests.ServiceLevelTests
     [TestClass]
     public class UserUscasesTests
     {
-        public UserTests()
+        public UserUscasesTests()
         {
             // TODO: Add constructor logic here  
         }

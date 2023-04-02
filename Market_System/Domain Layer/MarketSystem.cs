@@ -200,6 +200,20 @@ namespace Market_System.Domain_Layer
             return false;
         }
 
-        
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
+        {
+            try
+            {
+                return userFacade.get_purchase_history_of_a_member(username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+           
+        }
+
+
+
     }
 }
