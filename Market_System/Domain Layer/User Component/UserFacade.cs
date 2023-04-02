@@ -171,5 +171,17 @@ namespace Market_System.Domain_Layer.User_Component
             }
             return false;
         }
+
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
+        {
+           if(check_if_user_is_logged_in(username))
+            {
+                return PurchaseRepo.GetInstance().get_history(username);
+            }
+           else
+            {
+                throw new Exception("user is not logged in! or he does not exists");
+            }
+        }
     }
 }
