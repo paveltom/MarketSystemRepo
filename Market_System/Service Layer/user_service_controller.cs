@@ -123,9 +123,13 @@ namespace Market_System.Service_Layer
         {
 
         }
-        public void get_purchase_history_of_a_member() //6.4
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username) //6.4
         {
-            
+          
+                return market_System.get_purchase_history_of_a_member(username);
+                
+          
+          
 
 
         }
