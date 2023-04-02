@@ -35,6 +35,11 @@ namespace Market_System.Domain_Layer.User_Component
             return this.products.Contains(product_id);
         }
 
+        public List<string> get_products()
+        {
+            return this.products;
+        }
+
 
 
     }

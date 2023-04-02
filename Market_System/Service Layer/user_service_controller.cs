@@ -73,12 +73,19 @@ namespace Market_System.Service_Layer
             }
 
         }
-        public void add_product_to_basket(string product_id,string username)
+        public string add_product_to_basket(string product_id,string username)
         {
-            market_System.Add_Product_To_basket(product_id,username);
+            try
+            {
+                return market_System.Add_Product_To_basket(product_id, username);
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
 
         }
-        public void remove_product_from_basket()
+        public void remove_product_from_basket(string product_id, string username)
         {
 
         }
@@ -116,9 +123,13 @@ namespace Market_System.Service_Layer
         {
 
         }
-        public void get_purchase_history_of_a_member() //6.4
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username) //6.4
         {
-            
+          
+                return market_System.get_purchase_history_of_a_member(username);
+                
+          
+          
 
 
         }
