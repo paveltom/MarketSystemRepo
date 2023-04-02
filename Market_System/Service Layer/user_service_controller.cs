@@ -85,7 +85,7 @@ namespace Market_System.Service_Layer
             }
 
         }
-        public void remove_product_from_basket()
+        public void remove_product_from_basket(string product_id, string username)
         {
 
         }
