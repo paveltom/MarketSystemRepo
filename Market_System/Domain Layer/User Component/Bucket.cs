@@ -49,7 +49,18 @@ namespace Market_System.Domain_Layer.User_Component
             return this.products;
         }
 
-
-
+        internal int remove_product(string product_id)
+        {
+            this.products[product_id] = this.products[product_id] - 1;
+            if(this.products[product_id]==0)
+            {
+                this.products.Remove(product_id);
+            }
+            if(this.products.Count()==0)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }

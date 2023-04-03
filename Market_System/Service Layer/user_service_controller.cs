@@ -85,8 +85,16 @@ namespace Market_System.Service_Layer
             }
 
         }
-        public void remove_product_from_basket(string product_id, string username)
+        public string remove_product_from_basket(string product_id, string username)
         {
+            try
+            {
+                return market_System.remove_product_from_basket(product_id, username);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
 
         }
         public string assign_new_owner(string founder, string username, int store_ID) // 4.4

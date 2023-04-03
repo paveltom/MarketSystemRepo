@@ -5,6 +5,7 @@ using Market_System.Domain_Layer.Store_Component;
 using Market_System.Domain_Layer.User_Component;
 using Market_System.Domain_Layer;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using System.Threading;
 
 namespace Market_System.Tests.unit_tests
 {
@@ -207,6 +208,70 @@ namespace Market_System.Tests.unit_tests
         }
 
         [TestMethod]
+        public void remove_product_from_basket_and_remains_some_products()
+        {
+            user_facade.register("test1", "pass", "address");
+            user_facade.Login("test1", "pass");
+            user_facade.add_product_to_basket("123456", "test1");
+            user_facade.add_product_to_basket("123456", "test1");
+            user_facade.remove_product_from_basket("123456", "test1");
+            Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
+        }
+
+        [TestMethod]
+        public void remove_product_from_basket_and_nothing_remains_in_it()
+        {
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.add_product_to_basket("123456", "test1");
+                user_facade.remove_product_from_basket("123456", "test1");
+                user_facade.get_cart("test1").get_basket("123");
+                Assert.Fail("This test should've failed - no product is left in this basket then basket should not be existed");
+            }
+            catch(Exception e)
+            {
+                Assert.AreEqual("basket does not exists", e.Message);
+            }
+
+
+        }
+
+        [TestMethod]
+        public void remove_product_from_not_existing_basket()
+        {
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.remove_product_from_basket("123456", "test1");
+                Assert.Fail("This test should've failed - basket does not exists");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("basket does not exists", e.Message);
+            }
+
+        }
+
+
+        /*
+        [TestMethod]
+        public void add_product_to_basket_in_parallel_success()
+        {
+            ms.Add_Product_To_basket("1231", "my");
+            Thread sleeping_thread=new Thread(new ThreadStart(() => { Thread.Sleep(1000); ms.addproduct("user1") and shit}))
+            Thread fast_thread=new Thread(new ThreadStart(() => {  ms.addproduct("user2") and shit}))
+        expext user2 to sccuess and user 1 to fail
+
+        }
+
+       */
+
+
+
+        [TestMethod]
         public void Check_Delivery_Success()
         {
             user_facade.register("test1", "pass", "address");
@@ -242,6 +307,7 @@ namespace Market_System.Tests.unit_tests
         [TestMethod]
         public void Check_Out_Failure()
         {
+            
             user_facade.register("test1", "pass","address");
             user_facade.Login("test1", "pass");
             try

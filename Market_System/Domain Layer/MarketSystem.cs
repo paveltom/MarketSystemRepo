@@ -66,29 +66,57 @@ namespace Market_System.Domain_Layer
         public string Add_Product_To_basket(string product_id,string username)
         {
 
-
-            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
-            if(check_if_availbe_from_store_facade(product_id)==true)
+            lock (this)
             {
-                if(userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+                if (check_if_availbe_from_store_facade(product_id) == true)
                 {
-                    //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
-                    
-                    userFacade.add_product_to_basket(product_id, username);
-                    Market_System.Domain_Layer.User_Component.Cart cart= userFacade.get_cart(username);
-                    //  price  =  storefacade.calcualte_total_price(cart);
-                    double price = 110;
-                    userFacade.update_cart_total_price(username, price);
-                    return "added product id : " + product_id + " to " + username + "'s cart";
+                    if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                    {
+                        //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
+
+                        userFacade.add_product_to_basket(product_id, username);
+                        Market_System.Domain_Layer.User_Component.Cart cart = userFacade.get_cart(username);
+                        //  price  =  storefacade.calcualte_total_price(cart);
+                        double price = 110;
+                        userFacade.update_cart_total_price(username, price);
+                        return "added product id : " + product_id + " to " + username + "'s cart";
+                    }
+                    else
+                    {
+                        throw new Exception("user is not logged in");
+                    }
                 }
                 else
                 {
-                    throw new Exception("user is not logged in");
+                    throw new Exception("product out of stock");
                 }
             }
-            else
+
+        }
+
+        public string remove_product_from_basket(string product_id, string username)
+        {
+            lock (this)
             {
-                throw new Exception("product out of stock");
+              
+                    if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                    {
+                        //storeFacade.add_Product_to_Store(product_id);
+
+                        userFacade.remove_product_from_basket(product_id, username);
+                        Market_System.Domain_Layer.User_Component.Cart cart = userFacade.get_cart(username);
+                        //  price  =  storefacade.calcualte_total_price(cart);
+                        double price = 110;
+                        userFacade.update_cart_total_price(username, price);
+                        return "removed product id : " + product_id + " from " + username + "'s cart";
+                    }
+                    else
+                    {
+                        throw new Exception("user is not logged in");
+                    }
+                
+                
             }
 
         }
