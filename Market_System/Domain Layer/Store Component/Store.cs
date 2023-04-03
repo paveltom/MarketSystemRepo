@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Web;
 
@@ -8,32 +9,24 @@ namespace Market_System.Domain_Layer.Store_Component
     public class Store : Property
     {
         //Implement all of the Property Methods here
-        private int store_ID;
+        private string store_ID;
         private string name;
+        private ConcurrentDictionary<string, Product> products; //<product_id, Product>
+        private Employees employees;
+        private String founderID; //founder's userID
 
 
-        private Dictionary<int, int> products; //<product_id, quantity>
-        private List<string> owners; //<Owner's_username>
-        private List<string> managers;
-        private String founder; //founder's username
-       
-
-        // =======Fields ToDo===========:
-        // Attributes -  Dictionary<String>: {atb1: opt1->opt2->op3...., atb2: opt1->opt2....,...}
-        // *Comments
-
-
-
-
-        public Store(string founder, int store_ID)
+        public Store(string store_ID) // builder for existing store - load fields from database
         {
-            //TODO:: change it later to load the info from the database.
-            products = new Dictionary<int, int>();
-            owners = new List<string>();
-            managers = new List<string>();
-            this.founder = founder;
-            this.store_ID = store_ID;
+            //TODO:: change it later to load the info from the database BUT!!! lazy load -> add methods that retreive data only on demand
         }
+
+
+        public Store(string founderID, string newStoreID) // builder for a new store - initialize all fields with default values
+        {
+            //TODO:: change it later to init default values
+        }
+
 
         public int GetStore_ID()
         {
@@ -77,6 +70,42 @@ namespace Market_System.Domain_Layer.Store_Component
             if (managers.Contains(username)) return true;
             return false;
         }
+
+        public double CalculatePrice(List<ItemDTO> productsToCalculate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double Purchase(List<ItemDTO> productsToPurchase)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double ReserveProduct(List<ItemDTO> productsToPurchase)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditProduct(string userID, string productID, List<strin> editedDetails) 
+        {
+            // has to be separated into sub-editions: editWeight(), editQuantity(), etc on higher level
+            throw new NotImplementedException();
+        }
+
+        public void GetManagersOfTheStore(string userID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetPurchaseHistoryOfTheStore(string userID)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+
+
 
         // ========Methods ToDo==========:
         // passing a data for store representation (including what details?)

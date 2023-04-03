@@ -28,8 +28,16 @@ namespace Market_System.Domain_Layer.Store_Component
         public Catagory ProductCategory { get; set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
 
 
+
+        // simple builder before delivery system and purchase strategy/policy implementations
+        public Product(String product_ID, String name, String, String description, double Price, int initQuantity, double rating, double weight) 
+        {
+            this.product_ID = product_ID;
+            // add here method to initialize other comlex properties
+        }
+
         public Product(String product_ID, String name, String, String description, double Price, int initQuantity, double rating, double weight, Array<int> dimenssions, List<String> comments, List<Purchase_Policy> purchase_Policies, 
-                        List<Purchase_Strategy> purchase_Strategies, Dictionary<Strinbg, List<String>> product_Attributes, ) // can be Builder
+                        List<Purchase_Strategy> purchase_Strategies, Dictionary<String, List<String>> product_Attributes, ) // can be Builder
         {
             this.product_ID = product_ID;
             // add here method to initialize other comlex properties
