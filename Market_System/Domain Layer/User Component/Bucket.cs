@@ -22,7 +22,16 @@ namespace Market_System.Domain_Layer.User_Component
 
         public void add_product(string product_id)
         {
-            this.products.Add(product_id, products[product_id] + 1);
+
+            if (!check_if_product_exists(product_id))
+            {
+                this.products.Add(product_id, 0);
+            }
+
+
+            this.products[product_id] = this.products[product_id] + 1;
+
+
         }
 
         public string get_store_id()

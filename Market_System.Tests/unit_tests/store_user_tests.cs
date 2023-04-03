@@ -20,6 +20,7 @@ namespace Market_System.Tests.unit_tests
         // Use TestInitialize to run code before running each test 
          [TestInitialize()]
         public void Setup() {
+            ms = MarketSystem.GetInstance();
             user_facade = UserFacade.GetInstance();
             store_facade = StoreFacade.GetInstance();
         }
@@ -28,9 +29,11 @@ namespace Market_System.Tests.unit_tests
          [TestCleanup()]
         public void TearDown()
         {
+            ms.destroy_me();
             store_facade.Destroy_me();
             user_facade.Destroy_me();
             UserRepo.GetInstance().destroy_me();
+            PurchaseRepo.GetInstance().destroy_me();
         }
 
 
@@ -39,7 +42,7 @@ namespace Market_System.Tests.unit_tests
         public void register_user_test_success()
         {
             
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass","address");
             Assert.AreEqual(true, user_facade.check_if_user_exists("test1", "pass"));
             
         }
@@ -48,10 +51,10 @@ namespace Market_System.Tests.unit_tests
         public void register_user_test_failure()
         {
             
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass", "address");
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 Assert.Fail("Expected this test to fail, but was a success - the same user was registered twice");
             }
 
@@ -67,7 +70,7 @@ namespace Market_System.Tests.unit_tests
         public void Login_user_test_success()
         {
             
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass", "address");
             try
             {
                 user_facade.Login("test1", "pass");
@@ -86,7 +89,7 @@ namespace Market_System.Tests.unit_tests
         public void Login_user_test_failure()
         {
             
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass", "address");
             try
             {
                 user_facade.Login("test2", "pass");
@@ -107,7 +110,7 @@ namespace Market_System.Tests.unit_tests
            
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
                 user_facade.Logout("test1");
                 Assert.AreEqual("Guest", user_facade.Get_User_State("test1"));
@@ -127,7 +130,7 @@ namespace Market_System.Tests.unit_tests
             
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
                 user_facade.Logout("test1");
                 user_facade.Logout("test1");
@@ -149,7 +152,7 @@ namespace Market_System.Tests.unit_tests
             
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 user_facade.Logout("test1");
                 Assert.Fail("This test should've failed - Already logged-out");
             }
@@ -197,7 +200,7 @@ namespace Market_System.Tests.unit_tests
         [TestMethod]
         public void add_product_to_basket_success()
         {
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass", "address");
             user_facade.Login("test1", "pass");
             user_facade.add_product_to_basket("123456", "test1");
             Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
@@ -206,11 +209,11 @@ namespace Market_System.Tests.unit_tests
         [TestMethod]
         public void Check_Delivery_Success()
         {
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass", "address");
             user_facade.Login("test1", "pass");
             try
             {
-                user_facade.Check_Delivery("test1");
+               Assert.AreEqual("Delivery is available", MarketSystem.GetInstance().Check_Delivery("address"));
             }
 
             catch(Exception e)
@@ -218,16 +221,16 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("Should've made the delivery possible, but failed due to error: " + e.Message);
             }
         }
-
+        
         [TestMethod]
         public void Check_Out_Success()
         {
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass","address");
             user_facade.Login("test1", "pass");
-            user_facade.add_product_to_basket("123456", "test1");
+            ms.Add_Product_To_basket("123456", "test1");
             try
             {
-                user_facade.Check_Delivery("test1");
+                Assert.AreEqual("Payment was successfull", MarketSystem.GetInstance().Check_Out("test1","9478-5188-9999-6666",user_facade.get_cart("test1")));
             }
 
             catch (Exception e)
@@ -235,15 +238,15 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("Should've made the delivery possible, but failed due to error: " + e.Message);
             }
         }
-
+        
         [TestMethod]
         public void Check_Out_Failure()
         {
-            user_facade.register("test1", "pass");
+            user_facade.register("test1", "pass","address");
             user_facade.Login("test1", "pass");
             try
             {
-                user_facade.Check_Delivery("test1");
+               MarketSystem.GetInstance().Check_Out("test1", "9478-5188-9999-6666", user_facade.get_cart("test1"));
             }
 
             catch (Exception e)
@@ -251,5 +254,7 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("Payment has failed, either your cart is empty",  e.Message);
             }
         }
+        
+        
     }
 }

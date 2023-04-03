@@ -58,11 +58,11 @@ namespace Market_System.Service_Layer
         }
 
       
-        public string register(string username,string password) // 1.3
+        public string register(string username,string password,string address) // 1.3
         {
             try
             {
-                market_System.register(username,password);
+                market_System.register(username,password,address);
                 
                 return "registered succesfully";
             }
@@ -127,12 +127,12 @@ namespace Market_System.Service_Layer
         {       
                 return market_System.get_purchase_history_of_a_member(username);
         }
-
-        public string Check_Delivery(string username, Cart cart)
+        
+        public string Check_Delivery(string address)
         {
             try
             {
-                return market_System.Check_Delivery(username, cart);
+                return market_System.Check_Delivery(address);
             }
 
             catch(Exception e)
@@ -140,12 +140,14 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-
-        public string Check_Out(string username, Cart cart)
+        
+        
+        public string Check_Out(string username,string credit_card, Cart cart)
         {
             try
             {
-                return market_System.Check_Out(username, cart);
+
+                return market_System.Check_Out(username, credit_card, cart);
                 //TODO:: save the purcahse history... in the Purchase Repo
                 //PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, , ))
             }
@@ -155,5 +157,6 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
+        
     }
 }

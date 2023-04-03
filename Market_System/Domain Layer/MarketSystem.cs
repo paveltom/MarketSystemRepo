@@ -63,7 +63,7 @@ namespace Market_System.Domain_Layer
             }
         }
 
-        internal string Add_Product_To_basket(string product_id,string username)
+        public string Add_Product_To_basket(string product_id,string username)
         {
 
 
@@ -77,7 +77,7 @@ namespace Market_System.Domain_Layer
                     userFacade.add_product_to_basket(product_id, username);
                     Market_System.Domain_Layer.User_Component.Cart cart= userFacade.get_cart(username);
                     //  price  =  storefacade.calcualte_total_price(cart);
-                    double price = 0;
+                    double price = 110;
                     userFacade.update_cart_total_price(username, price);
                     return "added product id : " + product_id + " to " + username + "'s cart";
                 }
@@ -105,11 +105,11 @@ namespace Market_System.Domain_Layer
                 throw e;
             }
         }
-        public void register(string username, string password)
+        public void register(string username, string password,string address)
         {
             try
             {
-                userFacade.register(username, password);
+                userFacade.register(username, password,address);
             }
 
             catch (Exception e)
@@ -215,12 +215,15 @@ namespace Market_System.Domain_Layer
            
         }
 
-        public string Check_Delivery(string username)
+        public string Check_Delivery(string adderss)
         {
             try 
             {
-                userFacade.Check_Delivery(username);
-                return "Delivery is available";
+                DeliveryProxy.get_instance().deliver(adderss, 99);
+                
+                   // userFacade.Check_Delivery(username);
+                    return "Delivery is available";
+                
             }
 
             catch(Exception e)
@@ -230,11 +233,16 @@ namespace Market_System.Domain_Layer
             
         }
 
-        public string Check_Out(string username)
+        public string Check_Out(string username,string credit_card_details,Cart cart)
         {
-            try 
+            try
             {
-                userFacade.Check_Out(username);
+                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+             // price = storefacade.calcualte_total_price(cart);
+                double price = 1000;
+                PayCashService_Dummy.get_instance().pay(credit_card_details, price);
+                userFacade.save_purhcase_in_user(username,cart);
+                
                 return "Payment was successfull";
             }
 
@@ -242,8 +250,19 @@ namespace Market_System.Domain_Layer
             {
                 //TODO:: לבטל שריון של ההזמנה!!!!
                 throw e;
-                throw new Exception("Delivery is not available");
+                
             }
+        }
+
+
+        public void destroy_me()
+        {
+            Instance = null;
+            userFacade.Destroy_me();
+            storeFacade.Destroy_me();
+            PurchaseRepo.GetInstance().destroy_me();
+            UserRepo.GetInstance().destroy_me();
+
         }
     }
 }
