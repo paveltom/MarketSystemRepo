@@ -24,7 +24,7 @@ namespace Market_System.Service_Layer
         public void search_product_by_name(); //2.2
         public void apply_purchase_policy(); //2.5
         public Response add_product_to_basket(string product_id, string username);
-        public void remove_product_from_basket();
+        public Response remove_product_from_basket(string product_id, string username);
         public void open_new_store(); // 3.2
         public void comment_on_product(); // 3.3
         public void add_product_to_store(); //4.1
@@ -36,7 +36,7 @@ namespace Market_System.Service_Layer
         public void close_store(); //4.9
         public void get_managers_of_store(); //4.11
         public void get_purchase_history_from_store(); //4.13
-        public void get_purchase_history_of_a_member(); //6.4
+        public Response get_purchase_history_of_a_member(string username); //6.4
 
     }
 }

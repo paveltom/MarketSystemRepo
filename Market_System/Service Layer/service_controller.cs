@@ -88,10 +88,6 @@ namespace Market_System.Service_Layer
            
         }
 
-        public void check_out()
-        {
-            throw new NotImplementedException();
-        }
 
         public void close_store()
         {
@@ -141,10 +137,6 @@ namespace Market_System.Service_Layer
             }
         }
 
-        public void get_purchase_history_of_a_member()
-        {
-            throw new NotImplementedException();
-        }
 
         public void get_shop()
         {
@@ -200,9 +192,17 @@ namespace Market_System.Service_Layer
             }
 }
 
-        public void remove_product_from_basket()
+        public Response remove_product_from_basket(string product_id,string username)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, username));
+                 
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public void remove_product_from_store()

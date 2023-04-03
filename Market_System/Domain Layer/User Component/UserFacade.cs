@@ -140,6 +140,18 @@ namespace Market_System.Domain_Layer.User_Component
             
         }
 
+        public void remove_product_from_basket(string product_id, string username)
+        {
+
+            foreach (User u in users)
+            {
+                if (u.GetUsername().Equals(username))
+                {
+                    u.remove_product_from_basket(product_id);
+                }
+            }
+        }
+
         public void Login_guset(string guest_name)
         {
             users.Add(new User(guest_name,null));
