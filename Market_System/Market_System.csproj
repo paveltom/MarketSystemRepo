@@ -213,6 +213,7 @@
     <Compile Include="Domain Layer\User Component\Manager.cs" />
     <Compile Include="Domain Layer\User Component\Member.cs" />
     <Compile Include="Domain Layer\User Component\Owner.cs" />
+    <Compile Include="Domain Layer\User Component\Permission.cs" />
     <Compile Include="Domain Layer\User Component\PurchaseHistoryObj.cs" />
     <Compile Include="Domain Layer\User Component\PurchaseRepo.cs" />
     <Compile Include="Domain Layer\User Component\User.cs" />

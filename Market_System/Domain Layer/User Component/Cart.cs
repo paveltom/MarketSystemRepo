@@ -20,11 +20,11 @@ namespace Market_System.Domain_Layer.User_Component
             string store_id = product_id.Substring(0, 3);// 3 first digist are store id
 
 
-           if(!check_if_basket_of_store_exists(store_id))
+            if (!check_if_basket_of_store_exists(store_id))
             {
                 this.baskets.Add(new Bucket(store_id));
             }
-           
+
             foreach (Bucket basket in this.baskets)
             {
                 if (basket.get_store_id().Equals(store_id))
@@ -67,6 +67,17 @@ namespace Market_System.Domain_Layer.User_Component
             }
 
             throw new Exception("basket does not exists");
+        }
+
+
+        public List<Bucket> gett_all_baskets()
+        {
+            return this.baskets;
+        }
+
+        public double get_total_price()
+        {
+            return this.total_price;
         }
     }
 }

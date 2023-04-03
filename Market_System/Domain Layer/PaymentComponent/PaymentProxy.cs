@@ -22,9 +22,9 @@ namespace Market_System.Domain_Layer.PaymentComponent
             PaymentService = paymentService;
         }
 
-        public Boolean pay(double amount)
+        public Boolean pay(string credit_card, double amount)
         {
-            return PaymentService.pay(amount);
+            return PaymentService.pay(credit_card,amount);
         }
     }
 }
