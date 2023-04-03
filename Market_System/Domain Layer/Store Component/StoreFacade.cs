@@ -166,6 +166,14 @@ namespace Market_System.Domain_Layer.Store_Component
                 throw e;        
             }
         }
+
+        public List<string> GetOwnersOfTheStore(string storeID)
+        {
+            try
+            {
+                return storeRepo.GetStore(storeID).GetAllOwnersOfTheStore();
+            } catch (Exception e) { throw e; }
+        }
         
 
 
