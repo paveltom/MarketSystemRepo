@@ -9,9 +9,9 @@ namespace Market_System.Domain_Layer.Store_Component
     public class Store : Property
     {
         //Implement all of the Property Methods here
-        private string store_ID;
-        private string name;
-        private ConcurrentDictionary<string, Product> products; //<product_id, Product>
+        public string Store_ID { get; private set; }
+        public string Name; { get; set; }
+        private ConcurrentDictionary<string, int> products; //<product_id, quantity>
         private Employees employees;
         private String founderID; //founder's userID
 
@@ -27,12 +27,6 @@ namespace Market_System.Domain_Layer.Store_Component
             //TODO:: change it later to init default values
         }
 
-
-        public int GetStore_ID()
-        {
-            return this.store_ID;
-        }
-
         public string GetFounder()
         {
             return this.founder;
@@ -40,8 +34,9 @@ namespace Market_System.Domain_Layer.Store_Component
 
         public void Add_Product(string userID, List<string> productProperties)
         {
-            // validate userID first
-            products.Add(product_id, quantity);
+            Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder
+            products.AddOrUpdate(newProduct.Product_ID, newProduct.Quantity);
+            
         }
 
         public void Remove_Product(int product_id)
