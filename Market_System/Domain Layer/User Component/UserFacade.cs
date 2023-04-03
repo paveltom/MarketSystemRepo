@@ -80,7 +80,7 @@ namespace Market_System.Domain_Layer.User_Component
         }
 
 
-        public void register(string username, string password)
+        public void register(string username, string password,string address)
         {
             foreach (User user in users)
             {
@@ -89,7 +89,7 @@ namespace Market_System.Domain_Layer.User_Component
                     throw new Exception("a user with same name exists, please change name!");
                 }
             }
-            users.Add(new User(username));
+            users.Add(new User(username,address));
             userRepo.register(username, password);
         }
 
@@ -114,7 +114,18 @@ namespace Market_System.Domain_Layer.User_Component
                 }
             }
         }
+        public string get_address_of_username(string username)
+        {
+            foreach (User u in users)
+            {
+                if (u.GetUsername().Equals(username))
+                {
+                    return u.get_Address();
+                }
+            }
 
+            throw new Exception("user does not exists");
+        }
         public Cart get_cart(string username)
         {
             foreach (User u in users)
@@ -131,7 +142,7 @@ namespace Market_System.Domain_Layer.User_Component
 
         public void Login_guset(string guest_name)
         {
-            users.Add(new User(guest_name));
+            users.Add(new User(guest_name,null));
             //TODO:: remove the guest when he leaves...
         }
 
@@ -183,7 +194,7 @@ namespace Market_System.Domain_Layer.User_Component
                 throw new Exception("user is not logged in! or he does not exists");
             }
         }
-
+        /*
         public void Check_Delivery(string username)
         {
             if (Check_Delivery_Availability(username))
@@ -202,7 +213,7 @@ namespace Market_System.Domain_Layer.User_Component
             //חשוב: לשריין את המשלוח פה.... !!!!!!
             return true;
         }
-
+        */
         public void Check_Out(string username)
         {
             if (Check_Payment(username))
@@ -234,6 +245,11 @@ namespace Market_System.Domain_Layer.User_Component
                 }
             }
             return false;
+        }
+
+        internal void save_purhcase_in_user(string username,Cart cart)
+        {
+            PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }
     }
 }

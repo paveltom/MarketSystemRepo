@@ -53,36 +53,39 @@ namespace Market_System.Service_Layer
             throw new NotImplementedException();
         }
 
-        public Response check_delivery(string username, Cart cart)
+        public Response check_delivery(string address)
+        {
+            
+            try
+            {
+                return Response<string>.FromValue(this.usc.Check_Delivery(address));
+                
+            }
+            catch (Exception e)
+            {
+                return Response<String>.FromError(e.Message);
+            }
+            
+         
+        }
+
+    
+
+        public Response check_out(string username,string credit_card, Cart cart)
         {
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(username, cart));
+
+                
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
                 return ok;
             }
             catch (Exception e)
             {
                 return Response<String>.FromError(e.Message);
             }
-        }
-
-        public void check_delivery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Response check_out(string username, Cart cart)
-        {
-            try
-            {
-                usc.Check_Delivery(username, cart);
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username, cart));
-                return ok;
-            }
-            catch (Exception e)
-            {
-                return Response<String>.FromError(e.Message);
-            }
+            
+           
         }
 
         public void check_out()
@@ -184,11 +187,11 @@ namespace Market_System.Service_Layer
             throw new NotImplementedException();
         }
 
-        public Response register(string username,string pass)
+        public Response register(string username,string pass,string address)
         {
              try
             {
-                return Response<string>.FromValue(this.usc.register(username, pass));
+                return Response<string>.FromValue(this.usc.register(username, pass,address));
                  
             }
             catch (Exception e)

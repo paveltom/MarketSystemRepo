@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Market_System.Domain_Layer.User_Component;
 using Market_System.ServiceLayer;
 
 
@@ -10,12 +11,12 @@ namespace Market_System.Service_Layer
 {
     interface Service_Layer_Interface
     {
-        public void check_out(); //I.3 מערכת
-        public void check_delivery(); //I.4 מערכת
+        public Response check_out(string username,string credit_card_details,Cart cart); //I.3 מערכת
+        public Response check_delivery(string address); //I.4 מערכת
         public Response login_member(string username,string pass); // 1.4
         public void login_guest(); //1.1
         public Response log_out(); //3.1
-        public Response register(string username, string pass); // 1.3
+        public Response register(string username, string pass,string address); // 1.3
         public void get_shop();
         public void get_products_from_shop();
         public void search_product_by_category(); //2.2
