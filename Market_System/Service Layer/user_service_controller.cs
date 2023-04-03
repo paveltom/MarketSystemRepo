@@ -35,9 +35,10 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        public void login_guest()//1.1
+        public string login_guest()//1.1
         {
-            market_System.login_guest();
+            this.username=market_System.login_guest();
+            return this.username;
 
         }
 
@@ -48,7 +49,7 @@ namespace Market_System.Service_Layer
             {
                 market_System.Logout(username);
                 username = "";
-                return "Logged-out succesfully";
+                return username+"Logged-out succesfully";
             }
 
             catch(Exception e)
