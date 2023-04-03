@@ -55,6 +55,7 @@ namespace Market_System.Domain_Layer
             try
             {
                 userFacade.Login(username, password);
+                
             }
 
             catch (Exception e)
@@ -146,12 +147,13 @@ namespace Market_System.Domain_Layer
             }
         }
 
-        public void login_guest()
+        public string login_guest()
         {
             string guest_name = "guest" + this.guest_id_generator.Next();
             try
             {
                 userFacade.Login_guset(guest_name);
+                return guest_name;
             }
 
             catch (Exception e)

@@ -193,7 +193,7 @@ namespace Market_System.Tests.unit_tests
 
             catch (Exception e)
             {
-                Assert.AreEqual("??????????", e.Message);
+                Assert.AreEqual("for shakuras", e.Message);
             }
 
         }
