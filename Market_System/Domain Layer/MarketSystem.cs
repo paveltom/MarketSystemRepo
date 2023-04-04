@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Market_System.Domain_Layer.User_Component;
 using Market_System.Domain_Layer.Store_Component;
+using Market_System.Domain_Layer.PaymentComponent;
+using Market_System.Domain_Layer.DeliveryComponent;
 
 namespace Market_System.Domain_Layer
 {
@@ -53,6 +55,7 @@ namespace Market_System.Domain_Layer
             try
             {
                 userFacade.Login(username, password);
+                
             }
 
             catch (Exception e)
@@ -61,32 +64,60 @@ namespace Market_System.Domain_Layer
             }
         }
 
-        internal string Add_Product_To_basket(string product_id,string username)
+        public string Add_Product_To_basket(string product_id,string username)
         {
 
-
-            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
-            if(check_if_availbe_from_store_facade(product_id)==true)
+            lock (this)
             {
-                if(userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+                if (check_if_availbe_from_store_facade(product_id) == true)
                 {
-                    //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
-                    
-                    userFacade.add_product_to_basket(product_id, username);
-                    Market_System.Domain_Layer.User_Component.Cart cart= userFacade.get_cart(username);
-                    //  price  =  storefacade.calcualte_total_price(cart);
-                    double price = 0;
-                    userFacade.update_cart_total_price(username, price);
-                    return "added product id : " + product_id + " to " + username + "'s cart";
+                    if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                    {
+                        //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
+
+                        userFacade.add_product_to_basket(product_id, username);
+                        Market_System.Domain_Layer.User_Component.Cart cart = userFacade.get_cart(username);
+                        //  price  =  storefacade.calcualte_total_price(cart);
+                        double price = 110;
+                        userFacade.update_cart_total_price(username, price);
+                        return "added product id : " + product_id + " to " + username + "'s cart";
+                    }
+                    else
+                    {
+                        throw new Exception("user is not logged in");
+                    }
                 }
                 else
                 {
-                    throw new Exception("user is not logged in");
+                    throw new Exception("product out of stock");
                 }
             }
-            else
+
+        }
+
+        public string remove_product_from_basket(string product_id, string username)
+        {
+            lock (this)
             {
-                throw new Exception("product out of stock");
+              
+                    if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
+                    {
+                        //storeFacade.add_Product_to_Store(product_id);
+
+                        userFacade.remove_product_from_basket(product_id, username);
+                        Market_System.Domain_Layer.User_Component.Cart cart = userFacade.get_cart(username);
+                        //  price  =  storefacade.calcualte_total_price(cart);
+                        double price = 110;
+                        userFacade.update_cart_total_price(username, price);
+                        return "removed product id : " + product_id + " from " + username + "'s cart";
+                    }
+                    else
+                    {
+                        throw new Exception("user is not logged in");
+                    }
+                
+                
             }
 
         }
@@ -103,11 +134,11 @@ namespace Market_System.Domain_Layer
                 throw e;
             }
         }
-        public void register(string username, string password)
+        public void register(string username, string password,string address)
         {
             try
             {
-                userFacade.register(username, password);
+                userFacade.register(username, password,address);
             }
 
             catch (Exception e)
@@ -116,12 +147,13 @@ namespace Market_System.Domain_Layer
             }
         }
 
-        public void login_guest()
+        public string login_guest()
         {
             string guest_name = "guest" + this.guest_id_generator.Next();
             try
             {
                 userFacade.Login_guset(guest_name);
+                return guest_name;
             }
 
             catch (Exception e)
@@ -213,7 +245,54 @@ namespace Market_System.Domain_Layer
            
         }
 
+        public string Check_Delivery(string adderss)
+        {
+            try 
+            {
+                DeliveryProxy.get_instance().deliver(adderss, 99);
+                
+                   // userFacade.Check_Delivery(username);
+                    return "Delivery is available";
+                
+            }
+
+            catch(Exception e)
+            {
+                throw e;
+            }
+            
+        }
+
+        public string Check_Out(string username,string credit_card_details,Cart cart)
+        {
+            try
+            {
+                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+             // price = storefacade.calcualte_total_price(cart);
+                double price = 1000;
+                PayCashService_Dummy.get_instance().pay(credit_card_details, price);
+                userFacade.save_purhcase_in_user(username,cart);
+                
+                return "Payment was successfull";
+            }
+
+            catch(Exception e)
+            {
+                //TODO:: לבטל שריון של ההזמנה!!!!
+                throw e;
+                
+            }
+        }
 
 
+        public void destroy_me()
+        {
+            Instance = null;
+            userFacade.Destroy_me();
+            storeFacade.Destroy_me();
+            PurchaseRepo.GetInstance().destroy_me();
+            UserRepo.GetInstance().destroy_me();
+
+        }
     }
 }

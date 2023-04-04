@@ -21,12 +21,14 @@ namespace Market_System.Tests.AcceptanceTests
             //
         }
 
-        private se testContextInstance;
+       // private se testContextInstance;
 
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
+        ///
+        /*
         public TestContext TestContext
         {
             get
@@ -38,7 +40,7 @@ namespace Market_System.Tests.AcceptanceTests
                 testContextInstance = value;
             }
         }
-
+        */
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:

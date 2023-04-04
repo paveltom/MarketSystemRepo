@@ -31,9 +31,9 @@ namespace Market_System.Domain_Layer.User_Component
             {
                 Bucket basket_copy = new Bucket(basket.get_store_id());
 
-                foreach(string product_id in basket.get_products())//copies products in basket
+                foreach(KeyValuePair<string, int> product__pair in basket.get_products())//copies products in basket
                     {
-                    basket_copy.add_product(product_id);
+                    basket_copy.add_product(product__pair.Key);
 
                 }
                 new_list.Add(basket_copy);

@@ -215,6 +215,7 @@
     <Compile Include="Domain Layer\User Component\Manager.cs" />
     <Compile Include="Domain Layer\User Component\Member.cs" />
     <Compile Include="Domain Layer\User Component\Owner.cs" />
+    <Compile Include="Domain Layer\User Component\Permission.cs" />
     <Compile Include="Domain Layer\User Component\PurchaseHistoryObj.cs" />
     <Compile Include="Domain Layer\User Component\PurchaseRepo.cs" />
     <Compile Include="Domain Layer\User Component\User.cs" />
@@ -225,6 +226,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service Layer\Logger.cs" />
     <Compile Include="Service Layer\Response.cs" />
     <Compile Include="Service Layer\ResponseT.cs" />
     <Compile Include="Service Layer\service_controller.cs" />
