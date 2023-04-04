@@ -1,51 +1,45 @@
 ﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Market_System.Service_Layer;
 using Market_System.ServiceLayer;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+ 
 
 namespace Market_System.Tests.ServiceLevelTests
 {
     /// <summary>
     /// tests in this class:
     /// 1.regetretion.
-    ///     1.1 
-    ///     1.2
-    ///     1.3
-    ///     1.4
+    ///     1.1 Successful registration
+    ///     1.2 Failed registration - used username
+    ///     1.3 Failed registration - used password
+    ///     1.4 *email.....
+    ///     1.5 
     /// 2.login
     ///     2.1
     ///     2.2
     ///     2.3
     ///     2.4
-    /// 3.<######>
+    /// 3.add product to bucket member
     ///     3.1
     ///     3.2
     ///     3.3
     ///     3.4
-    /// 4.<######>
+    /// 4.add product to bucket guest
     ///     4.1
     ///     4.2
     ///     4.3
     ///     4.4
     /// </summary>
-   
+
     [TestClass]
     public class UserUscasesTests
     {
+        private Service_Controller service_Controller;
         public UserUscasesTests()
         {
-            // TODO: Add constructor logic here  
+            Service_Controller = new Service_Controller();
         }
 
-        private Service_Controller service_Controller;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
         public Service_Controller Service_Controller
         {
             get
@@ -94,9 +88,11 @@ namespace Market_System.Tests.ServiceLevelTests
             //Setup: none
 
             //Action:
-            //Response response =Service_Controller.register();
+            Response response =Service_Controller.register("user1", "pass1", "add1");
 
             //Result:
+
+            bool errorOccured = response.ErrorOccured;
             //1.Response->not null meaning the registration completed without error
             //2:chacking if member is now in the system by doing login.
             //Response response2 = Service_Controller.login_member();
@@ -149,7 +145,7 @@ namespace Market_System.Tests.ServiceLevelTests
      *   to the system should be automatycly guest.
      *   in order to let him see as fast as posibble products to keep him entreeged.
      *   also there is not much functionality being a user without pressing continue as guest.
-     * 4.add unregister(memberID) function;
+     * 4.(LOW priority)add unregister(memberID) function;
      * 5.
      */
 }
