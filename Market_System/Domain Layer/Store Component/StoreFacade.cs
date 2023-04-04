@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Web;
+using System.Threading;
 
 namespace Market_System.Domain_Layer.Store_Component
 {
@@ -13,7 +14,7 @@ namespace Market_System.Domain_Layer.Store_Component
         private static StoreFacade Instance = null;
         private static StoreRepo storeRepo;
         //private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
-        private static ConcurrentDictionary<string, int> storeUsage;
+        //private static ConcurrentDictionary<string, int> storeUsage;
 
         private static readonly object Instancelock = new object();
 
@@ -176,28 +177,39 @@ namespace Market_System.Domain_Layer.Store_Component
         }
         
 
-
-        private static object CalculatePriceLock = new object();    
         public double CalculatePrice(List<ItemDTO> products)
         {
-            // maybe add here thread functionality instead - every one who access the method receives a thread to calculate price
-            lock (CalculatePriceLock)
+            
+            try
             {
-                try
-                {
-                    double totalPrice = 0;
-                    foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
-                    {
-                        totalPrice += this.storeRepo.GetStore(entry.Key).CalculatePrice(entry.Value);
-                    }
-                    return totalPrice;
-
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
+                double out = 0;
+                Thread t = new Thread(() => {out = PrivateCalculatePrice(products)});
+                return out;
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+        public double PrivateCalculatePrice(List<ItemDTO> products)
+        {
+            try
+            {
+                double totalPrice = 0;
+                foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
+                {
+                    totalPrice += this.storeRepo.GetStore(entry.Key).CalculatePrice(entry.Value);
+                }
+                return totalPrice;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
 
 
@@ -270,13 +282,25 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void ReserveProduct(strnig productID)
+        public Boolean ReserveProduct(ItemDTO reservedProduct)
         {
             try
             {
-                storeRepo.GetStore(GetStoreIdFromProductID(productID)).ReserveProduct(productID);
+                ((Store)storeRepo.GetStore(GetStoreIdFromProductID(productID))).ReserveProduct(reservedProduct);
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public Boolean ReleaseProduct(ItemDTO reservedProduct)
+        {
+            try
+            {
+                ((Store)storeRepo.GetStore(GetStoreIdFromProductID(productID))).ReleaseProduct(reservedProduct);
+            }
+            catch (Exception e)
             {
                 throw e;
             }

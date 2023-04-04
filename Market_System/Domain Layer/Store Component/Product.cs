@@ -16,8 +16,7 @@ namespace Market_System.Domain_Layer.Store_Component
         private ConcurrentDictionary<String, Purchase_Strategy> PurchaseStrategies; // make it threadsafe ChainOfResponsibilities
         private ConcurrentDictionary<String, List<String>> PurchaseAttributes;
         private ConcurrentBag<String> Comments;
-        private Array<int> Dimenssions; // array of 3
-
+        private Array<int> Dimenssions { get; set; } // array of 3
         public String Name { get; set; }
         public String Description { get; set; }
         public double Price { get; set; } 
@@ -84,8 +83,60 @@ namespace Market_System.Domain_Layer.Store_Component
             // concrete product varies by PurchaseAttributes, so the sale calculated considering chosenAttributes by
             // applying PurchasePolicies chain of responsibility
         }
-        
-        
+
+        public string GetStoreID()
+        {
+            try
+            {
+                return Product_ID.Substring(0, Product_ID.IndexOf("_"));
+            }
+            catch (Exception e)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public double CalculatePrice() // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        {
+
+        }
+
+        public Boolean Purchase() // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        {
+            // try:
+            // update the quantity
+            // update the repo
+            // return true on success
+        }
+
+        public Boolean Reserve(int quantity)
+        {
+            if((ReservedQuantity + quantity) <= this.Quantity)
+            {
+                ReservedQuantity += quantity;
+                return true;
+            }
+            return false;
+        }
+
+
+        public Boolean Release(int quantity)
+        {
+            if ((ReservedQuantity - quantity) >= 0)
+            {
+                ReservedQuantity -= quantity;
+                return true;
+            }
+            return false;
+        }
+
+        // call me every time data changes
+        private void Save()
+        {
+
+        }
+
+
         // ========Methods ToDo==========:
         // passing a data for store representation - probably ItemDTO
         // return price after sale appliement

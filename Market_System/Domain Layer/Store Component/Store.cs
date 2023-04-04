@@ -10,75 +10,130 @@ namespace Market_System.Domain_Layer.Store_Component
     {
         //Implement all of the Property Methods here
         public string Store_ID { get; private set; }
-        public string Name; { get; set; }
-        private ConcurrentDictionary<string, int> products; //<product_id, quantity>
+        public string Name { get; private set; }
+        private ConcurrentBag<string> Products { get; private set; } //<product_id, quantity>
         private Employees employees;
-        private String founderID; //founder's userID
+        private String founderID { get; private set; } //founder's userID
+        StoreRepo storeRepo;
 
-
-        public Store(string store_ID) // builder for existing store - load fields from database
+        public Store(string founderID, string storeID) // builder for a new store - initialize all fields with default values
         {
-            //TODO:: change it later to load the info from the database BUT!!! lazy load -> add methods that retreive data only on demand
+            this.Store_ID = storeID;
+            this.founderID = founderID;
+            this.storeRepo = StoreRepo.GetInstance();
+            this.employees = Employees.GetInstance();
+            RetreiveProducts();
         }
 
-
-        public Store(string founderID, string newStoreID) // builder for a new store - initialize all fields with default values
+        public string ChangeName(string userID, string newName)
         {
-            //TODO:: change it later to init default values
+            try
+            {
+                // validate PERMISSION here
+                this.Name = newName;
+                storeRepo.UpdateStoreName(Store_ID, newName);
+            } catch (Exception ex) { throw ex; }
         }
 
-        public string GetFounder()
+        private void RetreiveProducts()
         {
-            return this.founder;
+            try
+            {
+                ConcurrentBag<string> products = new ConcurrentBag<string>();
+                foreach(Product p in this.storeRepo.GetProducts(this.Store_ID))
+                {
+                    products.Add(p.Product_ID);
+                }
+                this.Products = products;
+
+            } catch (Exception ex) { throw ex; }
         }
 
         public void Add_Product(string userID, List<string> productProperties)
         {
-            Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder
-            products.AddOrUpdate(newProduct.Product_ID, newProduct.Quantity);
+            try
+            {
+                // if userID has PERMISSION
+                Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder
+                this.storeRepo.AddProduct(newProduct);
+                RetreiveProducts();
+            } catch (Exception ex) { throw ex; }   
             
         }
 
-        public void Remove_Product(int product_id)
+        public void Remove_Product(string userID, string product_id)
         {
-            products.Remove(product_id);
+            try
+            {
+                // if userID has PERMISSION
+                storeRepo.RemoveProduct(product_id);
+                RetreiveProducts();
+
+            } catch (Exception ex) { throw ex; }    
         }
 
-        public void Add_New_Owner(string username)
+        public void Add_New_Owner(string userID, string newOwnerID)
         {
-            owners.Add(username);
+            try
+            {
+                // if userID has PERMISSION and newOwnerID
+                this.employees.AddNewOwner(Store_ID, userID, newOwnerID);
+            }
+            catch (Exception ex) { throw ex; }
         }
 
-        public bool Already_Has_Owner(string username)
+        public void Add_New_Manager(string userID)
         {
-            if (owners.Contains(username)) return true;
-            return false;
-        }
-
-        public void Add_New_Manager(string username)
-        {
-            managers.Add(username);
-        }
-
-        public bool Already_Has_Manager(string username)
-        {
-            if (managers.Contains(username)) return true;
-            return false;
+            try
+            {
+                // if userID has PERMISSION
+                employees.AddNewManager(Store_ID, userID);
+            } catch(Exception ex) { throw ex; }
         }
 
         public double CalculatePrice(List<ItemDTO> productsToCalculate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                double price = 0;
+                foreach(ItemDTO item in productsToCalculate) {
+                    Product p = storeRepo.GetProduct(item.GetID());
+                    price += p.CalculatePrice();
+                }
+                return price;
+            } catch (Exception ex) { throw ex; }    
         }
 
-        public double Purchase(List<ItemDTO> productsToPurchase)
+        public void Purchase(string userID, List<ItemDTO> productsToPurchase)
         {
-            throw new NotImplementedException();
+            String cannotPurchase = ""; // will look like "ite#1ID;item#2ID;item#3ID;..."
+            try
+            {
+                foreach (ItemDTO item in productsToCalculate)
+                {
+                    if (!storeRepo.GetProduct(item.GetID()).Purchase(userID))
+                        cannotPurchase.Concat(item.GetID().Concat(";"));
+                }
+                if(!cannotPurchase.Equals("")) { throw new Exception(cannotPurchase)};
+            }
+            catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
         }
 
-        public double ReserveProduct(List<ItemDTO> productsToPurchase)
+        public Boolean ReserveProduct(ItemDTO reserveProduct)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return storeRepo.GetProduct(reserveProduct.GetID()).Reserve(reserveProduct.GetQuantity());
+            } catch (Exception ex) { throw ex; }    
+        }
+
+        public Boolean ReleaseProduct(ItemDTO reservedProduct)
+        {
+            try
+            {
+                return storeRepo.GetProduct(reservedProduct.GetID()).Release(reservedProduct.GetQuantity());
+            }
+            catch (Exception ex) { throw ex; }
         }
 
         public void EditProduct(string userID, string productID, List<strin> editedDetails) 
@@ -89,16 +144,34 @@ namespace Market_System.Domain_Layer.Store_Component
 
         public void GetManagersOfTheStore(string userID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // validate PERMISSION here
+                this.employees.GetManagers(this.Store_ID);
+            } catch (Exception ex) { throw ex; }    
         }
 
-        public void GetPurchaseHistoryOfTheStore(string userID)
+        public List<string> GetPurchaseHistoryOfTheStore(string userID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // validate PERMSSION here
+                this.storeRepo.GetPurchaseHistory(this.Store_ID);
+            } catch (Exception ex) { throw ex; }    
         }
 
-        
 
+        private string GetStoreIdFromProductID(string productID)
+        {
+            try
+            {
+                return productID.Substring(0, productID.IndexOf("_"));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
 
 
