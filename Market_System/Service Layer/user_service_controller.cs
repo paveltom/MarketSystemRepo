@@ -35,9 +35,10 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        public void login_guest()//1.1
+        public string login_guest()//1.1
         {
-            market_System.login_guest();
+            this.username=market_System.login_guest();
+            return this.username;
 
         }
 
@@ -48,7 +49,7 @@ namespace Market_System.Service_Layer
             {
                 market_System.Logout(username);
                 username = "";
-                return "Logged-out succesfully";
+                return username+"Logged-out succesfully";
             }
 
             catch(Exception e)
@@ -85,8 +86,16 @@ namespace Market_System.Service_Layer
             }
 
         }
-        public void remove_product_from_basket(string product_id, string username)
+        public string remove_product_from_basket(string product_id, string username)
         {
+            try
+            {
+                return market_System.remove_product_from_basket(product_id, username);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
 
         }
         public string assign_new_owner(string founder, string username, int store_ID) // 4.4
