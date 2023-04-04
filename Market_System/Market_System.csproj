@@ -200,6 +200,8 @@
     <Compile Include="Domain Layer\PaymentComponent\PaymentService.cs" />
     <Compile Include="Domain Layer\Store Component\EmployeePermissions.cs" />
     <Compile Include="Domain Layer\Store Component\EmployeesPermissions.cs" />
+    <Compile Include="Domain Layer\Store Component\CategoriesOptions.cs" />
+    <Compile Include="Domain Layer\Store Component\Category.cs" />
     <Compile Include="Domain Layer\Store Component\Product.cs" />
     <Compile Include="Domain Layer\Store Component\Property.cs" />
     <Compile Include="Domain Layer\Store Component\Purchase_Policy.cs" />
