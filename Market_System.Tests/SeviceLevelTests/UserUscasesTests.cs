@@ -9,12 +9,33 @@ using Market_System.ServiceLayer;
 namespace Market_System.Tests.ServiceLevelTests
 {
     /// <summary>
-    /// Summary description for UserTests
+    /// tests in this class:
+    /// 1.regetretion.
+    ///     1.1 
+    ///     1.2
+    ///     1.3
+    ///     1.4
+    /// 2.login
+    ///     2.1
+    ///     2.2
+    ///     2.3
+    ///     2.4
+    /// 3.<######>
+    ///     3.1
+    ///     3.2
+    ///     3.3
+    ///     3.4
+    /// 4.<######>
+    ///     4.1
+    ///     4.2
+    ///     4.3
+    ///     4.4
     /// </summary>
+   
     [TestClass]
     public class UserUscasesTests
     {
-        public UserTests()
+        public UserUscasesTests()
         {
             // TODO: Add constructor logic here  
         }
@@ -67,6 +88,7 @@ namespace Market_System.Tests.ServiceLevelTests
         }
 
         [TestMethod]
+        //1.1
         public void UserRegistersAsMember()
         {
             //Setup: none
