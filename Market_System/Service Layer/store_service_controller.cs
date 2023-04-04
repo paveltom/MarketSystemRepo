@@ -19,9 +19,9 @@ namespace Market_System.Service_Layer
         }
 
         
-        public void get_store()
+        public void get_store(string sessionID, string storeID)
         {
-            // this.sf.getshop() example
+            this.market_System.GetStore(sessionID, storeID);
         }
         public void get_products_from_shop()
         {
@@ -56,7 +56,7 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        public void comment_on_product() // 3.3
+        public void comment_on_product(string sessionID, string productID, string comment) // 3.3
         {
 
         }
