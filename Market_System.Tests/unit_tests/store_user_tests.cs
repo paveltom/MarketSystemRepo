@@ -5,6 +5,7 @@ using Market_System.Domain_Layer.Store_Component;
 using Market_System.Domain_Layer.User_Component;
 using Market_System.Domain_Layer;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using System.Threading;
 
 namespace Market_System.Tests.unit_tests
 {
@@ -16,43 +17,45 @@ namespace Market_System.Tests.unit_tests
         private StoreFacade store_facade;
 
 
-        //i dont know how to do after each and not sure if this is before each so do setup and detroy after each
 
-        //[TestInitialize] // this means before each
-
-        [SetUp]
-        public void Setup() 
-        {
-            user_facade= UserFacade.GetInstance();
+        // Use TestInitialize to run code before running each test 
+         [TestInitialize()]
+        public void Setup() {
+            ms = MarketSystem.GetInstance();
+            user_facade = UserFacade.GetInstance();
             store_facade = StoreFacade.GetInstance();
-            
         }
-
-        [TearDown]
+        
+       // Use TestCleanup to run code after each test has run
+         [TestCleanup()]
         public void TearDown()
         {
+            ms.destroy_me();
             store_facade.Destroy_me();
             user_facade.Destroy_me();
             UserRepo.GetInstance().destroy_me();
+            PurchaseRepo.GetInstance().destroy_me();
         }
 
+
+ 
         [TestMethod]
         public void register_user_test_success()
         {
-            Setup();
-            user_facade.register("test1", "pass");
+            
+            user_facade.register("test1", "pass","address");
             Assert.AreEqual(true, user_facade.check_if_user_exists("test1", "pass"));
-            TearDown();
+            
         }
 
         [TestMethod]
         public void register_user_test_failure()
         {
-            Setup();
-            user_facade.register("test1", "pass");
+            
+            user_facade.register("test1", "pass", "address");
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 Assert.Fail("Expected this test to fail, but was a success - the same user was registered twice");
             }
 
@@ -61,14 +64,14 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("a user with same name exists, please change name!", e.Message);
             }
 
-            TearDown();
+            
         }
 
         [TestMethod]
         public void Login_user_test_success()
         {
-            Setup();
-            user_facade.register("test1", "pass");
+            
+            user_facade.register("test1", "pass", "address");
             try
             {
                 user_facade.Login("test1", "pass");
@@ -80,14 +83,14 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("This test shouldn't have failed, but received this error: " + e.Message);
             }
 
-            TearDown();
+            
         }
 
         [TestMethod]
         public void Login_user_test_failure()
         {
-            Setup();
-            user_facade.register("test1", "pass");
+            
+            user_facade.register("test1", "pass", "address");
             try
             {
                 user_facade.Login("test2", "pass");
@@ -99,16 +102,16 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("Incorrect login information has been provided", e.Message);
             }
 
-            TearDown();
+            
         }
 
         [TestMethod]
         public void Logout_user_test_success()
         {
-            Setup();
+           
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
                 user_facade.Logout("test1");
                 Assert.AreEqual("Guest", user_facade.Get_User_State("test1"));
@@ -119,16 +122,16 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("This test shouldn't have failed, but received this error: " + e.Message);
             }
 
-            TearDown();
+            
         }
 
         [TestMethod]
         public void Logout_user_test_failure_1()
         {
-            Setup();
+            
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
                 user_facade.Logout("test1");
                 user_facade.Logout("test1");
@@ -140,17 +143,17 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("You're already logged-out", e.Message);
             }
 
-            TearDown();
+           
         }
                 
 
         [TestMethod]
         public void Logout_user_test_failure_2()
         {
-            Setup();
+            
             try
             {
-                user_facade.register("test1", "pass");
+                user_facade.register("test1", "pass", "address");
                 user_facade.Logout("test1");
                 Assert.Fail("This test should've failed - Already logged-out");
             }
@@ -160,13 +163,12 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("You're already logged-out", e.Message);
             }
 
-            TearDown();
         }
 
         [TestMethod]
         public void Logout_user_test_failure_3()
         {
-            Setup();
+            
             try
             {
                 user_facade.Logout("test1");
@@ -178,13 +180,11 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("user does not exists", e.Message);
             }
 
-            TearDown();
         }
 
         [TestMethod]
         public void Login_guest_test_success()
         {
-            Setup();
             try
             {
                 user_facade.Login_guset("test1");
@@ -193,26 +193,134 @@ namespace Market_System.Tests.unit_tests
 
             catch (Exception e)
             {
-                Assert.AreEqual("??????????", e.Message);
+                Assert.AreEqual("for shakuras", e.Message);
             }
 
-            TearDown();
         }
 
         [TestMethod]
         public void add_product_to_basket_success()
         {
-            Setup();
-           
-                user_facade.register("test1","pass");
-                user_facade.Login("test1", "pass");
-                user_facade.add_product_to_basket("123456","test1");
-                Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
-          
+            user_facade.register("test1", "pass", "address");
+            user_facade.Login("test1", "pass");
+            user_facade.add_product_to_basket("123456", "test1");
+            Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
+        }
 
-            TearDown();
+        [TestMethod]
+        public void remove_product_from_basket_and_remains_some_products()
+        {
+            user_facade.register("test1", "pass", "address");
+            user_facade.Login("test1", "pass");
+            user_facade.add_product_to_basket("123456", "test1");
+            user_facade.add_product_to_basket("123456", "test1");
+            user_facade.remove_product_from_basket("123456", "test1");
+            Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123456"));
+        }
+
+        [TestMethod]
+        public void remove_product_from_basket_and_nothing_remains_in_it()
+        {
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.add_product_to_basket("123456", "test1");
+                user_facade.remove_product_from_basket("123456", "test1");
+                user_facade.get_cart("test1").get_basket("123");
+                Assert.Fail("This test should've failed - no product is left in this basket then basket should not be existed");
+            }
+            catch(Exception e)
+            {
+                Assert.AreEqual("basket does not exists", e.Message);
+            }
+
+
+        }
+
+        [TestMethod]
+        public void remove_product_from_not_existing_basket()
+        {
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.remove_product_from_basket("123456", "test1");
+                Assert.Fail("This test should've failed - basket does not exists");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("basket does not exists", e.Message);
+            }
+
         }
 
 
+        /*
+        [TestMethod]
+        public void add_product_to_basket_in_parallel_success()
+        {
+            ms.Add_Product_To_basket("1231", "my");
+            Thread sleeping_thread=new Thread(new ThreadStart(() => { Thread.Sleep(1000); ms.addproduct("user1") and shit}))
+            Thread fast_thread=new Thread(new ThreadStart(() => {  ms.addproduct("user2") and shit}))
+        expext user2 to sccuess and user 1 to fail
+
+        }
+
+       */
+
+
+
+        [TestMethod]
+        public void Check_Delivery_Success()
+        {
+            user_facade.register("test1", "pass", "address");
+            user_facade.Login("test1", "pass");
+            try
+            {
+               Assert.AreEqual("Delivery is available", MarketSystem.GetInstance().Check_Delivery("address"));
+            }
+
+            catch(Exception e)
+            {
+                Assert.Fail("Should've made the delivery possible, but failed due to error: " + e.Message);
+            }
+        }
+        
+        [TestMethod]
+        public void Check_Out_Success()
+        {
+            user_facade.register("test1", "pass","address");
+            user_facade.Login("test1", "pass");
+            ms.Add_Product_To_basket("123456", "test1");
+            try
+            {
+                Assert.AreEqual("Payment was successfull", MarketSystem.GetInstance().Check_Out("test1","9478-5188-9999-6666",user_facade.get_cart("test1")));
+            }
+
+            catch (Exception e)
+            {
+                Assert.Fail("Should've made the delivery possible, but failed due to error: " + e.Message);
+            }
+        }
+        
+        [TestMethod]
+        public void Check_Out_Failure()
+        {
+            
+            user_facade.register("test1", "pass","address");
+            user_facade.Login("test1", "pass");
+            try
+            {
+               MarketSystem.GetInstance().Check_Out("test1", "9478-5188-9999-6666", user_facade.get_cart("test1"));
+            }
+
+            catch (Exception e)
+            {
+                Assert.AreEqual("Payment has failed, either your cart is empty",  e.Message);
+            }
+        }
+        
+        
     }
 }
