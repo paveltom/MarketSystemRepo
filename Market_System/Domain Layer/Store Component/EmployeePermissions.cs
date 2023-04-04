@@ -13,7 +13,7 @@ namespace Market_System.Domain_Layer.Store_Component
     //TODO:: need to enforce that only the assginging owner may change the manager's permissions - or fire him. 
 
 
-    public class Role
+    public class EmployeePermissions
     {
         string userID;
         string storeID;//can change into Store
@@ -40,12 +40,11 @@ namespace Market_System.Domain_Layer.Store_Component
         /*
          *giving Guest permission as default 
          */
-        public Role(string userID, string storeID)
+        public EmployeePermissions(string userID, string storeID)
         {
             UserID = userID;
             StoreID = storeID;
             Permissions = new List<Permission>();
-            Permissions.Add(Permission.Guest);
         }
 
         /**

@@ -198,11 +198,12 @@
     <Compile Include="Domain Layer\PaymentComponent\PayCashService_Dummy.cs" />
     <Compile Include="Domain Layer\PaymentComponent\PaymentProxy.cs" />
     <Compile Include="Domain Layer\PaymentComponent\PaymentService.cs" />
-    <Compile Include="Domain Layer\Store Component\Employees.cs" />
     <Compile Include="Domain Layer\Store Component\Product.cs" />
     <Compile Include="Domain Layer\Store Component\Property.cs" />
     <Compile Include="Domain Layer\Store Component\Purchase_Policy.cs" />
     <Compile Include="Domain Layer\Store Component\Purchase_Strategy.cs" />
+    <Compile Include="Domain Layer\Store Component\Role.cs" />
+    <Compile Include="Domain Layer\Store Component\Roles.cs" />
     <Compile Include="Domain Layer\Store Component\Store.cs" />
     <Compile Include="Domain Layer\Store Component\StoreFacade.cs" />
     <Compile Include="Domain Layer\Store Component\StoreRepo.cs" />
