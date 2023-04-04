@@ -206,8 +206,6 @@
     <Compile Include="Domain Layer\Store Component\Property.cs" />
     <Compile Include="Domain Layer\Store Component\Purchase_Policy.cs" />
     <Compile Include="Domain Layer\Store Component\Purchase_Strategy.cs" />
-    <Compile Include="Domain Layer\Store Component\Role.cs" />
-    <Compile Include="Domain Layer\Store Component\Roles.cs" />
     <Compile Include="Domain Layer\Store Component\Store.cs" />
     <Compile Include="Domain Layer\Store Component\StoreFacade.cs" />
     <Compile Include="Domain Layer\Store Component\StoreRepo.cs" />
