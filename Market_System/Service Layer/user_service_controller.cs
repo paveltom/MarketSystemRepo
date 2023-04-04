@@ -35,9 +35,10 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        public void login_guest()//1.1
+        public string login_guest()//1.1
         {
-            market_System.login_guest();
+            this.username=market_System.login_guest();
+            return this.username;
 
         }
 
@@ -48,7 +49,7 @@ namespace Market_System.Service_Layer
             {
                 market_System.Logout(username);
                 username = "";
-                return "Logged-out succesfully";
+                return username+"Logged-out succesfully";
             }
 
             catch(Exception e)
@@ -58,11 +59,11 @@ namespace Market_System.Service_Layer
         }
 
       
-        public string register(string username,string password) // 1.3
+        public string register(string username,string password,string address) // 1.3
         {
             try
             {
-                market_System.register(username,password);
+                market_System.register(username,password,address);
                 
                 return "registered succesfully";
             }
@@ -85,8 +86,16 @@ namespace Market_System.Service_Layer
             }
 
         }
-        public void remove_product_from_basket()
+        public string remove_product_from_basket(string product_id, string username)
         {
+            try
+            {
+                return market_System.remove_product_from_basket(product_id, username);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
 
         }
         public string assign_new_owner(string founder, string username, int store_ID) // 4.4
@@ -123,16 +132,40 @@ namespace Market_System.Service_Layer
         {
 
         }
-        public void get_purchase_history_of_a_member() //6.4
-        {
-            
-
-
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username) //6.4
+        {       
+                return market_System.get_purchase_history_of_a_member(username);
         }
+        
+        public string Check_Delivery(string address)
+        {
+            try
+            {
+                return market_System.Check_Delivery(address);
+            }
 
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+        
+        
+        public string Check_Out(string username,string credit_card, Cart cart)
+        {
+            try
+            {
 
+                return market_System.Check_Out(username, credit_card, cart);
+                //TODO:: save the purcahse history... in the Purchase Repo
+                //PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, , ))
+            }
 
-
-
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+        
     }
 }

@@ -8,6 +8,7 @@ namespace Market_System.Domain_Layer.User_Component
     public class UserRepo
     {
         private static Dictionary<string, string> userDatabase;
+        
 
         private static UserRepo Instance = null;
 
@@ -42,6 +43,7 @@ namespace Market_System.Domain_Layer.User_Component
         public void destroy_me()
         {
             Instance = null;
+            
         }
 
         public bool checkIfExists(string username, string password)
