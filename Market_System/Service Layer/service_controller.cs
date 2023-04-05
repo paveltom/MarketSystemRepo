@@ -22,9 +22,29 @@ namespace Market_System.Service_Layer
             this.ssc = new Store_Service_Controller();
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next();
+            new_guest_entered_the_website(session_id);
             //add kater login guest from here
             
         }
+
+        private void new_guest_entered_the_website(int session_id)
+        {
+            try
+            {
+                string guest_name= this.usc.login_guest(session_id);
+
+                Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
+
+                
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in login_guest");
+                
+            }
+        }
+
         public Response add_product_to_basket(string product_id,string username)
         {
             try
@@ -169,7 +189,7 @@ namespace Market_System.Service_Layer
         {
             throw new NotImplementedException();
         }
-
+        /*
         public Response login_guest()
         {
             try
@@ -186,7 +206,7 @@ namespace Market_System.Service_Layer
                 return Response<String>.FromError(e.Message);
             }
         }
-
+        */
         public Response login_member(string username,string pass)
         {
             try

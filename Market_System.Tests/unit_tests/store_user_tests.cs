@@ -320,7 +320,28 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("Payment has failed, either your cart is empty",  e.Message);
             }
         }
-        
-        
+
+
+        [TestMethod]
+        public void user_purchase_history_success()
+        {
+            
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                ms.Add_Product_To_basket("123456", "test1");
+                ms.Check_Out("test1", "9478-5188-9999-6666", user_facade.get_cart("test1"));
+                string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket 123 : \n" + "product 123456 quantity: 1\n";
+                Assert.AreEqual(should_be, ms.get_purchase_history_of_a_member("test1")[0].tostring());
+            }
+
+            catch (Exception e)
+            {
+                Assert.Fail("Should've showed the purchase history succefully, but failed due to error: " + e.Message);
+            }
+        }
+
+
     }
 }
