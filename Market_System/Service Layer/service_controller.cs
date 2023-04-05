@@ -13,11 +13,17 @@ namespace Market_System.Service_Layer
     {
         private User_Service_Controller usc;
         private Store_Service_Controller ssc;
+        private Random session_id_generator;
+        private int session_id;
         
         public Service_Controller()
         {
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller();
+            this.session_id_generator = new Random();
+            this.session_id = session_id_generator.Next();
+            //add kater login guest from here
+            
         }
         public Response add_product_to_basket(string product_id,string username)
         {
@@ -40,6 +46,7 @@ namespace Market_System.Service_Layer
 
         public void add_product_to_store()
         {
+            
             throw new NotImplementedException();
         }
 
@@ -184,7 +191,8 @@ namespace Market_System.Service_Layer
         {
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.Login_Member(username, pass));
+                Response<string> ok = Response<string>.FromValue(this.usc.Login_Member(username, pass, session_id));
+               // this.usc.link_user_with_session(username, session_id);
                 Logger.get_instance().record_event(username+"  has logged in!");
                 
                 return ok;
@@ -200,7 +208,7 @@ namespace Market_System.Service_Layer
         {
             try
             {
-                Response<string> ok=Response<string>.FromValue(this.usc.Logout());
+                Response<string> ok=Response<string>.FromValue(this.usc.Logout(session_id));
                 Logger.get_instance().record_event(ok.Value);
                 
                 return ok;

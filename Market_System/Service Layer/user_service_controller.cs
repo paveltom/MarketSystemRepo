@@ -13,7 +13,7 @@ namespace Market_System.Service_Layer
         //private user_facade (domain)
         private MarketSystem market_System;
         private string username; //TODO:: Change it later - to get this username from session-key
-        
+        private int session_id;
         public User_Service_Controller()
         {
             this.market_System = MarketSystem.GetInstance();
@@ -21,12 +21,13 @@ namespace Market_System.Service_Layer
         }
 
         //TODO:: CHANGE TO THROW A RESPONSE;
-        public string Login_Member(string username, string password) // 1.4
+        public string Login_Member(string username, string password,int session_id) // 1.4
         {
             try
             {
                 market_System.Login(username, password);
-                this.username = username;
+                market_System.link_user_with_session(username, session_id);
+               // this.username = username;
                 return "Logged-In succesfully";
             }
 
@@ -43,12 +44,15 @@ namespace Market_System.Service_Layer
         }
 
         //TODO:: CHANGE TO THROW A RESPONSE;
-        public string Logout()//3.1
+        public string Logout(int session_id)//3.1
         {
             try
             {
+                string username = market_System.get_username_from_session_id(session_id);
+               
                 market_System.Logout(username);
-                username = "";
+                market_System.unlink_user_with_session(session_id);
+               // username = "";
                 return username+"Logged-out succesfully";
             }
 
@@ -166,6 +170,7 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        
+
+      
     }
 }
