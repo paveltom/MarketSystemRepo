@@ -11,10 +11,12 @@ namespace Market_System.Domain_Layer.Store_Component
         //Implement all of the Property Methods here
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
-        private ConcurrentBag<string> Products { get; private set; } //<product_id, quantity>
+        public ConcurrentBag<string> Products { get; private set; } //<product_id, quantity>
+        private ConcurrentBag<string> defaultPolicies; // passed to every new added product
+        private ConcurrentBag<string> defaultStrategies; // passed to every new added product
         private Employees employees;
-        private String founderID { get; private set; } //founder's userID
-        StoreRepo storeRepo;
+        public String founderID { get; private set; } //founder's userID
+        private StoreRepo storeRepo;
 
         public Store(string founderID, string storeID) // builder for a new store - initialize all fields with default values
         {
@@ -22,7 +24,7 @@ namespace Market_System.Domain_Layer.Store_Component
             this.founderID = founderID;
             this.storeRepo = StoreRepo.GetInstance();
             this.employees = Employees.GetInstance();
-            RetreiveProducts();
+            Retreive_Products();
         }
 
         public string ChangeName(string userID, string newName)
@@ -35,7 +37,7 @@ namespace Market_System.Domain_Layer.Store_Component
             } catch (Exception ex) { throw ex; }
         }
 
-        private void RetreiveProducts()
+        private void Retreive_Products()
         {
             try
             {
@@ -56,7 +58,7 @@ namespace Market_System.Domain_Layer.Store_Component
                 // if userID has PERMISSION
                 Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder
                 this.storeRepo.AddProduct(newProduct);
-                RetreiveProducts();
+                Retreive_Products();
             } catch (Exception ex) { throw ex; }   
             
         }
@@ -67,7 +69,7 @@ namespace Market_System.Domain_Layer.Store_Component
             {
                 // if userID has PERMISSION
                 storeRepo.RemoveProduct(product_id);
-                RetreiveProducts();
+                Retreive_Products();
 
             } catch (Exception ex) { throw ex; }    
         }
@@ -98,7 +100,7 @@ namespace Market_System.Domain_Layer.Store_Component
                 double price = 0;
                 foreach(ItemDTO item in productsToCalculate) {
                     Product p = storeRepo.GetProduct(item.GetID());
-                    price += p.CalculatePrice();
+                    price += p.CalculatePrice(item.GetQuantity());
                 }
                 return price;
             } catch (Exception ex) { throw ex; }    
