@@ -49,6 +49,10 @@ namespace Market_System.Domain_Layer
             return Instance;
         }
 
+        public string get_username_from_session_id(int session_id)
+        {
+            return userFacade.get_username_from_session(session_id);
+        }
 
         public void Login(string username, string password)
         {
@@ -121,6 +125,17 @@ namespace Market_System.Domain_Layer
             }
 
         }
+
+        public void link_user_with_session(string username, int session_id)
+        {
+            userFacade.link_user_with_session(username, session_id);
+        }
+
+        public void unlink_user_with_session(int session_id)
+        {
+            userFacade.unlink_user_with_session(session_id);
+        }
+        
 
         public void Logout(string username)
         {

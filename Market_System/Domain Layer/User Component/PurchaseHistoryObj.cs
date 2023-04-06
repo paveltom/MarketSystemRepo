@@ -18,11 +18,27 @@ namespace Market_System.Domain_Layer.User_Component
 
             this.baskets = copy_list(list_of_baskets);
             this.total_price = price;
-            this.purchase_date = DateTime.Now.ToString();
+            this.purchase_date = DateTime.Now.ToShortDateString(); 
         }
 
 
+        public string tostring()
+        {
+            string return_me = purchase_date+": \n";
+            foreach (Bucket basket in baskets)
+            {
+                return_me = return_me + "basket " + basket.get_store_id() + " : \n";
 
+                foreach (KeyValuePair<string, int> product__pair in basket.get_products())//copies products in basket
+                {
+                    return_me = return_me + "product " + product__pair.Key + " quantity: " + product__pair.Value+"\n";
+
+                }
+                
+            }
+
+            return return_me;
+        }
 
         private List<Bucket> copy_list(List<Bucket> list)
         {

@@ -9,6 +9,7 @@ namespace Market_System.Domain_Layer.User_Component
     {
         private static UserRepo userRepo;
         private static List<User> users;
+        private static Dictionary<int, string> username_session_id_linker; // key = session_id    value=username
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
 
@@ -31,6 +32,8 @@ namespace Market_System.Domain_Layer.User_Component
                         users = new List<User>();
                         userRepo = UserRepo.GetInstance();
                         Instance = new UserFacade();
+                        username_session_id_linker = new Dictionary<int, string>();
+                        
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -55,6 +58,11 @@ namespace Market_System.Domain_Layer.User_Component
             throw new ArgumentException("Incorrect login information has been provided");
         }
 
+        internal string get_username_from_session(int session_id)
+        {
+            return username_session_id_linker[session_id];
+        }
+
         public void Logout(string username)
         {
             foreach(User user in users)
@@ -64,6 +72,7 @@ namespace Market_System.Domain_Layer.User_Component
                     if (!user.GetUserState().Equals("Guest"))
                     {
                         user.Logout();
+                        
                         return;
                     }
                     else
@@ -150,6 +159,16 @@ namespace Market_System.Domain_Layer.User_Component
                     u.remove_product_from_basket(product_id);
                 }
             }
+        }
+
+        public void link_user_with_session(string username, int session_id)
+        {
+            username_session_id_linker.Add(session_id, username);
+        }
+
+        internal void unlink_user_with_session(int session_id)
+        {
+            username_session_id_linker.Remove(session_id);
         }
 
         public void Login_guset(string guest_name)

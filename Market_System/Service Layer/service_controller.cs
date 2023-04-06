@@ -13,12 +13,38 @@ namespace Market_System.Service_Layer
     {
         private User_Service_Controller usc;
         private Store_Service_Controller ssc;
+        private Random session_id_generator;
+        private int session_id;
         
         public Service_Controller()
         {
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller();
+            this.session_id_generator = new Random();
+            this.session_id = session_id_generator.Next();
+            new_guest_entered_the_website(session_id);
+            //add kater login guest from here
+            
         }
+
+        private void new_guest_entered_the_website(int session_id)
+        {
+            try
+            {
+                string guest_name= this.usc.login_guest(session_id);
+
+                Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
+
+                
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in login_guest");
+                
+            }
+        }
+
         public Response add_product_to_basket(string product_id,string username)
         {
             try
@@ -40,6 +66,7 @@ namespace Market_System.Service_Layer
 
         public void add_product_to_store()
         {
+            
             throw new NotImplementedException();
         }
 
@@ -162,7 +189,7 @@ namespace Market_System.Service_Layer
         {
             throw new NotImplementedException();
         }
-
+        /*
         public Response login_guest()
         {
             try
@@ -179,12 +206,13 @@ namespace Market_System.Service_Layer
                 return Response<String>.FromError(e.Message);
             }
         }
-
+        */
         public Response login_member(string username,string pass)
         {
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.Login_Member(username, pass));
+                Response<string> ok = Response<string>.FromValue(this.usc.Login_Member(username, pass, session_id));
+               // this.usc.link_user_with_session(username, session_id);
                 Logger.get_instance().record_event(username+"  has logged in!");
                 
                 return ok;
@@ -200,7 +228,7 @@ namespace Market_System.Service_Layer
         {
             try
             {
-                Response<string> ok=Response<string>.FromValue(this.usc.Logout());
+                Response<string> ok=Response<string>.FromValue(this.usc.Logout(session_id));
                 Logger.get_instance().record_event(ok.Value);
                 
                 return ok;
