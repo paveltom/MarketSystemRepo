@@ -12,15 +12,17 @@ namespace Market_System.Domain_Layer.Store_Component
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
         private ConcurrentBag<string> allProducts;
-        private ConcurrentDictionary<string, Product> products; //<product_id, quantity>
+        private ConcurrentDictionary<string, Product> products; 
         private ConcurrentDictionary<string, int> productUsage;
-        private Employees employees;
+        private Employees employees; // ask Yotam what happened
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         private ConcurrentBag<string> defaultPolicies; // passed to every new added product
         private ConcurrentBag<string> defaultStrategies; // passed to every new added product
 
-        public Store(string founderID, string storeID, List<string> newStoreDetails, List<string> allProductsIDS) // builder for a new store - initialize all fields later
+
+        // builder for a new store - initialize all fields later
+        public Store(string founderID, string storeID, List<string> newStoreDetails, List<string> allProductsIDS) 
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -128,7 +130,10 @@ namespace Market_System.Domain_Layer.Store_Component
                 // permission required
                 this.storeRepo.RemoveStore(this.Store_ID);
                 foreach (String s in allProducts)
+                {
                     AcquireProduct(s).RemoveProduct();
+                    ReleaseProduct(s);
+                }
                 this.employees.RemoveStore(this.Store_ID);
                 // remove policies and strategies
                         
@@ -148,6 +153,7 @@ namespace Market_System.Domain_Layer.Store_Component
                     foreach (ItemDTO item in productsToCalculate)
                     {
                         price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity());
+                        ReleaseProduct(item.GetID());
                     }
                     return price;
                 }
@@ -160,17 +166,23 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             lock (PurchaseLock)
             {
-                String cannotPurchase = ""; // will look like "ite#1ID_Name;item#2ID_Name;item#3IDName;..."
+                String cannotPurchase = ""; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
                     foreach (ItemDTO item in productsToCalculate)
                         if (!AcquireProduct(item.GetID()).prePurchase(item.GetQuantity()))
+                        {
                             cannotPurchase.Concat(item.GetID().Concat(";"));
+                            ReleaseProduct(item.GetID());
+                        }
 
                     if (!cannotPurchase.Equals("")) throw new Exception(cannotPurchase);
                     else
                         foreach (ItemDTO item in productsToCalculate)
+                        {
                             AcquireProduct(item.GetID()).Purchase(userID, item.GetQuantity());
+                            ReleaseProduct(item.GetID());
+                        }
                 }
                 catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
             }
@@ -263,7 +275,8 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireProduct(reserveProduct.GetID()).Reserve(reserveProduct.GetQuantity());
+                AcquireProduct(reserveProduct.GetID()).Reserve(reserveProduct.GetQuantity());
+                ReleaseProduct(reserveProduct.GetID());
             }
             catch (Exception ex) { throw ex; }
         }
@@ -272,7 +285,8 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireProduct(reservedProduct.GetID()).LetGoProduct(reservedProduct.GetQuantity());
+                AcquireProduct(reservedProduct.GetID()).LetGoProduct(reservedProduct.GetQuantity());
+                ReleaseProduct(reservedProduct.GetID());
             }
             catch (Exception ex) { throw ex; }
         }
@@ -283,6 +297,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireProduct(productID).AddComment(userID, comment, rating);
+                ReleaseProduct(productID);
             } catch (Exception ex) { throw ex; }
         }
 

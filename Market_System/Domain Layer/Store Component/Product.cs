@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Caching;
 
@@ -20,24 +21,16 @@ namespace Market_System.Domain_Layer.Store_Component
         public double Rating { get; set; } // between 1-10
         public int Quantity { get; set; }
         public double Weight { get; set; }
+        public long timesBought;
         public Category ProductCategory { get; set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
         public Array<int> Dimenssions { get; set; } // array of 3
         public ConcurrentBag<string> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
         public ConcurrentBag<string> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
         public ConcurrentBag<string> Comments { get; private set; }
         private StoreRepo storeRepo;
-        private ConcurrentDictionary<String, List<String>> PurchaseAttributes { get; private set; }
+        public ConcurrentDictionary<String, List<String>> PurchaseAttributes { get; private set; }
 
-        // simple builder before delivery system and purchase strategy/policy implementations etc...
-        public Product(String product_ID)
-        {
-            this.product_ID = product_ID;
-            this.storeRepo = StoreRepo.GetInstance();
-            Retrieve_Product();
-            // add here method to initialize other comlex properties
-        }
-
-
+       
         // 2 Different Builder for a new product or for creating one from database:
 
         public Product(String product_ID, String name, String, String description, double Price, int initQuantity, double rating, double weight, Array<int> dimenssions, List<String> comments, List<Purchase_Policy> purchase_Policies,
@@ -55,6 +48,7 @@ namespace Market_System.Domain_Layer.Store_Component
         }
 
 
+        /*
         private Boolean Retrieve_Product()
         {
             Product p = this.storeRepo.GetProduct(this.Product_ID);
@@ -72,9 +66,10 @@ namespace Market_System.Domain_Layer.Store_Component
             this.Dimenssions = p.Dimenssions;
             this.PurchaseAttributes = p.PurchaseAttributes;
         }
+        */
 
 
-        public Boolean Add_Purchase_Policy(Purchase_Policy newPolicy)
+        public void AddPurchasePolicy(Purchase_Policy newPolicy)
         {
             try
             {
@@ -86,7 +81,7 @@ namespace Market_System.Domain_Layer.Store_Component
             } catch (Exception e) { throw e; }
         }
 
-        public Boolean RemovePurchasePolicy(String policyID)
+        public void RemovePurchasePolicy(String policyID)
         {
             try
             {
@@ -99,7 +94,7 @@ namespace Market_System.Domain_Layer.Store_Component
             } catch (Exception e) { }
         }
 
-        public Boolean AddPurchaseStrategy(Purchase_Strategy newStrategy)
+        public void AddPurchaseStrategy(Purchase_Strategy newStrategy)
         {
             try
             {
@@ -112,13 +107,13 @@ namespace Market_System.Domain_Layer.Store_Component
             catch (Exception e) { return false; }
         }
 
-        public Boolean RemovePurchasePolicy(String strategyID)
+        public void RemovePurchasePolicy(String strategyID)
         {
             try
             {
                 if (this.PurchaseStrategies.TryTake(policyID))
                 {
-                    this.storeRepo.RemoveProductStrategy(this.Product_ID, policyID);
+                    this.storeRepo.RemoveProductPolicy(this.Product_ID, policyID);
                     return true;
                 }
                 return false;
@@ -127,7 +122,7 @@ namespace Market_System.Domain_Layer.Store_Component
         }
 
 
-        public Boolean AddAtribute(string attribute, List<string> options)
+        public void AddAtribute(string attribute, List<string> options)
         {
             try
             {
@@ -138,7 +133,7 @@ namespace Market_System.Domain_Layer.Store_Component
             } catch (Exception e) { throw e; }
         }
 
-        public Boolean RemoveAttribute(string attribute, List<string> options)
+        public void RemoveAttribute(string attribute, List<string> options)
         {
             try
             {
@@ -177,16 +172,22 @@ namespace Market_System.Domain_Layer.Store_Component
             return this.Price * quantity;
         }
 
-        public Boolean Purchase() // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        
+        private static object PurchaseLock = new object();
+        public void Purchase() // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
-
-            // try:
-            // update the quantity
-            // update the repo
-            // return true on success
+            lock(PurchaseLock)
+            {
+                try
+                {                  
+                    Interlocked.Decrement(this.Quantity);
+                    Interlocked.Decrement(this.ReservedQuantity);
+                    // save()
+                } catch (Exception e) { throw e;}
+            }
         }
 
-        public Boolean Reserve(int quantity)
+        public void Reserve(int quantity)
         {
             try
             {
@@ -213,23 +214,24 @@ namespace Market_System.Domain_Layer.Store_Component
             } catch (Exception e) { throw e; }
         }
 
-        // call me every time data changes
-        private Boolean Save()
+
+        private static object UpdateRatingLock = new object();
+        private void UpdateRating(double rating)
         {
-            try
+            lock (UpdateRatingLock)
             {
-                this.storeRepo.UpdateProduct(this);
-                return true;
-            } catch (Exception e) { throw e; }
+                try
+                {
+                    if (timesBought > 0)
+                    {
+                        this.Rating = (this.Rating * timesBought + rating) / (timesBought + 1);
+                        this.timesBought++;
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
         }
 
-
-        // ========Methods ToDo==========:
-
-        public Boolean prePurchase(int quantity)
-        {
-
-        }
 
         public void AddComment(string userID, string comment, double rating)
         {
@@ -237,25 +239,57 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 Comments.Add(userID + ": " + comment + ".\n Rating: " + rating + ".");
+                UpdateRating(rating);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Boolean prePurchase(int quantity)
+        {
+            try
+            {
+                return quantity > 0;
             } catch (Exception e) { throw e; }
+
         }
 
         public ItemDTO GetProductDTO()
         {
-
+            try
+            {
+                return new ItemDTO(this);
+            }catch (Exception e) { throw e; }
         }
+
 
         public void RemoveProduct()
         {
-
+            try
+            {
+                this.storeRepo.RemoveProduct(this.Product_ID);
+            } catch (Exception e) { throw e; } 
         }
 
-        
+
+        // call me every time data changes
+        private void Save()
+        {
+            try
+            {
+                this.storeRepo.UpdateProduct(this);
+            } catch (Exception e) { throw e; }
+        }
 
 
 
-        // passing a data for store representation - probably ItemDTO
-        // return price after sale appliement
+
+
+
+
+
+        // ======================= Methods ToDo ================================:
+
 
 
 

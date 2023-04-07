@@ -78,7 +78,9 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireStore(storeID).GetStoreDTO();
+                StoreDTO ret = AcquireStore(storeID).GetStoreDTO();
+                ReleaseStore(storeID);
+                return ret;
             } catch (Exception e)
             {
                 throw e;
@@ -89,7 +91,9 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireStore(storeID).GetItems();
+                List<ItemDTO> ret = AcquireStore(storeID).GetItems();
+                ReleaseStore(storeID);
+                return ret;
             }
             catch (Exception e)
             {
@@ -109,8 +113,6 @@ namespace Market_System.Domain_Layer.Store_Component
                         return false;
                     Store currStore = new Store(userID, newIDForStore, newStoreDetails, null);
                     storeRepo.AddStore(currStore);
-                    return true;
-
                 }
                 catch (Exception e)
                 {
@@ -135,6 +137,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireStore(storeID).AddProduct(usertID, productProperties);
+                ReleaseStore(storeID);
             }
             catch (Exception e)
             {
@@ -147,6 +150,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireStore(storeID).RemoveProduct(usertID, productProperties);
+                ReleaseStore(storeID);
             }
             catch (Exception e)
             {
@@ -159,6 +163,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireStore(storeID).EditProduct(usertID, productProperties);
+                ReleaseStore(storeID);
             }
             catch (Exception e)
             {
@@ -171,6 +176,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireStore(storeID).AssignNewOwner(userID, newOwnerID);
+                ReleaseStore(storeID);
             }
             catch (Exception e)
             {
@@ -183,6 +189,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireStore(storeID).AssignNewManager(userID, newManagerID);
+                ReleaseStore(storeID);
             }
             catch (Exception e)
             {
@@ -195,7 +202,9 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireStore(storeID).GetManagersOfTheStore(userID);
+                List<string> ret = AcquireStore(storeID).GetManagersOfTheStore(userID);
+                ReleaseStore(storeID);
+                return ret;
             }
             catch (Exception e) { 
                 throw e;        
@@ -206,7 +215,9 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireStore(storeID).GetOwnersOfTheStore(userID);
+                List<string> ret = AcquireStore(storeID).GetOwnersOfTheStore(userID);
+                ReleaseStore(storeID);
+                return ret;
             } catch (Exception e) { throw e; }
         }
         
@@ -238,6 +249,7 @@ namespace Market_System.Domain_Layer.Store_Component
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
                         totalPrice += AcquireStore(entry.Key).CalculatePrice(entry.Value);
+                        ReleaseStore(entry.Key);
                     }
                     return totalPrice;
 
@@ -262,6 +274,7 @@ namespace Market_System.Domain_Layer.Store_Component
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
                         AcquireStore(entry.Key).Purchase(userID, entry.Value);
+                        ReleaseStore(entry.Key);
                     }
                 }
                 catch (Exception e)
@@ -313,6 +326,7 @@ namespace Market_System.Domain_Layer.Store_Component
             try
             {
                 AcquireStore(GetStoreIdFromProductID(productID)).AddProductComment(string userID, string productID, string comment, double rating);
+                ReleaseStore(GetStoreIdFromProductID(productID));
             }
             catch (Exception e)
             {
@@ -320,11 +334,12 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public Boolean ReserveProduct(ItemDTO reservedProduct)
+        public void ReserveProduct(ItemDTO reservedProduct)
         {
             try
             {
-                AcquireStore(GetStoreIdFromProductID(productID)).ReserveProduct(reservedProduct);
+                AcquireStore(GetStoreIdFromProductID(reservedProduct.GetID())).ReserveProduct(reservedProduct);
+                ReleaseStore(GetStoreIdFromProductID(reservedProduct.GetID()));
             }
             catch(Exception e)
             {
@@ -332,11 +347,12 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public Boolean ReleaseProduct(ItemDTO reservedProduct)
+        public Boolean LetGoProduct(ItemDTO reservedProduct)
         {
             try
             {
-               AcquireStore(GetStoreIdFromProductID(productID)).ReleaseProduct(reservedProduct);
+               AcquireStore(GetStoreIdFromProductID(productID)).LetGoProduct(reservedProduct);
+                ReleaseStore(GetStoreIdFromProductID(reservedProduct.GetID()));
             }
             catch (Exception e)
             {
@@ -349,7 +365,9 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
+                List<string> ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
+                ReleaseStore(storeID);
+                return ret;
             } 
             catch (Exception e) {
                 throw e;
