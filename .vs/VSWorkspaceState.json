@@ -3,8 +3,9 @@
     "",
     "\\Market_System",
     "\\Market_System\\Domain Layer",
-    "\\Market_System\\Domain Layer\\Store Component"
+    "\\Market_System\\Domain Layer\\Store Component",
+    "\\Market_System\\Service Layer"
   ],
-  "SelectedNode": "\\Market_System\\Domain Layer\\Store Component\\StoreRepo.cs",
+  "SelectedNode": "\\Market_System\\Domain Layer\\Store Component\\StoreFacade.cs",
   "PreviewInSolutionExplorer": false
 }

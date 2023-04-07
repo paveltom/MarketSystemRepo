@@ -12,7 +12,7 @@ namespace Market_System.Domain_Layer.Store_Component
         // make the fields and/or its getter/setter threadsafe
 
         public String Product_ID { get; private set; } // composed of 2 parts: *storeId*_*inStoreProductId* - 1234_9876 for exmpl
-        public String StoreID { get; private set; } 
+        public String StoreID { get; private set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public double Price { get; set; }
@@ -59,20 +59,20 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             Product p = this.storeRepo.GetProduct(this.Product_ID);
             this.StoreID = p.StoreID;
-            this.Name = p.Name; 
+            this.Name = p.Name;
             this.Description = p.Description;
-            this.Price = p.Price;   
+            this.Price = p.Price;
             this.ReservedQuantity = p.ReservedQuantity;
-            this.Rating = p.Rating; 
+            this.Rating = p.Rating;
             this.Weight = p.Weight;
             this.ProductCategory = p.ProductCategory;
             this.PurchasePolicies = p.PurchasePolicies;
             this.PurchaseStrategies = p.PurchaseStrategies;
-            this.Comments = p.Comments; 
+            this.Comments = p.Comments;
             this.Dimenssions = p.Dimenssions;
             this.PurchaseAttributes = p.PurchaseAttributes;
         }
-    
+
 
         public Boolean Add_Purchase_Policy(Purchase_Policy newPolicy)
         {
@@ -83,7 +83,7 @@ namespace Market_System.Domain_Layer.Store_Component
                 this.storeRepo.AddProductPolicy(this.Product_ID, newPolicy);
                 this.PurchasePolicies.Add(newPolicy.GetID());
                 return true;
-            } catch(Exception e) { throw e; }
+            } catch (Exception e) { throw e; }
         }
 
         public Boolean RemovePurchasePolicy(String policyID)
@@ -96,7 +96,7 @@ namespace Market_System.Domain_Layer.Store_Component
                     return true;
                 }
                 return false;
-            } catch(Exception e) { }
+            } catch (Exception e) { }
         }
 
         public Boolean AddPurchaseStrategy(Purchase_Strategy newStrategy)
@@ -123,7 +123,7 @@ namespace Market_System.Domain_Layer.Store_Component
                 }
                 return false;
             }
-            catch (Exception e) { return false;  }
+            catch (Exception e) { return false; }
         }
 
 
@@ -131,11 +131,11 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                if(this.storeRepo.AddProductAttribute(Product_ID, attribute, options)) 
+                if (this.storeRepo.AddProductAttribute(Product_ID, attribute, options))
                     return this.PurchaseAttributes.TryAdd(attribute, options);
                 else
                     return false;
-            } catch (Exception e) { throw e; } 
+            } catch (Exception e) { throw e; }
         }
 
         public Boolean RemoveAttribute(string attribute, List<string> options)
@@ -179,7 +179,7 @@ namespace Market_System.Domain_Layer.Store_Component
 
         public Boolean Purchase() // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
-            
+
             // try:
             // update the quantity
             // update the repo
@@ -200,7 +200,7 @@ namespace Market_System.Domain_Layer.Store_Component
         }
 
 
-        public Boolean Release(int quantity)
+        public void LetGoProduct(int quantity)
         {
             try
             {
@@ -225,6 +225,35 @@ namespace Market_System.Domain_Layer.Store_Component
 
 
         // ========Methods ToDo==========:
+
+        public Boolean prePurchase(int quantity)
+        {
+
+        }
+
+        public void AddComment(string userID, string comment, double rating)
+        {
+            // validate user have purchased the product - else throw exception
+            try
+            {
+                Comments.Add(userID + ": " + comment + ".\n Rating: " + rating + ".");
+            } catch (Exception e) { throw e; }
+        }
+
+        public ItemDTO GetProductDTO()
+        {
+
+        }
+
+        public void RemoveProduct()
+        {
+
+        }
+
+        
+
+
+
         // passing a data for store representation - probably ItemDTO
         // return price after sale appliement
 

@@ -13,8 +13,8 @@ namespace Market_System.Domain_Layer.Store_Component
         //This variable is going to store the Singleton Instance
         private static StoreFacade Instance = null;
         private static StoreRepo storeRepo;
-        //private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
-        //private static ConcurrentDictionary<string, int> storeUsage;
+        private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
+        private static ConcurrentDictionary<string, int> storeUsage;
 
         private static readonly object Instancelock = new object();
 
@@ -46,22 +46,50 @@ namespace Market_System.Domain_Layer.Store_Component
 
         // public TValue GetOrAdd (TKey key, Func<TKey,TValue> valueFactory);
 
-        public Store GetStore(string storeID)
+        private Store AcquireStore (string storeID)
+        {
+            try 
+            {
+                return ((Lazy<Store>)stores.GetOrAdd(storeID, (k, val) => new Lazy<Store>(() =>
+                {
+                    storeUsage.GetOrAdd(k, 1, (k, val) => val + 1);
+                    return storeRepo.GetStore(k);
+                }))).Value; // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
+            } catch (Exception e) { throw e; }
+        }
+
+        private static object ReleaseStoreLock = new object();
+        private void ReleaseStore (string storeID)
+        {
+            lock (ReleaseStoreLock)
+            {
+                try
+                {
+                    if (storeUsage.TryRemove(storeID, 1))
+                        stores.TryRemove(storeID, out _);
+                    else
+                        storeUsage.TryUpdate(storeID, (storeUsage.TryGetValue(storeID) - 1), _);
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+        
+        public StoreDTO GetStore(string storeID)
         {
             try
             {
-                return storeRepo.GetStore(storeID);
+                return AcquireStore(storeID).GetStoreDTO();
             } catch (Exception e)
             {
                 throw e;
             }
         }
 
-        public List<Product> GetProductsFromStore(string storeID)
+        public List<ItemDTO> GetProductsFromStore(string storeID)
         {
             try
             {
-                return storeRepo.GetStore(storeID).GetProducts();
+                return AcquireStore(storeID).GetItems();
             }
             catch (Exception e)
             {
@@ -69,17 +97,20 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-
-        private static object newStoreLock = new object();  
-        public void Add_New_Store(string userID, string storeID, List<string> newStoreDetails)
+        private static object newStoreLock = new object();  // so data of 2 different new stores won't intervene
+        public void AddNewStore(string userID, string storeID, List<string> newStoreDetails)
         {
             lock (newStoreLock)
             {
                 try
                 {
                     string newIDForStore = storeRepo.GetNewStoreID();
-                    Store currStore = new Store(userID, newIDForStore);
+                    if (newIDForStore == "")
+                        return false;
+                    Store currStore = new Store(userID, newIDForStore, newStoreDetails, null);
                     storeRepo.AddStore(currStore);
+                    return true;
+
                 }
                 catch (Exception e)
                 {
@@ -88,19 +119,22 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void RemoveStore(string storeID)
+        public void RemoveStore(string userID, string storeID)
         {
             try
             {
-                storeRepo.RemoveStore(storeID)
+                AcquireStore(storeID).RemoveStore(userID);
+                stores.TryRemove(storeID, out _);
+                storeUsage.TryRemove(storeID, out _);
+
             } catch (Exception e) { throw e; }
         }
 
-        public void Add_Product_To_Store(string storeID, string usertID, List<string> productProperties) //may be pass ItemDTO instead
+        public void AddProductToStore(string storeID, string usertID, List<string> productProperties) //may be pass ItemDTO instead
         {
             try
             {
-               storeRepo.getStore(storeID).Add_Product(usertID, productProperties);
+                AcquireStore(storeID).AddProduct(usertID, productProperties);
             }
             catch (Exception e)
             {
@@ -108,11 +142,11 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Remove_Product_From_Store(string store_ID, string userID, Product product)
+        public void Remove_Product_From_Store(string store_ID, string userID, string productID)
         {
             try
             {
-                storeRepo.getStore(storeID).Remove_Product(userID, product.Product_ID);
+                AcquireStore(storeID).RemoveProduct(usertID, productProperties);
             }
             catch (Exception e)
             {
@@ -120,11 +154,11 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void EditProduct(string userID, string productID, List<String> editedProductDetails)
+        public void EditProduct(string userID, string productID, List<String> editedProductDetails) //may be pass ItemDTO instead
         {
             try
             {
-                storeRepo.GetStore(GetStoreIdFromProductID(productID)).EditProduct(userID, productID, editedProductDetails);
+                AcquireStore(storeID).EditProduct(usertID, productProperties);
             }
             catch (Exception e)
             {
@@ -132,11 +166,11 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Assign_New_Owner(string userID, string storeID, string newOwnerID)
+        public void AssignNewOwner(string userID, string storeID, string newOwnerID)
         {
             try
             {
-                storeRepo.getStore(storeID).Add_New_Owner(userID, newOwnerID);
+                AcquireStore(storeID).AssignNewOwner(userID, newOwnerID);
             }
             catch (Exception e)
             {
@@ -144,11 +178,11 @@ namespace Market_System.Domain_Layer.Store_Component
             }
         }
 
-        public void Assign_New_Managaer(string userID, string storeID, string newManagerID)
+        public void AssignNewManager(string userID, string storeID, string newManagerID)
         {
             try
             {
-                Store currStore = storeRepo.GetStore(storeID).Add_New_Owner(userID, newManagerID);
+                AcquireStore(storeID).AssignNewManager(userID, newManagerID);
             }
             catch (Exception e)
             {
@@ -161,30 +195,29 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return storeRepo.GetStore(storeID).GetManagersOfTheStore(userID);
+                return AcquireStore(storeID).GetManagersOfTheStore(userID);
             }
             catch (Exception e) { 
                 throw e;        
             }
         }
 
-        public List<string> GetOwnersOfTheStore(string storeID)
+        public List<string> GetOwnersOfTheStore(string userID, string storeID)
         {
             try
             {
-                return storeRepo.GetStore(storeID).GetAllOwnersOfTheStore();
+                return AcquireStore(storeID).GetOwnersOfTheStore(userID);
             } catch (Exception e) { throw e; }
         }
         
 
-        public double CalculatePrice(List<ItemDTO> products)
+        /*public double CalculatePrice(List<ItemDTO> products)
         {
-            
             try
             {
-                double out = 0;
-                Thread t = new Thread(() => {out = PrivateCalculatePrice(products)});
-                return out;
+
+                return new Thread(() => { PrivateCalculatePrice(products)});
+
             }
             catch (Exception e)
             {
@@ -192,29 +225,34 @@ namespace Market_System.Domain_Layer.Store_Component
             }
 
         }
+        */
 
-        public double PrivateCalculatePrice(List<ItemDTO> products)
+        private static object PrivateCalculatePriceLock = new object();
+        public double CalculatePrice(List<ItemDTO> products)
         {
-            try
+            lock (PrivateCalculatePriceLock)
             {
-                double totalPrice = 0;
-                foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
+                try
                 {
-                    totalPrice += this.storeRepo.GetStore(entry.Key).CalculatePrice(entry.Value);
-                }
-                return totalPrice;
+                    double totalPrice = 0;
+                    foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
+                    {
+                        totalPrice += AcquireStore(entry.Key).CalculatePrice(entry.Value);
+                    }
+                    return totalPrice;
 
-            }
-            catch (Exception e)
-            {
-                throw e;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
 
         }
 
 
         private static object PurchaseLock = new object();
-        public void Purchase(List<ItemDTO> products)
+        public void Purchase(string userID, List<ItemDTO> products)
         {
             // maybe add here thread functionality instead - every one who access the method receives a thread to purchase items
             lock (PurchaseLock)
@@ -223,7 +261,7 @@ namespace Market_System.Domain_Layer.Store_Component
                 {
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
-                        this.storeRepo.GetStore(entry.Key).Purchase(entry.Value);
+                        AcquireStore(entry.Key).Purchase(userID, entry.Value);
                     }
                 }
                 catch (Exception e)
@@ -274,7 +312,7 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                storeRepo.GetStore(GetStoreIdFromProductID(productID)).AddProductComment(string userID, string productID, string comment, double rating);
+                AcquireStore(GetStoreIdFromProductID(productID)).AddProductComment(string userID, string productID, string comment, double rating);
             }
             catch (Exception e)
             {
@@ -286,7 +324,7 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                ((Store)storeRepo.GetStore(GetStoreIdFromProductID(productID))).ReserveProduct(reservedProduct);
+                AcquireStore(GetStoreIdFromProductID(productID)).ReserveProduct(reservedProduct);
             }
             catch(Exception e)
             {
@@ -298,7 +336,7 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                ((Store)storeRepo.GetStore(GetStoreIdFromProductID(productID))).ReleaseProduct(reservedProduct);
+               AcquireStore(GetStoreIdFromProductID(productID)).ReleaseProduct(reservedProduct);
             }
             catch (Exception e)
             {
@@ -311,14 +349,14 @@ namespace Market_System.Domain_Layer.Store_Component
         {
             try
             {
-                return storeRepo.GetStore(storeID).GetPurchaseHistoryOfTheStore(userID);
+                return AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
             } 
             catch (Exception e) {
                 throw e;
             }
         }
 
-        public List<Product> SearchProductByKeyword(string keyword)
+        public List<ItemDTO> SearchProductByKeyword(string keyword)
         {
             try
             {
@@ -327,11 +365,21 @@ namespace Market_System.Domain_Layer.Store_Component
 
         }
 
-        public List<Product> SearchProductByName(string name)
+        public List<ItemDTO> SearchProductByName(string name)
         {
             try
             {
-                return storeRepo.SearchProductsByKeyword(name);
+                return storeRepo.SearchProductsByName(name);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        public List<ItemDTO> SearchProductByName(string category)
+        {
+            try
+            {
+                return storeRepo.SearchProductsByCategory(name);
             }
             catch (Exception e) { throw e; }
 
@@ -348,7 +396,6 @@ namespace Market_System.Domain_Layer.Store_Component
     /*
     TODO:
 
-        * public void search_product_by_category() //2.2
             
      */
 

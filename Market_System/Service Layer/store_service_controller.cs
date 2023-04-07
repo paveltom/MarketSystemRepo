@@ -60,11 +60,11 @@ namespace Market_System.Service_Layer
         {
 
         }
-        public string add_product_to_store(int store_ID, string founder, Product product, int quantity) //4.1
+        public string AddProduct_to_store(int store_ID, string founder, Product product, int quantity) //4.1
         {
             try
             {
-                market_System.Add_Product_To_Store(store_ID, founder, product, quantity);
+                market_System.AddProduct_To_Store(store_ID, founder, product, quantity);
                 return "Product has been added succesfully";
             }
 
@@ -73,11 +73,11 @@ namespace Market_System.Service_Layer
                 return e.Message;
             }
         }
-        public string remove_product_from_store(int store_ID, string founder, Product product) //4.1
+        public string RemoveProduct_from_store(int store_ID, string founder, Product product) //4.1
         {
             try
             {
-                market_System.Remove_Product_From_Store(store_ID, founder, product);
+                market_System.RemoveProduct_From_Store(store_ID, founder, product);
                 return "Product has been removed succesfully";
             }
 
