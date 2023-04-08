@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Market_System.DomainLayer.User_Component;
+using Market_System.DomainLayer.UserComponent;
 using Market_System.ServiceLayer;
 
 
