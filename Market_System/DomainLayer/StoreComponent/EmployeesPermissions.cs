@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 
-namespace Market_System.Domain_Layer.Store_Component
+namespace Market_System.DomainLayer.StoreComponent
 {
     //TODO:: Add an Enum class here called: <Permission> - all of the available permissions that can be assigned to managers (by store owners).
     //TODO:: need to enforce that only the assginging owner may change the manager's permissions - or fire him. --> not implemented for now. maybe should implemted in other class?
