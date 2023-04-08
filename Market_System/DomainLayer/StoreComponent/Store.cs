@@ -14,7 +14,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private ConcurrentBag<string> allProducts;
         private ConcurrentDictionary<string, Product> products; 
         private ConcurrentDictionary<string, int> productUsage;
-        private Employees employees; // ask Yotam what happened
+        private EmployeesPermissions employees; 
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         private ConcurrentBag<string> defaultPolicies; // passed to every new added product
@@ -27,32 +27,61 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Store_ID = storeID;
             this.founderID = founderID;
             this.storeRepo = StoreRepo.GetInstance();
-            this.employees = Employees.GetInstance();
+            this.employees = new EmployeesPermissions();
             if (allProductsIDS == null)
                 this.allProducts = new ConcurrentBag<string>();
             else
                 this.allProducts = allProductsIDS;
+            this.employees.AddNewOwnerEmpPermissions(this.founderID, this.Store_ID);
         }
 
 
         // ===================== Store operations =========================
 
+        public void TransferFoundership(string userID, string newFounderID)
+        {
+            try
+            {
+                lock (this.Name)
+                {
+                    if (this.founderID != userID)
+                        throw new Exception("Only founder can transfer foundership.");
+                    this.founderID = newFounderID;
+                    Save();
+                }
+
+            } catch (Exception ex) { throw ex; }
+        }
+        
+        
         public string ChangeName(string userID, string newName)
         {
             try
             {
-                // validate PERMISSION here
+                if (userID != this.founderID)
+                    throw new Exception("Only store founder can change its name.");
                 this.Name = newName;
-                storeRepo.UpdateStoreName(Store_ID, newName);
+                Save();
             }
             catch (Exception ex) { throw ex; }
         }
+
+        
+
+        public void ManagePermissions(string userID, List<Permission> perms)
+        {
+            try
+            {
+                this.employees.AssignNewOwner(Store_ID, userID, newOwnerID);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
 
         public void AssignNewOwner(string userID, string newOwnerID)
         {
             try
             {
-                // if userID has PERMISSION
                 this.employees.AssignNewOwner(Store_ID, userID, newOwnerID);
             }
             catch (Exception ex) { throw ex; }
@@ -134,7 +163,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     AcquireProduct(s).RemoveProduct();
                     ReleaseProduct(s);
                 }
-                this.employees.RemoveStore(this.Store_ID);
+                this.employees.RemoveStore(this.Store_ID); // change to remove as Yotam explainbed
                 // remove policies and strategies
                         
             } catch (Exception ex) { throw ex; }
@@ -202,6 +231,17 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        // call me every time data changes
+        private void Save()
+        {
+            try
+            {
+                this.storeRepo.SaveStore(this);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
         // ================================================================
 
 
@@ -249,8 +289,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     // CHECK USER PERMISSION
-                    Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder
+                    Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder                    
                     this.storeRepo.AddProduct(newProduct);
+                    this.allProducts.Add(newProduct.Product_ID);
+                    Save();
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -262,10 +304,11 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                storeRepo.RemoveProduct(product_id);
-                products.TryRemove(product_id, out _);
-                productUsage.TryRemoveProduct(product_id, out _);
-
+                this.storeRepo.RemoveProduct(product_id);
+                this.products.TryRemove(product_id, out _);
+                this.productUsage.TryRemoveProduct(product_id, out _);
+                this.allProducts.TryTake(product_id);
+                Save();
             }
             catch (Exception ex) { throw ex; }
         }
@@ -303,37 +346,176 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         // ================================================================
+        // ======================== TODO ==================================
+
+        public void ChangeProductName(string name)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductDescription(string description)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductPrice(double price)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductRating(double raring)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductQuantity(int quantity)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductWeight(double weight)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductSale(double sale)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductTimesBought(int times)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductProductCategory(Category category)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductDimenssions(Array<double> dims)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
 
 
-
-
-
-
-
-        // ========Methods ToDo==========:
-
-        /*
          public void EditProduct(string userID, string productID, List<string> editedDetails)
         {
             // has to be separated into sub-editions: editWeight(), editQuantity(), etc on higher level
             throw new NotImplementedException();
         }
-         */
 
-        
-        
-        
-        // ======more ideas=====:
 
-        // passing a data for store representation (including what details?)
-        // passing a data for store content representation- what products availble for a buyer
-        // *maby should an additional store content view, a seperate view for a manager of the store
-        // (search)-get products by name: getting all products with same name *or similar name
-        // (search)-get products by catagory: getting all products from that catagory
-        /*
-         *  .חיפוש מוצרים ללא התמקדות בחנות ספציפית, לפי שם המוצר, קטגוריה או מילות מפתח.
-         *  ניתן לסנן את התוצאות בהתאם למאפיינים כגון: טווח מחירים, דירוג המוצר, קטגוריה
-         * דירוג החנות וכד'.
-         */
-    }
-}
+
+        public void AddStorePurchasePolicy(Purchase_Policy newPolicy)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveStorePurchasePolicy(String policyID)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { }
+        }
+
+        public void AddStorePurchaseStrategy(Purchase_Strategy newStrategy)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { return false; }
+        }
+
+
+        public void RemoveStorePurchaseStrategy(String strategyID)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { return false; }
+        }
+
+
+        public void AddProductPurchasePolicy(Purchase_Policy newPolicy)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveProductPurchasePolicy(String policyID)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { }
+        }
+
+        public void AddProductPurchaseStrategy(Purchase_Strategy newStrategy)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { return false; }
+        }
+
+
+        public void RemoveProductPurchaseStrategy(String strategyID)
+        {
+            try
+            {
+
+            }
+            catch (Exception e) { return false; }
+        }
+
+

@@ -14,16 +14,17 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public String Product_ID { get; private set; } // composed of 2 parts: *storeId*_*inStoreProductId* - 1234_9876 for exmpl
         public String StoreID { get; private set; }
-        public String Name { get; set; }
-        public String Description { get; set; }
-        public double Price { get; set; }
-        public int ReservedQuantity { get; set; }
-        public double Rating { get; set; } // between 1-10
-        public int Quantity { get; set; }
-        public double Weight { get; set; }
-        public long timesBought;
-        public Category ProductCategory { get; set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
-        public Array<int> Dimenssions { get; set; } // array of 3
+        public String Name { get; private set; }
+        public String Description { get; private set; }
+        public double Price { get; private set; }
+        public int ReservedQuantity { get; private set; }
+        public double Rating { get; private set; } // between 1-10
+        public int Quantity { get; private set; }
+        public double Weight { get; private set; }
+        public double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
+        public long timesBought { get; private set; }
+        public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
+        public Array<double> Dimenssions { get; private set; } // array of 3
         public ConcurrentBag<string> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
         public ConcurrentBag<string> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
         public ConcurrentBag<string> Comments { get; private set; }
@@ -31,7 +32,8 @@ namespace Market_System.DomainLayer.StoreComponent
         public ConcurrentDictionary<String, List<String>> PurchaseAttributes { get; private set; }
 
        
-        // 2 Different Builder for a new product or for creating one from database:
+        // ==========================================================================================================
+        // =============== 2 Different Builder for a new product or for creating one from database ==================
 
         public Product(String product_ID, String name, String, String description, double Price, int initQuantity, double rating, double weight, Array<int> dimenssions, List<String> comments, List<Purchase_Policy> purchase_Policies,
                         List<Purchase_Strategy> purchase_Strategies, List<String>> product_Attributes) // add more
@@ -48,49 +50,23 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        /*
-        private Boolean Retrieve_Product()
-        {
-            Product p = this.storeRepo.GetProduct(this.Product_ID);
-            this.StoreID = p.StoreID;
-            this.Name = p.Name;
-            this.Description = p.Description;
-            this.Price = p.Price;
-            this.ReservedQuantity = p.ReservedQuantity;
-            this.Rating = p.Rating;
-            this.Weight = p.Weight;
-            this.ProductCategory = p.ProductCategory;
-            this.PurchasePolicies = p.PurchasePolicies;
-            this.PurchaseStrategies = p.PurchaseStrategies;
-            this.Comments = p.Comments;
-            this.Dimenssions = p.Dimenssions;
-            this.PurchaseAttributes = p.PurchaseAttributes;
-        }
-        */
-
+        // ==============================================================================
+        // ================================= Other methods ==============================
 
         public void AddPurchasePolicy(Purchase_Policy newPolicy)
         {
             try
             {
-                if (this.PurchasePolicies.Contains(newPolicy.GetID()))
-                    return false;
-                this.storeRepo.AddProductPolicy(this.Product_ID, newPolicy);
-                this.PurchasePolicies.Add(newPolicy.GetID());
-                return true;
+                if(this.PurchasePolicies.Add(newPolicy.GetID()))
+                    Save();
             } catch (Exception e) { throw e; }
         }
 
-        public void RemovePurchasePolicy(String policyID)
-        {
+        public void RemovePurchasePolicy(String policyID) {
             try
             {
                 if (this.PurchasePolicies.TryTake(policyID))
-                {
-                    this.storeRepo.RemoveProductPolicy(this.Product_ID, policyID);
-                    return true;
-                }
-                return false;
+                    Save();
             } catch (Exception e) { }
         }
 
@@ -98,25 +74,19 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.PurchaseStrategies.Contains(newPolicy.GetID()))
-                    return false;
-                this.storeRepo.AddProductStrategy(this.Product_ID, newStrategy);
-                this.PurchaseStrategies.Add(newPolicy.GetID());
-                return true;
+                if (this.PurchaseStrategies.Add(newPolicy.GetID()))
+                    Save();
             }
             catch (Exception e) { return false; }
         }
 
-        public void RemovePurchasePolicy(String strategyID)
+
+        public void RemovePurchaseStrategy(String strategyID)
         {
             try
             {
                 if (this.PurchaseStrategies.TryTake(policyID))
-                {
-                    this.storeRepo.RemoveProductPolicy(this.Product_ID, policyID);
-                    return true;
-                }
-                return false;
+                    Save();
             }
             catch (Exception e) { return false; }
         }
@@ -126,10 +96,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.storeRepo.AddProductAttribute(Product_ID, attribute, options))
-                    return this.PurchaseAttributes.TryAdd(attribute, options);
-                else
-                    return false;
+                if(this.PurchaseAttributes.TryAdd(attribute, options))
+                    Save();
             } catch (Exception e) { throw e; }
         }
 
@@ -138,7 +106,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if (this.PurchaseAttributes.TryRemove(attribute))
-                    return this.storeRepo.RemoveProductAttribute(this.Product_ID, attribute);
+                    Save();
                 return false;
             }
             catch (Exception e) { throw e; }
@@ -147,8 +115,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public double ImplementSale(List<String> chosenAttributes)
         {
-            throw new NotImplementedException();
-            PurchasePolicies.accept(chosenAttributes); // chain of responsibility that returns the price with implemented sale
+            return this.Price - (this.Price / 100 * this.Sale);
+            // PurchasePolicies.accept(chosenAttributes); // chain of responsibility that returns the price with implemented sale
             // get items
             // concrete product varies by PurchaseAttributes, so the sale calculated considering chosenAttributes by
             // applying PurchasePolicies chain of responsibility
@@ -166,10 +134,16 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public double CalculatePrice(int quantity) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        public double CalculatePrice(int quantity, Boolean implementSale) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
             //change later to - return ImplementSale(attributes) * quantity;
-            return this.Price * quantity;
+            try
+            {
+                if (!implementSale)
+                    return ImplementSale() * quantity;
+                else
+                    return this.Price * quantity;
+            } catch (Exception e) { throw e; }
         }
 
         
@@ -182,7 +156,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {                  
                     Interlocked.Decrement(this.Quantity);
                     Interlocked.Decrement(this.ReservedQuantity);
-                    // save()
+                    Save();
                 } catch (Exception e) { throw e;}
             }
         }
@@ -191,13 +165,16 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.storeRepo.ReserveProduct(Product_ID, quantity))
+                lock (this.ReservedQuantity)
                 {
-                    ReservedQuantity += quantity;
-                    return true;
+                    if ((this.ReservedQuantity + quantity) <= this.Quantity)
+                    {
+                        this.ReservedQuantity += quantity;
+                        Save();
+                    }
                 }
-                return false;
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
 
@@ -205,12 +182,14 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.storeRepo.ReleaseProduct(Product_ID, quantity))
+                lock (this.ReservedQuantity)
                 {
-                    ReservedQuantity -= quantity;
-                    return true;
+                    if ((this.ReservedQuantity - quantity) > 0)
+                    {
+                        this.ReservedQuantity -= quantity;
+                        Save();
+                    }
                 }
-                return false;
             } catch (Exception e) { throw e; }
         }
 
@@ -226,6 +205,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     {
                         this.Rating = (this.Rating * timesBought + rating) / (timesBought + 1);
                         this.timesBought++;
+                        Save();
                     }
                 }
                 catch (Exception e) { throw e; }
@@ -234,12 +214,13 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         public void AddComment(string userID, string comment, double rating)
-        {
-            // validate user have purchased the product - else throw exception
+        {            
             try
             {
+                // validate user have purchased the product - else throw exception
                 Comments.Add(userID + ": " + comment + ".\n Rating: " + rating + ".");
                 UpdateRating(rating);
+                Save();
             }
             catch (Exception e) { throw e; }
         }
@@ -249,7 +230,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                return quantity > 0;
+                lock (this.Quantity)
+                {
+                    return (this.Quantity - quantity) >= 0;
+                }
             } catch (Exception e) { throw e; }
 
         }
@@ -277,8 +261,137 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                this.storeRepo.UpdateProduct(this);
+                this.storeRepo.SaveProduct(this);
             } catch (Exception e) { throw e; }
+        }
+
+
+        // ====================================================================================
+        // =============================== set functions ======================================
+        public void SetName(string name)
+        {
+            try
+            {
+                lock (this.Name)
+                {
+                    this.Name = name;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void SetDescription(string description)
+        {
+            try
+            {
+                lock (this.Description)
+                {
+                    this.Description = description;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void SetPrice(double price)
+        {
+            try
+            {
+                lock (this.Price)
+                {
+                    this.Price = price;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void SetRating(double raring)
+        {
+            try
+            {
+                lock (this.Rating)
+                {
+                    this.Rating = raring;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void SetQuantity(int quantity)
+        {
+            try
+            {
+                lock (this.Quantity)
+                {
+                    this.Quantity = quantity;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void SetWeight(double weight)
+        {
+            try
+            {
+                lock (this.Weight)
+                {
+                    this.Weight = weight;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void SetSale(double sale)
+        {
+            try
+            {
+                lock (this.Sale)
+                {
+                    this.Sale = sale;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void SetTimesBought(int times)
+        {
+            try
+            {
+                lock (this.timesBought)
+                {
+                    this.timesBought = times;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void SetProductCategory(Category category)
+        {
+            try
+            {
+                lock (this.ProductCategory)
+                {
+                    this.ProductCategory = category;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void SetDimenssions(Array<double> dims)
+        {
+            try
+            {
+                lock (this.Dimenssions)
+                {
+                    this.Dimenssions = dims;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
         }
 
 

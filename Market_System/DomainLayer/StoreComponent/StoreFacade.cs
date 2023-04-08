@@ -112,6 +112,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (newIDForStore == "")
                         return false;
                     Store currStore = new Store(userID, newIDForStore, newStoreDetails, null);
+                    currStore.AsssignNewFounder(userID);
                     storeRepo.AddStore(currStore);
                 }
                 catch (Exception e)
@@ -411,11 +412,101 @@ namespace Market_System.DomainLayer.StoreComponent
         }
     }
 
-    /*
-    TODO:
 
+    // ======================================================
+    // ======================== TODO ========================
+
+    public void TransferFoundership(string userID, string newFounderID)
+    {
+
+    }
+
+
+    public void ChangeProductName(string name)
+    {
+        try
+        {
+
+        }
+        catch (Exception e) { throw e; }
+    }
+    public void ChangeProductDescription(string description)
+    {
+        try
+        {
+
+        }
+        catch (Exception e) { throw e; }
+    }
+    public void ChangeProductPrice(double price)
+    {
+        try
+        {
+
+        }
+        catch (Exception e) { throw e; }
+    }
+    public void ChangeProductRating(double raring)
+    {
+        try
+        {
+
+        }
+        catch (Exception e) { throw e; }
+    }
+    public void ChangeProductQuantity(int quantity)
+    {
+        try
+        {
+ 
+        }
+        catch (Exception e) { throw e; }
+    }
+
+    public void ChangeProductWeight(double weight)
+    {
+        try
+        {
+
+        }
+        catch (Exception e) { throw e; }
+    }
+
+    public void ChangeProductSale(double sale)
+    {
+        try
+        {
+
+        }
+        catch (Exception e) { throw e; }
+    }
+
+    public void ChangeProductTimesBought(int times)
+    {
+        try
+        {
             
-     */
+        }
+        catch (Exception e) { throw e; }
+    }
+
+    public void ChangeProductProductCategory(Category category)
+    {
+        try
+        {
+            
+        }
+        catch (Exception e) { throw e; }
+    }
+
+    public void ChangeProductDimenssions(Array<double> dims)
+    {
+        try
+        {
+            
+        }
+        catch (Exception e) { throw e; }
+    }
 
 
 
