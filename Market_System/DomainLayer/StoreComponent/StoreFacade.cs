@@ -351,7 +351,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-               AcquireStore(GetStoreIdFromProductID(reservedProduct.GetID())).LetGoProduct(reservedProduct);
+               AcquireStore(GetStoreIdFromProductID(productID)).LetGoProduct(reservedProduct);
                 ReleaseStore(GetStoreIdFromProductID(reservedProduct.GetID()));
             }
             catch (Exception e)
