@@ -6,7 +6,7 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 
-namespace Market_System.Service_Layer
+namespace Market_System.ServiceLayer
 {
     public class Store_Service_Controller
     {

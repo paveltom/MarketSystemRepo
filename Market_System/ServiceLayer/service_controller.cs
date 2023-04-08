@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Market_System.ServiceLayer;
-using Market_System.DomainLayer.User_Component;
+using Market_System.DomainLayer.UserComponent;
 
 
 
-namespace Market_System.Service_Layer
+namespace Market_System.ServiceLayer
 {
     public class Service_Controller : Service_Layer_Interface
     {
