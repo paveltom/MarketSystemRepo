@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.DomainLayer;
-using Market_System.DomainLayer.User_Component;
+using Market_System.DomainLayer.UserComponent;
 using Market_System.ServiceLayer;
+using MarketSystem.DomainLayer;
 
-namespace Market_System.ServiceLayer
+namespace MarketSystem.ServiceLayer
 {
     public class User_Service_Controller
     {
         //private user_facade (domain)
-        private MarketSystem market_System;
-      
+        
+        private MarketSystem.DomainLayer.MarketSystem market_System;
         private int session_id;
         public User_Service_Controller()
         {
-            this.market_System = MarketSystem.GetInstance();
+            this.market_System = MarketSystem.DomainLayer.MarketSystem.GetInstance();
             
         }
 
