@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Market_System.Domain_Layer.User_Component;
+using Market_System.DomainLayer.User_Component;
 using Market_System.ServiceLayer;
 
 
-namespace Market_System.Service_Layer
+namespace Market_System.ServiceLayer
 {
     interface Service_Layer_Interface
     {

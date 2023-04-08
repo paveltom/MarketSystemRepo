@@ -2,7 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Market_System",
-    "\\Market_System.Tests"
+    "\\Market_System.Tests",
+    "\\Market_System.Tests\\SeviceLevelTests",
+    "\\Market_System\\DomainLayer",
+    "\\Market_System\\DomainLayer\\StoreComponent",
+    "\\Market_System\\ServiceLayer"
   ],
+  "SelectedNode": "\\Market_System\\ServiceLayer\\Service_Layer_Interface.cs",
   "PreviewInSolutionExplorer": false
 }

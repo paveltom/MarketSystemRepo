@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.Domain_Layer.User_Component;
-using Market_System.Domain_Layer.Store_Component;
-using Market_System.Domain_Layer.PaymentComponent;
-using Market_System.Domain_Layer.DeliveryComponent;
+using Market_System.DomainLayer.UserComponent;
+using Market_System.DomainLayer.StoreComponent;
+using Market_System.DomainLayer.PaymentComponent;
+using Market_System.DomainLayer.DeliveryComponent;
 
-namespace Market_System.Domain_Layer
+namespace Market_System.DomainLayer
 {
     //TODO:: Implement as a Mediator.
     public sealed class MarketSystem
