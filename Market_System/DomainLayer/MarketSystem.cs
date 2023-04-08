@@ -239,7 +239,7 @@ namespace Market_System.Domain_Layer
 
         private bool check_if_availbe_from_store_facade(string product_id)
         {
-            if(product_id.Equals("123456"))
+            if(product_id.Equals("123_456"))//123_51651
             {
                 return true;
             }
