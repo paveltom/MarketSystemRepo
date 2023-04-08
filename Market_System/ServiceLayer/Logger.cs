@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Market_System.Service_Layer
+namespace Market_System.ServiceLayer
 {
     public class Logger
     {

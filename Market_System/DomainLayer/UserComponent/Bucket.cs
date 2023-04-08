@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MarketSystem.DomainLayer;
 
 namespace Market_System.DomainLayer.UserComponent
 {
@@ -65,6 +66,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public List<ItemDTO> convert_basket_to_dtos_list()
         {
+            
             List<ItemDTO> list_of_dtos = new List<ItemDTO>();
             foreach (KeyValuePair<string, int> entry in this.products) // each entry is < product_id , quantity > 
             {
