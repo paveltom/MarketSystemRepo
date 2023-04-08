@@ -62,5 +62,15 @@ namespace Market_System.Domain_Layer.User_Component
             }
             return 0;
         }
+
+        public List<ItemDTO> convert_basket_to_dtos_list()
+        {
+            List<ItemDTO> list_of_dtos = new List<ItemDTO>();
+            foreach (KeyValuePair<string, int> entry in this.products) // each entry is < product_id , quantity > 
+            {
+                list_of_dtos.Add(new ItemDTO(entry.Key, entry.Value));
+            }
+            return list_of_dtos;
+        }
     }
 }

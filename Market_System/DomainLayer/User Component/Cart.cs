@@ -117,5 +117,19 @@ namespace Market_System.Domain_Layer.User_Component
             return this.total_price;
         }
 
+        public List<ItemDTO> convert_to_item_DTO()
+        {
+            List<ItemDTO> list_of_dtos = new List<ItemDTO>();
+            
+            
+            foreach(Bucket basket in this.baskets)
+            {
+                list_of_dtos.Concat(basket.convert_basket_to_dtos_list());
+            }
+
+            return list_of_dtos;
+
+        }
+
     }
 }
