@@ -19,9 +19,9 @@ namespace Market_System.ServiceLayer
         }
 
         
-        public void get_store()
+        public void get_store(string sessionID, string storeID)
         {
-            // this.sf.getshop() example
+            this.market_System.GetStore(sessionID, storeID);
         }
         public void get_products_from_shop()
         {
@@ -56,15 +56,15 @@ namespace Market_System.ServiceLayer
                 return e.Message;
             }
         }
-        public void comment_on_product() // 3.3
+        public void comment_on_product(string sessionID, string productID, string comment) // 3.3
         {
 
         }
-        public string add_product_to_store(int store_ID, string founder, Product product, int quantity) //4.1
+        public string AddProduct_to_store(int store_ID, string founder, Product product, int quantity) //4.1
         {
             try
             {
-                market_System.Add_Product_To_Store(store_ID, founder, product, quantity);
+                market_System.AddProduct_To_Store(store_ID, founder, product, quantity);
                 return "Product has been added succesfully";
             }
 
@@ -73,11 +73,11 @@ namespace Market_System.ServiceLayer
                 return e.Message;
             }
         }
-        public string remove_product_from_store(int store_ID, string founder, Product product) //4.1
+        public string RemoveProduct_from_store(int store_ID, string founder, Product product) //4.1
         {
             try
             {
-                market_System.Remove_Product_From_Store(store_ID, founder, product);
+                market_System.RemoveProduct_From_Store(store_ID, founder, product);
                 return "Product has been removed succesfully";
             }
 
