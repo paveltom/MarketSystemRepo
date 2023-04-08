@@ -393,7 +393,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
-        public List<ItemDTO> SearchProductByName(string category)
+        public List<ItemDTO> SearchProductByCategory(string category)
         {
             try
             {
