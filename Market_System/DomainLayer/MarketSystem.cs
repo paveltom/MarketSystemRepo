@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.Domain_Layer.User_Component;
-using Market_System.Domain_Layer.Store_Component;
-using Market_System.Domain_Layer.PaymentComponent;
-using Market_System.Domain_Layer.DeliveryComponent;
+using Market_System.DomainLayer.UserComponent;
+using Market_System.DomainLayer.StoreComponent;
+using Market_System.DomainLayer.PaymentComponent;
+using Market_System.DomainLayer.DeliveryComponent;
 
-namespace Market_System.Domain_Layer
+namespace Market_System.DomainLayer
 {
     //TODO:: Implement as a Mediator.
     public sealed class MarketSystem
@@ -81,7 +81,7 @@ namespace Market_System.Domain_Layer
                         //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
 
                         userFacade.add_product_to_basket(product_id, username);
-                        Market_System.Domain_Layer.User_Component.Cart cart = userFacade.get_cart(username);
+                        Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
                         //  price  =  storefacade.calcualte_total_price(cart);
                         double price = 110;
                         userFacade.update_cart_total_price(username, price);
@@ -110,7 +110,7 @@ namespace Market_System.Domain_Layer
                         //storeFacade.add_Product_to_Store(product_id);
 
                         userFacade.remove_product_from_basket(product_id, username);
-                        Market_System.Domain_Layer.User_Component.Cart cart = userFacade.get_cart(username);
+                        Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
                         //  price  =  storefacade.calcualte_total_price(cart);
                         double price = 110;
                         userFacade.update_cart_total_price(username, price);
