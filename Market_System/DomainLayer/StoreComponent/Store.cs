@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Web;
 
-namespace Market_System.Domain_Layer.Store_Component
+namespace Market_System.DomainLayer.StoreComponent
 {
     public class Store : Property
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.Domain_Layer.Store_Component;
-using Market_System.Domain_Layer;
-using Market_System.Service_Layer;
+using Market_System.DomainLayer.StoreComponent;
+using Market_System.DomainLayer;
+using Market_System.ServiceLayer;
 
 namespace Market_System.Service_Layer
 {
