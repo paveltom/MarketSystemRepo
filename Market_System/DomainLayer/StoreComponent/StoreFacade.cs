@@ -412,8 +412,10 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void AddProductToStore(string storeID, string usertID, List<string> productProperties) //may be pass ItemDTO instead
+        public void AddProductToStore(string storeID, string usertID, List<String> productProperties) 
         {
+            // List<string>, length 10, as foolows:
+            // Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale, Weight, Dimenssions, PurchaseAttributes, ProductCategory 
             try
             {
                 AcquireStore(storeID).AddProduct(usertID, productProperties);

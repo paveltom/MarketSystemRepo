@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Web;
 using System.Web.Caching;
@@ -25,7 +26,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
         public long timesBought { get; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
-        public Array<double> Dimenssions { get; private set; } // array of 3
+        public double[] Dimenssions { get; private set; } // array of 3
         public ConcurrentDictionary<string, Purchase_Policy> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
         public ConcurrentDictionary<string, Purchase_Strategy> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
         public ConcurrentBag<string> Comments { get; private set; }
@@ -37,8 +38,9 @@ namespace Market_System.DomainLayer.StoreComponent
         // ==========================================================================================================
 
 
-        public Product(String product_ID, String name, String, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight, Array<int> dimenssions, List<String> comments, List<Purchase_Policy> purchase_Policies,
-                        List<Purchase_Strategy> purchase_Strategies, Dictionary(string, List<string>) product_Attributes, int boughtTimes, Category category) // add more
+        public Product(String product_ID, String name, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight, 
+                        double[] dimenssions, List<String> comments, ConcurrentDictionary<string, Purchase_Policy> purchase_Policies,
+                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary(string, List<string>) product_Attributes, int boughtTimes, Category category) // add more
         {
             this.Product_ID = product_ID;
             this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
@@ -60,6 +62,51 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Comments = comments;
             this.storeRepo = StoreRepo.GetInstance();
             this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
+        }
+
+
+        public Product(List<String> productProperties, string storeID, ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies, 
+                        ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies)
+        {
+            this.StoreID = storeID;
+            this.storeRepo = StoreRepo.GetInstance();
+            this.Product_ID = this.storeRepo.GetNewProductID(storeID);
+            this.PurchasePolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultStorePolicies);
+            this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy> (defaultStoreStrategies);            
+            this.Comments = new List<string>();
+            this.timesBought = 0;
+
+            String[] properties = productProperties.ToArray();
+            
+            this.Name = properties[0];
+            this.Description = properties[1];
+            this.Price = Double.Parse(properties[2]);
+            this.Quantity = Int32.Parse(properties[3]);
+            this.ReservedQuantity = Int32.Parse(properties[4]);
+            this.Rating = Double.Parse(properties[5]);
+            this.Sale = Double.Parse(properties[6]);
+            this.Weight = Double.Parse(properties[7]);
+            this.Dimenssions = properties[8].Split('_').Select(s => Double.Parse(s)).ToArray();
+            this.PurchaseAttributes = RetreiveAttributres(properties[9]);
+            this.ProductCategory = new Category(properties[10]);
+        }
+
+
+        private ConcurrentDictionary<string, List<string>> RetreiveAttributres(String atrs)
+        {
+            try
+            {
+                List<string> wholeAtrs = atrs.Split(';');
+                ConcurrentDictionary<string, List<string>> ret = new ConcurrentDictionary<string, List<string>>();
+                foreach (string s in wholeAtrs)
+                {
+                    string[] atrArray = s.Split(':').ToArray();
+                    string atrName = atrArray[0];
+                    List<string> atrOpts = atrArray[1].Split('_');
+                    ret.TryAdd(atrName, atrOpts);
+                }                
+                return ret;
+            } catch (Exception e) { throw e; }
         }
 
 
@@ -394,7 +441,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void SetDimenssions(Array<double> dims)
+        public void SetDimenssions(double[] dims)
         {
             try
             {
