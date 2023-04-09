@@ -44,200 +44,7 @@ namespace Market_System.DomainLayer.StoreComponent
             return Instance;
         }
 
-        // public TValue GetOrAdd (TKey key, Func<TKey,TValue> valueFactory);
 
-        private Store AcquireStore (string storeID)
-        {
-            try 
-            {
-                return ((Lazy<Store>)stores.GetOrAdd(storeID, (k, val) => new Lazy<Store>(() =>
-                {
-                    storeUsage.GetOrAdd(k, 1, (k, val) => val + 1);
-                    return storeRepo.GetStore(k);
-                }))).Value; // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
-            } catch (Exception e) { throw e; }
-        }
-
-        private static object ReleaseStoreLock = new object();
-        private void ReleaseStore (string storeID)
-        {
-            lock (ReleaseStoreLock)
-            {
-                try
-                {
-                    if (storeUsage.TryRemove(storeID, 1))
-                        stores.TryRemove(storeID, out _);
-                    else
-                        storeUsage.TryUpdate(storeID, (storeUsage.TryGetValue(storeID) - 1), _);
-                }
-                catch (Exception e) { throw e; }
-            }
-        }
-        
-        public StoreDTO GetStore(string storeID)
-        {
-            try
-            {
-                StoreDTO ret = AcquireStore(storeID).GetStoreDTO();
-                ReleaseStore(storeID);
-                return ret;
-            } catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public List<ItemDTO> GetProductsFromStore(string storeID)
-        {
-            try
-            {
-                List<ItemDTO> ret = AcquireStore(storeID).GetItems();
-                ReleaseStore(storeID);
-                return ret;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        private static object newStoreLock = new object();  // so data of 2 different new stores won't intervene
-        public void AddNewStore(string userID, string storeID, List<string> newStoreDetails)
-        {
-            lock (newStoreLock)
-            {
-                try
-                {
-                    string newIDForStore = storeRepo.GetNewStoreID();
-                    if (newIDForStore == "")
-                        return false;
-                    Store currStore = new Store(userID, newIDForStore, newStoreDetails, null);
-                    currStore.AsssignNewFounder(userID);
-                    storeRepo.AddStore(currStore);
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-            }
-        }
-
-        public void RemoveStore(string userID, string storeID)
-        {
-            try
-            {
-                AcquireStore(storeID).RemoveStore(userID);
-                stores.TryRemove(storeID, out _);
-                storeUsage.TryRemove(storeID, out _);
-
-            } catch (Exception e) { throw e; }
-        }
-
-        public void AddProductToStore(string storeID, string usertID, List<string> productProperties) //may be pass ItemDTO instead
-        {
-            try
-            {
-                AcquireStore(storeID).AddProduct(usertID, productProperties);
-                ReleaseStore(storeID);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public void Remove_Product_From_Store(string store_ID, string userID, string productID)
-        {
-            try
-            {
-                AcquireStore(storeID).RemoveProduct(usertID, productProperties);
-                ReleaseStore(storeID);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public void EditProduct(string userID, string productID, List<String> editedProductDetails) //may be pass ItemDTO instead
-        {
-            try
-            {
-                AcquireStore(storeID).EditProduct(usertID, productProperties);
-                ReleaseStore(storeID);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public void AssignNewOwner(string userID, string storeID, string newOwnerID)
-        {
-            try
-            {
-                AcquireStore(storeID).AssignNewOwner(userID, newOwnerID);
-                ReleaseStore(storeID);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public void AssignNewManager(string userID, string storeID, string newManagerID)
-        {
-            try
-            {
-                AcquireStore(storeID).AssignNewManager(userID, newManagerID);
-                ReleaseStore(storeID);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-
-        public List<string> GetManagersOfTheStore(string userID, string storeID)
-        {
-            try
-            {
-                List<string> ret = AcquireStore(storeID).GetManagersOfTheStore(userID);
-                ReleaseStore(storeID);
-                return ret;
-            }
-            catch (Exception e) { 
-                throw e;        
-            }
-        }
-
-        public List<string> GetOwnersOfTheStore(string userID, string storeID)
-        {
-            try
-            {
-                List<string> ret = AcquireStore(storeID).GetOwnersOfTheStore(userID);
-                ReleaseStore(storeID);
-                return ret;
-            } catch (Exception e) { throw e; }
-        }
-        
-
-        /*public double CalculatePrice(List<ItemDTO> products)
-        {
-            try
-            {
-
-                return new Thread(() => { PrivateCalculatePrice(products)});
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-        }
-        */
 
         private static object PrivateCalculatePriceLock = new object();
         public double CalculatePrice(List<ItemDTO> products)
@@ -263,6 +70,13 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+
+
+
+
+
+        // ====================================================================
+        // ====================== General class methods ===============================
 
         private static object PurchaseLock = new object();
         public void Purchase(string userID, List<ItemDTO> products)
@@ -315,12 +129,314 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 return productID.Substring(0, productID.IndexOf("_"));
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
-                throw new NotImplementedException();    
+                throw new NotImplementedException();
+            }
+        }
+        // ====================== END of General class methods ===============================
+        // ===================================================================================
+
+
+
+
+
+
+
+        // ====================================================================
+        // ====================== Store methods ===============================
+
+        private Store AcquireStore(string storeID)
+        {
+            try
+            {
+                return ((Lazy<Store>)stores.GetOrAdd(storeID, (k, val) => new Lazy<Store>(() =>
+                {
+                    storeUsage.GetOrAdd(k, 1, (k, val) => val + 1);
+                    return storeRepo.GetStore(k);
+                }))).Value; // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        private static object ReleaseStoreLock = new object();
+        private void ReleaseStore(string storeID)
+        {
+            lock (ReleaseStoreLock)
+            {
+                try
+                {
+                    if (storeUsage.TryRemove(storeID, 1))
+                        stores.TryRemove(storeID, out _);
+                    else
+                        this.storeUsage.TryUpdate(storeID, (storeUsage.TryGetValue(storeID) - 1), _);
+                }
+                catch (Exception e) { throw e; }
             }
         }
 
+        public void ChangeStoreName(string userID, string storeID, string newName)
+        {
+            try
+            {
+                AcquireStore(store).ChangeName(userID, newName);
+                ReleaseStore(storeID);
+            } catch (Exception e) { throw e; }
+        }
+
+        public StoreDTO GetStore(string storeID)
+        {
+            try
+            {
+                StoreDTO ret = AcquireStore(storeID).GetStoreDTO();
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private static object newStoreLock = new object();  // so data of 2 different new stores won't intervene
+        public void AddNewStore(string userID, string storeID, List<string> newStoreDetails)
+        {
+            lock (newStoreLock)
+            {
+                try
+                {
+                    string newIDForStore = storeRepo.GetNewStoreID();
+                    if (newIDForStore == "")
+                        return false;
+                    Store currStore = new Store(userID, newIDForStore, newStoreDetails, null);
+                    currStore.AsssignNewFounder(userID);
+                    storeRepo.AddStore(currStore);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public void RemoveStore(string userID, string storeID)
+        {
+            try
+            {
+                AcquireStore(storeID).RemoveStore(userID);
+                stores.TryRemove(storeID, out _);
+                storeUsage.TryRemove(storeID, out _);
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public List<string> GetPurchaseHistoryOfTheStore(string userID, string storeID)
+        {
+            try
+            {
+                List<string> ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void TransferFoundership(string userID, string storeID, string newFounderID)
+        {
+            try
+            {
+                AcquireStore(storeID).TransferFoundership(userID, newFounderID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy) {
+            try
+            {
+                AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicy);
+                ReleaseStore(storeID);
+            }catch (Exception e) { throw e; }   
+        }
+
+
+        public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID) {
+            try
+            {
+                AcquireStore(storeID).RemoveStorePurchasePolicy(userID, policyID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy) {
+            try
+            {
+                AcquireStore(storeID).AddStorePurchaseStrategy(userID, newStrategy);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveStorePurchaseStrategy(string userID, string storeID, String strategyID) {
+            try
+            {
+                AcquireStore(storeID).RemoveStorePurchaseStrategy(userID, strategyID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        // ====================== END of Store methods ===============================
+        // ===========================================================================
+
+
+
+
+
+        // =======================================================================
+        // ====================== EMployee methods ===============================
+        public void AddEmployeePermission(string userID, string storeID, string employeeID, Permission newP)
+        {
+            try
+            {
+                AcquireStore(storeID).AddEmployeePermission(userID, employeeID, newP);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveEmployeePermission(string userID, string storeID, string employeeID, Permission permToRemove)
+        {
+            try
+            {
+                AcquireStore(storeID).RemoveEmployeePermission(userID, employeeID, permToRemove);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AssignNewOwner(string userID, string storeID, string newOwnerID)
+        {
+            try
+            {
+                AcquireStore(storeID).AssignNewOwner(userID, newOwnerID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void AssignNewManager(string userID, string storeID, string newManagerID)
+        {
+            try
+            {
+                AcquireStore(storeID).AssignNewManager(userID, newManagerID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        public List<string> GetManagersOfTheStore(string userID, string storeID)
+        {
+            try
+            {
+                List<string> ret = AcquireStore(storeID).GetManagersOfTheStore(userID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<string> GetOwnersOfTheStore(string userID, string storeID)
+        {
+            try
+            {
+                List<string> ret = AcquireStore(storeID).GetOwnersOfTheStore(userID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ManageEmployeePermissions(string userID, string storeID, string employeeID, List<Permission> perms)
+        {
+            try
+            {
+                AcquireStore(storeID).ManagePermissions(userID, employeeID, perms);
+                ReleaseStore(storeID) ;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
+        // ====================== END of Employee methods ===============================
+        // ==============================================================================
+
+
+
+
+
+        // ======================================================================
+        // ====================== Product methods ===============================
+
+        public List<ItemDTO> GetProductsFromStore(string storeID)
+        {
+            try
+            {
+                List<ItemDTO> ret = AcquireStore(storeID).GetItems();
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void AddProductToStore(string storeID, string usertID, List<string> productProperties) //may be pass ItemDTO instead
+        {
+            try
+            {
+                AcquireStore(storeID).AddProduct(usertID, productProperties);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void RemoveProductFromStore(string storeID, string userID, string productID, List<string> productProperties)
+        {
+            try
+            {
+                AcquireStore(storeID).RemoveProduct(userID, productProperties);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public void AddProductComment(string userID, string productID, string comment, double rating)
         {
@@ -342,7 +458,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 AcquireStore(GetStoreIdFromProductID(reservedProduct.GetID())).ReserveProduct(reservedProduct);
                 ReleaseStore(GetStoreIdFromProductID(reservedProduct.GetID()));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -352,25 +468,11 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-               AcquireStore(GetStoreIdFromProductID(productID)).LetGoProduct(reservedProduct);
+                AcquireStore(GetStoreIdFromProductID(productID)).LetGoProduct(reservedProduct);
                 ReleaseStore(GetStoreIdFromProductID(reservedProduct.GetID()));
             }
             catch (Exception e)
             {
-                throw e;
-            }
-        }
-
-
-        public List<string> GetPurchaseHistoryOfTheStore(string userID, string storeID)
-        {
-            try
-            {
-                List<string> ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
-                ReleaseStore(storeID);
-                return ret;
-            } 
-            catch (Exception e) {
                 throw e;
             }
         }
@@ -380,7 +482,8 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 return storeRepo.SearchProductsByKeyword(keyword);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
 
         }
 
@@ -394,15 +497,158 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
-        public List<ItemDTO> SearchProductByCategory(string category)
+        public List<ItemDTO> SearchProductByCategory(Category category)
         {
             try
             {
-                return storeRepo.SearchProductsByCategory(name);
+                return storeRepo.SearchProductsByCategory(category);
             }
             catch (Exception e) { throw e; }
 
         }
+
+        public void ChangeProductName(string userID, string productID, string name)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductName(userID, productID, name);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductDescription(string userID, string productID, string description)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductDescription(userID, productID, description);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductPrice(string userID, string productID, double price)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductPrice(userID, productID, price);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductRating(string userID, string productID, double rating)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductRating(userID, productID, rating);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductQuantity(string userID, string productID, int quantity)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductQuantity(userID, productID, quantity);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductWeight(string userID, string productID, double weight)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductWeight(userID, productID, weight);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductSale(string userID, string productID, double sale)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductSale(userID, productID, sale);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductTimesBought(string userID, string productID, int times)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductTimesBought(userID, productID, times);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductProductCategory(string userID, string productID, Category category)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductProductCategory(userID, productID, category);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductDimenssions(string userID, string productID, Array<double> dims)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductDimenssions(userID, productID, dims);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddProductPurchasePolicy(string userID, string storeID, string productID, Purchase_Policy newPolicy)
+        {
+            try
+            {
+                AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicy);
+                ReleaseStore(storeID);
+            } catch(Exception e) { throw e; }
+        }
+
+        public void RemoveProductPurchasePolicy(string userID, string storeID, string productID, String policyID)
+        {
+            try
+            {
+                AcquireStore(storeID).RemoveProductPurchasePolicy(userID, productID, policyID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddProductPurchaseStrategy(string userID, string storeID, string productID, Purchase_Strategy newStrategy)
+        {
+            try
+            {
+                AcquireStore(storeID).AddProductPurchaseStrategy(userID, productID, newStrategy);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveProductPurchaseStrategy(string userID, string storeID, string productID, String strategyID)
+        {
+            try
+            {
+                AcquireStore(storeID).RemoveStorePurchaseStrategy(userID, productID, strategyID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ====================== END of Product methods =============================
+        // ===========================================================================
 
 
         //this for tests
@@ -410,104 +656,18 @@ namespace Market_System.DomainLayer.StoreComponent
         {    
             Instance = null;     
         }
+
+
+
+
+        // ======================================================
+        // ======================== TODO ========================
+
+
+
+
+
+        // ======================== END of TODO ========================
+        // =============================================================
+
     }
-
-
-    // ======================================================
-    // ======================== TODO ========================
-
-    public void TransferFoundership(string userID, string newFounderID)
-    {
-
-    }
-
-
-    public void ChangeProductName(string name)
-    {
-        try
-        {
-
-        }
-        catch (Exception e) { throw e; }
-    }
-    public void ChangeProductDescription(string description)
-    {
-        try
-        {
-
-        }
-        catch (Exception e) { throw e; }
-    }
-    public void ChangeProductPrice(double price)
-    {
-        try
-        {
-
-        }
-        catch (Exception e) { throw e; }
-    }
-    public void ChangeProductRating(double raring)
-    {
-        try
-        {
-
-        }
-        catch (Exception e) { throw e; }
-    }
-    public void ChangeProductQuantity(int quantity)
-    {
-        try
-        {
- 
-        }
-        catch (Exception e) { throw e; }
-    }
-
-    public void ChangeProductWeight(double weight)
-    {
-        try
-        {
-
-        }
-        catch (Exception e) { throw e; }
-    }
-
-    public void ChangeProductSale(double sale)
-    {
-        try
-        {
-
-        }
-        catch (Exception e) { throw e; }
-    }
-
-    public void ChangeProductTimesBought(int times)
-    {
-        try
-        {
-            
-        }
-        catch (Exception e) { throw e; }
-    }
-
-    public void ChangeProductProductCategory(Category category)
-    {
-        try
-        {
-            
-        }
-        catch (Exception e) { throw e; }
-    }
-
-    public void ChangeProductDimenssions(Array<double> dims)
-    {
-        try
-        {
-            
-        }
-        catch (Exception e) { throw e; }
-    }
-
-
-
-

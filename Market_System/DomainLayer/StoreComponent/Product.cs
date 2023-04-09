@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,39 +26,48 @@ namespace Market_System.DomainLayer.StoreComponent
         public long timesBought { get; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
         public Array<double> Dimenssions { get; private set; } // array of 3
-        public ConcurrentBag<string> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
-        public ConcurrentBag<string> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
+        public ConcurrentDictionary<string, Purchase_Policy> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
+        public ConcurrentDictionary<string, Purchase_Strategy> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
         public ConcurrentBag<string> Comments { get; private set; }
         private StoreRepo storeRepo;
         public ConcurrentDictionary<String, List<String>> PurchaseAttributes { get; private set; }
+        private static Category defaultCategory = new Category("NoCategory");
 
-       
+
         // ==========================================================================================================
-        // =============== 2 Different Builder for a new product or for creating one from database ==================
 
-        public Product(String product_ID, String name, String, String description, double Price, int initQuantity, double rating, double weight, Array<int> dimenssions, List<String> comments, List<Purchase_Policy> purchase_Policies,
-                        List<Purchase_Strategy> purchase_Strategies, List<String>> product_Attributes) // add more
+
+        public Product(String product_ID, String name, String, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight, Array<int> dimenssions, List<String> comments, List<Purchase_Policy> purchase_Policies,
+                        List<Purchase_Strategy> purchase_Strategies, Dictionary(string, List<string>) product_Attributes, int boughtTimes, Category category) // add more
         {
-            // init fields
-            Save();
-
+            this.Product_ID = product_ID;
+            this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
+            this.Name = name;
+            this.Description = description;
+            this.Price = price;
+            this.ReservedQuantity = reservedQuantity;
+            this.Rating = rating;
+            this.Quantity = initQuantity;
+            this.Weight = weight;
+            this.Sale = sale;
+            this.timesBought = boughtTimes;
+            this.ProductCategory = category;
+            this.Dimenssions = dimenssions;
+            this.PurchasePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            foreach (Purchase_Policy p in purchase_Policies) this.PurchasePolicies.TryAdd(p.GetID(), p);
+            foreach (Purchase_Strategy p in purchase_Strategies) this.PurchaseStrategies.TryAdd(p.GetID(), p);
+            this.Comments = comments;
+            this.storeRepo = StoreRepo.GetInstance();
+            this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
         }
 
-        public Product(List<string> properties)// mostly strings of ids or string representation: product_ID, name, description, Price, initQuantity, weight, dimenssions, purchase_Policies, purchase_Strategies, product_Attributes
-        {
-            // init fields
-            Save();
-        }
-
-
-        // ==============================================================================
-        // ================================= Other methods ==============================
 
         public void AddPurchasePolicy(Purchase_Policy newPolicy)
         {
             try
             {
-                if(this.PurchasePolicies.Add(newPolicy.GetID()))
+                if (this.PurchasePolicies.TryAdd(newPolicy.GetID(), newPolicy))
                     Save();
             } catch (Exception e) { throw e; }
         }
@@ -65,7 +75,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public void RemovePurchasePolicy(String policyID) {
             try
             {
-                if (this.PurchasePolicies.TryTake(policyID))
+                if (this.PurchasePolicies.TryRemove(policyID, out _))
                     Save();
             } catch (Exception e) { }
         }
@@ -74,7 +84,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.PurchaseStrategies.Add(newPolicy.GetID()))
+                if (this.PurchaseStrategies.TryAdd(newStrategy.GetID(), newStrategy)
                     Save();
             }
             catch (Exception e) { return false; }
@@ -85,7 +95,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.PurchaseStrategies.TryTake(policyID))
+                if (this.PurchaseStrategies.TryRemove(strategyID, out _))
                     Save();
             }
             catch (Exception e) { return false; }
@@ -374,7 +384,10 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (this.ProductCategory)
                 {
-                    this.ProductCategory = category;
+                    if (category == null)
+                        this.ProductCategory = this.defaultCategory;
+                    else 
+                        this.ProductCategory = category;
                     Save();
                 }
             }
