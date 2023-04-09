@@ -14,9 +14,9 @@ namespace Market_System.DomainLayer.StoreComponent
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
         private ConcurrentBag<string> allProducts;
-        private ConcurrentDictionary<string, Product> products; 
+        private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
-        private EmployeesPermissions employees; 
+        private EmployeesPermissions employees;
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         private ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
@@ -24,7 +24,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, ConcurrentBag<string> allProductsIDS) 
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, ConcurrentBag<string> allProductsIDS)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -62,8 +62,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
             } catch (Exception ex) { throw ex; }
         }
-        
-        
+
+
         public void ChangeName(string userID, string newName)
         {
             try
@@ -76,13 +76,13 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception ex) { throw ex; }
         }
 
-        
 
-        public void ManagePermissions(string userID, string employeeID,  List<Permission> perms)
+
+        public void ManagePermissions(string userID, string employeeID, List<Permission> perms)
         {
             try
             {
-                if(this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
                     this.employees.AddNewEmpPermissions(employeeID, this.Store_ID, perms);
             }
             catch (Exception ex) { throw ex; }
@@ -102,7 +102,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if(this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
                     this.employees.AssignNewManager(Store_ID, userID, newManagerID);
             }
             catch (Exception ex) { throw ex; }
@@ -135,7 +135,7 @@ namespace Market_System.DomainLayer.StoreComponent
             } catch (Exception ex) { throw ex; }
         }
 
-        
+
         public void RemoveEmployeePermission(string userID, string employeeID, Permission permToRemove)
         {
             try
@@ -163,7 +163,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 return new StoreDTO(this); // "copy constructor"
-            }catch (Exception ex) { throw ex; }
+            } catch (Exception ex) { throw ex; }
         }
 
 
@@ -179,7 +179,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
                 return productList;
 
-            } catch (Exception ex) { throw ex; }    
+            } catch (Exception ex) { throw ex; }
         }
 
 
@@ -196,10 +196,10 @@ namespace Market_System.DomainLayer.StoreComponent
                     ReleaseProduct(s);
                 }
                 this.employees.RemoveStore(this.Store_ID); // change to remove as Yotam explainbed
-                // remove policies and strategies
-                        
+                                                           // remove policies and strategies
+
             } catch (Exception ex) { throw ex; }
-           
+
         }
 
 
@@ -268,7 +268,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
                 {
-                    if(this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                    if (this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
                         Save();
                 }
             }
@@ -296,7 +296,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
                 {
-                    if(this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                    if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                         Save();
                 }
             }
@@ -331,7 +331,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        // ================================================================
+        // ===================== END of Store operations =========================
+        // =======================================================================
 
 
 
@@ -339,6 +340,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
+        // ==================================================================
         // ===================== Product operations =========================
 
         private Product AcquireProduct(string productID)
@@ -390,13 +392,13 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
-        
+
         public void RemoveProduct(string userID, string product_id)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // ADD - or market manager
-                {   
+                {
                     this.storeRepo.RemoveProduct(product_id);
                     this.products.TryRemove(product_id, out _);
                     this.productUsage.TryRemoveProduct(product_id, out _);
@@ -620,9 +622,20 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        // ===================== END of Product operations =========================
+        // =========================================================================
+
+
+
+
         // ================================================================
         // ======================== TODO ==================================
 
 
 
+        // ======================== END of TODO ==================================
+        // =======================================================================
+
+
+    }
 
