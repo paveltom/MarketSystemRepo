@@ -10,7 +10,6 @@ namespace Market_System.DomainLayer.StoreComponent
     public class Store : Property
     {
         public enum MarketManagerPermission { MARKETMANAGER, NOTMARKETMANAGER }; // remove this permission later - until EmployeePermissions class is done
-        //Implement all of the Property Methods here
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
         private ConcurrentBag<string> allProducts;
