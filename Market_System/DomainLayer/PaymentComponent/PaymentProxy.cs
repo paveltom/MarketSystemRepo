@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_System.Domain_Layer.PaymentComponent
+namespace Market_System.DomainLayer.PaymentComponent
 {
     internal class PaymentProxy : PaymentService
     {

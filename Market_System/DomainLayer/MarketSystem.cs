@@ -82,8 +82,9 @@ namespace Market_System.DomainLayer
 
                         userFacade.add_product_to_basket(product_id, username);
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
+                        double price=storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                         //  price  =  storefacade.calcualte_total_price(cart);
-                        double price = 110;
+                        
                         userFacade.update_cart_total_price(username, price);
                         return "added product id : " + product_id + " to " + username + "'s cart";
                     }

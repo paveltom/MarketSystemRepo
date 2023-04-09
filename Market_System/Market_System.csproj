@@ -184,12 +184,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DomainLayer\Communication Component\EmailNotification.cs" />
-    <Compile Include="DomainLayer\Communication Component\Message.cs" />
-    <Compile Include="DomainLayer\Communication Component\Notification.cs" />
-    <Compile Include="DomainLayer\Communication Component\NotificationFacade.cs" />
-    <Compile Include="DomainLayer\Communication Component\PopupNotification.cs" />
-    <Compile Include="DomainLayer\Communication Component\SpecialNotification.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\EmailNotification.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\Message.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\Notification.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\NotificationFacade.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\PopupNotification.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\SpecialNotification.cs" />
     <Compile Include="DomainLayer\DeliveryComponent\DeliveryProxy.cs" />
     <Compile Include="DomainLayer\DeliveryComponent\DeliveryService.cs" />
     <Compile Include="DomainLayer\DeliveryComponent\UpsDelivery.cs" />
@@ -209,20 +209,20 @@
     <Compile Include="DomainLayer\StoreComponent\Store.cs" />
     <Compile Include="DomainLayer\StoreComponent\StoreFacade.cs" />
     <Compile Include="DomainLayer\StoreComponent\StoreRepo.cs" />
-    <Compile Include="DomainLayer\User Component\Administrator.cs" />
-    <Compile Include="DomainLayer\User Component\Bucket.cs" />
-    <Compile Include="DomainLayer\User Component\Cart.cs" />
-    <Compile Include="DomainLayer\User Component\Guest.cs" />
-    <Compile Include="DomainLayer\User Component\Manager.cs" />
-    <Compile Include="DomainLayer\User Component\Member.cs" />
-    <Compile Include="DomainLayer\User Component\Owner.cs" />
-    <Compile Include="DomainLayer\User Component\Permission.cs" />
-    <Compile Include="DomainLayer\User Component\PurchaseHistoryObj.cs" />
-    <Compile Include="DomainLayer\User Component\PurchaseRepo.cs" />
-    <Compile Include="DomainLayer\User Component\User.cs" />
-    <Compile Include="DomainLayer\User Component\UserFacade.cs" />
-    <Compile Include="DomainLayer\User Component\UserRepo.cs" />
-    <Compile Include="DomainLayer\User Component\User_State.cs" />
+    <Compile Include="DomainLayer\UserComponent\Administrator.cs" />
+    <Compile Include="DomainLayer\UserComponent\Bucket.cs" />
+    <Compile Include="DomainLayer\UserComponent\Cart.cs" />
+    <Compile Include="DomainLayer\UserComponent\Guest.cs" />
+    <Compile Include="DomainLayer\UserComponent\Manager.cs" />
+    <Compile Include="DomainLayer\UserComponent\Member.cs" />
+    <Compile Include="DomainLayer\UserComponent\Owner.cs" />
+    <Compile Include="DomainLayer\UserComponent\Permission.cs" />
+    <Compile Include="DomainLayer\UserComponent\PurchaseHistoryObj.cs" />
+    <Compile Include="DomainLayer\UserComponent\PurchaseRepo.cs" />
+    <Compile Include="DomainLayer\UserComponent\User.cs" />
+    <Compile Include="DomainLayer\UserComponent\UserFacade.cs" />
+    <Compile Include="DomainLayer\UserComponent\UserRepo.cs" />
+    <Compile Include="DomainLayer\UserComponent\User_State.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

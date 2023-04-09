@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Market_System.Domain_Layer.DeliveryComponent
+namespace Market_System.DomainLayer.DeliveryComponent
 {
     internal interface DeliveryService
     {

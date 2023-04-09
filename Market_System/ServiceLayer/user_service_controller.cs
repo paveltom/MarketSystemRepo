@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.DomainLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.ServiceLayer;
-using MarketSystem.DomainLayer;
+
 
 namespace MarketSystem.ServiceLayer
 {
@@ -12,11 +13,11 @@ namespace MarketSystem.ServiceLayer
     {
         //private user_facade (domain)
         
-        private MarketSystem.DomainLayer.MarketSystem market_System;
+        private Market_System.DomainLayer.MarketSystem market_System;
         private int session_id;
         public User_Service_Controller()
         {
-            this.market_System = MarketSystem.DomainLayer.MarketSystem.GetInstance();
+            this.market_System = Market_System.DomainLayer.MarketSystem.GetInstance();
             
         }
 
