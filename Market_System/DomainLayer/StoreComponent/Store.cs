@@ -380,8 +380,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                    {   // ADD - or market manager
-                        Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder                    
+                        Product newProduct = new Product(productProperties, this.Store_ID, this.defaultPolicies, this.defaultStrategies);
                         this.storeRepo.AddProduct(newProduct);
                         this.allProducts.Add(newProduct.Product_ID);
                         Save();
