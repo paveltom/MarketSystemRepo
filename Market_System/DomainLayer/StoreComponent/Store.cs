@@ -151,7 +151,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))  // ADD - or market manager
-                    this.storeRepo.GetPurchaseHistory(this.Store_ID);
+                    return this.storeRepo.GetPurchaseHistory(this.Store_ID);
             }
             catch (Exception ex) { throw ex; }
         }
