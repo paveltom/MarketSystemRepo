@@ -3,56 +3,96 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
     public class Store : Property
     {
+        public enum MarketManagerPermission { MARKETMANAGER, NOTMARKETMANAGER }; // remove this permission later - until EmployeePermissions class is done
         //Implement all of the Property Methods here
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
         private ConcurrentBag<string> allProducts;
-        private ConcurrentDictionary<string, Product> products; 
+        private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
-        private Employees employees; // ask Yotam what happened
+        private EmployeesPermissions employees;
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
-        private ConcurrentBag<string> defaultPolicies; // passed to every new added product
-        private ConcurrentBag<string> defaultStrategies; // passed to every new added product
+        private ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
+        private ConcurrentDictionary<string, Purchase_Strategy> defaultStrategies; // passed to every new added product
 
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<string> newStoreDetails, List<string> allProductsIDS) 
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, ConcurrentBag<string> allProductsIDS)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
             this.storeRepo = StoreRepo.GetInstance();
-            this.employees = Employees.GetInstance();
+            this.employees = new EmployeesPermissions();
+            this.products = new ConcurrentDictionary<string, Product>();
+            this.productUsage = new ConcurrentDictionary<string, int>();
+            this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+
+            foreach (Purchase_Policy p in policies) this.defaultPolicies.TryAdd(p.GetID(), p);
+            foreach (Purchase_Strategy p in strategies) this.defaultStrategies.TryAdd(p.GetID(), p);
+
             if (allProductsIDS == null)
                 this.allProducts = new ConcurrentBag<string>();
             else
                 this.allProducts = allProductsIDS;
+            this.employees.AddNewOwnerEmpPermissions(this.founderID, this.Store_ID);
         }
 
 
         // ===================== Store operations =========================
 
-        public string ChangeName(string userID, string newName)
+        public void TransferFoundership(string userID, string newFounderID)
         {
             try
             {
-                // validate PERMISSION here
+                lock (this.Name)
+                {
+                    if (this.founderID != userID)
+                        throw new Exception("Only founder can transfer foundership.");
+                    this.founderID = newFounderID;
+                    Save();
+                }
+
+            } catch (Exception ex) { throw ex; }
+        }
+
+
+        public void ChangeName(string userID, string newName)
+        {
+            try
+            {
+                if (userID != this.founderID)
+                    throw new Exception("Only store founder can change its name.");
                 this.Name = newName;
-                storeRepo.UpdateStoreName(Store_ID, newName);
+                Save();
             }
             catch (Exception ex) { throw ex; }
         }
+
+
+
+        public void ManagePermissions(string userID, string employeeID, List<Permission> perms)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
+                    this.employees.AddNewEmpPermissions(employeeID, this.Store_ID, perms);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
 
         public void AssignNewOwner(string userID, string newOwnerID)
         {
             try
             {
-                // if userID has PERMISSION
                 this.employees.AssignNewOwner(Store_ID, userID, newOwnerID);
             }
             catch (Exception ex) { throw ex; }
@@ -62,8 +102,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                // validate PERMISSION
-                this.employees.AssignNewManager(Store_ID, userID, newManagerID);
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
+                    this.employees.AssignNewManager(Store_ID, userID, newManagerID);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -71,17 +111,37 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public List<string> GetOwnersOfTheStore(string userID)
         {
-            // validate PERMISSION
-            this.employees.GetOwners(this.Store_ID);
+            if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO)) // ADD - or market manager
+                this.employees.GetOwners(this.Store_ID);
         }
 
 
-        public void GetManagersOfTheStore(string userID)
+        public List<string> GetManagersOfTheStore(string userID)
         {
             try
             {
-                // validate PERMISSION here
-                this.employees.GetManagers(this.Store_ID);
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))  // ADD - or market manager
+                    return this.employees.GetManagers(this.Store_ID);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void AddEmployeePermission(string userID, string employeeID, Permission newP)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
+                    this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
+            } catch (Exception ex) { throw ex; }
+        }
+
+
+        public void RemoveEmployeePermission(string userID, string employeeID, Permission permToRemove)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
+                    this.employees.RemoveAnEmpPermission(employeeID, this.Store_ID, permToRemove); // validate this method added to EmployeesPermission
             }
             catch (Exception ex) { throw ex; }
         }
@@ -91,8 +151,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                // validate PERMSSION here
-                this.storeRepo.GetPurchaseHistory(this.Store_ID);
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))  // ADD - or market manager
+                    this.storeRepo.GetPurchaseHistory(this.Store_ID);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -103,7 +163,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 return new StoreDTO(this); // "copy constructor"
-            }catch (Exception ex) { throw ex; }
+            } catch (Exception ex) { throw ex; }
         }
 
 
@@ -119,7 +179,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
                 return productList;
 
-            } catch (Exception ex) { throw ex; }    
+            } catch (Exception ex) { throw ex; }
         }
 
 
@@ -127,18 +187,19 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                // permission required
+                if (this.founderID != userID) // ADD - maket manager permission validation
+                    throw new Exception("Only store founder or Market Manager can remove a store.");
                 this.storeRepo.RemoveStore(this.Store_ID);
                 foreach (String s in allProducts)
                 {
                     AcquireProduct(s).RemoveProduct();
                     ReleaseProduct(s);
                 }
-                this.employees.RemoveStore(this.Store_ID);
-                // remove policies and strategies
-                        
+                this.employees.RemoveStore(this.Store_ID); // change to remove as Yotam explainbed
+                                                           // remove policies and strategies
+
             } catch (Exception ex) { throw ex; }
-           
+
         }
 
 
@@ -201,8 +262,77 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        public void AddStorePurchasePolicy(string userID, Purchase_Policy newPolicy)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                {
+                    if (this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                        Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
 
-        // ================================================================
+        public void RemoveStorePurchasePolicy(string userID, String policyID)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                {
+                    if (p.GetID() == policyID)
+                        if (this.defaultPolicies.TryRemove(policyID, out _))
+                            Save();
+
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                {
+                    if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                        Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveStorePurchaseStrategy(string userID, String strategyID)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                {
+
+                    if (p.GetID() == strategyID)
+                        if (this.defaultStrategies.TryRemove(strategyID, out _))
+                            Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        // call me every time data changes
+        private void Save()
+        {
+            try
+            {
+                this.storeRepo.SaveStore(this);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        // ===================== END of Store operations =========================
+        // =======================================================================
 
 
 
@@ -210,6 +340,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
+        // ==================================================================
         // ===================== Product operations =========================
 
         private Product AcquireProduct(string productID)
@@ -248,24 +379,32 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    // CHECK USER PERMISSION
-                    Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder
-                    this.storeRepo.AddProduct(newProduct);
+                    if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {   // ADD - or market manager
+                        Product newProduct = new Product(productProperties); // separate - retreive all the properties from the list and pass to builder                    
+                        this.storeRepo.AddProduct(newProduct);
+                        this.allProducts.Add(newProduct.Product_ID);
+                        Save();
+                    }
                 }
                 catch (Exception ex) { throw ex; }
             }
 
         }
 
-        
+
         public void RemoveProduct(string userID, string product_id)
         {
             try
             {
-                storeRepo.RemoveProduct(product_id);
-                products.TryRemove(product_id, out _);
-                productUsage.TryRemoveProduct(product_id, out _);
-
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // ADD - or market manager
+                {
+                    this.storeRepo.RemoveProduct(product_id);
+                    this.products.TryRemove(product_id, out _);
+                    this.productUsage.TryRemoveProduct(product_id, out _);
+                    this.allProducts.TryTake(product_id);
+                    Save();
+                }
             }
             catch (Exception ex) { throw ex; }
         }
@@ -296,44 +435,207 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
+                // ADD - validate user bought the product by purchase history
                 AcquireProduct(productID).AddComment(userID, comment, rating);
                 ReleaseProduct(productID);
             } catch (Exception ex) { throw ex; }
         }
 
+        public void ChangeProductName(string userID, string productID, string name)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetName(name);
+                    ReleaseProduct(productID);
+                }
+
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductDescription(string userID, string productID, string description)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetDescription(description);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductPrice(string userID, string productID, double price)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetPrice(price);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductRating(string userID, string productID, double rating, MarketManagerPermission perm)
+        {
+            try
+            {
+                if (perm.Equals(MarketManagerPermission.MARKETMANAGER)) // // change later after market manager permission enum added
+                {
+                    AcquireProduct(productID).SetRating(rating);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+        public void ChangeProductQuantity(string userID, string productID, int quantity)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetQuantity(quantity);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductWeight(string userID, string productID, double weight)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetWeight(weight);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductSale(string userID, string productID, double sale)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetSale(sale);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductTimesBought(string userID, string productID, int times, MarketManagerPermission perm) // only market manager can do
+        {
+            try
+            {
+                if (perm.Equals(MarketManagerPermission.MARKETMANAGER)) // change later after market manager permission enum added
+                {
+                    AcquireProduct(productID).SetTimesBought(times);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductProductCategory(string userID, string productID, Category category)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetProductCategory(category);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ChangeProductDimenssions(string userID, string productID, Array<double> dims)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetDimenssions(dims);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddProductPurchasePolicy(string userID, string productID, Purchase_Policy newPolicy)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).AddPurchasePolicy(newPolicy);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveProductPurchasePolicy(string userID, string productID, String policyID)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).RemovePurchasePolicy(policyID);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Strategy newStrategy)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).AddPurchaseStrategy(newStrategy);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveProductPurchaseStrategy(string userID, string productID, String strategyID)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).RemovePurchaseStrategy(strategyID);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        // ===================== END of Product operations =========================
+        // =========================================================================
+
+
+
 
         // ================================================================
+        // ======================== TODO ==================================
 
 
 
+        // ======================== END of TODO ==================================
+        // =======================================================================
 
 
-
-
-        // ========Methods ToDo==========:
-
-        /*
-         public void EditProduct(string userID, string productID, List<string> editedDetails)
-        {
-            // has to be separated into sub-editions: editWeight(), editQuantity(), etc on higher level
-            throw new NotImplementedException();
-        }
-         */
-
-        
-        
-        
-        // ======more ideas=====:
-
-        // passing a data for store representation (including what details?)
-        // passing a data for store content representation- what products availble for a buyer
-        // *maby should an additional store content view, a seperate view for a manager of the store
-        // (search)-get products by name: getting all products with same name *or similar name
-        // (search)-get products by catagory: getting all products from that catagory
-        /*
-         *  .חיפוש מוצרים ללא התמקדות בחנות ספציפית, לפי שם המוצר, קטגוריה או מילות מפתח.
-         *  ניתן לסנן את התוצאות בהתאם למאפיינים כגון: טווח מחירים, דירוג המוצר, קטגוריה
-         * דירוג החנות וכד'.
-         */
     }
-}
+
