@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -117,5 +118,106 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             throw new Exception("Invalid data has been provided, either this manager already exists in this store.");
         }
+
+        public string getStore(string store.Name)
+        {
+            foreach (Store S in storeDatabase)
+            {
+                if (S.GetStorename().Equals(store.Name))
+                {
+                    return S.getStore();
+                }
+            }
+
+            throw new Exception("store does not exists");
+        }
+
+        public string getProduct(string product.Name)
+        {
+            foreach (Product P in products)
+            {
+                if (P.GetStorename().Equals(product.Name))
+                {
+                    return P.getProduct();
+                }
+            }
+
+            throw new Exception("product does not exists");
+        }
+
+
+        public string getNewStoreID(string store.Name)
+        {
+            if (store.GetStoreID() != null)
+            {
+                throw new Exception("Store already has an ID");
+            }
+            string newStoreID = "ID" + (storeDatabase.Count + 1);
+            foreach (Store s in storeDatabase)
+            {
+                if (s.GetStoreID() == newStoreID)
+                {
+                    throw new Exception("Generated ID is already in use by another store");
+                }
+            }
+            return newStoreID;
+        }
+
+        public string getNewProductID(string product.Name)
+        {
+            if (product.GetProductID() != null)
+            {
+                throw new Exception("product already has an ID");
+            }
+            string newProductID = "ID" + (products.Count + 1);
+            foreach (Product P in products)
+            {
+                if (P.GetProductID() == newProductID)
+                {
+                    throw new Exception("Generated ID is already in use by another product");
+                }
+            }
+            return newProductID;
+        }
+
+        public string searchFunctionality(int option, string keyword = "", string productName = "", string category = "")
+        {
+            string searchResults = "";
+
+            switch (option)
+            {
+                case 1:
+                    searchResults = "Search by keyword for: " + keyword;
+                    break;
+                case 2:
+                    searchResults = "Search by product name for: " + productName;
+                    break;
+                case 3:
+                    searchResults = "Search by category for: " + category;
+                    break;
+                default:
+                    searchResults = "Invalid search option selected.";
+                    break;
+            }
+
+            return searchResults;
+
+        }
+
+        public void saveStore(Store storeToSave)
+        {
+
+        }
+
+        public void saveProduct(Product productToSave)
+        {
+
+        }
+
+        public string getPurchaseHistoryOfTheStore(int store_ID)
+        {
+
+        }
+
     }
 }
