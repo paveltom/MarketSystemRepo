@@ -27,7 +27,8 @@ namespace Market_System.DomainLayer
             this.Name = storeToCopy.Name;
             this.FounderID = storeToCopy.founderID;
             this.AllProducts = storeToCopy.GetItems();
-            this.Employees = storeToCopy.get
+            this.Employees = storeToCopy.GetManagersOfTheStore();
+
         }
 
 

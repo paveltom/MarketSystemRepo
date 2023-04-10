@@ -184,6 +184,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DomainLayer\EmployeeDTO.cs" />
     <Compile Include="DomainLayer\CommunicationComponent\EmailNotification.cs" />
     <Compile Include="DomainLayer\CommunicationComponent\Message.cs" />
     <Compile Include="DomainLayer\CommunicationComponent\Notification.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="DomainLayer\StoreComponent\Store.cs" />
     <Compile Include="DomainLayer\StoreComponent\StoreFacade.cs" />
     <Compile Include="DomainLayer\StoreComponent\StoreRepo.cs" />
+    <Compile Include="DomainLayer\StoreDTO.cs" />
     <Compile Include="DomainLayer\UserComponent\Administrator.cs" />
     <Compile Include="DomainLayer\UserComponent\Bucket.cs" />
     <Compile Include="DomainLayer\UserComponent\Cart.cs" />
