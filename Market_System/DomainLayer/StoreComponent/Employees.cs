@@ -118,6 +118,16 @@ namespace Market_System.DomainLayer.StoreComponent
             return getemployee(subjectUserID, storeID).isMyManagerAssignner(sellerID);
         }
 
+        public Boolean isOwner(string employeeID, string storeID)
+        {
+            return getemployee(employeeID, storeID).isOwner();
+        }
+
+        public Boolean isManager(string employeeID, string storeID)
+        {
+            return getemployee(employeeID, storeID).isManager();
+        }
+
         /**add new 'userID' employee with 'permissions' in a store
          */
         public void AddNewEmpPermissions(string userID, string storeID, List<Permission> permissions, Role role)
@@ -159,7 +169,7 @@ namespace Market_System.DomainLayer.StoreComponent
             else return null;
         }
 
-        /** add the'permission' to a store employee.
+        /** add the'permission' to a store manager.
          */
         public void AddAnEmpPermission(string userID, string storeID, Permission permission)
         {
@@ -183,6 +193,11 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        public void updateEmpPermissions(string userID, string storeID, List<Permission> permissions)
+        {
+            this.getemployee(userID,storeID).Permissions = permissions;
+        }
+
         /** remove a list of permissions from a store employee.
       */
         public void removeAnEmpPermission(string userID, string storeID, List<Permission> permissions)
@@ -195,9 +210,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         /**add new  Owner employee  with 'permissions' of an Owner.
         */
-        public void AddNewOwnerEmpPermissions(string userID, string storeID)
+        public void AddNewOwnerEmpPermissions(string assignnerID, string newOwnerID, string storeID)
         {
-            Employee newEmp = new Employee(userID, storeID, Role.Owner);
+            Employee newEmp = new Employee(newOwnerID, storeID, Role.Owner);
+            newEmp.OwnerAssignner = assignnerID;
             newEmp.Permissions = OwnerPermissions;
             AddEmp(newEmp);
         }
@@ -211,10 +227,22 @@ namespace Market_System.DomainLayer.StoreComponent
             AddEmp(newEmp);
         }
 
-        public void AddNewManagerEmpPermissions(string userID, string storeID, List<Permission> managingPermissions)
+        public void AddNewManagerEmpPermissions(string assignnerID, string newManagerID, string storeID, List<Permission> managingPermissions)
         {
-            Employee newEmp = new Employee(userID, storeID, Role.Manager);
-            AddNewEmpPermissions(userID, storeID, managingPermissions, Role.Manager);
+            Employee newEmp = new Employee(newManagerID, storeID, Role.Manager);
+            newEmp.ManagerAssigner = assignnerID;
+            AddNewEmpPermissions(newManagerID, storeID, managingPermissions, Role.Manager);
+        }
+
+        public void removeStore(string storeID)
+        {
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
+            //save a backup
+            List<Employee> emps = getStoreEmployees(storeID);
+            foreach (Employee emp in emps)
+            {
+                this.removeEmployee(emp.UserID, storeID);
+            }
         }
 
         private Employee getemployee(string userID, string storeID)
