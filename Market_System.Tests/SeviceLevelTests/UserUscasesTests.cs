@@ -1,7 +1,7 @@
 ﻿
-using Market_System.Service_Layer;
 using Market_System.ServiceLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
  
 
 namespace Market_System.Tests.ServiceLevelTests
@@ -35,21 +35,10 @@ namespace Market_System.Tests.ServiceLevelTests
     public class UserUscasesTests
     {
         private Service_Controller service_Controller;
-        public UserUscasesTests()
-        {
-            Service_Controller = new Service_Controller();
-        }
 
-        public Service_Controller Service_Controller
+        public void setup()
         {
-            get
-            {
-                return this.service_Controller;
-            }
-            set
-            {
-                this.Service_Controller = value;
-            }
+            service_Controller = new Service_Controller();
         }
 
         #region Additional test attributes
@@ -78,27 +67,32 @@ namespace Market_System.Tests.ServiceLevelTests
         [ClassInitialize()]
         public void ClassInitialize()
         {
+            setup();
+        }
 
+        [TestCleanup()]
+        public void TestCleanup()
+        {
+            service_Controller.destroy();
         }
 
         [TestMethod]
         //1.1
-        public void UserRegistersAsMember()
+        public void UserRegistersAsMemberAndLogin()
         {
             //Setup: none
 
             //Action:
-            Response response =Service_Controller.register("user1", "pass1", "add1");
+            Response<string> response =service_Controller.register("user1", "pass1", "add1");
 
             //Result:
+            Assert.IsNotNull(response.Value);
+            Assert.Equals(false, response.ErrorOccured);
 
-            bool errorOccured = response.ErrorOccured;
-            //1.Response->not null meaning the registration completed without error
-            //2:chacking if member is now in the system by doing login.
-            //Response response2 = Service_Controller.login_member();
+            Response<string> responseLogin = service_Controller.login_member("user1", "pass1");
+            Assert.Equals(false, responseLogin.ErrorOccured);
 
-            //tearDown
-            //Service_Controller.
+            //tearDown: (TestCleanup())
         }
 
         public void FailUserRegistersUsedUserame()
@@ -106,46 +100,14 @@ namespace Market_System.Tests.ServiceLevelTests
             //Setup: none
 
             //Action:
-            //Response response =Service_Controller.register();
+            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
+            Response<string> response2 = service_Controller.register("user1", "pass2", "add2");
 
             //Result:
-            //1.Response->not null meaning the registration completed without error
-            //2:chacking if member is now in the system by doing login.
-            //Response response2 = Service_Controller.login_member();
+            Assert.Equals(true, response2.ErrorOccured);
 
-            //tearDown
-            //Service_Controller.
-        }
-
-        public void FailUserRegistersUsedPassword()
-        {
-            //Setup: none
-
-            //Action:
-            //Response response =Service_Controller.register();
-
-            //Result:
-            //1.Response->not null meaning the registration completed without error
-            //2:chacking if member is now in the system by doing login.
-            //Response response2 = Service_Controller.login_member();
-
-            //tearDown
-            //Service_Controller.
+            //tearDown: (TestCleanup())
         }
 
     }
-
-
-
-    /*points coming from writing tests:
-     * 
-     * 1.implementing a response, or other ansewring mechanizem that will pass service caller success/fail signal
-     * 2.complete service layer signatures and return values
-     * 3.we talked about mabye the defult state of a user entering
-     *   to the system should be automatycly guest.
-     *   in order to let him see as fast as posibble products to keep him entreeged.
-     *   also there is not much functionality being a user without pressing continue as guest.
-     * 4.(LOW priority)add unregister(memberID) function;
-     * 5.
-     */
 }
