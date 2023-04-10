@@ -20,7 +20,7 @@ namespace Market_System.ServiceLayer
         // ====================================================================
         // ====================== General class methods ===============================
 
-        public Response Purchase(string userID, List<string> productsIDS)
+        public Response Purchase(string userID, List<string> productsIDS
         {
 
         }
