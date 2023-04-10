@@ -16,7 +16,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private ConcurrentBag<string> allProducts;
         private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
-        private EmployeesPermissions employees;
+        private Employees employees;
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         private ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
@@ -29,7 +29,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Store_ID = storeID;
             this.founderID = founderID;
             this.storeRepo = StoreRepo.GetInstance();
-            this.employees = new EmployeesPermissions();
+            this.employees = new Employees();
             this.products = new ConcurrentDictionary<string, Product>();
             this.productUsage = new ConcurrentDictionary<string, int>();
             this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
