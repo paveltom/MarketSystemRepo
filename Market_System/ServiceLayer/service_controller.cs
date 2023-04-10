@@ -85,7 +85,7 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Response check_delivery(string address)
+        public Response<string> check_delivery(string address)
         {
             
             try
@@ -108,9 +108,9 @@ namespace Market_System.ServiceLayer
          
         }
 
-    
 
-        public Response check_out(string username,string credit_card, Cart cart)
+
+        public Response<string> check_out(string username,string credit_card, Cart cart)
         {
             try
             {
@@ -167,7 +167,7 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Response get_purchase_history_of_a_member(string username)
+        public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(string username)
         {
             try
             {
@@ -180,7 +180,7 @@ namespace Market_System.ServiceLayer
             catch (Exception e)
             {
                 Logger.get_instance().record_error("error!!: " + e.Message+ "in get_purchase_history_of_a_member");
-                return Response<String>.FromError(e.Message);
+                return Response < List < PurchaseHistoryObj >>.FromError(e.Message);
             }
         }
 
@@ -207,7 +207,7 @@ namespace Market_System.ServiceLayer
             }
         }
         */
-        public Response login_member(string username,string pass)
+        public Response<string> login_member(string username,string pass)
         {
             try
             {
@@ -224,7 +224,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response log_out()
+        public Response<string> log_out()
         {
             try
             {
@@ -246,7 +246,7 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Response register(string username,string pass,string address)
+        public Response<string> register(string username,string pass,string address)
         {
              try
             {
@@ -263,7 +263,7 @@ namespace Market_System.ServiceLayer
             }
 }
 
-        public Response remove_product_from_basket(string product_id,string username)
+        public Response<string> remove_product_from_basket(string product_id,string username)
         {
             try
             {
@@ -298,6 +298,12 @@ namespace Market_System.ServiceLayer
         public void search_product_by_name()
         {
             throw new NotImplementedException();
+        }
+
+        public void destroy()
+        {
+            usc.destroy();
+            ssc.destroy();
         }
     }
 }

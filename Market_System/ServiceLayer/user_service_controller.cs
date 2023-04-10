@@ -172,6 +172,9 @@ namespace Market_System.ServiceLayer
             }
         }
 
-      
+        internal void destroy()
+        {
+            market_System.destroy_me();
+        }
     }
 }
