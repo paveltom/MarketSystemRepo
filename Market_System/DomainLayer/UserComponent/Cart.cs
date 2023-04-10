@@ -1,5 +1,4 @@
-﻿using MarketSystem.DomainLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +17,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void add_product(string product_id)
         {
-            string store_id = product_id.Substring(0, 3);// 3 first digist are store id
+            string store_id = product_id.Substring(0, product_id.IndexOf('_'));// 3 first digist are store id
 
 
             if (!check_if_basket_of_store_exists(store_id))
