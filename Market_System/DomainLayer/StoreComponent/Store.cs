@@ -41,7 +41,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 this.allProducts = new ConcurrentBag<string>();
             else
                 this.allProducts = allProductsIDS;
-            this.employees.AddNewOwnerEmpPermissions(this.founderID, this.Store_ID);
+            this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 
 
@@ -77,12 +77,12 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-        public void ManagePermissions(string userID, string employeeID, List<Permission> perms)
+        public void ManagePermissions(string userID, string employeeID, List<Permission> perms) // update only for store manager
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
-                    this.employees.AddNewEmpPermissions(employeeID, this.Store_ID, perms);
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OwnerOnly) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))                                                                                                    
+                    this.employees.UpdateEmployeePermission(employeeID, this.Store_ID, perms);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -92,7 +92,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                this.employees.AssignNewOwner(Store_ID, userID, newOwnerID);
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // validate has permission OwnerAppoint
+                // validate doesnt Owner in this store already - Yotam will add such a metghod: employees.IsOwner(employeeID, storeID);               
+                this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -101,8 +104,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // as AssignNewOwner
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
-                    this.employees.AssignNewManager(Store_ID, userID, newManagerID);
+                    this.employees. AssignNewManager(Store_ID, userID, newManagerID);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -110,6 +115,9 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public List<string> GetOwnersOfTheStore(string userID)
         {
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // validate info
+            // employees.GetOwnersOfTheStore
             if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO)) // ADD - or market manager
                 this.employees.GetOwners(this.Store_ID);
         }
@@ -119,6 +127,9 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // validate info
+                // this.employees.GetManagersOfTheStore
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))  // ADD - or market manager
                     return this.employees.GetManagers(this.Store_ID);
             }
@@ -129,6 +140,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // validate owneronly
+                // validate mysubject
+                // this.employees.AddAnEmpPermission(userID, storeID, newP);
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
                     this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
             } catch (Exception ex) { throw ex; }
@@ -139,6 +154,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // validate owneronly
+                // validate mysubject
+                // this.employees.removeAnEmpPermission(userID, storeID, newP);
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OWNERAPPOINT))
                     this.employees.RemoveAnEmpPermission(employeeID, this.Store_ID, permToRemove); // validate this method added to EmployeesPermission
             }
@@ -191,11 +210,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 this.storeRepo.RemoveStore(this.Store_ID);
                 foreach (String s in allProducts)
                 {
-                    AcquireProduct(s).RemoveProduct();
+                    AcquireProduct(s).RemoveProduct(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! don't remove product here so store can be restored
                     ReleaseProduct(s);
                 }
-                this.employees.RemoveStore(this.Store_ID); // change to remove as Yotam explainbed
-                                                           // remove policies and strategies
+                this.employees.RemoveStore(this.Store_ID);
+                // remove policies and strategies
 
             } catch (Exception ex) { throw ex; }
 
@@ -265,7 +284,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
                     if (this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
                         Save();
@@ -278,7 +297,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
                     if (p.GetID() == policyID)
                         if (this.defaultPolicies.TryRemove(policyID, out _))
@@ -293,7 +312,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
                     if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                         Save();
@@ -307,7 +326,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
 
                     if (p.GetID() == strategyID)
@@ -570,8 +589,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
+            {
                     AcquireProduct(productID).AddPurchasePolicy(newPolicy);
                     ReleaseProduct(productID);
                 }
@@ -583,8 +602,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
+            {
                     AcquireProduct(productID).RemovePurchasePolicy(policyID);
                     ReleaseProduct(productID);
                 }
@@ -596,8 +615,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
+            {
                     AcquireProduct(productID).AddPurchaseStrategy(newStrategy);
                     ReleaseProduct(productID);
                 }
@@ -610,8 +629,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
+            {
                     AcquireProduct(productID).RemovePurchaseStrategy(strategyID);
                     ReleaseProduct(productID);
                 }
