@@ -7,17 +7,17 @@ using Market_System.DomainLayer.UserComponent;
 using Market_System.ServiceLayer;
 
 
-namespace MarketSystem.ServiceLayer
+namespace Market_System.ServiceLayer
 {
     public class User_Service_Controller
     {
         //private user_facade (domain)
         
-        private Market_System.DomainLayer.MarketSystem market_System;
+        private MarketSystem market_System;
         private int session_id;
         public User_Service_Controller()
         {
-            this.market_System = Market_System.DomainLayer.MarketSystem.GetInstance();
+            this.market_System = MarketSystem.GetInstance();
             
         }
 
