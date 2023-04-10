@@ -1,18 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using NUnit.Framework;
-using Market_System.Domain_Layer.Store_Component;
-using Market_System.Domain_Layer.User_Component;
-using Market_System.Domain_Layer;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using System.Threading;
+using Market_System.DomainLayer;
+using Market_System.DomainLayer.UserComponent;
+using Market_System.DomainLayer.StoreComponent;
 
 namespace Market_System.Tests.unit_tests
 {
     [TestClass]
     public class store_user_tests
     {
-        private MarketSystem ms;
+        private Market_System.DomainLayer.MarketSystem ms;
         private UserFacade user_facade;
         private StoreFacade store_facade;
 
@@ -21,7 +21,7 @@ namespace Market_System.Tests.unit_tests
         // Use TestInitialize to run code before running each test 
          [TestInitialize()]
         public void Setup() {
-            ms = MarketSystem.GetInstance();
+            ms = Market_System.DomainLayer.MarketSystem.GetInstance();
             user_facade = UserFacade.GetInstance();
             store_facade = StoreFacade.GetInstance();
         }
@@ -278,7 +278,7 @@ namespace Market_System.Tests.unit_tests
             user_facade.Login("test1", "pass");
             try
             {
-               Assert.AreEqual("Delivery is available", MarketSystem.GetInstance().Check_Delivery("address"));
+               Assert.AreEqual("Delivery is available", Market_System.DomainLayer.MarketSystem.GetInstance().Check_Delivery("address"));
             }
 
             catch(Exception e)
@@ -295,7 +295,7 @@ namespace Market_System.Tests.unit_tests
             ms.Add_Product_To_basket("123456", "test1");
             try
             {
-                Assert.AreEqual("Payment was successfull", MarketSystem.GetInstance().Check_Out("test1","9478-5188-9999-6666",user_facade.get_cart("test1")));
+                Assert.AreEqual("Payment was successfull", Market_System.DomainLayer.MarketSystem.GetInstance().Check_Out("test1","9478-5188-9999-6666",user_facade.get_cart("test1")));
             }
 
             catch (Exception e)
@@ -312,7 +312,7 @@ namespace Market_System.Tests.unit_tests
             user_facade.Login("test1", "pass");
             try
             {
-               MarketSystem.GetInstance().Check_Out("test1", "9478-5188-9999-6666", user_facade.get_cart("test1"));
+                Market_System.DomainLayer.MarketSystem.GetInstance().Check_Out("test1", "9478-5188-9999-6666", user_facade.get_cart("test1"));
             }
 
             catch (Exception e)
@@ -320,7 +320,28 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("Payment has failed, either your cart is empty",  e.Message);
             }
         }
-        
-        
+
+
+        [TestMethod]
+        public void user_purchase_history_success()
+        {
+            
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                ms.Add_Product_To_basket("123456", "test1");
+                ms.Check_Out("test1", "9478-5188-9999-6666", user_facade.get_cart("test1"));
+                string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket 123 : \n" + "product 123456 quantity: 1\n";
+                Assert.AreEqual(should_be, ms.get_purchase_history_of_a_member("test1")[0].tostring());
+            }
+
+            catch (Exception e)
+            {
+                Assert.Fail("Should've showed the purchase history succefully, but failed due to error: " + e.Message);
+            }
+        }
+
+
     }
 }
