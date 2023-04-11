@@ -198,6 +198,33 @@ namespace Market_System.Tests.unit_tests
 
         }
 
+
+
+
+        [TestMethod]
+        public void user_changes_password()
+        {
+
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.change_password("test1","newpass");
+                user_facade.Logout("test1");
+                user_facade.Login("test1", "newpass");
+                Assert.AreEqual("Member", user_facade.Get_User_State("test1"));
+            }
+
+            catch (Exception e)
+            {
+                Assert.Fail("This test shouldn't have failed, but received this error: " + e.Message);
+            }
+
+
+        }
+
+
+
         [TestMethod]
         public void add_product_to_basket_success()
         {

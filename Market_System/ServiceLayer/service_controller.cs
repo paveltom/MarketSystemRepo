@@ -14,7 +14,7 @@ namespace Market_System.ServiceLayer
         private Store_Service_Controller ssc;
         private Random session_id_generator;
         private string session_id;
-        
+
         public Service_Controller()
         {
             this.usc = new User_Service_Controller();
@@ -23,55 +23,55 @@ namespace Market_System.ServiceLayer
             this.session_id = session_id_generator.Next().ToString();
             new_guest_entered_the_website(session_id);
             //add kater login guest from here
-            
+
         }
 
         private void new_guest_entered_the_website(string session_id)
         {
             try
             {
-                string guest_name= this.usc.login_guest(session_id);
+                string guest_name = this.usc.login_guest(session_id);
 
                 Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
 
-                
+
 
             }
             catch (Exception e)
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + " in login_guest");
-                
+
             }
         }
 
-        public Response<string> add_product_to_basket(string product_id,string username)
+        public Response<string> add_product_to_basket(string product_id, string username)
         {
             try
             {
                 Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id, username));
-                Logger.get_instance().record_event(username+" added product with id: "+product_id+" to basket");
-                
+                Logger.get_instance().record_event(username + " added product with id: " + product_id + " to basket");
+
                 return ok;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                
-                Logger.get_instance().record_error("error!!: " + e.Message+ " in add_product_to_basket");
+
+                Logger.get_instance().record_error("error!!: " + e.Message + " in add_product_to_basket");
                 return Response<String>.FromError(e.Message);
             }
 
-            
+
         }
 
-        public void add_product_to_store(string storeID,List<string> ProductProperties)
+        public void add_product_to_store(string storeID, List<string> ProductProperties)
         {
 
             try
             {
                 //this.ssc.AddProductToStore(storeID, session_id, ProductProperties);
-               // Response<string> ok = Response<string>.FromValue("successfully added product to store");
-                Logger.get_instance().record_event("successfully added product to store: " +storeID);
-               // return ok;
+                // Response<string> ok = Response<string>.FromValue("successfully added product to store");
+                Logger.get_instance().record_event("successfully added product to store: " + storeID);
+                // return ok;
 
 
 
@@ -80,7 +80,7 @@ namespace Market_System.ServiceLayer
             {
 
                 Logger.get_instance().record_error("error!!: " + e.Message + " in add_product_to_store");
-               // return Response<String>.FromError(e.Message);
+                // return Response<String>.FromError(e.Message);
 
             }
         }
@@ -97,7 +97,7 @@ namespace Market_System.ServiceLayer
                 this.ssc.AssignNewManager(this.session_id, storeID, newManagerID);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
-                Logger.get_instance().record_event("assigning new manager with id : " + newManagerID+" to the store with id: "+storeID);
+                Logger.get_instance().record_event("assigning new manager with id : " + newManagerID + " to the store with id: " + storeID);
 
                 return ok;
             }
@@ -128,28 +128,43 @@ namespace Market_System.ServiceLayer
 
         public Response<string> check_delivery(string address)
         {
-            
+
             try
             {
-                Response<string> ok= Response<string>.FromValue(this.usc.Check_Delivery(address));
-                Logger.get_instance().record_event("checking deilvery for address: "+ address+ " succefully done.");
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(address));
+                Logger.get_instance().record_event("checking deilvery for address: " + address + " succefully done.");
                 return ok;
-                
 
-                
+
+
             }
             catch (Exception e)
             {
-                
-                Logger.get_instance().record_error("error!!: " + e.Message+ " in check_delivery");
+
+                Logger.get_instance().record_error("error!!: " + e.Message + " in check_delivery");
                 return Response<String>.FromError(e.Message);
 
             }
-            
-         
+
+
         }
 
+        public Response<string> change_password(string new_password)
+        {
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.change_password(new_password, session_id));
+                Logger.get_instance().record_event(ok.Value); // ok.vvalue is : "username changed password successfully" 
 
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in change_password");
+                return Response<String>.FromError(e.Message);
+            }
+        }
 
         public Response<string> check_out(string username,string credit_card, Cart cart)
         {

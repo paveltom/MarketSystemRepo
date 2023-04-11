@@ -161,6 +161,13 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
+        public string change_password( string username, string new_password)
+        {
+            
+            userRepo.change_password(username, new_password);
+            return username+" changed password successfully";
+        }
+
         public void link_user_with_session(string username, string session_id)
         {
             username_session_id_linker.Add(session_id, username);

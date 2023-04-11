@@ -176,5 +176,11 @@ namespace Market_System.ServiceLayer
         {
             market_System.destroy_me();
         }
+
+        internal string change_password(string new_password, string session_id)
+        {
+            string username = market_System.get_username_from_session_id(session_id);
+            return  market_System.change_password(username,  new_password);
+        }
     }
 }
