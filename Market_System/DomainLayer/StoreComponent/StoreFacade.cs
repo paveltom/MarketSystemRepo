@@ -369,7 +369,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ManageEmployeePermissions(string userID, string storeID, string employeeID, List<Permission> perms)
+        public void ManageEmployeePermissions(string userID, string storeID, string employeeID, List<Permission> perms) // update only for store manager - exchanges permissions
         {
             try
             {
