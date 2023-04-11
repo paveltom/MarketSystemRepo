@@ -40,6 +40,7 @@ namespace Market_System.DomainLayer
                         Instance = new MarketSystem();
                         Instance.register("admin", "admin", "address"); //registering an admin 
                         Instance.guest_id_generator = new Random();
+                        
 
                     }
                 } //Critical Section End
@@ -124,10 +125,17 @@ namespace Market_System.DomainLayer
 
         }
 
+        internal string change_password(string username, string new_password)
+        {
+            return userFacade.change_password(username, new_password);
+        }
+
         public void link_user_with_session(string username, string session_id)
         {
             userFacade.link_user_with_session(username, session_id);
         }
+
+        
 
         public void unlink_user_with_session(string session_id)
         {

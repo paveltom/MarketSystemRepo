@@ -61,6 +61,9 @@ namespace Market_System.DomainLayer.UserComponent
             userDatabase.Add(username, password);
         }
 
-        
+        internal void change_password(string username, string new_password)
+        {
+            userDatabase[username] = new_password;
+        }
     }
 }
