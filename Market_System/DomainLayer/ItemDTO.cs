@@ -22,7 +22,7 @@ namespace Market_System.DomainLayer
         {
             return this._itemId;
         }
-        public int get_quantity()
+        public int GetQuantity()
         {
             return this.quantity;
         }

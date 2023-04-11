@@ -22,7 +22,7 @@ namespace Market_System.ServiceLayer
         }
 
         //TODO:: CHANGE TO THROW A RESPONSE;
-        public string Login_Member(string username, string password,int session_id) // 1.4
+        public string Login_Member(string username, string password,string session_id) // 1.4
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Market_System.ServiceLayer
                 return e.Message;
             }
         }
-        public string login_guest(int session_id)//1.1
+        public string login_guest(string session_id)//1.1
         {
             string guest_name= market_System.login_guest();
             
@@ -48,7 +48,7 @@ namespace Market_System.ServiceLayer
         }
 
         
-        public string Logout(int session_id)//3.1
+        public string Logout(string session_id)//3.1
         {
             try
             {
