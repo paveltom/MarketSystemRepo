@@ -18,11 +18,11 @@ namespace Market_System.DomainLayer
         }
 
 
-        public string get_item_id()
+        public string GetID()
         {
             return this._itemId;
         }
-        public int get_quantity()
+        public int GetQuantity()
         {
             return this.quantity;
         }

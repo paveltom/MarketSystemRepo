@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MarketSystem.ServiceLayer;
+using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
-
-
+using Market_System.DomainLayer;
 
 namespace Market_System.ServiceLayer
 {
@@ -14,60 +13,76 @@ namespace Market_System.ServiceLayer
         private User_Service_Controller usc;
         private Store_Service_Controller ssc;
         private Random session_id_generator;
-        private int session_id;
-        
+        private string session_id;
+
         public Service_Controller()
         {
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller();
             this.session_id_generator = new Random();
-            this.session_id = session_id_generator.Next();
+            this.session_id = session_id_generator.Next().ToString();
             new_guest_entered_the_website(session_id);
             //add kater login guest from here
-            
+
         }
 
-        private void new_guest_entered_the_website(int session_id)
+        private void new_guest_entered_the_website(string session_id)
         {
             try
             {
-                string guest_name= this.usc.login_guest(session_id);
+                string guest_name = this.usc.login_guest(session_id);
 
                 Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
 
-                
+
 
             }
             catch (Exception e)
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + " in login_guest");
-                
+
             }
         }
 
-        public Response add_product_to_basket(string product_id,string username)
+        public Response<string> add_product_to_basket(string product_id, string username)
         {
             try
             {
                 Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id, username));
-                Logger.get_instance().record_event(username+" added product with id: "+product_id+" to basket");
-                
+                Logger.get_instance().record_event(username + " added product with id: " + product_id + " to basket");
+
                 return ok;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                
-                Logger.get_instance().record_error("error!!: " + e.Message+ " in add_product_to_basket");
+
+                Logger.get_instance().record_error("error!!: " + e.Message + " in add_product_to_basket");
                 return Response<String>.FromError(e.Message);
             }
 
-            
+
         }
 
-        public void add_product_to_store()
+        public void add_product_to_store(string storeID, List<string> ProductProperties)
         {
-            
-            throw new NotImplementedException();
+
+            try
+            {
+                //this.ssc.AddProductToStore(storeID, session_id, ProductProperties);
+                // Response<string> ok = Response<string>.FromValue("successfully added product to store");
+                Logger.get_instance().record_event("successfully added product to store: " + storeID);
+                // return ok;
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + " in add_product_to_store");
+                // return Response<String>.FromError(e.Message);
+
+            }
         }
 
         public void apply_purchase_policy()
@@ -75,42 +90,83 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public void assign_new_manager()
+        public Response<string> assign_new_manager(string storeID, string newManagerID)
         {
-            throw new NotImplementedException();
-        }
-
-        public void assign_new_owner()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Response check_delivery(string address)
-        {
-            
             try
             {
-                Response<string> ok= Response<string>.FromValue(this.usc.Check_Delivery(address));
-                Logger.get_instance().record_event("checking deilvery for address: "+ address+ " succefully done.");
-                return ok;
-                
+                this.ssc.AssignNewManager(this.session_id, storeID, newManagerID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
 
-                
+                Logger.get_instance().record_event("assigning new manager with id : " + newManagerID + " to the store with id: " + storeID);
+
+                return ok;
             }
             catch (Exception e)
             {
-                
-                Logger.get_instance().record_error("error!!: " + e.Message+ " in check_delivery");
+                Logger.get_instance().record_error("error!!: " + e.Message + " in assign_new_manager");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> assign_new_owner(string storeID, string newOwnerID)
+        {
+            try
+            {
+                this.ssc.AssignNewOwner(this.session_id, storeID, newOwnerID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+
+                Logger.get_instance().record_event("assigning new owner with id : " + newOwnerID + " to the store with id: " + storeID);
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in assign_new_owner");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> check_delivery(string address)
+        {
+
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(address));
+                Logger.get_instance().record_event("checking deilvery for address: " + address + " succefully done.");
+                return ok;
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + " in check_delivery");
                 return Response<String>.FromError(e.Message);
 
             }
-            
-         
+
+
         }
 
-    
+        public Response<string> change_password(string new_password)
+        {
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.change_password(new_password, session_id));
+                Logger.get_instance().record_event(ok.Value); // ok.vvalue is : "username changed password successfully" 
 
-        public Response check_out(string username,string credit_card, Cart cart)
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in change_password");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> check_out(string username,string credit_card, Cart cart)
         {
             try
             {
@@ -137,9 +193,22 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public void comment_on_product()
+        public Response<string> comment_on_product(string productID, string comment, double rating)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.ssc.AddProductComment(this.session_id,productID,comment,rating);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+               
+                Logger.get_instance().record_event("a new comment for product id: "+productID );
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in comment_on_product");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public void edit_manger_permissions()
@@ -152,14 +221,58 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public void get_managers_of_store()
+        public Response<List<string>> get_managers_of_store(string storeID)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.GetManagersOfTheStore(session_id, storeID));
+                Logger.get_instance().record_event("getting managers from store : " + storeID + " done successfully");
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + "in get_managers_of_store");
+                return Response<List<string>>.FromError(e.Message);
+            }
         }
 
-        public void get_products_from_shop()
+        public Response<List<string>> get_owners_of_store(string storeID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.GetOwnersOfTheStore(session_id,storeID));
+                Logger.get_instance().record_event("getting owners from store : " + storeID + " done successfully");
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + "in get_owners_of_store");
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
+        public Response<List<ItemDTO>> get_products_from_shop(string storeID)
+        {
+            try
+            {
+
+
+                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.GetProductsFromStore(storeID));
+                Logger.get_instance().record_event("getting products from store : " + storeID+" done successfully");
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + "in get_products_from_shop");
+                return Response<List<ItemDTO>>.FromError(e.Message);
+            }
         }
 
         public void get_purchase_history_from_store()
@@ -167,7 +280,7 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Response get_purchase_history_of_a_member(string username)
+        public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(string username)
         {
             try
             {
@@ -180,12 +293,12 @@ namespace Market_System.ServiceLayer
             catch (Exception e)
             {
                 Logger.get_instance().record_error("error!!: " + e.Message+ "in get_purchase_history_of_a_member");
-                return Response<String>.FromError(e.Message);
+                return Response < List < PurchaseHistoryObj >>.FromError(e.Message);
             }
         }
 
 
-        public void get_shop()
+        public void GetStore()
         {
             throw new NotImplementedException();
         }
@@ -207,7 +320,7 @@ namespace Market_System.ServiceLayer
             }
         }
         */
-        public Response login_member(string username,string pass)
+        public Response<string> login_member(string username,string pass)
         {
             try
             {
@@ -224,7 +337,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response log_out()
+        public Response<string> log_out()
         {
             try
             {
@@ -246,7 +359,7 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Response register(string username,string pass,string address)
+        public Response<string> register(string username,string pass,string address)
         {
              try
             {
@@ -263,7 +376,7 @@ namespace Market_System.ServiceLayer
             }
 }
 
-        public Response remove_product_from_basket(string product_id,string username)
+        public Response<string> remove_product_from_basket(string product_id,string username)
         {
             try
             {
@@ -285,19 +398,61 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public void search_product_by_category()
+        public Response<List<ItemDTO>> search_product_by_category(string category)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.SearchProductByCategory(new DomainLayer.StoreComponent.Category(category)));
+                Logger.get_instance().record_event(" search by category : " + category + " was done successfully");
+
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in search_product_by_category");
+                return Response<List<ItemDTO>>.FromError(e.Message);
+            }
         }
 
-        public void search_product_by_keyword()
+        public Response<List<ItemDTO>> search_product_by_keyword(string keyword)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.SearchProductByKeyword(keyword));
+                Logger.get_instance().record_event(" search by keyword : " + keyword + " was done successfully");
+
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in search_product_by_keyword");
+                return Response<List<ItemDTO>>.FromError(e.Message);
+            }
         }
 
-        public void search_product_by_name()
+        public Response<List<ItemDTO>> search_product_by_name(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.SearchProductByName(name));
+                Logger.get_instance().record_event(" search by name : " + name + " was done successfully");
+
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in search_product_by_name");
+                return Response<List<ItemDTO>>.FromError(e.Message);
+            }
+        }
+
+        public void destroy()
+        {
+            usc.destroy();
+            ssc.destroy();
         }
     }
 }

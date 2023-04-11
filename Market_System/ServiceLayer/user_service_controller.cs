@@ -7,22 +7,22 @@ using Market_System.DomainLayer.UserComponent;
 using Market_System.ServiceLayer;
 
 
-namespace MarketSystem.ServiceLayer
+namespace Market_System.ServiceLayer
 {
     public class User_Service_Controller
     {
         //private user_facade (domain)
         
-        private Market_System.DomainLayer.MarketSystem market_System;
+        private MarketSystem market_System;
         private int session_id;
         public User_Service_Controller()
         {
-            this.market_System = Market_System.DomainLayer.MarketSystem.GetInstance();
+            this.market_System = MarketSystem.GetInstance();
             
         }
 
         //TODO:: CHANGE TO THROW A RESPONSE;
-        public string Login_Member(string username, string password,int session_id) // 1.4
+        public string Login_Member(string username, string password,string session_id) // 1.4
         {
             try
             {
@@ -38,7 +38,7 @@ namespace MarketSystem.ServiceLayer
                 return e.Message;
             }
         }
-        public string login_guest(int session_id)//1.1
+        public string login_guest(string session_id)//1.1
         {
             string guest_name= market_System.login_guest();
             
@@ -48,7 +48,7 @@ namespace MarketSystem.ServiceLayer
         }
 
         
-        public string Logout(int session_id)//3.1
+        public string Logout(string session_id)//3.1
         {
             try
             {
@@ -172,6 +172,15 @@ namespace MarketSystem.ServiceLayer
             }
         }
 
-      
+        internal void destroy()
+        {
+            market_System.destroy_me();
+        }
+
+        internal string change_password(string new_password, string session_id)
+        {
+            string username = market_System.get_username_from_session_id(session_id);
+            return  market_System.change_password(username,  new_password);
+        }
     }
 }
