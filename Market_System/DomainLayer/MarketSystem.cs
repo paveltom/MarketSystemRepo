@@ -38,7 +38,9 @@ namespace Market_System.DomainLayer
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
+                        Instance.register("admin", "admin", "address"); //registering an admin 
                         Instance.guest_id_generator = new Random();
+
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
