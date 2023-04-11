@@ -109,5 +109,8 @@ namespace Market_System.Tests.ServiceLevelTests
             //tearDown: (TestCleanup())
         }
 
+        //maybe do another test for showing member purchase 
+        //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
+
     }
 }

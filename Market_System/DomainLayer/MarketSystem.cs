@@ -38,7 +38,9 @@ namespace Market_System.DomainLayer
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
+                        Instance.register("admin", "admin", "address"); //registering an admin 
                         Instance.guest_id_generator = new Random();
+
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -49,7 +51,7 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
-        public string get_username_from_session_id(int session_id)
+        public string get_username_from_session_id(string session_id)
         {
             return userFacade.get_username_from_session(session_id);
         }
@@ -74,8 +76,7 @@ namespace Market_System.DomainLayer
             lock (this)
             {
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
-                if (check_if_availbe_from_store_facade(product_id) == true)
-                {
+              
                     if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
                     {
                         //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
@@ -92,11 +93,7 @@ namespace Market_System.DomainLayer
                     {
                         throw new Exception("user is not logged in");
                     }
-                }
-                else
-                {
-                    throw new Exception("product out of stock");
-                }
+                
             }
 
         }
@@ -112,8 +109,8 @@ namespace Market_System.DomainLayer
 
                         userFacade.remove_product_from_basket(product_id, username);
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
-                        //  price  =  storefacade.calcualte_total_price(cart);
-                        double price = 110;
+                        double  price  =  storeFacade.CalculatePrice(cart.convert_to_item_DTO());
+                      //  double price = 110;
                         userFacade.update_cart_total_price(username, price);
                         return "removed product id : " + product_id + " from " + username + "'s cart";
                     }
@@ -127,12 +124,12 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void link_user_with_session(string username, int session_id)
+        public void link_user_with_session(string username, string session_id)
         {
             userFacade.link_user_with_session(username, session_id);
         }
 
-        public void unlink_user_with_session(int session_id)
+        public void unlink_user_with_session(string session_id)
         {
             userFacade.unlink_user_with_session(session_id);
         }
@@ -238,15 +235,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        private bool check_if_availbe_from_store_facade(string product_id)
-        {
-            if(product_id.Equals("123_456"))//123_51651
-            {
-                return true;
-            }
-
-            return false;
-        }
+        
 
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
         {
@@ -284,8 +273,8 @@ namespace Market_System.DomainLayer
             try
             {
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
-             // price = storefacade.calcualte_total_price(cart);
-                double price = 1000;
+              double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
+                // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
                 userFacade.save_purhcase_in_user(username,cart);
                 

@@ -9,7 +9,7 @@ namespace Market_System.DomainLayer.UserComponent
     {
         private static UserRepo userRepo;
         private static List<User> users;
-        private static Dictionary<int, string> username_session_id_linker; // key = session_id    value=username
+        private static Dictionary<string, string> username_session_id_linker; // key = session_id    value=username
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
 
@@ -32,7 +32,7 @@ namespace Market_System.DomainLayer.UserComponent
                         users = new List<User>();
                         userRepo = UserRepo.GetInstance();
                         Instance = new UserFacade();
-                        username_session_id_linker = new Dictionary<int, string>();
+                        username_session_id_linker = new Dictionary<string, string>();
                         
                     }
                 } //Critical Section End
@@ -58,7 +58,7 @@ namespace Market_System.DomainLayer.UserComponent
             throw new ArgumentException("Incorrect login information has been provided");
         }
 
-        internal string get_username_from_session(int session_id)
+        internal string get_username_from_session(string session_id)
         {
             return username_session_id_linker[session_id];
         }
@@ -161,12 +161,12 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public void link_user_with_session(string username, int session_id)
+        public void link_user_with_session(string username, string session_id)
         {
             username_session_id_linker.Add(session_id, username);
         }
 
-        internal void unlink_user_with_session(int session_id)
+        internal void unlink_user_with_session(string session_id)
         {
             username_session_id_linker.Remove(session_id);
         }
