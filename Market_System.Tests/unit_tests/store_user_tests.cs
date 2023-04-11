@@ -202,7 +202,7 @@ namespace Market_System.Tests.unit_tests
 
 
         [TestMethod]
-        public void user_changes_password()
+        public void user_changes_password_success()
         {
 
             try
@@ -219,6 +219,32 @@ namespace Market_System.Tests.unit_tests
             {
                 Assert.Fail("This test shouldn't have failed, but received this error: " + e.Message);
             }
+
+
+        }
+
+
+        [TestMethod]
+        public void user_changes_password_fail()
+        {
+
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.change_password("test1", "newpass");
+                user_facade.Logout("test1");
+                user_facade.Login("test1", "pass");
+                Assert.Fail("This test should've failed - test1 changed password");
+            }
+
+            catch (Exception e)
+            {
+                Assert.AreEqual("Incorrect login information has been provided", e.Message);
+            }
+
+           
+
 
 
         }
