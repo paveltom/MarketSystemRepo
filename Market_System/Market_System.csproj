@@ -204,6 +204,7 @@
     <Compile Include="DomainLayer\StoreComponent\CategoriesOptions.cs" />
     <Compile Include="DomainLayer\StoreComponent\Category.cs" />
     <Compile Include="DomainLayer\StoreComponent\EmployeesRepo.cs" />
+    <Compile Include="DomainLayer\StoreComponent\IStoreRepoMock.cs" />
     <Compile Include="DomainLayer\StoreComponent\Product.cs" />
     <Compile Include="DomainLayer\StoreComponent\Property.cs" />
     <Compile Include="DomainLayer\StoreComponent\Purchase_Policy.cs" />

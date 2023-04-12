@@ -361,7 +361,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                this.storeRepo.SaveStore(this);
+                this.storeRepo.saveStore(this);
             }
             catch (Exception e) { throw e; }
         }
@@ -579,7 +579,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ChangeProductProductCategory(string userID, string productID, Category category)
+        public void ChangeProductCategory(string userID, string productID, Category category)
         {
             try
             {

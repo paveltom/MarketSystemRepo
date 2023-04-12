@@ -35,6 +35,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static Category defaultCategory = new Category("NoCategory");
         private static object QuantityLock = new object();
         private static object GeneralPropertiesLock = new object();
+        public IStoreRepoMock testRepo = null;
 
 
         // ==========================================================================================================
@@ -68,6 +69,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public Product(List<String> productProperties, string storeID, ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies, 
                         ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies)
         {
+            // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             this.StoreID = storeID;
             this.storeRepo = StoreRepo.GetInstance();
             this.Product_ID = this.storeRepo.getNewProductID(storeID);
@@ -86,8 +88,8 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Rating = Double.Parse(properties[5]);
             this.Sale = Double.Parse(properties[6]);
             this.Weight = Double.Parse(properties[7]);
-            this.Dimenssions = properties[8].Split('_').Select(s => Double.Parse(s)).ToArray();
-            this.PurchaseAttributes = RetreiveAttributres(properties[9]);
+            this.Dimenssions = properties[8].Split('_').Select(s => Double.Parse(s)).ToArray(); // dim1_dim2_dim3
+            this.PurchaseAttributes = RetreiveAttributres(properties[9]); // atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
             this.ProductCategory = new Category(properties[10]);
         }
 
@@ -322,7 +324,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                this.storeRepo.saveProduct(this);
+                if (this.testRepo != null)
+                    testRepo.Save(this);
+                else
+                    this.storeRepo.saveProduct(this);
             } catch (Exception e) { throw e; }
         }
 

@@ -487,11 +487,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductProductCategory( string productID, string categoryID)
+        public Response ChangeProductCategory( string productID, string categoryID)
         {
             try
             {
-                this.Market.ChangeProductProductCategory(this.SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.ChangeProductCategory(this.SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's category was changed successfully.");
             }
             catch (Exception ex)
