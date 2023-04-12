@@ -191,11 +191,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Add_Product_To_Store(int store_ID, string founder, Product product, int quantity)
+        public void Add_Product_To_Store(string storeID, string session_id, List<String> productProperties)
         {
             try
             {
-                storeFacade.Add_Product_To_Store(store_ID, founder, product, quantity);
+                storeFacade.AddProductToStore(storeID, session_id, productProperties);
             }
             catch (Exception e)
             {
