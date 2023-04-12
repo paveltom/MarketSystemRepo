@@ -383,7 +383,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductName(this.SessionID, productID, name); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.ChangeProductName(this.SessionID, productID, name);
                 return new Response("Product was renamed successfully.");
             }
             catch (Exception ex)
@@ -396,7 +396,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductDescription(this.SessionID, productID, description); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.ChangeProductDescription(this.SessionID, productID, description); 
                 return new Response("Product's description was updated successfully.");
             }
             catch (Exception ex)
@@ -504,7 +504,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductDimenssions(this.SessionID, productID, dims); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.ChangeProductDimenssions(this.SessionID, productID, dims); 
                 return new Response("Product's dimenssions were updated successfully.");
             }
             catch (Exception ex)
@@ -517,7 +517,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddProductPurchasePolicy(this.SessionID, productID, newPolicy, newPolicyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.AddProductPurchasePolicy(this.SessionID, productID, newPolicy, newPolicyProperties); 
                 return new Response("New product's purchase policy was added successfully.");
             }
             catch (Exception ex)
