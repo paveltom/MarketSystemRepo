@@ -77,11 +77,10 @@ namespace Market_System.DomainLayer
             lock (this)
             {
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
-              
-                    if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
-                    {
-                        //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
 
+
+                //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
+                  
                         userFacade.add_product_to_basket(product_id, username);
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
                         double price=storeFacade.CalculatePrice(cart.convert_to_item_DTO());
@@ -89,11 +88,8 @@ namespace Market_System.DomainLayer
                         
                         userFacade.update_cart_total_price(username, price);
                         return "added product id : " + product_id + " to " + username + "'s cart";
-                    }
-                    else
-                    {
-                        throw new Exception("user is not logged in");
-                    }
+                    
+                   
                 
             }
 

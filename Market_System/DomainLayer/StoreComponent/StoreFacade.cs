@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Web;
 using System.Threading;
-using Market_System.DomainLayer
+using Market_System.DomainLayer;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
