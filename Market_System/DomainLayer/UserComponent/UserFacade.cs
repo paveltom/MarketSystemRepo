@@ -102,13 +102,13 @@ namespace Market_System.DomainLayer.UserComponent
             userRepo.register(username, password);
         }
 
-        public void add_product_to_basket(string product_id, string username)
+        public void add_product_to_basket(string product_id, string username,int quantity)
         {
             foreach (User u in users)
             {
               if (u.GetUsername().Equals(username))
                 {
-                    u.add_product_to_basket(product_id);
+                    u.add_product_to_basket(product_id,quantity);
                 }
             }
         }

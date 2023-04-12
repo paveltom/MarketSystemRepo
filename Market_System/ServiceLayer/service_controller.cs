@@ -21,7 +21,7 @@ namespace Market_System.ServiceLayer
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
-            this.ssc = new Store_Service_Controller();
+            this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
             
 
@@ -45,11 +45,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> add_product_to_basket(string product_id)
+        public Response<string> add_product_to_basket(string product_id,string quantity)
         {
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id,session_id));
+                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id,session_id,quantity));
                 Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
 
                 return ok;
@@ -82,7 +82,7 @@ namespace Market_System.ServiceLayer
                 ProductProperties.Add(attributes);
                 ProductProperties.Add(product_category);
 
-                this.ssc.AddProductToStore(storeID, session_id, ProductProperties);
+                this.ssc.AddProductToStore(storeID,  ProductProperties);
                  Response<string> ok = Response<string>.FromValue("successfully added product to store");
                 Logger.get_instance().record_event("successfully added product to store: " + storeID);
                  return ok;
@@ -205,7 +205,7 @@ namespace Market_System.ServiceLayer
             {
 
 
-                this.ssc.RemoveStore(session_id, storeID);
+                this.ssc.close_store_temporary( storeID);
                 
                 Logger.get_instance().record_event(usc.get_username_from_session_id(session_id)+" closed a store with the ID: "+storeID);
                 Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
@@ -249,6 +249,11 @@ namespace Market_System.ServiceLayer
 
         public Response<List<string>> get_managers_of_store(string storeID)
         {
+
+
+
+
+
 
             try
             {

@@ -23,7 +23,7 @@ namespace Market_System.ServiceLayer
         public Response<List<ItemDTO>> search_product_by_category(string category); //2.2
         public Response<List<ItemDTO>> search_product_by_keyword(string keyword); //2.2
         public Response<List<ItemDTO>> search_product_by_name(string name); //2.2
-        public Response<string> add_product_to_basket(string product_id);
+        public Response<string> add_product_to_basket(string product_id,string quantity);
         public Response<string> remove_product_from_basket(string product_id);
         public void open_new_store(); // 3.2
         public Response<string> comment_on_product(string productID, string comment, double rating); // 3.3

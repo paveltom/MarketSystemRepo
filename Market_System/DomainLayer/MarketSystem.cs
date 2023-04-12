@@ -52,6 +52,11 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal void ChangeStoreName(string sessionID, string storeID, string newName)
+        {
+            storeFacade.ChangeStoreName(sessionID, storeID, newName);
+        }
+
         public string get_username_from_session_id(string session_id)
         {
             return userFacade.get_username_from_session(session_id);
@@ -71,7 +76,21 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Add_Product_To_basket(string product_id,string username)
+        internal void close_store_temporary(string sessionID, string storeID)
+        {
+            try
+            {
+                storeFacade.RemoveStore(sessionID,storeID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public string Add_Product_To_basket(string product_id,string username,string quantity)
         {
 
             lock (this)
@@ -81,7 +100,7 @@ namespace Market_System.DomainLayer
 
                 //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
                   
-                        userFacade.add_product_to_basket(product_id, username);
+                        userFacade.add_product_to_basket(product_id, username,int.Parse(quantity));
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
                         double price=storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                         //  price  =  storefacade.calcualte_total_price(cart);
@@ -93,6 +112,67 @@ namespace Market_System.DomainLayer
                 
             }
 
+        }
+
+        internal void TransferFoundership(string sessionID, string storeID, string newFounderID)
+        {
+            try
+            {
+                 storeFacade.TransferFoundership(sessionID, storeID,newFounderID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void AddStorePurchasePolicy(string sessionID, string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        {
+            try
+            {
+                storeFacade.AddStorePurchasePolicy(sessionID, storeID, newPolicy);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void RemoveStorePurchasePolicy(string sessionID, string storeID, string policyID)
+        {
+            try
+            {
+                storeFacade.RemoveStorePurchasePolicy(sessionID, storeID, policyID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal List<string> GetStorePurchaseHistory(string sessionID, string storeID)
+        {
+            try
+            {
+               return storeFacade.GetPurchaseHistoryOfTheStore(sessionID, storeID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void ReserveProduct(ItemDTO itemDTO)
+        {
+            storeFacade.ReserveProduct(itemDTO);
         }
 
         public string remove_product_from_basket(string product_id, string username)
@@ -131,7 +211,19 @@ namespace Market_System.DomainLayer
             userFacade.link_user_with_session(username, session_id);
         }
 
-        
+        public List<string> GetStoreManagers(string session_id,string store_id)
+        {
+            try
+            {
+                return storeFacade.GetManagersOfTheStore(session_id, store_id);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
+        }
 
         public void unlink_user_with_session(string session_id)
         {
@@ -191,11 +283,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Add_Product_To_Store(int store_ID, string founder, Product product, int quantity)
+        public void Add_Product_To_Store(string storeID, string session_id, List<String> productProperties)
         {
             try
             {
-                storeFacade.Add_Product_To_Store(store_ID, founder, product, quantity);
+                storeFacade.AddProductToStore(storeID, session_id, productProperties);
             }
             catch (Exception e)
             {

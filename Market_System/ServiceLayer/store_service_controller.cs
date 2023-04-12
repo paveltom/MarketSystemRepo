@@ -71,11 +71,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response RemoveStore( string storeID)
+        public Response close_store_temporary( string storeID)
         {
             try
             {
-                this.Market.RemoveStore(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.close_store_temporary(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store was removed successfully.");
             }
             catch (Exception ex)
@@ -84,16 +84,16 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response GetPurchaseHistoryOfTheStore(string storeID)
+        public Response<List<string>> GetPurchaseHistoryOfTheStore(string storeID)
         {
             try
             {
-                List<string> history = this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                List<string> history =  this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(history);
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                return Response<List<string>>.FromError(ex.Message);
             }
         }
 
