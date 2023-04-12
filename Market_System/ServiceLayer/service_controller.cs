@@ -301,9 +301,20 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public void get_purchase_history_from_store()
+        public Response<List<string>> get_purchase_history_from_store(string storeID)
         {
-            throw new NotImplementedException();
+            Response<List<string>> response = this.ssc.GetPurchaseHistoryOfTheStore(storeID);
+            if (response.ErrorOccured)
+            {
+                Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in get_purchase_history_from_store");
+
+            }
+            else
+            {
+                Logger.get_instance().record_event("getting purchase history from a store with the ID: " + storeID + " was done successfully");
+            }
+
+            return response;
         }
 
         public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member()
