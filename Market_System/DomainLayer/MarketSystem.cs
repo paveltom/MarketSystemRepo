@@ -52,6 +52,11 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal void ChangeStoreName(string sessionID, string storeID, string newName)
+        {
+            storeFacade.ChangeStoreName(sessionID, storeID, newName);
+        }
+
         public string get_username_from_session_id(string session_id)
         {
             return userFacade.get_username_from_session(session_id);
@@ -63,6 +68,20 @@ namespace Market_System.DomainLayer
             {
                 userFacade.Login(username, password);
                 
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void close_store_temporary(string sessionID, string storeID)
+        {
+            try
+            {
+                storeFacade.RemoveStore(sessionID,storeID);
+
             }
 
             catch (Exception e)
@@ -93,6 +112,62 @@ namespace Market_System.DomainLayer
                 
             }
 
+        }
+
+        internal void TransferFoundership(string sessionID, string storeID, string newFounderID)
+        {
+            try
+            {
+                 storeFacade.TransferFoundership(sessionID, storeID,newFounderID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void AddStorePurchasePolicy(string sessionID, string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        {
+            try
+            {
+                storeFacade.AddStorePurchasePolicy(sessionID, storeID, newPolicy);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void RemoveStorePurchasePolicy(string sessionID, string storeID, string policyID)
+        {
+            try
+            {
+                storeFacade.RemoveStorePurchasePolicy(sessionID, storeID, policyID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal List<string> GetStorePurchaseHistory(string sessionID, string storeID)
+        {
+            try
+            {
+               return storeFacade.GetPurchaseHistoryOfTheStore(sessionID, storeID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         internal void ReserveProduct(ItemDTO itemDTO)
@@ -136,7 +211,19 @@ namespace Market_System.DomainLayer
             userFacade.link_user_with_session(username, session_id);
         }
 
-        
+        public List<string> GetStoreManagers(string session_id,string store_id)
+        {
+            try
+            {
+                return storeFacade.GetManagersOfTheStore(session_id, store_id);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
+        }
 
         public void unlink_user_with_session(string session_id)
         {

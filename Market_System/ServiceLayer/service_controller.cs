@@ -21,7 +21,7 @@ namespace Market_System.ServiceLayer
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
-            this.ssc = new Store_Service_Controller();
+            this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
             
 
@@ -205,7 +205,7 @@ namespace Market_System.ServiceLayer
             {
 
 
-                this.ssc.RemoveStore(session_id, storeID);
+                this.ssc.close_store_temporary( storeID);
                 
                 Logger.get_instance().record_event(usc.get_username_from_session_id(session_id)+" closed a store with the ID: "+storeID);
                 Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
@@ -249,6 +249,11 @@ namespace Market_System.ServiceLayer
 
         public Response<List<string>> get_managers_of_store(string storeID)
         {
+
+
+
+
+
 
             try
             {
