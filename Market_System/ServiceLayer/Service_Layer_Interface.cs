@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.ServiceLayer;
 
@@ -30,6 +31,20 @@ namespace Market_System.ServiceLayer
         public Response<string> add_product_to_store(string storeID, string product_name,string description, string price,string quantity,string reserved_quantity,string rating,string sale,string wieght,string dimenstions,string attributes,string product_category); //4.1
         public Response<string> remove_product_from_store(string storeID, string productID); //4.1
         public void edit_product_details(); //4.1
+        public Response<string> ChangeProductName(string productID, string name);
+        public Response<string> ChangeProductDescription(string productID, string desc);
+        public Response<string> ChangeProductPrice(string productID, double price);
+        public Response<string> ChangeProductRating(string productID, double rating);
+        public Response<string> ChangeProductQuantity(string productID, int quantity);
+        public Response<string> ChangeProductWeight(string productID, double weight);
+        public Response<string> ChangeProductSale(string productID, double sale);
+        public Response<string> ChangeProductTimesBought(string productID, int times);
+        public Response<string> ChangeProductProductCategory(string productID, string categoryID);
+        public Response<string> ChangeProductDimenssions(string productID, double[] dims);
+        public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties);
+        public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
+        public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties);
+        public Response<string> RemoveProductPurchaseStrategy(string productID, String strategyID);
         public Response<string> assign_new_owner(string storeID, string newOwnerID); // 4.4
         public Response<string> assign_new_manager(string storeID, string newManagerID); // 4.6
         public void edit_manger_permissions(); //4.7

@@ -5,6 +5,7 @@ using System.Web;
 using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 
 namespace Market_System.ServiceLayer
 {
@@ -247,14 +248,78 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
+        public Response ChangeProductName(string productID, string name)
+        {
+            return this.ssc.ChangeProductName(productID, name);
+        }
+
+        public Response ChangeProductDescription(string productID, string desc)
+        {
+            return this.ssc.ChangeProductDescription(productID, desc);
+        }
+
+        public Response ChangeProductPrice(string productID, double price)
+        {
+            return this.ssc.ChangeProductPrice(productID, price);
+        }
+
+        public Response ChangeProductRating(string productID, double price)
+        {
+            return this.ssc.ChangeProductPrice(productID, price);
+        }
+
+        public Response ChangeProductQuantity(string productID, int quantity)
+        {
+            return this.ssc.ChangeProductQuantity(productID, quantity);
+        }
+
+        public Response ChangeProductWeight(string productID, double weight)
+        {
+            return this.ssc.ChangeProductWeight(productID, weight);
+        }
+
+        public Response ChangeProductSale(string productID, double sale)
+        {
+            return this.ssc.ChangeProductSale(productID, sale);
+        }
+
+        public Response ChangeProductTimesBought(string productID, int times)
+        {
+            return this.ssc.ChangeProductTimesBought(productID, times);
+        }
+
+        public Response ChangeProductProductCategory(string productID, string categoryID)
+        {
+            return this.ssc.ChangeProductProductCategory(productID, categoryID);
+        }
+
+        public Response ChangeProductDimenssions(string productID, double[] dims)
+        {
+            return this.ssc.ChangeProductDimenssions(productID, dims);
+        }
+
+        public Response AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        {
+            return this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+        }
+
+        public Response RemoveProductPurchasePolicy(string productID, String policyID)
+        {
+            return this.ssc.RemoveProductPurchasePolicy(productID, policyID);
+        }
+
+        public Response AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        {
+            return this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+        }
+
+        public Response RemoveProductPurchaseStrategy(string productID, String strategyID)
+        {
+            return this.ssc.RemoveProductPurchaseStrategy(productID, strategyID);
+        }
+
         public Response<List<string>> get_managers_of_store(string storeID)
         {
-
-
-
-
-
-
             try
             {
                 Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.GetManagersOfTheStore(session_id, storeID));
