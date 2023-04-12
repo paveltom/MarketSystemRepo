@@ -21,7 +21,7 @@ namespace Market_System.DomainLayer.UserComponent
             this.products = new Dictionary<string, int>();
         }
 
-        public void add_product(string product_id)
+        public void add_product(string product_id, int quantity)
         {
 
             if (!check_if_product_exists(product_id))
@@ -30,7 +30,7 @@ namespace Market_System.DomainLayer.UserComponent
             }
 
 
-            this.products[product_id] = this.products[product_id] + 1;
+            this.products[product_id] = this.products[product_id] + quantity;
 
 
         }

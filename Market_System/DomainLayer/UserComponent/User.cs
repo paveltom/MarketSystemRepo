@@ -45,9 +45,9 @@ namespace Market_System.DomainLayer.UserComponent
             return this.user_State.GetUserState();
         }
 
-        public void add_product_to_basket(string product_id)
+        public void add_product_to_basket(string product_id,int quantity)
         {
-            this.my_cart.add_product(product_id);
+            this.my_cart.add_product(product_id,quantity);
         }
 
         internal Cart getcart()

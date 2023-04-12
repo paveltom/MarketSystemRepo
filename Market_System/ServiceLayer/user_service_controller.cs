@@ -14,9 +14,10 @@ namespace Market_System.ServiceLayer
         //private user_facade (domain)
         
         private MarketSystem market_System;
-        private int session_id;
+        
         public User_Service_Controller()
         {
+
             this.market_System = MarketSystem.GetInstance();
             
         }
@@ -47,7 +48,13 @@ namespace Market_System.ServiceLayer
 
         }
 
-        
+
+        public string get_username_from_session_id(string session_id)
+        {
+            return market_System.get_username_from_session_id(session_id);
+        }
+
+
         public string Logout(string session_id)//3.1
         {
             try
@@ -82,11 +89,13 @@ namespace Market_System.ServiceLayer
             }
 
         }
-        public string add_product_to_basket(string product_id,string username)
+        public string add_product_to_basket(string product_id,string session_id,string quantity)
         {
             try
             {
-                return market_System.Add_Product_To_basket(product_id, username);
+                string username = market_System.get_username_from_session_id(session_id);
+                market_System.ReserveProduct(new ItemDTO(product_id, int.Parse(quantity)));
+                return market_System.Add_Product_To_basket(product_id,username,quantity);
             }
             catch(Exception e)
             {
@@ -94,10 +103,11 @@ namespace Market_System.ServiceLayer
             }
 
         }
-        public string remove_product_from_basket(string product_id, string username)
+        public string remove_product_from_basket(string product_id, string session_id)
         {
             try
             {
+                string username = market_System.get_username_from_session_id(session_id);
                 return market_System.remove_product_from_basket(product_id, username);
             }
             catch (Exception e)
@@ -140,8 +150,9 @@ namespace Market_System.ServiceLayer
         {
 
         }
-        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username) //6.4
-        {       
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_id) //6.4
+        {
+            string username = market_System.get_username_from_session_id(session_id);
                 return market_System.get_purchase_history_of_a_member(username);
         }
         

@@ -15,7 +15,7 @@ namespace Market_System.DomainLayer.UserComponent
             this.total_price = 0;
         }
 
-        public void add_product(string product_id)
+        public void add_product(string product_id,int quantity)
         {
             string store_id = product_id.Substring(0, product_id.IndexOf('_'));// 3 first digist are store id
 
@@ -29,7 +29,7 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 if (basket.get_store_id().Equals(store_id))
                 {
-                    basket.add_product(product_id);
+                    basket.add_product(product_id,quantity);
                     return;
                 }
 

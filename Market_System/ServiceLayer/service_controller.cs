@@ -5,6 +5,7 @@ using System.Web;
 using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 
 namespace Market_System.ServiceLayer
 {
@@ -17,12 +18,13 @@ namespace Market_System.ServiceLayer
 
         public Service_Controller()
         {
-            this.usc = new User_Service_Controller();
-            this.ssc = new Store_Service_Controller();
+         
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
+            this.usc = new User_Service_Controller();
+            this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            //add kater login guest from here
+            
 
         }
 
@@ -44,12 +46,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> add_product_to_basket(string product_id, string username)
+        public Response<string> add_product_to_basket(string product_id,string quantity)
         {
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id, username));
-                Logger.get_instance().record_event(username + " added product with id: " + product_id + " to basket");
+                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id,session_id,quantity));
+                Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
 
                 return ok;
             }
@@ -63,15 +65,28 @@ namespace Market_System.ServiceLayer
 
         }
 
-        public void add_product_to_store(string storeID, List<string> ProductProperties)
+        public Response<string> add_product_to_store(string storeID, string product_name, string description, string price, string quantity, string reserved_quantity, string rating, string sale, string wieght, string dimenstions, string attributes, string product_category)
         {
 
             try
             {
-                //this.ssc.AddProductToStore(storeID, session_id, ProductProperties);
-                // Response<string> ok = Response<string>.FromValue("successfully added product to store");
+                List<string> ProductProperties = new List<string>();
+                ProductProperties.Add(product_name);
+                ProductProperties.Add(description);
+                ProductProperties.Add(price);
+                ProductProperties.Add(quantity);
+                ProductProperties.Add(reserved_quantity);
+                ProductProperties.Add(rating);
+                ProductProperties.Add(sale);
+                ProductProperties.Add(wieght);
+                ProductProperties.Add(dimenstions);
+                ProductProperties.Add(attributes);
+                ProductProperties.Add(product_category);
+
+                this.ssc.AddProductToStore(storeID,  ProductProperties);
+                 Response<string> ok = Response<string>.FromValue("successfully added product to store");
                 Logger.get_instance().record_event("successfully added product to store: " + storeID);
-                // return ok;
+                 return ok;
 
 
 
@@ -80,15 +95,12 @@ namespace Market_System.ServiceLayer
             {
 
                 Logger.get_instance().record_error("error!!: " + e.Message + " in add_product_to_store");
-                // return Response<String>.FromError(e.Message);
+                return Response<String>.FromError(e.Message);
 
             }
         }
 
-        public void apply_purchase_policy()
-        {
-            throw new NotImplementedException();
-        }
+  
 
         public Response<string> assign_new_manager(string storeID, string newManagerID)
         {
@@ -188,9 +200,24 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public void close_store()
+        public Response<string> close_store_temporary(string storeID)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+
+                this.ssc.close_store_temporary( storeID);
+                
+                Logger.get_instance().record_event(usc.get_username_from_session_id(session_id)+" closed a store with the ID: "+storeID);
+                Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + "in close_store_temporary");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public Response<string> comment_on_product(string productID, string comment, double rating)
@@ -221,9 +248,78 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
+        public Response ChangeProductName(string productID, string name)
+        {
+            return this.ssc.ChangeProductName(productID, name);
+        }
+
+        public Response ChangeProductDescription(string productID, string desc)
+        {
+            return this.ssc.ChangeProductDescription(productID, desc);
+        }
+
+        public Response ChangeProductPrice(string productID, double price)
+        {
+            return this.ssc.ChangeProductPrice(productID, price);
+        }
+
+        public Response ChangeProductRating(string productID, double price)
+        {
+            return this.ssc.ChangeProductPrice(productID, price);
+        }
+
+        public Response ChangeProductQuantity(string productID, int quantity)
+        {
+            return this.ssc.ChangeProductQuantity(productID, quantity);
+        }
+
+        public Response ChangeProductWeight(string productID, double weight)
+        {
+            return this.ssc.ChangeProductWeight(productID, weight);
+        }
+
+        public Response ChangeProductSale(string productID, double sale)
+        {
+            return this.ssc.ChangeProductSale(productID, sale);
+        }
+
+        public Response ChangeProductTimesBought(string productID, int times)
+        {
+            return this.ssc.ChangeProductTimesBought(productID, times);
+        }
+
+        public Response ChangeProductProductCategory(string productID, string categoryID)
+        {
+            return this.ssc.ChangeProductProductCategory(productID, categoryID);
+        }
+
+        public Response ChangeProductDimenssions(string productID, double[] dims)
+        {
+            return this.ssc.ChangeProductDimenssions(productID, dims);
+        }
+
+        public Response AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        {
+            return this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+        }
+
+        public Response RemoveProductPurchasePolicy(string productID, String policyID)
+        {
+            return this.ssc.RemoveProductPurchasePolicy(productID, policyID);
+        }
+
+        public Response AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        {
+            return this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+        }
+
+        public Response RemoveProductPurchaseStrategy(string productID, String strategyID)
+        {
+            return this.ssc.RemoveProductPurchaseStrategy(productID, strategyID);
+        }
+
         public Response<List<string>> get_managers_of_store(string storeID)
         {
-
             try
             {
                 Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.GetManagersOfTheStore(session_id, storeID));
@@ -275,17 +371,28 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public void get_purchase_history_from_store()
+        public Response<List<string>> get_purchase_history_from_store(string storeID)
         {
-            throw new NotImplementedException();
+            Response<List<string>> response = this.ssc.GetPurchaseHistoryOfTheStore(storeID);
+            if (response.ErrorOccured)
+            {
+                Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in get_purchase_history_from_store");
+
+            }
+            else
+            {
+                Logger.get_instance().record_event("getting purchase history from a store with the ID: " + storeID + " was done successfully");
+            }
+
+            return response;
         }
 
-        public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(string username)
+        public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member()
         {
             try
             {
-                Response<List<PurchaseHistoryObj>> ok= Response<List<PurchaseHistoryObj>>.FromValue(this.usc.get_purchase_history_of_a_member(username));
-                Logger.get_instance().record_event("getting purchase history of the user : " + username);
+                Response<List<PurchaseHistoryObj>> ok= Response<List<PurchaseHistoryObj>>.FromValue(this.usc.get_purchase_history_of_a_member(session_id));
+                Logger.get_instance().record_event("getting purchase history of the user : " + this.usc.get_username_from_session_id(session_id));
                 
                 return ok; 
 
@@ -298,9 +405,20 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public void GetStore()
+        public Response<ItemDTO> GetStore(string store_id)
         {
-            throw new NotImplementedException();
+            Response < ItemDTO > response=this.ssc.GetStore(store_id);
+            if(response.ErrorOccured)
+            {
+                Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in GetStore");
+              
+            }
+            else
+            {
+                Logger.get_instance().record_event("getting store with id: " + store_id+" was done successfully");
+            }
+
+            return response;
         }
         /*
         public Response login_guest()
@@ -343,7 +461,8 @@ namespace Market_System.ServiceLayer
             {
                 Response<string> ok=Response<string>.FromValue(this.usc.Logout(session_id));
                 Logger.get_instance().record_event(ok.Value);
-                
+                this.session_id = this.session_id_generator.Next().ToString(); //generate nwe session id
+                new_guest_entered_the_website(session_id);// because now i am a guest
                 return ok;
                
             }
@@ -376,12 +495,12 @@ namespace Market_System.ServiceLayer
             }
 }
 
-        public Response<string> remove_product_from_basket(string product_id,string username)
+        public Response<string> remove_product_from_basket(string product_id)
         {
             try
             {
-                Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, username));
-                Logger.get_instance().record_event(username+" removed product with id: "+product_id+" from the basket");
+                Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id));
+                Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
              
                 return ok;
                  
@@ -393,9 +512,25 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public void remove_product_from_store()
+        public Response<string> remove_product_from_store(string storeID, string productID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                
+                
+                this.ssc.RemoveProductFromStore(storeID, session_id,productID, new List<string>());
+                Response<string> ok = Response<string>.FromValue("successfully removed a product with the ID: "+productID+" from a store with ID: "+storeID);
+                Logger.get_instance().record_event("successfully removed product: "+productID+" from store: " + storeID);
+                return ok;
+
+
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in remove_product_from_store");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public Response<List<ItemDTO>> search_product_by_category(string category)
