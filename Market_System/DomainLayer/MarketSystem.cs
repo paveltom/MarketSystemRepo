@@ -71,7 +71,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Add_Product_To_basket(string product_id,string username)
+        public string Add_Product_To_basket(string product_id,string username,string quantity)
         {
 
             lock (this)
@@ -81,7 +81,7 @@ namespace Market_System.DomainLayer
 
                 //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
                   
-                        userFacade.add_product_to_basket(product_id, username);
+                        userFacade.add_product_to_basket(product_id, username,int.Parse(quantity));
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
                         double price=storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                         //  price  =  storefacade.calcualte_total_price(cart);
@@ -93,6 +93,11 @@ namespace Market_System.DomainLayer
                 
             }
 
+        }
+
+        internal void ReserveProduct(ItemDTO itemDTO)
+        {
+            storeFacade.ReserveProduct(itemDTO);
         }
 
         public string remove_product_from_basket(string product_id, string username)

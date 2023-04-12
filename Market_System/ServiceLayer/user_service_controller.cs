@@ -89,12 +89,13 @@ namespace Market_System.ServiceLayer
             }
 
         }
-        public string add_product_to_basket(string product_id,string session_id)
+        public string add_product_to_basket(string product_id,string session_id,string quantity)
         {
             try
             {
                 string username = market_System.get_username_from_session_id(session_id);
-                return market_System.Add_Product_To_basket(product_id,username);
+                market_System.ReserveProduct(new ItemDTO(product_id, int.Parse(quantity)));
+                return market_System.Add_Product_To_basket(product_id,username,quantity);
             }
             catch(Exception e)
             {
