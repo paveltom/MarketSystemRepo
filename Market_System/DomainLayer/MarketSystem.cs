@@ -52,6 +52,12 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal void ChangeStoreName(string sessionID, string storeID, string newName)
+        {
+            
+            throw new NotImplementedException();
+        }
+
         public string get_username_from_session_id(string session_id)
         {
             return userFacade.get_username_from_session(session_id);

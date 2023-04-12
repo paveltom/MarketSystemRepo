@@ -21,7 +21,7 @@ namespace Market_System.ServiceLayer
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
-            this.ssc = new Store_Service_Controller();
+            this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
             
 
@@ -82,7 +82,7 @@ namespace Market_System.ServiceLayer
                 ProductProperties.Add(attributes);
                 ProductProperties.Add(product_category);
 
-                this.ssc.AddProductToStore(storeID, session_id, ProductProperties);
+                this.ssc.AddProductToStore(storeID,  ProductProperties);
                  Response<string> ok = Response<string>.FromValue("successfully added product to store");
                 Logger.get_instance().record_event("successfully added product to store: " + storeID);
                  return ok;
