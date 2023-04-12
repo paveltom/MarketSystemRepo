@@ -6,5 +6,6 @@
     "\\Market_System\\DomainLayer\\StoreComponent",
     "\\Market_System\\ServiceLayer"
   ],
+  "SelectedNode": "\\Market_System\\ServiceLayer\\store_service_controller.cs",
   "PreviewInSolutionExplorer": false
 }

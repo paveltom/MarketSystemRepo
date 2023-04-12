@@ -5,25 +5,23 @@ using System.Web;
 using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
+using System.Xml.Linq;
 
 namespace Market_System.ServiceLayer
 {
     public class Store_Service_Controller
     {
-        private MarketSystem Market;
+        private DomainLayer.MarketSystem Market;
+        private string SessionID;
 
-        public Store_Service_Controller()
+        public Store_Service_Controller(string sessionID)
         {
-            this.Market = MarketSystem.GetInstance();
+            this.Market = DomainLayer.MarketSystem.GetInstance();
+            this.SessionID = sessionID;
         }
 
         // ====================================================================
         // ====================== General class methods ===============================
-
-        public void Purchase(string userID, List<ItemDTO> products)
-        {
-
-        }
 
 
         // ====================== END of General class methods ===============================
@@ -34,54 +32,134 @@ namespace Market_System.ServiceLayer
         // ====================================================================
         // ====================== Store methods ===============================
 
-        public void ChangeStoreName(string userID, string storeID, string newName)
+        public Response ChangeStoreName( string storeID, string newName)
         {
-
+            try
+            {                
+                this.Market.ChangeStoreName(this.SessionID, storeID, newName); // string storeID, string newName - add to MarketSystem !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Store name changed.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public StoreDTO GetStore(string storeID)
+        public Response GetStore( string storeID)
         {
-
+            try
+            {
+                ItemDTO ret = this.Market.GetStore(this.SessionID, storeID);
+                return Response<ItemDTO>.FromValue(ret);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AddNewStore(string userID, string storeID, List<string> newStoreDetails)
+        public Response AddNewStore( List<string> newStoreDetails)
         {
-
+            try
+            {
+                this.Market.Add_New_Store(this.SessionID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Store was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void RemoveStore(string userID, string storeID)
+        public Response RemoveStore( string storeID)
         {
-
+            try
+            {
+                this.Market.RemoveStore(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Store was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public List<string> GetPurchaseHistoryOfTheStore(string userID, string storeID)
+        public Response GetPurchaseHistoryOfTheStore(string storeID)
         {
-
+            try
+            {
+                List<string> history = this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<string>>.FromValue(history);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void TransferFoundership(string userID, string storeID, string newFounderID)
+        public Response TransferFoundership( string storeID, string newFounderID) // change founder
         {
-
+            try
+            {
+                this.Market.TransferFoundership(this.SessionID, storeID, newFounderID); // Add method to MarketSystem
+                return new Response("Founder was changed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy)
+        public Response AddStorePurchasePolicy(string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties) // newPolicy = null OR newPolicyProperties = null
         {
-
+            try
+            {
+                this.Market.AddStorePurchasePolicy(this.SessionID, storeID, newPolicy, newPolicyProperties); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Policy was added successfully.\"");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID)
+        public Response RemoveStorePurchasePolicy(string storeID, String policyID)
         {
-
+            try
+            {
+                this.Market.RemoveStorePurchasePolicy(this.SessionID, storeID, policyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Policy was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy)
+        public Response AddStorePurchaseStrategy( string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties) // newPolicy = null OR newPolicyProperties = null)
         {
-
+            try
+            {
+                this.Market.AddStorePurchaseStrategy(this.SessionID, storeID, newStrategy, newStrategyProperties); this.Market.RemoveStorePurchasePolicy(this.SessionID, storeID, policyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Strategy was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void RemoveStorePurchaseStrategy(string userID, string storeID, String strategyID)
+        public Response RemoveStorePurchaseStrategy( string storeID, String strategyID)
         {
-
+            try
+            {
+                this.Market.RemoveStorePurchaseStrategy(this.SessionID, storeID, strategyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Strategy was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
         // ====================== END of Store methods ===============================
@@ -93,39 +171,97 @@ namespace Market_System.ServiceLayer
 
         // =======================================================================
         // ====================== EMployee methods ===============================
-        public void AddEmployeePermission(string userID, string storeID, string employeeID, Permission newP)
+        public Response AddEmployeePermission( string storeID, string employeeID, string newPerm)
         {
+            try
+            {
+                this.Market.AddEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), newPerm)); this.Market.RemoveStorePurchaseStrategy(this.SessionID, storeID, strategyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Permission was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
 
         }
 
-        public void RemoveEmployeePermission(string userID, string storeID, string employeeID, Permission permToRemove)
+        public Response RemoveEmployeePermission( string storeID, string employeeID, string permToRemove)
         {
-
+            try
+            {
+                this.Market.RemoveEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), permToRemove)); // add to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Permission was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AssignNewOwner(string userID, string storeID, string newOwnerID)
+        public Response AssignNewOwner( string storeID, string newOwnerID)
         {
-
+            try
+            {
+                this.Market.Assign_New_Owner(this.SessionID, newOwnerID, storeID);
+                return new Response("New owner was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AssignNewManager(string userID, string storeID, string newManagerID)
+        public Response AssignNewManager( string storeID, string newManagerID)
         {
-
+            try
+            {
+                this.Market.Assign_New_Manager(this.SessionID, newManagerID, storeID);
+                return new Response("New manager was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public List<string> GetManagersOfTheStore(string userID, string storeID)
+        public Response GetManagersOfTheStore( string storeID)
         {
-
+            try
+            {
+                List<string> managers = this.Market.GetStoreManagers(this.SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<string>>.FromValue(managers);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public List<string> GetOwnersOfTheStore(string userID, string storeID)
+        public Response GetOwnersOfTheStore( string storeID)
         {
-
+            try
+            {
+                List<string> owners = this.Market.GetOwnersOfTheStore(this.SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<string>>.FromValue(owners);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ManageEmployeePermissions(string userID, string storeID, string employeeID, List<Permission> perms)
+        public Response ManageEmployeePermissions( string storeID, string employeeID, List<string> additionalPerms) // update only for store manager - exchanges permissions
         {
-
+            try
+            {                
+                List<Permission> permList = additionalPerms.Select(x => (Permission)Enum.Parse(typeof(Permission), x)).ToList();
+                this.Market.ManageEmployeePermissions(this.SessionID, storeID, employeeID, permList); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("New manager's permissions were added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
         // ====================== END of Employee methods ===============================
@@ -138,119 +274,295 @@ namespace Market_System.ServiceLayer
         // ======================================================================
         // ====================== Product methods ===============================
 
-        public List<ItemDTO> GetProductsFromStore(string storeID)
+        public Response GetProductsFromStore(string storeID)
         {
-
+            try
+            {
+                List<ItemDTO> products = this.Market.GetProductsFromStore(this.SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<ItemDTO>>.FromValue(products);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AddProductToStore(string storeID, string usertID, List<String> productProperties)
+        public Response AddProductToStore(string storeID, List<String> productProperties)
         {
-
+            try
+            {
+                this.Market.Add_Product_To_Store(storeID, this.SessionID, productProperties); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("New product was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void RemoveProductFromStore(string storeID, string userID, string productID, List<string> productProperties)
+        public Response RemoveProductFromStore(string storeID,  string productID)
         {
-
+            try
+            {
+                this.Market.Remove_Product_From_Store(storeID, this.SessionID, productID); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AddProductComment(string userID, string productID, string comment, double rating)
+        public Response AddProductComment( string productID, string comment, double rating)
         {
-
+            try
+            {
+                this.Market.AddProductComment(this.SessionID, productID, comment, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("New comment was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ReserveProduct(ItemDTO reservedProduct)
+        public Response LetGoProduct(string stireID, string productID, int quantity)
         {
-
+            try
+            {
+                ItemDTO itemToLetGo = new ItemDTO(productID, quantity);
+                this.Market.LetGoProduct(this.SessionID, storeID, itemToLetGo); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product was removed from busket successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public Boolean LetGoProduct(ItemDTO reservedProduct)
+        public Response SearchProductByKeyword(string keyword)
         {
-
+            try
+            {
+                List<ItemDTO> keywordSearchResult = this.Market.SearchProductByKeyword(this.SessionID, keyword); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<ItemDTO>>.FromValue(keywordSearchResult);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public List<ItemDTO> SearchProductByKeyword(string keyword)
+        public Response SearchProductByName(string name)
         {
-
+            try
+            {
+                List<ItemDTO> productNameSearchResult = this.Market.SearchProductByName(this.SessionID, name); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<ItemDTO>>.FromValue(productNameSearchResult);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public List<ItemDTO> SearchProductByName(string name)
+        public Response SearchProductByCategory(string categoryID)
         {
-
+            try
+            {
+                List<ItemDTO> categorySearchResult = this.Market.SearchProductByCategory(this.SessionID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<ItemDTO>>.FromValue(categorySearchResult);
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public List<ItemDTO> SearchProductByCategory(Category category)
+        public Response ChangeProductName( string productID, string name)
         {
-
+            try
+            {
+                this.Market.ChangeProductName(this.SessionID, productID, name); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product was renamed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductName(string userID, string productID, string name)
+        public Response ChangeProductDescription( string productID, string description)
         {
+            try
+            {
+                this.Market.ChangeProductDescription(this.SessionID, productID, description); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's description was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
+        }
+        //
+        // // ==============================================================================================================
+        // ==============================================================================================================
+        // ==============================================================================================================
 
+        public Response ChangeProductPrice( string productID, double price)
+        {
+            try
+            {
+                this.Market.ChangeProductPrice(this.SessionID, productID, price); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's price was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductDescription(string userID, string productID, string description)
+        public Response ChangeProductRating( string productID, double rating)
         {
-
+            try
+            {
+                this.Market.ChangeProductRating(this.SessionID, productID, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's rating was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductPrice(string userID, string productID, double price)
+        public Response ChangeProductQuantity( string productID, int quantity)
         {
-
+            try
+            {
+                this.Market.ChangeProductQuantity(this.SessionID, productID, quantity); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's quantity was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductRating(string userID, string productID, double rating)
+        public Response ChangeProductWeight( string productID, double weight)
         {
-
+            try
+            {
+                this.Market.ChangeProductWeight(this.SessionID, productID, weight); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's weight was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductQuantity(string userID, string productID, int quantity)
+        public Response ChangeProductSale( string productID, double sale)
         {
-
+            try
+            {
+                this.Market.ChangeProductSale(this.SessionID, productID, sale); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's sale was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductWeight(string userID, string productID, double weight)
+        public Response ChangeProductTimesBought( string productID, int times)
         {
-
+            try
+            {
+                this.Market.ChangeProductTimesBought(this.SessionID, productID, times); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("The number of times the product were bought was updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductSale(string userID, string productID, double sale)
+        public Response ChangeProductProductCategory( string productID, string categoryID)
         {
-
+            try
+            {
+                this.Market.ChangeProductProductCategory(this.SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's category was changed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductTimesBought(string userID, string productID, int times)
+        public Response ChangeProductDimenssions( string productID, double[] dims)
         {
-
+            try
+            {
+                this.Market.ChangeProductDimenssions(this.SessionID, productID, dims); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's dimenssions were updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductProductCategory(string userID, string productID, Category category)
+        public Response AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties) // newPolicy = null OR newPolicyProperties = null
         {
-
+            try
+            {
+                this.Market.AddProductPurchasePolicy(this.SessionID, productID, newPolicy, newPolicyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("New product's purchase policy was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void ChangeProductDimenssions(string userID, string productID, Array<double> dims)
+        public Response RemoveProductPurchasePolicy(string productID, String policyID)
         {
-
+            try
+            {
+                this.Market.RemoveProductPurchasePolicy(this.SessionID, productID, policyID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's purchase policy was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void AddProductPurchasePolicy(string userID, string storeID, string productID, Purchase_Policy newPolicy)
+        public Response AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties) // newStrategy = null OR newStrategyProperties = null
         {
-
+            try
+            {
+                this.Market.AddProductPurchaseStrategy(this.SessionID, productID, newStrategy, newStrategyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("New product's purchase strategy was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
-        public void RemoveProductPurchasePolicy(string userID, string storeID, string productID, String policyID)
+        public Response RemoveProductPurchaseStrategy(string productID, String strategyID)
         {
-
-        }
-
-        public void AddProductPurchaseStrategy(string userID, string storeID, string productID, Purchase_Strategy newStrategy)
-        {
-
-        }
-
-        public void RemoveProductPurchaseStrategy(string userID, string storeID, string productID, String strategyID)
-        {
-
+            try
+            {
+                this.Market.RemoveProductPurchaseStrategy(this.SessionID, productID, strategyID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return new Response("Product's purchase strategy was removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
         }
 
 
@@ -259,7 +571,18 @@ namespace Market_System.ServiceLayer
         // ======================================================
         // ======================== TODO ========================
 
-        public void apply_purchase_policy() { }
+
+        public Response apply_purchase_policy() { // I dont quite understand what its supposed to do....
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                return new Response("ERROR: " + ex.Message);
+            }
+        } 
+
 
         internal void destroy()
         {

@@ -11,9 +11,8 @@ namespace Market_System.DomainLayer.StoreComponent
     public class StoreFacade
     {
 
-        //This variable is going to store the Singleton Instance
         private static StoreFacade Instance = null;
-        private static StoreRepo storeRepo;
+        private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
 
@@ -32,7 +31,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        stores = new ConcurrentDictionary<string, Store>;
+                        stores = new ConcurrentDictionary<string, Store>();
+                        storeUsage = new ConcurrentDictionary<string, int>();
                         storeRepo = StoreRepo.GetInstance();
                         Instance = new StoreFacade();
                     }
@@ -101,12 +101,12 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    ConcurrentDictionary<string, List<string>> visitedStores = new ConcurrentDictionary<string, List<string>>();
+                    ConcurrentDictionary<string, List<ItemDTO>> visitedStores = new ConcurrentDictionary<string, List<ItemDTO>>();
                     foreach (ItemDTO item in products)
                     {
                         String storeID = GetStoreIdFromProductID(item.GetID());
                         List<ItemDTO> productToAdd = new List<ItemDTO> { item };
-                        visitedStores.AddOrUpdate(storeID, productToAdd, (k, v) => v.Concat(productToAdd));
+                        visitedStores.AddOrUpdate(storeID, productToAdd, (k, v) => Enumerable.Concat(v, productToAdd).ToList());
                     }
                     return visitedStores;
                 }
@@ -145,10 +145,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                return ((Lazy<Store>)stores.GetOrAdd(storeID, (k, val) => new Lazy<Store>(() =>
+                return ((Lazy<Store>)stores.GetOrAdd(storeID, x => new Lazy<Store>(() =>
                 {
-                    storeUsage.GetOrAdd(k, 1, (k, val) => val + 1);
-                    return storeRepo.GetStore(k);
+                    storeUsage.AddOrUpdate(storeID, 1, (k, val) => val + 1);
+                    return storeRepo.getStore(storeID);
                 }))).Value; // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
             }
             catch (Exception e) { throw e; }
@@ -161,10 +161,19 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (storeUsage.TryRemove(storeID, 1))
-                        stores.TryRemove(storeID, out _);
+                    int storeUsedBy = 0;
+                    if (storeUsage.TryGetValue(storeID, out storeUsedBy))
+                    {
+                        if (storeUsedBy > 1)
+                            storeUsage.TryUpdate(storeID, storeUsedBy - 1, storeUsedBy);
+                        else
+                        {
+                            storeUsage.TryRemove(storeID, out _);
+                            stores.TryRemove(storeID, out _);
+                        }
+                    }
                     else
-                        this.storeUsage.TryUpdate(storeID, (storeUsage.TryGetValue(storeID) - 1), _);
+                        stores.TryRemove(storeID, out _);
                 }
                 catch (Exception e) { throw e; }
             }
@@ -174,7 +183,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                AcquireStore(store).ChangeName(userID, newName);
+                AcquireStore(storeID).ChangeName(userID, newName);
                 ReleaseStore(storeID);
             } catch (Exception e) { throw e; }
         }
@@ -200,12 +209,11 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    string newIDForStore = storeRepo.GetNewStoreID();
+                    string newIDForStore = storeRepo.getNewStoreID();
                     if (newIDForStore == "")
-                        return false;
-                    Store currStore = new Store(userID, newIDForStore, newStoreDetails, null);
-                    currStore.AsssignNewFounder(userID);
-                    storeRepo.AddStore(currStore);
+                        throw new Exception("Created bad store ID.");
+                    Store currStore = new Store(userID, newIDForStore, null, null, null);
+                    storeRepo.AddStore(userdID, currStore);
                 }
                 catch (Exception e)
                 {
@@ -222,6 +230,15 @@ namespace Market_System.DomainLayer.StoreComponent
                 stores.TryRemove(storeID, out _);
                 storeUsage.TryRemove(storeID, out _);
 
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RestoreStore(string userID, string storeID)
+        {
+            try
+            {
+                storeRepo.RestoreStore(userID, storeID);
             }
             catch (Exception e) { throw e; }
         }
@@ -255,7 +272,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicy);
                 ReleaseStore(storeID);
-            }catch (Exception e) { throw e; }   
+            } catch (Exception e) { throw e; }
         }
 
 
@@ -369,12 +386,12 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ManageEmployeePermissions(string userID, string storeID, string employeeID, List<Permission> perms)
+        public void ManageEmployeePermissions(string userID, string storeID, string employeeID, List<Permission> perms) // update only for store manager - exchanges permissions
         {
             try
             {
                 AcquireStore(storeID).ManagePermissions(userID, employeeID, perms);
-                ReleaseStore(storeID) ;
+                ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
         }
@@ -406,7 +423,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void AddProductToStore(string storeID, string usertID, List<String> productProperties) 
+        public void AddProductToStore(string storeID, string usertID, List<String> productProperties)
         {
             // List<string>, length 10, as foolows:
             // Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale, Weight, Dimenssions, PurchaseAttributes, ProductCategory 
@@ -421,11 +438,11 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void RemoveProductFromStore(string storeID, string userID, string productID, List<string> productProperties)
+        public void RemoveProductFromStore(string storeID, string userID, string productID)
         {
             try
             {
-                AcquireStore(storeID).RemoveProduct(userID, productProperties);
+                AcquireStore(storeID).RemoveProduct(userID, productID);
                 ReleaseStore(storeID);
             }
             catch (Exception e)
@@ -438,7 +455,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                AcquireStore(GetStoreIdFromProductID(productID)).AddProductComment(string userID, string productID, string comment, double rating);
+                AcquireStore(GetStoreIdFromProductID(productID)).AddProductComment(userID, productID, comment, rating);
                 ReleaseStore(GetStoreIdFromProductID(productID));
             }
             catch (Exception e)
@@ -460,11 +477,11 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public Boolean LetGoProduct(ItemDTO reservedProduct)
+        public void LetGoProduct(ItemDTO reservedProduct)
         {
             try
             {
-                AcquireStore(GetStoreIdFromProductID(productID)).LetGoProduct(reservedProduct);
+                AcquireStore(GetStoreIdFromProductID(reservedProduct.GetID())).LetGoProduct(reservedProduct);
                 ReleaseStore(GetStoreIdFromProductID(reservedProduct.GetID()));
             }
             catch (Exception e)
@@ -589,7 +606,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ChangeProductDimenssions(string userID, string productID, Array<double> dims)
+        public void ChangeProductDimenssions(string userID, string productID, double[] dims)
         {
             try
             {
@@ -606,7 +623,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicy);
                 ReleaseStore(storeID);
-            } catch(Exception e) { throw e; }
+            } catch (Exception e) { throw e; }
         }
 
         public void RemoveProductPurchasePolicy(string userID, string storeID, string productID, String policyID)
@@ -635,7 +652,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                AcquireStore(storeID).RemoveStorePurchaseStrategy(userID, productID, strategyID);
+                AcquireStore(storeID).RemoveProductPurchaseStrategy(userID, productID, strategyID);
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
@@ -649,8 +666,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         //this for tests
         public void Destroy_me()
-        {    
-            Instance = null;     
+        {
+            Instance = null;
         }
 
 
@@ -664,3 +681,4 @@ namespace Market_System.DomainLayer.StoreComponent
         // =============================================================
 
     }
+}
