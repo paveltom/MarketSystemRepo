@@ -70,7 +70,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             this.StoreID = storeID;
             this.storeRepo = StoreRepo.GetInstance();
-            this.Product_ID = this.storeRepo.GetNewProductID(storeID);
+            this.Product_ID = this.storeRepo.getNewProductID(storeID);
             this.PurchasePolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultStorePolicies);
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy> (defaultStoreStrategies);            
             this.Comments = new ConcurrentBag<string> ();
@@ -322,7 +322,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                this.storeRepo.SaveProduct(this);
+                this.storeRepo.saveProduct(this);
             } catch (Exception e) { throw e; }
         }
 
