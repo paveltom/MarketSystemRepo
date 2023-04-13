@@ -407,29 +407,92 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductDimenssions(string productID, double[] dims)
+        public Response<string> ChangeProductDimenssions(string productID, double[] dims)
         {
-            return this.ssc.ChangeProductDimenssions(productID, dims);
+            try
+            {
+                this.ssc.ChangeProductDimenssions(productID, dims);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product dimenssions change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductDimenssions");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
         {
-            return this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+
+            try
+            {
+                this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("add a purchase policy for a product, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddProductPurchasePolicy");
+                return Response<String>.FromError(e.Message);
+            }
+
         }
 
-        public Response RemoveProductPurchasePolicy(string productID, String policyID)
+        public Response<string> RemoveProductPurchasePolicy(string productID, String policyID)
         {
-            return this.ssc.RemoveProductPurchasePolicy(productID, policyID);
+
+            try
+            {  
+                this.ssc.RemoveProductPurchasePolicy(productID, policyID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("removed a product purcahse policy, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveProductPurchasePolicy");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
         {
-            return this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+            try
+            {
+                this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("add a product purchase strategy, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddProductPurhcaseStrategy");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response RemoveProductPurchaseStrategy(string productID, String strategyID)
+        public Response <string> RemoveProductPurchaseStrategy(string productID, String strategyID)
         {
-            return this.ssc.RemoveProductPurchaseStrategy(productID, strategyID);
+            try
+            {
+                this.ssc.RemoveProductPurchaseStrategy(productID, strategyID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("remove a product purchase strategy, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveProductPurchaseStrategy");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public Response<List<string>> get_managers_of_store(string storeID)
