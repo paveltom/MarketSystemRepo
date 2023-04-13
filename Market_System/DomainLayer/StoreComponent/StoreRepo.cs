@@ -381,6 +381,16 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void saveStore(Store storeToSave)
         {
+            foreach (Store s in storeDatabase.Keys)
+            {
+                if (s.GetStore_ID().Equals(storeToSave.GetStore_ID()))
+                {
+                    storeDatabase.Remove(s);
+                    storeDatabase.Add(s, s.GetListOfProducts());
+                    return;
+                }
+            }
+            storeDatabase.Add(storeDatabase, storeDatabase.GetListOfProducts());
 
         }
 
