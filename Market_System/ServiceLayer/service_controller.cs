@@ -185,6 +185,7 @@ namespace Market_System.ServiceLayer
 
                 
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
+                this.ssc.purchase(cart.convert_to_item_DTO());
                 Logger.get_instance().record_event("checkout completed by : " + username );
                 
                 return ok;
@@ -548,9 +549,9 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<List<string>> get_purchase_history_from_store(string storeID)
+        public Response<string> get_purchase_history_from_store(string storeID)
         {
-            Response<List<string>> response = this.ssc.GetPurchaseHistoryOfTheStore(storeID);
+            Response<string> response = this.ssc.GetPurchaseHistoryOfTheStore(storeID);
             if (response.ErrorOccured)
             {
                 Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in get_purchase_history_from_store");

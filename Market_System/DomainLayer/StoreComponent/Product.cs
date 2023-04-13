@@ -458,6 +458,16 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        public string get_productid()
+        {
+            return this.Product_ID;
+        }
+
+        public int get_quantity()
+        {
+            return this.Quantity;
+        }
+
 
 
 
