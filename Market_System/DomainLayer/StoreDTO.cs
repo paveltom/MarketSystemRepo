@@ -27,34 +27,34 @@ namespace Market_System.DomainLayer
             this.Name = storeToCopy.Name;
             this.FounderID = storeToCopy.founderID;
             this.AllProducts = storeToCopy.GetItems();
-            this.Employees = storeToCopy.GetManagersOfTheStore();
+            this.managers = storeToCopy.GetManagersOfTheStore(FounderID);
 
         }
 
 
         public List<string> MarketManagerView()
         {
-
+            throw new NotImplementedException();
         }
 
         public List<string> StoreManagerView()
         {
-
+            throw new NotImplementedException();
         }
 
         public List<string> StoreOwnerView()
         {
-
+            throw new NotImplementedException();
         }
 
         public List<string> StoreFounderView()
         {
-
+            throw new NotImplementedException();
         }
 
         public List<string> UserView()
         {
-
+            throw new NotImplementedException();
         }
 
     }

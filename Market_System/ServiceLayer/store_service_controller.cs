@@ -49,8 +49,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                ItemDTO ret = this.Market.GetStore(this.SessionID, storeID);
-                return Response<ItemDTO>.FromValue(ret);
+                StoreDTO ret = this.Market.GetStore(this.SessionID, storeID);
+                return Response<StoreDTO>.FromValue(ret);
             }
             catch (Exception ex)
             {

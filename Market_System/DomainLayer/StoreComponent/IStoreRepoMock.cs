@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
-    public interface IStoreRepoMock
+    public interface IStoreRepoMock // This class is for unit tests purposes only.
     {
         void Save(Product toSave);
     }
