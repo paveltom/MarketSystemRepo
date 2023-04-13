@@ -351,17 +351,62 @@ namespace Market_System.DomainLayer.StoreComponent
             return newProductID;
         }
 
+        public Store GetStore(string storeID)
+        {
+            foreach (Store s in storeDatabase.Keys)
+            {
+                if (s.GetStore_ID().Equals(storeID))
+                {
+                    return s;
+                }
+            }
 
+            throw new Exception("No such store with the provided Store ID");
+        }
+
+        public Product GetProduct(string productID)
+        {
+            var storeID = GetStoreIdFromProductID(productID);
+            Store store = GetStore(storeID);
+            foreach (Product p in storeDatabase[store].Keys)
+            {
+                if (p.get_productid().Equals(productID))
+                {
+                    return p;
+                }
+            }
+            throw new Exception("No such product in this store with the provided ID");
+        }
 
 
         public void saveStore(Store storeToSave)
         {
+            foreach (Store s in storeDatabase.Keys)
+            {
+                if (s.GetStore_ID().Equals(storeToSave.GetStore_ID()))
+                {
+                    storeDatabase.Remove(s);
+                    break;
+                }
+            }
+            storeDatabase.Add(storeToSave, storeToSave.GetListOfProducts());
 
         }
 
         public void saveProduct(Product productToSave)
         {
-
+            var storeID = productToSave.GetStoreID();
+            Store store = GetStore(storeID);
+            foreach (Product p in storeDatabase[store].Keys)
+            {
+                var productID = productToSave.Product_ID;
+                if (p.get_productid().Equals(productID))
+                {
+                    storeDatabase[store].Remove(p);
+                    break;
+                }
+            }
+            storeDatabase[store].Add(productToSave, productToSave.Quantity);
         }
 
         public string getPurchaseHistoryOfTheStore(string store_ID)
@@ -395,10 +440,17 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-
-        
-
-
+        private string GetStoreIdFromProductID(string productID)
+        {
+            try
+            {
+                return productID.Substring(0, productID.IndexOf("_"));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         internal void close_store_temporary(string store_ID)
         {
