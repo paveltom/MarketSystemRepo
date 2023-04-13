@@ -364,7 +364,19 @@ namespace Market_System.DomainLayer.StoreComponent
             throw new Exception("No such store with the provided Store ID");
         }
 
-
+        public Product GetProduct(string productID)
+        {
+            var storeID = GetStoreIdFromProductID(productID);
+            Store store = GetStore(storeID);
+            foreach (Product p in storeDatabase[store].Keys)
+            {
+                if (p.get_productid().Equals(productID))
+                {
+                    return p;
+                }
+            }
+            throw new Exception("No such product in this store with the provided ID");
+        }
 
 
         public void saveStore(Store storeToSave)
@@ -408,10 +420,17 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-
-        
-
-
+        private string GetStoreIdFromProductID(string productID)
+        {
+            try
+            {
+                return productID.Substring(0, productID.IndexOf("_"));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         internal void close_store_temporary(string store_ID)
         {
