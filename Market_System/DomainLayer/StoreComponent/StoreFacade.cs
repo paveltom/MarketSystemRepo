@@ -227,6 +227,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 AcquireStore(storeID).close_store_temporary(userID);
+                storeRepo.close_store_temporary(storeID);
                 stores.TryRemove(storeID, out _);
                 storeUsage.TryRemove(storeID, out _);
 

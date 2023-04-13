@@ -8,6 +8,8 @@ namespace Market_System.DomainLayer.StoreComponent
 {
     public class StoreRepo
     {
+        private static List<string> opened_stores_ids;
+        private static List<string> temporary_closed_stores_ids;
         private static Dictionary<Store, Dictionary<Product, int>> storeDatabase; //<Store, <Product, quantity>>
         private static Random store_id_generator;
         private static Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>> purchase_history; // key in second dictionary is date  val
@@ -65,6 +67,93 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
+        public List<ItemDTO> SearchProductsByCategory(Category category)
+        {
+            List<ItemDTO> search_result = new List<ItemDTO>();
+
+            lock (RemoveProductLock)
+            {
+                foreach (Store s in storeDatabase.Keys)
+                {
+                    if (!s.is_closed_temporary())
+                    {
+                        foreach (KeyValuePair<Product, int> pair in storeDatabase[s])
+                        {
+
+                            if (pair.Key.get_ProductCategory().CategoryName.Equals(category.CategoryName))
+                            {
+                                search_result.Add(new ItemDTO(pair.Key));
+                            }
+                        }
+                    }
+                }
+
+
+                return search_result;
+            }
+          
+        }
+
+
+        public List<ItemDTO> SearchProductsByKeyword(string keyword)
+        {
+            List<ItemDTO> search_result = new List<ItemDTO>();
+
+            lock (RemoveProductLock)
+            {
+                foreach (Store s in storeDatabase.Keys)
+                {
+                    if (!s.is_closed_temporary())
+                    {
+                        foreach (KeyValuePair<Product, int> pair in storeDatabase[s])
+                        {
+
+                            if (pair.Key.Name.Contains(keyword))
+                            {
+                                search_result.Add(new ItemDTO(pair.Key));
+                            }
+                        }
+                    }
+
+                }
+
+
+                return search_result;
+            }
+
+        }
+
+
+
+
+        public List<ItemDTO> SearchProductsByName(string name)
+        {
+            List<ItemDTO> search_result = new List<ItemDTO>();
+
+            lock (RemoveProductLock)
+            {
+                foreach (Store s in storeDatabase.Keys)
+                {
+                    if (!s.is_closed_temporary())
+                    {
+                        foreach (KeyValuePair<Product, int> pair in storeDatabase[s])
+                        {
+
+                            if (pair.Key.Name.Equals(name))
+                            {
+                                search_result.Add(new ItemDTO(pair.Key));
+                            }
+                        }
+                    }
+
+                }
+
+
+                return search_result;
+            }
+
+        }
+
         public bool checkIfStoreExists(string founder, int store_ID)
         {
 
@@ -79,7 +168,7 @@ namespace Market_System.DomainLayer.StoreComponent
             return false;
         }
 
-        public void AddStore(string founder, int store_ID)
+        public void AddStore(string founder, string store_ID)
         {
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
             {
@@ -89,35 +178,69 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
             }
             storeDatabase.Add(new Store(founder, store_ID), new Dictionary<Product, int>());
+            opened_stores_ids.Add(store_ID);
         }
-              
+      
         public void AddProduct(string store_ID, string founder_username, Product product, int quantity)
         {
-            foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
+            if (opened_stores_ids.Contains(store_ID))
             {
-                if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Value.ContainsKey(product))
+                foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
                 {
-                    storeDatabase[pair.Key].Add(product, quantity);
-                  //  pair.Key.AddProduct(new Product product.get_productid(), quantity);
-                   // pair.Key.AddProduct(founder_username,product.) fix this later
-                    return;
+                    if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Value.ContainsKey(product))
+                    {
+                        storeDatabase[pair.Key].Add(product, quantity);
+                        //  pair.Key.AddProduct(new Product product.get_productid(), quantity);
+                        // pair.Key.AddProduct(founder_username,product.) fix this later
+                        return;
+                    }
+                }
+                throw new Exception("Invalid data has been provided, either this product already exists in this store.");
+            }
+            else
+            {
+                if (temporary_closed_stores_ids.Contains(store_ID))
+                {
+                    throw new Exception("can't add product to closed store!");
+                }
+                else
+                {
+                    throw new Exception("store does not exist");
                 }
             }
-            throw new Exception("Invalid data has been provided, either this product already exists in this store.");
+            
         }
 
-        public void RemoveProduct(int store_ID, string founder, Product product)
+        private static object RemoveProductLock = new object();
+        public void RemoveProduct(string store_ID, string founder, Product product)
         {
-            foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
+            lock (RemoveProductLock)
             {
-                if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && pair.Value.ContainsKey(product))
+                if (opened_stores_ids.Contains(store_ID))
                 {
-                    storeDatabase[pair.Key].Remove(product);
-                    pair.Key.Remove_Product(product.GetProductID());
-                    return;
+                    foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
+                    {
+                        if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && pair.Value.ContainsKey(product))
+                        {
+                            storeDatabase[pair.Key].Remove(product);
+                            pair.Key.Remove_Product(product.GetProductID());
+                            return;
+                        }
+                    }
+                    throw new Exception("Invalid data has been provided, either this product doesn't exist in this store.");
+                }
+                else
+                {
+                    if (temporary_closed_stores_ids.Contains(store_ID))
+                    {
+                        throw new Exception("can't remove product from a closed store!");
+                    }
+                    else
+                    {
+                        throw new Exception("store does not exist");
+                    }
                 }
             }
-            throw new Exception("Invalid data has been provided, either this product doesn't exist in this store.");
         }
 
         public void Assign_New_Owner(string founder, string username, int store_ID)
@@ -228,29 +351,6 @@ namespace Market_System.DomainLayer.StoreComponent
             return newProductID;
         }
 
-        public string searchFunctionality(int option, string keyword = "", string productName = "", string category = "")
-        {
-            string searchResults = "";
-
-            switch (option)
-            {
-                case 1:
-                    searchResults = "Search by keyword for: " + keyword;
-                    break;
-                case 2:
-                    searchResults = "Search by product name for: " + productName;
-                    break;
-                case 3:
-                    searchResults = "Search by category for: " + category;
-                    break;
-                default:
-                    searchResults = "Invalid search option selected.";
-                    break;
-            }
-
-            return searchResults;
-
-        }
 
 
 
@@ -266,7 +366,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public string getPurchaseHistoryOfTheStore(string store_ID)
         {
-
+            if (opened_stores_ids.Contains(store_ID))
+            {
                 string return_me = "";
                 Store s = getStore(store_ID);
                 foreach (KeyValuePair<string, List<Purchase_History_Obj_For_Store>> purchase__pair in purchase_history[s])
@@ -279,7 +380,19 @@ namespace Market_System.DomainLayer.StoreComponent
                     }
 
                 }
-            return return_me;
+                return return_me;
+            }
+            else
+            {
+                if (temporary_closed_stores_ids.Contains(store_ID))
+                {
+                    throw new Exception("can't show a closed store's purhase history!");
+                }
+                else
+                {
+                    throw new Exception("store does not exist");
+                }
+            }
         }
 
 
@@ -289,7 +402,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         internal void close_store_temporary(string store_ID)
         {
-            throw new NotImplementedException();
+            opened_stores_ids.Remove(store_ID);
+            temporary_closed_stores_ids.Add(store_ID);
         }
 
         internal void destroy()
