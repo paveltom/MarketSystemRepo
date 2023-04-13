@@ -156,7 +156,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<string> GetStorePurchaseHistory(string sessionID, string storeID)
+        internal string GetStorePurchaseHistory(string sessionID, string storeID)
         {
             try
             {
@@ -227,6 +227,19 @@ namespace Market_System.DomainLayer
                 
             }
 
+        }
+
+        internal void purchase(string session_id,List<ItemDTO> itemDTOs)
+        {
+            try
+            {
+                storeFacade.Purchase(session_id, itemDTOs);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         internal void RemoveEmployeePermission(string sessionID, string storeID, string employeeID, StoreComponent.Permission permission)
@@ -480,7 +493,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+                
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
