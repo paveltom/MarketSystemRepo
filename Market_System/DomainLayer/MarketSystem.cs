@@ -411,7 +411,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                storeFacade.Assign_New_Owner(founder, username, store_ID);
+                storeFacade.AssignNewOwner(founder, username, store_ID); //TODO:: fix this @Bayan
             }
             catch (Exception e)
             {
@@ -423,7 +423,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                storeFacade.Assign_New_Managaer(founder, username, store_ID);
+                storeFacade.AssignNewManager(founder, username, store_ID); //TODO:: fix this @Bayan
             }
             catch (Exception e)
             {
@@ -645,18 +645,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: create a caregory here...
-                var index = 0;
-                for(int i = 0; i < categoryID.Length; i++)
-                {
-                    if(i == '_')
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-                
-                Category category = new Category(categoryID.Substring(index + 1));
+                Category category = new Category(GetStoreIdFromProductID(productID));
                 storeFacade.ChangeProductCategory(SessionID, productID, category);
             }
             catch (Exception e)
@@ -681,9 +670,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                //ALSO: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
-                storeFacade.AddProductPurchasePolicy(SessionID, "CHANGETHISTOSTOREID!!!!!!", productID, newPolicy);
+                //TODO:: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
+                storeFacade.AddProductPurchasePolicy(SessionID, GetStoreIdFromProductID(productID), productID, newPolicy);
             }
             catch (Exception e)
             {
@@ -695,8 +683,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                storeFacade.RemoveProductPurchasePolicy(SessionID, "DUNNO WHO IS STORE ID CHANGE THIS", productID, policyID);
+                storeFacade.RemoveProductPurchasePolicy(SessionID, GetStoreIdFromProductID(productID), productID, policyID);
             }
             catch (Exception e)
             {
@@ -708,8 +695,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                storeFacade.AddProductPurchaseStrategy(SessionID, "DUNNO WHO IS STORE ID CHANGE THIS", productID, newStrategy);
+                //TODO:: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
+                storeFacade.AddProductPurchaseStrategy(SessionID, GetStoreIdFromProductID(productID), productID, newStrategy);
             }
             catch (Exception e)
             {
@@ -721,8 +708,19 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                storeFacade.RemoveProductPurchaseStrategy(SessionID, "DUNNO WHO IS STORE ID CHANGE THIS", productID, strategyID);
+                storeFacade.RemoveProductPurchaseStrategy(SessionID, GetStoreIdFromProductID(productID), productID, strategyID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private string GetStoreIdFromProductID(string productID)
+        {
+            try
+            {
+                return productID.Substring(0, productID.IndexOf("_"));
             }
             catch (Exception e)
             {
