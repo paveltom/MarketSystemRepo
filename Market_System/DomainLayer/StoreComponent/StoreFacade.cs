@@ -596,11 +596,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ChangeProductProductCategory(string userID, string productID, Category category)
+        public void ChangeProductCategory(string userID, string productID, Category category)
         {
             try
             {
-                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductProductCategory(userID, productID, category);
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductCategory(userID, productID, category);
                 ReleaseStore(this.GetStoreIdFromProductID(productID));
             }
             catch (Exception e) { throw e; }

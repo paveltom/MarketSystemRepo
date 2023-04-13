@@ -641,7 +641,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void ChangeProductProductCategory(string SessionID, string productID, string categoryID)
+        public void ChangeProductCategory(string SessionID, string productID, string categoryID)
         {
             try
             {
@@ -657,7 +657,7 @@ namespace Market_System.DomainLayer
                 }
                 
                 Category category = new Category(categoryID.Substring(index + 1));
-                storeFacade.ChangeProductProductCategory(SessionID, productID, category);
+                storeFacade.ChangeProductCategory(SessionID, productID, category);
             }
             catch (Exception e)
             {

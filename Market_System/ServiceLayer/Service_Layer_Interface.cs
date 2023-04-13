@@ -39,7 +39,7 @@ namespace Market_System.ServiceLayer
         public Response<string> ChangeProductWeight(string productID, double weight);
         public Response<string> ChangeProductSale(string productID, double sale);
         public Response<string> ChangeProductTimesBought(string productID, int times);
-        public Response<string> ChangeProductProductCategory(string productID, string categoryID);
+        public Response<string> ChangeProductCategory(string productID, string categoryID);
         public Response<string> ChangeProductDimenssions(string productID, double[] dims);
         public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties);
         public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
