@@ -9,7 +9,8 @@ namespace Market_System.DomainLayer.StoreComponent
     public class StoreRepo
     {
         private static Dictionary<Store, Dictionary<Product, int>> storeDatabase; //<Store, <Product, quantity>>
-
+        private static Random store_id_generator;
+        private static Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>> purchase_history; // key in second dictionary is date  val
         //This variable is going to store the Singleton Instance
         private static StoreRepo Instance = null;
 
@@ -30,6 +31,8 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (Instance == null)
                     {
                         storeDatabase = new Dictionary<Store, Dictionary<Product, int>>();
+                        store_id_generator = new Random();
+                        purchase_history = new Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>>();
                         Instance = new StoreRepo();
                     }
                 } //Critical Section End
@@ -41,10 +44,33 @@ namespace Market_System.DomainLayer.StoreComponent
             return Instance;
         }
 
+
+
+
+        public void record_purchase(Store store,ItemDTO item)
+        {
+            if(!purchase_history.ContainsKey(store))
+            {
+                purchase_history.Add(store,new Dictionary<string, List<Purchase_History_Obj_For_Store>>());
+            }
+
+            if (!purchase_history[store].ContainsKey(DateTime.Now.ToShortDateString()))
+            {
+                purchase_history[store].Add(DateTime.Now.ToShortDateString(), new List<Purchase_History_Obj_For_Store>());
+            }
+
+            purchase_history[store][DateTime.Now.ToShortDateString()].Add(new Purchase_History_Obj_For_Store(item));
+
+        }
+
+
+
         public bool checkIfStoreExists(string founder, int store_ID)
         {
+
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
             {
+               
                 if(pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder))
                 {
                     return true;
@@ -64,15 +90,16 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             storeDatabase.Add(new Store(founder, store_ID), new Dictionary<Product, int>());
         }
-
-        public void AddProduct(int store_ID, string founder, Product product, int quantity)
+              
+        public void AddProduct(string store_ID, string founder_username, Product product, int quantity)
         {
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
             {
                 if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Value.ContainsKey(product))
                 {
                     storeDatabase[pair.Key].Add(product, quantity);
-                    pair.Key.Add_Product(product.GetProductID(), quantity);
+                  //  pair.Key.AddProduct(new Product product.get_productid(), quantity);
+                   // pair.Key.AddProduct(founder_username,product.) fix this later
                     return;
                 }
             }
@@ -146,37 +173,58 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public string getNewStoreID(string store.Name)
+        public string getNewStoreID()
         {
-            if (store.GetStoreID() != null)
+            
+            bool found_same_id = false;
+            string newStoreID;
+            while (true)
             {
-                throw new Exception("Store already has an ID");
-            }
-            string newStoreID = "ID" + (storeDatabase.Count + 1);
-            foreach (Store s in storeDatabase)
-            {
-                if (s.GetStoreID() == newStoreID)
+                newStoreID = store_id_generator.Next().ToString();
+                foreach (Store s in storeDatabase.Keys)
                 {
-                    throw new Exception("Generated ID is already in use by another store");
+                    if (s.GetStore_ID().Equals( newStoreID))
+                    {
+                        found_same_id = true;
+                        break;
+
+                    }
+                }
+                if(!found_same_id)
+                {
+                    break;
                 }
             }
             return newStoreID;
         }
 
-        public string getNewProductID(string product.Name)
+        public string getNewProductID(string storeID)
         {
-            if (product.GetProductID() != null)
+            bool found_same_id = false;
+            Store store = getStore(storeID);
+            
+            string newProductID = storeID +"_";
+            while (true)
             {
-                throw new Exception("product already has an ID");
-            }
-            string newProductID = "ID" + (products.Count + 1);
-            foreach (Product P in products)
-            {
-                if (P.GetProductID() == newProductID)
+                newProductID = newProductID+store_id_generator.Next().ToString();
+                foreach (Product p in storeDatabase[store].Keys)
                 {
-                    throw new Exception("Generated ID is already in use by another product");
+                    if (p.get_productid().Equals(newProductID))
+                    {
+                        found_same_id = true;
+                        newProductID = storeID + "_";
+                        break;
+
+
+                    }
+                }
+                if (!found_same_id)
+                {
+                    break;
                 }
             }
+            
+      
             return newProductID;
         }
 
@@ -204,6 +252,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+
+
         public void saveStore(Store storeToSave)
         {
 
@@ -216,12 +266,36 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public string getPurchaseHistoryOfTheStore(string store_ID)
         {
-            return this.getStore(store_ID).get_purchase_history();
+
+                string return_me = "";
+                Store s = getStore(store_ID);
+                foreach (KeyValuePair<string, List<Purchase_History_Obj_For_Store>> purchase__pair in purchase_history[s])
+                {
+                    return_me = return_me + purchase__pair.Key + ": \n";
+                    foreach (Purchase_History_Obj_For_Store obj in purchase__pair.Value)
+                    {
+                        return_me = return_me + obj.tostring();
+
+                    }
+
+                }
+            return return_me;
         }
-            
-        public void record_purchase(string store_id,ItemDTO item)
+
+
+        
+
+
+
+        internal void close_store_temporary(string store_ID)
         {
-            this.getStore(store_id).record_purchase(item);
+            throw new NotImplementedException();
+        }
+
+        internal void destroy()
+        {
+            Instance = null;
+
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private StoreRepo storeRepo;
         private ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
         private ConcurrentDictionary<string, Purchase_Strategy> defaultStrategies; // passed to every new added product
-        private Dictionary<string , List<Purchase_History_Obj_For_Store>> purchase_history; // key is date  
+
 
         // builder for a new store - initialize all fields later
         public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS)
@@ -34,7 +34,6 @@ namespace Market_System.DomainLayer.StoreComponent
             this.productUsage = new ConcurrentDictionary<string, int>();
             this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
-            this.purchase_history = new Dictionary<string, List<Purchase_History_Obj_For_Store>>();
 
             if(policies != null) 
                 foreach (Purchase_Policy p in policies) 
@@ -180,7 +179,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public string GetPurchaseHistoryOfTheStore(string userID)
+        public List<string> GetPurchaseHistoryOfTheStore(string userID)
         {
             try
             {
@@ -283,7 +282,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         {
                             AcquireProduct(item.GetID()).Purchase(item.GetQuantity());
                             ReleaseProduct(item.GetID());
-                            this.storeRepo.record_purchase(this.Store_ID,item); // for purchase history
+                            this.storeRepo.Purchase(this.Store_ID, item.GetID, userID); // for purchase history
                         }
                 }
                 catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
@@ -567,17 +566,6 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-
-        public void record_purchase(ItemDTO item)
-        {
-            if(!this.purchase_history.ContainsKey(DateTime.Now.ToShortDateString()))
-            {
-                this.purchase_history.Add(DateTime.Now.ToShortDateString(), new List<Purchase_History_Obj_For_Store>());
-            }
-            this.purchase_history[DateTime.Now.ToShortDateString()].Add(new Purchase_History_Obj_For_Store(item));
-
-        }
-
         public void ChangeProductTimesBought(string userID, string productID, int times) // only market manager can do
         {
             try
@@ -656,21 +644,6 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public string get_purchase_history()
-        {
-            string return_me = "";
-            foreach (KeyValuePair<string, List<Purchase_History_Obj_For_Store>> purchase__pair in purchase_history)
-            {
-                return_me = return_me + purchase__pair.Key + ": \n";
-                foreach( Purchase_History_Obj_For_Store obj in purchase__pair.Value)
-                {
-                    return_me = return_me + obj.tostring();
-
-                }
-
-            }
-            return return_me;
-        }
 
         public void RemoveProductPurchaseStrategy(string userID, string productID, String strategyID)
         {
