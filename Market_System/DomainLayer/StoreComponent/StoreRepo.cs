@@ -386,17 +386,27 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (s.GetStore_ID().Equals(storeToSave.GetStore_ID()))
                 {
                     storeDatabase.Remove(s);
-                    storeDatabase.Add(s, s.GetListOfProducts());
-                    return;
+                    break;
                 }
             }
-            storeDatabase.Add(storeDatabase, storeDatabase.GetListOfProducts());
+            storeDatabase.Add(storeToSave, storeToSave.GetListOfProducts());
 
         }
 
         public void saveProduct(Product productToSave)
         {
-
+            var storeID = productToSave.GetStoreID();
+            Store store = GetStore(storeID);
+            foreach (Product p in storeDatabase[store].Keys)
+            {
+                var productID = productToSave.Product_ID;
+                if (p.get_productid().Equals(productID))
+                {
+                    storeDatabase[store].Remove(p);
+                    break;
+                }
+            }
+            storeDatabase[store].Add(productToSave, productToSave.Quantity);
         }
 
         public string getPurchaseHistoryOfTheStore(string store_ID)
