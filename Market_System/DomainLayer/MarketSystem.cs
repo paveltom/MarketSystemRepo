@@ -407,11 +407,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Owner(string founder, string username, int store_ID)
+        public void Assign_New_Owner(string founder, string username, string store_ID)
         {
             try
             {
-                storeFacade.AssignNewOwner(founder, username, store_ID); //TODO:: fix this @Bayan
+                storeFacade.AssignNewOwner(founder, store_ID, username);
             }
             catch (Exception e)
             {
@@ -419,11 +419,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Manager(string founder, string username, int store_ID)
+        public void Assign_New_Manager(string founder, string username, string store_ID)
         {
             try
             {
-                storeFacade.AssignNewManager(founder, username, store_ID); //TODO:: fix this @Bayan
+                storeFacade.AssignNewManager(founder, store_ID, username); 
             }
             catch (Exception e)
             {
