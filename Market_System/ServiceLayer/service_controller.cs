@@ -248,74 +248,251 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Response ChangeProductName(string productID, string name)
+        public Response<string> ChangeProductName(string productID, string name)
         {
-            return this.ssc.ChangeProductName(productID, name);
+            try
+            {
+                this.ssc.ChangeProductName(productID, name);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product name change for product id: " + productID);
+                return ok;
+            }
+
+            catch(Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductName");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductDescription(string productID, string desc)
+        public Response<string> ChangeProductDescription(string productID, string desc)
         {
-            return this.ssc.ChangeProductDescription(productID, desc);
+            try
+            {
+                this.ssc.ChangeProductDescription(productID, desc);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product description change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductDescription");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductPrice(string productID, double price)
+        public Response<string> ChangeProductPrice(string productID, double price)
         {
-            return this.ssc.ChangeProductPrice(productID, price);
+            
+            try
+            {
+                this.ssc.ChangeProductPrice(productID, price);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product price change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductPrice");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductRating(string productID, double price)
+        public Response<string> ChangeProductRating(string productID, double rating)
         {
-            return this.ssc.ChangeProductPrice(productID, price);
+            
+            try
+            {
+                this.ssc.ChangeProductRating(productID, rating);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product rating change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductRating");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductQuantity(string productID, int quantity)
+        public Response<string> ChangeProductQuantity(string productID, int quantity)
         {
-            return this.ssc.ChangeProductQuantity(productID, quantity);
+            
+            try
+            {
+                this.ssc.ChangeProductQuantity(productID, quantity);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product quantity change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductQuantity");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductWeight(string productID, double weight)
+        public Response<string> ChangeProductWeight(string productID, double weight)
         {
-            return this.ssc.ChangeProductWeight(productID, weight);
+            
+            try
+            {
+                this.ssc.ChangeProductWeight(productID, weight);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product weight change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductWeight");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductSale(string productID, double sale)
+        public Response<string> ChangeProductSale(string productID, double sale)
         {
-            return this.ssc.ChangeProductSale(productID, sale);
+            
+            try
+            {
+                this.ssc.ChangeProductSale(productID, sale);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product sale change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductSale");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductTimesBought(string productID, int times)
+        public Response<string> ChangeProductTimesBought(string productID, int times)
         {
-            return this.ssc.ChangeProductTimesBought(productID, times);
+            
+            try
+            {
+                this.ssc.ChangeProductTimesBought(productID, times);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product time bought change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductTimeBought");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductProductCategory(string productID, string categoryID)
+        public Response<string> ChangeProductCategory(string productID, string categoryID)
         {
-            return this.ssc.ChangeProductProductCategory(productID, categoryID);
+            try
+            {
+                this.ssc.ChangeProductCategory(productID, categoryID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product category change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductCategory");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response ChangeProductDimenssions(string productID, double[] dims)
+        public Response<string> ChangeProductDimenssions(string productID, double[] dims)
         {
-            return this.ssc.ChangeProductDimenssions(productID, dims);
+            try
+            {
+                this.ssc.ChangeProductDimenssions(productID, dims);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("a product dimenssions change for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ChangeProductDimenssions");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
         {
-            return this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+
+            try
+            {
+                this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("add a purchase policy for a product, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddProductPurchasePolicy");
+                return Response<String>.FromError(e.Message);
+            }
+
         }
 
-        public Response RemoveProductPurchasePolicy(string productID, String policyID)
+        public Response<string> RemoveProductPurchasePolicy(string productID, String policyID)
         {
-            return this.ssc.RemoveProductPurchasePolicy(productID, policyID);
+
+            try
+            {  
+                this.ssc.RemoveProductPurchasePolicy(productID, policyID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("removed a product purcahse policy, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveProductPurchasePolicy");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
         {
-            return this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+            try
+            {
+                this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("add a product purchase strategy, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddProductPurhcaseStrategy");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
-        public Response RemoveProductPurchaseStrategy(string productID, String strategyID)
+        public Response <string> RemoveProductPurchaseStrategy(string productID, String strategyID)
         {
-            return this.ssc.RemoveProductPurchaseStrategy(productID, strategyID);
+            try
+            {
+                this.ssc.RemoveProductPurchaseStrategy(productID, strategyID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("remove a product purchase strategy, for product id: " + productID);
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveProductPurchaseStrategy");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public Response<List<string>> get_managers_of_store(string storeID)
