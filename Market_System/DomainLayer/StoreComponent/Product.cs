@@ -468,6 +468,11 @@ namespace Market_System.DomainLayer.StoreComponent
             return this.Quantity;
         }
 
+        public Category get_ProductCategory()
+        {
+            return this.ProductCategory;
+        }
+
 
 
 

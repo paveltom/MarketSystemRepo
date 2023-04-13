@@ -222,11 +222,12 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void RemoveStore(string userID, string storeID)
+        public void close_store_temporary(string userID, string storeID)
         {
             try
             {
-                AcquireStore(storeID).RemoveStore(userID);
+                AcquireStore(storeID).close_store_temporary(userID);
+                storeRepo.close_store_temporary(storeID);
                 stores.TryRemove(storeID, out _);
                 storeUsage.TryRemove(storeID, out _);
 
@@ -243,11 +244,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public List<string> GetPurchaseHistoryOfTheStore(string userID, string storeID)
+        public string GetPurchaseHistoryOfTheStore(string userID, string storeID)
         {
             try
             {
-                List<string> ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
+                string ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
                 ReleaseStore(storeID);
                 return ret;
             }
@@ -668,6 +669,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public void Destroy_me()
         {
             Instance = null;
+            storeRepo.destroy();
         }
 
 

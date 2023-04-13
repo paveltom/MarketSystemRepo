@@ -80,7 +80,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                storeFacade.RemoveStore(sessionID,storeID);
+                storeFacade.close_store_temporary(sessionID,storeID);
 
             }
 
