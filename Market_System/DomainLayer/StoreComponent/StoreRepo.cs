@@ -351,6 +351,19 @@ namespace Market_System.DomainLayer.StoreComponent
             return newProductID;
         }
 
+        public Store GetStore(string storeID)
+        {
+            foreach (Store s in storeDatabase.Keys)
+            {
+                if (s.GetStore_ID().Equals(storeID))
+                {
+                    return s;
+                }
+            }
+
+            throw new Exception("No such store with the provided Store ID");
+        }
+
 
 
 
