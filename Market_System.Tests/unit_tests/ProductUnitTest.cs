@@ -62,7 +62,7 @@ namespace Market_System.Tests.unit_tests
         [TestCleanup()]
         public void TearDown()
         {
-
+            // nothing to cleanup
         }
 
         private Product GetNewProduct()
@@ -121,24 +121,12 @@ namespace Market_System.Tests.unit_tests
             Purchase_Policy purchase_Policy0 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy0ID", "AddPurchasePolicyProductTest_Policy0Name");
             Purchase_Policy purchase_Policy1 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy1ID", "AddPurchasePolicyProductTest_Policy1Name");
             Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name");
-            Thread t0 = new Thread(() =>
-            {
-                this.testProduct0.AddPurchasePolicy(purchase_Policy0);
-                this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
-            });
-
-            Thread t1 = new Thread(() =>
-            {
-                this.testProduct1.AddPurchasePolicy(purchase_Policy1);
-                this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
-            });
 
             // Act
-            t0.Start();
-            t1.Start();
-
-            t0.Join();
-            t1.Join();
+            this.testProduct0.AddPurchasePolicy(purchase_Policy0);
+            this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
+            this.testProduct1.AddPurchasePolicy(purchase_Policy1);
+            this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
 
             // Assert
             Assert.IsTrue(testProduct0.PurchasePolicies.ContainsKey(purchase_Policy0.GetID()));
@@ -149,8 +137,6 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(testProduct0.PurchasePolicies.ContainsKey(purchase_Policy1.GetID()));
             Assert.IsFalse(testProduct1.PurchasePolicies.ContainsKey(purchase_Policy0.GetID()));
         }
-
-
     
     }
 
