@@ -26,7 +26,7 @@ namespace Market_System.ServiceLayer
         public Response<List<ItemDTO>> search_product_by_name(string name); //2.2
         public Response<string> add_product_to_basket(string product_id,string quantity);
         public Response<string> remove_product_from_basket(string product_id);
-        public void open_new_store(); // 3.2
+        public Response<string> open_new_store(); // 3.2
         public Response<string> comment_on_product(string productID, string comment, double rating); // 3.3
         public Response<string> add_product_to_store(string storeID, string product_name,string description, string price,string quantity,string reserved_quantity,string rating,string sale,string wieght,string dimenstions,string attributes,string product_category); //4.1
         public Response<string> remove_product_from_store(string storeID, string productID); //4.1
