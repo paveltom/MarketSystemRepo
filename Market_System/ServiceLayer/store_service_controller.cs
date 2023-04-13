@@ -84,16 +84,16 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<List<string>> GetPurchaseHistoryOfTheStore(string storeID)
+        public Response<string> GetPurchaseHistoryOfTheStore(string storeID)
         {
             try
             {
-                List<string> history =  this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                return Response<List<string>>.FromValue(history);
+                string history =  this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<string>.FromValue(history);
             }
             catch (Exception ex)
             {
-                return Response<List<string>>.FromError(ex.Message);
+                return Response<string>.FromError(ex.Message);
             }
         }
 
@@ -185,6 +185,18 @@ namespace Market_System.ServiceLayer
                 return new Response("ERROR: " + ex.Message);
             }
 
+        }
+
+        internal void purchase(List<ItemDTO> itemDTOs)
+        {
+            try
+            {
+                this.Market.purchase(this.SessionID,itemDTOs);
+                    }
+            catch (Exception ex)
+            {
+                throw new Exception( ex.Message);
+            }
         }
 
         public Response RemoveEmployeePermission( string storeID, string employeeID, string permToRemove)
@@ -489,11 +501,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductProductCategory( string productID, string categoryID)
+        public Response ChangeProductCategory( string productID, string categoryID)
         {
             try
             {
-                this.Market.ChangeProductProductCategory(this.SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.ChangeProductCategory(this.SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's category was changed successfully.");
             }
             catch (Exception ex)

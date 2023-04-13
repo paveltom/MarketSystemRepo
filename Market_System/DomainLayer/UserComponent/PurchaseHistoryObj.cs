@@ -49,7 +49,7 @@ namespace Market_System.DomainLayer.UserComponent
 
                 foreach(KeyValuePair<string, int> product__pair in basket.get_products())//copies products in basket
                     {
-                    basket_copy.add_product(product__pair.Key);
+                    basket_copy.add_product(product__pair.Key,product__pair.Value);
 
                 }
                 new_list.Add(basket_copy);

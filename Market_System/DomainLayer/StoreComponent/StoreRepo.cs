@@ -119,13 +119,13 @@ namespace Market_System.DomainLayer.StoreComponent
             throw new Exception("Invalid data has been provided, either this manager already exists in this store.");
         }
 
-        public string getStore(string store.Name)
+        public Store getStore(string store_id)
         {
-            foreach (Store S in storeDatabase)
+            foreach (Store S in storeDatabase.Keys)
             {
-                if (S.GetStorename().Equals(store.Name))
+                if (S.Store_ID.Equals(store_id))
                 {
-                    return S.getStore();
+                    return S;
                 }
             }
 
@@ -214,10 +214,14 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
-        public string getPurchaseHistoryOfTheStore(int store_ID)
+        public string getPurchaseHistoryOfTheStore(string store_ID)
         {
-
+            return this.getStore(store_ID).get_purchase_history();
         }
-
+            
+        public void record_purchase(string store_id,ItemDTO item)
+        {
+            this.getStore(store_id).record_purchase(item);
+        }
     }
 }
