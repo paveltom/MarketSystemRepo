@@ -106,7 +106,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.ssc.AssignNewManager(this.session_id, storeID, newManagerID);
+                this.ssc.AssignNewManager( storeID, newManagerID);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
                 Logger.get_instance().record_event("assigning new manager with id : " + newManagerID + " to the store with id: " + storeID);
@@ -124,7 +124,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.ssc.AssignNewOwner(this.session_id, storeID, newOwnerID);
+                this.ssc.AssignNewOwner( storeID, newOwnerID);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
                 Logger.get_instance().record_event("assigning new owner with id : " + newOwnerID + " to the store with id: " + storeID);
@@ -224,7 +224,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.ssc.AddProductComment(this.session_id,productID,comment,rating);
+                this.ssc.AddProductComment(productID,comment,rating);
                 Response<string> ok = Response<string>.FromValue("done successfully");
                
                 Logger.get_instance().record_event("a new comment for product id: "+productID );
@@ -322,7 +322,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.GetManagersOfTheStore(session_id, storeID));
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetManagersOfTheStore( storeID);
                 Logger.get_instance().record_event("getting managers from store : " + storeID + " done successfully");
 
                 return ok;
@@ -339,7 +339,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.GetOwnersOfTheStore(session_id,storeID));
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetOwnersOfTheStore(storeID);
                 Logger.get_instance().record_event("getting owners from store : " + storeID + " done successfully");
 
                 return ok;
@@ -358,7 +358,7 @@ namespace Market_System.ServiceLayer
             {
 
 
-                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.GetProductsFromStore(storeID));
+                Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.GetProductsFromStore(storeID);
                 Logger.get_instance().record_event("getting products from store : " + storeID+" done successfully");
 
                 return ok;
@@ -407,7 +407,7 @@ namespace Market_System.ServiceLayer
 
         public Response<ItemDTO> GetStore(string store_id)
         {
-            Response < ItemDTO > response=this.ssc.GetStore(store_id);
+            Response < ItemDTO > response= (Response<ItemDTO>)this.ssc.GetStore(store_id);
             if(response.ErrorOccured)
             {
                 Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in GetStore");
@@ -473,9 +473,23 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public void open_new_store()
+        public Response<string> open_new_store()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<string> empty_list = new List<string>();
+                Response<string> ok = (Response<string>)this.ssc.AddNewStore(empty_list); //empty_list thye are doing nothing wiht it
+                Logger.get_instance().record_event(ok.Value);
+                
+              
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in open_new_store");
+                return Response<String>.FromError(e.Message);
+            }
         }
 
         public Response<string> register(string username,string pass,string address)
@@ -518,7 +532,7 @@ namespace Market_System.ServiceLayer
             {
                 
                 
-                this.ssc.RemoveProductFromStore(storeID, session_id,productID, new List<string>());
+                this.ssc.RemoveProductFromStore(storeID, productID);
                 Response<string> ok = Response<string>.FromValue("successfully removed a product with the ID: "+productID+" from a store with ID: "+storeID);
                 Logger.get_instance().record_event("successfully removed product: "+productID+" from store: " + storeID);
                 return ok;
@@ -537,7 +551,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.SearchProductByCategory(new DomainLayer.StoreComponent.Category(category)));
+                Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.SearchProductByCategory(category);
                 Logger.get_instance().record_event(" search by category : " + category + " was done successfully");
 
                 return ok;
@@ -554,7 +568,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.SearchProductByKeyword(keyword));
+                Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.SearchProductByKeyword(keyword);
                 Logger.get_instance().record_event(" search by keyword : " + keyword + " was done successfully");
 
                 return ok;
@@ -571,7 +585,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<ItemDTO>> ok = Response<List<ItemDTO>>.FromValue(this.ssc.SearchProductByName(name));
+                Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.SearchProductByName(name);
                 Logger.get_instance().record_event(" search by name : " + name + " was done successfully");
 
                 return ok;

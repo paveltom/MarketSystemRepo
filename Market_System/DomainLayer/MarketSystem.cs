@@ -170,6 +170,34 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal void AddStorePurchaseStrategy(string sessionID, string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        {
+            try
+            {
+                 storeFacade.AddStorePurchaseStrategy(sessionID, storeID,newStrategy);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void RemoveStorePurchaseStrategy(string sessionID, string storeID, string strategyID)
+        {
+            try
+            {
+                storeFacade.RemoveStorePurchaseStrategy(sessionID, storeID, strategyID);
+
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal void ReserveProduct(ItemDTO itemDTO)
         {
             storeFacade.ReserveProduct(itemDTO);
@@ -201,9 +229,44 @@ namespace Market_System.DomainLayer
 
         }
 
+        internal void RemoveEmployeePermission(string sessionID, string storeID, string employeeID, StoreComponent.Permission permission)
+        {
+            try
+            {
+                storeFacade.RemoveEmployeePermission(sessionID, storeID, employeeID, permission);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void AddEmployeePermission(string sessionID, string storeID, string employeeID, StoreComponent.Permission permission)
+        {
+            try
+            {
+                 storeFacade.AddEmployeePermission(sessionID, storeID,employeeID,permission);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal string change_password(string username, string new_password)
         {
-            return userFacade.change_password(username, new_password);
+            try
+            {
+                return userFacade.change_password(username, new_password);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+         
         }
 
         public void link_user_with_session(string username, string session_id)
@@ -223,6 +286,19 @@ namespace Market_System.DomainLayer
                 throw e;
             }
             
+        }
+
+        internal List<string> GetOwnersOfTheStore(string sessionID, string storeID)
+        {
+            try
+            {
+                return storeFacade.GetOwnersOfTheStore(sessionID, storeID);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void unlink_user_with_session(string session_id)
@@ -256,6 +332,18 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal void ManageEmployeePermissions(string sessionID, string storeID, string employeeID, List<StoreComponent.Permission> permList)
+        {
+            try
+            {
+                storeFacade.ManageEmployeePermissions(sessionID, storeID,employeeID,permList);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public string login_guest()
         {
             string guest_name = "guest" + this.guest_id_generator.Next();
@@ -271,11 +359,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Add_New_Store(string username, int storeID)
+        public void Add_New_Store(string session_id)
         {
             try
             {
-                storeFacade.Add_New_Store(username, storeID);
+                storeFacade.AddNewStore(session_id, null, null);
             }
             catch(Exception e)
             {
@@ -295,11 +383,23 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Remove_Product_From_Store(int store_ID, string founder, Product product)
+        internal List<ItemDTO> GetProductsFromStore(string sessionID, string storeID)
         {
             try
             {
-                storeFacade.Remove_Product_From_Store(store_ID, founder, product);
+              return  storeFacade.GetProductsFromStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Remove_Product_From_Store(string store_ID, string session_id, string product_id)
+        {
+            try
+            {
+                storeFacade.RemoveProductFromStore(store_ID, session_id, product_id);
             }
             catch (Exception e)
             {
@@ -346,6 +446,18 @@ namespace Market_System.DomainLayer
            
         }
 
+        internal void AddProductComment(string sessionID, string productID, string comment, double rating)
+        {
+            try
+            {
+                 storeFacade.AddProductComment(sessionID,productID,comment,rating);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public string Check_Delivery(string adderss)
         {
             try 
@@ -385,6 +497,30 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal void LetGoProduct(ItemDTO itemToLetGo)
+        {
+            try
+            {
+                 storeFacade.LetGoProduct(itemToLetGo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal List<ItemDTO> SearchProductByKeyword(string sessionID, string keyword)
+        {
+            try
+            {
+             return    storeFacade.SearchProductByKeyword(keyword);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void ChangeProductName(string SessionID, string productID, string name)
         {
             try
@@ -392,6 +528,18 @@ namespace Market_System.DomainLayer
                 storeFacade.ChangeProductName(SessionID, productID, name);
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal List<ItemDTO> SearchProductByName(string sessionID, string name)
+        {
+            try
+            {
+                return storeFacade.SearchProductByName(name);
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -414,6 +562,18 @@ namespace Market_System.DomainLayer
             try
             {
                 storeFacade.ChangeProductPrice(SessionID, productID, price);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal List<ItemDTO> SearchProductByCategory(string sessionID, string category)
+        {
+            try
+            {
+                return storeFacade.SearchProductByCategory(new Category(category));
             }
             catch (Exception e)
             {

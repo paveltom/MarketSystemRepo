@@ -62,7 +62,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.Add_New_Store(this.SessionID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.Add_New_Store(this.SessionID); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store was added successfully.");
             }
             catch (Exception ex)
@@ -140,7 +140,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddStorePurchaseStrategy(this.SessionID, storeID, newStrategy, newStrategyProperties); this.Market.RemoveStorePurchasePolicy(this.SessionID, storeID, policyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.AddStorePurchaseStrategy(this.SessionID, storeID, newStrategy, newStrategyProperties); 
+               
                 return new Response("Strategy was added successfully.");
             }
             catch (Exception ex)
@@ -175,7 +176,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), newPerm)); this.Market.RemoveStorePurchaseStrategy(this.SessionID, storeID, strategyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.AddEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), newPerm)); 
+                
                 return new Response("Permission was added successfully.");
             }
             catch (Exception ex)
@@ -326,12 +328,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response LetGoProduct(string stireID, string productID, int quantity)
+        public Response LetGoProduct(string storeID, string productID, int quantity)
         {
             try
             {
                 ItemDTO itemToLetGo = new ItemDTO(productID, quantity);
-                this.Market.LetGoProduct(this.SessionID, storeID, itemToLetGo); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.LetGoProduct(itemToLetGo); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product was removed from busket successfully.");
             }
             catch (Exception ex)
