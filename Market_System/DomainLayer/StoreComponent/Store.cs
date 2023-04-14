@@ -37,11 +37,11 @@ namespace Market_System.DomainLayer.StoreComponent
             this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.temporaryClosed = temporaryClosed;
 
-            if(policies != null) 
-                foreach (Purchase_Policy p in policies) 
+            if (policies != null)
+                foreach (Purchase_Policy p in policies)
                     this.defaultPolicies.TryAdd(p.GetID(), p);
-            if(strategies != null)
-                foreach (Purchase_Strategy p in strategies) 
+            if (strategies != null)
+                foreach (Purchase_Strategy p in strategies)
                     this.defaultStrategies.TryAdd(p.GetID(), p);
 
             if (allProductsIDS == null)
@@ -95,7 +95,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OwnerOnly) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
                         this.employees.updateEmpPermissions(employeeID, this.Store_ID, perms);
                     else
-                        throw new Exception("You can't manage this employee permissions.");  
+                        throw new Exception("You can't manage this employee permissions.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -111,7 +111,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
-                    else 
+                    else
                         throw new Exception("Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store.");
                 }
                 catch (Exception ex) { throw ex; }

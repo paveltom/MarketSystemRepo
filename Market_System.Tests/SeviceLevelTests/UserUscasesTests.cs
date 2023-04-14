@@ -11,24 +11,14 @@ namespace Market_System.Tests.ServiceLevelTests
     /// 1.regetretion.
     ///     1.1 Successful registration
     ///     1.2 Failed registration - used username
-    ///     1.3 Failed registration - used password
-    ///     1.4 *email.....
+    ///     1.4 
     ///     1.5 
     /// 2.login
-    ///     2.1
-    ///     2.2
-    ///     2.3
-    ///     2.4
-    /// 3.add product to bucket member
-    ///     3.1
-    ///     3.2
-    ///     3.3
-    ///     3.4
-    /// 4.add product to bucket guest
-    ///     4.1
-    ///     4.2
-    ///     4.3
-    ///     4.4
+    ///     2.1 fail login
+    /// 3.logout
+    ///     3.1 success Logout
+    ///     
+
     /// </summary>
 
     [TestClass]
@@ -77,7 +67,6 @@ namespace Market_System.Tests.ServiceLevelTests
         }
 
         [TestMethod]
-        //1.1
         public void UserRegistersAsMemberAndLogin()
         {
             //Setup: none
@@ -95,6 +84,7 @@ namespace Market_System.Tests.ServiceLevelTests
             //tearDown: (TestCleanup())
         }
 
+        [TestMethod]
         public void FailUserRegistersUsedUserame()
         {
             //Setup: none
@@ -109,8 +99,64 @@ namespace Market_System.Tests.ServiceLevelTests
             //tearDown: (TestCleanup())
         }
 
+        [TestMethod]
+        public void failLoginBadUsername()
+        {
+            //Setup: none
+
+            //Action:
+            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
+            Response<string> response2 = service_Controller.login_member("user@#$", "pass1");
+
+            //Result:
+            Assert.Equals(true, response2.ErrorOccured);
+
+            //tearDown: (TestCleanup())
+        }
+
+        [TestMethod]
+        public void failLoginBadPass()
+        {
+            //Setup: none
+
+            //Action:
+            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
+            Response<string> response2 = service_Controller.login_member("user1", "pass11111111111111");
+
+            //Result:
+            Assert.Equals(true, response2.ErrorOccured);
+
+            //tearDown: (TestCleanup())
+        }
+
+        [TestMethod]
+        public void successLogout()
+        {
+            //Setup: none
+
+            //Action:
+            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
+            Response<string> response2 = service_Controller.login_member("user1", "pass1");
+            Response<string> responseLogout =service_Controller.log_out();
+            Response<string> secondLogin = service_Controller.login_member("user1", "pass1");
+
+
+            //Result:
+            Assert.Equals(false, responseLogout.ErrorOccured);
+            Assert.Equals(false, secondLogin.ErrorOccured);
+
+            //tearDown: (TestCleanup())
+        }
+
         //maybe do another test for showing member purchase 
         //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
 
     }
 }
+
+/*
+ * 1.register with mail to get notifications.
+ * 2.add several threads tests about register, login, logout.
+ * 3.add test of login the same user while he is already connected
+ * 
+ */

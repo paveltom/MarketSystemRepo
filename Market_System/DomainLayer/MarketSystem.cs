@@ -80,7 +80,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                storeFacade.RemoveStore(sessionID,storeID);
+                storeFacade.close_store_temporary(sessionID,storeID);
 
             }
 
@@ -156,7 +156,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<string> GetStorePurchaseHistory(string sessionID, string storeID)
+        internal string GetStorePurchaseHistory(string sessionID, string storeID)
         {
             try
             {
@@ -227,6 +227,19 @@ namespace Market_System.DomainLayer
                 
             }
 
+        }
+
+        internal void purchase(string session_id,List<ItemDTO> itemDTOs)
+        {
+            try
+            {
+                storeFacade.Purchase(session_id, itemDTOs);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         internal void RemoveEmployeePermission(string sessionID, string storeID, string employeeID, StoreComponent.Permission permission)
@@ -407,11 +420,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Owner(string founder, string username, int store_ID)
+        public void Assign_New_Owner(string founder, string username, string store_ID)
         {
             try
             {
-                storeFacade.Assign_New_Owner(founder, username, store_ID);
+                storeFacade.AssignNewOwner(founder, store_ID, username);
             }
             catch (Exception e)
             {
@@ -419,11 +432,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Manager(string founder, string username, int store_ID)
+        public void Assign_New_Manager(string founder, string username, string store_ID)
         {
             try
             {
-                storeFacade.Assign_New_Managaer(founder, username, store_ID);
+                storeFacade.AssignNewManager(founder, store_ID, username); 
             }
             catch (Exception e)
             {
@@ -480,7 +493,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
+                
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
@@ -641,23 +654,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void ChangeProductProductCategory(string SessionID, string productID, string categoryID)
+        public void ChangeProductCategory(string SessionID, string productID, string categoryID)
         {
             try
             {
-                //TODO:: create a caregory here...
-                var index = 0;
-                for(int i = 0; i < categoryID.Length; i++)
-                {
-                    if(i == '_')
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-                
-                Category category = new Category(categoryID.Substring(index + 1));
-                storeFacade.ChangeProductProductCategory(SessionID, productID, category);
+                Category category = new Category(GetStoreIdFromProductID(productID));
+                storeFacade.ChangeProductCategory(SessionID, productID, category);
             }
             catch (Exception e)
             {
@@ -681,9 +683,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                //ALSO: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
-                storeFacade.AddProductPurchasePolicy(SessionID, "CHANGETHISTOSTOREID!!!!!!", productID, newPolicy);
+                //TODO:: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
+                storeFacade.AddProductPurchasePolicy(SessionID, GetStoreIdFromProductID(productID), productID, newPolicy);
             }
             catch (Exception e)
             {
@@ -695,8 +696,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                storeFacade.RemoveProductPurchasePolicy(SessionID, "DUNNO WHO IS STORE ID CHANGE THIS", productID, policyID);
+                storeFacade.RemoveProductPurchasePolicy(SessionID, GetStoreIdFromProductID(productID), productID, policyID);
             }
             catch (Exception e)
             {
@@ -708,8 +708,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                storeFacade.AddProductPurchaseStrategy(SessionID, "DUNNO WHO IS STORE ID CHANGE THIS", productID, newStrategy);
+                //TODO:: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
+                storeFacade.AddProductPurchaseStrategy(SessionID, GetStoreIdFromProductID(productID), productID, newStrategy);
             }
             catch (Exception e)
             {
@@ -721,8 +721,19 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                //TODO:: WHO IS STORE ID AND WHY DO IT APPEAR ONLY HERE AND NOT IN STORE SERVICE CONTROLLER - WHERE DO I GET IT FROM
-                storeFacade.RemoveProductPurchaseStrategy(SessionID, "DUNNO WHO IS STORE ID CHANGE THIS", productID, strategyID);
+                storeFacade.RemoveProductPurchaseStrategy(SessionID, GetStoreIdFromProductID(productID), productID, strategyID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private string GetStoreIdFromProductID(string productID)
+        {
+            try
+            {
+                return productID.Substring(0, productID.IndexOf("_"));
             }
             catch (Exception e)
             {

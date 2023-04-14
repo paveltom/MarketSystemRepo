@@ -185,7 +185,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).ChangeName(userID, newName);
                 ReleaseStore(storeID);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
         public StoreDTO GetStore(string storeID)
@@ -267,16 +268,19 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy) {
+        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy)
+        {
             try
             {
                 AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicy);
                 ReleaseStore(storeID);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
 
-        public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID) {
+        public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID)
+        {
             try
             {
                 AcquireStore(storeID).RemoveStorePurchasePolicy(userID, policyID);
@@ -286,7 +290,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy) {
+        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy)
+        {
             try
             {
                 AcquireStore(storeID).AddStorePurchaseStrategy(userID, newStrategy);
@@ -296,7 +301,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void RemoveStorePurchaseStrategy(string userID, string storeID, String strategyID) {
+        public void RemoveStorePurchaseStrategy(string userID, string storeID, String strategyID)
+        {
             try
             {
                 AcquireStore(storeID).RemoveStorePurchaseStrategy(userID, strategyID);
@@ -623,7 +629,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicy);
                 ReleaseStore(storeID);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
         public void RemoveProductPurchasePolicy(string userID, string storeID, string productID, String policyID)

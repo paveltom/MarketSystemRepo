@@ -32,10 +32,10 @@ namespace Market_System.ServiceLayer
         // ====================================================================
         // ====================== Store methods ===============================
 
-        public Response ChangeStoreName( string storeID, string newName)
+        public Response ChangeStoreName(string storeID, string newName)
         {
             try
-            {                
+            {
                 this.Market.ChangeStoreName(this.SessionID, storeID, newName); // string storeID, string newName - add to MarketSystem !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store name changed.");
             }
@@ -45,7 +45,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response GetStore( string storeID)
+        public Response GetStore(string storeID)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddNewStore( List<string> newStoreDetails)
+        public Response AddNewStore(List<string> newStoreDetails)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response close_store_temporary( string storeID)
+        public Response close_store_temporary(string storeID)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<string> history =  this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                List<string> history = this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(history);
             }
             catch (Exception ex)
@@ -97,7 +97,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response TransferFoundership( string storeID, string newFounderID) // change founder
+        public Response TransferFoundership(string storeID, string newFounderID) // change founder
         {
             try
             {
@@ -136,12 +136,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddStorePurchaseStrategy( string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties) // newPolicy = null OR newPolicyProperties = null)
+        public Response AddStorePurchaseStrategy(string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties) // newPolicy = null OR newPolicyProperties = null)
         {
             try
             {
-                this.Market.AddStorePurchaseStrategy(this.SessionID, storeID, newStrategy, newStrategyProperties); 
-               
+                this.Market.AddStorePurchaseStrategy(this.SessionID, storeID, newStrategy, newStrategyProperties);
+
                 return new Response("Strategy was added successfully.");
             }
             catch (Exception ex)
@@ -150,7 +150,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response RemoveStorePurchaseStrategy( string storeID, String strategyID)
+        public Response RemoveStorePurchaseStrategy(string storeID, String strategyID)
         {
             try
             {
@@ -172,12 +172,12 @@ namespace Market_System.ServiceLayer
 
         // =======================================================================
         // ====================== EMployee methods ===============================
-        public Response AddEmployeePermission( string storeID, string employeeID, string newPerm)
+        public Response AddEmployeePermission(string storeID, string employeeID, string newPerm)
         {
             try
             {
-                this.Market.AddEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), newPerm)); 
-                
+                this.Market.AddEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), newPerm));
+
                 return new Response("Permission was added successfully.");
             }
             catch (Exception ex)
@@ -187,7 +187,7 @@ namespace Market_System.ServiceLayer
 
         }
 
-        public Response RemoveEmployeePermission( string storeID, string employeeID, string permToRemove)
+        public Response RemoveEmployeePermission(string storeID, string employeeID, string permToRemove)
         {
             try
             {
@@ -200,7 +200,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewOwner( string storeID, string newOwnerID)
+        public Response AssignNewOwner(string storeID, string newOwnerID)
         {
             try
             {
@@ -213,7 +213,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewManager( string storeID, string newManagerID)
+        public Response AssignNewManager(string storeID, string newManagerID)
         {
             try
             {
@@ -226,7 +226,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response GetManagersOfTheStore( string storeID)
+        public Response GetManagersOfTheStore(string storeID)
         {
             try
             {
@@ -239,7 +239,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response GetOwnersOfTheStore( string storeID)
+        public Response GetOwnersOfTheStore(string storeID)
         {
             try
             {
@@ -252,10 +252,10 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ManageEmployeePermissions( string storeID, string employeeID, List<string> additionalPerms) // update only for store manager - exchanges permissions
+        public Response ManageEmployeePermissions(string storeID, string employeeID, List<string> additionalPerms) // update only for store manager - exchanges permissions
         {
             try
-            {                
+            {
                 List<Permission> permList = additionalPerms.Select(x => (Permission)Enum.Parse(typeof(Permission), x)).ToList();
                 this.Market.ManageEmployeePermissions(this.SessionID, storeID, employeeID, permList); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New manager's permissions were added successfully.");
@@ -302,7 +302,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response RemoveProductFromStore(string storeID,  string productID)
+        public Response RemoveProductFromStore(string storeID, string productID)
         {
             try
             {
@@ -315,7 +315,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddProductComment( string productID, string comment, double rating)
+        public Response AddProductComment(string productID, string comment, double rating)
         {
             try
             {
@@ -381,7 +381,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductName( string productID, string name)
+        public Response ChangeProductName(string productID, string name)
         {
             try
             {
@@ -394,11 +394,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductDescription( string productID, string description)
+        public Response ChangeProductDescription(string productID, string description)
         {
             try
             {
-                this.Market.ChangeProductDescription(this.SessionID, productID, description); 
+                this.Market.ChangeProductDescription(this.SessionID, productID, description);
                 return new Response("Product's description was updated successfully.");
             }
             catch (Exception ex)
@@ -411,7 +411,7 @@ namespace Market_System.ServiceLayer
         // ==============================================================================================================
         // ==============================================================================================================
 
-        public Response ChangeProductPrice( string productID, double price)
+        public Response ChangeProductPrice(string productID, double price)
         {
             try
             {
@@ -424,7 +424,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductRating( string productID, double rating)
+        public Response ChangeProductRating(string productID, double rating)
         {
             try
             {
@@ -437,7 +437,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductQuantity( string productID, int quantity)
+        public Response ChangeProductQuantity(string productID, int quantity)
         {
             try
             {
@@ -450,7 +450,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductWeight( string productID, double weight)
+        public Response ChangeProductWeight(string productID, double weight)
         {
             try
             {
@@ -463,7 +463,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductSale( string productID, double sale)
+        public Response ChangeProductSale(string productID, double sale)
         {
             try
             {
@@ -476,7 +476,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductTimesBought( string productID, int times)
+        public Response ChangeProductTimesBought(string productID, int times)
         {
             try
             {
@@ -489,7 +489,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductCategory( string productID, string categoryID)
+        public Response ChangeProductCategory(string productID, string categoryID)
         {
             try
             {
@@ -502,11 +502,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ChangeProductDimenssions( string productID, double[] dims)
+        public Response ChangeProductDimenssions(string productID, double[] dims)
         {
             try
             {
-                this.Market.ChangeProductDimenssions(this.SessionID, productID, dims); 
+                this.Market.ChangeProductDimenssions(this.SessionID, productID, dims);
                 return new Response("Product's dimenssions were updated successfully.");
             }
             catch (Exception ex)
@@ -519,7 +519,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddProductPurchasePolicy(this.SessionID, productID, newPolicy, newPolicyProperties); 
+                this.Market.AddProductPurchasePolicy(this.SessionID, productID, newPolicy, newPolicyProperties);
                 return new Response("New product's purchase policy was added successfully.");
             }
             catch (Exception ex)
@@ -574,7 +574,8 @@ namespace Market_System.ServiceLayer
         // ======================== TODO ========================
 
 
-        public Response apply_purchase_policy() { // I dont quite understand what its supposed to do....
+        public Response apply_purchase_policy()
+        { // I dont quite understand what its supposed to do....
             try
             {
                 throw new NotImplementedException();
@@ -583,7 +584,7 @@ namespace Market_System.ServiceLayer
             {
                 return new Response("ERROR: " + ex.Message);
             }
-        } 
+        }
 
 
         internal void destroy()

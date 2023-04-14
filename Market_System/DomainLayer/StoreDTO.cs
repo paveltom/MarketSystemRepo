@@ -59,4 +59,3 @@ namespace Market_System.DomainLayer
 
     }
 }
-       

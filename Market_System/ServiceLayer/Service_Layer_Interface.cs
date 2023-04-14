@@ -39,7 +39,7 @@ namespace Market_System.ServiceLayer
         public Response<string> ChangeProductWeight(string productID, double weight);
         public Response<string> ChangeProductSale(string productID, double sale);
         public Response<string> ChangeProductTimesBought(string productID, int times);
-        public Response<string> ChangeProductProductCategory(string productID, string categoryID);
+        public Response<string> ChangeProductCategory(string productID, string categoryID);
         public Response<string> ChangeProductDimenssions(string productID, double[] dims);
         public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties);
         public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
@@ -51,7 +51,7 @@ namespace Market_System.ServiceLayer
         public Response<string> close_store_temporary(string storeID); //4.9
         public Response<List<string>> get_managers_of_store(string storeID); //4.11
         public Response<List<string>> get_owners_of_store( string storeID); //4.11
-        public Response<List<string>> get_purchase_history_from_store(string storeID); //4.13
+        public Response<string> get_purchase_history_from_store(string storeID); //4.13
         public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(); //6.4
         
 
