@@ -651,12 +651,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> open_new_store()
+        public Response<string> open_new_store(List<string> newStoreDetails)
         {
             try
             {
                 List<string> empty_list = new List<string>();
-                Response<string> ok = (Response<string>)this.ssc.AddNewStore(empty_list); //empty_list thye are doing nothing wiht it
+                Response<string> ok = (Response<string>)this.ssc.AddNewStore(newStoreDetails); //empty_list thye are doing nothing wiht it
                 Logger.get_instance().record_event(ok.Value);
                 
               

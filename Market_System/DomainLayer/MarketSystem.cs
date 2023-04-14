@@ -52,6 +52,18 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal StoreDTO GetStore( string storeID)
+        {
+            try
+            {
+                return storeFacade.GetStore(storeID);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal void ChangeStoreName(string sessionID, string storeID, string newName)
         {
             storeFacade.ChangeStoreName(sessionID, storeID, newName);
@@ -372,11 +384,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Add_New_Store(string session_id)
+        public void Add_New_Store(string session_id, List<string> newStoreDetails)
         {
             try
             {
-                storeFacade.AddNewStore(session_id, null, null);
+                storeFacade.AddNewStore(session_id, newStoreDetails);
             }
             catch(Exception e)
             {

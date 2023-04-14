@@ -80,7 +80,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         foreach (KeyValuePair<Product, int> pair in storeDatabase[s])
                         {
 
-                            if (pair.Key.get_ProductCategory().CategoryName.Equals(category.CategoryName))
+                            if (pair.Key.ProductCategory.CategoryName.Equals(category.CategoryName))
                             {
                                 search_result.Add(new ItemDTO(pair.Key));
                             }
@@ -160,7 +160,7 @@ namespace Market_System.DomainLayer.StoreComponent
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
             {
                
-                if(pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder))
+                if(pair.Key.Store_ID.Equals(store_ID) && pair.Key.founderID.Equals(founder))
                 {
                     return true;
                 }
@@ -168,6 +168,7 @@ namespace Market_System.DomainLayer.StoreComponent
             return false;
         }
 
+        /*
         public void AddStore(string founder, string store_ID)
         {
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
@@ -180,14 +181,15 @@ namespace Market_System.DomainLayer.StoreComponent
             storeDatabase.Add(new Store(founder, store_ID), new Dictionary<Product, int>());
             opened_stores_ids.Add(store_ID);
         }
-      
+        */
+             
         public void AddProduct(string store_ID, string founder_username, Product product, int quantity)
         {
             if (opened_stores_ids.Contains(store_ID))
             {
                 foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
                 {
-                    if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Value.ContainsKey(product))
+                    if (pair.Key.Store_ID.Equals(store_ID) && pair.Key.founderID.Equals(founder_username) && !pair.Value.ContainsKey(product))
                     {
                         storeDatabase[pair.Key].Add(product, quantity);
                         //  pair.Key.AddProduct(new Product product.get_productid(), quantity);
@@ -220,10 +222,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
                     {
-                        if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && pair.Value.ContainsKey(product))
+                        if (pair.Key.Store_ID.Equals(store_ID) && pair.Key.founderID.Equals(founder) && pair.Value.ContainsKey(product))
                         {
-                            storeDatabase[pair.Key].Remove(product);
-                            pair.Key.Remove_Product(product.GetProductID());
+                            pair.Value.Remove(product);
+                            
                             return;
                         }
                     }
@@ -243,30 +245,17 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void Assign_New_Owner(string founder, string username, int store_ID)
+        internal void AddStore(string userID, Store currStore)
         {
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
             {
-                if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Key.Already_Has_Owner(username))
+                if (pair.Key.Store_ID.Equals(currStore.Store_ID) && pair.Key.founderID.Equals(userID))
                 {
-                    pair.Key.Add_New_Owner(username);
-                    return;
+                    throw new Exception("This store with the provided Store ID already exists for this founder");
                 }
             }
-            throw new Exception("Invalid data has been provided, either this owner already exists in this store.");
-        }
-
-        public void Assign_New_Manager(string founder, string username, int store_ID)
-        {
-            foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
-            {
-                if (pair.Key.GetStore_ID().Equals(store_ID) && pair.Key.GetFounder().Equals(founder) && !pair.Key.Already_Has_Manager(username))
-                {
-                    pair.Key.Add_New_Manager(username);
-                    return;
-                }
-            }
-            throw new Exception("Invalid data has been provided, either this manager already exists in this store.");
+            storeDatabase.Add(currStore, new Dictionary<Product, int>());
+            opened_stores_ids.Add(currStore.Store_ID);
         }
 
         public Store getStore(string store_id)
@@ -282,18 +271,7 @@ namespace Market_System.DomainLayer.StoreComponent
             throw new Exception("store does not exists");
         }
 
-        public string getProduct(string product.Name)
-        {
-            foreach (Product P in products)
-            {
-                if (P.GetStorename().Equals(product.Name))
-                {
-                    return P.getProduct();
-                }
-            }
-
-            throw new Exception("product does not exists");
-        }
+   
 
 
         public string getNewStoreID()
@@ -306,7 +284,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 newStoreID = store_id_generator.Next().ToString();
                 foreach (Store s in storeDatabase.Keys)
                 {
-                    if (s.GetStore_ID().Equals( newStoreID))
+                    if (s.Store_ID.Equals( newStoreID))
                     {
                         found_same_id = true;
                         break;
@@ -332,7 +310,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 newProductID = newProductID+store_id_generator.Next().ToString();
                 foreach (Product p in storeDatabase[store].Keys)
                 {
-                    if (p.get_productid().Equals(newProductID))
+                    if (p.Product_ID.Equals(newProductID))
                     {
                         found_same_id = true;
                         newProductID = storeID + "_";
@@ -355,7 +333,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             foreach (Store s in storeDatabase.Keys)
             {
-                if (s.GetStore_ID().Equals(storeID))
+                if (s.Store_ID.Equals(storeID))
                 {
                     return s;
                 }
@@ -370,7 +348,7 @@ namespace Market_System.DomainLayer.StoreComponent
             Store store = GetStore(storeID);
             foreach (Product p in storeDatabase[store].Keys)
             {
-                if (p.get_productid().Equals(productID))
+                if (p.Product_ID.Equals(productID))
                 {
                     return p;
                 }
@@ -383,7 +361,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             foreach (Store s in storeDatabase.Keys)
             {
-                if (s.GetStore_ID().Equals(storeToSave.GetStore_ID()))
+                if (s.Store_ID.Equals(storeToSave.Store_ID))
                 {
                     storeDatabase.Remove(s);
                     break;
@@ -400,7 +378,7 @@ namespace Market_System.DomainLayer.StoreComponent
             foreach (Product p in storeDatabase[store].Keys)
             {
                 var productID = productToSave.Product_ID;
-                if (p.get_productid().Equals(productID))
+                if (p.Product_ID.Equals(productID))
                 {
                     storeDatabase[store].Remove(p);
                     break;
