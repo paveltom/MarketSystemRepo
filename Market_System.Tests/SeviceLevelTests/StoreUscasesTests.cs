@@ -1,4 +1,4 @@
-﻿using Market_System.Service_Layer;
+﻿using Market_System.ServiceLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Market_System.Tests.SeviceLevelTests
 {
+
     /// <summary>
     /// Summary description for StoreUscasesTests
     /// </summary>
@@ -14,21 +15,11 @@ namespace Market_System.Tests.SeviceLevelTests
     {
         private Service_Controller service_Controller;
 
-        public StoreUscasesTests()
+        public void setup()
         {
-            Service_Controller = new Service_Controller();
-        }
-
-        public Service_Controller Service_Controller
-        {
-            get
-            {
-                return this.service_Controller;
-            }
-            set
-            {
-                this.Service_Controller = value;
-            }
+            service_Controller = new Service_Controller();
+            service_Controller.register("user1", "pass1", "add1");
+            service_Controller.login_member("user1", "pass1");
         }
 
         #region Additional test attributes
@@ -53,184 +44,72 @@ namespace Market_System.Tests.SeviceLevelTests
         //
         #endregion
 
-        [TestMethod]
-        public void open_new_store()
+        //ClassInitialize runs before running the first test in the class
+        [ClassInitialize()]
+        public void ClassInitialize()
         {
-            Service_Controller.open_new_store();
-            //assert response obj not null
-            //assert new Store added:
-            Service_Controller.get_shop();//TODO: get_shop()->get_store()
+            setup();
+        }
+
+        [TestInitialize()]
+        public void TestInitialize() { setup(); }
+
+        [TestCleanup()]
+        public void TestCleanup()
+        {
+            service_Controller.destroy();
         }
 
         [TestMethod]
-        public void close_store()
+        public void openStoreSuccess()
         {
-            Service_Controller.close_store();
+            //Setup: none
+
+            //Action:
+            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
+            service_Controller.open_new_store();
+
+            //Result:
+            Assert.Equals(false, response.ErrorOccured);
+            //todo: check if store exists now
+
+            //tearDown: (TestCleanup())
         }
 
-        [TestMethod]
-        public void TestMethod1()
+        /*[TestMethod]
+        public void FailopenStoreGuest()
         {
-            Service_Controller.add_product_to_store();
-        }
+            //Setup: none
+
+            //Action:
+            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
+            service_Controller.open_new_store();
+
+            //Result:
+            Assert.Equals(true, response2.ErrorOccured);
+
+            //tearDown: (TestCleanup())
+        }*/
 
         [TestMethod]
-        public void add_product_to_basket()
+        public void addProduct()
         {
-            Service_Controller.add_product_to_basket("123_abc", "user1");  
-        }
-        /*
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
+            //Setup: none
+            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
+
+            //Action:
+            Response<string> response2 = service_Controller.add_product_to_store("Stor1", "prod1","desc1", "1","1","1","","","","","",""); ////todo store id? Store1
+
+            //Result:
+            Assert.Equals(false, response.ErrorOccured);
+            //todo: check if store exists now
+
+            //tearDown: (TestCleanup())
         }
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
+        //maybe do another test for showing member purchase 
+        //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic here
-            //
-        }
-        */
     }
 }
+
