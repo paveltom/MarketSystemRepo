@@ -384,15 +384,23 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void saveStore(Store storeToSave)
         {
+            Dictionary<Product, int> save_me = null;
             foreach (Store s in storeDatabase.Keys)
             {
                 if (s.Store_ID.Equals(storeToSave.Store_ID))
                 {
+                    save_me = storeDatabase[s];
                     storeDatabase.Remove(s);
                     break;
                 }
             }
-            storeDatabase.Add(storeToSave, storeToSave.GetListOfProducts());
+            if (save_me != null)
+            {
+                storeDatabase.Add(storeToSave, save_me);
+                return;
+            }
+            throw new Exception("storetosave doesn't exists in storeRepo");
+
 
         }
 
