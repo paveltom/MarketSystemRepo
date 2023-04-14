@@ -7,8 +7,10 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
 
-namespace Market_System.DomainLayer { 
-    public class EmployeeDTO {
+namespace Market_System.DomainLayer
+{
+    public class EmployeeDTO
+    {
 
         public string UserID { get; private set; }
         public string StoreID { get; private set; }
@@ -25,7 +27,7 @@ namespace Market_System.DomainLayer {
             this.OwnerAssignner = "";
             this.ManagerAssigner = "";
             this.Permissions = new List<string>();
-            
+
         }
 
         public EmployeeDTO(Employee employee)
@@ -33,7 +35,7 @@ namespace Market_System.DomainLayer {
             this.UserID = employee.UserID;
             this.StoreID = employee.StoreID;
             this.Role = employee.Role.ToString();
-            this.OwnerAssignner= employee.OwnerAssignner;
+            this.OwnerAssignner = employee.OwnerAssignner;
             this.ManagerAssigner = employee.ManagerAssigner;
             this.Permissions = employee.Permissions.Select(x => x.ToString()).ToList();
         }

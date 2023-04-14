@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
+using System.Web.WebSockets;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -19,12 +20,12 @@ namespace Market_System.DomainLayer.StoreComponent
         private Employees employees;
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
-        private ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
-        private ConcurrentDictionary<string, Purchase_Strategy> defaultStrategies; // passed to every new added product
-
+        public ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> defaultStrategies; // passed to every new added product
+        private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS)
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -34,12 +35,13 @@ namespace Market_System.DomainLayer.StoreComponent
             this.productUsage = new ConcurrentDictionary<string, int>();
             this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.temporaryClosed = temporaryClosed;
 
-            if(policies != null) 
-                foreach (Purchase_Policy p in policies) 
+            if (policies != null)
+                foreach (Purchase_Policy p in policies)
                     this.defaultPolicies.TryAdd(p.GetID(), p);
-            if(strategies != null)
-                foreach (Purchase_Strategy p in strategies) 
+            if (strategies != null)
+                foreach (Purchase_Strategy p in strategies)
                     this.defaultStrategies.TryAdd(p.GetID(), p);
 
             if (allProductsIDS == null)
@@ -92,6 +94,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OwnerOnly) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
                         this.employees.updateEmpPermissions(employeeID, this.Store_ID, perms);
+                    else
+                        throw new Exception("You can't manage this employee permissions.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -107,6 +111,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
+                    else
+                        throw new Exception("Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -120,6 +126,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) && !this.employees.isManager(newManagerID, this.Store_ID))
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
+                    else
+                        throw new Exception("Cannot assign new manager: you are not an owner or this employee is already a manager in this store.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -159,6 +167,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
                         this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
+                    else
+                        throw new Exception("You cannot add permissions for that employee.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -310,7 +320,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
                         Save();
+                    else
+                        throw new Exception("Policy already exists.");
                 }
+                else
+                    throw new Exception("You don't have permissions to add new policy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -350,7 +364,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.defaultStrategies.TryRemove(strategyID, out _))
                         Save();
+                    else
+                        throw new Exception("No such strategy in this store.");
                 }
+                else
+                    throw new Exception("You don't have a permission to remove strategies.");
             }
             catch (Exception e) { throw e; }
         }
@@ -361,7 +379,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                this.storeRepo.SaveStore(this);
+                this.storeRepo.saveStore(this);
             }
             catch (Exception e) { throw e; }
         }
@@ -422,6 +440,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         this.allProducts.TryAdd(newProduct.Product_ID, newProduct.Product_ID);
                         Save();
                     }
+                    else
+                        throw new Exception("You dont have a permission to manage store stock.")
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -441,6 +461,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     this.allProducts.TryRemove(product_id, out _);
                     Save();
                 }
+                else throw new Exception("You don't have a permission to manage store stock.");
             }
             catch (Exception ex) { throw ex; }
         }
@@ -640,6 +661,8 @@ namespace Market_System.DomainLayer.StoreComponent
                     AcquireProduct(productID).AddPurchaseStrategy(newStrategy);
                     ReleaseProduct(productID);
                 }
+                else
+                    throw new Exception("You don't have a permission to add strategy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -656,6 +679,17 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
             }
             catch (Exception e) { throw e; }
+        }
+
+        public Boolean is_closed_temporary()
+        {
+            return this.temporaryClosed;
+        }
+
+
+        public void SetTestEmployees(Employees emp)
+        {
+            this.employees = emp;
         }
 
 
