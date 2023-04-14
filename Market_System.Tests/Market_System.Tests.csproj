@@ -76,6 +76,7 @@
     <Compile Include="SeviceLevelTests\UserUscasesTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="unit_tests\StoreFacadeUnitTests.cs" />
     <Compile Include="unit_tests\StoreUnitTest.cs" />
     <Compile Include="unit_tests\store_user_tests.cs" />
     <Compile Include="unit_tests\ProductUnitTest.cs" />

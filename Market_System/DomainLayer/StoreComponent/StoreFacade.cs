@@ -95,7 +95,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         private static object GatherStoresWithProductsByItemsLock = new object();
-        private ConcurrentDictionary<string, List<ItemDTO>> GatherStoresWithProductsByItems(List<ItemDTO> products)
+        public ConcurrentDictionary<string, List<ItemDTO>> GatherStoresWithProductsByItems(List<ItemDTO> products) // public for unit tests
         {
             lock (GatherStoresWithProductsByItemsLock)
             {
@@ -208,7 +208,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object newStoreLock = new object();  // so data of 2 different new stores won't intervene
-        public void AddNewStore(string userID, string storeID, List<string> newStoreDetails)
+        public void AddNewStore(string userID, List<string> newStoreDetails)
         {
             lock (newStoreLock)
             {
@@ -217,8 +217,9 @@ namespace Market_System.DomainLayer.StoreComponent
                     string newIDForStore = storeRepo.getNewStoreID();
                     if (newIDForStore == "")
                         throw new Exception("Created bad store ID.");
-                    Store currStore = new Store(userID, newIDForStore, null, null, null);
-                    storeRepo.AddStore(userdID, currStore);
+                    Store currStore = new Store(userID, newIDForStore, null, null, null, false);
+                    currStore.ChangeName(userID, newStoreDetails[0]);
+                    storeRepo.AddStore(userID, currStore);
                 }
                 catch (Exception e)
                 {

@@ -62,7 +62,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.Add_New_Store(this.SessionID); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.Add_New_Store(this.SessionID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store was added successfully.");
             }
             catch (Exception ex)

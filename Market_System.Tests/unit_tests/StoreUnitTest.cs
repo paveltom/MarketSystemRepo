@@ -21,8 +21,8 @@ namespace Market_System.Tests.unit_tests
         [TestInitialize()]
         public void Setup()
         {
-            testStore = GetStore();            
-            testProduct0 = GetNewProduct();
+            testStore = GetStore("testStoreID326");            
+            testProduct0 = GetNewProduct("testStoreID326");
             testProduct1 = GetExistingProduct();
             
             StoreRepo.GetInstance().AddStore(testStore.founderID, testStore.Store_ID);
@@ -516,10 +516,10 @@ namespace Market_System.Tests.unit_tests
         // ================================================================================================
 
 
-        private Store GetStore()
+        private Store GetStore(string newStoreID)
         {
             string founderID = "testStoreFounderID326";
-            string storeID = "testStoreID326";
+            string storeID = newStoreID;
 
             Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
@@ -531,7 +531,7 @@ namespace Market_System.Tests.unit_tests
             return new Store(founderID, storeID, policies, strategies, allProductsIDS);
         }
 
-        private Product GetNewProduct()
+        private Product GetNewProduct(string store)
         {
             Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
@@ -540,7 +540,7 @@ namespace Market_System.Tests.unit_tests
             List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "45", "0" , "0", "0", "67", "9.1_8.2_7.3",
                                                                    "testProduct0Atr1:testProduct0Atr1Opt1_testProduct0Atr1Opt2;testProduct0Atr2:testProduct0Atr2Opt1_testProduct0Atr2Opt2_testProduct0Atr2Opt3;",
                                                                    "testProduct0SomeCategory"};
-            string storeID = "testProduct0StoreID789";
+            string storeID = store;
             ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             defaultStorePolicies.TryAdd(testProduct0Policy.GetID(), testProduct0Policy);
@@ -552,7 +552,7 @@ namespace Market_System.Tests.unit_tests
         {
             Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
-            String product_ID = "testProduct1StoreID465_tesProduct1ID";
+            String product_ID = "testStoreID326_tesProduct1ID";
             String name = "testProduct1Name";
             String description = "testProduct1Description";
             double price = 678.9;
