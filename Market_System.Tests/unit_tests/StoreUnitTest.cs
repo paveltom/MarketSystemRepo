@@ -528,7 +528,7 @@ namespace Market_System.Tests.unit_tests
 
             List<string> allProductsIDS = new List<string>() { "testProduct1StoreID465_tesProduct1ID" };
 
-            return new Store(founderID, storeID, policies, strategies, allProductsIDS);
+            return new Store(founderID, storeID, policies, strategies, allProductsIDS, false);
         }
 
         private Product GetNewProduct(string store)
