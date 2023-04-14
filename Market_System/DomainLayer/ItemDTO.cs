@@ -19,8 +19,8 @@ namespace Market_System.DomainLayer
 
         public ItemDTO(Product product)
         {
-            this._itemId = product.get_productid();
-            this.quantity = product.get_quantity();
+            this._itemId = product.Product_ID;
+            this.quantity = product.Quantity;
         }
 
 

@@ -49,7 +49,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                StoreDTO ret = this.Market.GetStore(this.SessionID, storeID);
+                StoreDTO ret = this.Market.GetStore( storeID);
                 return Response<StoreDTO>.FromValue(ret);
             }
             catch (Exception ex)
@@ -84,16 +84,16 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<List<string>> GetPurchaseHistoryOfTheStore(string storeID)
+        public Response<string> GetPurchaseHistoryOfTheStore(string storeID)
         {
             try
             {
-                List<string> history = this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                return Response<List<string>>.FromValue(history);
+                string history = this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<string>.FromValue(history);
             }
             catch (Exception ex)
             {
-                return Response<List<string>>.FromError(ex.Message);
+                return Response<string>.FromError(ex.Message);
             }
         }
 

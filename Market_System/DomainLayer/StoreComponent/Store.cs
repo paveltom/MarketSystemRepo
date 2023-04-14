@@ -192,12 +192,12 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public List<string> GetPurchaseHistoryOfTheStore(string userID)
+        public string GetPurchaseHistoryOfTheStore(string userID)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))  // ADD - or market manager
-                    return new List<string>() { this.storeRepo.getPurchaseHistoryOfTheStore(this.Store_ID) };
+                    return this.storeRepo.getPurchaseHistoryOfTheStore(this.Store_ID) ;
                 else
                     throw new Exception("You don't have a permissio to view Store purchase history.");
             }
