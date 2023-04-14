@@ -437,6 +437,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Assert.AreEqual(2, tempClosedStores.Count);
         }
 
+
     }
 }
 
