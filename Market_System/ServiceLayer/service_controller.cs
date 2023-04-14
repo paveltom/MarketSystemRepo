@@ -185,7 +185,7 @@ namespace Market_System.ServiceLayer
 
                 
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
-                this.ssc.purchase(cart.convert_to_item_DTO());
+                this.ssc.purchase(session_id, cart.convert_to_item_DTO());
                 Logger.get_instance().record_event("checkout completed by : " + username );
                 
                 return ok;

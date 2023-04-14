@@ -47,7 +47,29 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        public Product getProduct(string product_id)
+        {
+           string store_id= GetStoreIdFromProductID(product_id);
+            foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
+            {
 
+                if (pair.Key.Store_ID.Equals(store_id) )
+                {
+                    foreach(Product p in pair.Value.Keys)
+                    {
+                        if(p.Product_ID.Equals(product_id))
+                        {
+                            return p;
+                        }
+                    }
+                    throw new Exception("product does not exists");
+                }
+
+            }
+            throw new Exception("store does not exists");
+
+
+        }
 
         public void record_purchase(Store store,ItemDTO item)
         {
@@ -147,11 +169,8 @@ namespace Market_System.DomainLayer.StoreComponent
                     }
 
                 }
-
-
                 return search_result;
             }
-
         }
 
         public bool checkIfStoreExists(string founder, int store_ID)
@@ -256,6 +275,12 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             storeDatabase.Add(currStore, new Dictionary<Product, int>());
             opened_stores_ids.Add(currStore.Store_ID);
+        }
+
+        internal void re_open_closed_temporary_store(string userID, string storeID)//@@@@@@@@@@@@@@@@@@@@@@@@@ not for version 1 !!!!!!! version 2+
+        {
+            temporary_closed_stores_ids.Remove(storeID);
+
         }
 
         public Store getStore(string store_id)
