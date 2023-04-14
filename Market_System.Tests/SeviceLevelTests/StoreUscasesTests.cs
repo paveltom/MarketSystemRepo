@@ -66,8 +66,8 @@ namespace Market_System.Tests.SeviceLevelTests
             //Setup: none
 
             //Action:
-            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
-            service_Controller.open_new_store();
+            Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
+            service_Controller.open_new_store(new List<string> { "store_name" });
 
             //Result:
             Assert.Equals(false, response.ErrorOccured);
@@ -95,7 +95,7 @@ namespace Market_System.Tests.SeviceLevelTests
         public void addProduct()
         {
             //Setup: none
-            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
+            Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
 
             //Action:
             Response<string> response2 = service_Controller.add_product_to_store("Stor1", "prod1","desc1", "1","1","1","","","","","",""); ////todo store id? Store1
