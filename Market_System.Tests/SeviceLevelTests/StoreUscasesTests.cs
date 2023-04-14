@@ -61,85 +61,48 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
         [TestMethod]
-        public void UserRegistersAsMemberAndLogin()
+        public void openStoreSuccess()
         {
             //Setup: none
 
             //Action:
-            //Response<string> response = service_Controller.open_new_store();
+            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
             service_Controller.open_new_store();
-            service_Controller.GetStore();
 
             //Result:
-            //Assert.Equals(false, response.ErrorOccured);
-
-
-            Response<string> responseLogin = service_Controller.login_member("user1", "pass1");
-            Assert.Equals(false, responseLogin.ErrorOccured);
+            Assert.Equals(false, response.ErrorOccured);
+            //todo: check if store exists now
 
             //tearDown: (TestCleanup())
         }
 
-        [TestMethod]
-        public void FailUserRegistersUsedUserame()
+        /*[TestMethod]
+        public void FailopenStoreGuest()
         {
             //Setup: none
 
             //Action:
-            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
-            Response<string> response2 = service_Controller.register("user1", "pass2", "add2");
+            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
+            service_Controller.open_new_store();
 
             //Result:
             Assert.Equals(true, response2.ErrorOccured);
 
             //tearDown: (TestCleanup())
-        }
+        }*/
 
         [TestMethod]
-        public void failLoginBadUsername()
+        public void addProduct()
         {
             //Setup: none
+            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
 
             //Action:
-            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
-            Response<string> response2 = service_Controller.login_member("user@#$", "pass1");
+            Response<string> response2 = service_Controller.add_product_to_store("Stor1", "prod1","desc1", "1","1","1","","","","","",""); ////todo store id? Store1
 
             //Result:
-            Assert.Equals(true, response2.ErrorOccured);
-
-            //tearDown: (TestCleanup())
-        }
-
-        [TestMethod]
-        public void failLoginBadPass()
-        {
-            //Setup: none
-
-            //Action:
-            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
-            Response<string> response2 = service_Controller.login_member("user1", "pass11111111111111");
-
-            //Result:
-            Assert.Equals(true, response2.ErrorOccured);
-
-            //tearDown: (TestCleanup())
-        }
-
-        [TestMethod]
-        public void successLogout()
-        {
-            //Setup: none
-
-            //Action:
-            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
-            Response<string> response2 = service_Controller.login_member("user1", "pass1");
-            Response<string> responseLogout = service_Controller.log_out();
-            Response<string> secondLogin = service_Controller.login_member("user1", "pass1");
-
-
-            //Result:
-            Assert.Equals(false, responseLogout.ErrorOccured);
-            Assert.Equals(false, secondLogin.ErrorOccured);
+            Assert.Equals(false, response.ErrorOccured);
+            //todo: check if store exists now
 
             //tearDown: (TestCleanup())
         }
@@ -150,9 +113,3 @@ namespace Market_System.Tests.SeviceLevelTests
     }
 }
 
-/*
- * 1.register with mail to get notifications.
- * 2.add several threads tests about register, login, logout.
- * 3.add test of login the same user while he is already connected
- * 
- */
