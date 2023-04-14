@@ -185,7 +185,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).ChangeName(userID, newName);
                 ReleaseStore(storeID);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
         public StoreDTO GetStore(string storeID)
@@ -222,12 +223,11 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void close_store_temporary(string userID, string storeID)
+        public void RemoveStore(string userID, string storeID)
         {
             try
             {
-                AcquireStore(storeID).close_store_temporary(userID);
-                storeRepo.close_store_temporary(storeID);
+                AcquireStore(storeID).RemoveStore(userID);
                 stores.TryRemove(storeID, out _);
                 storeUsage.TryRemove(storeID, out _);
 
@@ -244,11 +244,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public string GetPurchaseHistoryOfTheStore(string userID, string storeID)
+        public List<string> GetPurchaseHistoryOfTheStore(string userID, string storeID)
         {
             try
             {
-                string ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
+                List<string> ret = AcquireStore(storeID).GetPurchaseHistoryOfTheStore(userID);
                 ReleaseStore(storeID);
                 return ret;
             }
@@ -268,16 +268,19 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy) {
+        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy)
+        {
             try
             {
                 AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicy);
                 ReleaseStore(storeID);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
 
-        public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID) {
+        public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID)
+        {
             try
             {
                 AcquireStore(storeID).RemoveStorePurchasePolicy(userID, policyID);
@@ -287,7 +290,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy) {
+        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy)
+        {
             try
             {
                 AcquireStore(storeID).AddStorePurchaseStrategy(userID, newStrategy);
@@ -297,7 +301,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void RemoveStorePurchaseStrategy(string userID, string storeID, String strategyID) {
+        public void RemoveStorePurchaseStrategy(string userID, string storeID, String strategyID)
+        {
             try
             {
                 AcquireStore(storeID).RemoveStorePurchaseStrategy(userID, strategyID);
@@ -624,7 +629,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicy);
                 ReleaseStore(storeID);
-            } catch (Exception e) { throw e; }
+            }
+            catch (Exception e) { throw e; }
         }
 
         public void RemoveProductPurchasePolicy(string userID, string storeID, string productID, String policyID)
@@ -669,7 +675,6 @@ namespace Market_System.DomainLayer.StoreComponent
         public void Destroy_me()
         {
             Instance = null;
-            storeRepo.destroy();
         }
 
 

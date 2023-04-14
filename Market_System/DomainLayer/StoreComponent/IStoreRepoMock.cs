@@ -9,7 +9,5 @@ namespace Market_System.DomainLayer.StoreComponent
     public interface IStoreRepoMock // This class is for unit tests purposes only.
     {
         void Save(Product toSave);
-
-        void Save(Store toSave);
     }
 }
