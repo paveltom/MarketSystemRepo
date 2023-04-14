@@ -47,7 +47,29 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        public Product getProduct(string product_id)
+        {
+           string store_id= GetStoreIdFromProductID(product_id);
+            foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
+            {
 
+                if (pair.Key.Store_ID.Equals(store_id) )
+                {
+                    foreach(Product p in pair.Value.Keys)
+                    {
+                        if(p.Product_ID.Equals(product_id))
+                        {
+                            return p;
+                        }
+                    }
+                    throw new Exception("product does not exists");
+                }
+
+            }
+            throw new Exception("store does not exists");
+
+
+        }
 
         public void record_purchase(Store store,ItemDTO item)
         {
@@ -147,11 +169,8 @@ namespace Market_System.DomainLayer.StoreComponent
                     }
 
                 }
-
-
                 return search_result;
             }
-
         }
 
         public bool checkIfStoreExists(string founder, int store_ID)
@@ -258,6 +277,12 @@ namespace Market_System.DomainLayer.StoreComponent
             opened_stores_ids.Add(currStore.Store_ID);
         }
 
+        internal void re_open_closed_temporary_store(string userID, string storeID)//@@@@@@@@@@@@@@@@@@@@@@@@@ not for version 1 !!!!!!! version 2+
+        {
+            temporary_closed_stores_ids.Remove(storeID);
+
+        }
+
         public Store getStore(string store_id)
         {
             foreach (Store S in storeDatabase.Keys)
@@ -359,15 +384,23 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void saveStore(Store storeToSave)
         {
+            Dictionary<Product, int> save_me = null;
             foreach (Store s in storeDatabase.Keys)
             {
                 if (s.Store_ID.Equals(storeToSave.Store_ID))
                 {
+                    save_me = storeDatabase[s];
                     storeDatabase.Remove(s);
                     break;
                 }
             }
-            storeDatabase.Add(storeToSave, storeToSave.GetListOfProducts());
+            if (save_me != null)
+            {
+                storeDatabase.Add(storeToSave, save_me);
+                return;
+            }
+            throw new Exception("storetosave doesn't exists in storeRepo");
+
 
         }
 

@@ -187,6 +187,20 @@ namespace Market_System.ServiceLayer
 
         }
 
+        internal void purchase(string session_id, List<ItemDTO> itemDTOs)
+        {
+            try
+            {
+                this.Market.purchase(session_id, itemDTOs);
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response RemoveEmployeePermission(string storeID, string employeeID, string permToRemove)
         {
             try
