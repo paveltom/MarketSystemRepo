@@ -267,6 +267,21 @@ namespace Market_System.DomainLayer.StoreComponent
             EmpPermissions.Remove(emp);
         }
 
+        internal bool isMarketManager(string userID)
+        {
+            foreach(Employee em in empPermissions)
+            {
+                if(em.UserID.Equals(userID))
+                {
+                    if(em.Role.Equals(Role.Admin))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         //**add exeption catching.
     }
 }
