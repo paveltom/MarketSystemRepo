@@ -56,7 +56,7 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
-            Response<string> response = service.open_new_store(); ////todo store id? Store1
+            Response<string> response = service.open_new_store(new List<string>{ "store_name"}); ////todo store id? Store1
             Response<string> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
         }
 
@@ -64,7 +64,7 @@ namespace Market_System.Tests.SeviceLevelTests
         public void LoggedMemberOpenedOneProdStore(string username, string pass, string add)
         {
             registeredLoggedInMemberSetUp(username + "Owner", pass + "Owner", add);
-            service.open_new_store(); ////todo store id? Store1 
+            service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1 
             //todo:
             service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
             service.log_out(); //owner logs out
@@ -196,7 +196,7 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
 
             //Action:
-            Response<string> response = service.open_new_store(); ////todo store id? Store1
+            Response<string> response = service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
 
             //Result:
             Assert.Equals(false, response.ErrorOccured);

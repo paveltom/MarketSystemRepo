@@ -93,6 +93,23 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        internal void close_store_temporary(string sessionID, string storeID)
+        {
+            try
+            {
+                foreach (KeyValuePair<string, Store> entry in stores)
+                {
+                    if (entry.Key.Equals(storeID))
+                    {
+                        entry.Value.RemoveStore(sessionID);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private static object GatherStoresWithProductsByItemsLock = new object();
         public ConcurrentDictionary<string, List<ItemDTO>> GatherStoresWithProductsByItems(List<ItemDTO> products) // public for unit tests

@@ -207,6 +207,7 @@
     <Compile Include="DomainLayer\StoreComponent\IStoreRepoMock.cs" />
     <Compile Include="DomainLayer\StoreComponent\Product.cs" />
     <Compile Include="DomainLayer\StoreComponent\Property.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Purchase_History_Obj_For_Store.cs" />
     <Compile Include="DomainLayer\StoreComponent\Purchase_Policy.cs" />
     <Compile Include="DomainLayer\StoreComponent\Purchase_Strategy.cs" />
     <Compile Include="DomainLayer\StoreComponent\Store.cs" />
