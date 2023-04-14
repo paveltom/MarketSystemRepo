@@ -57,7 +57,7 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
             Response<string> response = service.open_new_store(); ////todo store id? Store1
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<string> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
         }
 
         //(one thread)
@@ -170,12 +170,7 @@ namespace Market_System.Tests.SeviceLevelTests
         }
         #endregion
 
-        #region//guest purchase actions
-        //implement...
-        #endregion
-
-        #region//Member purchase actions 3.1, 3,2
-
+        #region//Member purchase actions Tests 3.1, 3,2, 3.3
         [TestMethod]
         public void successLogout()
         {
@@ -214,11 +209,31 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
         [TestMethod]
+        public void comment_on_product()
+        {
+            //Setup: 
+            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+
+            //Action:
+            //todo: what is the prod id?
+            Response<string> response = service.comment_on_product("Store1_Prod1", "newName is very bad product", 0.5);
+
+            //Result:
+            Assert.Equals(false, response.ErrorOccured);
+            //todo: check if prod comment added
+            //check if new name there
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+        #endregion
+
+        #region//Owner  actions Tests 4.1
+        [TestMethod]
         public void addproduct()
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
-            Response<string> response = service.open_new_store(); ////todo store id? Store1
 
             //Action:
             Response<string> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
@@ -226,7 +241,7 @@ namespace Market_System.Tests.SeviceLevelTests
             //Result:
             Assert.Equals(false, resProdAdd.ErrorOccured);
             //todo: check if prod was added
-            // Response < List < ItemDTO > resProdAdded = service.get_products_from_shop("Store1");
+            Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
             //Assert.Equals(false, resProdAdded.ErrorOccured);
 
@@ -248,18 +263,16 @@ namespace Market_System.Tests.SeviceLevelTests
             //Result:
             Assert.Equals(false, response.ErrorOccured);
             //todo: check if prod name changed
-            // Response < List < ItemDTO > resProdAdded = service.get_products_from_shop("Store1");
-            //check if new name there
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
             //tearDown:
             oneThreadCleanup();
         }
 
-        #region
-        /*TODO: duplicate  changeProdName() test to all product atrributes that can be eddited by store owner.
-        //change price,..........................
-                [TestMethod]
-        public void changeProdName()
+        #region /*TODO: add more tests like  changeProdName() test for all product atrributes that can be eddited by store owner.
+        /*
+        [TestMethod]
+        public void changePrice()
         {
             //Setup: 
             LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
@@ -276,66 +289,103 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //tearDown:
             oneThreadCleanup();
+        .
+        .
+        .
+        .
+        .
+        .
+        .
         }
-                [TestMethod]
-        public void changeProdName()
-        {
-            //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
 
-            //Action:
-            //todo: what is the prod id?
-            Response<string> response = service.ChangeProductName("Store1_Prod1", "newName");
-
-            //Result:
-            Assert.Equals(false, response.ErrorOccured);
-            //todo: check if prod name changed
-            // Response < List < ItemDTO > resProdAdded = service.get_products_from_shop("Store1");
-            //check if new name there
-
-            //tearDown:
-            oneThreadCleanup();
-        }
-                [TestMethod]
-        public void changeProdName()
-        {
-            //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
-
-            //Action:
-            //todo: what is the prod id?
-            Response<string> response = service.ChangeProductName("Store1_Prod1", "newName");
-
-            //Result:
-            Assert.Equals(false, response.ErrorOccured);
-            //todo: check if prod name changed
-            // Response < List < ItemDTO > resProdAdded = service.get_products_from_shop("Store1");
-            //check if new name there
-
-            //tearDown:
-            oneThreadCleanup();
-        }
         */
         #endregion
 
+        #endregion
+
+        #region//Guest purchase Tests 2.1*, 2.2, 2.3, 2.4* 2.5*
         [TestMethod]
-        public void comment_on_product()
+        public void searchProducts()
         {
             //Setup: 
             LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
 
             //Action:
-            //todo: what is the prod id?
-            Response<string> response = service.comment_on_product("Store1_Prod1", "newName is very bad product", 0.5);
+            //todo:
+            Response<List<ItemDTO>> response = service.search_product_by_name("Prod1");
 
             //Result:
             Assert.Equals(false, response.ErrorOccured);
-            //todo: check if prod comment added
-            //check if new name there
+            Assert.Equals(1, response.Value.Capacity);
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        //add more search options tests here:
+        /*
+         * 
+         * 
+         */
+
+        [TestMethod]
+        public void addProdToCartGuest()
+        {
+            //Setup: 
+            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+
+            //Action:
+            //todo: fix Prod1-->prod_id
+            Response<string> response = service.add_product_to_basket("Prod1", "1");
+
+            //Result:
+            Assert.Equals(false, response.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
         }
+
+        [TestMethod]
+        public void viewBasketGuest()
+        {
+            //Setup: 
+            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            Response<string> response = service.add_product_to_basket("Prod1", "1");
+
+            //Action:
+            //todo: fix Prod1-->prod_id
+            throw new NotImplementedException();
+
+            //Result:
+            //Assert.Equals(false, response2.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void checkoutCartGuest()
+        {
+            //Setup: 
+            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //todo: fix Prod1-->prod_id
+            Response<string> response = service.add_product_to_basket("Prod1", "1");
+
+            //Action:
+            //todo:
+            //service.check_out("user1", "1234567812345678", DomainLayer.UserComponent.)
+            //Response<string> response2 = service.c
+
+            //Result:
+            //Assert.Equals(false, response.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        #endregion
+
+
+
 
 
 
