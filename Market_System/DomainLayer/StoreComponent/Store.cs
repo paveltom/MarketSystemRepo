@@ -58,7 +58,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                lock (this.Name)
+                lock (this.founderID)
                 {
                     if (this.founderID != userID)
                         throw new Exception("Only founder can transfer foundership.");
@@ -75,10 +75,13 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (userID != this.founderID)
-                    throw new Exception("Only store founder can change its name.");
-                this.Name = newName;
-                Save();
+                lock (this.founderID)
+                {
+                    if (userID != this.founderID)
+                        throw new Exception("Only store founder can change its name.");
+                    this.Name = newName;
+                    Save();
+                }
             }
             catch (Exception ex) { throw ex; }
         }
@@ -194,7 +197,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))  // ADD - or market manager
-                    return this.storeRepo.getPurchaseHistoryOfTheStore(this.Store_ID);
+                    return new List<string>() { this.storeRepo.getPurchaseHistoryOfTheStore(this.Store_ID) };
                 else
                     throw new Exception("You don't have a permissio to view Store purchase history.");
             }
@@ -235,7 +238,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.founderID != userID) // ADD - maket manager permission validation
                     throw new Exception("Only store founder or Market Manager can remove a store.");
-                this.storeRepo.RemoveStore(this.Store_ID);
+                this.storeRepo.close_store_temporary(this.Store_ID);
                 /*
                 foreach (String s in allProducts)
                 {
@@ -243,7 +246,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     ReleaseProduct(s);
                 }
                 */
-                this.employees.RemoveStore(this.Store_ID);
+                this.employees.removeStore(this.Store_ID);
                 // remove policies and strategies
 
             }
@@ -292,7 +295,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         {
                             AcquireProduct(item.GetID()).Purchase(item.GetQuantity());
                             ReleaseProduct(item.GetID());
-                            this.storeRepo.Purchase(this.Store_ID, item.GetID, userID); // for purchase history
+                            this.storeRepo.record_purchase(this, item); // for purchase history
                         }
                 }
                 catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
@@ -441,7 +444,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         Save();
                     }
                     else
-                        throw new Exception("You dont have a permission to manage store stock.")
+                        throw new Exception("You dont have a permission to manage store stock.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -455,7 +458,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // ADD - or market manager
                 {
-                    this.storeRepo.RemoveProduct(this.Store_ID, this.founderID, product_id);
+                    this.storeRepo.RemoveProduct(this.Store_ID, this.founderID, AcquireProduct(product_id));
+                    ReleaseProduct(product_id);
                     this.products.TryRemove(product_id, out _);
                     this.productUsage.TryRemove(product_id, out _);
                     this.allProducts.TryRemove(product_id, out _);
