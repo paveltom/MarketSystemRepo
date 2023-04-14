@@ -24,7 +24,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, ConcurrentBag<string> allProductsIDS)
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -35,8 +35,12 @@ namespace Market_System.DomainLayer.StoreComponent
             this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
 
-            foreach (Purchase_Policy p in policies) this.defaultPolicies.TryAdd(p.GetID(), p);
-            foreach (Purchase_Strategy p in strategies) this.defaultStrategies.TryAdd(p.GetID(), p);
+            if(policies != null) 
+                foreach (Purchase_Policy p in policies) 
+                    this.defaultPolicies.TryAdd(p.GetID(), p);
+            if(strategies != null)
+                foreach (Purchase_Strategy p in strategies) 
+                    this.defaultStrategies.TryAdd(p.GetID(), p);
 
             if (allProductsIDS == null)
                 this.allProducts = new ConcurrentDictionary<string, string>();
@@ -248,8 +252,8 @@ namespace Market_System.DomainLayer.StoreComponent
                     double price = 0;
                     foreach (ItemDTO item in productsToCalculate)
                     {
-                        price += AcquireProduct(item.get_item_id()).CalculatePrice(item.get_quantity(), true);
-                        ReleaseProduct(item.get_item_id());
+                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), true);
+                        ReleaseProduct(item.GetID());
                     }
                     return price;
                 }
@@ -266,19 +270,19 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     foreach (ItemDTO item in productsToPurchase)
-                        if (!AcquireProduct(item.get_item_id()).prePurchase(item.get_quantity()))
+                        if (!AcquireProduct(item.GetID()).prePurchase(item.GetQuantity()))
                         {
-                            cannotPurchase.Concat(item.get_item_id().Concat(";"));
-                            ReleaseProduct(item.get_item_id());
+                            cannotPurchase.Concat(item.GetID().Concat(";"));
+                            ReleaseProduct(item.GetID());
                         }
 
                     if (!cannotPurchase.Equals("")) throw new Exception(cannotPurchase);
                     else
                         foreach (ItemDTO item in productsToPurchase)
                         {
-                            AcquireProduct(item.get_item_id()).Purchase(item.get_quantity());
-                            ReleaseProduct(item.get_item_id());
-                            this.storeRepo.Purchase(this.Store_ID, item.get_item_id, userID); // for purchase history
+                            AcquireProduct(item.GetID()).Purchase(item.GetQuantity());
+                            ReleaseProduct(item.GetID());
+                            this.storeRepo.Purchase(this.Store_ID, item.GetID, userID); // for purchase history
                         }
                 }
                 catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
@@ -446,8 +450,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                AcquireProduct(reserveProduct.get_item_id()).Reserve(reserveProduct.get_quantity());
-                ReleaseProduct(reserveProduct.get_item_id());
+                AcquireProduct(reserveProduct.GetID()).Reserve(reserveProduct.GetQuantity());
+                ReleaseProduct(reserveProduct.GetID());
             }
             catch (Exception ex) { throw ex; }
         }
@@ -456,8 +460,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                AcquireProduct(reservedProduct.get_item_id()).LetGoProduct(reservedProduct.get_quantity());
-                ReleaseProduct(reservedProduct.get_item_id());
+                AcquireProduct(reservedProduct.GetID()).LetGoProduct(reservedProduct.GetQuantity());
+                ReleaseProduct(reservedProduct.GetID());
             }
             catch (Exception ex) { throw ex; }
         }
@@ -511,11 +515,11 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
-        public void ChangeProductRating(string userID, string productID, double rating, MarketManagerPermission perm)
+        public void ChangeProductRating(string userID, string productID, double rating)
         {
             try
             {
-                if (perm.Equals(MarketManagerPermission.MARKETMANAGER)) // // change later after market manager permission enum added
+                if (this.employees.isMarketManager(userID)) // // change later after market manager permission enum added
                 {
                     AcquireProduct(productID).SetRating(rating);
                     ReleaseProduct(productID);
@@ -562,11 +566,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ChangeProductTimesBought(string userID, string productID, int times, MarketManagerPermission perm) // only market manager can do
+        public void ChangeProductTimesBought(string userID, string productID, int times) // only market manager can do
         {
             try
             {
-                if (perm.Equals(MarketManagerPermission.MARKETMANAGER)) // change later after market manager permission enum added
+                if (this.employees.isMarketManager(userID)) // change later after market manager permission enum added
                 {
                     AcquireProduct(productID).SetTimesBought(times);
                     ReleaseProduct(productID);
@@ -575,7 +579,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ChangeProductProductCategory(string userID, string productID, Category category)
+        public void ChangeProductCategory(string userID, string productID, Category category)
         {
             try
             {
