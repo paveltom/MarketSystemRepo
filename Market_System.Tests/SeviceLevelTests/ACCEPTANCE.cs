@@ -49,6 +49,8 @@ namespace Market_System.Tests.SeviceLevelTests
             service.login_member(username, pass);
         }
 
+
+
         //(one thread)
         public void LoggedInOwnerWithOpenedOneProdStore(string username, string pass, string add)
         {
@@ -56,6 +58,17 @@ namespace Market_System.Tests.SeviceLevelTests
             //todo:
             Response<string> response = service.open_new_store(); ////todo store id? Store1
             Response<string> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+        }
+
+        //(one thread)
+        public void LoggedMemberOpenedOneProdStore(string username, string pass, string add)
+        {
+            registeredLoggedInMemberSetUp(username + "Owner", pass + "Owner", add);
+            service.open_new_store(); ////todo store id? Store1 
+            //todo:
+            service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            service.log_out(); //owner logs out
+            registeredLoggedInMemberSetUp(username, pass, add); //other member logs in
         }
 
         public void oneThreadCleanup()
@@ -70,7 +83,7 @@ namespace Market_System.Tests.SeviceLevelTests
 
         /************TESTS***********/
 
-
+        #region//Guest actions Tests 1.3, 1.4
         [TestMethod]
         public void UserRegistersAsMember()
         {
@@ -155,6 +168,13 @@ namespace Market_System.Tests.SeviceLevelTests
             //tearDown:
             oneThreadCleanup();
         }
+        #endregion
+
+        #region//guest purchase actions
+        //implement...
+        #endregion
+
+        #region//Member purchase actions 3.1, 3,2
 
         [TestMethod]
         public void successLogout()
@@ -207,6 +227,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Assert.Equals(false, resProdAdd.ErrorOccured);
             //todo: check if prod was added
             // Response < List < ItemDTO > resProdAdded = service.get_products_from_shop("Store1");
+
             //Assert.Equals(false, resProdAdded.ErrorOccured);
 
             //tearDown:
@@ -297,6 +318,27 @@ namespace Market_System.Tests.SeviceLevelTests
         */
         #endregion
 
+        [TestMethod]
+        public void comment_on_product()
+        {
+            //Setup: 
+            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+
+            //Action:
+            //todo: what is the prod id?
+            Response<string> response = service.comment_on_product("Store1_Prod1", "newName is very bad product", 0.5);
+
+            //Result:
+            Assert.Equals(false, response.ErrorOccured);
+            //todo: check if prod comment added
+            //check if new name there
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+
+
 
 
 
@@ -310,6 +352,8 @@ namespace Market_System.Tests.SeviceLevelTests
      * 1.fail open store user is guest please login as member first.
      * 2.edit(change) store name 
      * 3.manager actions
+     * דרישה 1.1 כניסה של אורח (התחברות של אורח)
+    ///////////////דרישה 1.2 יציאה 
      */
 
 
@@ -337,3 +381,4 @@ namespace Market_System.Tests.SeviceLevelTests
     //
     #endregion
 }
+
