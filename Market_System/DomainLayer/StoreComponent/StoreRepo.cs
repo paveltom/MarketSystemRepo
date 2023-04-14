@@ -264,7 +264,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal void AddStore(string userID, Store currStore)
+        public void AddStore(string userID, Store currStore)
         {
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
             {

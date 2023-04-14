@@ -26,7 +26,7 @@ namespace Market_System.Tests.unit_tests
             testProduct0.SetQuantity(23);
             testProduct1 = GetExistingProduct();
 
-            StoreRepo.GetInstance().AddStore(testStore.founderID, testStore.Store_ID);
+            StoreRepo.GetInstance().AddStore(testStore.founderID, testStore);
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct0, testProduct0.Quantity);
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
 
