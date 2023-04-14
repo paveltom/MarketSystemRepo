@@ -145,11 +145,15 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                return ((Lazy<Store>)stores.GetOrAdd(storeID, x => new Lazy<Store>(() =>
+                return stores.GetOrAdd(storeID, x => 
                 {
-                    storeUsage.AddOrUpdate(storeID, 1, (k, val) => val + 1);
-                    return storeRepo.getStore(storeID);
-                }))).Value; // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
+                    Lazy<Store> lazyStore = new Lazy<Store>(() =>
+                    {
+                        storeUsage.AddOrUpdate(storeID, 1, (k, val) => val + 1);
+                        return storeRepo.getStore(storeID);
+                    });
+                    return lazyStore.Value;
+                }); // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
             }
             catch (Exception e) { throw e; }
         }
