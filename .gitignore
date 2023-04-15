@@ -234,3 +234,4 @@ _Pvt_Extensions
 .fake/
 /.vs/slnx.sqlite
 /Market_System.Tests/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Market_System/.vs/Market_System/config/applicationhost.config
