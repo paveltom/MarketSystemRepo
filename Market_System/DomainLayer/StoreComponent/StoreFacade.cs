@@ -342,11 +342,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
         // =======================================================================
         // ====================== EMployee methods ===============================
-        public void AddEmployeePermission(string userID, string storeID, string employeeID, Permission newP)
+        public void AddEmployeePermission(string executive_username, string storeID, string employee_username, Permission newP)
         {
             try
             {
-                AcquireStore(storeID).AddEmployeePermission(userID, employeeID, newP);
+                AcquireStore(storeID).AddEmployeePermission(executive_username, employee_username, newP);
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
@@ -423,6 +423,8 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+
 
 
 

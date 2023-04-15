@@ -30,7 +30,7 @@ namespace Market_System.ServiceLayer
         public Response<string> comment_on_product(string productID, string comment, double rating); // 3.3
         public Response<string> add_product_to_store(string storeID, string product_name,string description, string price,string quantity,string reserved_quantity,string rating,string sale,string wieght,string dimenstions,string attributes,string product_category); //4.1
         public Response<string> remove_product_from_store(string storeID, string productID); //4.1
-        public void edit_product_details(); //4.1
+      //  public void edit_product_details(); //4.1
         public Response<string> ChangeProductName(string productID, string name);
         public Response<string> ChangeProductDescription(string productID, string desc);
         public Response<string> ChangeProductPrice(string productID, double price);
@@ -45,9 +45,12 @@ namespace Market_System.ServiceLayer
         public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
         public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties);
         public Response<string> RemoveProductPurchaseStrategy(string productID, String strategyID);
-        public Response<string> assign_new_owner(string storeID, string newOwnerID); // 4.4
-        public Response<string> assign_new_manager(string storeID, string newManagerID); // 4.6
-        public void edit_manger_permissions(); //4.7
+        public Response<string> assign_new_owner(string storeID, string new_owner_username); // 4.4
+        public Response<string> assign_new_manager(string storeID, string new_manager_username); // 4.6
+        // public void edit_manger_permissions(); //4.7
+        public Response<string> ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms);
+        public Response<string> AddEmployeePermission(string storeID, string employee_username, string newPerm);
+        public Response<string> RemoveEmployeePermission(string storeID, string employee_username, string permToRemove);
         public Response<string> close_store_temporary(string storeID); //4.9
         public Response<List<string>> get_managers_of_store(string storeID); //4.11
         public Response<List<string>> get_owners_of_store( string storeID); //4.11

@@ -66,6 +66,7 @@ namespace Market_System.DomainLayer
 
         internal void ChangeStoreName(string sessionID, string storeID, string newName)
         {
+
             storeFacade.ChangeStoreName(sessionID, storeID, newName);
         }
 
@@ -254,11 +255,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void RemoveEmployeePermission(string sessionID, string storeID, string employeeID, StoreComponent.Permission permission)
+        internal void RemoveEmployeePermission(string sessionID, string storeID, string employee_username, StoreComponent.Permission permission)
         {
             try
             {
-                storeFacade.RemoveEmployeePermission(sessionID, storeID, employeeID, permission);
+                string username_from_SessionID = get_username_from_session_id(sessionID);
+                storeFacade.RemoveEmployeePermission(username_from_SessionID, storeID, employee_username, permission);
             }
 
             catch (Exception e)
@@ -271,7 +273,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                 storeFacade.AddEmployeePermission(sessionID, storeID,employeeID,permission);
+                string username_from_SessionID = get_username_from_session_id(sessionID);
+                storeFacade.AddEmployeePermission(sessionID, storeID,employeeID,permission);
             }
 
             catch (Exception e)
@@ -357,11 +360,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void ManageEmployeePermissions(string sessionID, string storeID, string employeeID, List<StoreComponent.Permission> permList)
+        internal void ManageEmployeePermissions(string sessionID, string storeID, string employee_username, List<StoreComponent.Permission> permList)
         {
             try
             {
-                storeFacade.ManageEmployeePermissions(sessionID, storeID,employeeID,permList);
+                string username_from_SessionID = get_username_from_session_id(sessionID);
+                storeFacade.ManageEmployeePermissions(username_from_SessionID, storeID, employee_username, permList);
             }
             catch (Exception e)
             {
@@ -534,7 +538,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByKeyword(string sessionID, string keyword)
+        internal List<ItemDTO> SearchProductByKeyword(string keyword)
         {
             try
             {
@@ -558,7 +562,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByName(string sessionID, string name)
+        internal List<ItemDTO> SearchProductByName(string name)
         {
             try
             {
@@ -594,7 +598,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByCategory(string sessionID, string category)
+        internal List<ItemDTO> SearchProductByCategory( string category)
         {
             try
             {

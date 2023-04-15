@@ -36,8 +36,6 @@ namespace Market_System.ServiceLayer
 
                 Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
 
-
-
             }
             catch (Exception e)
             {
@@ -239,15 +237,6 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public void edit_manger_permissions()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void edit_product_details()
-        {
-            throw new NotImplementedException();
-        }
 
         public Response<string> ChangeProductName(string productID, string name)
         {
@@ -780,6 +769,57 @@ namespace Market_System.ServiceLayer
         {
             usc.destroy();
             ssc.destroy();
+        }
+
+        public Response<string> ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms)
+        {
+            try
+            {
+                Response<string> ok = (Response<string>)this.ssc.ManageEmployeePermissions(storeID,employee_username,additionalPerms);
+                Logger.get_instance().record_event(" managed " + employee_username + " permissions was done successfully");
+
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in ManageEmployeePermissions");
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> AddEmployeePermission(string storeID, string employee_username, string newPerm)
+        {
+            try
+            {
+                Response<string> ok = (Response<string>)this.ssc.AddEmployeePermission(storeID, employee_username, newPerm);
+                Logger.get_instance().record_event(" added a new permission :  "+ newPerm + " to " + employee_username + "  was done successfully");
+
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddEmployeePermission");
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> RemoveEmployeePermission(string storeID, string employee_username, string permToRemove)
+        {
+            try
+            {
+                Response<string> ok = (Response<string>)this.ssc.RemoveEmployeePermission(storeID, employee_username, permToRemove);
+                Logger.get_instance().record_event(" removed  " + employee_username + "'s  permission to "+permToRemove+ " was done successfully");
+
+                return ok;
+
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveEmployeePermission");
+                return Response<string>.FromError(e.Message);
+            }
         }
     }
 }

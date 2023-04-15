@@ -36,7 +36,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeStoreName(this.SessionID, storeID, newName); // string storeID, string newName - add to MarketSystem !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeStoreName(username_from_SessionID, storeID, newName); // string storeID, string newName - add to MarketSystem !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store name changed.");
             }
             catch (Exception ex)
@@ -62,7 +63,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.Add_New_Store(this.SessionID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.Add_New_Store(username_from_SessionID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store was added successfully.");
             }
             catch (Exception ex)
@@ -75,7 +77,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.close_store_temporary(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.close_store_temporary(username_from_SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Store was removed successfully.");
             }
             catch (Exception ex)
@@ -88,7 +91,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string history = this.Market.GetStorePurchaseHistory(this.SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                string history = this.Market.GetStorePurchaseHistory(username_from_SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<string>.FromValue(history);
             }
             catch (Exception ex)
@@ -101,7 +105,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.TransferFoundership(this.SessionID, storeID, newFounderID); // Add method to MarketSystem
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.TransferFoundership(username_from_SessionID, storeID, newFounderID); // Add method to MarketSystem
                 return new Response("Founder was changed successfully.");
             }
             catch (Exception ex)
@@ -114,7 +119,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddStorePurchasePolicy(this.SessionID, storeID, newPolicy, newPolicyProperties); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.AddStorePurchasePolicy(username_from_SessionID, storeID, newPolicy, newPolicyProperties); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Policy was added successfully.\"");
             }
             catch (Exception ex)
@@ -127,7 +133,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.RemoveStorePurchasePolicy(this.SessionID, storeID, policyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.RemoveStorePurchasePolicy(username_from_SessionID, storeID, policyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Policy was removed successfully.");
             }
             catch (Exception ex)
@@ -140,7 +147,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddStorePurchaseStrategy(this.SessionID, storeID, newStrategy, newStrategyProperties);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.AddStorePurchaseStrategy(username_from_SessionID, storeID, newStrategy, newStrategyProperties);
 
                 return new Response("Strategy was added successfully.");
             }
@@ -154,7 +162,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.RemoveStorePurchaseStrategy(this.SessionID, storeID, strategyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.RemoveStorePurchaseStrategy(username_from_SessionID, storeID, strategyID); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Strategy was removed successfully.");
             }
             catch (Exception ex)
@@ -176,6 +185,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
+                
                 this.Market.AddEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), newPerm));
 
                 return new Response("Permission was added successfully.");
@@ -201,11 +211,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response RemoveEmployeePermission(string storeID, string employeeID, string permToRemove)
+        public Response RemoveEmployeePermission(string storeID, string employee_username, string permToRemove)
         {
             try
             {
-                this.Market.RemoveEmployeePermission(this.SessionID, storeID, employeeID, (Permission)Enum.Parse(typeof(Permission), permToRemove)); // add to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.RemoveEmployeePermission(this.SessionID, storeID, employee_username, (Permission)Enum.Parse(typeof(Permission), permToRemove)); // add to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Permission was removed successfully.");
             }
             catch (Exception ex)
@@ -214,11 +224,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewOwner(string storeID, string newOwnerID)
+        public Response AssignNewOwner(string storeID, string newOwner_username)
         {
             try
             {
-                this.Market.Assign_New_Owner(this.SessionID, newOwnerID, storeID);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.Assign_New_Owner(username_from_SessionID, newOwner_username, storeID);
                 return new Response("New owner was added successfully.");
             }
             catch (Exception ex)
@@ -227,11 +238,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewManager(string storeID, string newManagerID)
+        public Response AssignNewManager(string storeID, string newManager_username)
         {
             try
             {
-                this.Market.Assign_New_Manager(this.SessionID, newManagerID, storeID);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.Assign_New_Manager(username_from_SessionID, newManager_username, storeID);
                 return new Response("New manager was added successfully.");
             }
             catch (Exception ex)
@@ -244,7 +256,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<string> managers = this.Market.GetStoreManagers(this.SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                List<string> managers = this.Market.GetStoreManagers(username_from_SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(managers);
             }
             catch (Exception ex)
@@ -257,7 +270,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<string> owners = this.Market.GetOwnersOfTheStore(this.SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                List<string> owners = this.Market.GetOwnersOfTheStore(username_from_SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(owners);
             }
             catch (Exception ex)
@@ -266,12 +280,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response ManageEmployeePermissions(string storeID, string employeeID, List<string> additionalPerms) // update only for store manager - exchanges permissions
+        public Response ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms) // update only for store manager - exchanges permissions
         {
             try
             {
                 List<Permission> permList = additionalPerms.Select(x => (Permission)Enum.Parse(typeof(Permission), x)).ToList();
-                this.Market.ManageEmployeePermissions(this.SessionID, storeID, employeeID, permList); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.ManageEmployeePermissions(this.SessionID, storeID, employee_username, permList); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New manager's permissions were added successfully.");
             }
             catch (Exception ex)
@@ -294,7 +308,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<ItemDTO> products = this.Market.GetProductsFromStore(this.SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                List<ItemDTO> products = this.Market.GetProductsFromStore(username_from_SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<ItemDTO>>.FromValue(products);
             }
             catch (Exception ex)
@@ -307,7 +322,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.Add_Product_To_Store(storeID, this.SessionID, productProperties); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.Add_Product_To_Store(storeID, username_from_SessionID, productProperties); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New product was added successfully.");
             }
             catch (Exception ex)
@@ -320,7 +336,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.Remove_Product_From_Store(storeID, this.SessionID, productID); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.Remove_Product_From_Store(storeID, username_from_SessionID, productID); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product was removed successfully.");
             }
             catch (Exception ex)
@@ -333,7 +350,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddProductComment(this.SessionID, productID, comment, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.AddProductComment(username_from_SessionID, productID, comment, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New comment was added successfully.");
             }
             catch (Exception ex)
@@ -360,7 +378,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<ItemDTO> keywordSearchResult = this.Market.SearchProductByKeyword(this.SessionID, keyword); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                
+                List<ItemDTO> keywordSearchResult = this.Market.SearchProductByKeyword( keyword); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<ItemDTO>>.FromValue(keywordSearchResult);
             }
             catch (Exception ex)
@@ -373,7 +392,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<ItemDTO> productNameSearchResult = this.Market.SearchProductByName(this.SessionID, name); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+
+                List<ItemDTO> productNameSearchResult = this.Market.SearchProductByName(name); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<ItemDTO>>.FromValue(productNameSearchResult);
             }
             catch (Exception ex)
@@ -386,7 +406,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                List<ItemDTO> categorySearchResult = this.Market.SearchProductByCategory(this.SessionID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                List<ItemDTO> categorySearchResult = this.Market.SearchProductByCategory( categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<ItemDTO>>.FromValue(categorySearchResult);
             }
             catch (Exception ex)
@@ -399,7 +419,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductName(this.SessionID, productID, name);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductName(username_from_SessionID, productID, name);
                 return new Response("Product was renamed successfully.");
             }
             catch (Exception ex)
@@ -412,7 +433,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductDescription(this.SessionID, productID, description);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductDescription(username_from_SessionID, productID, description);
                 return new Response("Product's description was updated successfully.");
             }
             catch (Exception ex)
@@ -429,7 +451,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductPrice(this.SessionID, productID, price); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductPrice(username_from_SessionID, productID, price); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's price was updated successfully.");
             }
             catch (Exception ex)
@@ -442,7 +465,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductRating(this.SessionID, productID, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductRating(username_from_SessionID, productID, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's rating was updated successfully.");
             }
             catch (Exception ex)
@@ -455,7 +479,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductQuantity(this.SessionID, productID, quantity); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductQuantity(username_from_SessionID, productID, quantity); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's quantity was updated successfully.");
             }
             catch (Exception ex)
@@ -468,7 +493,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductWeight(this.SessionID, productID, weight); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductWeight(username_from_SessionID, productID, weight); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's weight was updated successfully.");
             }
             catch (Exception ex)
@@ -481,7 +507,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductSale(this.SessionID, productID, sale); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductSale(username_from_SessionID, productID, sale); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's sale was updated successfully.");
             }
             catch (Exception ex)
@@ -494,7 +521,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductTimesBought(this.SessionID, productID, times); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductTimesBought(username_from_SessionID, productID, times); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("The number of times the product were bought was updated successfully.");
             }
             catch (Exception ex)
@@ -507,7 +535,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductCategory(this.SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductCategory(username_from_SessionID, productID, categoryID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's category was changed successfully.");
             }
             catch (Exception ex)
@@ -520,7 +549,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.ChangeProductDimenssions(this.SessionID, productID, dims);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.ChangeProductDimenssions(username_from_SessionID, productID, dims);
                 return new Response("Product's dimenssions were updated successfully.");
             }
             catch (Exception ex)
@@ -533,7 +563,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddProductPurchasePolicy(this.SessionID, productID, newPolicy, newPolicyProperties);
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.AddProductPurchasePolicy(username_from_SessionID, productID, newPolicy, newPolicyProperties);
                 return new Response("New product's purchase policy was added successfully.");
             }
             catch (Exception ex)
@@ -546,7 +577,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.RemoveProductPurchasePolicy(this.SessionID, productID, policyID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.RemoveProductPurchasePolicy(username_from_SessionID, productID, policyID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's purchase policy was removed successfully.");
             }
             catch (Exception ex)
@@ -559,7 +591,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.AddProductPurchaseStrategy(this.SessionID, productID, newStrategy, newStrategyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.AddProductPurchaseStrategy(username_from_SessionID, productID, newStrategy, newStrategyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New product's purchase strategy was added successfully.");
             }
             catch (Exception ex)
@@ -572,7 +605,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.Market.RemoveProductPurchaseStrategy(this.SessionID, productID, strategyID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                string username_from_SessionID = this.Market.get_username_from_session_id(this.SessionID);
+                this.Market.RemoveProductPurchaseStrategy(username_from_SessionID, productID, strategyID); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Product's purchase strategy was removed successfully.");
             }
             catch (Exception ex)
