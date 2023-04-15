@@ -116,6 +116,7 @@ namespace Market_System.ServiceLayer
             }
 
         }
+        /*
         public string assign_new_owner(string founder, string username, int store_ID) // 4.4
         {
             try
@@ -142,6 +143,7 @@ namespace Market_System.ServiceLayer
                 return e.Message;
             }
         }
+        */
         public void edit_manger_permissions() //4.7
         {
 
