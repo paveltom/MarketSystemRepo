@@ -117,6 +117,10 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             return getemployee(subjectUserID, storeID).isMyManagerAssignner(sellerID);
         }
+        public Boolean isFounder(string employeeID, string storeID)
+        {
+            return getemployee(employeeID, storeID).isFounder();
+        }
 
         public Boolean isOwner(string employeeID, string storeID)
         {
@@ -132,6 +136,7 @@ namespace Market_System.DomainLayer.StoreComponent
          */
         public void AddNewEmpPermissions(string userID, string storeID, List<Permission> permissions, Role role)
         {
+            //todo
             Employee newEmp = new Employee(userID, storeID, role);
             newEmp.Permissions = permissions;
             AddEmp(newEmp);
@@ -166,7 +171,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 return emp.Permissions;
             }
-            else return null;
+            else throw new Exception("employee wih such id does not exist");
         }
 
         /** add the'permission' to a store manager.
@@ -212,6 +217,7 @@ namespace Market_System.DomainLayer.StoreComponent
         */
         public void AddNewOwnerEmpPermissions(string assignnerID, string newOwnerID, string storeID)
         {
+            //todo: check that this owner mot alredy exist
             Employee newEmp = new Employee(newOwnerID, storeID, Role.Owner);
             newEmp.OwnerAssignner = assignnerID;
             newEmp.Permissions = OwnerPermissions;
@@ -219,9 +225,10 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         /**add new  founder employee  with 'permissions' of an founder.
-  */
+        */
         public void AddNewFounderEmpPermissions(string userID, string storeID)
         {
+            //todo: check that manager mot alredy exist
             Employee newEmp = new Employee(userID, storeID, Role.Founder);
             newEmp.Permissions = FounderPermissions;
             AddEmp(newEmp);
@@ -229,6 +236,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void AddNewManagerEmpPermissions(string assignnerID, string newManagerID, string storeID, List<Permission> managingPermissions)
         {
+            //todo: check that manager mot alredy exist
             Employee newEmp = new Employee(newManagerID, storeID, Role.Manager);
             newEmp.ManagerAssigner = assignnerID;
             AddNewEmpPermissions(newManagerID, storeID, managingPermissions, Role.Manager);
@@ -237,7 +245,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public void removeStore(string storeID)
         {
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-            //save a backup
+            //save a backup->yet not implemented
             List<Employee> emps = getStoreEmployees(storeID);
             foreach (Employee emp in emps)
             {
@@ -254,9 +262,10 @@ namespace Market_System.DomainLayer.StoreComponent
                     return emp;
                 }
             }
-            return null;//not found
+            throw new Exception("employee wih such id does not exist");
+            //return null;//not found//todo: return null here or throw an exception?
         }
-        
+
         private void AddEmp(Employee emp)
         {
             EmpPermissions.Add(emp);

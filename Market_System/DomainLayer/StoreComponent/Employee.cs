@@ -94,7 +94,12 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             return ManagerAssigner.Equals(managerID);
         }
-        
+
+        public Boolean isFounder()
+        {
+            return Role.Equals(Role.Founder);
+        }
+
         public Boolean isOwner()
         {
             return Role.Equals(Role.Owner);
