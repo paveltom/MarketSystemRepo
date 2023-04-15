@@ -350,10 +350,10 @@ namespace Market_System.Tests.unit_tests
             store_name_in_a_list.Add("store_1");
             MarketSystem.GetInstance().Add_New_Store("store1", store_name_in_a_list);
             string store_ID_from_name = MarketSystem.GetInstance().get_store_id_from_name("store1");
-            
             List<string> product_details = new List<string>();
             product_details.Add("product_1");//product_name
             product_details.Add("desc1");//product_description
+            product_details.Add("99");//price
             product_details.Add("100000000");//quantity
             product_details.Add("0");//reserved quanitity
             product_details.Add("5");//rating
