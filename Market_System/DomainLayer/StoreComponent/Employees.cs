@@ -51,7 +51,11 @@ namespace Market_System.DomainLayer.StoreComponent
             get { return this.ownerPermissions; }
             set { this.ownerPermissions = value; }
         }
-  
+
+        public Boolean isFounder(string employeeID, string storeID)
+        {
+            return getemployee(employeeID, storeID).isFounder();
+        }
 
         public Employees()
         {
@@ -166,7 +170,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 return emp.Permissions;
             }
-            else return null;
+            else  throw new Exception("employee wih such id does not exist");
         }
 
         /** add the'permission' to a store manager.
@@ -254,7 +258,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     return emp;
                 }
             }
-            return null;//not found
+             throw new Exception("employee wih such id does not exist"); ;//not found
         }
         
         private void AddEmp(Employee emp)

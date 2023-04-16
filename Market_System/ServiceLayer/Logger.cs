@@ -11,10 +11,11 @@ namespace Market_System.ServiceLayer
         public static Logger instance;
         private Dictionary<string, string> event_log;
         private Dictionary<string, string> error_log;
-
+        
         private Logger ()
         {
-           
+            this.event_log = new Dictionary<string, string>();
+            this.error_log = new Dictionary<string, string>();
         }
 
         public static Logger get_instance()
@@ -41,7 +42,8 @@ namespace Market_System.ServiceLayer
         {
             lock (this)
             {
-                this.event_log.Add(DateTime.Now.ToString(), new_event);
+                this.event_log.Add(DateTime.Now.ToLongDateString(), new_event);
+                
             }
          }
 
@@ -50,7 +52,8 @@ namespace Market_System.ServiceLayer
         {
             lock (this)
             {
-                this.event_log.Add(DateTime.Now.ToString(), new_error);
+                 this.event_log.Add(DateTime.Now.ToLongDateString(), new_error);
+                
             }
         }
 
