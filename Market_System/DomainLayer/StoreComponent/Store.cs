@@ -404,11 +404,11 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                return ((Lazy<Product>)products.GetOrAdd(productID, (k) => new Lazy<Product>(() =>
+                return products.GetOrAdd(productID, (k) => new Lazy<Product>(() =>
                 {
                     productUsage.AddOrUpdate(k, 1, (k, val) => val + 1);
                     return storeRepo.getProduct(k);
-                }))).Value; // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
+                }).Value); // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
             }
             catch (Exception e) { throw e; }
         }
