@@ -46,7 +46,7 @@ namespace Market_System.Tests.unit_tests
         }
 
 
-        public void TransferFoundershipStoreTest()
+        public void TransferFoundershipWithFounderStoreTestSuccess()
         {
             // Arrange
             string newFounder = "TransferFoundershipStroeTestNewFounderID1";
@@ -59,7 +59,21 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(newFounder, this.testStore.founderID);
         }
 
-        public void ChangeNameStoreTest()
+        public void TransferFoundershipWithNotFounderStoreTesFailt()
+        {
+            // Arrange
+            string newFounder = "TransferFoundershipStroeTestNewFounderID1";
+
+            // Act
+            this.testStore.TransferFoundership(newFounder + "NotFounder", newFounder);
+
+
+
+            // Assert
+            Assert.AreNotEqual(newFounder, this.testStore.founderID);
+        }
+
+        public void ChangeNameByFounderStoreTestSuccess()
         {
             // Arrange
             string newName = "ChangeNameStroeTestName1";
@@ -70,64 +84,154 @@ namespace Market_System.Tests.unit_tests
             try
             {
                 this.testStore.ChangeName("notFounderUser", "badStoreNameForTest");
-            } catch (Exception ex) { errorCatched = true; }
+            }
+            catch (Exception ex) { errorCatched = true; }
 
             // Assert
             Assert.Equals(newName, this.testStore.Name);
             Assert.IsTrue(errorCatched);
         }
 
-        public void ManagePermissionsStoreTest()
+        public void ChangeNameByNOTFounderStoreTestFail()
+        {
+            // Arrange
+            bool errorCatched = false;
+
+            // Act
+            try
+            {
+                this.testStore.ChangeName("notFounderUser", "badStoreNameForTest");
+            }
+            catch (Exception ex) { errorCatched = true; }
+
+            // Assert
+            Assert.IsTrue(errorCatched);
+        }
+
+
+
+        public void ManagePermissionsStoreTestSuccess()
+        {
+            // Arrange
+            string employeeID = "testStockManagerID0"; // init parameter
+            List<Permission> permissions = new List<Permission>() { Permission.INFO, Permission.STOCK};  
+
+            // Act
+            this.testStore.ManagePermissions(this.testStore.founderID, employeeID, permissions);
+
+            // Assert
+            Assert.IsTrue(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.INFO));
+            Assert.IsTrue(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.STOCK));
+        }
+
+        public void ManagePermissionsWithBadAssigneeStoreTestFail()
         {
             // Arrange
             string storeOwner = "testOwnerID0"; // init parameter - is not 'employeeID' assigner
             string employeeID = "testStockManagerID0"; // init parameter
-            string otherManager = "testInfoManagerID0"; // init parameter
-            List<Permission> permissions = new List<Permission>() { Permission.INFO, Permission.STOCK};  
+            List<Permission> permissions = new List<Permission>() { Permission.INFO, Permission.STOCK };
             bool errorCatchedNotMyAssignee = false;
-            bool errorCatchedNotOwner = false;
 
             // Act
-            this.testStore.ManagePermissions(this.testStore.founderID, employeeID, permissions);
-            
             try
             {
                 this.testStore.ManagePermissions(storeOwner, employeeID, permissions);
             }
             catch (Exception ex) { errorCatchedNotMyAssignee = true; }
 
+            // Assert
+            Assert.IsTrue(errorCatchedNotMyAssignee);
+        }
+
+        public void ManagePermissionsWithNotOwnerStoreTestFail()
+        {
+            // Arrange
+            string employeeID = "testStockManagerID0"; // init parameter
+            string otherManager = "testInfoManagerID0"; // init parameter
+            List<Permission> permissions = new List<Permission>() { Permission.INFO, Permission.STOCK };
+            bool errorCatchedNotOwner = false;
+
+            // Act
             try
             {
                 this.testStore.ManagePermissions(otherManager, employeeID, permissions);
             }
             catch (Exception ex) { errorCatchedNotOwner = true; }
 
-            // Assert
-            Assert.IsTrue(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.INFO));
-            Assert.IsTrue(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.STOCK));
+            // Assert           
             Assert.IsTrue(errorCatchedNotOwner);
-            Assert.IsTrue(errorCatchedNotMyAssignee);
         }
 
-        public void AssignNewOwnerStoreTest()
+        public void AssignNewOwnerStoreTestSuccess()
         {
             // Arrange
             string storeOwner = "testOwnerID0"; // init parameter
-            string newOwnerID = "AssignNewOwnerStoreTestOwnerID0"; 
-            string stockManager = "testStockManagerID0";
-            string infoManager = "testInfoManagerID0"; // init parameter            
-            bool errorCatchedNotOwner = false;
-            bool errorCatchedAlreadyOwner = false;
+            string newOwnerID = "AssignNewOwnerStoreTestOwnerID0";
 
             // Act
             this.testStore.AssignNewOwner(storeOwner, newOwnerID);
 
+            // Assert
+            Assert.IsTrue(this.testEmployees.isOwner(newOwnerID, this.testStore.Store_ID));
+        }
+
+        public void AssignNewOwnerWithNoOwnerStoreTestFail()
+        {
+            // Arrange
+            string stockManager = "testStockManagerID0";
+            string infoManager = "testInfoManagerID0"; // init parameter            
+            bool errorCatchedNotOwner = false;
+
+            // Act
+            try
+            {
+                this.testStore.AssignNewOwner(infoManager, stockManager);
+            }
+            catch (Exception ex) { errorCatchedNotOwner = true; }
+
+            // Assert
+            Assert.IsTrue(errorCatchedNotOwner);
+        }
+
+        public void AssignNewOwnerAlreadyOwnerStoreTestFail()
+        {
+            // Arrange
+            string storeOwner = "testOwnerID0"; // init parameter
+            string newOwnerID = "AssignNewOwnerStoreTestOwnerID0";
+            bool errorCatchedAlreadyOwner = false;
+
+            // Act
             try
             {
                 this.testStore.AssignNewOwner(storeOwner, newOwnerID);
             }
             catch (Exception ex) { errorCatchedAlreadyOwner = true; }
 
+            // Assert
+            Assert.IsTrue(errorCatchedAlreadyOwner);
+        }
+
+        public void AssignNewManagerStoreTestSuccess()
+        {
+            // Arrange
+            string storeOwner = "testOwnerID0"; // init parameter
+            string newManager = "AssignNewManagerStoreTestID0";
+
+            // Act
+            this.testStore.AssignNewManager(storeOwner, newManager);
+
+            // Assert
+            Assert.IsTrue(this.testEmployees.isManager(newManager, this.testStore.Store_ID));
+        }
+
+        public void AssignNewManagerWithNotOwnerStoreTestFail()
+        {
+            // Arrange
+            string stockManager = "testStockManagerID0";
+            string infoManager = "testInfoManagerID0"; // init parameter            
+            bool errorCatchedNotOwner = false;
+
+            // Act
             try
             {
                 this.testStore.AssignNewOwner(infoManager, stockManager);
@@ -135,51 +239,46 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorCatchedNotOwner = true; }
 
             // Assert
-            Assert.IsTrue(this.testEmployees.isOwner(newOwnerID, this.testStore.Store_ID));
             Assert.IsTrue(errorCatchedNotOwner);
-            Assert.IsTrue(errorCatchedAlreadyOwner);
         }
 
-        public void AssignNewManagerStoreTest()
+        public void AssignNewManagerAlreadyManagerStoreTestFail()
         {
             // Arrange
             string storeOwner = "testOwnerID0"; // init parameter
-            string newManager = "AssignNewManagerStoreTestID0"; 
-            string stockManager = "testStockManagerID0";
-            string infoManager = "testInfoManagerID0"; // init parameter            
-            bool errorCatchedNotOwner = false;
+            string newManager = "AssignNewManagerStoreTestID0";
             bool errorCatchedAlreadyManager = false;
 
             // Act
-            this.testStore.AssignNewManager(storeOwner, newManager);
-
             try
             {
                 this.testStore.AssignNewOwner(storeOwner, newManager);
             }
             catch (Exception ex) { errorCatchedAlreadyManager = true; }
 
-            try
-            {
-                this.testStore.AssignNewOwner(infoManager, stockManager);
-            }
-            catch (Exception ex) { errorCatchedNotOwner = true; }
-
             // Assert
-            Assert.IsTrue(this.testEmployees.isManager(newManager, this.testStore.Store_ID));
-            Assert.IsTrue(errorCatchedNotOwner);
             Assert.IsTrue(errorCatchedAlreadyManager);
         }
 
-        public void GetOwnersOfTheStoreTest()
+        public void GetOwnersOfTheStoreTestSuccess()
+        {
+            // Arrange
+            List<string> owners = new List<string>() { "testStoreFounderID326", "testOwnerID0" }; // init values
+
+            // Act
+            List<string> retOwners = this.testStore.GetOwnersOfTheStore("testStoreFounderID326");
+
+            // Assert
+            Assert.IsTrue((!owners.Except(retOwners).Any()) && (!retOwners.Except(owners).Any()));
+        }
+
+        public void GetOwnersOfTheStoreNoPermissionTestFail()
         {
             // Arrange
             List<string> owners = new List<string>() { "testStoreFounderID326", "testOwnerID0" }; // init values
             bool errorCatchedNoInfoPermission = false;
 
             // Act
-            List<string> retOwners = this.testStore.GetOwnersOfTheStore("testStoreFounderID326");
-
             try
             {
                 this.testStore.GetOwnersOfTheStore("testStockManagerID0");
@@ -187,19 +286,28 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorCatchedNoInfoPermission = true; }
 
             // Assert
-            Assert.IsTrue((!owners.Except(retOwners).Any()) && (!retOwners.Except(owners).Any()));
             Assert.IsTrue(errorCatchedNoInfoPermission);
         }
 
-        public void GetManagersOfTheStoreTest()
+        public void GetManagersOfTheStoreTestSuccess()
+        {
+            // Arrange
+            List<string> managers = new List<string>() { "testStockManagerID0", "testInfoManagerID0" }; // init values
+
+            // Act
+            List<string> retManagers = this.testStore.GetManagersOfTheStore("testStoreFounderID326");
+
+            // Assert
+            Assert.IsTrue((!managers.Except(retManagers).Any()) && (!retManagers.Except(managers).Any()));
+        }
+
+        public void GetManagersOfTheStoreNoPermissionTestFail()
         {
             // Arrange
             List<string> managers = new List<string>() { "testStockManagerID0", "testInfoManagerID0" }; // init values
             bool errorCatchedNoInfoPermission = false;
 
             // Act
-            List<string> retManagers = this.testStore.GetManagersOfTheStore("testStoreFounderID326");
-
             try
             {
                 this.testStore.GetManagersOfTheStore("testStockManagerID0");
@@ -207,11 +315,10 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorCatchedNoInfoPermission = true; }
 
             // Assert
-            Assert.IsTrue((!managers.Except(retManagers).Any()) && (!retManagers.Except(managers).Any()));
             Assert.IsTrue(errorCatchedNoInfoPermission);
         }
 
-        public void AddEmployeePermissionStoreTest()
+        public void AddEmployeePermissionStoreTestSuccess()
         {
             // Arrange
             string employeeID = "testStockManagerID0"; // init value
@@ -223,7 +330,24 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testEmployees.confirmPermission(this.testStore.founderID, this.testStore.Store_ID, Permission.INFO));
         }
 
-        public void RemoveEmployeePermissionStoreTest()
+        public void AddEmployeePermissionNoPermissionStoreTestFail()
+        {
+            // Arrange
+            string employeeID = "testStockManagerID0"; // init value
+            bool errorCatchedNoPermission = false;
+
+            // Act
+            try
+            {
+                this.testStore.AddEmployeePermission(employeeID + "badOwner", employeeID, Permission.INFO);
+            }
+            catch (Exception ex) { errorCatchedNoPermission = true; }
+
+            // Assert
+            Assert.IsTrue(errorCatchedNoPermission);
+        }
+
+        public void RemoveEmployeePermissionStoreTestSuccess()
         {
             // Arrange
             string employeeID = "testStockManagerID0"; // init value
@@ -236,13 +360,59 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(this.testEmployees.confirmPermission(this.testStore.founderID, this.testStore.Store_ID, Permission.STOCK));
         }
 
-        public void GetPurchaseHistoryOfTheStoreTest()
+        public void RemoveEmployeePermissionNoPermissionStoreTestFail()
         {
-            Assert.IsFalse(true); // implement when StorePurchaseHistory is implemented!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // Arrange
+            string employeeID = "testStockManagerID0"; // init value
+            this.testStore.AddEmployeePermission(this.testStore.founderID, employeeID, Permission.INFO);
+            bool errorCatchedNoPermission = false;
+
+            // Act            
+            try
+            {
+                this.testStore.RemoveEmployeePermission(this.testStore.founderID, employeeID, Permission.STOCK);
+            }
+            catch (Exception ex) { errorCatchedNoPermission = true; }
+
+
+            // Assert
+            Assert.IsTrue(errorCatchedNoPermission);
         }
 
+        public void GetPurchaseHistoryOfTheStoreTestSuccess()
+        {
+            // Arrange
+            string buyerID = "GetPurchaseHistoryOfTheStoreTestSuccessID0"; // init value
+            ItemDTO productInStore = new ItemDTO(this.testProduct1);
+            List<ItemDTO> items = new List<ItemDTO>() { productInStore };
+            this.testStore.Purchase(buyerID, items);
+            string history = StoreRepo.GetInstance().getPurchaseHistoryOfTheStore(this.testStore.Store_ID);
 
-        public void GetStoreDTOStoreTest()
+            // Act
+            string retHistory = this.testStore.GetPurchaseHistoryOfTheStore(this.testStore.founderID);
+
+            // Assert
+            Assert.Equals(history, retHistory);
+        }
+
+        public void GetPurchaseHistoryOfTheStoreNoPermissionTestFail()
+        {
+            // Arrange
+            string buyerID = "GetPurchaseHistoryOfTheStoreTestFailID0"; // init value
+            bool errorCatchedNoPermission = false;
+
+            // Act
+            try
+            {
+                this.testStore.GetPurchaseHistoryOfTheStore(buyerID);
+            }
+            catch (Exception ex) { errorCatchedNoPermission = true; }
+
+            // Assert
+            Assert.IsTrue(errorCatchedNoPermission);
+        }
+
+        public void GetStoreDTOStoreTestSuccess() // no fail test for this 
         {
             // Arrange
             StoreDTO dataStore = new StoreDTO(this.testStore);
@@ -260,11 +430,11 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(dataStore.DefaultStrategies, ret.DefaultStrategies);
         }
 
-        public void GetItemsStoreTest()
+        public void GetItemsStoreTestSuccess()
         {
             // Arrange
             ItemDTO productInStore = new ItemDTO(this.testProduct1);
-            List<ItemDTO> items = new List<ItemDTO>() { productInStore};
+            List<ItemDTO> items = new List<ItemDTO>() { productInStore };
 
             // Act
             List<ItemDTO> retItems = this.testStore.GetItems();
@@ -273,19 +443,24 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue((!items.Except(retItems).Any()) && (!retItems.Except(items).Any()));
         }
 
-        public void RemoveStoreTest()
+        public void GetItemsNoProductsInStoreStoreTest()
         {
             // Arrange
-            bool errorCatchedNotAFounder = false;
+            this.testStore.RemoveProduct(this.testStore.founderID, this.testProduct1.Product_ID);
+
+            // Act
+            List<ItemDTO> retItems = this.testStore.GetItems();
+
+            // Assert
+            Assert.Equals(retItems.Count(), 0);
+        }
+
+        public void RemoveStoreTestSuccess()
+        {
+            // Arrange
             bool noStore = false;
 
             // Act
-            try
-            {
-                this.testStore.RemoveStore("testOwnerID0");
-            }
-            catch (Exception ex) { errorCatchedNotAFounder = true; }
-
             this.testStore.RemoveStore(this.testStore.founderID);
 
             try
@@ -296,16 +471,31 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsTrue(noStore);
+        }
+
+        public void RemoveStoreNoFounderTest()
+        {
+            // Arrange
+            bool errorCatchedNotAFounder = false;
+
+            // Act
+            try
+            {
+                this.testStore.RemoveStore("testOwnerID0");
+            }
+            catch (Exception ex) { errorCatchedNotAFounder = true; }
+
+            // Assert
             Assert.IsTrue(errorCatchedNotAFounder);
         }
 
-        public void CalculatePriceStoreTest()
+        public void CalculatePriceStoreTestSuccess()
         {
             // Arrange
-            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            ItemDTO p1 = this.testProduct1.GetProductDTO();
             int quantity = p1.GetQuantity();
-            double price = quantity * this.testProduct0.Price;
-            List<ItemDTO> items = new List<ItemDTO>() {p1 };
+            double price = quantity * this.testProduct1.Price;
+            List<ItemDTO> items = new List<ItemDTO>() { p1 };
             double result = 0;
             bool error = false;
 
@@ -320,6 +510,29 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(price, result);
             Assert.IsFalse(error);
         }
+
+        public void CalculatePriceNoSuchProductStoreTestFail()
+        {
+            // Arrange
+            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            List<ItemDTO> items = new List<ItemDTO>() { p1 };
+            this.testStore.RemoveProduct(this.testStore.founderID, this.testProduct1.Product_ID);
+            bool errorCatchedNoSuchProductInThisStore = false;
+
+            // Act
+            try
+            {
+                this.testStore.CalculatePrice(items);
+            }
+            catch (Exception ex) { errorCatchedNoSuchProductInThisStore = true; }
+
+            // Assert
+            Assert.IsTrue(errorCatchedNoSuchProductInThisStore);
+        }
+        // =========================================================================================
+        // ===================================== not separated =====================================
+
+
 
         public void PurchaseStoreTest()
         {

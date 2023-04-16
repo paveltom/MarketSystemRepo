@@ -403,9 +403,10 @@ namespace Market_System.DomainLayer.StoreComponent
         private Product AcquireProduct(string productID)
         {
             try
-            {
+            {                
                 return products.GetOrAdd(productID, (k) => new Lazy<Product>(() =>
                 {
+                    if (!this.allProducts.Keys.Contains(productID)) throw new Exception("No such product in this store.");
                     productUsage.AddOrUpdate(k, 1, (k, val) => val + 1);
                     return storeRepo.getProduct(k);
                 }).Value); // valueFactory could be calle multiple timnes so Lazy instance may be created multiple times also, but only one will actually be used
