@@ -47,6 +47,13 @@ namespace Market_System.DomainLayer.StoreComponent
             set { this.role = value; }
         }
 
+        public Boolean isFounder()
+        {
+            return Role.Equals(Role.Founder);
+        }
+
+
+
         public string OwnerAssignner
         {
             get { return this.ownerAssignner; }
