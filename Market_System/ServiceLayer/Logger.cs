@@ -13,6 +13,8 @@ namespace Market_System.ServiceLayer
         private string log_errors_path;
         private StreamWriter log_event_writer;
         private StreamWriter log_error_writer;
+        private StreamReader log_event_reader;
+        private StreamReader log_error_reader;
 
 
         private Logger ()
@@ -23,7 +25,8 @@ namespace Market_System.ServiceLayer
             this.log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me2;
             this.log_event_writer = new StreamWriter(log_event_path);
             this.log_error_writer = new StreamWriter(log_errors_path);
-
+            this.log_event_reader = new StreamReader(log_event_path);
+            this.log_error_reader = new StreamReader(log_errors_path);
         }
 
         public static Logger get_instance()
@@ -43,12 +46,7 @@ namespace Market_System.ServiceLayer
         {
             lock (this)
             {
-
                 this.log_event_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_event);
-
-     
-                
-
             }
          }
 
@@ -57,17 +55,18 @@ namespace Market_System.ServiceLayer
         {
             lock (this)
             {
-
                 this.log_error_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_error);
-
-     
-                
-
             }
         }
 
+        public string Read_Events_Record()
+        {
+            return this.log_event_reader.ReadToEnd();
+        }
 
-
-
+        public string Read_Errors_Record()
+        {
+            return this.log_error_reader.ReadToEnd();
+        }
     }
 }
