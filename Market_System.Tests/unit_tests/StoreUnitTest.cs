@@ -41,8 +41,8 @@ namespace Market_System.Tests.unit_tests
         [TestCleanup()]
         public void TearDown()
         {
-            // destroy StoreRepo here cause it is singletone after it is done
-            EmployeeRepo.GetInstance().destroy_me();
+            StoreRepo.GetInstance().destroy();
+            EmployeeRepo.GetInstance().destroy_me();            
         }
 
 
@@ -529,20 +529,29 @@ namespace Market_System.Tests.unit_tests
             // Assert
             Assert.IsTrue(errorCatchedNoSuchProductInThisStore);
         }
-        // =========================================================================================
-        // ===================================== not separated =====================================
 
+        public void PurchaseStoreTestSuccess()
+        {
+            // Arrange
+            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            List<ItemDTO> items = new List<ItemDTO>() { p1 };
 
+            // Act
+            this.testStore.Purchase("PurchaseStoreTestUserID0", items);
 
-        public void PurchaseStoreTest()
+            // Assert
+            Assert.Equals(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
+        }
+
+        public void PurchaseNorEnoughInStockStoreTestFail()
         {
             // Arrange
             ItemDTO p1 = this.testProduct0.GetProductDTO();
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
             bool errorNotEnoughInStock = false;
+            this.testStore.Purchase("PurchaseStoreTestUserID0", items);
 
             // Act
-            this.testStore.Purchase("PurchaseStoreTestUserID0", items);
             try
             {
                 this.testStore.Purchase("PurchaseStoreTestUserID0", items);
@@ -550,18 +559,27 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorNotEnoughInStock = true; }
 
             // Assert
-            Assert.Equals(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
             Assert.IsTrue(errorNotEnoughInStock);
         }
 
+        public void AddStorePurchasePolicyStoreTestSuccess()
+        {
+            // Arrange
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
 
-        public void AddStorePurchasePolicyStoreTest()
+            // Act
+            this.testStore.AddStorePurchasePolicy(this.testStore.founderID, newPolicy);
+
+            // Assert
+            Assert.IsTrue(this.testStore.defaultPolicies.ContainsKey(newPolicy.GetID()));
+        }
+
+        public void AddStorePurchasePolicyNoPermissionStoreTestFail()
         {
             // Arrange
             Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
             string stockManagerID = "testStockManagerID0"; // init value
             bool errorNoPolicyPermission = false;
-            bool errorPolicyAlreadyExists = false;
 
             // Act
             try
@@ -570,6 +588,17 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception ex) { errorNoPolicyPermission = true; }
 
+            // Assert
+            Assert.IsTrue(errorNoPolicyPermission);
+        }
+
+        public void AddStorePurchasePolicyAlreadyExistsStoreTestFail()
+        {
+            // Arrange
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            bool errorPolicyAlreadyExists = false;
+
+            // Act
             this.testStore.AddStorePurchasePolicy(this.testStore.founderID, newPolicy);
 
             try
@@ -579,18 +608,28 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorPolicyAlreadyExists = true; }
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultPolicies.ContainsKey(newPolicy.GetID()));
-            Assert.IsTrue(errorNoPolicyPermission);
             Assert.IsTrue(errorPolicyAlreadyExists);
         }
 
-        public void AddStorePurchaseStrategyStoreTest()
+        public void AddStorePurchaseStrategyStoreTestSuccess()
+        {
+            // Arrange
+            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyStoreTestPolicyID0", "AddStorePurchaseStrategyStoreTestPolicyName0");
+
+            // Act
+            this.testStore.AddStorePurchaseStrategy(this.testStore.founderID, newStrategy);
+
+
+            // Assert
+            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(newStrategy.GetID()));
+        }
+
+        public void AddStorePurchaseStrategyNoPermissionStoreTestFail()
         {
             // Arrange
             Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyStoreTestPolicyID0", "AddStorePurchaseStrategyStoreTestPolicyName0");
             string infoManagerID = "testInfoManagerID0"; // init value
             bool errorNoPolicyPermission = false;
-            bool errorStrategyAlreadyExists = false;
 
             // Act
             try
@@ -599,8 +638,18 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception ex) { errorNoPolicyPermission = true; }
 
+            // Assert
+            Assert.IsTrue(errorNoPolicyPermission);
+        }
+
+        public void AddStorePurchaseStrategyStoreTestFail()
+        {
+            // Arrange
+            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyStoreTestPolicyID0", "AddStorePurchaseStrategyStoreTestPolicyName0");
+            bool errorStrategyAlreadyExists = false;
             this.testStore.AddStorePurchaseStrategy(this.testStore.founderID, newStrategy);
 
+            // Act
             try
             {
                 this.testStore.AddStorePurchaseStrategy(this.testStore.founderID, newStrategy);
@@ -608,19 +657,27 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorStrategyAlreadyExists = true; }
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(newStrategy.GetID()));
-            Assert.IsTrue(errorNoPolicyPermission);
             Assert.IsTrue(errorStrategyAlreadyExists);
         }
 
-        public void RemoveStorePurchasePolicyStoreTest()
+        public void RemoveStorePurchasePolicyStoreTestSuccess()
+        {
+            // Arrange
+            string policyToRemove = "testStorePolicyID";
+
+            // Act
+            this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
+
+            // Assert
+            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(policyToRemove));
+        }
+
+        public void RemoveStorePurchasePolicySNopermissiontoreTestFail()
         {
             // Arrange
             string policyToRemove = "testStorePolicyID";
             string infoManagerID = "testInfoManagerID0"; // init value
             bool errorNoPolicyPermission = false;
-            bool errorPolicyDoesntExist = false;
-
             // Act
             try
             {
@@ -628,8 +685,18 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception ex) { errorNoPolicyPermission = true; }
 
+            // Assert
+            Assert.IsTrue(errorNoPolicyPermission);
+        }
+
+        public void RemoveStorePurchasePolicyDoesntExistStoreTestFail()
+        {
+            // Arrange
+            string policyToRemove = "testStorePolicyID";
+            bool errorPolicyDoesntExist = false;
             this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
 
+            // Act
             try
             {
                 this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
@@ -637,8 +704,6 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorPolicyDoesntExist = true; }
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(policyToRemove));
-            Assert.IsTrue(errorNoPolicyPermission);
             Assert.IsTrue(errorPolicyDoesntExist);
         }
 
@@ -647,8 +712,20 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             string strategyToRemove = "testStoreStrategyID";
             string infoManagerID = "testInfoManagerID0"; // init value
+
+            // Act
+            this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
+
+            // Assert
+            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(strategyToRemove));
+        }
+
+        public void RemoveStorePurchaseStrategyNoPermissionStoreTestFail()
+        {
+            // Arrange
+            string strategyToRemove = "testStoreStrategyID";
+            string infoManagerID = "testInfoManagerID0"; // init value
             bool errorNoPolicyPermission = false;
-            bool errorStrategyDoesntExist = false;
 
             // Act
             try
@@ -657,8 +734,18 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception ex) { errorNoPolicyPermission = true; }
 
+            // Assert
+            Assert.IsTrue(errorNoPolicyPermission);
+        }
+
+        public void RemoveStorePurchaseStrategyDoesntExistStoreTestFail()
+        {
+            // Arrange
+            string strategyToRemove = "testStoreStrategyID";
+            bool errorStrategyDoesntExist = false;
             this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
 
+            // Act
             try
             {
                 this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
@@ -666,17 +753,34 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorStrategyDoesntExist = true; }
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(strategyToRemove));
-            Assert.IsTrue(errorNoPolicyPermission);
             Assert.IsTrue(errorStrategyDoesntExist);
         }
 
-        public void AddProductStoreTest()
+        public void AddProductStoreTestSuccess()
+        {
+            // Arrange            
+            bool itemAdded = false;
+            List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "45", "0" , "0", "0", "67", "9.1_8.2_7.3",
+                                                                   "testProduct0Atr1:testProduct0Atr1Opt1_testProduct0Atr1Opt2;testProduct0Atr2:testProduct0Atr2Opt1_testProduct0Atr2Opt2_testProduct0Atr2Opt3;",
+                                                                   "testProduct0SomeCategory"}; // init value
+
+            // Act
+            this.testStore.AddProduct(this.testStore.founderID, productProperties);
+
+
+
+            // Assert
+            foreach (ItemDTO item in this.testStore.GetItems())
+                if (item.GetID() == this.testProduct0.Product_ID)
+                    itemAdded = true;
+            Assert.IsTrue(itemAdded);
+        }
+
+        public void AddProductNoPermissionStoreTestFail()
         {
             // Arrange            
             string infoManager = "testInfoManagerID0"; // init value
             bool errorNoStockPermission = false;
-            bool itemAdded = false;
             List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "45", "0" , "0", "0", "67", "9.1_8.2_7.3",
                                                                    "testProduct0Atr1:testProduct0Atr1Opt1_testProduct0Atr1Opt2;testProduct0Atr2:testProduct0Atr2Opt1_testProduct0Atr2Opt2_testProduct0Atr2Opt3;",
                                                                    "testProduct0SomeCategory"}; // init value
@@ -688,25 +792,31 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception ex) { errorNoStockPermission = true; }
 
-            this.testStore.AddProduct(this.testStore.founderID, productProperties);
-
-
 
             // Assert
-            foreach (ItemDTO item in this.testStore.GetItems())
-                if (item.GetID() == this.testProduct0.Product_ID)
-                    itemAdded = true;
-            Assert.IsTrue(itemAdded);
             Assert.IsTrue(errorNoStockPermission);
         }
 
+        public void RemoveProductStoreTestSuccess()
+        {
+            // Arrange            
+            bool itemRemoved = true;
 
-        public void RemoveProductStoreTest()
+            // Act
+            this.testStore.RemoveProduct(this.testStore.founderID, this.testProduct1.Product_ID);
+
+            // Assert
+            foreach (ItemDTO item in this.testStore.GetItems())
+                if (item.GetID() == this.testProduct1.Product_ID)
+                    itemRemoved = false;
+            Assert.IsTrue(itemRemoved);
+        }
+
+        public void RemoveProductNoPermissionStoreTestFail()
         {
             // Arrange            
             string infoManager = "testInfoManagerID0"; // init value
             bool errorNoStockPermission = false;
-            bool itemRemoved = true;
 
             // Act
             try
@@ -715,15 +825,26 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception ex) { errorNoStockPermission = true; }
 
-            this.testStore.RemoveProduct(this.testStore.founderID, this.testProduct1.Product_ID);
-
             // Assert
-            foreach (ItemDTO item in this.testStore.GetItems())
-                if (item.GetID() == this.testProduct1.Product_ID)
-                    itemRemoved = false;
-            Assert.IsTrue(itemRemoved);
             Assert.IsTrue(errorNoStockPermission);
         }
+
+        public void RemoveProductNoSuchProductStoreTestFail()
+        {
+            // Arrange            
+            bool errorNoSuchProduct = false;
+
+            // Act
+            try
+            {
+                this.testStore.RemoveProduct(this.testStore.founderID, this.testProduct0.Product_ID);
+            }
+            catch (Exception ex) { errorNoSuchProduct = true; }
+
+            // Assert
+            Assert.IsTrue(errorNoSuchProduct);
+        }
+
 
         // ========================================= END of Tests =========================================
         // ================================================================================================
