@@ -63,8 +63,9 @@ namespace Market_System.DomainLayer.UserComponent
 
         public string register(string username, string password)
         {
-
-            userDatabase.Add(username, password);
+            string hashed_Password = PasswordHasher.HashPassword(password);
+            userDatabase.Add(username, hashed_Password);
+            
             string new_user_id = userID_generator.Next().ToString();
             while (!unique_user_ID(new_user_id))
             {
