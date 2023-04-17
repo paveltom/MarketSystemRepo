@@ -65,9 +65,9 @@ namespace Market_System.DomainLayer.UserComponent
             return userID_sessionID_linker[session_id];
         }
 
-        public void Logout(string userID)
+        public void Logout(string username)
         {
-            string username = userRepo.get_username_from_userID(userID);
+            
             foreach(User user in users)
             {
                 if (user.GetUsername().Equals(username))
@@ -110,9 +110,9 @@ namespace Market_System.DomainLayer.UserComponent
 
        
 
-        public void add_product_to_basket(string product_id, string userID,int quantity)
+        public void add_product_to_basket(string product_id, string username,int quantity)
         {
-            string username = userRepo.get_username_from_userID(userID);
+           
             foreach (User u in users)
             {
               if (u.GetUsername().Equals(username))
@@ -122,9 +122,15 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        internal void update_cart_total_price(string userID, double price)
+
+
+         public string get_username_from_user_id(string userid)
         {
-            string username = userRepo.get_username_from_userID(userID);
+            return userRepo.get_username_from_userID(userid);
+        }
+        internal void update_cart_total_price(string username, double price)
+        {
+            
             foreach (User u in users)
             {
                 if(u.GetUsername().Equals(username))
@@ -145,9 +151,9 @@ namespace Market_System.DomainLayer.UserComponent
 
             throw new Exception("user does not exists");
         }
-        public Cart get_cart(string userID)
+        public Cart get_cart(string username)
         {
-            string username = userRepo.get_username_from_userID(userID);
+            
             foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
@@ -162,7 +168,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void remove_product_from_basket(string product_id, string username)
         {
-
+            
             foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
@@ -230,6 +236,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public bool check_if_user_is_logged_in(string username)
         {
+            
             foreach(User u in users)
             {
                 if(u.GetUsername().Equals(username))
@@ -240,9 +247,10 @@ namespace Market_System.DomainLayer.UserComponent
             return false;
         }
 
-        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string user_id)
         {
-           if(check_if_user_is_logged_in(username))
+            string username = userRepo.get_username_from_userID(user_id);
+            if (check_if_user_is_logged_in(username))
             {
                 return PurchaseRepo.GetInstance().get_history(username);
             }

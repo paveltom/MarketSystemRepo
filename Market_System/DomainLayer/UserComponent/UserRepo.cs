@@ -30,6 +30,7 @@ namespace Market_System.DomainLayer.UserComponent
                     if (Instance == null)
                     {
                         userDatabase = new Dictionary<string, string>();
+                        user_ID_username_linker = new Dictionary<string, string>();
                         userID_generator = new Random();
                         Instance = new UserRepo();
                     }

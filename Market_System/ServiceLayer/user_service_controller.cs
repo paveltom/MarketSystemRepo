@@ -93,9 +93,9 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string userID = market_System.get_userid_from_session_id(session_id);
+                
                 market_System.ReserveProduct(new ItemDTO(product_id, int.Parse(quantity)));
-                return market_System.Add_Product_To_basket(product_id, userID, quantity);
+                return market_System.Add_Product_To_basket(product_id, session_id, quantity);
             }
             catch(Exception e)
             {
@@ -107,8 +107,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string username = market_System.get_username_from_session_id(session_id);
-                return market_System.remove_product_from_basket(product_id, username);
+               
+                return market_System.remove_product_from_basket(product_id, session_id);
             }
             catch (Exception e)
             {
@@ -154,8 +154,8 @@ namespace Market_System.ServiceLayer
         }
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_id) //6.4
         {
-            string username = market_System.get_username_from_session_id(session_id);
-                return market_System.get_purchase_history_of_a_member(username);
+           
+                return market_System.get_purchase_history_of_a_member(session_id);
         }
         
         public string Check_Delivery(string address)
@@ -192,8 +192,8 @@ namespace Market_System.ServiceLayer
 
         internal string change_password(string new_password, string session_id)
         {
-            string username = market_System.get_username_from_session_id(session_id);
-            return  market_System.change_password(username,  new_password);
+            
+            return  market_System.change_password(session_id,  new_password);
         }
     }
 }

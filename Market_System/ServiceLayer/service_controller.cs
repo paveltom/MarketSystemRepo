@@ -49,7 +49,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id,session_id,quantity));
-                Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
+                Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
 
                 return ok;
             }
@@ -207,7 +207,7 @@ namespace Market_System.ServiceLayer
 
                 this.ssc.close_store_temporary( storeID);
                 
-                Logger.get_instance().record_event(usc.get_username_from_session_id(session_id)+" closed a store with the ID: "+storeID);
+                Logger.get_instance().record_event(usc.get_userID_from_session_id(session_id)+" closed a store with the ID: "+storeID);
                 Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
                 return ok;
             }
@@ -559,7 +559,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<List<PurchaseHistoryObj>> ok= Response<List<PurchaseHistoryObj>>.FromValue(this.usc.get_purchase_history_of_a_member(session_id));
-                Logger.get_instance().record_event("getting purchase history of the user : " + this.usc.get_username_from_session_id(session_id));
+                Logger.get_instance().record_event("getting purchase history of the user : " + this.usc.get_userID_from_session_id(session_id));
                 
                 return ok; 
 
@@ -681,7 +681,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id));
-                Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
+                Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
              
                 return ok;
                  
