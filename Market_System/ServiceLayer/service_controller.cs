@@ -144,19 +144,12 @@ namespace Market_System.ServiceLayer
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(address));
                 Logger.get_instance().record_event("checking deilvery for address: " + address + " succefully done.");
                 return ok;
-
-
-
             }
             catch (Exception e)
             {
-
                 Logger.get_instance().record_error("error!!: " + e.Message + " in check_delivery");
                 return Response<String>.FromError(e.Message);
-
             }
-
-
         }
 
         public Response<string> change_password(string new_password)

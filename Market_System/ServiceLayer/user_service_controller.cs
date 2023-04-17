@@ -36,22 +36,36 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         public string login_guest(string session_id)//1.1
         {
-            string guest_name= market_System.login_guest();
-            
-            market_System.link_user_with_session(guest_name, session_id); 
-            return guest_name;
+            try
+            {
+                string guest_name = market_System.login_guest();
+                market_System.link_user_with_session(guest_name, session_id);
+                return guest_name;
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
 
         public string get_username_from_session_id(string session_id)
         {
-            return market_System.get_username_from_session_id(session_id);
+            try
+            {
+                return market_System.get_username_from_session_id(session_id);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
 
@@ -69,7 +83,7 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
 
@@ -85,7 +99,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -99,7 +113,7 @@ namespace Market_System.ServiceLayer
             }
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -112,7 +126,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -127,7 +141,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         public string assign_new_manager(string founder, string username, int store_ID) // 4.6
@@ -140,7 +154,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         */
@@ -154,8 +168,16 @@ namespace Market_System.ServiceLayer
         }
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_id) //6.4
         {
-            string username = market_System.get_username_from_session_id(session_id);
+            try
+            {
+                string username = market_System.get_username_from_session_id(session_id);
                 return market_System.get_purchase_history_of_a_member(username);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         
         public string Check_Delivery(string address)
@@ -167,7 +189,7 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         
@@ -181,7 +203,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
 
@@ -192,18 +214,44 @@ namespace Market_System.ServiceLayer
 
         internal string change_password(string new_password, string session_id)
         {
-            string username = market_System.get_username_from_session_id(session_id);
-            return  market_System.change_password(username,  new_password);
+            try
+            {
+                string username = market_System.get_username_from_session_id(session_id);
+                return market_System.change_password(username, new_password);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public string Read_System_Events(string session_ID)
         {
+            try
+            {
+                string username = market_System.get_username_from_session_id(session_ID);
+                return market_System.Read_System_Events(username);
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public string Read_System_Errors(string session_ID)
         {
+            try
+            {
+                string username = market_System.get_username_from_session_id(session_ID);
+                return market_System.Read_System_Errors(username);
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
