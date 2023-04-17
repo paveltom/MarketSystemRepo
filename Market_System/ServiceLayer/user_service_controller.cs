@@ -92,8 +92,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                market_System.register(username,password,address);
-                
+                market_System.register(username,password,address);      
                 return "registered succesfully";
             }
 

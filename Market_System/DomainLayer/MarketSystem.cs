@@ -83,14 +83,17 @@ namespace Market_System.DomainLayer
             {
                 return userFacade.get_username_from_session(session_id);
             }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
-        public void Login(string username, string password)
+        public void Login(string username, string password) //for a registered Member
         {
             try
             {
-                userFacade.Login(username, password);
-                
+                userFacade.Login(username, password);      
             }
 
             catch (Exception e)
@@ -373,7 +376,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                userFacade.register(username, password,address);
+                userFacade.register(username, password, address);
             }
 
             catch (Exception e)

@@ -91,15 +91,23 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void register(string username, string password,string address)
         {
-            foreach (User user in users)
+            try
             {
-                if (user.GetUsername().Equals(username))
+                foreach (User user in users)
                 {
-                    throw new Exception("a user with same name exists, please change name!");
+                    if (user.GetUsername().Equals(username))
+                    {
+                        throw new Exception("a user with same name exists, please change name!");
+                    }
                 }
+                userRepo.register(username, password);
+                users.Add(new User(username, address));
             }
-            users.Add(new User(username,address));
-            userRepo.register(username, password);
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void add_product_to_basket(string product_id, string username,int quantity)
@@ -163,9 +171,16 @@ namespace Market_System.DomainLayer.UserComponent
 
         public string change_password( string username, string new_password)
         {
-            
-            userRepo.change_password(username, new_password);
-            return username+" changed password successfully";
+            try
+            {
+                userRepo.change_password(username, new_password);
+                return username + " changed password successfully";
+            }
+
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool isAdministrator(string username)
