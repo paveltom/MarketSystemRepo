@@ -1,0 +1,38 @@
+יום שני 17 אפריל 2023 : guest : guest1293776990 has logged in
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : successfully added product to store: Store1
+יום שני 17 אפריל 2023 : guest : guest1457321288 has logged in
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user2142415  has logged in!
+יום שני 17 אפריל 2023 : guest : guest638348935 has logged in
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : successfully added product to store: Store1
+יום שני 17 אפריל 2023 : a new comment for product id: Store1_Prod1
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : guest : guest1208560236 has logged in
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : successfully added product to store: Store1
+יום שני 17 אפריל 2023 : user1 added product with id: Prod1 to basket
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : successfully added product to store: Store1
+יום שני 17 אפריל 2023 : user1 added product with id: Prod1 to basket
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : guest : guest518737170 has logged in
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1 has registered!
+יום שני 17 אפריל 2023 : user1  has logged in!
+יום שני 17 אפריל 2023 : successfully added product to store: Store1
+יום שני 17 אפריל 2023 : a product name change for product id: Store1_Prod1
+יום שני 17 אפריל 2023 : guest : guest1139925624 has logged in
+יום שני 17 אפריל 2023 : user1 has registered!
+יום
