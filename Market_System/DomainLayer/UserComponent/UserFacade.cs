@@ -168,6 +168,16 @@ namespace Market_System.DomainLayer.UserComponent
             return username+" changed password successfully";
         }
 
+        public string Read_System_Events(string username)
+        {
+
+        }
+
+        public string Read_System_Errors(string username)
+        {
+
+        }
+
         public void link_user_with_session(string username, string session_id)
         {
             username_session_id_linker.Add(session_id, username);

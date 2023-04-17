@@ -294,17 +294,32 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
-         
         }
 
         public string Read_System_Events(string username)
         {
+            try
+            {
+                return userFacade.Read_System_Events(username);
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public string Read_System_Errors(string username)
         {
+            try
+            {
+                return userFacade.Read_System_Errors(username);
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void link_user_with_session(string username, string session_id)
