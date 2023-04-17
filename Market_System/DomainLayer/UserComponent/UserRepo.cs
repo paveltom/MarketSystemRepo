@@ -7,7 +7,7 @@ namespace Market_System.DomainLayer.UserComponent
 {
     public class UserRepo
     {
-        private static Dictionary<string, string> userDatabase;
+        private static Dictionary<string, string> userDatabase; //username, password
         
 
         private static UserRepo Instance = null;
@@ -49,7 +49,7 @@ namespace Market_System.DomainLayer.UserComponent
         public bool checkIfExists(string username, string password)
         {
             var pass = "";
-            if(userDatabase.TryGetValue(username, out pass) && password.Equals(pass))
+            if(userDatabase.TryGetValue(username, out pass) && PasswordHasher.VerifyPassword(password, pass))
             {
                 return true;
             }
@@ -58,12 +58,24 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void register(string username, string password)
         {
-            userDatabase.Add(username, password);
+            if (userDatabase.ContainsKey(username))
+            {
+                throw new Exception("a user with same name exists, please change name!");
+            }
+
+            string hashed_Password = PasswordHasher.HashPassword(password);
+            userDatabase.Add(username, hashed_Password);
         }
 
         internal void change_password(string username, string new_password)
         {
-            userDatabase[username] = new_password;
+            if(PasswordHasher.VerifyPassword(new_password, userDatabase[username]))
+            {
+                throw new Exception("You can't change a password to the same one, you need to provide an other new password");
+            }
+
+            string new_hashed_Password = PasswordHasher.HashPassword(new_password);
+            userDatabase[username] = new_hashed_Password;
         }
     }
 }
