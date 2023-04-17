@@ -18,62 +18,82 @@ namespace Market_System.Tests.unit_tests
         // fields          
         private Product testProduct0; // uses Builder of a new Product 
         private Product testProduct1; // uses Builder oa an existing Product        
-        TestRepo repo;        
+        StoreRepo repo;
+        Store store0;
+        Store store1;
 
-        // before each test 
-        [TestInitialize()]
+    // before each test 
+    [TestInitialize()]
         public void Setup()
         {
             testProduct0 = GetNewProduct();
             testProduct1 = GetExistingProduct();
-            this.repo = new TestRepo();
-            testProduct0.testRepo = repo;
-            testProduct1.testRepo = repo;
-            this.repo.AddProduct(testProduct0);
-            this.repo.AddProduct(testProduct1);
+            this.repo = StoreRepo.GetInstance();
+            store0 = GetStore(this.testProduct0.GetStoreID());
+            store1 = GetStore(this.testProduct1.GetStoreID());
+            this.repo.AddProduct(store0.Store_ID, store0.founderID,  this.testProduct0, testProduct0.Quantity);
+            this.repo.AddProduct(store1.Store_ID, store1.founderID, this.testProduct1, testProduct1.Quantity);
         }
 
         // after each test
         [TestCleanup()]
         public void TearDown()
         {
-            // after StoreRepo is sone and integrated here - destroy it here cause it is singletone
+            repo.destroy();
         }   
 
         [TestMethod]
-        public void AddPurchasePolicyProductTest()
+        public void AddPurchasePolicyProductTestSuccess()
         {
             // Arrange
             Purchase_Policy purchase_Policy0 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy0ID", "AddPurchasePolicyProductTest_Policy0Name");
             Purchase_Policy purchase_Policy1 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy1ID", "AddPurchasePolicyProductTest_Policy1Name");
-            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name");
 
             // Act
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
-            this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
             this.testProduct1.AddPurchasePolicy(purchase_Policy1);
-            this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
 
             // Assert
             Assert.IsTrue(testProduct0.PurchasePolicies.ContainsKey(purchase_Policy0.GetID()));
-            Assert.IsTrue(testProduct0.PurchasePolicies.ContainsKey(purchase_PolicyBoth.GetID()));
             Assert.IsTrue(testProduct1.PurchasePolicies.ContainsKey(purchase_Policy1.GetID()));
-            Assert.IsTrue(testProduct1.PurchasePolicies.ContainsKey(purchase_PolicyBoth.GetID()));
 
             Assert.IsFalse(testProduct0.PurchasePolicies.ContainsKey(purchase_Policy1.GetID()));
             Assert.IsFalse(testProduct1.PurchasePolicies.ContainsKey(purchase_Policy0.GetID()));
         }
 
-        public void RemovePurchasePolicyProductTest()
+        public void AddPurchasePolicyAlreadyExistProductTest()
+        {
+            // Arrange
+            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name");
+            this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
+            this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
+            bool error0 = false;
+            bool error1 = false;
+
+            // Act
+            try
+            {
+                this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
+            } catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
+            }
+            catch (Exception ex) { error1 = true; }
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
+        }
+
+        public void RemovePurchasePolicyProductTestSuccess()
         {
             // Arrange
             Purchase_Policy purchase_Policy0 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy0ID", "RemovePurchasePolicyProductTest_Policy0Name");
             Purchase_Policy purchase_Policy1 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy1ID", "RemovePurchasePolicyProductTest_Policy1Name");
-            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy_BOTH_ID", "RemovePurchasePolicyProductTest_Policy_BOTH_Name");
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
-            this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
             this.testProduct1.AddPurchasePolicy(purchase_Policy1);
-            this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
 
             // Act        
             this.testProduct0.RemovePurchasePolicy(purchase_Policy0.GetID());
@@ -81,9 +101,39 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsFalse(testProduct0.PurchasePolicies.ContainsKey(purchase_Policy0.GetID()));
-            Assert.IsTrue(testProduct0.PurchasePolicies.ContainsKey(purchase_PolicyBoth.GetID()));
             Assert.IsFalse(testProduct1.PurchasePolicies.ContainsKey(purchase_Policy1.GetID()));
-            Assert.IsTrue(testProduct1.PurchasePolicies.ContainsKey(purchase_PolicyBoth.GetID()));
+        }
+
+        public void RemovePurchasePolicyDoesntExistProductTestFail()
+        {
+            // Arrange
+            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy_BOTH_ID", "RemovePurchasePolicyProductTest_Policy_BOTH_Name");
+            bool error0 = false;
+            bool error1 = false;
+            this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
+            this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
+            this.testProduct0.RemovePurchasePolicy(purchase_PolicyBoth.GetID());
+            this.testProduct1.RemovePurchasePolicy(purchase_PolicyBoth.GetID());
+
+            // Act        
+            try
+            {
+                this.testProduct0.RemovePurchasePolicy(purchase_PolicyBoth.GetID());
+
+            }
+            catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.RemovePurchasePolicy(purchase_PolicyBoth.GetID());
+
+            }
+            catch (Exception ex) { error1 = true; }
+
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
         }
 
         public void AddPurchaseStrategyProductTest()
@@ -91,35 +141,55 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             Purchase_Strategy purchase_Strategy0 = new Purchase_Strategy("AddPurchaseStrategyProductTest_Strategy0ID", "AddPurchaseStrategyProductTest_Strategy0Name");
             Purchase_Strategy purchase_Strategy1 = new Purchase_Strategy("AddPurchaseStrategyProductTest_Strategy1ID", "AddPurchaseStrategyProductTest_Strategy1Name");
-            Purchase_Strategy purchase_StrategyBoth = new Purchase_Strategy("AddPurchaseStrategyProductTest_Strategy_BOTH_ID", "AddPurchaseStrategyProductTest_Strategy_BOTH_Name");
 
             // Act
             this.testProduct0.AddPurchaseStrategy(purchase_Strategy0);
-            this.testProduct0.AddPurchaseStrategy(purchase_StrategyBoth);
             this.testProduct1.AddPurchaseStrategy(purchase_Strategy1);
-            this.testProduct1.AddPurchaseStrategy(purchase_StrategyBoth);
 
             // Assert
             Assert.IsTrue(testProduct0.PurchaseStrategies.ContainsKey(purchase_Strategy0.GetID()));
-            Assert.IsTrue(testProduct0.PurchaseStrategies.ContainsKey(purchase_StrategyBoth.GetID()));
             Assert.IsTrue(testProduct1.PurchaseStrategies.ContainsKey(purchase_Strategy1.GetID()));
-            Assert.IsTrue(testProduct1.PurchaseStrategies.ContainsKey(purchase_StrategyBoth.GetID()));
 
             Assert.IsFalse(testProduct0.PurchaseStrategies.ContainsKey(purchase_Strategy1.GetID()));
             Assert.IsFalse(testProduct1.PurchaseStrategies.ContainsKey(purchase_Strategy0.GetID()));
         }
 
-        public void RemovePurchaseStrategyProductTest()
+        public void AddPurchaseStrategyAlreadyExistProductTestFail()
+        {
+            // Arrange
+            Purchase_Strategy purchase_StrategyBoth = new Purchase_Strategy("AddPurchaseStrategyProductTest_Strategy_BOTH_ID", "AddPurchaseStrategyProductTest_Strategy_BOTH_Name");
+            bool error0 = false;
+            bool error1 = false;
+            this.testProduct0.AddPurchaseStrategy(purchase_StrategyBoth);
+            this.testProduct1.AddPurchaseStrategy(purchase_StrategyBoth);
+
+            // Act
+            try
+            {
+                this.testProduct0.AddPurchaseStrategy(purchase_StrategyBoth);
+            }
+            catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.AddPurchaseStrategy(purchase_StrategyBoth);
+            }
+            catch (Exception ex) { error1 = true; }
+
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
+        }
+
+        public void RemovePurchaseStrategyProductTestSuccess()
         {
             // Arrange
             Purchase_Strategy purchase_Strategy0 = new Purchase_Strategy("RemovePurchaseStrategyProductTest_Strategy0ID", "RemovePurchaseStrategyProductTest_Strategy0Name");
             Purchase_Strategy purchase_Strategy1 = new Purchase_Strategy("RemovePurchaseStrategyProductTest_Strategy1ID", "RemovePurchaseStrategyProductTest_Strategy1Name");
-            Purchase_Strategy purchase_StrategyBoth = new Purchase_Strategy("RemovePurchaseStrategyProductTest_Strategy_BOTH_ID", "RemovePurchaseStrategyProductTest_Strategy_BOTH_Name");
 
             this.testProduct0.AddPurchaseStrategy(purchase_Strategy0);
-            this.testProduct0.AddPurchaseStrategy(purchase_StrategyBoth);
             this.testProduct1.AddPurchaseStrategy(purchase_Strategy1);
-            this.testProduct1.AddPurchaseStrategy(purchase_StrategyBoth);
 
             // Act
             this.testProduct0.RemovePurchaseStrategy(purchase_Strategy0.GetID());
@@ -127,12 +197,39 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsFalse(testProduct0.PurchaseStrategies.ContainsKey(purchase_Strategy0.GetID()));
-            Assert.IsTrue(testProduct0.PurchaseStrategies.ContainsKey(purchase_StrategyBoth.GetID()));
             Assert.IsFalse(testProduct1.PurchaseStrategies.ContainsKey(purchase_Strategy1.GetID()));
-            Assert.IsTrue(testProduct1.PurchaseStrategies.ContainsKey(purchase_StrategyBoth.GetID()));
         }
 
-        public void AddAttributeProductTest()
+        public void RemovePurchaseStrategyDoesntExistProductTestFail()
+        {
+            // Arrange
+            Purchase_Strategy purchase_StrategyBoth = new Purchase_Strategy("RemovePurchaseStrategyProductTest_Strategy_BOTH_ID", "RemovePurchaseStrategyProductTest_Strategy_BOTH_Name");
+            bool error0 = false;
+            bool error1 = false;
+            this.testProduct0.AddPurchaseStrategy(purchase_StrategyBoth);
+            this.testProduct1.AddPurchaseStrategy(purchase_StrategyBoth);
+            this.testProduct0.RemovePurchaseStrategy(purchase_StrategyBoth.GetID());
+            this.testProduct1.RemovePurchaseStrategy(purchase_StrategyBoth.GetID());
+
+            // Act
+            try
+            {
+                this.testProduct0.RemovePurchaseStrategy(purchase_StrategyBoth.GetID());
+            }
+            catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.RemovePurchaseStrategy(purchase_StrategyBoth.GetID());
+            }
+            catch (Exception ex) { error1 = true; }
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
+        }
+
+        public void AddAttributeProductTestSuccess()
         {
             // Arrange
             string attr0 = "AddAttributeProductTestAtr0";
@@ -147,12 +244,42 @@ namespace Market_System.Tests.unit_tests
             // Assert
             Assert.IsFalse(testProduct0.PurchaseAttributes.ContainsKey(attr1));
             Assert.IsFalse(testProduct1.PurchaseAttributes.ContainsKey(attr0));
-            
-            Assert.IsTrue(testProduct0.PurchaseAttributes.ContainsKey(attr0));            
+
+            Assert.IsTrue(testProduct0.PurchaseAttributes.ContainsKey(attr0));
             Assert.IsTrue(testProduct1.PurchaseAttributes.ContainsKey(attr1));
         }
 
-        public void RemoveAttributeProductTest()
+        public void AddAttributeProductTestFail()
+        {
+            // Arrange
+            string attr0 = "AddAttributeProductTestAtr0";
+            string attr1 = "AddAttributeProductTestAtr1";
+            List<string> attr0Opts = new List<string>() { "AddAttributeProductTestAtr0Opt1", "AddAttributeProductTestAtr0Opt2" };
+            List<string> attr1Opts = new List<string>() { "AddAttributeProductTestAtr1Opt1", "AddAttributeProductTestAtr1Opt2", "AddAttributeProductTestAtr1Opt3" };
+            bool error0 = false;
+            bool error1 = false;
+            this.testProduct0.AddAtribute(attr0, attr0Opts);
+            this.testProduct1.AddAtribute(attr1, attr1Opts);
+
+            // Act
+            try
+            {
+                this.testProduct0.AddAtribute(attr0, attr0Opts);
+            }
+            catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.AddAtribute(attr1, attr1Opts);
+            }
+            catch (Exception ex) { error1 = true; }
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
+        }
+
+        public void RemoveAttributeProductTestSuccess()
         {
             // Arrange
             string attr0 = "RemoveAttributeProductTestAtr0";
@@ -174,6 +301,46 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(testProduct0.PurchaseAttributes.ContainsKey("testProduct0Atr1")); // init attribute
             Assert.IsTrue(testProduct1.PurchaseAttributes.ContainsKey("testProduct1Atr1")); // init attribute
         }
+
+        public void RemoveAttributeDoesntExistProductTestFail()
+        {
+            // Arrange
+            string attr0 = "RemoveAttributeProductTestAtr0";
+            string attr1 = "RemoveAttributeProductTestAtr1";
+            List<string> attr0Opts = new List<string>() { "RemoveAttributeProductTestAtr0Opt1", "RemoveAttributeProductTestAtr0Opt2" };
+            List<string> attr1Opts = new List<string>() { "RemoveAttributeProductTestAtr1Opt1", "RemoveAttributeProductTestAtr1Opt2", "RemoveAttributeProductTestAtr1Opt3" };
+            bool error0 = false;
+            bool error1 = false;
+            this.testProduct0.AddAtribute(attr0, attr0Opts);
+            this.testProduct1.AddAtribute(attr1, attr1Opts);
+            this.testProduct0.RemoveAttribute(attr0);
+            this.testProduct1.RemoveAttribute(attr1);
+
+            // Act
+            try
+            {
+                this.testProduct0.RemoveAttribute(attr0);
+            }
+            catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.RemoveAttribute(attr1);
+            }
+            catch (Exception ex) { error1 = true; }
+
+            // Assert
+            Assert.IsTrue(error0); // init attribute
+            Assert.IsTrue(error1); // init attribute
+        }
+
+
+
+
+        // ================================= Not separated ================================= 
+        // =================================================================================
+
+
 
         public void GetStoreIDProductTest()
         {
@@ -677,6 +844,21 @@ namespace Market_System.Tests.unit_tests
         // ================================================================================================
 
 
+
+        private Store GetStore(string newStoreID)
+        {
+            string founderID = "testStoreFounderID326";
+            string storeID = newStoreID;
+
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
+            Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
+            List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
+
+            List<string> allProductsIDS = new List<string>() { "testProduct1StoreID465_tesProduct1ID" };
+
+            return new Store(founderID, storeID, policies, strategies, allProductsIDS, false);
+        }
 
         private Product GetNewProduct()
         {
