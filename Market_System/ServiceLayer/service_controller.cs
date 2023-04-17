@@ -819,7 +819,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<string> system_Events = Response<string>.FromValue(this.usc.Read_System_Events(session_id));
+                this.usc.isAdministrator(session_id); //Check if the user is an administrator - hence, has a permission to perform this action.
+                Response<string> system_Events = Response<string>.FromValue(Logger.get_instance().Read_Events_Record());
                 Logger.get_instance().record_event("An admin has retrieved the System Events Logger file content successfuly");
                 return system_Events; //TODO:: display the content of system_Events to the Admin!
             }
@@ -834,7 +835,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<string> system_Errors = Response<string>.FromValue(this.usc.Read_System_Errors(session_id));
+                this.usc.isAdministrator(session_id); //Check if the user is an administrator
+                Response<string> system_Errors = Response<string>.FromValue(Logger.get_instance().Read_Errors_Record());
                 Logger.get_instance().record_event("An admin has retrieved the System Erros Logger file content successfuly");
                 return system_Errors; //TODO:: display the content of system_Events to the Admin!
             }

@@ -168,14 +168,17 @@ namespace Market_System.DomainLayer.UserComponent
             return username+" changed password successfully";
         }
 
-        public string Read_System_Events(string username)
+        public bool isAdministrator(string username)
         {
+            foreach (User u in users)
+            {
+                if (u.GetUsername().Equals(username) && u.GetUserState().Equals("Administrator"))
+                {
+                    return true;
+                }
+            }
 
-        }
-
-        public string Read_System_Errors(string username)
-        {
-
+            throw new Exception("The user is not an administrator of the system");
         }
 
         public void link_user_with_session(string username, string session_id)

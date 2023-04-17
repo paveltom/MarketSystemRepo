@@ -66,13 +66,23 @@ namespace Market_System.DomainLayer
 
         internal void ChangeStoreName(string sessionID, string storeID, string newName)
         {
+            try
+            {
+                storeFacade.ChangeStoreName(sessionID, storeID, newName);
+            }
 
-            storeFacade.ChangeStoreName(sessionID, storeID, newName);
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public string get_username_from_session_id(string session_id)
         {
-            return userFacade.get_username_from_session(session_id);
+            try
+            {
+                return userFacade.get_username_from_session(session_id);
+            }
         }
 
         public void Login(string username, string password)
@@ -296,24 +306,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Read_System_Events(string username)
+        public bool isAdministrator(string username)
         {
             try
             {
-                return userFacade.Read_System_Events(username);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public string Read_System_Errors(string username)
-        {
-            try
-            {
-                return userFacade.Read_System_Errors(username);
+                return userFacade.isAdministrator(username);
             }
 
             catch (Exception e)

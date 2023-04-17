@@ -226,26 +226,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public string Read_System_Events(string session_ID)
+        public bool isAdministrator(string session_ID)
         {
             try
             {
                 string username = market_System.get_username_from_session_id(session_ID);
-                return market_System.Read_System_Events(username);
-            }
-
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public string Read_System_Errors(string session_ID)
-        {
-            try
-            {
-                string username = market_System.get_username_from_session_id(session_ID);
-                return market_System.Read_System_Errors(username);
+                return market_System.isAdministrator(username);
             }
 
             catch (Exception e)
