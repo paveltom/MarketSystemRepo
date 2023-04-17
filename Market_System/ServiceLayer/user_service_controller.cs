@@ -195,5 +195,15 @@ namespace Market_System.ServiceLayer
             string username = market_System.get_username_from_session_id(session_id);
             return  market_System.change_password(username,  new_password);
         }
+
+        public string Read_System_Events(string session_ID)
+        {
+
+        }
+
+        public string Read_System_Errors(string session_ID)
+        {
+
+        }
     }
 }

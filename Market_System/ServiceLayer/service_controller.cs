@@ -821,5 +821,35 @@ namespace Market_System.ServiceLayer
                 return Response<string>.FromError(e.Message);
             }
         }
+
+        public Response<string> Read_System_Events()
+        {
+            try
+            {
+                Response<string> system_Events = Response<string>.FromValue(this.usc.Read_System_Events(session_id));
+                Logger.get_instance().record_event("An admin has retrieved the System Events Logger file content successfuly");
+                return system_Events; //TODO:: display the content of system_Events to the Admin!
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Events");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Read_System_Errors()
+        {
+            try
+            {
+                Response<string> system_Errors = Response<string>.FromValue(this.usc.Read_System_Errors(session_id));
+                Logger.get_instance().record_event("An admin has retrieved the System Erros Logger file content successfuly");
+                return system_Errors; //TODO:: display the content of system_Events to the Admin!
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Errors");
+                return Response<String>.FromError(e.Message);
+            }
+        }
     }
 }
