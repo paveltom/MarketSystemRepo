@@ -469,7 +469,7 @@ namespace Market_System.DomainLayer.StoreComponent
             temporary_closed_stores_ids.Add(store_ID);
         }
 
-        internal void destroy()
+        public void destroy()
         {
             Instance = null;
 

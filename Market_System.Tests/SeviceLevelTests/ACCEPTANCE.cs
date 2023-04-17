@@ -359,7 +359,7 @@ namespace Market_System.Tests.SeviceLevelTests
             //Assert.Equals(false, response2.ErrorOccured);
 
             //tearDown:
-            oneThreadCleanup();
+            //oneThreadCleanup();
         }
 
         [TestMethod]

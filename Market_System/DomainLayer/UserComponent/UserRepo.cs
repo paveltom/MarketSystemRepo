@@ -7,9 +7,11 @@ namespace Market_System.DomainLayer.UserComponent
 {
     public class UserRepo
     {
+
         private static Dictionary<string, string> userDatabase;
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
+
 
         private static UserRepo Instance = null;
 
@@ -52,7 +54,7 @@ namespace Market_System.DomainLayer.UserComponent
         public bool checkIfExists(string username, string password)
         {
             var pass = "";
-            if(userDatabase.TryGetValue(username, out pass) && password.Equals(pass))
+            if(userDatabase.TryGetValue(username, out pass) && PasswordHasher.VerifyPassword(password, pass))
             {
                 return true;
             }
@@ -61,6 +63,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public string register(string username, string password)
         {
+
             userDatabase.Add(username, password);
             string new_user_id = userID_generator.Next().ToString();
             while (!unique_user_ID(new_user_id))
@@ -94,11 +97,18 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
             throw new Exception("can't recive username because userID does not exists");
+
         }
 
         internal void change_password(string username, string new_password)
         {
-            userDatabase[username] = new_password;
+            if(PasswordHasher.VerifyPassword(new_password, userDatabase[username]))
+            {
+                throw new Exception("You can't change a password to the same one, you need to provide an other new password");
+            }
+
+            string new_hashed_Password = PasswordHasher.HashPassword(new_password);
+            userDatabase[username] = new_hashed_Password;
         }
 
         internal string get_userID_from_username(string username)

@@ -36,22 +36,30 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         public string login_guest(string session_id)//1.1
         {
-            string guest_name= market_System.login_guest();
-            
-            market_System.link_user_with_session(guest_name, session_id); 
-            return guest_name;
+            try
+            {
+                string guest_name = market_System.login_guest();
+                market_System.link_user_with_session(guest_name, session_id);
+                return guest_name;
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
 
         public string get_userID_from_session_id(string session_id)
         {
+
             return market_System.get_userid_from_session_id(session_id);
+
         }
 
 
@@ -69,7 +77,7 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
 
@@ -78,14 +86,13 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                market_System.register(username,password,address);
-                
+                market_System.register(username,password,address);      
                 return "registered succesfully";
             }
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -99,7 +106,7 @@ namespace Market_System.ServiceLayer
             }
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -112,7 +119,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -127,7 +134,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         public string assign_new_manager(string founder, string username, int store_ID) // 4.6
@@ -140,7 +147,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         */
@@ -154,8 +161,10 @@ namespace Market_System.ServiceLayer
         }
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_id) //6.4
         {
+
            
                 return market_System.get_purchase_history_of_a_member(session_id);
+
         }
         
         public string Check_Delivery(string address)
@@ -167,7 +176,7 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         
@@ -181,7 +190,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
 
@@ -192,8 +201,26 @@ namespace Market_System.ServiceLayer
 
         internal string change_password(string new_password, string session_id)
         {
+
             
             return  market_System.change_password(session_id,  new_password);
+
+   
+        }
+
+        public bool isAdministrator(string session_ID)
+        {
+            try
+            {
+                string username = market_System.get_username_from_session_id(session_ID);
+                return market_System.isAdministrator(username);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
     }
 }

@@ -94,18 +94,27 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void register(string username, string password,string address)
         {
-            foreach (User user in users)
+            try
             {
-                if (user.GetUsername().Equals(username))
+                foreach (User user in users)
                 {
-                    throw new Exception("a user with same name exists, please change name!");
+                    if (user.GetUsername().Equals(username))
+                    {
+                        throw new Exception("a user with same name exists, please change name!");
+                    }
                 }
+                userRepo.register(username, password);
+                users.Add(new User(username, address));
             }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+
             users.Add(new User(username,address));
             string new_user_id=userRepo.register(username, password);
 
-             
-         
         }
 
        
@@ -180,9 +189,29 @@ namespace Market_System.DomainLayer.UserComponent
 
         public string change_password( string username, string new_password)
         {
-            
-            userRepo.change_password(username, new_password);
-            return username+" changed password successfully";
+            try
+            {
+                userRepo.change_password(username, new_password);
+                return username + " changed password successfully";
+            }
+
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool isAdministrator(string username)
+        {
+            foreach (User u in users)
+            {
+                if (u.GetUsername().Equals(username) && u.GetUserState().Equals("Administrator"))
+                {
+                    return true;
+                }
+            }
+
+            throw new Exception("The user is not an administrator of the system");
         }
 
         public void link_user_with_session(string username, string session_id)

@@ -221,6 +221,7 @@
     <Compile Include="DomainLayer\UserComponent\Manager.cs" />
     <Compile Include="DomainLayer\UserComponent\Member.cs" />
     <Compile Include="DomainLayer\UserComponent\Owner.cs" />
+    <Compile Include="DomainLayer\UserComponent\PasswordHasher.cs" />
     <Compile Include="DomainLayer\UserComponent\Permission.cs" />
     <Compile Include="DomainLayer\UserComponent\PurchaseHistoryObj.cs" />
     <Compile Include="DomainLayer\UserComponent\PurchaseRepo.cs" />
