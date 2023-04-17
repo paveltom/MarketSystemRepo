@@ -83,6 +83,10 @@ namespace Market_System.DomainLayer
             {
                 return userFacade.get_username_from_session(session_id);
             }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Login(string username, string password) //for a registered Member
