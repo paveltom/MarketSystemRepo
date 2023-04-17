@@ -1,0 +1,8 @@
+יום שני 17 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in open_new_store
+יום שני 17 אפריל 2023 : error!!: פריט עם מפתח זהה נוסף כבר. in login_guest
+יום שני 17 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in open_new_store
+יום שני 17 אפריל 2023 : error!!: פריט עם מפתח זהה נוסף כבר. in login_guest
+יום שני 17 אפריל 2023 : error!!: פריט עם מפתח זהה נוסף כבר. in login_guest
+יום שני 17 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in open_new_store
+יום שני 17 אפריל 2023 : error!!: פריט עם מפתח זהה נוסף כבר. in login_guest
+יום שני 17 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[Syst

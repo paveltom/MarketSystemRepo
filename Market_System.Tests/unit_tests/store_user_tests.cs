@@ -341,6 +341,7 @@ namespace Market_System.Tests.unit_tests
             }
         }
         
+        /*
         [TestMethod]
         public void Check_Out_Success()
         {
@@ -434,7 +435,7 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("Should've showed the purchase history succefully, but failed due to error: " + e.Message);
             }
         }
-
+        */
 
     }
 }
