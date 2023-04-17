@@ -341,6 +341,7 @@ namespace Market_System.Tests.unit_tests
             }
         }
         
+
         /*
         [TestMethod]
         public void Check_Out_Success()
@@ -395,7 +396,9 @@ namespace Market_System.Tests.unit_tests
             }
         }
 
+        */
 
+        /*
         [TestMethod]
         public void user_purchase_history_success()
         {
