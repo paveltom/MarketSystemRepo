@@ -70,9 +70,9 @@ namespace Market_System.DomainLayer
             storeFacade.ChangeStoreName(sessionID, storeID, newName);
         }
 
-        public string get_username_from_session_id(string session_id)
+        public string get_userid_from_session_id(string session_id)
         {
-            return userFacade.get_username_from_session(session_id);
+            return userFacade.get_userID_from_session(session_id);
         }
 
         public void Login(string username, string password)
@@ -103,7 +103,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Add_Product_To_basket(string product_id,string username,string quantity)
+        public string Add_Product_To_basket(string product_id,string userID,string quantity)
         {
 
             lock (this)
@@ -113,13 +113,13 @@ namespace Market_System.DomainLayer
 
                 //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
                   
-                        userFacade.add_product_to_basket(product_id, username,int.Parse(quantity));
-                        Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
+                        userFacade.add_product_to_basket(product_id, userID,int.Parse(quantity));
+                        Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(userID);
                         double price=storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                         //  price  =  storefacade.calcualte_total_price(cart);
                         
-                        userFacade.update_cart_total_price(username, price);
-                        return "added product id : " + product_id + " to " + username + "'s cart";
+                        userFacade.update_cart_total_price(userID, price);
+                        return "added product id : " + product_id + " to " + userID + "'s cart";
                     
                    
                 
@@ -259,8 +259,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string username_from_SessionID = get_username_from_session_id(sessionID);
-                storeFacade.RemoveEmployeePermission(username_from_SessionID, storeID, employee_username, permission);
+                string userID_from_SessionID = get_userid_from_session_id(sessionID);
+                storeFacade.RemoveEmployeePermission(userID_from_SessionID, storeID, employee_username, permission);
             }
 
             catch (Exception e)
@@ -273,8 +273,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string username_from_SessionID = get_username_from_session_id(sessionID);
-                storeFacade.AddEmployeePermission(sessionID, storeID,employeeID,permission);
+                string userID_from_SessionID = get_userid_from_session_id(sessionID);
+                storeFacade.AddEmployeePermission(userID_from_SessionID, storeID,employeeID,permission);
             }
 
             catch (Exception e)
@@ -329,17 +329,17 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void unlink_user_with_session(string session_id)
+        public void unlink_userID_with_session(string session_id)
         {
-            userFacade.unlink_user_with_session(session_id);
+            userFacade.unlink_userID_with_session(session_id);
         }
         
 
-        public void Logout(string username)
+        public void Logout(string useriD)
         {
             try
             {
-                userFacade.Logout(username);
+                userFacade.Logout(useriD);
             }
 
             catch (Exception e)
@@ -364,8 +364,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string username_from_SessionID = get_username_from_session_id(sessionID);
-                storeFacade.ManageEmployeePermissions(username_from_SessionID, storeID, employee_username, permList);
+                string userid_from_SessionID = get_userid_from_session_id(sessionID);
+                storeFacade.ManageEmployeePermissions(userid_from_SessionID, storeID, employee_username, permList);
             }
             catch (Exception e)
             {

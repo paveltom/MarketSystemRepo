@@ -9,7 +9,8 @@ namespace Market_System.DomainLayer.UserComponent
     {
         private static UserRepo userRepo;
         private static List<User> users;
-        private static Dictionary<string, string> username_session_id_linker; // key = session_id    value=username
+        private static Dictionary<string, string> userID_sessionID_linker; // key = session_id    value=userID
+        
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
 
@@ -32,7 +33,8 @@ namespace Market_System.DomainLayer.UserComponent
                         users = new List<User>();
                         userRepo = UserRepo.GetInstance();
                         Instance = new UserFacade();
-                        username_session_id_linker = new Dictionary<string, string>();
+                        userID_sessionID_linker = new Dictionary<string, string>();
+                        
                         
                     }
                 } //Critical Section End
@@ -58,13 +60,14 @@ namespace Market_System.DomainLayer.UserComponent
             throw new ArgumentException("Incorrect login information has been provided");
         }
 
-        internal string get_username_from_session(string session_id)
+        internal string get_userID_from_session(string session_id)
         {
-            return username_session_id_linker[session_id];
+            return userID_sessionID_linker[session_id];
         }
 
-        public void Logout(string username)
+        public void Logout(string userID)
         {
+            string username = userRepo.get_username_from_userID(userID);
             foreach(User user in users)
             {
                 if (user.GetUsername().Equals(username))
@@ -99,11 +102,17 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
             users.Add(new User(username,address));
-            userRepo.register(username, password);
+            string new_user_id=userRepo.register(username, password);
+
+             
+         
         }
 
-        public void add_product_to_basket(string product_id, string username,int quantity)
+       
+
+        public void add_product_to_basket(string product_id, string userID,int quantity)
         {
+            string username = userRepo.get_username_from_userID(userID);
             foreach (User u in users)
             {
               if (u.GetUsername().Equals(username))
@@ -113,9 +122,10 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        internal void update_cart_total_price(string username, double price)
+        internal void update_cart_total_price(string userID, double price)
         {
-           foreach(User u in users)
+            string username = userRepo.get_username_from_userID(userID);
+            foreach (User u in users)
             {
                 if(u.GetUsername().Equals(username))
                 {
@@ -135,8 +145,9 @@ namespace Market_System.DomainLayer.UserComponent
 
             throw new Exception("user does not exists");
         }
-        public Cart get_cart(string username)
+        public Cart get_cart(string userID)
         {
+            string username = userRepo.get_username_from_userID(userID);
             foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
@@ -170,12 +181,20 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void link_user_with_session(string username, string session_id)
         {
-            username_session_id_linker.Add(session_id, username);
+            try
+            {
+                string user_id = userRepo.get_userID_from_username(username);
+                userID_sessionID_linker.Add(session_id, user_id);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
-        internal void unlink_user_with_session(string session_id)
+        internal void unlink_userID_with_session(string session_id)
         {
-            username_session_id_linker.Remove(session_id);
+            userID_sessionID_linker.Remove(session_id);
         }
 
         public void Login_guset(string guest_name)
