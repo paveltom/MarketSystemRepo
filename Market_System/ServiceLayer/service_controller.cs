@@ -144,19 +144,12 @@ namespace Market_System.ServiceLayer
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(address));
                 Logger.get_instance().record_event("checking deilvery for address: " + address + " succefully done.");
                 return ok;
-
-
-
             }
             catch (Exception e)
             {
-
                 Logger.get_instance().record_error("error!!: " + e.Message + " in check_delivery");
                 return Response<String>.FromError(e.Message);
-
             }
-
-
         }
 
         public Response<string> change_password(string new_password)
@@ -819,6 +812,38 @@ namespace Market_System.ServiceLayer
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveEmployeePermission");
                 return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Read_System_Events()
+        {
+            try
+            {
+                this.usc.isAdministrator(session_id); //Check if the user is an administrator - hence, has a permission to perform this action.
+                Response<string> system_Events = Response<string>.FromValue(Logger.get_instance().Read_Events_Record());
+                Logger.get_instance().record_event("An admin has retrieved the System Events Logger file content successfuly");
+                return system_Events; //TODO:: display the content of system_Events to the Admin!
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Events");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Read_System_Errors()
+        {
+            try
+            {
+                this.usc.isAdministrator(session_id); //Check if the user is an administrator
+                Response<string> system_Errors = Response<string>.FromValue(Logger.get_instance().Read_Errors_Record());
+                Logger.get_instance().record_event("An admin has retrieved the System Erros Logger file content successfuly");
+                return system_Errors; //TODO:: display the content of system_Events to the Admin!
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Errors");
+                return Response<String>.FromError(e.Message);
             }
         }
     }
