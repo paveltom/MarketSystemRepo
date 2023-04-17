@@ -6,7 +6,6 @@ namespace Market_System.ServiceLayer
 {
     public class Logger
     {
-
         public static Logger instance;
 
         private string log_event_path;
@@ -15,7 +14,6 @@ namespace Market_System.ServiceLayer
         private StreamWriter log_error_writer;
         private StreamReader log_event_reader;
         private StreamReader log_error_reader;
-
 
         private Logger ()
         {
@@ -39,9 +37,6 @@ namespace Market_System.ServiceLayer
             return instance;
         }
 
-
-
-
         public void record_event(string new_event)
         {
             lock (this)
@@ -49,7 +44,6 @@ namespace Market_System.ServiceLayer
                 this.log_event_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_event);
             }
          }
-
 
         public void record_error(string new_error)
         {
