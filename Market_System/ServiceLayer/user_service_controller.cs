@@ -212,8 +212,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string username = market_System.get_username_from_session_id(session_ID);
-                return market_System.isAdministrator(username);
+                
+                return market_System.isAdministrator(session_ID);
             }
 
             catch (Exception e)

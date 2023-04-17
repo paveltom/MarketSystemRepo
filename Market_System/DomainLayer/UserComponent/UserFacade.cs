@@ -112,8 +112,8 @@ namespace Market_System.DomainLayer.UserComponent
                 throw e;
             }
 
-            users.Add(new User(username,address));
-            string new_user_id=userRepo.register(username, password);
+          //  users.Add(new User(username,address));
+           // string new_user_id=userRepo.register(username, password);
 
         }
 

@@ -306,8 +306,10 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public bool isAdministrator(string username)
+        public bool isAdministrator(string session)
         {
+            string user_id = userFacade.get_userID_from_session(session);
+            string username = userFacade.get_username_from_user_id(user_id);
             try
             {
                 return userFacade.isAdministrator(username);
