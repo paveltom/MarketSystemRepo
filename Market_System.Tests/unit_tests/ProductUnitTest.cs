@@ -61,6 +61,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(testProduct1.PurchasePolicies.ContainsKey(purchase_Policy0.GetID()));
         }
 
+        [TestMethod]
         public void AddPurchasePolicyAlreadyExistProductTest()
         {
             // Arrange
@@ -87,6 +88,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(error1);
         }
 
+        [TestMethod]
         public void RemovePurchasePolicyProductTestSuccess()
         {
             // Arrange
@@ -104,6 +106,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(testProduct1.PurchasePolicies.ContainsKey(purchase_Policy1.GetID()));
         }
 
+        [TestMethod]
         public void RemovePurchasePolicyDoesntExistProductTestFail()
         {
             // Arrange
@@ -136,6 +139,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(error1);
         }
 
+        [TestMethod]
         public void AddPurchaseStrategyProductTest()
         {
             // Arrange
@@ -154,6 +158,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(testProduct1.PurchaseStrategies.ContainsKey(purchase_Strategy0.GetID()));
         }
 
+        [TestMethod]
         public void AddPurchaseStrategyAlreadyExistProductTestFail()
         {
             // Arrange
@@ -182,6 +187,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(error1);
         }
 
+        [TestMethod]
         public void RemovePurchaseStrategyProductTestSuccess()
         {
             // Arrange
@@ -200,6 +206,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(testProduct1.PurchaseStrategies.ContainsKey(purchase_Strategy1.GetID()));
         }
 
+        [TestMethod]
         public void RemovePurchaseStrategyDoesntExistProductTestFail()
         {
             // Arrange
@@ -229,6 +236,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(error1);
         }
 
+        [TestMethod]
         public void AddAttributeProductTestSuccess()
         {
             // Arrange
@@ -249,6 +257,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(testProduct1.PurchaseAttributes.ContainsKey(attr1));
         }
 
+        [TestMethod]
         public void AddAttributeProductTestFail()
         {
             // Arrange
@@ -279,6 +288,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(error1);
         }
 
+        [TestMethod]
         public void RemoveAttributeProductTestSuccess()
         {
             // Arrange
@@ -302,6 +312,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(testProduct1.PurchaseAttributes.ContainsKey("testProduct1Atr1")); // init attribute
         }
 
+        [TestMethod]
         public void RemoveAttributeDoesntExistProductTestFail()
         {
             // Arrange
@@ -334,15 +345,8 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(error1); // init attribute
         }
 
-
-
-
-        // ================================= Not separated ================================= 
-        // =================================================================================
-
-
-
-        public void GetStoreIDProductTest()
+        [TestMethod]
+        public void GetStoreIDProductTest() // no fail test for this
         {
             // Arrange
             string p0StoreID = "testProduct0StoreID789"; // init parameter
@@ -354,11 +358,12 @@ namespace Market_System.Tests.unit_tests
 
 
             // Assert
-            Assert.Equals(p0StoreID, out0); 
-            Assert.Equals(p1StoreID, out1); 
+            Assert.Equals(p0StoreID, out0);
+            Assert.Equals(p1StoreID, out1);
         }
 
-        public void ImplementSaleProductTest()
+        [TestMethod]
+        public void ImplementSaleProductTest()  // need to implement Purchase Policy / Strategy !!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             // Arrange
             double p0Sale = testProduct0.Sale; // init parameter
@@ -382,10 +387,11 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(afterSale1, out1);
         }
 
-        public void CalculatePriceProductTest()
+        [TestMethod]
+        public void CalculatePriceWithSaleProductTestSuccess()
         {
             // Arrange
-            int quantityToBuy0 = 10 ;
+            int quantityToBuy0 = 10;
             int quantityToBuy1 = 5;
 
             double p0Sale = testProduct0.Sale; // init parameter
@@ -393,29 +399,68 @@ namespace Market_System.Tests.unit_tests
             double p0Price = testProduct0.Price; // init parameter
             double p1Price = testProduct1.Price; // init parameter
 
-            double priceBeforeSale0 = p0Price * quantityToBuy0;
-            double priceBeforeSale1 = p1Price * quantityToBuy1;
-
             double priceAfterSale0 = (p0Price - (p0Price / 100 * p0Sale)) * quantityToBuy0;
             double priceAfterSale1 = (p1Price - (p1Price / 100 * p1Sale)) * quantityToBuy1;
 
 
             // Act
-            double out0WithoutSale = this.testProduct0.CalculatePrice(quantityToBuy0, false);
-            double out1WithoutSale = this.testProduct1.CalculatePrice(quantityToBuy1, false);
             double out0WithSale = this.testProduct0.CalculatePrice(quantityToBuy0, true);
             double out1WithSale = this.testProduct1.CalculatePrice(quantityToBuy1, true); ;
 
 
             // Assert
-            Assert.Equals(priceBeforeSale0, out0WithoutSale);
-            Assert.Equals(priceBeforeSale1, out1WithoutSale);
             Assert.Equals(priceAfterSale0, out0WithSale);
             Assert.Equals(priceAfterSale1, out1WithSale);
         }
 
+        [TestMethod]
+        public void CalculatePriceWithoutSaleProductTestSuccess()
+        {
+            // Arrange
+            int quantityToBuy0 = 10;
+            int quantityToBuy1 = 5;
+            double p0Price = testProduct0.Price; // init parameter
+            double p1Price = testProduct1.Price; // init parameter
 
-        public void prePurchaseProductTest()
+            double priceBeforeSale0 = p0Price * quantityToBuy0;
+            double priceBeforeSale1 = p1Price * quantityToBuy1;
+
+            // Act
+            double out0WithoutSale = this.testProduct0.CalculatePrice(quantityToBuy0, false);
+            double out1WithoutSale = this.testProduct1.CalculatePrice(quantityToBuy1, false);
+
+            // Assert
+            Assert.Equals(priceBeforeSale0, out0WithoutSale);
+            Assert.Equals(priceBeforeSale1, out1WithoutSale);
+        }
+
+        [TestMethod]
+        public void CalculatePriceBadQuantityProductTestFail()
+        {
+            // Arrange
+            bool error0 = false;
+            bool error1 = false;
+
+            // Act
+            try
+            {
+                this.testProduct0.CalculatePrice(0, false);
+            }
+            catch (Exception ex) { error0 = true; }
+
+            try
+            {
+                this.testProduct1.CalculatePrice(0, false);
+            }
+            catch (Exception ex) { error1 = true; }
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
+        }
+
+        [TestMethod]
+        public void prePurchaseProductTestSuccess()
         {
             // Arrange
             int quantityToBuy0 = this.testProduct0.Quantity + 2;
@@ -430,7 +475,33 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(out1);
         }
 
-        public void EnoughQuantityPurchaseProductTest()
+        [TestMethod]
+        public void prePurchaseBadQuantityProductTestFail()
+        {
+            // Arrange
+            bool error0 = false;
+            bool error1 = false;
+
+            // Act
+            try
+            {
+                bool out0 = this.testProduct0.prePurchase(0);
+            }
+            catch (Exception ex) { error0 = true; error1 = true; }
+
+            try
+            {
+                bool out1 = this.testProduct1.prePurchase(-2);
+            }
+            catch (Exception ex) { error1 = true; }
+
+            // Assert
+            Assert.IsTrue(error0);
+            Assert.IsTrue(error1);
+        }
+
+        [TestMethod]
+        public void EnoughQuantityPurchaseProductTestSuccess()
         {
             // Arrange
             int initQuantity0 = this.testProduct0.Quantity; // init parameter
@@ -445,11 +516,12 @@ namespace Market_System.Tests.unit_tests
             {
                 this.testProduct0.Purchase(quantityToBuy0);
 
-            } catch (Exception e) { error0 = true; }
-            
+            }
+            catch (Exception e) { error0 = true; }
+
             try
             {
-              this.testProduct1.Purchase(quantityToBuy1);
+                this.testProduct1.Purchase(quantityToBuy1);
             }
             catch (Exception e) { error1 = true; }
 
@@ -460,7 +532,8 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(initQuantity1 - quantityToBuy1, this.testProduct1.Quantity);
         }
 
-        public void NOTEnoughQuantityPurchaseProductTest()
+        [TestMethod]
+        public void NOTEnoughQuantityPurchaseProductTestFail()
         {
             // Arrange
             int initQuantity0 = this.testProduct0.Quantity; // init parameter
@@ -491,15 +564,15 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(initQuantity1, this.testProduct1.Quantity);
         }
 
-
-        public void EnoughQuantityToReserveProductTest()
+        [TestMethod]
+        public void EnoughQuantityToReserveProductTestSuccess()
         {
             // Arrange
             int initQuantity0 = this.testProduct0.Quantity; // init parameter
             int initQuantity1 = this.testProduct1.Quantity; // init parameter            
             int initReservedQuantity0 = this.testProduct0.ReservedQuantity; // = 0: init parameter
             int initReservedQuantity1 = this.testProduct1.ReservedQuantity; // = 12: init parameter
-            int quantityToReserve0 = initQuantity0/2;
+            int quantityToReserve0 = initQuantity0 / 2;
             int quantityToReserve1 = 2;
             bool error0 = false;
             bool error1 = false;
@@ -525,8 +598,8 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(initReservedQuantity1 + quantityToReserve1, this.testProduct1.ReservedQuantity);
         }
 
-
-        public void NOTEnoughQuantityToReserveProductTest()
+        [TestMethod]
+        public void NOTEnoughQuantityToReserveProductTestFail()
         {
             // Arrange
             int initQuantity0 = this.testProduct0.Quantity; // init parameter
@@ -559,15 +632,33 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(initReservedQuantity1, this.testProduct1.ReservedQuantity);
         }
 
-        public void LetGoProductTest()
+        [TestMethod]
+        public void LetGoProductTestSuccess()
+        {
+            // Arrange         
+            int initReservedQuantity1 = this.testProduct1.ReservedQuantity; // = 12: init parameter
+            int quantityToRelease1 = initReservedQuantity1 - 1;
+            bool error1 = false;
+
+            // Act
+            try
+            {
+                this.testProduct1.LetGoProduct(quantityToRelease1);
+            }
+            catch (Exception e) { error1 = true; }
+
+            // Assert
+            Assert.IsFalse(error1); // everythin fine
+            Assert.Equals(initReservedQuantity1 - quantityToRelease1, this.testProduct1.ReservedQuantity);
+        }
+
+        [TestMethod]
+        public void LetGoTooManyUnitaProductTestFail()
         {
             // Arrange         
             int initReservedQuantity0 = this.testProduct0.ReservedQuantity; // = 0: init parameter
-            int initReservedQuantity1 = this.testProduct1.ReservedQuantity; // = 12: init parameter
             int quantityToRelease0 = initReservedQuantity0 + 2;
-            int quantityToRelease1 = initReservedQuantity1 - 1;
             bool error0 = false;
-            bool error1 = false;
 
             // Act
             try
@@ -577,116 +668,204 @@ namespace Market_System.Tests.unit_tests
             }
             catch (Exception e) { error0 = true; }
 
-            try
-            {
-                this.testProduct1.LetGoProduct(quantityToRelease1);
-            }
-            catch (Exception e) { error1 = true; }
-
             // Assert
             Assert.IsTrue(error0); // cannot release more than reserved
-            Assert.IsFalse(error1); // everythin fine
             Assert.Equals(initReservedQuantity0, this.testProduct0.ReservedQuantity);
-            Assert.Equals(initReservedQuantity1 - quantityToRelease1, this.testProduct1.ReservedQuantity);
         }
 
-        public void AddCommentAndUpdateRatingProductTest()
+        [TestMethod]
+        public void AddCommentAndUpdateRatingProductTestSuccess()
         {
             // Arrange         
             string comment0 = "AddCommentAndUpdateRatingProductTestProduct0Comment";
-            string comment1 = "AddCommentAndUpdateRatingProductTestProduct0Comment";
             double rating0 = 8;
-            double rating1 = 4;
             string userID0 = "AddCommentAndUpdateRatingProductTestProduct0UserID0";
-            string userID1 = "AddCommentAndUpdateRatingProductTestProduct1UserID1";
-            double initRating1 = this.testProduct1.Rating;
             double newRating0 = rating0;
-            double newRating1 = (initRating1 * this.testProduct1.timesBought + rating1) / (this.testProduct1.timesBought + 1);
             string newComment0 = userID0 + ": " + comment0 + ".\n Rating: " + rating0 + ".";
-            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: " + rating1 + ".";
 
-
+            // Act
             this.testProduct0.AddComment(userID0, comment0, rating0);
-            this.testProduct1.AddComment(userID1, comment1, rating1);
 
             // Assert
             Assert.IsTrue(this.testProduct0.Comments.ToList().Contains(newComment0));
-            Assert.IsTrue(this.testProduct1.Comments.ToList().Contains(newComment1));
-
             Assert.Equals(testProduct0.Rating, newRating0);
+        }
+
+        [TestMethod]
+        public void AddCommentWithoutRatingProductTestSuccess()
+        {
+            // Arrange         
+            string comment1 = "AddCommentAndUpdateRatingProductTestProduct0Comment";
+            double rating1 = 0;
+            string userID1 = "AddCommentAndUpdateRatingProductTestProduct1UserID1";
+            double initRating1 = this.testProduct1.Rating;
+            double newRating1 = (initRating1 * this.testProduct1.timesBought + rating1) / (this.testProduct1.timesBought + 1);
+            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: " + rating1 + ".";
+
+            // Act
+            this.testProduct1.AddComment(userID1, comment1, rating1);
+
+            // Assert
+            Assert.IsTrue(this.testProduct1.Comments.ToList().Contains(newComment1));
             Assert.Equals(testProduct1.Rating, newRating1);
         }
 
-        public void GetProductDTOProductTest()
+        [TestMethod]
+        public void AddNoCommentWithoutRatingProductTestFail()
         {
             // Arrange         
-            Assert.Equals(true, false); // the builder in ItemDTO does not implemented yet
+            string comment1 = "      ";
+            double rating1 = 0;
+            string userID1 = "AddCommentAndUpdateRatingProductTestProduct1UserID1";
+            double initRating1 = this.testProduct1.Rating;
+            double newRating1 = (initRating1 * this.testProduct1.timesBought + rating1) / (this.testProduct1.timesBought + 1);
+            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: " + rating1 + ".";
+            bool errorNoCommentNoRating = false;
+
+            // Act
+            try
+            {
+                this.testProduct1.AddComment(userID1, comment1, rating1);
+            }
+            catch (Exception e) { errorNoCommentNoRating = true; }
+
+            // Assert
+            Assert.IsFalse(this.testProduct1.Comments.ToList().Contains(newComment1));
+            Assert.AreNotEqual(testProduct1.Rating, newRating1);
+            Assert.IsTrue(errorNoCommentNoRating);
         }
 
-        public void SetNameProductTest()
+        [TestMethod]
+        public void GetProductDTOProductTestSuccess() // no fail test
+        {
+            // Arrange
+            ItemDTO item = new ItemDTO(this.testProduct0);
+
+            // Act
+            ItemDTO retItem = this.testProduct0.GetProductDTO();
+
+            // Assert
+            Assert.Equals(retItem.GetID(), item.GetID()); // the builder in ItemDTO does not implemented yet
+        }
+
+        public void SetNameProductTestSuccess()
         {
             // Arrange         
             string name0 = "SetNameProductTestName0";
-            string name1 = "SetNameProductTestName1";
-
 
             // Act
             this.testProduct0.SetName(name0);
-            this.testProduct1.SetName(name1);
 
             // Assert
             Assert.Equals(testProduct0.Name, name0);
-            Assert.Equals(testProduct1.Name, name1);
         }
 
-        public void SetDescriptionProductTest()
+        [TestMethod]
+        public void SetEmptyNameProductTestFail()
+        {
+            // Arrange         
+            string name1 = "           ";
+            bool errorEmptyName = false;
+
+            // Act
+            try
+            {
+                this.testProduct1.SetName(name1);
+            }
+            catch (Exception e) { errorEmptyName = true; }
+
+            // Assert
+            Assert.IsTrue(errorEmptyName);
+        }
+
+        [TestMethod]
+        public void SetDescriptionProductTestSuccess()
         {
             // Arrange         
             string Description0 = "SetNameProductTestDescription0";
-            string Description1 = "SetNameProductTestDescription1";
-
 
             // Act
             this.testProduct0.SetDescription(Description0);
-            this.testProduct1.SetDescription(Description1);
 
             // Assert
             Assert.Equals(testProduct0.Description, Description0);
-            Assert.Equals(testProduct1.Description, Description1);
         }
 
-        public void SetPriceProductTest()
+        [TestMethod]
+        public void SetEmptyDescriptionProductTest()
+        {
+            // Arrange         
+            string Description1 = "        ";
+            bool errorEmptyDescription = false;
+
+            // Act
+            try
+            {
+                this.testProduct1.SetDescription(Description1);
+            }
+            catch (Exception e) { errorEmptyDescription = true; }
+
+            // Assert
+            Assert.IsTrue(errorEmptyDescription);
+        }
+
+        [TestMethod]
+        public void SetPriceProductTestSuccess()
         {
             // Arrange         
             double Price0 = this.testProduct0.Price + 76;
             double Price1 = this.testProduct1.Price + 12;
-            bool negativePrice = false;
 
             // Act
             this.testProduct0.SetPrice(Price0);
             this.testProduct1.SetPrice(Price1);
-            try
-            {
-                this.testProduct1.SetPrice(-1);
-            } catch (Exception ex) { negativePrice = true; }
 
             // Assert
             Assert.Equals(testProduct0.Price, Price0);
             Assert.Equals(testProduct1.Price, Price1);
+        }
+
+        [TestMethod]
+        public void SetNegativePriceProductTestFail()
+        {
+            // Arrange         
+            bool negativePrice = false;
+
+            // Act
+            try
+            {
+                this.testProduct1.SetPrice(-1);
+            }
+            catch (Exception ex) { negativePrice = true; }
+
+            // Assert
             Assert.IsTrue(negativePrice);
         }
 
-        public void SetRatingProductTest()
+        [TestMethod]
+        public void SetRatingProductTestSuccess()
         {
             // Arrange         
             double Rating0 = 1;
             double Rating1 = 10;
-            bool badRatingLow = false;
-            bool badRatingHigh = false;
 
             // Act
             this.testProduct0.SetRating(Rating0);
             this.testProduct1.SetRating(Rating1);
+
+            // Assert
+            Assert.Equals(testProduct0.Rating, Rating0);
+            Assert.Equals(testProduct1.Rating, Rating1);
+        }
+
+        [TestMethod]
+        public void SetSmallRatingProductTestFail()
+        {
+            // Arrange         
+            bool badRatingLow = false;
+            bool badRatingHigh = false;
+
+            // Act
             try
             {
                 this.testProduct1.SetRating(0.5);
@@ -699,22 +878,33 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { badRatingHigh = true; }
 
             // Assert
-            Assert.Equals(testProduct0.Rating, Rating0);
-            Assert.Equals(testProduct1.Rating, Rating1);
             Assert.IsTrue(badRatingLow);
             Assert.IsTrue(badRatingHigh);
         }
 
-        public void SetQuantityProductTest()
+        [TestMethod]
+        public void SetQuantityProductTestSuccess()
         {
             // Arrange         
             int Quantity0 = this.testProduct0.Quantity + 10;
             int Quantity1 = this.testProduct1.Quantity + 15;
-            bool negativeQuantity = false;
 
             // Act
             this.testProduct0.SetQuantity(Quantity0);
             this.testProduct1.SetQuantity(Quantity1);
+
+            // Assert
+            Assert.Equals(testProduct0.Quantity, Quantity0);
+            Assert.Equals(testProduct1.Quantity, Quantity1);
+        }
+
+        [TestMethod]
+        public void SetNegativeQuantityProductTestFail()
+        {
+            // Arrange         
+            bool negativeQuantity = false;
+
+            // Act
             try
             {
                 this.testProduct1.SetQuantity(-1);
@@ -722,21 +912,32 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { negativeQuantity = true; }
 
             // Assert
-            Assert.Equals(testProduct0.Quantity, Quantity0);
-            Assert.Equals(testProduct1.Quantity, Quantity1);
             Assert.IsTrue(negativeQuantity);
         }
 
-        public void SetWeightProductTest()
+        [TestMethod]
+        public void SetWeightProductTestSuccess()
         {
             // Arrange         
             double weight0 = this.testProduct0.Weight + 10;
             double weight1 = this.testProduct1.Weight + 15;
-            bool negative = false;
 
             // Act
             this.testProduct0.SetWeight(weight0);
             this.testProduct1.SetWeight(weight1);
+
+            // Assert
+            Assert.Equals(testProduct0.Weight, weight0);
+            Assert.Equals(testProduct1.Weight, weight1);
+        }
+
+        [TestMethod]
+        public void SetNegativeWeightProductTestFail()
+        {
+            // Arrange         
+            bool negative = false;
+
+            // Act
             try
             {
                 this.testProduct1.SetWeight(-1);
@@ -744,43 +945,32 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { negative = true; }
 
             // Assert
-            Assert.Equals(testProduct0.Weight, weight0);
-            Assert.Equals(testProduct1.Weight, weight1);
             Assert.IsTrue(negative);
         }
 
-        public void SetSaleProductTest()
+        [TestMethod]
+        public void SetSaleProductTestSuccess()
         {
             // Arrange         
             double Sale0 = Math.Min(this.testProduct0.Sale + 10, 99);
             double Sale1 = Math.Min(this.testProduct1.Sale + 15, 99);
-            bool negative = false;
 
             // Act
             this.testProduct0.SetSale(Sale0);
             this.testProduct1.SetSale(Sale1);
-            try
-            {
-                this.testProduct1.SetSale(-1);
-            }
-            catch (Exception ex) { negative = true; }
 
             // Assert
             Assert.Equals(testProduct0.Sale, Sale0);
             Assert.Equals(testProduct1.Sale, Sale1);
-            Assert.IsTrue(negative);
         }
 
-        public void SetTimesBoughtProductTest()
+        [TestMethod]
+        public void SetNegativeSaleProductTestFail()
         {
             // Arrange         
-            long times0 = this.testProduct0.timesBought + 10;
-            long times1 = this.testProduct1.timesBought + 15;
             bool negative = false;
 
             // Act
-            this.testProduct0.SetTimesBought(times0);
-            this.testProduct1.SetTimesBought(times1);
             try
             {
                 this.testProduct1.SetSale(-1);
@@ -788,12 +978,44 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { negative = true; }
 
             // Assert
-            Assert.Equals(testProduct0.timesBought, times0);
-            Assert.Equals(testProduct1.timesBought, times1);
             Assert.IsTrue(negative);
         }
 
-        public void SetProductCategoryProductTest()
+        [TestMethod]
+        public void SetTimesBoughtProductTestSuccess()
+        {
+            // Arrange         
+            long times0 = this.testProduct0.timesBought + 10;
+            long times1 = this.testProduct1.timesBought + 15;
+
+            // Act
+            this.testProduct0.SetTimesBought(times0);
+            this.testProduct1.SetTimesBought(times1);
+
+            // Assert
+            Assert.Equals(testProduct0.timesBought, times0);
+            Assert.Equals(testProduct1.timesBought, times1);
+        }
+
+        [TestMethod]
+        public void SetNegativeTimesBoughtProductTestFail()
+        {
+            // Arrange         
+            bool negative = false;
+
+            // Act
+            try
+            {
+                this.testProduct1.SetTimesBought(-1);
+            }
+            catch (Exception ex) { negative = true; }
+
+            // Assert
+            Assert.IsTrue(negative);
+        }
+
+        [TestMethod]
+        public void SetProductCategoryProductTestSuccess() // no fail test
         {
             // Arrange         
             Category cat0 = new Category("SetProductCategoryProductTestCategory0");
@@ -805,22 +1027,50 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.Equals(testProduct0.ProductCategory, cat0);
-            Assert.Equals(testProduct1.ProductCategory, cat1);        
+            Assert.Equals(testProduct1.ProductCategory, cat1);
         }
 
-        public void SetDimenssionsProductTest()
+        [TestMethod]
+        public void SetDefaultProductCategoryProductTestSuccess()
         {
             // Arrange         
-            double[] dims0 = new double[] {1.2, 2.3, 3.4 };
+            string noCategory = "NoCategory";
+
+            // Act
+            this.testProduct0.SetProductCategory(null);
+            this.testProduct1.SetProductCategory(null);
+
+            // Assert
+            Assert.Equals(testProduct0.ProductCategory, noCategory);
+            Assert.Equals(testProduct1.ProductCategory, noCategory);
+        }
+
+        [TestMethod]
+        public void SetDimenssionsProductTestSuccess()
+        {
+            // Arrange         
+            double[] dims0 = new double[] { 1.2, 2.3, 3.4 };
             double[] dims1 = new double[] { 4.5, 5.6, 6.7 };
+
+            // Act
+            this.testProduct0.SetDimenssions(dims0);
+            this.testProduct1.SetDimenssions(dims1);
+
+            // Assert
+            Assert.Equals(testProduct0.Dimenssions, dims0);
+            Assert.Equals(testProduct1.Dimenssions, dims1);
+        }
+
+        [TestMethod]
+        public void SetBadDimenssionsProductTestFail()
+        {
+            // Arrange         
             double[] badDims0 = new double[] { 1.2, -2.3, 3.4 };
             double[] badDims1 = new double[] { 4.5, 5.6, -6.7 };
             bool negative0 = false;
             bool negative1 = false;
 
             // Act
-            this.testProduct0.SetDimenssions(dims0);
-            this.testProduct1.SetDimenssions(dims1);
             try
             {
                 this.testProduct0.SetDimenssions(badDims0);
@@ -833,11 +1083,10 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { negative1 = true; }
 
             // Assert
-            Assert.Equals(testProduct0.Dimenssions, dims0);
-            Assert.Equals(testProduct1.Dimenssions, dims1);
             Assert.IsTrue(negative0);
             Assert.IsTrue(negative1);
         }
+
 
 
         // ========================================= END of Tests =========================================
