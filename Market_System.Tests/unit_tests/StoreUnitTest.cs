@@ -45,7 +45,7 @@ namespace Market_System.Tests.unit_tests
             EmployeeRepo.GetInstance().destroy_me();            
         }
 
-
+        [TestMethod]
         public void TransferFoundershipWithFounderStoreTestSuccess()
         {
             // Arrange
@@ -59,6 +59,7 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(newFounder, this.testStore.founderID);
         }
 
+        [TestMethod]
         public void TransferFoundershipWithNotFounderStoreTesFailt()
         {
             // Arrange
@@ -73,6 +74,7 @@ namespace Market_System.Tests.unit_tests
             Assert.AreNotEqual(newFounder, this.testStore.founderID);
         }
 
+        [TestMethod]
         public void ChangeNameByFounderStoreTestSuccess()
         {
             // Arrange
@@ -92,6 +94,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatched);
         }
 
+        [TestMethod]
         public void ChangeNameByNOTFounderStoreTestFail()
         {
             // Arrange
@@ -109,7 +112,7 @@ namespace Market_System.Tests.unit_tests
         }
 
 
-
+        [TestMethod]
         public void ManagePermissionsStoreTestSuccess()
         {
             // Arrange
@@ -124,6 +127,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.STOCK));
         }
 
+        [TestMethod]
         public void ManagePermissionsWithBadAssigneeStoreTestFail()
         {
             // Arrange
@@ -143,6 +147,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNotMyAssignee);
         }
 
+        [TestMethod]
         public void ManagePermissionsWithNotOwnerStoreTestFail()
         {
             // Arrange
@@ -162,6 +167,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNotOwner);
         }
 
+        [TestMethod]
         public void AssignNewOwnerStoreTestSuccess()
         {
             // Arrange
@@ -175,6 +181,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testEmployees.isOwner(newOwnerID, this.testStore.Store_ID));
         }
 
+        [TestMethod]
         public void AssignNewOwnerWithNoOwnerStoreTestFail()
         {
             // Arrange
@@ -193,6 +200,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNotOwner);
         }
 
+        [TestMethod]
         public void AssignNewOwnerAlreadyOwnerStoreTestFail()
         {
             // Arrange
@@ -211,6 +219,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedAlreadyOwner);
         }
 
+        [TestMethod]
         public void AssignNewManagerStoreTestSuccess()
         {
             // Arrange
@@ -224,6 +233,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testEmployees.isManager(newManager, this.testStore.Store_ID));
         }
 
+        [TestMethod]
         public void AssignNewManagerWithNotOwnerStoreTestFail()
         {
             // Arrange
@@ -242,6 +252,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNotOwner);
         }
 
+        [TestMethod]
         public void AssignNewManagerAlreadyManagerStoreTestFail()
         {
             // Arrange
@@ -260,6 +271,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedAlreadyManager);
         }
 
+        [TestMethod]
         public void GetOwnersOfTheStoreTestSuccess()
         {
             // Arrange
@@ -272,6 +284,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue((!owners.Except(retOwners).Any()) && (!retOwners.Except(owners).Any()));
         }
 
+        [TestMethod]
         public void GetOwnersOfTheStoreNoPermissionTestFail()
         {
             // Arrange
@@ -289,6 +302,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoInfoPermission);
         }
 
+        [TestMethod]
         public void GetManagersOfTheStoreTestSuccess()
         {
             // Arrange
@@ -301,6 +315,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue((!managers.Except(retManagers).Any()) && (!retManagers.Except(managers).Any()));
         }
 
+        [TestMethod]
         public void GetManagersOfTheStoreNoPermissionTestFail()
         {
             // Arrange
@@ -318,6 +333,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoInfoPermission);
         }
 
+        [TestMethod]
         public void AddEmployeePermissionStoreTestSuccess()
         {
             // Arrange
@@ -330,6 +346,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testEmployees.confirmPermission(this.testStore.founderID, this.testStore.Store_ID, Permission.INFO));
         }
 
+        [TestMethod]
         public void AddEmployeePermissionNoPermissionStoreTestFail()
         {
             // Arrange
@@ -347,6 +364,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoPermission);
         }
 
+        [TestMethod]
         public void RemoveEmployeePermissionStoreTestSuccess()
         {
             // Arrange
@@ -360,6 +378,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(this.testEmployees.confirmPermission(this.testStore.founderID, this.testStore.Store_ID, Permission.STOCK));
         }
 
+        [TestMethod]
         public void RemoveEmployeePermissionNoPermissionStoreTestFail()
         {
             // Arrange
@@ -379,6 +398,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoPermission);
         }
 
+        [TestMethod]
         public void GetPurchaseHistoryOfTheStoreTestSuccess()
         {
             // Arrange
@@ -395,6 +415,7 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(history, retHistory);
         }
 
+        [TestMethod]
         public void GetPurchaseHistoryOfTheStoreNoPermissionTestFail()
         {
             // Arrange
@@ -412,6 +433,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoPermission);
         }
 
+        [TestMethod]
         public void GetStoreDTOStoreTestSuccess() // no fail test for this 
         {
             // Arrange
@@ -430,6 +452,7 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(dataStore.DefaultStrategies, ret.DefaultStrategies);
         }
 
+        [TestMethod]
         public void GetItemsStoreTestSuccess()
         {
             // Arrange
@@ -443,6 +466,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue((!items.Except(retItems).Any()) && (!retItems.Except(items).Any()));
         }
 
+        [TestMethod]
         public void GetItemsNoProductsInStoreStoreTest()
         {
             // Arrange
@@ -455,6 +479,7 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(retItems.Count(), 0);
         }
 
+        [TestMethod]
         public void RemoveStoreTestSuccess()
         {
             // Arrange
@@ -473,6 +498,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(noStore);
         }
 
+        [TestMethod]
         public void RemoveStoreNoFounderTest()
         {
             // Arrange
@@ -489,6 +515,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNotAFounder);
         }
 
+        [TestMethod]
         public void CalculatePriceStoreTestSuccess()
         {
             // Arrange
@@ -511,6 +538,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsFalse(error);
         }
 
+        [TestMethod]
         public void CalculatePriceNoSuchProductStoreTestFail()
         {
             // Arrange
@@ -530,6 +558,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoSuchProductInThisStore);
         }
 
+        [TestMethod]
         public void PurchaseStoreTestSuccess()
         {
             // Arrange
@@ -543,6 +572,7 @@ namespace Market_System.Tests.unit_tests
             Assert.Equals(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
         }
 
+        [TestMethod]
         public void PurchaseNorEnoughInStockStoreTestFail()
         {
             // Arrange
@@ -562,6 +592,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNotEnoughInStock);
         }
 
+        [TestMethod]
         public void AddStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
@@ -574,6 +605,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testStore.defaultPolicies.ContainsKey(newPolicy.GetID()));
         }
 
+        [TestMethod]
         public void AddStorePurchasePolicyNoPermissionStoreTestFail()
         {
             // Arrange
@@ -592,6 +624,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNoPolicyPermission);
         }
 
+        [TestMethod]
         public void AddStorePurchasePolicyAlreadyExistsStoreTestFail()
         {
             // Arrange
@@ -611,6 +644,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorPolicyAlreadyExists);
         }
 
+        [TestMethod]
         public void AddStorePurchaseStrategyStoreTestSuccess()
         {
             // Arrange
@@ -624,6 +658,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(newStrategy.GetID()));
         }
 
+        [TestMethod]
         public void AddStorePurchaseStrategyNoPermissionStoreTestFail()
         {
             // Arrange
@@ -642,6 +677,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNoPolicyPermission);
         }
 
+        [TestMethod]
         public void AddStorePurchaseStrategyStoreTestFail()
         {
             // Arrange
@@ -660,6 +696,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorStrategyAlreadyExists);
         }
 
+        [TestMethod]
         public void RemoveStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
@@ -672,6 +709,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(policyToRemove));
         }
 
+        [TestMethod]
         public void RemoveStorePurchasePolicySNopermissiontoreTestFail()
         {
             // Arrange
@@ -689,6 +727,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNoPolicyPermission);
         }
 
+        [TestMethod]
         public void RemoveStorePurchasePolicyDoesntExistStoreTestFail()
         {
             // Arrange
@@ -707,6 +746,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorPolicyDoesntExist);
         }
 
+        [TestMethod]
         public void RemoveStorePurchaseStrategyStoreTest()
         {
             // Arrange
@@ -720,6 +760,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(strategyToRemove));
         }
 
+        [TestMethod]
         public void RemoveStorePurchaseStrategyNoPermissionStoreTestFail()
         {
             // Arrange
@@ -738,6 +779,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNoPolicyPermission);
         }
 
+        [TestMethod]
         public void RemoveStorePurchaseStrategyDoesntExistStoreTestFail()
         {
             // Arrange
@@ -756,6 +798,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorStrategyDoesntExist);
         }
 
+        [TestMethod]
         public void AddProductStoreTestSuccess()
         {
             // Arrange            
@@ -776,6 +819,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(itemAdded);
         }
 
+        [TestMethod]
         public void AddProductNoPermissionStoreTestFail()
         {
             // Arrange            
@@ -797,6 +841,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNoStockPermission);
         }
 
+        [TestMethod]
         public void RemoveProductStoreTestSuccess()
         {
             // Arrange            
@@ -812,6 +857,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(itemRemoved);
         }
 
+        [TestMethod]
         public void RemoveProductNoPermissionStoreTestFail()
         {
             // Arrange            
@@ -829,6 +875,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorNoStockPermission);
         }
 
+        [TestMethod]
         public void RemoveProductNoSuchProductStoreTestFail()
         {
             // Arrange            
