@@ -41,7 +41,7 @@ namespace Market_System.ServiceLayer
                 this.log_event_writer = new StreamWriter(log_event_path);
                 
                 this.log_event_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_event);
-                this.log_event_writer = null;
+                this.log_event_writer.Close();
             }
          }
 
@@ -53,7 +53,7 @@ namespace Market_System.ServiceLayer
                 this.log_error_writer = new StreamWriter(log_errors_path);
 
                 this.log_error_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_error);
-                this.log_error_writer = null;
+                this.log_error_writer.Close();
             }
         }
 
@@ -63,7 +63,7 @@ namespace Market_System.ServiceLayer
             
             this.log_event_reader = new StreamReader(log_event_path);
             string return_me= this.log_event_reader.ReadToEnd();
-            this.log_event_reader = null;
+            this.log_event_reader.Close();
             return return_me;
         }
 
@@ -72,7 +72,7 @@ namespace Market_System.ServiceLayer
 
             this.log_error_reader = new StreamReader(log_errors_path);
             string return_me= this.log_error_reader.ReadToEnd();
-            this.log_error_reader = null;
+            this.log_error_reader.Close();
             return return_me;
         }
     }

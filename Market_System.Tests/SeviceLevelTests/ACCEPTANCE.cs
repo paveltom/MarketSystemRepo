@@ -94,7 +94,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> response = service.register("user1", "pass1", "add1");
 
             //Result:
-            Assert.Equals(false, response.ErrorOccured);
+            Assert.AreEqual(false, response.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
@@ -112,7 +112,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseLogin = service.login_member("user1", "pass1");
 
             //Result:
-            Assert.Equals(false, responseLogin.ErrorOccured);
+            Assert.AreEqual(false, responseLogin.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
@@ -129,7 +129,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseReg2 = service.register("user1", "pass2", "add2");
 
             //Result:
-            Assert.Equals(true, responseReg2.ErrorOccured);
+            Assert.AreEqual(true, responseReg2.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
@@ -146,7 +146,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseLogin = service.login_member("user2142415", "pass1");
 
             //Result:
-            Assert.Equals(true, responseLogin.ErrorOccured);
+            Assert.AreEqual(true, responseLogin.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
@@ -163,7 +163,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseLogin = service.login_member("user1", "pass125256622222222");
 
             //Result:
-            Assert.Equals(true, responseLogin.ErrorOccured);
+            Assert.AreEqual(true, responseLogin.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
@@ -181,9 +181,9 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseLogout = service.log_out();
 
             //Result:
-            Assert.Equals(false, responseLogout.ErrorOccured);
+            Assert.AreEqual(false, responseLogout.ErrorOccured);
             Response<string> responseLogoutAgain = service.log_out();
-            Assert.Equals(true, responseLogoutAgain.ErrorOccured); //already logged out
+            Assert.AreEqual(true, responseLogoutAgain.ErrorOccured); //already logged out
 
             //tearDown:
             oneThreadCleanup();
@@ -199,10 +199,10 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> response = service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
 
             //Result:
-            Assert.Equals(false, response.ErrorOccured);
+            Assert.AreEqual(false, response.ErrorOccured);
             //todo: check if store was added:
             Response<ItemDTO> resGetStore = service.GetStore("Store1"); ////todo store id? Store1
-            Assert.Equals(false, resGetStore.ErrorOccured);
+            Assert.AreEqual(false, resGetStore.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
