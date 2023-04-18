@@ -73,7 +73,7 @@ namespace Market_System.DomainLayer.StoreComponent
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             this.StoreID = storeID;
             this.storeRepo = StoreRepo.GetInstance();
-            this.Product_ID = DateTime.Now.ToString(); //this.storeRepo.getNewProductID(storeID); Change when StoreRepo done !!!!!!!!!!!!!!
+            this.Product_ID = storeRepo.getNewProductID(storeID); //this.storeRepo.getNewProductID(storeID); Change when StoreRepo done !!!!!!!!!!!!!!
             this.PurchasePolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultStorePolicies);
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
@@ -100,6 +100,8 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 List<string> wholeAtrs = atrs.Split(';').ToList();
+                if(wholeAtrs.Count > 0)
+                    wholeAtrs.RemoveAt(wholeAtrs.Count - 1);
                 ConcurrentDictionary<string, List<string>> ret = new ConcurrentDictionary<string, List<string>>();
                 foreach (string s in wholeAtrs)
                 {

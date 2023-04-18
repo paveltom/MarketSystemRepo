@@ -26,11 +26,19 @@ namespace Market_System.Tests.unit_tests
     [TestInitialize()]
         public void Setup()
         {
-            testProduct0 = GetNewProduct();
-            testProduct1 = GetExistingProduct();
+            store0 = GetStore("testProduct0StoreID789");
+            store1 = GetStore("testProduct1StoreID465");
             this.repo = StoreRepo.GetInstance();
-            store0 = GetStore(this.testProduct0.GetStoreID());
-            store1 = GetStore(this.testProduct1.GetStoreID());
+            repo.AddStore(store0.founderID, store0);
+            repo.AddStore(store1.founderID, store1);
+            testProduct0 = GetNewProduct();
+            testProduct1 = GetExistingProduct();            
+            ConcurrentDictionary<string, string> store0AllProducts = new ConcurrentDictionary<string, string>();
+            ConcurrentDictionary<string, string> store1AllProducts = new ConcurrentDictionary<string, string>();
+            store0AllProducts.TryAdd(this.testProduct0.Product_ID, this.testProduct0.Product_ID);
+            store1AllProducts.TryAdd(this.testProduct1.Product_ID, this.testProduct1.Product_ID);
+            store0.allProducts = store0AllProducts;
+            store1.allProducts = store1AllProducts;
             this.repo.AddProduct(store0.Store_ID, store0.founderID,  this.testProduct0, testProduct0.Quantity);
             this.repo.AddProduct(store1.Store_ID, store1.founderID, this.testProduct1, testProduct1.Quantity);
         }
@@ -1104,7 +1112,7 @@ namespace Market_System.Tests.unit_tests
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
 
-            List<string> allProductsIDS = new List<string>() { "testProduct1StoreID465_tesProduct1ID" };
+            List<string> allProductsIDS = new List<string>();
 
             return new Store(founderID, storeID, policies, strategies, allProductsIDS, false);
         }
