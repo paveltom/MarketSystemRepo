@@ -50,7 +50,7 @@ namespace Market_System.ServiceLayer
             lock (this)
             {
                 
-                this.log_error_writer = new StreamWriter(log_errors_path, true);
+                this.log_error_writer = new StreamWriter(log_errors_path, true); //append = true - instead of overwriting it.
 
                 this.log_error_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_error);
                 this.log_error_writer.Close();
