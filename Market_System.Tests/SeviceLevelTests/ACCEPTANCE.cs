@@ -305,9 +305,9 @@ namespace Market_System.Tests.SeviceLevelTests
 
         #endregion
 
+        #region//Guest purchase Tests 2.1*, 2.2, 2.3, 2.4* 2.5*
         //TODO:: Uncomment this test when @Pasha fixes The Employees() function... fails when opening a new store
         /*
-        #region//Guest purchase Tests 2.1*, 2.2, 2.3, 2.4* 2.5*
         [TestMethod]
         public void searchProducts()
         {
@@ -423,26 +423,26 @@ namespace Market_System.Tests.SeviceLevelTests
 
 
 
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-    }
+    #region Additional test attributes
+    //
+    // You can use the following additional attributes as you write your tests:
+    //
+    // Use ClassInitialize to run code before running the first test in the class
+    // [ClassInitialize()]
+    // public static void MyClassInitialize(TestContext testContext) { }
+    //
+    // Use ClassCleanup to run code after all tests in a class have run
+    // [ClassCleanup()]
+    // public static void MyClassCleanup() { }
+    //
+    // Use TestInitialize to run code before running each test 
+    // [TestInitialize()]
+    // public void MyTestInitialize() { }
+    //
+    // Use TestCleanup to run code after each test has run
+    // [TestCleanup()]
+    // public void MyTestCleanup() { }
+    //
+    #endregion
+}
 
