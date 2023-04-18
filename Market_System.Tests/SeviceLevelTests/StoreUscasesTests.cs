@@ -59,7 +59,7 @@ namespace Market_System.Tests.SeviceLevelTests
             service_Controller.open_new_store(new List<string> { "store_name" });
 
             //Result:
-            Assert.Equals(false, response.ErrorOccured);
+            Assert.AreEqual(false, response.ErrorOccured);
             //todo: check if store exists now
 
             //tearDown:
@@ -76,7 +76,7 @@ namespace Market_System.Tests.SeviceLevelTests
             service_Controller.open_new_store();
 
             //Result:
-            Assert.Equals(true, response2.ErrorOccured);
+            Assert.AreEqual(true, response2.ErrorOccured);
 
             //tearDown: (TestCleanup())
         }*/
@@ -92,7 +92,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> response2 = service_Controller.add_product_to_store("Stor1", "prod1","desc1", "1","1","1","","","","","",""); ////todo store id? Store1
 
             //Result:
-            Assert.Equals(false, response.ErrorOccured);
+            Assert.AreEqual(false, response.ErrorOccured);
             //todo: check if store exists now
 
             //tearDown:
@@ -215,7 +215,7 @@ namespace Market_System.Tests.SeviceLevelTests
             string newStoreId = service_Controller.getNewStoreID();
 
             //Result:
-            Assert.IsFalse(stores.Any(s => s.Store_ID.Equals(newStoreId)));
+            Assert.IsFalse(stores.Any(s => s.Store_ID.AreEqual(newStoreId)));
 
             //tearDown: (TestCleanup())
         }
@@ -252,7 +252,7 @@ namespace Market_System.Tests.SeviceLevelTests
             string newProductId = service_Controller.getNewProductID(storeId);
 
             //Result:
-            Assert.IsFalse(products.Any(p => p.Product_ID.Equals(newProductId)));
+            Assert.IsFalse(products.Any(p => p.Product_ID.AreEqual(newProductId)));
 
             //tearDown: (TestCleanup())
         }
@@ -457,7 +457,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Assert.AreEqual(2, tempClosedStores.Count);
         }
 
-        */ 
+        */
     }
 }
 
