@@ -20,3 +20,5 @@ Tuesday, 18 April 2023 : error!!: can't recive userID because username does not 
 Tuesday, 18 April 2023 : error!!: a user with same name exists, please change name!in register
 Tuesday, 18 April 2023 : error!!: can't recive userID because username does not exists in login_guest
 Tuesday, 18 April 2023 : error!!: Incorrect login information has been provided in login_member
+Tuesday, 18 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Tuesday, 18 April 2023 : error!!: Incorrect login information has been provided in login_member
