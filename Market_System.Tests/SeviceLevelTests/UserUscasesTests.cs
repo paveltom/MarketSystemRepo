@@ -1,8 +1,9 @@
 ﻿
 using Market_System.ServiceLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
- 
+
 
 namespace Market_System.Tests.ServiceLevelTests
 {
@@ -26,7 +27,7 @@ namespace Market_System.Tests.ServiceLevelTests
     {
         private Service_Controller service_Controller;
 
-        public void setup()
+        public void Setup()
         {
             service_Controller = new Service_Controller();
         }
@@ -53,26 +54,21 @@ namespace Market_System.Tests.ServiceLevelTests
         //
         #endregion
 
-        //ClassInitialize runs before running the first test in the class
-        [ClassInitialize()]
-        public void ClassInitialize()
-        {
-            setup();
-        }
-
-        [TestCleanup()]
         public void TestCleanup()
         {
             service_Controller.destroy();
         }
 
+        #region
+
         [TestMethod]
         public void UserRegistersAsMemberAndLogin()
         {
-            //Setup: none
+            //Setup: 
+            Setup();
 
             //Action:
-            Response<string> response =service_Controller.register("user1", "pass1", "add1");
+            Response<string> response = service_Controller.register("user1", "pass1", "add1");
 
             //Result:
             Assert.IsNotNull(response.Value);
@@ -81,7 +77,8 @@ namespace Market_System.Tests.ServiceLevelTests
             Response<string> responseLogin = service_Controller.login_member("user1", "pass1");
             Assert.AreEqual(false, responseLogin.ErrorOccured);
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         [TestMethod]
@@ -150,6 +147,8 @@ namespace Market_System.Tests.ServiceLevelTests
 
         //maybe do another test for showing member purchase 
         //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
+
+        #endregion
 
     }
 }
