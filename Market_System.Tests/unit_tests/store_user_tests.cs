@@ -383,7 +383,7 @@ namespace Market_System.Tests.unit_tests
         
         
 
-        /*
+        
         [TestMethod]
         public void user_purchase_history_success()
         {
@@ -392,30 +392,13 @@ namespace Market_System.Tests.unit_tests
             {
                 user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
-                List<string> store_name_in_a_list = new List<string>();
-                store_name_in_a_list.Add("store_1");
-                MarketSystem.GetInstance().Add_New_Store("store1", store_name_in_a_list);
-                string store_ID_from_name = MarketSystem.GetInstance().get_store_id_from_name("store1");
-                List<string> product_details = new List<string>();
-                product_details.Add("product_1");//product_name
-                product_details.Add("desc1");//product_description
-                product_details.Add("99");//price
-                product_details.Add("100000000");//quantity
-                product_details.Add("0");//reserved quanitity
-                product_details.Add("5");//rating
-                product_details.Add("");//dimensitons
-                product_details.Add("attrucite");//attributes
-                product_details.Add("category1");//category
-                MarketSystem.GetInstance().Add_Product_To_Store(store_ID_from_name, "test1", product_details);
-                string product_id = MarketSystem.GetInstance().get_product_id_from_product_name_and_store_name("product1", "store1");
-                user_facade.Logout("test1");
-                user_facade.register("client1", "pass", "address");
-                user_facade.Login("client1", "pass");
-                ms.Add_Product_To_basket(product_id, "client1", "1");
-                ms.Check_Out("client1", "9478-5188-9999-6666", user_facade.get_cart("client1"));
+                user_facade.add_product_to_basket("132_151", "test1", 1);
+                user_facade.Check_Out("test1");
+                user_facade.save_purhcase_in_user("test1", user_facade.get_cart("test1"));
+               
 
-                string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket "+ store_ID_from_name + " : \n" + "product "+ product_id + " quantity: 1\n";
-                Assert.AreEqual(should_be, ms.get_purchase_history_of_a_member("test1")[0].tostring());
+                string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket 132 : \n" + "product 132_151"+ " quantity: 1\n";
+                Assert.AreEqual(should_be, user_facade.get_purchase_history_of_a_member("test1")[0].tostring());
             }
 
             catch (Exception e)
@@ -423,7 +406,7 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("Should've showed the purchase history succefully, but failed due to error: " + e.Message);
             }
         }
-        */
+        
 
     }
 }
