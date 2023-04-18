@@ -135,7 +135,8 @@ namespace Market_System.Tests.ServiceLevelTests
         [TestMethod]
         public void successLogout()
         {
-            //Setup: none
+            //Setup: 
+            Setup();
 
             //Action:
             Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
@@ -148,7 +149,8 @@ namespace Market_System.Tests.ServiceLevelTests
             Assert.AreEqual(false, responseLogout.ErrorOccured);
             Assert.AreEqual(false, secondLogin.ErrorOccured);
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         //maybe do another test for showing member purchase 
