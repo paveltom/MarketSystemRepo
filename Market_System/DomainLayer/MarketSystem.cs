@@ -490,10 +490,11 @@ namespace Market_System.DomainLayer
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_ID)
         {
             string user_ID = userFacade.get_userID_from_session(session_ID);
-            
+            string usename = userFacade.get_username_from_user_id(user_ID);
+
             try
             {
-                return userFacade.get_purchase_history_of_a_member(user_ID);
+                return userFacade.get_purchase_history_of_a_member(usename);
             }
             catch (Exception e)
             {
