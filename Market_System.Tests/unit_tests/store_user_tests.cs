@@ -406,7 +406,26 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("Should've showed the purchase history succefully, but failed due to error: " + e.Message);
             }
         }
-        
+
+
+        [TestMethod]
+        public void user_purchase_history_fail()
+        {
+
+            try
+            {
+                user_facade.register("test1", "pass", "address");
+                user_facade.Login("test1", "pass");
+                user_facade.get_purchase_history_of_a_member("test1")[0].tostring();
+                Assert.Fail("Should've failed , but was successful somehow ");
+              
+            }
+
+            catch (Exception e)
+            {
+                Assert.AreEqual("user never bought anything!", e.Message);
+            }
+        }
 
     }
 }
