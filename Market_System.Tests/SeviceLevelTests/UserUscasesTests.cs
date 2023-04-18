@@ -76,10 +76,10 @@ namespace Market_System.Tests.ServiceLevelTests
 
             //Result:
             Assert.IsNotNull(response.Value);
-            Assert.Equals(false, response.ErrorOccured);
+            Assert.AreEqual(false, response.ErrorOccured);
 
             Response<string> responseLogin = service_Controller.login_member("user1", "pass1");
-            Assert.Equals(false, responseLogin.ErrorOccured);
+            Assert.AreEqual(false, responseLogin.ErrorOccured);
 
             //tearDown: (TestCleanup())
         }
@@ -94,7 +94,7 @@ namespace Market_System.Tests.ServiceLevelTests
             Response<string> response2 = service_Controller.register("user1", "pass2", "add2");
 
             //Result:
-            Assert.Equals(true, response2.ErrorOccured);
+            Assert.AreEqual(true, response2.ErrorOccured);
 
             //tearDown: (TestCleanup())
         }
@@ -109,7 +109,7 @@ namespace Market_System.Tests.ServiceLevelTests
             Response<string> response2 = service_Controller.login_member("user@#$", "pass1");
 
             //Result:
-            Assert.Equals(true, response2.ErrorOccured);
+            Assert.AreEqual(true, response2.ErrorOccured);
 
             //tearDown: (TestCleanup())
         }
@@ -124,7 +124,7 @@ namespace Market_System.Tests.ServiceLevelTests
             Response<string> response2 = service_Controller.login_member("user1", "pass11111111111111");
 
             //Result:
-            Assert.Equals(true, response2.ErrorOccured);
+            Assert.AreEqual(true, response2.ErrorOccured);
 
             //tearDown: (TestCleanup())
         }
@@ -142,8 +142,8 @@ namespace Market_System.Tests.ServiceLevelTests
 
 
             //Result:
-            Assert.Equals(false, responseLogout.ErrorOccured);
-            Assert.Equals(false, secondLogin.ErrorOccured);
+            Assert.AreEqual(false, responseLogout.ErrorOccured);
+            Assert.AreEqual(false, secondLogin.ErrorOccured);
 
             //tearDown: (TestCleanup())
         }
