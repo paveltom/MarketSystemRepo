@@ -9,6 +9,7 @@ using Market_System.DomainLayer.StoreComponent;
 
 namespace Market_System.Tests.unit_tests
 {
+    [TestClass]
     public class StoreUnitTest
     {
         // fields          

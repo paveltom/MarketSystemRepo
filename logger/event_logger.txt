@@ -33,3 +33,36 @@ Tuesday, 18 April 2023 : user1 has registered!
 Tuesday, 18 April 2023 : user1  has logged in!
 Tuesday, 18 April 2023 : 1095509720Logged-out succesfully
 Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : successfully added product to store: Stor1
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : 1611240652Logged-out succesfully
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : successfully added product to store: Store1
+Tuesday, 18 April 2023 : a new comment for product id: Store1_Prod1
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : 780876693Logged-out succesfully
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : successfully added product to store: Store1
+Tuesday, 18 April 2023 : a product name change for product id: Store1_Prod1
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : user1 has registered!
+Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : successfully added product to store: Store1
+Tuesday, 18 April 2023 : user1 has registered!
