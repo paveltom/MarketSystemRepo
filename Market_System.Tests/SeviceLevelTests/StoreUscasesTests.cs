@@ -15,7 +15,7 @@ namespace Market_System.Tests.SeviceLevelTests
     {
         private Service_Controller service_Controller;
 
-        public void setup()
+        public void Setup()
         {
             service_Controller = new Service_Controller();
             service_Controller.register("user1", "pass1", "add1");
@@ -43,18 +43,6 @@ namespace Market_System.Tests.SeviceLevelTests
         // public void MyTestCleanup() { }
         //
         #endregion
-
-        //ClassInitialize runs before running the first test in the class
-        [ClassInitialize()]
-        public void ClassInitialize()
-        {
-            setup();
-        }
-
-        [TestInitialize()]
-        public void TestInitialize() { setup(); }
-
-        [TestCleanup()]
         public void TestCleanup()
         {
             service_Controller.destroy();
@@ -63,7 +51,8 @@ namespace Market_System.Tests.SeviceLevelTests
         [TestMethod]
         public void openStoreSuccess()
         {
-            //Setup: none
+            //Setup: 
+            Setup();
 
             //Action:
             Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
@@ -73,7 +62,8 @@ namespace Market_System.Tests.SeviceLevelTests
             Assert.Equals(false, response.ErrorOccured);
             //todo: check if store exists now
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         /*[TestMethod]
@@ -94,7 +84,8 @@ namespace Market_System.Tests.SeviceLevelTests
         [TestMethod]
         public void addProduct()
         {
-            //Setup: none
+            //Setup: 
+            Setup();
             Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
 
             //Action:
@@ -104,7 +95,8 @@ namespace Market_System.Tests.SeviceLevelTests
             Assert.Equals(false, response.ErrorOccured);
             //todo: check if store exists now
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         //maybe do another test for showing member purchase 
