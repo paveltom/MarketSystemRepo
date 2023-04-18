@@ -21,3 +21,4 @@ Tuesday, 18 April 2023 : user1  has logged in!
 Tuesday, 18 April 2023 : 1565275556Logged-out succesfully
 Tuesday, 18 April 2023 : user1 has registered!
 Tuesday, 18 April 2023 : user1  has logged in!
+Tuesday, 18 April 2023 : user1 has registered!

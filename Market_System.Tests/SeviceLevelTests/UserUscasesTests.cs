@@ -84,7 +84,8 @@ namespace Market_System.Tests.ServiceLevelTests
         [TestMethod]
         public void FailUserRegistersUsedUserame()
         {
-            //Setup: none
+            //Setup: 
+            Setup();
 
             //Action:
             Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
@@ -93,7 +94,8 @@ namespace Market_System.Tests.ServiceLevelTests
             //Result:
             Assert.AreEqual(true, response2.ErrorOccured);
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         [TestMethod]
