@@ -234,9 +234,11 @@ namespace Market_System.DomainLayer.StoreComponent
                     string newIDForStore = storeRepo.getNewStoreID();
                     if (newIDForStore == "")
                         throw new Exception("Created bad store ID.");
-                    Store currStore = new Store(userID, newIDForStore, null, null, null, false);
-                    currStore.ChangeName(userID, newStoreDetails[0]);
+                    if (newStoreDetails[0] == "")
+                        throw new Exception("Store name missing.");
+                    Store currStore = new Store(userID, newIDForStore, null, null, null, false);                    
                     storeRepo.AddStore(userID, currStore);
+                    currStore.ChangeName(userID, newStoreDetails[0]);
                 }
                 catch (Exception e)
                 {

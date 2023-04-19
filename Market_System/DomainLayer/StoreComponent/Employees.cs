@@ -64,7 +64,7 @@ namespace Market_System.DomainLayer.StoreComponent
             FounderPermissions = new List<Permission>();
             OwnerPermissions.Add(Permission.INFO); OwnerPermissions.Add(Permission.STOCK);
             OwnerPermissions.Add(Permission.Policy); OwnerPermissions.Add(Permission.OwnerOnly);
-            foreach (Permission permissions in OwnerPermissions)
+            foreach (Permission permissions in OwnerPermissions.ToList())
             {
                 FounderPermissions.Add(permissions);
             }

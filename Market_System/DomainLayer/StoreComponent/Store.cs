@@ -44,10 +44,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 foreach (Purchase_Strategy p in strategies)
                     this.defaultStrategies.TryAdd(p.GetID(), p);
 
-            if (allProductsIDS == null)
-                this.allProducts = new ConcurrentDictionary<string, string>();
-            else
-                allProductsIDS.ForEach(s => this.allProducts.TryAdd(s, s));
+            this.allProducts = new ConcurrentDictionary<string, string>();
+            if (allProductsIDS != null)                
+                foreach(string s in allProductsIDS)
+                    this.allProducts.TryAdd(s, s);
             //this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 

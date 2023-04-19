@@ -21,14 +21,13 @@ namespace Market_System.Tests.unit_tests
         // before each test 
         [TestInitialize()]
         public void Setup()
-        {
-            testStore = GetStore("testStoreID326");            
+        {            
+            testStore = GetStore("testStoreID326");
+            StoreRepo.GetInstance().AddStore(testStore.founderID, testStore);            
             testProduct0 = GetNewProduct("testStoreID326");
             testProduct1 = GetExistingProduct();
-            
-            StoreRepo.GetInstance().AddStore(testStore.founderID, testStore);
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
-            
+
             testEmployees = new Employees();
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testStockManagerID0", testStore.Store_ID, new List<Permission>() { Permission.STOCK });
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testInfoManagerID0", testStore.Store_ID, new List<Permission>() { Permission.INFO });            
@@ -57,7 +56,7 @@ namespace Market_System.Tests.unit_tests
 
 
             // Assert
-            Assert.Equals(newFounder, this.testStore.founderID);
+            Assert.AreEqual(newFounder, this.testStore.founderID);
         }
 
         [TestMethod]
@@ -91,7 +90,7 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorCatched = true; }
 
             // Assert
-            Assert.Equals(newName, this.testStore.Name);
+            Assert.AreEqual(newName, this.testStore.Name);
             Assert.IsTrue(errorCatched);
         }
 
@@ -413,7 +412,7 @@ namespace Market_System.Tests.unit_tests
             string retHistory = this.testStore.GetPurchaseHistoryOfTheStore(this.testStore.founderID);
 
             // Assert
-            Assert.Equals(history, retHistory);
+            Assert.AreEqual(history, retHistory);
         }
 
         [TestMethod]
@@ -444,13 +443,13 @@ namespace Market_System.Tests.unit_tests
             StoreDTO ret = this.testStore.GetStoreDTO();
 
             // Assert
-            Assert.Equals(dataStore.Name, ret.Name);
-            Assert.Equals(dataStore.StoreID, ret.StoreID);
-            Assert.Equals(dataStore.AllProducts, ret.AllProducts);
-            Assert.Equals(dataStore.owners, ret.managers);
-            Assert.Equals(dataStore.FounderID, ret.FounderID);
-            Assert.Equals(dataStore.DefaultPolicies, ret.DefaultPolicies);
-            Assert.Equals(dataStore.DefaultStrategies, ret.DefaultStrategies);
+            Assert.AreEqual(dataStore.Name, ret.Name);
+            Assert.AreEqual(dataStore.StoreID, ret.StoreID);
+            Assert.AreEqual(dataStore.AllProducts, ret.AllProducts);
+            Assert.AreEqual(dataStore.owners, ret.managers);
+            Assert.AreEqual(dataStore.FounderID, ret.FounderID);
+            Assert.AreEqual(dataStore.DefaultPolicies, ret.DefaultPolicies);
+            Assert.AreEqual(dataStore.DefaultStrategies, ret.DefaultStrategies);
         }
 
         [TestMethod]
@@ -477,7 +476,7 @@ namespace Market_System.Tests.unit_tests
             List<ItemDTO> retItems = this.testStore.GetItems();
 
             // Assert
-            Assert.Equals(retItems.Count(), 0);
+            Assert.AreEqual(retItems.Count(), 0);
         }
 
         [TestMethod]
@@ -535,7 +534,7 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { error = true; }
 
             // Assert
-            Assert.Equals(price, result);
+            Assert.AreEqual(price, result);
             Assert.IsFalse(error);
         }
 
@@ -570,7 +569,7 @@ namespace Market_System.Tests.unit_tests
             this.testStore.Purchase("PurchaseStoreTestUserID0", items);
 
             // Assert
-            Assert.Equals(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
+            Assert.AreEqual(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
         }
 
         [TestMethod]
