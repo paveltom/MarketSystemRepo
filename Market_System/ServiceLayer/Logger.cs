@@ -21,10 +21,7 @@ namespace Market_System.ServiceLayer
             string combine_me2 = "\\logger\\error_logger.txt";
             this.log_event_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me;
             this.log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me2;
-            this.log_event_writer = new StreamWriter(log_event_path);
-            this.log_error_writer = new StreamWriter(log_errors_path);
-            this.log_event_reader = new StreamReader(log_event_path);
-            this.log_error_reader = new StreamReader(log_errors_path);
+        
         }
 
         public static Logger get_instance()
@@ -41,7 +38,10 @@ namespace Market_System.ServiceLayer
         {
             lock (this)
             {
+                this.log_event_writer = new StreamWriter(log_event_path, true); //append = true - instead of overwriting it.
+                
                 this.log_event_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_event);
+                this.log_event_writer.Close();
             }
          }
 
@@ -49,18 +49,31 @@ namespace Market_System.ServiceLayer
         {
             lock (this)
             {
+                
+                this.log_error_writer = new StreamWriter(log_errors_path, true); //append = true - instead of overwriting it.
+
                 this.log_error_writer.WriteLine(DateTime.Now.ToLongDateString() + " : " + new_error);
+                this.log_error_writer.Close();
             }
         }
 
         public string Read_Events_Record()
         {
-            return this.log_event_reader.ReadToEnd();
+            
+            
+            this.log_event_reader = new StreamReader(log_event_path);
+            string return_me= this.log_event_reader.ReadToEnd();
+            this.log_event_reader.Close();
+            return return_me;
         }
 
         public string Read_Errors_Record()
         {
-            return this.log_error_reader.ReadToEnd();
+
+            this.log_error_reader = new StreamReader(log_errors_path);
+            string return_me= this.log_error_reader.ReadToEnd();
+            this.log_error_reader.Close();
+            return return_me;
         }
     }
 }

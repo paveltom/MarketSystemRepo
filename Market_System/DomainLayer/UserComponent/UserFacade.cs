@@ -276,9 +276,9 @@ namespace Market_System.DomainLayer.UserComponent
             return false;
         }
 
-        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string user_id)
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
         {
-            string username = userRepo.get_username_from_userID(user_id);
+            
             if (check_if_user_is_logged_in(username))
             {
                 return PurchaseRepo.GetInstance().get_history(username);
@@ -341,7 +341,7 @@ namespace Market_System.DomainLayer.UserComponent
             return false;
         }
 
-        internal void save_purhcase_in_user(string username,Cart cart)
+        public void save_purhcase_in_user(string username,Cart cart)
         {
             PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }

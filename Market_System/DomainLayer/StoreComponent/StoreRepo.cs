@@ -35,6 +35,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         storeDatabase = new Dictionary<Store, Dictionary<Product, int>>();
                         store_id_generator = new Random();
                         purchase_history = new Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>>();
+                        opened_stores_ids = new List<string>();
+                        temporary_closed_stores_ids = new List<string>();
                         Instance = new StoreRepo();
                     }
                 } //Critical Section End
