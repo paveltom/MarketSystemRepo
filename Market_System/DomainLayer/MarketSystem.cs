@@ -66,21 +66,29 @@ namespace Market_System.DomainLayer
 
         internal void ChangeStoreName(string sessionID, string storeID, string newName)
         {
+            try
+            {
+                storeFacade.ChangeStoreName(sessionID, storeID, newName);
+            }
 
-            storeFacade.ChangeStoreName(sessionID, storeID, newName);
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
-        public string get_username_from_session_id(string session_id)
+        public string get_userid_from_session_id(string session_id)
         {
-            return userFacade.get_username_from_session(session_id);
+
+            return userFacade.get_userID_from_session(session_id);
+
         }
 
-        public void Login(string username, string password)
+        public void Login(string username, string password) //for a registered Member
         {
             try
             {
-                userFacade.Login(username, password);
-                
+                userFacade.Login(username, password);      
             }
 
             catch (Exception e)
@@ -103,23 +111,20 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Add_Product_To_basket(string product_id,string username,string quantity)
+        public string Add_Product_To_basket(string product_id,string session_id,string quantity)
         {
-
+            string user_id = userFacade.get_userID_from_session(session_id);
+            string usename = userFacade.get_username_from_user_id(user_id);
             lock (this)
             {
-                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@change after store facade updates or implement this function
 
-
-                //storeFacade.Remove_Product_From_Store(product_id); remove from comment after store 
-                  
-                        userFacade.add_product_to_basket(product_id, username,int.Parse(quantity));
-                        Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
+                        userFacade.add_product_to_basket(product_id, usename, int.Parse(quantity));
+                        Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(usename);
                         double price=storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                         //  price  =  storefacade.calcualte_total_price(cart);
                         
-                        userFacade.update_cart_total_price(username, price);
-                        return "added product id : " + product_id + " to " + username + "'s cart";
+                        userFacade.update_cart_total_price(usename, price);
+                        return "added product id : " + product_id + " to " + usename + "'s cart";
                     
                    
                 
@@ -216,8 +221,10 @@ namespace Market_System.DomainLayer
             storeFacade.ReserveProduct(itemDTO);
         }
 
-        public string remove_product_from_basket(string product_id, string username)
+        public string remove_product_from_basket(string product_id, string session_ID)
         {
+            string user_id = get_userid_from_session_id(session_ID);
+            string username = userFacade.get_username_from_user_id(user_id);
             lock (this)
             {
               
@@ -230,7 +237,7 @@ namespace Market_System.DomainLayer
                         double  price  =  storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                       //  double price = 110;
                         userFacade.update_cart_total_price(username, price);
-                        return "removed product id : " + product_id + " from " + username + "'s cart";
+                        return "removed product id : " + product_id + " from " + userFacade.get_username_from_user_id(user_id) + "'s cart";
                     }
                     else
                     {
@@ -259,8 +266,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string username_from_SessionID = get_username_from_session_id(sessionID);
-                storeFacade.RemoveEmployeePermission(username_from_SessionID, storeID, employee_username, permission);
+                string userID_from_SessionID = get_userid_from_session_id(sessionID);
+                storeFacade.RemoveEmployeePermission(userID_from_SessionID, storeID, employee_username, permission);
             }
 
             catch (Exception e)
@@ -273,8 +280,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string username_from_SessionID = get_username_from_session_id(sessionID);
-                storeFacade.AddEmployeePermission(sessionID, storeID,employeeID,permission);
+                string userID_from_SessionID = get_userid_from_session_id(sessionID);
+                storeFacade.AddEmployeePermission(userID_from_SessionID, storeID,employeeID,permission);
             }
 
             catch (Exception e)
@@ -283,18 +290,35 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal string change_password(string username, string new_password)
+        internal string change_password(string session_id, string new_password)
         {
+            string user_id = userFacade.get_userID_from_session(session_id);
+            string usename = userFacade.get_username_from_user_id(user_id);
+
             try
             {
-                return userFacade.change_password(username, new_password);
+                return userFacade.change_password(usename, new_password);
             }
 
             catch (Exception e)
             {
                 throw e;
             }
-         
+        }
+
+        public bool isAdministrator(string session)
+        {
+            string user_id = userFacade.get_userID_from_session(session);
+            string username = userFacade.get_username_from_user_id(user_id);
+            try
+            {
+                return userFacade.isAdministrator(username);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void link_user_with_session(string username, string session_id)
@@ -329,14 +353,15 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void unlink_user_with_session(string session_id)
+        public void unlink_userID_with_session(string session_id)
         {
-            userFacade.unlink_user_with_session(session_id);
+            userFacade.unlink_userID_with_session(session_id);
         }
         
 
-        public void Logout(string username)
+        public void Logout(string useriD)
         {
+            string username = userFacade.get_username_from_user_id(useriD);
             try
             {
                 userFacade.Logout(username);
@@ -351,7 +376,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                userFacade.register(username, password,address);
+                userFacade.register(username, password, address);
             }
 
             catch (Exception e)
@@ -364,8 +389,8 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string username_from_SessionID = get_username_from_session_id(sessionID);
-                storeFacade.ManageEmployeePermissions(username_from_SessionID, storeID, employee_username, permList);
+                string userid_from_SessionID = get_userid_from_session_id(sessionID);
+                storeFacade.ManageEmployeePermissions(userid_from_SessionID, storeID, employee_username, permList);
             }
             catch (Exception e)
             {
@@ -462,11 +487,14 @@ namespace Market_System.DomainLayer
 
         
 
-        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
+        public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_ID)
         {
+            string user_ID = userFacade.get_userID_from_session(session_ID);
+            string usename = userFacade.get_username_from_user_id(user_ID);
+
             try
             {
-                return userFacade.get_purchase_history_of_a_member(username);
+                return userFacade.get_purchase_history_of_a_member(usename);
             }
             catch (Exception e)
             {

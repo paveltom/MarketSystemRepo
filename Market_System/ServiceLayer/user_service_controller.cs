@@ -27,7 +27,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                market_System.unlink_user_with_session(session_id); // unlinks the guest, because when we enter website we are a guest with sessino id
+                market_System.unlink_userID_with_session(session_id); // unlinks the guest, because when we enter website we are a guest with sessino id
                 market_System.Login(username, password);
                 market_System.link_user_with_session(username, session_id);
                
@@ -36,22 +36,30 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         public string login_guest(string session_id)//1.1
         {
-            string guest_name= market_System.login_guest();
-            
-            market_System.link_user_with_session(guest_name, session_id); 
-            return guest_name;
+            try
+            {
+                string guest_name = market_System.login_guest();
+                market_System.link_user_with_session(guest_name, session_id);
+                return guest_name;
+            }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
 
-        public string get_username_from_session_id(string session_id)
+        public string get_userID_from_session_id(string session_id)
         {
-            return market_System.get_username_from_session_id(session_id);
+
+            return market_System.get_userid_from_session_id(session_id);
+
         }
 
 
@@ -59,17 +67,17 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string username = market_System.get_username_from_session_id(session_id);
+                string user_id = market_System.get_userid_from_session_id(session_id);
                
-                market_System.Logout(username);
-                market_System.unlink_user_with_session(session_id);
+                market_System.Logout(user_id);
+                market_System.unlink_userID_with_session(session_id);
                
-                return username+"Logged-out succesfully";
+                return user_id+"Logged-out succesfully";
             }
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
 
@@ -78,14 +86,13 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                market_System.register(username,password,address);
-                
+                market_System.register(username,password,address);      
                 return "registered succesfully";
             }
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -93,13 +100,13 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string username = market_System.get_username_from_session_id(session_id);
+                
                 market_System.ReserveProduct(new ItemDTO(product_id, int.Parse(quantity)));
-                return market_System.Add_Product_To_basket(product_id,username,quantity);
+                return market_System.Add_Product_To_basket(product_id, session_id, quantity);
             }
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -107,12 +114,12 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string username = market_System.get_username_from_session_id(session_id);
-                return market_System.remove_product_from_basket(product_id, username);
+               
+                return market_System.remove_product_from_basket(product_id, session_id);
             }
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
 
         }
@@ -127,7 +134,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         public string assign_new_manager(string founder, string username, int store_ID) // 4.6
@@ -140,7 +147,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         */
@@ -154,8 +161,10 @@ namespace Market_System.ServiceLayer
         }
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_id) //6.4
         {
-            string username = market_System.get_username_from_session_id(session_id);
-                return market_System.get_purchase_history_of_a_member(username);
+
+           
+                return market_System.get_purchase_history_of_a_member(session_id);
+
         }
         
         public string Check_Delivery(string address)
@@ -167,7 +176,7 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
         
@@ -181,7 +190,7 @@ namespace Market_System.ServiceLayer
 
             catch (Exception e)
             {
-                return e.Message;
+                throw e;
             }
         }
 
@@ -192,8 +201,26 @@ namespace Market_System.ServiceLayer
 
         internal string change_password(string new_password, string session_id)
         {
-            string username = market_System.get_username_from_session_id(session_id);
-            return  market_System.change_password(username,  new_password);
+
+            
+            return  market_System.change_password(session_id,  new_password);
+
+   
+        }
+
+        public bool isAdministrator(string session_ID)
+        {
+            try
+            {
+                
+                return market_System.isAdministrator(session_ID);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
     }
 }

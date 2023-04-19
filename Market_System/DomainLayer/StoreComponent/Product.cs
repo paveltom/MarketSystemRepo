@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Web;
 using System.Web.Caching;
+using System.Xml.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -119,6 +120,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.PurchasePolicies.TryAdd(newPolicy.GetID(), newPolicy))
                     Save();
+                else
+                    throw new Exception("Policy already exists.");
             }
             catch (Exception e) { throw e; }
         }
@@ -129,6 +132,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.PurchasePolicies.TryRemove(policyID, out _))
                     Save();
+                else throw new Exception("No such policy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -139,6 +143,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.PurchaseStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                     Save();
+                else throw new Exception("Strategy already exist.");
             }
             catch (Exception e) { throw e; }
         }
@@ -150,6 +155,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.PurchaseStrategies.TryRemove(strategyID, out _))
                     Save();
+                else
+                    throw new Exception("No such strategy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -161,6 +168,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.PurchaseAttributes.TryAdd(attribute, options))
                     Save();
+                else throw new Exception("Attribute already exists.");
             }
             catch (Exception e) { throw e; }
         }
@@ -171,6 +179,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.PurchaseAttributes.TryRemove(attribute, out _))
                     Save();
+                else throw new Exception("No such attribute.");
             }
             catch (Exception e) { throw e; }
         }
@@ -204,7 +213,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (quantity < 1)
                     throw new Exception("Bad quantity!");
-                if (!implementSale)
+                if (implementSale)
                     return ImplementSale(null) * quantity; // add chosen attributes functionality
                 else
                     return this.Price * quantity;
@@ -295,8 +304,17 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 // validate user have purchased the product - else throw exception
-                Comments.Add(userID + ": " + comment + ".\n Rating: " + rating + ".");
-                UpdateRating(rating);
+                if (rating >= 1)
+                {
+                    Comments.Add(userID + ": " + comment + ".\n Rating: " + rating + ".");
+                    UpdateRating(rating);
+                }
+                else
+                {
+                    if(comment.Trim() == "")
+                        throw new Exception("Cannot add empty comment with no rating.");  
+                    Comments.Add(userID + ": " + comment + ".\n Rating: _ .");
+                }
                 Save();
             }
             catch (Exception e) { throw e; }
@@ -309,6 +327,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (QuantityLock)
                 {
+                    if (quantity < 1)
+                        throw new Exception("Bad quantity.");
                     return (this.Quantity - quantity) >= 0;
                 }
             }
@@ -359,6 +379,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (this.Name)
                 {
+                    if (name.Trim() == "")
+                        throw new Exception("Name cannot be empty.");
                     this.Name = name;
                     Save();
                 }
@@ -371,6 +393,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (this.Description)
                 {
+                    if (description.Trim() == "")
+                        throw new Exception("Name cannot be empty.");
                     this.Description = description;
                     Save();
                 }

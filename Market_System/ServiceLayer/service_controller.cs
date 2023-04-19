@@ -49,7 +49,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id,session_id,quantity));
-                Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
+                Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
 
                 return ok;
             }
@@ -144,19 +144,12 @@ namespace Market_System.ServiceLayer
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(address));
                 Logger.get_instance().record_event("checking deilvery for address: " + address + " succefully done.");
                 return ok;
-
-
-
             }
             catch (Exception e)
             {
-
                 Logger.get_instance().record_error("error!!: " + e.Message + " in check_delivery");
                 return Response<String>.FromError(e.Message);
-
             }
-
-
         }
 
         public Response<string> change_password(string new_password)
@@ -207,7 +200,7 @@ namespace Market_System.ServiceLayer
 
                 this.ssc.close_store_temporary( storeID);
                 
-                Logger.get_instance().record_event(usc.get_username_from_session_id(session_id)+" closed a store with the ID: "+storeID);
+                Logger.get_instance().record_event(usc.get_userID_from_session_id(session_id)+" closed a store with the ID: "+storeID);
                 Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
                 return ok;
             }
@@ -559,7 +552,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<List<PurchaseHistoryObj>> ok= Response<List<PurchaseHistoryObj>>.FromValue(this.usc.get_purchase_history_of_a_member(session_id));
-                Logger.get_instance().record_event("getting purchase history of the user : " + this.usc.get_username_from_session_id(session_id));
+                Logger.get_instance().record_event("getting purchase history of the user : " + this.usc.get_userID_from_session_id(session_id));
                 
                 return ok; 
 
@@ -681,7 +674,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id));
-                Logger.get_instance().record_event(this.usc.get_username_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
+                Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
              
                 return ok;
                  
@@ -819,6 +812,38 @@ namespace Market_System.ServiceLayer
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveEmployeePermission");
                 return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Read_System_Events()
+        {
+            try
+            {
+                this.usc.isAdministrator(session_id); //Check if the user is an administrator - hence, has a permission to perform this action.
+                Response<string> system_Events = Response<string>.FromValue(Logger.get_instance().Read_Events_Record());
+                Logger.get_instance().record_event("An admin has retrieved the System Events Logger file content successfuly");
+                return system_Events; //TODO:: display the content of system_Events to the Admin!
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Events");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Read_System_Errors()
+        {
+            try
+            {
+                this.usc.isAdministrator(session_id); //Check if the user is an administrator
+                Response<string> system_Errors = Response<string>.FromValue(Logger.get_instance().Read_Errors_Record());
+                Logger.get_instance().record_event("An admin has retrieved the System Erros Logger file content successfuly");
+                return system_Errors; //TODO:: display the content of system_Events to the Admin!
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Errors");
+                return Response<String>.FromError(e.Message);
             }
         }
     }
