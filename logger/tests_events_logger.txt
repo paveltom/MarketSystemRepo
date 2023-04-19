@@ -1,0 +1,20 @@
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1  has logged in!
+יום רביעי 19 אפריל 2023 : successfully added product to store: Store1
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1  has logged in!
+יום רביעי 19 אפריל 2023 : successfully added product to store: Store1
+יום רביעי 19 אפריל 2023 : a new comment for product id: Store1_Prod1
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1  has logged in!
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1  has logged in!
+יום רביעי 19 אפריל 2023 : successfully added product to store: Store1
+יום רביעי 19 אפריל 2023 : a product name change for product id: Store1_Prod1
+יום רביעי 19 אפריל 2023 : user1 has registered!
+יום רביעי 19 אפריל 2023 : user1  has logged in!
+יום רביעי 19 אפריל 2023 : 386534634Logged-out succesfully

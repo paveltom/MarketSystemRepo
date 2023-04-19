@@ -10,6 +10,10 @@ namespace Market_System.ServiceLayer
 
         private string log_event_path;
         private string log_errors_path;
+        private string tests_log_events_path;
+        private string tests_log_errors_path;
+        private string regular_log_events_path;
+        private string regular_log_errors_path;
         private StreamWriter log_event_writer;
         private StreamWriter log_error_writer;
         private StreamReader log_event_reader;
@@ -19,9 +23,13 @@ namespace Market_System.ServiceLayer
         {
             string combine_me = "\\logger\\event_logger.txt";
             string combine_me2 = "\\logger\\error_logger.txt";
-            this.log_event_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me;
-            this.log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me2;
-        
+            string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
+            string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
+            this.regular_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me;
+            this.regular_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me2;
+            this.tests_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests2;
+            this.tests_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests1;
+      
         }
 
         public static Logger get_instance()
@@ -32,6 +40,18 @@ namespace Market_System.ServiceLayer
 
             }
             return instance;
+        }
+
+        public void change_logger_path_to_tests()
+        {
+            this.log_event_path = tests_log_events_path;
+            this.log_errors_path = tests_log_errors_path;
+        }
+
+        public void change_logger_path_to_regular()
+        {
+            this.log_event_path = regular_log_events_path;
+            this.log_errors_path = regular_log_errors_path;
         }
 
         public void record_event(string new_event)
