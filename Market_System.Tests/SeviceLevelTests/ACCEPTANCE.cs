@@ -41,6 +41,20 @@ namespace Market_System.Tests.SeviceLevelTests
 
         }
 
+
+
+
+        [ClassInitialize()]
+         public static void runs_before_first_test_runs(TestContext testContext) {
+            Logger.get_instance().change_logger_path_to_tests();
+        }
+
+         [ClassCleanup()]
+         public static void runs_after_last_test_finishes_running() {
+            Logger.get_instance().change_logger_path_to_regular();
+        }
+
+
         //(one thread)
         public void registeredLoggedInMemberSetUp(string username, string pass, string add)
         {
