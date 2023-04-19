@@ -14,7 +14,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public enum MarketManagerPermission { MARKETMANAGER, NOTMARKETMANAGER }; // remove this permission later - until EmployeePermissions class is done
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
-        private ConcurrentDictionary<string, string> allProducts;
+        public ConcurrentDictionary<string, string> allProducts;
         private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
         private Employees employees;
@@ -44,11 +44,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 foreach (Purchase_Strategy p in strategies)
                     this.defaultStrategies.TryAdd(p.GetID(), p);
 
-            if (allProductsIDS == null)
-                this.allProducts = new ConcurrentDictionary<string, string>();
-            else
-                allProductsIDS.ForEach(s => this.allProducts.TryAdd(s, s));
-            this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
+            this.allProducts = new ConcurrentDictionary<string, string>();
+            if (allProductsIDS != null)                
+                foreach(string s in allProductsIDS)
+                    this.allProducts.TryAdd(s, s);
+            //this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 
 
