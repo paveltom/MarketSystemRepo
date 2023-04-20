@@ -514,8 +514,6 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-
-
                 Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.GetProductsFromStore(storeID);
                 Logger.get_instance().record_event("getting products from store : " + storeID+" done successfully");
 
@@ -525,7 +523,7 @@ namespace Market_System.ServiceLayer
             {
 
                 Logger.get_instance().record_error("error!!: " + e.Message + "in get_products_from_shop");
-                return Response<List<ItemDTO>>.FromError(e.Message);
+                return null;
             }
         }
 

@@ -1,0 +1,39 @@
+Thursday, 20 April 2023 : guest : guest1237845598 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : guest : guest617235941 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : guest : guest1455548015 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 1036391978 has failed
+Thursday, 20 April 2023 : Added the product:1036391978_1442976454to store: 1036391978 has been done successfully
+Thursday, 20 April 2023 : assigning new manager with id : user1 to the store with id: Store1
+Thursday, 20 April 2023 : guest : guest535269929 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 116113892 has failed
+Thursday, 20 April 2023 : guest : guest572791525 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : guest : guest266032163 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : 1855125669Logged-out succesfully
+Thursday, 20 April 2023 : guest : guest543863055 has logged in
+Thursday, 20 April 2023 : guest : guest1523500274 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 1104344237 has failed
+Thursday, 20 April 2023 : Added the product:1104344237_956081755to store: 1104344237 has been done successfully
+Thursday, 20 April 2023 : a product name change for product id: Store1_Prod1
+Thursday, 20 April 2023 : guest : guest1635896949 has logged in
+Thursday, 20 April 2023 : guest : guest1029469158 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : guest : guest139453622 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 1216740912 has failed
+Thursday, 20 April 2023 : Added the product:1216740912_19734584to store: 1216740912 has been done successfully
+Thursday, 20 April 2023 : guest : guest1179387429 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : guest : guest903058730 has logged in
