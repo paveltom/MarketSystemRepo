@@ -24,8 +24,6 @@ namespace Market_System.ServiceLayer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-
-
         }
 
         private void new_guest_entered_the_website(string session_id)
