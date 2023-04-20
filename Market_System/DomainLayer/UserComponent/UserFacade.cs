@@ -9,7 +9,7 @@ namespace Market_System.DomainLayer.UserComponent
     {
         private static UserRepo userRepo;
         private static List<User> users;
-        private static Dictionary<string, string> userID_sessionID_linker; // key = session_id    value=userID
+        private static Dictionary<string, string> userID_sessionID_linker; // key = session_id    value=userID if it is a guest then guest username
         
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
@@ -58,6 +58,11 @@ namespace Market_System.DomainLayer.UserComponent
             }
 
             throw new ArgumentException("Incorrect login information has been provided");
+        }
+
+        internal void link_guest_with_session(string guest_name, string session_id)
+        {
+            userID_sessionID_linker.Add(session_id, guest_name);
         }
 
         internal string get_userID_from_session(string session_id)

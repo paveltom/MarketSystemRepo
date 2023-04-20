@@ -52,6 +52,11 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal void link_guest_with_session(string guest_name, string session_id)
+        {
+            userFacade.link_guest_with_session(guest_name, session_id);
+        }
+
         internal StoreDTO GetStore( string storeID)
         {
             try
