@@ -349,3 +349,7 @@ Thursday, 20 April 2023 : error!!: a user with same name exists, please change n
 Thursday, 20 April 2023 : error!!: Incorrect login information has been provided in login_member
 Thursday, 20 April 2023 : error!!: Incorrect login information has been provided in login_member
 Thursday, 20 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response' to type 'Market_System.ServiceLayer.Response`1[System.Collections.Generic.List`1[Market_System.DomainLayer.ItemDTO]]'.in get_products_from_shop
+Thursday, 20 April 2023 : error!!: a user with same name exists, please change name!in register
+Thursday, 20 April 2023 : error!!: Incorrect login information has been provided in login_member
+Thursday, 20 April 2023 : error!!: Incorrect login information has been provided in login_member
+Thursday, 20 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response' to type 'Market_System.ServiceLayer.Response`1[System.Collections.Generic.List`1[Market_System.DomainLayer.ItemDTO]]'.in get_products_from_shop
