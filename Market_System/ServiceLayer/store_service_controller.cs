@@ -64,8 +64,8 @@ namespace Market_System.ServiceLayer
             try
             {
                 string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.Add_New_Store(user_ID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                return new Response("Store was added successfully.");
+                StoreDTO added = this.Market.Add_New_Store(user_ID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<StoreDTO>.FromValue(added);
             }
             catch (Exception ex)
             {
@@ -323,8 +323,8 @@ namespace Market_System.ServiceLayer
             try
             {
                 string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.Add_Product_To_Store(storeID, user_ID, productProperties); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
-                return new Response("New product was added successfully.");
+                ItemDTO ret = this.Market.Add_Product_To_Store(storeID, user_ID, productProperties); // change method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<ItemDTO>.FromValue(ret);
             }
             catch (Exception ex)
             {
