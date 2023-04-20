@@ -74,20 +74,21 @@ namespace Market_System.Tests.SeviceLevelTests
         }
         
 
-        /*[TestMethod]
+        [TestMethod]
         public void FailopenStoreGuest()
         {
             //Setup: none
+            Setup();
 
             //Action:
-            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
-            service_Controller.open_new_store();
+            Response<StoreDTO> response = service_Controller.open_new_store(new List<string> {}); 
 
             //Result:
-            Assert.AreEqual(true, response2.ErrorOccured);
+            Assert.AreEqual(null, response);
 
-            //tearDown: (TestCleanup())
-        }*/
+            //tearDown:
+            TestCleanup();
+        }
 
         /*
         [TestMethod]

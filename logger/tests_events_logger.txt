@@ -482,3 +482,26 @@ Thursday, 20 April 2023 : user1 has registered!
 Thursday, 20 April 2023 : user1  has logged in!
 Thursday, 20 April 2023 : opening store with id: 597395442 has failed
 Thursday, 20 April 2023 : getting store with id: 597395442 was done successfully 
+Thursday, 20 April 2023 : guest : guest928104402 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 508948365 has failed
+Thursday, 20 April 2023 : getting store with id: 508948365 was done successfully 
+Thursday, 20 April 2023 : guest : guest1160443449 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 741287412 has failed
+Thursday, 20 April 2023 : getting store with id: 741287412 was done successfully 
+Thursday, 20 April 2023 : guest : guest1278892192 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 859736155 has failed
+Thursday, 20 April 2023 : getting store with id: 859736155 was done successfully 
+Thursday, 20 April 2023 : guest : guest710895525 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : guest : guest1361935845 has logged in
+Thursday, 20 April 2023 : user1 has registered!
+Thursday, 20 April 2023 : user1  has logged in!
+Thursday, 20 April 2023 : opening store with id: 1486660606 has failed
+Thursday, 20 April 2023 : getting store with id: 1486660606 was done successfully 
