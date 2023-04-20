@@ -72,8 +72,8 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
-            Response<string> response = service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
+            Response<ItemDTO> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
         }
 
         //(one thread)
@@ -304,7 +304,7 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
 
             //Action:
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<ItemDTO> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
 
             //Result:
             Assert.AreEqual(false, resProdAdd.ErrorOccured);
