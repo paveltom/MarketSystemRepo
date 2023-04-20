@@ -239,15 +239,25 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (this.founderID != userID) // ADD - maket manager permission validation
                     throw new Exception("Only store founder or Market Manager can remove a store.");
                 this.storeRepo.close_store_temporary(this.Store_ID);
-                /*
-                foreach (String s in allProducts)
-                {
-                    AcquireProduct(s).RemoveProduct(this.founderID); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! don't remove product here so store can be restored
-                    ReleaseProduct(s);
-                }
-                */
                 this.employees.removeStore(this.Store_ID);
+                this.temporaryClosed = true;
                 // remove policies and strategies
+
+            }
+            catch (Exception ex) { throw ex; }
+
+        }
+
+        public void ReopenStore(string userID)
+        {
+            try
+            {
+                if (this.founderID != userID) // ADD - maket manager permission validation
+                    throw new Exception("Only store founder or Market Manager can reopen a store.");
+                this.storeRepo.re_open_closed_temporary_store(userID, this.Store_ID);
+                //this.employeesReopenStore(this.Store_ID);
+                this.temporaryClosed = false;
+                // restore policies and strategies
 
             }
             catch (Exception ex) { throw ex; }
@@ -265,7 +275,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     double price = 0;
                     foreach (ItemDTO item in productsToCalculate)
                     {
-                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), true);
+                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), false);
                         ReleaseProduct(item.GetID());
                     }
                     return price;

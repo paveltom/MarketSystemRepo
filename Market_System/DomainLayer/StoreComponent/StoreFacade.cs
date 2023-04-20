@@ -264,7 +264,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                storeRepo.re_open_closed_temporary_store(userID, storeID);
+                AcquireStore(storeID).ReopenStore(userID);
             }
             catch (Exception e) { throw e; }
         }
