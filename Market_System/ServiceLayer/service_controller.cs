@@ -78,18 +78,26 @@ namespace Market_System.ServiceLayer
             ProductProperties.Add(attributes);
             ProductProperties.Add(product_category);
 
-            Response<ItemDTO> ok = (Response<ItemDTO>)this.ssc.AddProductToStore(storeID, ProductProperties);
-
-            if (ok.ErrorOccured)
+            try
             {
-                Logger.get_instance().record_error("error!!: " + ok.ErrorMessage + "in add_product_to_store");
+                Response<ItemDTO> ok = (Response<ItemDTO>)this.ssc.AddProductToStore(storeID, ProductProperties);
 
+
+                if (ok.ErrorOccured)
+                {
+                    Logger.get_instance().record_error("error!!: " + ok.ErrorMessage + "in add_product_to_store");
+
+                }
+                else
+                {
+                    Logger.get_instance().record_event("Added the product:" + ok.Value.GetID() + "to store: " + storeID + " has been done successfully");
+                }
+                return ok;
             }
-            else
+            catch (Exception e)
             {
-                Logger.get_instance().record_event("Added the product:" + ok.Value.GetID() + "to store: " + storeID + " has been done successfully");
+                return null;
             }
-            return ok;
         } 
 
         public Response<string> assign_new_manager(string storeID, string newManagerID)
@@ -559,18 +567,26 @@ namespace Market_System.ServiceLayer
 
         public Response<StoreDTO> GetStore(string store_id)
         {
-            Response < StoreDTO > response= (Response<StoreDTO>)this.ssc.GetStore(store_id);
-            if(response.ErrorOccured)
+            try
             {
-                Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in GetStore");
-              
-            }
-            else
-            {
-                Logger.get_instance().record_event("getting store with id: " + store_id+" was done successfully ");
+                Response<StoreDTO> response = (Response<StoreDTO>)this.ssc.GetStore(store_id);
+                if (response.ErrorOccured)
+                {
+                    Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in GetStore");
+
+                }
+                else
+                {
+                    Logger.get_instance().record_event("getting store with id: " + store_id + " was done successfully ");
+                }
+
+                return response;
             }
 
-            return response;
+            catch(Exception e)
+            {
+                return null;
+            }
         }
         /*
         public Response login_guest()
@@ -628,19 +644,27 @@ namespace Market_System.ServiceLayer
         public Response<StoreDTO> open_new_store(List<string> newStoreDetails)
         {
             List<string> empty_list = new List<string>();
-            Response<StoreDTO> ok = (Response<StoreDTO>)this.ssc.AddNewStore(newStoreDetails); //empty_list thye are doing nothing wiht it
-
-            if (ok.ErrorOccured)
+            try
             {
-                Logger.get_instance().record_error("error!!: " + ok.ErrorMessage + "in open_new_store");
+                Response<StoreDTO> ok = (Response<StoreDTO>)this.ssc.AddNewStore(newStoreDetails); //empty_list thye are doing nothing wiht it
 
+                if (ok.ErrorOccured)
+                {
+                    Logger.get_instance().record_error("error!!: " + ok.ErrorMessage + "in open_new_store");
+
+                }
+                else
+                {
+                    Logger.get_instance().record_event("opening store with id: " + ok.Value.StoreID + " has failed");
+                }
+
+                return ok;
             }
-            else
+
+            catch (Exception e)
             {
-                Logger.get_instance().record_event("opening store with id: " + ok.Value.StoreID + " has failed");
+                return null;
             }
-
-            return ok;
         }
 
         public Response<string> register(string username,string pass,string address)

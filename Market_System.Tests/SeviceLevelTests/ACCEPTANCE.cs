@@ -298,7 +298,7 @@ namespace Market_System.Tests.SeviceLevelTests
 
         #region//Owner  actions Tests 4.1
         [TestMethod]
-        public void addproduct()
+        public void addproduct_success()
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
@@ -309,6 +309,26 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //Result:
             Assert.AreEqual(false, resProdAdd.ErrorOccured);
+            //todo: check if prod was added
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //Assert.AreEqual(false, resProdAdded.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+        [TestMethod]
+        public void addproduct_failure()
+        {
+            //Setup: 
+            registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+
+            //Action:
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123" });
+            Response<ItemDTO> resProdAdd = service.add_product_to_store("fake_ID_123", "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg");
+
+            //Result:
+            Assert.AreEqual(null, resProdAdd);
             //todo: check if prod was added
             //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
