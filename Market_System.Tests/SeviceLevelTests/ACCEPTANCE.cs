@@ -45,12 +45,14 @@ namespace Market_System.Tests.SeviceLevelTests
 
 
         [ClassInitialize()]
-         public static void runs_before_first_test_runs(TestContext testContext) {
+        public static void runs_before_first_test_runs(TestContext testContext)
+        {
             Logger.get_instance().change_logger_path_to_tests();
         }
 
-         [ClassCleanup()]
-         public static void runs_after_last_test_finishes_running() {
+        [ClassCleanup()]
+        public static void runs_after_last_test_finishes_running()
+        {
             Logger.get_instance().change_logger_path_to_regular();
         }
 
@@ -70,7 +72,7 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
-            Response<string> response = service.open_new_store(new List<string>{ "store_name"}); ////todo store id? Store1
+            Response<string> response = service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
             Response<string> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
         }
 
@@ -132,6 +134,37 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        //not sign in 
+        [TestMethod]
+        public void LogoutMemberfailed()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            //Action:
+            Response<string> responseLogout = service.log_out();
+
+            //Result:
+            Assert.AreEqual(true, responseLogout.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+        //check this test
+        [TestMethod]
+        public void AssignNewMannegerSuccess()
+        {
+            //Setup: 
+            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //Action:
+            Response<string> responseLogout = service.assign_new_manager("Store1", "user1");
+            //Result:
+            Assert.AreEqual(false, responseLogout.ErrorOccured);
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+
+
         [TestMethod]
         public void FailUserRegistersUsedUserame()
         {
@@ -182,7 +215,26 @@ namespace Market_System.Tests.SeviceLevelTests
             //tearDown:
             oneThreadCleanup();
         }
+        //Assign request failed because the user must be registered to the system so he can sign in 
+        [TestMethod]
+        public void failLoginNotRegister()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            //Action:
+            Response<string> responseLogin = service.login_member("user1", "pass1");
+
+            //Result:
+            Assert.AreEqual(true, responseLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+
         #endregion
+
+
 
         #region//Member purchase actions Tests 3.1, 3,2, 3.3
         [TestMethod]
