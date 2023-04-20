@@ -138,33 +138,28 @@ namespace Market_System.Tests.unit_tests
         [TestMethod]
         public void AddNewStoreStoreFacadeTestSuccess()
         {
-            // Arrange
-            // cannot push storeId here
-            //                      | 
-            //                      |
-            //                      |
-            //                      V
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
-            List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
+            string storeName = "AddNewStoreStoreFacadeTestStoreName";
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
+            List<string> newStoreDetails = new List<string>() { storeName };
 
             // Act
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
+            StoreDTO added = this.facade.AddNewStore(founder, newStoreDetails);
 
             // Assert
-            Assert.AreEqual(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).Name, newStoreToAdd.Name);
+            Assert.AreEqual(StoreRepo.GetInstance().getStore(added.StoreID).Name, storeName);
         }
 
         public void AddNewStoreNoNameStoreFacadeTestFail()
         {
             // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
             List<string> newStoreDetails = new List<string>() { "" };
             bool errorNoName = false;
 
             // Act
             try
             {
-                this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
+                this.facade.AddNewStore(founder, newStoreDetails);
             } catch (Exception ex) { errorNoName = true; }
 
             // Assert
@@ -175,36 +170,36 @@ namespace Market_System.Tests.unit_tests
         public void RemoveStoreStoreFacadeTestSuccess()
         {
             // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
             List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
+            StoreDTO newStoreToAdd = this.facade.AddNewStore(founder, newStoreDetails);
 
             // Act
-            this.facade.RemoveStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
+            this.facade.RemoveStore(founder, newStoreToAdd.StoreID);
 
 
             // Assert
-            Assert.IsTrue(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).is_closed_temporary());
+            Assert.IsTrue(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
         }
 
         [TestMethod]
         public void RemoveStoreNotFounderStoreFacadeTestFail()
         {
             // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
             List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
+            StoreDTO newStoreToAdd  = this.facade.AddNewStore(founder, newStoreDetails);
             bool notFounderErrorCatched = false;
 
             // Act
             try
             {
-                this.facade.RemoveStore("RemoveStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.Store_ID);
+                this.facade.RemoveStore("RemoveStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.StoreID);
             }
             catch (Exception ex) { notFounderErrorCatched = true; }
 
             // Assert
-            Assert.IsFalse(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).is_closed_temporary());
+            Assert.IsFalse(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
             Assert.IsTrue(notFounderErrorCatched);
         }
 
@@ -212,37 +207,37 @@ namespace Market_System.Tests.unit_tests
         public void RestoreStoreStoreFacadeTestSuccess()
         {
             // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
             List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
-            this.facade.RemoveStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
+            StoreDTO newStoreToAdd = this.facade.AddNewStore(founder, newStoreDetails);
+            this.facade.RemoveStore(founder, newStoreToAdd.StoreID);
 
             // Act
-            this.facade.RestoreStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
+            this.facade.RestoreStore(founder, newStoreToAdd.StoreID);
 
             // Assert
-            Assert.IsFalse(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).is_closed_temporary());
+            Assert.IsFalse(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
         }
 
         [TestMethod]
         public void RestoreStoreNotFounderStoreFacadeTestFail()
         {
             // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
             List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
-            this.facade.RemoveStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
+            StoreDTO newStoreToAdd = this.facade.AddNewStore(founder, newStoreDetails);
+            this.facade.RemoveStore(founder, newStoreToAdd.StoreID);
             bool notFounderErrorCatched = false;
 
             // Act
             try
             {
-                this.facade.RestoreStore("RestoreStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.Store_ID);
+                this.facade.RestoreStore("RestoreStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.StoreID);
             }
             catch (Exception ex) { notFounderErrorCatched = true; }
 
             // Assert
-            Assert.IsTrue(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).is_closed_temporary());
+            Assert.IsTrue(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
             Assert.IsTrue(notFounderErrorCatched);
         }
 

@@ -48,7 +48,7 @@ namespace Market_System.DomainLayer.StoreComponent
             if (allProductsIDS != null)                
                 foreach(string s in allProductsIDS)
                     this.allProducts.TryAdd(s, s);
-            //this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
+            this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 
 
@@ -431,7 +431,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object AddProductLock = new object();
-        public void AddProduct(string userID, List<string> productProperties)
+        public ItemDTO AddProduct(string userID, List<string> productProperties)
         {
             lock (AddProductLock)
             {
@@ -443,6 +443,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         this.storeRepo.AddProduct(this.Store_ID, this.founderID, newProduct, 0);
                         this.allProducts.TryAdd(newProduct.Product_ID, newProduct.Product_ID);
                         Save();
+                        return newProduct.GetProductDTO();
                     }
                     else
                         throw new Exception("You dont have a permission to manage store stock.");

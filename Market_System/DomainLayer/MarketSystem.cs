@@ -413,11 +413,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Add_New_Store(string session_id, List<string> newStoreDetails)
+        public StoreDTO Add_New_Store(string session_id, List<string> newStoreDetails)
         {
             try
             {
-                storeFacade.AddNewStore(session_id, newStoreDetails);
+                return storeFacade.AddNewStore(session_id, newStoreDetails);
             }
             catch(Exception e)
             {
@@ -425,11 +425,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Add_Product_To_Store(string storeID, string session_id, List<String> productProperties)
+        public ItemDTO Add_Product_To_Store(string storeID, string session_id, List<String> productProperties)
         {
             try
             {
-                storeFacade.AddProductToStore(storeID, session_id, productProperties);
+                return storeFacade.AddProductToStore(storeID, session_id, productProperties);
             }
             catch (Exception e)
             {
