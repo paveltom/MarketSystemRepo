@@ -1,4 +1,5 @@
-﻿using Market_System.DomainLayer.StoreComponent;
+﻿using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 using Market_System.ServiceLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -18,6 +19,7 @@ namespace Market_System.Tests.SeviceLevelTests
 
         public void Setup()
         {
+            Logger.get_instance().change_logger_path_to_tests();
             service_Controller = new Service_Controller();
             service_Controller.register("user1", "pass1", "add1");
             service_Controller.login_member("user1", "pass1");
@@ -46,12 +48,11 @@ namespace Market_System.Tests.SeviceLevelTests
         #endregion
         public void TestCleanup()
         {
+            Logger.get_instance().change_logger_path_to_regular();
             service_Controller.destroy();
         }
 
 
-        //TODO: Doesn't run currently due to the fixes that needs to be done in Store class.
-        /*
         [TestMethod]
         public void openStoreSuccess()
         {
@@ -59,17 +60,19 @@ namespace Market_System.Tests.SeviceLevelTests
             Setup();
 
             //Action:
-            Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
-            service_Controller.open_new_store(new List<string> { "store_name" });
+            Response<StoreDTO> response = service_Controller.open_new_store(new List<string> { "store_123" });
+            Response<StoreDTO> response2 = service_Controller.GetStore(response.Value.StoreID);
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
+            Assert.AreEqual(false, response2.ErrorOccured);
+            Assert.AreEqual(response.Value.StoreID, response2.Value.StoreID);
             //todo: check if store exists now
 
             //tearDown:
             TestCleanup();
         }
-        */
+        
 
         /*[TestMethod]
         public void FailopenStoreGuest()
