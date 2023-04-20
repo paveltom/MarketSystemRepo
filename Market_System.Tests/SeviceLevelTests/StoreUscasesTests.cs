@@ -90,55 +90,64 @@ namespace Market_System.Tests.SeviceLevelTests
             TestCleanup();
         }
 
-        /*
+        
         [TestMethod]
-        public void addProduct()
+        public void addProductSuccess()
         {
             //Setup: 
             Setup();
-            Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" }); 
 
             //Action:
-            Response<string> response2 = service_Controller.add_product_to_store("Stor1", "prod1","desc1", "1","1","1","","","","","",""); ////todo store id? Store1
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1","desc1", "1","1","1","5.0", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
 
             //Result:
-            Assert.AreEqual(false, response.ErrorOccured);
-            //todo: check if store exists now
+            Assert.AreEqual(false, product.ErrorOccured);
 
             //tearDown:
             TestCleanup();
         }
-        */
+
+        [TestMethod]
+        public void addProductFailure_AddingWrongStoreID()
+        {
+            //Setup: 
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
+
+            //Action:
+            Response<ItemDTO> product = service_Controller.add_product_to_store("fake_store_ID", "prod1", "desc1", "1", "1", "1", "5.0", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
+
+            //Result:
+            Assert.AreEqual(null, product);
+
+            //tearDown:
+            TestCleanup();
+        }
+
+        [TestMethod]
+        public void addProductFailure_AddingAProductWithoutRating()
+        {
+            //Setup: 
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
+
+            //Action:
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
+
+            //Result:
+            Assert.AreEqual(null, product);
+
+            //tearDown:
+            TestCleanup();
+        }
+
         //maybe do another test for showing member purchase 
         //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //commented everything beneath, because the project the does not compile
         /*
-
-
-
-
-
-
 
         [TestMethod]
         public void removeProduct()
