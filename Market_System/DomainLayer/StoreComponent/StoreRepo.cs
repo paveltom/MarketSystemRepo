@@ -111,11 +111,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         }
                     }
                 }
-
-
                 return search_result;
-            }
-          
+            }  
         }
 
 

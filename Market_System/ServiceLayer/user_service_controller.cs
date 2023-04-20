@@ -44,7 +44,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 string guest_name = market_System.login_guest();
-                market_System.link_user_with_session(guest_name, session_id);
+                market_System.link_guest_with_session(guest_name, session_id);
                 return guest_name;
             }
 

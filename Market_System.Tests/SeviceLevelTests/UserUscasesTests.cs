@@ -29,6 +29,7 @@ namespace Market_System.Tests.ServiceLevelTests
 
         public void Setup()
         {
+            Logger.get_instance().change_logger_path_to_tests();
             service_Controller = new Service_Controller();
         }
 
@@ -56,6 +57,7 @@ namespace Market_System.Tests.ServiceLevelTests
 
         public void TestCleanup()
         {
+            Logger.get_instance().change_logger_path_to_regular();
             service_Controller.destroy();
         }
 

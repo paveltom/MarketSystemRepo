@@ -402,3 +402,18 @@ Thursday, 20 April 2023 : user1  has logged in!
 Thursday, 20 April 2023 : opening store with id: 304422236 has failed
 Thursday, 20 April 2023 : Added the product:304422236_463580257to store: 304422236 has been done successfully
 Thursday, 20 April 2023 : user1 has registered!
+יום חמישי 20 אפריל 2023 : guest : guest534473495 has logged in
+יום חמישי 20 אפריל 2023 : user1 has registered!
+יום חמישי 20 אפריל 2023 : user1  has logged in!
+יום חמישי 20 אפריל 2023 : guest : guest108226525 has logged in
+יום חמישי 20 אפריל 2023 : user1 has registered!
+יום חמישי 20 אפריל 2023 : guest : guest759266845 has logged in
+יום חמישי 20 אפריל 2023 : user1 has registered!
+יום חמישי 20 אפריל 2023 : user1  has logged in!
+יום חמישי 20 אפריל 2023 : 128186548Logged-out succesfully
+יום חמישי 20 אפריל 2023 : guest : guest2032257588 has logged in
+יום חמישי 20 אפריל 2023 : user1  has logged in!
+יום חמישי 20 אפריל 2023 : guest : guest1290819557 has logged in
+יום חמישי 20 אפריל 2023 : user1 has registered!
+יום חמישי 20 אפריל 2023 : guest : guest26260513 has logged in
+יום חמישי 20 אפריל 2023 : user1 has registered!
