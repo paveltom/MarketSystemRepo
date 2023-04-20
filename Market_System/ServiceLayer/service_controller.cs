@@ -18,13 +18,13 @@ namespace Market_System.ServiceLayer
 
         public Service_Controller()
         {
-         
+
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            
+
 
         }
 
@@ -44,11 +44,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> add_product_to_basket(string product_id,string quantity)
+        public Response<string> add_product_to_basket(string product_id, string quantity)
         {
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id,session_id,quantity));
+                Response<string> ok = Response<string>.FromValue(this.usc.add_product_to_basket(product_id, session_id, quantity));
                 Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id) + " added product with id: " + product_id + " to basket");
 
                 return ok;
@@ -63,42 +63,42 @@ namespace Market_System.ServiceLayer
 
         }
 
-        public Response<string> add_product_to_store(string storeID, string product_name, string description, string price, string quantity, string reserved_quantity, string rating, string sale, string wieght, string dimenstions, string attributes, string product_category)
+        public Response<ItemDTO> add_product_to_store(string storeID, string product_name, string description, string price, string quantity, string reserved_quantity, string rating, string sale, string wieght, string dimenstions, string attributes, string product_category)
         {
+            List<string> ProductProperties = new List<string>();
+            ProductProperties.Add(product_name);
+            ProductProperties.Add(description);
+            ProductProperties.Add(price);
+            ProductProperties.Add(quantity);
+            ProductProperties.Add(reserved_quantity);
+            ProductProperties.Add(rating);
+            ProductProperties.Add(sale);
+            ProductProperties.Add(wieght);
+            ProductProperties.Add(dimenstions);
+            ProductProperties.Add(attributes);
+            ProductProperties.Add(product_category);
 
             try
             {
-                List<string> ProductProperties = new List<string>();
-                ProductProperties.Add(product_name);
-                ProductProperties.Add(description);
-                ProductProperties.Add(price);
-                ProductProperties.Add(quantity);
-                ProductProperties.Add(reserved_quantity);
-                ProductProperties.Add(rating);
-                ProductProperties.Add(sale);
-                ProductProperties.Add(wieght);
-                ProductProperties.Add(dimenstions);
-                ProductProperties.Add(attributes);
-                ProductProperties.Add(product_category);
-
-                this.ssc.AddProductToStore(storeID,  ProductProperties);
-                 Response<string> ok = Response<string>.FromValue("successfully added product to store");
-                Logger.get_instance().record_event("successfully added product to store: " + storeID);
-                 return ok;
+                Response<ItemDTO> ok = (Response<ItemDTO>)this.ssc.AddProductToStore(storeID, ProductProperties);
 
 
+                if (ok.ErrorOccured)
+                {
+                    Logger.get_instance().record_error("error!!: " + ok.ErrorMessage + "in add_product_to_store");
 
+                }
+                else
+                {
+                    Logger.get_instance().record_event("Added the product:" + ok.Value.GetID() + "to store: " + storeID + " has been done successfully");
+                }
+                return ok;
             }
             catch (Exception e)
             {
-
-                Logger.get_instance().record_error("error!!: " + e.Message + " in add_product_to_store");
-                return Response<String>.FromError(e.Message);
-
+                return null;
             }
-        }
-
-  
+        } 
 
         public Response<string> assign_new_manager(string storeID, string newManagerID)
         {
@@ -565,20 +565,28 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public Response<ItemDTO> GetStore(string store_id)
+        public Response<StoreDTO> GetStore(string store_id)
         {
-            Response < ItemDTO > response= (Response<ItemDTO>)this.ssc.GetStore(store_id);
-            if(response.ErrorOccured)
+            try
             {
-                Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in GetStore");
-              
-            }
-            else
-            {
-                Logger.get_instance().record_event("getting store with id: " + store_id+" was done successfully");
+                Response<StoreDTO> response = (Response<StoreDTO>)this.ssc.GetStore(store_id);
+                if (response.ErrorOccured)
+                {
+                    Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in GetStore");
+
+                }
+                else
+                {
+                    Logger.get_instance().record_event("getting store with id: " + store_id + " was done successfully ");
+                }
+
+                return response;
             }
 
-            return response;
+            catch(Exception e)
+            {
+                return null;
+            }
         }
         /*
         public Response login_guest()
@@ -633,22 +641,29 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> open_new_store(List<string> newStoreDetails)
+        public Response<StoreDTO> open_new_store(List<string> newStoreDetails)
         {
+            List<string> empty_list = new List<string>();
             try
             {
-                List<string> empty_list = new List<string>();
-                Response<string> ok = (Response<string>)this.ssc.AddNewStore(newStoreDetails); //empty_list thye are doing nothing wiht it
-                Logger.get_instance().record_event(ok.Value);
-                
-              
-                return ok;
+                Response<StoreDTO> ok = (Response<StoreDTO>)this.ssc.AddNewStore(newStoreDetails); //empty_list thye are doing nothing wiht it
 
+                if (ok.ErrorOccured)
+                {
+                    Logger.get_instance().record_error("error!!: " + ok.ErrorMessage + "in open_new_store");
+
+                }
+                else
+                {
+                    Logger.get_instance().record_event("opening store with id: " + ok.Value.StoreID + " has failed");
+                }
+
+                return ok;
             }
+
             catch (Exception e)
             {
-                Logger.get_instance().record_error("error!!: " + e.Message + " in open_new_store");
-                return Response<String>.FromError(e.Message);
+                return null;
             }
         }
 
