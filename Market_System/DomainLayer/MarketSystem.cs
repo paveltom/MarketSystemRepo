@@ -53,12 +53,20 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        public Cart get_cart_of_username(string user_id)
+        {
+            string usrename = userFacade.get_username_from_user_id(user_id);
+            return userFacade.get_cart(usrename);
+        }
+
         internal void link_guest_with_session(string guest_name, string session_id)
         {
             userFacade.link_guest_with_session(guest_name, session_id);
         }
 
-        internal StoreDTO GetStore( string storeID)
+      
+
+        public StoreDTO GetStore( string storeID)
         {
             try
             {
@@ -222,7 +230,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void ReserveProduct(ItemDTO itemDTO)
+        public void ReserveProduct(ItemDTO itemDTO)
         {
             storeFacade.ReserveProduct(itemDTO);
         }
@@ -421,9 +429,10 @@ namespace Market_System.DomainLayer
 
         public StoreDTO Add_New_Store(string session_id, List<string> newStoreDetails)
         {
+            string user_id = get_userid_from_session_id(session_id);
             try
             {
-                return storeFacade.AddNewStore(session_id, newStoreDetails);
+                return storeFacade.AddNewStore(user_id, newStoreDetails);
             }
             catch(Exception e)
             {
@@ -433,14 +442,21 @@ namespace Market_System.DomainLayer
 
         public ItemDTO Add_Product_To_Store(string storeID, string session_id, List<String> productProperties)
         {
+            string user_id = get_userid_from_session_id(session_id);
             try
             {
-                return storeFacade.AddProductToStore(storeID, session_id, productProperties);
+                return storeFacade.AddProductToStore(storeID, user_id, productProperties);
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+
+
+        public string get_session_id_from_username(string username)
+        {
+            return userFacade.get_session_id_from_username(username);
         }
 
         internal List<ItemDTO> GetProductsFromStore(string sessionID, string storeID)
