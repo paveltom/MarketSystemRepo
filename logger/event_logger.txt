@@ -384,3 +384,128 @@ Friday, 21 April 2023 : Added the product:1181523935_406465366to store: 11815239
 Friday, 21 April 2023 : guest : guest59792229 has logged in
 Friday, 21 April 2023 : user1 has registered!
 Friday, 21 April 2023 : guest : guest1504700207 has logged in
+יום שישי 21 אפריל 2023 : guest : guest42727010 has logged in
+יום שישי 21 אפריל 2023 : guest : guest1681997675 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest2026278633 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : opening store with id: 1607122596 has failed
+יום שישי 21 אפריל 2023 : Added the product:1607122596_1124348965to store: 1607122596 has been done successfully
+יום שישי 21 אפריל 2023 : guest : guest799241185 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : opening store with id: 380085148 has failed
+יום שישי 21 אפריל 2023 : Added the product:380085148_849490175to store: 380085148 has been done successfully
+יום שישי 21 אפריל 2023 : a new comment for product id: Store1_Prod1
+יום שישי 21 אפריל 2023 : guest : guest1330793897 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest253506607 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest1173952806 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1630630439 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest1091986794 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : opening store with id: 2049786476 has failed
+יום שישי 21 אפריל 2023 : Added the product:2049786476_1293016088to store: 2049786476 has been done successfully
+יום שישי 21 אפריל 2023 : a product name change for product id: Store1_Prod1
+יום שישי 21 אפריל 2023 : guest : guest972499186 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : opening store with id: 599898544 has failed
+יום שישי 21 אפריל 2023 : Added the product:599898544_506215886to store: 599898544 has been done successfully
+יום שישי 21 אפריל 2023 : assigning new manager with id : user1 to the store with id: Store1
+יום שישי 21 אפריל 2023 : guest : guest164617775 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : 531332084Logged-out succesfully
+יום שישי 21 אפריל 2023 : guest : guest737441434 has logged in
+יום שישי 21 אפריל 2023 : guest : guest2117738735 has logged in
+יום שישי 21 אפריל 2023 : guest : guest1826083525 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest561524481 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest1549754826 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest629476740 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest1467788814 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest283197865 has logged in
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest966666765 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : 1150795596Logged-out succesfully
+יום שישי 21 אפריל 2023 : guest : guest1356904946 has logged in
+יום שישי 21 אפריל 2023 : guest : guest353148041 has logged in
+יום שישי 21 אפריל 2023 : guest : guest523325762 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1406250365 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest1204796745 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1661474378 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest1474202624 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1633472002 has logged in
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1040864721 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : 1421436093Logged-out succesfully
+יום שישי 21 אפריל 2023 : guest : guest1627545443 has logged in
+יום שישי 21 אפריל 2023 : guest : guest1197873925 has logged in
+יום שישי 21 אפריל 2023 : guest : guest258555874 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1560636514 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest633267495 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1089945128 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest902673374 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest759439278 has logged in
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest50179434 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : 341294019Logged-out succesfully
+יום שישי 21 אפריל 2023 : guest : guest547403369 has logged in
+יום שישי 21 אפריל 2023 : guest : guest274972784 has logged in
+יום שישי 21 אפריל 2023 : guest : guest240645335 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1670119 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest802628710 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest1259306343 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : guest : guest720662698 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest922742500 has logged in
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : guest : guest219540649 has logged in
+יום שישי 21 אפריל 2023 : user1 has registered!
+יום שישי 21 אפריל 2023 : user1  has logged in!
+יום שישי 21 אפריל 2023 : 1790340231Logged-out succesfully
+יום שישי 21 אפריל 2023 : guest : guest1996449581 has logged in
+יום שישי 21 אפריל 2023 : guest : guest1753505572 has logged in

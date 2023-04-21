@@ -416,7 +416,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     break;
                 }
             }
-            storeDatabase[store].Add(productToSave, productToSave.Quantity);
+            storeDatabase[store].Add(productToSave, productToSave.Quantity-productToSave.ReservedQuantity);
         }
 
         public string getPurchaseHistoryOfTheStore(string store_ID)

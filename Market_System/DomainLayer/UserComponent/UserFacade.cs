@@ -436,6 +436,19 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
+        internal string get_session_id_from_username(string username)
+        {
+            string userid = userRepo.get_userID_from_username(username);
+            foreach(string session_id in userID_sessionID_linker.Keys)
+            {
+                if(userID_sessionID_linker[session_id].Equals(userid))
+                {
+                    return session_id;
+                }
+            }
+            return null;
+        }
+
         private User getUserfromUsersByUsername(string username)
         {
             foreach (User user in users)
