@@ -290,7 +290,7 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 if(u.GetUsername().Equals(username))
                 {
-                    return u.GetUserState().Equals("Member");
+                    return !u.GetUserState().Equals("Guest");
                 }
             }
             return false;
@@ -366,11 +366,12 @@ namespace Market_System.DomainLayer.UserComponent
             PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }
 
-        public void AddNewAdmin(string curr_Admin_userName, string Other_username)
+        public void AddNewAdmin(string curr_Admin_Session_ID, string Other_username)
         {
             try
             {
-                string user_id_1 = userRepo.get_userID_from_username(curr_Admin_userName);
+                string user_id_1 = userID_sessionID_linker[curr_Admin_Session_ID];
+                string curr_Admin_userName = get_username_from_user_id(user_id_1);
                 string user_id_2 = userRepo.get_userID_from_username(Other_username);
 
                 //The admin exists and is logged-in -> State == Admin
@@ -392,11 +393,12 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public bool CheckIfAdmin(string curr_Admin_userName, string Other_username)
+        public bool CheckIfAdmin(string curr_Admin_Session_ID, string Other_username)
         {
             try
             {
-                string user_id_1 = userRepo.get_userID_from_username(curr_Admin_userName);
+                string user_id_1 = userID_sessionID_linker[curr_Admin_Session_ID];
+                string curr_Admin_userName = get_username_from_user_id(user_id_1);
                 string user_id_2 = userRepo.get_userID_from_username(Other_username);
 
                 //The admin exists and is logged-in -> State == Admin

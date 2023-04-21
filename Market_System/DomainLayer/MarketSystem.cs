@@ -800,7 +800,12 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void AddNewAdmin(string username)
+        public void AddNewAdmin(string sessionID, string Other_username)
+        {
+
+        }
+
+        public void CheckIfAdmin(string sessionID, string Other_username)
         {
 
         }
