@@ -9,7 +9,7 @@ namespace Market_System.DomainLayer.UserComponent
     {
 
         private static Dictionary<string, string> userDatabase;
-        private static List<string> Admins; //saved by UserID
+        private static List<string> Admins; //saved by username
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
 
@@ -126,11 +126,11 @@ namespace Market_System.DomainLayer.UserComponent
             throw new Exception("can't recive userID because username does not exists");
         }
 
-        public void AddNewAdmin(string curr_Admin_userID, string userID)
+        public void AddNewAdmin(string curr_Admin_username, string other_username)
         {
-            if(Admins.Contains(curr_Admin_userID) && !Admins.Contains(userID))
+            if(Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
             {
-                Admins.Add(userID);
+                Admins.Add(other_username);
             }
 
             else
@@ -139,14 +139,14 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public bool CheckIfAdmin(string curr_Admin_userID, string userID)
+        public bool CheckIfAdmin(string curr_Admin_username, string other_username)
         {
-            if (Admins.Contains(curr_Admin_userID) && Admins.Contains(userID))
+            if (Admins.Contains(curr_Admin_username) && Admins.Contains(other_username))
             {
                 return true;
             }
 
-            else if (Admins.Contains(curr_Admin_userID))
+            else if (Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
             {
                 return false; //userID isn't an admin
             }

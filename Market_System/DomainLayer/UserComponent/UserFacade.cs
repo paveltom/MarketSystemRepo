@@ -376,7 +376,7 @@ namespace Market_System.DomainLayer.UserComponent
 
                 if (Logged_In_Admins.Contains(user_id_1) && !Logged_In_Admins.Contains(user_id_2))
                 {
-                    userRepo.AddNewAdmin(user_id_1, user_id_2);
+                    userRepo.AddNewAdmin(curr_Admin_userName, Other_username);
                     Logged_In_Admins.Add(user_id_1);
                 }
 
@@ -401,7 +401,7 @@ namespace Market_System.DomainLayer.UserComponent
 
                 if (Logged_In_Admins.Contains(user_id_1)) //the performing admin is logged-in
                 {
-                    return userRepo.CheckIfAdmin(user_id_1, user_id_2);
+                    return userRepo.CheckIfAdmin(curr_Admin_userName, Other_username);
                 }
                 else
                 {
