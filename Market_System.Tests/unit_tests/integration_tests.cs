@@ -105,5 +105,61 @@ namespace Market_System.Tests.unit_tests
 
             }
         }
+
+
+        [TestMethod]
+        public void update_cart_total_price_after_adding_product_success()
+        {
+            try
+            {
+                ms.register("store_owner", "p@ssvv0rcl", "aiur");
+
+                ms.Login("store_owner", "p@ssvv0rcl");
+                ms.link_user_with_session("store_owner", "random_shit");
+                string session_id = ms.get_session_id_from_username("store_owner");
+                StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
+                ItemDTO item_dto = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "100", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                string user_id = ms.get_userid_from_session_id(session_id);
+                ms.Logout(user_id);
+                ms.register("buyer", "p@ssvv0rcl999999", "shakuras");
+
+                ms.Login("buyer", "p@ssvv0rcl999999");
+                ms.link_user_with_session("buyer", "random_shit69");
+                session_id = ms.get_session_id_from_username("buyer");
+                user_id = ms.get_userid_from_session_id(session_id);
+                ms.ReserveProduct(new ItemDTO(item_dto.GetID(), 10));
+                ms.Add_Product_To_basket(item_dto.GetID(), session_id, "10");
+                Cart cart = ms.get_cart_of_username(user_id);
+                
+                
+                Assert.IsTrue(cart.get_total_price() == 1000);
+
+
+
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
+
+
+
+            }
         }
+      
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+   
 }
+
+
