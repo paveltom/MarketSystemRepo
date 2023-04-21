@@ -271,6 +271,8 @@ namespace Market_System.DomainLayer.StoreComponent
             EmpPermissions.Remove(emp);
         }
 
+        //Moving this method below to the User's Facade:
+        /*
         internal bool isMarketManager(string userID)
         {
             foreach(Employee em in empPermissions)
@@ -285,6 +287,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             return false;
         }
+        */
 
         //**add exeption catching.
     }
