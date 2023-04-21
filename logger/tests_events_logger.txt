@@ -818,3 +818,409 @@ Thursday, 20 April 2023 : user1 has registered!
 Thursday, 20 April 2023 : user1  has logged in!
 Thursday, 20 April 2023 : opening store with id: 1715601899 has failed
 Thursday, 20 April 2023 : Added the product:1715601899_236227679to store: 1715601899 has been done successfully
+Friday, 21 April 2023 : guest : guest667070931 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1883215969 has logged in
+Friday, 21 April 2023 : guest : guest1662392209 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest397833165 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest428597401 has logged in
+Friday, 21 April 2023 : guest : guest1812310480 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1154179227 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1602430620 has logged in
+Friday, 21 April 2023 : guest : guest2016858 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1962228751 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest116435354 has logged in
+Friday, 21 April 2023 : guest : guest1948106890 has logged in
+Friday, 21 April 2023 : guest : guest346297816 has logged in
+Friday, 21 April 2023 : guest : guest765453853 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1739790530 has logged in
+Friday, 21 April 2023 : guest : guest298447483 has logged in
+Friday, 21 April 2023 : guest : guest339206883 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest383819412 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest703317221 has logged in
+Friday, 21 April 2023 : guest : guest1259653082 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest285171962 has logged in
+Friday, 21 April 2023 : guest : guest1603934040 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest597264524 has logged in
+Friday, 21 April 2023 : guest : guest978336947 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1716916409 has logged in
+Friday, 21 April 2023 : guest : guest1778543026 has logged in
+Friday, 21 April 2023 : guest : guest1015858543 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1128255218 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest468407191 has logged in
+Friday, 21 April 2023 : guest : guest1165776814 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest507645561 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest986609103 has logged in
+Friday, 21 April 2023 : guest : guest1502966839 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1315695085 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1648097484 has logged in
+Friday, 21 April 2023 : guest : guest200629457 has logged in
+Friday, 21 April 2023 : guest : guest470292078 has logged in
+Friday, 21 April 2023 : guest : guest889448115 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest468337706 has logged in
+Friday, 21 April 2023 : guest : guest1093178050 has logged in
+Friday, 21 April 2023 : guest : guest814573036 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest507813674 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1579348044 has logged in
+Friday, 21 April 2023 : guest : guest1383647344 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1915200056 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest430964964 has logged in
+Friday, 21 April 2023 : guest : guest1916277697 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest138333275 has logged in
+Friday, 21 April 2023 : guest : guest1988772730 has logged in
+Friday, 21 April 2023 : guest : guest1953799293 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2066195968 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1037307704 has logged in
+Friday, 21 April 2023 : guest : guest1752345673 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest68630592 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest899878309 has logged in
+Friday, 21 April 2023 : guest : guest2089535698 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1902263944 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest931255007 has logged in
+Friday, 21 April 2023 : guest : guest1452001876 has logged in
+Friday, 21 April 2023 : guest : guest286333009 has logged in
+Friday, 21 April 2023 : guest : guest1827388865 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1037238219 has logged in
+Friday, 21 April 2023 : guest : guest1303407742 has logged in
+Friday, 21 April 2023 : guest : guest630613967 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1700810324 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest26284534 has logged in
+Friday, 21 April 2023 : guest : guest1551060166 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2082612878 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1655496784 has logged in
+Friday, 21 April 2023 : guest : guest1282109051 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest975349689 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest382516995 has logged in
+Friday, 21 April 2023 : guest : guest174559211 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1663911605 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest869272724 has logged in
+Friday, 21 April 2023 : guest : guest1350061310 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1813829876 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1387474636 has logged in
+Friday, 21 April 2023 : guest : guest661667507 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1851351472 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest557110677 has logged in
+Friday, 21 April 2023 : guest : guest1414839537 has logged in
+Friday, 21 April 2023 : guest : guest1005948465 has logged in
+Friday, 21 April 2023 : guest : guest1425104502 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1524834546 has logged in
+Friday, 21 April 2023 : guest : guest159904483 has logged in
+Friday, 21 April 2023 : guest : guest1350229423 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2069053889 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2005733201 has logged in
+Friday, 21 April 2023 : guest : guest1919303731 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest303372796 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1487461804 has logged in
+Friday, 21 April 2023 : guest : guest1060835275 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2131031632 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest997523321 has logged in
+Friday, 21 April 2023 : guest : guest1330241154 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest672109901 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1484279050 has logged in
+Friday, 21 April 2023 : guest : guest709631497 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest822028172 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2002480962 has logged in
+Friday, 21 April 2023 : guest : guest1046821522 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest859549768 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1172117003 has logged in
+Friday, 21 April 2023 : guest : guest395808111 has logged in
+Friday, 21 April 2023 : guest : guest14146761 has logged in
+Friday, 21 April 2023 : guest : guest433302798 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2139840872 has logged in
+Friday, 21 April 2023 : guest : guest1288356692 has logged in
+Friday, 21 April 2023 : guest : guest358427719 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1428624076 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1758998870 has logged in
+Friday, 21 April 2023 : guest : guest927502027 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest82099020 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1446836823 has logged in
+Friday, 21 April 2023 : guest : guest901006926 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1971203283 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1048923550 has logged in
+Friday, 21 April 2023 : guest : guest48512986 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest512281552 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1535679279 has logged in
+Friday, 21 April 2023 : guest : guest198431257 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest662199823 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest2053881191 has logged in
+Friday, 21 April 2023 : guest : guest886993173 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest699721419 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1223517232 has logged in
+Friday, 21 April 2023 : guest : guest465253108 has logged in
+Friday, 21 April 2023 : guest : guest2001802059 has logged in
+Friday, 21 April 2023 : guest : guest273474449 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest43757454 has logged in
+Friday, 21 April 2023 : guest : guest1357801695 has logged in
+Friday, 21 April 2023 : guest : guest1224183198 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1268795727 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1810399099 has logged in
+Friday, 21 April 2023 : guest : guest767673678 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1299226390 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest6384712 has logged in
+Friday, 21 April 2023 : guest : guest646237677 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest861120949 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1931317306 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest694941721 has logged in
+Friday, 21 April 2023 : guest : guest1736954619 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1849351294 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest345476417 has logged in
+Friday, 21 April 2023 : guest : guest1886872890 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1228741637 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest863678329 has logged in
+Friday, 21 April 2023 : guest : guest1453534987 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1266263233 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest33314370 has logged in
+Friday, 21 April 2023 : guest : guest361114192 has logged in
+Friday, 21 April 2023 : guest : guest420860226 has logged in
+Friday, 21 April 2023 : guest : guest840016263 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1001038239 has logged in
+Friday, 21 April 2023 : guest : guest1253662779 has logged in
+Friday, 21 April 2023 : guest : guest765141184 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1835337541 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest620196237 has logged in
+Friday, 21 April 2023 : guest : guest563687564 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1865768204 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest963665497 has logged in
+Friday, 21 April 2023 : guest : guest1447689808 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest157506415 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : 34509171Logged-out succesfully
+Friday, 21 April 2023 : guest : guest240618521 has logged in
+Friday, 21 April 2023 : guest : guest688000381 has logged in
+Friday, 21 April 2023 : opening store with id: 1885834025 has failed
+Friday, 21 April 2023 : Added the product:1885834025_34509171to store: 1885834025 has been done successfully
+Friday, 21 April 2023 : a new comment for product id: Store1_Prod1
+Friday, 21 April 2023 : guest : guest1272315301 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest75540403 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 1923355621 has failed
+Friday, 21 April 2023 : guest : guest187937078 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest457342957 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest689227240 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest31095987 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 1759423597 has failed
+Friday, 21 April 2023 : getting store with id: 1759423597 was done successfully 
+Friday, 21 April 2023 : guest : guest1909341868 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 1490185831 has failed
+Friday, 21 April 2023 : guest : guest1408219819 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest750088566 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 330932529 has failed
+Friday, 21 April 2023 : guest : guest862485241 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 443329204 has failed
+Friday, 21 April 2023 : getting store with id: 443329204 was done successfully 
+Friday, 21 April 2023 : guest : guest1551047157 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 1131891120 has failed
+Friday, 21 April 2023 : guest : guest2082599869 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : opening store with id: 1663443832 has failed
+Friday, 21 April 2023 : Added the product:1663443832_1689032590to store: 1663443832 has been done successfully
+Friday, 21 April 2023 : guest : guest295982203 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest567830015 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : 1035790885Logged-out succesfully
+Friday, 21 April 2023 : guest : guest586268928 has logged in
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : guest : guest592193367 has logged in
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1525629697 has failed
+Friday, 21 April 2023 : Added the product:1525629697_1035790885to store: 1525629697 has been done successfully
+Friday, 21 April 2023 : a new comment for product id: Store1_Prod1
+Friday, 21 April 2023 : guest : guest560739082 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1862819722 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1211779402 has failed
+Friday, 21 April 2023 : guest : guest179104641 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest284410383 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest516294666 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : guest : guest1399219269 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 980063232 has failed
+Friday, 21 April 2023 : getting store with id: 980063232 was done successfully 
+Friday, 21 April 2023 : guest : guest359453575 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 2087781185 has failed
+Friday, 21 April 2023 : guest : guest1467171528 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : guest : guest809040275 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 389884238 has failed
+Friday, 21 April 2023 : guest : guest921436950 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 502280913 has failed
+Friday, 21 April 2023 : getting store with id: 502280913 was done successfully 
+Friday, 21 April 2023 : guest : guest1609998866 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1190842829 has failed
+Friday, 21 April 2023 : guest : guest1115967750 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1722395541 has failed
+Friday, 21 April 2023 : Added the product:1722395541_748940007to store: 1722395541 has been done successfully
+Friday, 21 April 2023 : guest : guest2018167184 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : 262607966Logged-out succesfully
+Friday, 21 April 2023 : guest : guest468717316 has logged in
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : guest : guest2062779713 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1599011147 has failed
+Friday, 21 April 2023 : Added the product:1599011147_262607966to store: 1599011147 has been done successfully
+Friday, 21 April 2023 : a new comment for product id: Store1_Prod1
+Friday, 21 April 2023 : guest : guest1404648460 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest559245453 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 678733061 has failed
+Friday, 21 April 2023 : guest : guest671642128 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest521891970 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : guest : guest1779360081 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : guest : guest1891756756 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1472600719 has failed
+Friday, 21 April 2023 : getting store with id: 1472600719 was done successfully 
+Friday, 21 April 2023 : guest : guest851991062 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 432835025 has failed
+Friday, 21 April 2023 : guest : guest163597259 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : guest : guest1652949653 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 1233793616 has failed
+Friday, 21 April 2023 : guest : guest388390609 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 2116718219 has failed
+Friday, 21 April 2023 : getting store with id: 2116718219 was done successfully 
+Friday, 21 April 2023 : guest : guest1076952525 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 657796488 has failed
+Friday, 21 April 2023 : guest : guest1959877128 has logged in
+Friday, 21 April 2023 : user1 has registered!
+Friday, 21 April 2023 : user1  has logged in!
+Friday, 21 April 2023 : opening store with id: 418821272 has failed
+Friday, 21 April 2023 : Added the product:418821272_1467609428to store: 418821272 has been done successfully

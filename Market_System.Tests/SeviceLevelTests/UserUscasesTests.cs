@@ -135,7 +135,7 @@ namespace Market_System.Tests.ServiceLevelTests
         }
 
         [TestMethod]
-        public void successLogout()
+        public void FailureLogout()
         {
             //Setup: 
             Setup();
@@ -143,7 +143,7 @@ namespace Market_System.Tests.ServiceLevelTests
             //Action:
             Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
             Response<string> response2 = service_Controller.login_member("user1", "pass1");
-            Response<string> responseLogout =service_Controller.log_out();
+            Response<string> responseLogout =service_Controller.log_out(); 
             Response<string> secondLogin = service_Controller.login_member("user1", "pass1");
 
 

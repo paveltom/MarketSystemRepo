@@ -56,12 +56,16 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 if(user.GetUsername().Equals(username) && userRepo.checkIfExists(username, password))
                 {
-                    string user_id = userRepo.get_userID_from_username(username);
-                    if (userRepo.CheckIfAdmin(user_id, user_id)) //Check if admin - login as admin if so
+                    try
                     {
-                        user.AdminLogin();
+                        string user_id = userRepo.get_userID_from_username(username);
+                        if (userRepo.CheckIfAdmin(user_id, user_id)) //Check if admin - login as admin if so
+                        {
+                            user.AdminLogin();
+                        }
                     }
-                    else
+
+                    catch(Exception e)
                     {
                         user.Login();
                     }
@@ -236,9 +240,18 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 string user_id = userRepo.get_userID_from_username(username);
                 userID_sessionID_linker.Add(session_id, user_id);
-                if(userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
+                try
                 {
-                    Admins.Add(user_id);
+                    if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
+                    {
+                        Admins.Add(user_id);
+                    }
+                }
+
+                catch(Exception e)
+                {
+                    //do nothing
+                    return;
                 }
             }
             catch(Exception e)
