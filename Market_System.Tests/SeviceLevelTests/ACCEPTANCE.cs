@@ -72,8 +72,8 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
-            Response<string> response = service.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "store_123" });
+            Response<ItemDTO> resProdAdd = service.add_product_to_store(response.Value.StoreID, "Prod1", "desc1", "1", "1", "1", "2.0", "1.0", "5.0", "5.0_2.0", "attr", "new_category");
         }
 
         //(one thread)
@@ -298,16 +298,37 @@ namespace Market_System.Tests.SeviceLevelTests
 
         #region//Owner  actions Tests 4.1
         [TestMethod]
-        public void addproduct()
+        public void addproduct_success()
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
 
             //Action:
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123"});
+            Response<ItemDTO> resProdAdd = service.add_product_to_store(response.Value.StoreID, "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg"); 
 
             //Result:
             Assert.AreEqual(false, resProdAdd.ErrorOccured);
+            //todo: check if prod was added
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //Assert.AreEqual(false, resProdAdded.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+        [TestMethod]
+        public void addproduct_failure()
+        {
+            //Setup: 
+            registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+
+            //Action:
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123" });
+            Response<ItemDTO> resProdAdd = service.add_product_to_store("fake_ID_123", "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg");
+
+            //Result:
+            Assert.AreEqual(null, resProdAdd);
             //todo: check if prod was added
             //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 

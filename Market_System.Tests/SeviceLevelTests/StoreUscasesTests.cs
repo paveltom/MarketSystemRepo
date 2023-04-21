@@ -1,4 +1,5 @@
-﻿using Market_System.DomainLayer.StoreComponent;
+﻿using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 using Market_System.ServiceLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -18,6 +19,7 @@ namespace Market_System.Tests.SeviceLevelTests
 
         public void Setup()
         {
+            Logger.get_instance().change_logger_path_to_tests();
             service_Controller = new Service_Controller();
             service_Controller.register("user1", "pass1", "add1");
             service_Controller.login_member("user1", "pass1");
@@ -46,12 +48,11 @@ namespace Market_System.Tests.SeviceLevelTests
         #endregion
         public void TestCleanup()
         {
+            Logger.get_instance().change_logger_path_to_regular();
             service_Controller.destroy();
         }
 
 
-        //TODO: Doesn't run currently due to the fixes that needs to be done in Store class.
-        /*
         [TestMethod]
         public void openStoreSuccess()
         {
@@ -59,88 +60,103 @@ namespace Market_System.Tests.SeviceLevelTests
             Setup();
 
             //Action:
-            Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
-            service_Controller.open_new_store(new List<string> { "store_name" });
+            Response<StoreDTO> response = service_Controller.open_new_store(new List<string> { "store_123" });
+            Response<StoreDTO> response2 = service_Controller.GetStore(response.Value.StoreID);
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
+            Assert.AreEqual(false, response2.ErrorOccured);
+            Assert.AreEqual(response.Value.StoreID, response2.Value.StoreID);
             //todo: check if store exists now
 
             //tearDown:
             TestCleanup();
         }
-        */
+        
 
-        /*[TestMethod]
+        [TestMethod]
         public void FailopenStoreGuest()
         {
             //Setup: none
-
-            //Action:
-            Response<string> response = service_Controller.open_new_store(); ////todo store id? Store1
-            service_Controller.open_new_store();
-
-            //Result:
-            Assert.AreEqual(true, response2.ErrorOccured);
-
-            //tearDown: (TestCleanup())
-        }*/
-
-        /*
-        [TestMethod]
-        public void addProduct()
-        {
-            //Setup: 
             Setup();
-            Response<string> response = service_Controller.open_new_store(new List<string> { "store_name" }); ////todo store id? Store1
 
             //Action:
-            Response<string> response2 = service_Controller.add_product_to_store("Stor1", "prod1","desc1", "1","1","1","","","","","",""); ////todo store id? Store1
+            Response<StoreDTO> response = service_Controller.open_new_store(new List<string> {}); 
 
             //Result:
-            Assert.AreEqual(false, response.ErrorOccured);
-            //todo: check if store exists now
+            Assert.AreEqual(null, response);
 
             //tearDown:
             TestCleanup();
         }
-        */
+
+        
+        [TestMethod]
+        public void addProductSuccess()
+        {
+            //Setup: 
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" }); 
+
+            //Action:
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1","desc1", "1","1","1","5.0", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
+
+            //Result:
+            Assert.AreEqual(false, product.ErrorOccured);
+
+            //tearDown:
+            TestCleanup();
+        }
+
+        [TestMethod]
+        public void addProductFailure_AddingWrongStoreID()
+        {
+            //Setup: 
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
+
+            //Action:
+            Response<ItemDTO> product = service_Controller.add_product_to_store("fake_store_ID", "prod1", "desc1", "1", "1", "1", "5.0", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
+
+            //Result:
+            Assert.AreEqual(null, product);
+
+            //tearDown:
+            TestCleanup();
+        }
+
+        [TestMethod]
+        public void addProductFailure_AddingAProductWithoutRating()
+        {
+            //Setup: 
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
+
+            //Action:
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
+
+            //Result:
+            Assert.AreEqual(null, product);
+
+            //tearDown:
+            TestCleanup();
+        }
+
         //maybe do another test for showing member purchase 
         //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //commented everything beneath, because the project the does not compile
+        //No such function: delete_product()...
         /*
-
-
-
-
-
-
-
         [TestMethod]
         public void removeProduct()
         {
+            //Setup:
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
             // Action:
-            bool result = service_Controller.removeProduct(store_ID, "prod1");
+            bool result = service_Controller.removeProduct(store.Value.StoreID, product.Value.GetID());
 
             // Result: 
             Assert.IsTrue(result);
@@ -166,28 +182,13 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<List<Product>> response2 = service_Controller.get_store_products(store_ID);
             Assert.IsFalse(response2.Data.Any(p => p.Name == "prod3"));
 
-            // Teardown: (TestCleanup())
-        }
-        
-        [TestMethod]
-        public void addStore()
-        {
-                //Setup:
-                string userId = "founder123";
-                string storeId = "store123";
-                Store store = new Store(storeId, userId, "My Store");
+            // Teardown:
+            TestCleanup();
+        } 
+        */
 
-                //Action:
-                service_Controller.AddStore(userId, store);
-
-                //Result:
-                Assert.IsTrue(service_Controller.storeDatabase.ContainsKey(store));
-                Assert.IsTrue(service_Controller.opened_stores_ids.Contains(storeId));
-
-                //tearDown: (TestCleanup())
- 
-        }
-       
+        //commented everything beneath, because the project the does not compile
+        /*
         [TestMethod]
         public void AddStore_StoreWithSameStoreIdAndFounderExists()
         {
@@ -280,99 +281,100 @@ namespace Market_System.Tests.SeviceLevelTests
             //tearDown: (TestCleanup())
         }
 
+        */
+
         [TestMethod]
         public void GetStore_ReturnsCorrectStore()
         {
             //Setup:
-            string storeId1 = service_Controller.getNewStoreID();
-            Store store1 = new Store(storeId1, "founder123", "Store1");
-            storeDatabase.Add(store1, new Dictionary<Product, int>());
-
-            string storeId2 = service_Controller.getNewStoreID();
-            Store store2 = new Store(storeId2, "founder123", "Store2");
-            storeDatabase.Add(store2, new Dictionary<Product, int>());
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
 
             //Action:
-            Store retrievedStore1 = service_Controller.GetStore(storeId1);
-            Store retrievedStore2 = service_Controller.GetStore(storeId2);
+            Response<StoreDTO> retrievedStore = service_Controller.GetStore(store.Value.StoreID);
 
             //Result:
-            Assert.AreEqual(store1, retrievedStore1);
-            Assert.AreEqual(store2, retrievedStore2);
+            Assert.AreEqual(store.Value.StoreID, retrievedStore.Value.StoreID);
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         [TestMethod]
         public void GetStore_ThrowsExceptionForInvalidStoreId()
         {
             //Setup:
-            string storeId1 = service_Controller.getNewStoreID();
-            Store store1 = new Store(storeId1, "founder123", "Store1");
-            storeDatabase.Add(store1, new Dictionary<Product, int>());
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
 
             //Action and Result:
-            Assert.ThrowsException<Exception>(() => service_Controller.GetStore("invalid_store_id"));
+            Response<StoreDTO> retrievedStore = service_Controller.GetStore("fake_store_ID");
+            Assert.AreEqual(null, retrievedStore);
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
+        //THESE DOESN'T SEEM TO WORK: There's a problem in 'get_products_from_shop()' function
+        /*
         [TestMethod]
         public void GetProduct_ReturnsCorrectProduct()
         {
             //Setup:
-            string storeId = service_Controller.getNewStoreID();
-            Store store = new Store(storeId, "founder123", "Store1");
-            storeDatabase.Add(store, new Dictionary<Product, int>());
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
 
-            string productId = service_Controller.getNewProductID(storeId);
-            Product product = new Product(productId, storeId, "Product1");
-            storeDatabase[store].Add(product, 1);
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
 
             //Action:
-            Product retrievedProduct = service_Controller.GetProduct(productId);
+            Response<List<ItemDTO>> retrievedProducts = service_Controller.get_products_from_shop(store.Value.StoreID);
 
             //Result:
-            Assert.AreEqual(product, retrievedProduct);
+            Assert.AreEqual(product.Value.GetID(), retrievedProducts.Value[0].GetID());
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
 
         [TestMethod]
         public void GetProduct_ThrowsExceptionForInvalidProductId()
         {
             //Setup:
-            string storeId = service_Controller.getNewStoreID();
-            Store store = new Store(storeId, "founder123", "Store1");
-            storeDatabase.Add(store, new Dictionary<Product, int>());
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
 
-            string productId = service_Controller.getNewProductID(storeId);
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
 
-            //Action & Result:
-            Assert.ThrowsException<Exception>(() => service_Controller.GetProduct(productId));
+            //Action:
+            Response<List<ItemDTO>> retrievedProducts = service_Controller.get_products_from_shop(store.Value.StoreID);
 
-            //tearDown: (TestCleanup())
+            //Result:
+            Assert.AreNotEqual("fake_product_id", retrievedProducts.Value[0].GetID());
+
+            //tearDown:
+            TestCleanup();
         }
+        */
 
         [TestMethod]
         public void GetProduct_ThrowsExceptionForProductIdInNonexistentStore()
         {
             //Setup:
-            string storeId1 = service_Controller.getNewStoreID();
-            string storeId2 = service_Controller.getNewStoreID();
-            Store store1 = new Store(storeId1, "founder123", "Store1");
-            Store store2 = new Store(storeId2, "founder123", "Store2");
-            storeDatabase.Add(store1, new Dictionary<Product, int>());
-            storeDatabase.Add(store2, new Dictionary<Product, int>());
+            Setup();
+            Response<StoreDTO> store = service_Controller.open_new_store(new List<string> { "store_123" });
+            Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
 
-            string productId = service_Controller.getNewProductID(storeId1);
+            //Action:
+            Response<List<ItemDTO>> retrievedProducts = service_Controller.get_products_from_shop("fake_store_ID");
 
-            //Action & Result:
-            Assert.ThrowsException<Exception>(() => service_Controller.GetProduct(productId));
+            //Result:
+            Assert.AreEqual(null, retrievedProducts);
 
-            //tearDown: (TestCleanup())
+            //tearDown:
+            TestCleanup();
         }
-
+        
+        /*
         [TestMethod]
         public void SaveStore_UpdatesExistingStoreWithSameStoreId()
         {

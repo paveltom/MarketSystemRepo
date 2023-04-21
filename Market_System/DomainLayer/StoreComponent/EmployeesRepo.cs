@@ -9,10 +9,9 @@ using Market_System.DomainLayer.UserComponent;
 namespace Market_System.DomainLayer.StoreComponent
 
 {
-
     public class EmployeeRepo
     {
-        private static ConcurrentBag<Employee> employeesDatabase;
+        private static List<Employee> employeesDatabase;
 
 
         private static EmployeeRepo Instance = null;
@@ -33,7 +32,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        employeesDatabase = new ConcurrentBag<Employee> ();
+                        employeesDatabase = new List<Employee>();
                         Instance = new EmployeeRepo();
                     }
                 } //Critical Section End
@@ -51,6 +50,51 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+        public void addNewAdmin(string userID)
+        {
+            foreach(Employee emp in employeesDatabase)
+            {
+                if (emp.UserID.Equals(userID))
+                {
+                    throw new Exception("This user is already an admin!");
+                }
+            }
+            employeesDatabase.Add(new Employee(userID, "", Role.Admin)); //No store specified because it is an admin...
+        }
 
+        public void Save_Employee(Employee emp)
+        {
+            lock (this)
+            {
+                if (!employeesDatabase.Contains(emp))
+                {
+                    employeesDatabase.Add(emp);
+                }
+            }
+        }
+
+        public void Remove_Employee(Employee emp)
+        {
+            lock (this)
+            {
+                if (!employeesDatabase.Contains(emp))
+                {
+                    employeesDatabase.Remove(emp);
+                }
+            }
+        }
+
+        internal bool isMarketManager(string userID)
+        {
+            foreach (Employee emp in employeesDatabase)
+            {
+                if (emp.UserID.Equals(userID) && emp.Role.Equals(Role.Admin))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

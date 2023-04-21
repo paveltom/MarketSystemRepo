@@ -14,6 +14,7 @@ namespace Market_System.DomainLayer
     {
         private static UserFacade userFacade;
         private static StoreFacade storeFacade;
+        private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
 
         //This variable is going to store the Singleton Instance
@@ -52,7 +53,20 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
-        internal StoreDTO GetStore( string storeID)
+        public Cart get_cart_of_userID(string user_id)
+        {
+            string usrename = userFacade.get_username_from_user_id(user_id);
+            return userFacade.get_cart(usrename);
+        }
+
+        internal void link_guest_with_session(string guest_name, string session_id)
+        {
+            userFacade.link_guest_with_session(guest_name, session_id);
+        }
+
+      
+
+        public StoreDTO GetStore( string storeID)
         {
             try
             {
@@ -174,11 +188,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal string GetStorePurchaseHistory(string sessionID, string storeID)
+        public string GetStorePurchaseHistory(string sessionID, string storeID)
         {
+            string user_id = get_userid_from_session_id(sessionID);
             try
             {
-               return storeFacade.GetPurchaseHistoryOfTheStore(sessionID, storeID);
+               return storeFacade.GetPurchaseHistoryOfTheStore(user_id, storeID);
 
             }
 
@@ -216,7 +231,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void ReserveProduct(ItemDTO itemDTO)
+        public void ReserveProduct(ItemDTO itemDTO)
         {
             storeFacade.ReserveProduct(itemDTO);
         }
@@ -249,7 +264,7 @@ namespace Market_System.DomainLayer
 
         }
 
-        internal void purchase(string session_id,List<ItemDTO> itemDTOs)
+        public void purchase(string session_id,List<ItemDTO> itemDTOs)
         {
             try
             {
@@ -306,13 +321,13 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public bool isAdministrator(string session)
+        public bool isLoggedInAdministrator(string session)
         {
             string user_id = userFacade.get_userID_from_session(session);
             string username = userFacade.get_username_from_user_id(user_id);
             try
             {
-                return userFacade.isAdministrator(username);
+                return userFacade.isLoggedInAdministrator(user_id, username);
             }
 
             catch (Exception e)
@@ -415,9 +430,10 @@ namespace Market_System.DomainLayer
 
         public StoreDTO Add_New_Store(string session_id, List<string> newStoreDetails)
         {
+            string user_id = get_userid_from_session_id(session_id);
             try
             {
-                return storeFacade.AddNewStore(session_id, newStoreDetails);
+                return storeFacade.AddNewStore(user_id, newStoreDetails);
             }
             catch(Exception e)
             {
@@ -427,14 +443,21 @@ namespace Market_System.DomainLayer
 
         public ItemDTO Add_Product_To_Store(string storeID, string session_id, List<String> productProperties)
         {
+            string user_id = get_userid_from_session_id(session_id);
             try
             {
-                return storeFacade.AddProductToStore(storeID, session_id, productProperties);
+                return storeFacade.AddProductToStore(storeID, user_id, productProperties);
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+
+
+        public string get_session_id_from_username(string username)
+        {
+            return userFacade.get_session_id_from_username(username);
         }
 
         internal List<ItemDTO> GetProductsFromStore(string sessionID, string storeID)
@@ -461,11 +484,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Owner(string founder, string username, string store_ID)
+        public void Assign_New_Owner(string founder, string newOwner_ID, string store_ID)
         {
             try
             {
-                storeFacade.AssignNewOwner(founder, store_ID, username);
+                storeFacade.AssignNewOwner(founder, store_ID, newOwner_ID);
             }
             catch (Exception e)
             {
@@ -473,11 +496,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Manager(string founder, string username, string store_ID)
+        public void Assign_New_Manager(string founder, string new_manager_ID, string store_ID)
         {
             try
             {
-                storeFacade.AssignNewManager(founder, store_ID, username); 
+                storeFacade.AssignNewManager(founder, store_ID, new_manager_ID); 
             }
             catch (Exception e)
             {
@@ -793,6 +816,34 @@ namespace Market_System.DomainLayer
             PurchaseRepo.GetInstance().destroy_me();
             UserRepo.GetInstance().destroy_me();
 
+        }
+
+        public void AddNewAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                userFacade.AddNewAdmin(sessionID, Other_username);
+
+                //Add to Employees as well:
+                string user_ID = userFacade.get_userID_from_session(sessionID);
+                employeeRepo.addNewAdmin(user_ID);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool CheckIfAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                return userFacade.CheckIfAdmin(sessionID, Other_username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

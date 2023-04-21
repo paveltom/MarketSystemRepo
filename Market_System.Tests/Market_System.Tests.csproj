@@ -83,6 +83,7 @@
     <Compile Include="unit_tests\StoreUnitTest.cs" />
     <Compile Include="unit_tests\store_user_tests.cs" />
     <Compile Include="unit_tests\ProductUnitTest.cs" />
+    <Compile Include="unit_tests\integration_tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

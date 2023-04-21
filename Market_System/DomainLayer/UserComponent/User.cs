@@ -36,6 +36,11 @@ namespace Market_System.DomainLayer.UserComponent
             this.user_State = new Member();
         }
 
+        public void AdminLogin()
+        {
+            this.user_State = new Administrator();
+        }
+
         public void Logout()
         {
             this.user_State = new Guest();
