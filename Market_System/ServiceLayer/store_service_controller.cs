@@ -224,12 +224,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewOwner(string storeID, string newOwner_username)
+        public Response AssignNewOwner(string storeID, string newOwner_ID)
         {
             try
             {
                 string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.Assign_New_Owner(user_ID, newOwner_username, storeID);
+                this.Market.Assign_New_Owner(user_ID, newOwner_ID, storeID);
                 return new Response("New owner was added successfully.");
             }
             catch (Exception ex)
@@ -238,12 +238,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewManager(string storeID, string newManager_username)
+        public Response AssignNewManager(string storeID, string newManager_ID)
         {
             try
             {
                 string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.Assign_New_Manager(user_ID, newManager_username, storeID);
+                this.Market.Assign_New_Manager(user_ID, newManager_ID, storeID);
                 return new Response("New manager was added successfully.");
             }
             catch (Exception ex)
