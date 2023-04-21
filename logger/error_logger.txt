@@ -102,3 +102,98 @@ Friday, 21 April 2023 : error!!: Incorrect login information has been provided i
 יום שישי 21 אפריל 2023 : error!!: a user with same name exists, please change name!in register
 יום שישי 21 אפריל 2023 : error!!: can't recive username because userID does not exists in log_out
 יום שישי 21 אפריל 2023 : error!!: Incorrect login information has been provided in login_member
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: a user with same name exists, please change name!in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: a user with same name exists, please change name!in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: Collection was modified; enumeration operation may not execute.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: אין אפשרות לבצע המרה של אובייקט מסוג 'Market_System.ServiceLayer.Response' לסוג 'Market_System.ServiceLayer.Response`1[System.String]'. in AddEmployeePermission
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+יום שישי 21 אפריל 2023 : error!!: The method or operation is not implemented. in add_product_to_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: basket does not exists in remove_product_from_basket
+יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
+שבת 22 אפריל 2023 : error!!: An item with the same key has already been added.in register

@@ -73,6 +73,7 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
             Response<StoreDTO> response = service.open_new_store(new List<string> { "store_123" });
+            //the bug is response.Value.StoreID
             Response<ItemDTO> resProdAdd = service.add_product_to_store(response.Value.StoreID, "Prod1", "desc1", "1", "1", "1", "2.0", "1.0", "5.0", "5.0_2.0", "attr", "new_category");
         }
 
@@ -107,7 +108,7 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadSetUp();
 
             //Action:
-            Response<string> response = service.register("user1", "pass1", "add1");
+            Response<string> response = service.register("user5", "pass1", "add1");
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
