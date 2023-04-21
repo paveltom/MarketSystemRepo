@@ -45,8 +45,8 @@ namespace Market_System.ServiceLayer
         public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
         public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties);
         public Response<string> RemoveProductPurchaseStrategy(string productID, String strategyID);
-        public Response<string> assign_new_owner(string storeID, string new_owner_username); // 4.4
-        public Response<string> assign_new_manager(string storeID, string new_manager_username); // 4.6
+        public Response<string> assign_new_owner(string storeID, string new_owner_ID); // 4.4
+        public Response<string> assign_new_manager(string storeID, string new_manager_ID); // 4.6
         // public void edit_manger_permissions(); //4.7
         public Response<string> ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms);
         public Response<string> AddEmployeePermission(string storeID, string employee_username, string newPerm);

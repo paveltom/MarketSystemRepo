@@ -53,7 +53,7 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
-        public Cart get_cart_of_username(string user_id)
+        public Cart get_cart_of_userID(string user_id)
         {
             string usrename = userFacade.get_username_from_user_id(user_id);
             return userFacade.get_cart(usrename);
@@ -188,11 +188,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal string GetStorePurchaseHistory(string sessionID, string storeID)
+        public string GetStorePurchaseHistory(string sessionID, string storeID)
         {
+            string user_id = get_userid_from_session_id(sessionID);
             try
             {
-               return storeFacade.GetPurchaseHistoryOfTheStore(sessionID, storeID);
+               return storeFacade.GetPurchaseHistoryOfTheStore(user_id, storeID);
 
             }
 
@@ -263,7 +264,7 @@ namespace Market_System.DomainLayer
 
         }
 
-        internal void purchase(string session_id,List<ItemDTO> itemDTOs)
+        public void purchase(string session_id,List<ItemDTO> itemDTOs)
         {
             try
             {
@@ -483,11 +484,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Owner(string founder, string username, string store_ID)
+        public void Assign_New_Owner(string founder, string newOwner_ID, string store_ID)
         {
             try
             {
-                storeFacade.AssignNewOwner(founder, store_ID, username);
+                storeFacade.AssignNewOwner(founder, store_ID, newOwner_ID);
             }
             catch (Exception e)
             {
@@ -495,11 +496,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Manager(string founder, string username, string store_ID)
+        public void Assign_New_Manager(string founder, string new_manager_ID, string store_ID)
         {
             try
             {
-                storeFacade.AssignNewManager(founder, store_ID, username); 
+                storeFacade.AssignNewManager(founder, store_ID, new_manager_ID); 
             }
             catch (Exception e)
             {
