@@ -208,12 +208,12 @@ namespace Market_System.ServiceLayer
    
         }
 
-        public bool isAdministrator(string session_ID)
+        public bool isLoggedInAdministrator(string session_ID)
         {
             try
             {
                 
-                return market_System.isAdministrator(session_ID);
+                return market_System.isLoggedInAdministrator(session_ID);
             }
 
             catch (Exception e)
@@ -222,5 +222,7 @@ namespace Market_System.ServiceLayer
             }
 
         }
+
+        public 
     }
 }

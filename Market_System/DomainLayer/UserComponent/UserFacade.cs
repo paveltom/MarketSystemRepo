@@ -217,11 +217,11 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public bool isAdministrator(string username)
+        public bool isLoggedInAdministrator(string user_ID, string username)
         {
             foreach (User u in users)
             {
-                if (u.GetUsername().Equals(username) && u.GetUserState().Equals("Administrator"))
+                if (u.GetUsername().Equals(username) && u.GetUserState().Equals("Administrator") && CheckIfAdmin(user_ID, username))
                 {
                     return true;
                 }

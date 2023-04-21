@@ -830,7 +830,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.usc.isAdministrator(session_id); //Check if the user is an administrator - hence, has a permission to perform this action.
+                this.usc.isLoggedInAdministrator(session_id); //Check if the user is logged-in as an administrator - hence, has a permission to perform this action.
                 Response<string> system_Events = Response<string>.FromValue(Logger.get_instance().Read_Events_Record());
                 Logger.get_instance().record_event("An admin has retrieved the System Events Logger file content successfuly");
                 return system_Events; //TODO:: display the content of system_Events to the Admin!

@@ -311,13 +311,13 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public bool isAdministrator(string session)
+        public bool isLoggedInAdministrator(string session)
         {
             string user_id = userFacade.get_userID_from_session(session);
             string username = userFacade.get_username_from_user_id(user_id);
             try
             {
-                return userFacade.isAdministrator(username);
+                return userFacade.isLoggedInAdministrator(user_id, username);
             }
 
             catch (Exception e)
