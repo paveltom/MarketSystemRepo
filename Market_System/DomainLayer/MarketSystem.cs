@@ -812,11 +812,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void CheckIfAdmin(string sessionID, string Other_username)
+        public bool CheckIfAdmin(string sessionID, string Other_username)
         {
             try
             {
-                userFacade.CheckIfAdmin(sessionID, Other_username);
+                return userFacade.CheckIfAdmin(sessionID, Other_username);
             }
             catch (Exception e)
             {

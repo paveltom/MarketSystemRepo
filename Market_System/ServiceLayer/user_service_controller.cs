@@ -223,6 +223,29 @@ namespace Market_System.ServiceLayer
 
         }
 
-        public 
+        public string AddNewAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                market_System.AddNewAdmin(sessionID, Other_username);
+                return "Admin has been added succefully";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool CheckIfAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                return market_System.CheckIfAdmin(sessionID, Other_username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
