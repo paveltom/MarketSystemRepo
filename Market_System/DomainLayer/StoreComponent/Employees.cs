@@ -125,7 +125,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean isManagerSubject(string subjectUserID, string sellerID, string storeID)
         {
-            return getemployee(subjectUserID, storeID).isMyManagerAssignner(sellerID);
+            try
+            {
+                return getemployee(subjectUserID, storeID).isMyManagerAssignner(sellerID);
+            } catch (Exception e) { return false; } 
         }
 
         public Boolean isOwner(string employeeID, string storeID)
@@ -168,14 +171,17 @@ namespace Market_System.DomainLayer.StoreComponent
          */
         public Boolean confirmPermission(string userID, string storeID, Permission permissionRequiered)
         {
-            if (getemployeePermissions(userID, storeID) == null)
+            try
             {
-                return false; //employee not exist 
-            }
-            else
-            {
-                return getemployeePermissions(userID, storeID).Contains(permissionRequiered);
-            }
+                if (getemployeePermissions(userID, storeID) == null)
+                {
+                    return false; //employee not exist 
+                }
+                else
+                {
+                    return getemployeePermissions(userID, storeID).Contains(permissionRequiered);
+                }
+            } catch (Exception e) { return false; } 
         }
 
         public List<Permission> getemployeePermissions(string userID, string storeID)

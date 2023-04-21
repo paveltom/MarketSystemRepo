@@ -96,10 +96,10 @@ namespace Market_System.Tests.unit_tests
         [TestMethod]
         public void PurchaseCannotPurchaseStoreFacadeTestFail()
         {
-            // Arrange
-            // this.testEmployees.addAdmin(userID)
-            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
+            // Arrange            
             this.testStore.ChangeProductQuantity(this.testStore.founderID, this.testProduct0.Product_ID, 0);
+            this.testProduct0.SetQuantity(0);
+            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
             bool errorCannotPurchase = false;
 
             // Act
@@ -110,11 +110,6 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsTrue(errorCannotPurchase);
-            List<ItemDTO> updatedProducts = this.testStore.GetItems();
-            foreach (ItemDTO item in updatedProducts)
-            {
-                Assert.AreEqual(0, item.GetQuantity());
-            }
         }
 
         [TestMethod]

@@ -581,7 +581,7 @@ namespace Market_System.Tests.unit_tests
             int initReservedQuantity0 = this.testProduct0.ReservedQuantity; // = 0: init parameter
             int initReservedQuantity1 = this.testProduct1.ReservedQuantity; // = 12: init parameter
             int quantityToReserve0 = initQuantity0 / 2;
-            int quantityToReserve1 = 2;
+            int quantityToReserve1 = initQuantity1 / 2;
             bool error0 = false;
             bool error1 = false;
 
@@ -595,7 +595,7 @@ namespace Market_System.Tests.unit_tests
 
             try
             {
-                this.testProduct1.Purchase(quantityToReserve1);
+                this.testProduct1.Reserve(quantityToReserve1);
             }
             catch (Exception e) { error1 = true; }
 
@@ -629,7 +629,7 @@ namespace Market_System.Tests.unit_tests
 
             try
             {
-                this.testProduct1.Purchase(quantityToReserve1);
+                this.testProduct1.Reserve(quantityToReserve1);
             }
             catch (Exception e) { error1 = true; }
 
@@ -690,6 +690,7 @@ namespace Market_System.Tests.unit_tests
             string userID0 = "AddCommentAndUpdateRatingProductTestProduct0UserID0";
             double newRating0 = rating0;
             string newComment0 = userID0 + ": " + comment0 + ".\n Rating: " + rating0 + ".";
+            testProduct0.SetTimesBought(1);
 
             // Act
             this.testProduct0.AddComment(userID0, comment0, rating0);
@@ -707,15 +708,14 @@ namespace Market_System.Tests.unit_tests
             double rating1 = 0;
             string userID1 = "AddCommentAndUpdateRatingProductTestProduct1UserID1";
             double initRating1 = this.testProduct1.Rating;
-            double newRating1 = (initRating1 * this.testProduct1.timesBought + rating1) / (this.testProduct1.timesBought + 1);
-            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: " + rating1 + ".";
+            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: _ .";
 
             // Act
             this.testProduct1.AddComment(userID1, comment1, rating1);
 
             // Assert
             Assert.IsTrue(this.testProduct1.Comments.ToList().Contains(newComment1));
-            Assert.AreEqual(testProduct1.Rating, newRating1);
+            Assert.AreEqual(testProduct1.Rating, initRating1);
         }
 
         [TestMethod]
@@ -1049,8 +1049,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetProductCategory(null);
 
             // Assert
-            Assert.AreEqual(testProduct0.ProductCategory, noCategory);
-            Assert.AreEqual(testProduct1.ProductCategory, noCategory);
+            Assert.AreEqual(testProduct0.ProductCategory.CategoryName, noCategory);
+            Assert.AreEqual(testProduct1.ProductCategory.CategoryName, noCategory);
         }
 
         [TestMethod]

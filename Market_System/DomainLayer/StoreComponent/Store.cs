@@ -95,7 +95,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OwnerOnly) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (this.employees.isFounder(userID, this.Store_ID) || (this.employees.isOwner(userID, this.Store_ID) && 
+                                                                this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.updateEmpPermissions(employeeID, this.Store_ID, perms);
                     else
                         throw new Exception("You can't manage this employee permissions.");
@@ -112,7 +113,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
                     else
                         throw new Exception("Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store.");
@@ -127,7 +128,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && !this.employees.isManager(newManagerID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !this.employees.isManager(newManagerID, this.Store_ID))
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
                     else
                         throw new Exception("Cannot assign new manager: you are not an owner or this employee is already a manager in this store.");
@@ -168,8 +169,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (((this.employees.isFounder(userID, this.Store_ID)) || (this.employees.isOwner(userID, this.Store_ID))) && 
-                                                                            this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID)) || ((this.employees.isOwner(userID, this.Store_ID)) && 
+                                                                            this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
                     else
                         throw new Exception("You cannot add permissions for that employee.");
@@ -185,8 +186,10 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (userID == this.founderID || 
+                        (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.removeAnEmpPermission(employeeID, this.Store_ID, permToRemove); // validate this method added to EmployeesPermission
+                    else throw new Exception("You have no permission to remove this employee permisssion.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -561,7 +564,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.isMarketManager(userID)) // // change later after market manager permission enum added
+                if (this.employees.isMarketManager(userID))
                 {
                     AcquireProduct(productID).SetRating(rating);
                     ReleaseProduct(productID);

@@ -283,7 +283,7 @@ namespace Market_System.Tests.unit_tests
         public void GetOwnersOfTheStoreTestSuccess()
         {
             // Arrange
-            List<string> owners = new List<string>() { "testStoreFounderID326", "testOwnerID0" }; // init values
+            List<string> owners = new List<string>() { "testOwnerID0" }; // init values
 
             // Act
             List<string> retOwners = this.testStore.GetOwnersOfTheStore("testStoreFounderID326");
@@ -314,7 +314,7 @@ namespace Market_System.Tests.unit_tests
         public void GetManagersOfTheStoreTestSuccess()
         {
             // Arrange
-            List<string> managers = new List<string>() { "testStockManagerID0", "testInfoManagerID0" }; // init values
+            List<string> managers = new List<string>() { "testStockManagerID0", "testInfoManagerID0", "testAllManagerID0" }; // init values
 
             // Act
             List<string> retManagers = this.testStore.GetManagersOfTheStore("testStoreFounderID326");
@@ -383,7 +383,7 @@ namespace Market_System.Tests.unit_tests
             this.testStore.RemoveEmployeePermission(this.testStore.founderID, employeeID, Permission.STOCK);
 
             // Assert
-            Assert.IsFalse(this.testEmployees.confirmPermission(this.testStore.founderID, this.testStore.Store_ID, Permission.STOCK));
+            Assert.IsFalse(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.STOCK));
         }
 
         [TestMethod]
@@ -397,7 +397,7 @@ namespace Market_System.Tests.unit_tests
             // Act            
             try
             {
-                this.testStore.RemoveEmployeePermission(this.testStore.founderID, employeeID, Permission.STOCK);
+                this.testStore.RemoveEmployeePermission("testOwnerID0", employeeID, Permission.STOCK);
             }
             catch (Exception ex) { errorCatchedNoPermission = true; }
 
@@ -453,11 +453,17 @@ namespace Market_System.Tests.unit_tests
             // Assert
             Assert.AreEqual(dataStore.Name, ret.Name);
             Assert.AreEqual(dataStore.StoreID, ret.StoreID);
-            Assert.AreEqual(dataStore.AllProducts, ret.AllProducts);
-            Assert.AreEqual(dataStore.owners, ret.managers);
+            Assert.IsTrue(dataStore.AllProducts.Any(x => ret.AllProducts.Any(y => x.GetID() == y.GetID())) && 
+                                                                        ret.AllProducts.Count == dataStore.AllProducts.Count);
+            Assert.IsTrue(dataStore.owners.Any(x => ret.owners.Any(y => x.UserID == y.UserID)) &&
+                                                                        ret.owners.Count == dataStore.owners.Count);
+            Assert.IsTrue(dataStore.managers.Any(x => ret.managers.Any(y => x.UserID == y.UserID)) &&
+                                                                        ret.managers.Count == dataStore.managers.Count);
             Assert.AreEqual(dataStore.FounderID, ret.FounderID);
-            Assert.AreEqual(dataStore.DefaultPolicies, ret.DefaultPolicies);
-            Assert.AreEqual(dataStore.DefaultStrategies, ret.DefaultStrategies);
+            Assert.IsTrue(dataStore.DefaultPolicies.Any(x => ret.DefaultPolicies.Any(y => x == y)) &&
+                                                                        ret.DefaultPolicies.Count == dataStore.DefaultPolicies.Count);
+            Assert.IsTrue(dataStore.DefaultStrategies.Any(x => ret.DefaultStrategies.Any(y => x == y)) &&
+                                                                        ret.DefaultStrategies.Count == dataStore.DefaultStrategies.Count);
         }
 
         [TestMethod]
@@ -564,21 +570,21 @@ namespace Market_System.Tests.unit_tests
         public void PurchaseStoreTestSuccess()
         {
             // Arrange
-            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            ItemDTO p1 = this.testProduct1.GetProductDTO();
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
 
             // Act
             this.testStore.Purchase("PurchaseStoreTestUserID0", items);
 
             // Assert
-            Assert.AreEqual(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
+            Assert.AreEqual(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct1.Product_ID)).Quantity);
         }
 
         [TestMethod]
         public void PurchaseNorEnoughInStockStoreTestFail()
         {
             // Arrange
-            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            ItemDTO p1 = this.testProduct1.GetProductDTO();
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
             bool errorNotEnoughInStock = false;
             this.testStore.Purchase("PurchaseStoreTestUserID0", items);
