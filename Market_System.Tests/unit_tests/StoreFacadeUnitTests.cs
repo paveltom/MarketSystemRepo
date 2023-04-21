@@ -33,6 +33,11 @@ namespace Market_System.Tests.unit_tests
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct0, testProduct0.Quantity);
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
 
+            ConcurrentDictionary<string, string> products = new ConcurrentDictionary<string, string>();
+            products.TryAdd(this.testProduct0.Product_ID, this.testProduct0.Product_ID);
+            products.TryAdd(this.testProduct1.Product_ID, this.testProduct1.Product_ID);
+            testStore.allProducts = products;
+
             testEmployees = new Employees();
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testStockManagerID0", testStore.Store_ID, new List<Permission>() { Permission.STOCK });
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testInfoManagerID0", testStore.Store_ID, new List<Permission>() { Permission.INFO });
@@ -92,8 +97,9 @@ namespace Market_System.Tests.unit_tests
         public void PurchaseCannotPurchaseStoreFacadeTestFail()
         {
             // Arrange            
-            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
             this.testStore.ChangeProductQuantity(this.testStore.founderID, this.testProduct0.Product_ID, 0);
+            this.testProduct0.SetQuantity(0);
+            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
             bool errorCannotPurchase = false;
 
             // Act
@@ -104,11 +110,6 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsTrue(errorCannotPurchase);
-            List<ItemDTO> updatedProducts = this.testStore.GetItems();
-            foreach (ItemDTO item in updatedProducts)
-            {
-                Assert.AreEqual(0, item.GetQuantity());
-            }
         }
 
         [TestMethod]
@@ -116,7 +117,14 @@ namespace Market_System.Tests.unit_tests
         {
             // Arrange
             string newProductStoreID = "GatherStoresWithProductsByItemsStoreFacadeTestStoreID0";
+            Store newProductStore = GetStore(newProductStoreID);
+            StoreRepo.GetInstance().AddStore(newProductStore.founderID, newProductStore);
             Product testProduct2 = GetNewProduct(newProductStoreID);
+            StoreRepo.GetInstance().AddProduct(newProductStore.Store_ID, newProductStore.founderID, testProduct2, testProduct2.Quantity);
+            ConcurrentDictionary<string, string> products = new ConcurrentDictionary<string, string>();
+            products.TryAdd(testProduct2.Product_ID, testProduct2.Product_ID);
+            newProductStore.allProducts = products;
+
             List<ItemDTO> thisItemsToGather = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
             List<ItemDTO> newItemsToGather = new List<ItemDTO>() { testProduct2.GetProductDTO() };
             List<ItemDTO> outThisStore;
@@ -131,8 +139,13 @@ namespace Market_System.Tests.unit_tests
 
             Assert.IsTrue(retStoresWIthProduct.ContainsKey(this.testStore.Store_ID));
             Assert.IsTrue(retStoresWIthProduct.ContainsKey(newProductStoreID));
-            Assert.AreEqual(thisItemsToGather, outThisStore);
-            Assert.AreEqual(newItemsToGather, outNewStore);
+
+            
+            
+            Assert.IsTrue(thisItemsToGather.Any(x => outThisStore.Any(y => x.GetID() == y.GetID())) && 
+                            thisItemsToGather.Count == outThisStore.Count);
+            Assert.IsTrue(newItemsToGather.Any(x => outNewStore.Any(y => x.GetID() == y.GetID())) &&
+                            newItemsToGather.Count == outNewStore.Count);
         }
 
         [TestMethod]

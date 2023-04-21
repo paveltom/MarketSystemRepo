@@ -26,6 +26,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public Double Weight { get; private set; }
         public Double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
         public long timesBought { get; private set; }
+        public long timesRated { get ; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
         public Double[] Dimenssions { get; private set; } // array of 3
         public ConcurrentDictionary<string, Purchase_Policy> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
@@ -237,6 +238,7 @@ namespace Market_System.DomainLayer.StoreComponent
                             throw new Exception("Not enough product in Store.");
                         this.Quantity -= quantity;
                         this.ReservedQuantity -= quantity;
+                        this.timesBought += quantity;
                     }
                     Save();
                 }
@@ -291,8 +293,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (timesBought > 0)
                     {
-                        this.Rating = (this.Rating * timesBought + rating) / (timesBought + 1);
-                        this.timesBought++;
+                        this.Rating = (this.Rating * timesRated + rating) / (timesRated + 1);
+                        this.timesRated++;
                         Save();
                     }
                 }
@@ -515,6 +517,9 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (this.Dimenssions)
                 {
+                    foreach(double d in dims)
+                        if(d <= 0)
+                            throw new Exception("Dimenssion cannot be 0 or negative.");  
                     this.Dimenssions = dims;
                     Save();
                 }
