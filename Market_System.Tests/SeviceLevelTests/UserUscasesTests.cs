@@ -155,6 +155,27 @@ namespace Market_System.Tests.ServiceLevelTests
             TestCleanup();
         }
 
+        [TestMethod]
+        public void FailureLogout()
+        {
+            //Setup: 
+            Setup();
+
+            //Action:
+            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
+            Response<string> response2 = service_Controller.login_member("user1", "pass1");
+            Response<string> responseLogout1 = service_Controller.log_out();
+            Response<string> responseLogout2 = service_Controller.log_out();
+
+
+            //Result:
+            Assert.AreEqual(false, responseLogout1.ErrorOccured);
+            Assert.AreEqual(true, responseLogout2.ErrorOccured);
+
+            //tearDown:
+            TestCleanup();
+        }
+
         //maybe do another test for showing member purchase 
         //for that you need to rigister then login , should be an opened store with an product with quantity >0 , 
 
