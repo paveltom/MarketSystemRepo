@@ -168,7 +168,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (((this.employees.isFounder(userID, this.Store_ID)) || (this.employees.isOwner(userID, this.Store_ID))) && 
+                                                                            this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
                         this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
                     else
                         throw new Exception("You cannot add permissions for that employee.");
@@ -350,7 +351,9 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.defaultPolicies.TryRemove(policyID, out _))
                         Save();
+                    else throw new Exception("No such policy.");
                 }
+                else throw new Exception("You have no permission to remove store policy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -363,7 +366,9 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                         Save();
+                    else throw new Exception("Strategy already exists.");
                 }
+                else throw new Exception("You have no permission to add strategy.");
             }
             catch (Exception e) { throw e; }
         }

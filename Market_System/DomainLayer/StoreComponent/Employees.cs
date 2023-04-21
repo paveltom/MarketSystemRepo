@@ -54,7 +54,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean isFounder(string employeeID, string storeID)
         {
-            return getemployee(employeeID, storeID).isFounder();
+            try
+            {
+                return getemployee(employeeID, storeID).isFounder();
+            } catch (Exception ex) { return false;  }
         }
 
         public Employees()
@@ -114,7 +117,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean isOwnerSubject(string subjectUserID, string sellerID, string storeID)
         {
-            return getemployee(subjectUserID, storeID).isMyOwnerAssignner(storeID);
+            try
+            {
+                return getemployee(subjectUserID, storeID).isMyOwnerAssignner(storeID);
+            } catch (Exception e) { return false;  }
         }
 
         public Boolean isManagerSubject(string subjectUserID, string sellerID, string storeID)
@@ -124,12 +130,18 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean isOwner(string employeeID, string storeID)
         {
-            return getemployee(employeeID, storeID).isOwner();
+            try
+            {
+                return getemployee(employeeID, storeID).isOwner();
+            } catch (Exception e) { return false; }
         }
 
         public Boolean isManager(string employeeID, string storeID)
         {
-            return getemployee(employeeID, storeID).isManager();
+            try
+            {
+                return getemployee(employeeID, storeID).isManager();
+            } catch (Exception e) { return false; }
         }
 
         /**add new 'userID' employee with 'permissions' in a store

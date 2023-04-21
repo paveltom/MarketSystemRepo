@@ -36,3 +36,25 @@
 יום חמישי 20 אפריל 2023 : error!!: can't recive userID because username does not exists in login_guest
 יום חמישי 20 אפריל 2023 : error!!: can't recive userID because username does not exists in login_guest
 יום חמישי 20 אפריל 2023 : error!!: The given key was not present in the dictionary. in log_out
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response`1[Market_System.DomainLayer.StoreDTO]' to type 'Market_System.ServiceLayer.Response`1[System.String]'. in open_new_store
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: a user with same name exists, please change name!in register
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: The given key was not present in the dictionary. in log_out
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response`1[Market_System.DomainLayer.StoreDTO]' to type 'Market_System.ServiceLayer.Response`1[System.String]'. in open_new_store
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response`1[Market_System.DomainLayer.StoreDTO]' to type 'Market_System.ServiceLayer.Response`1[System.String]'. in open_new_store
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: can't recive userID because username does not exists in login_guest
+Friday, 21 April 2023 : error!!: The given key was not present in the dictionary. in log_out
