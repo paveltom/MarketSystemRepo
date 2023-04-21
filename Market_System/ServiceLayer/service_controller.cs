@@ -830,7 +830,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.usc.isAdministrator(session_id); //Check if the user is an administrator - hence, has a permission to perform this action.
+                this.usc.isLoggedInAdministrator(session_id); //Check if the user is logged-in as an administrator - hence, has a permission to perform this action.
                 Response<string> system_Events = Response<string>.FromValue(Logger.get_instance().Read_Events_Record());
                 Logger.get_instance().record_event("An admin has retrieved the System Events Logger file content successfuly");
                 return system_Events; //TODO:: display the content of system_Events to the Admin!
@@ -846,7 +846,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.usc.isAdministrator(session_id); //Check if the user is an administrator
+                this.usc.isLoggedInAdministrator(session_id); //Check if the user is logged-in as an administrator
                 Response<string> system_Errors = Response<string>.FromValue(Logger.get_instance().Read_Errors_Record());
                 Logger.get_instance().record_event("An admin has retrieved the System Erros Logger file content successfuly");
                 return system_Errors; //TODO:: display the content of system_Events to the Admin!
@@ -855,6 +855,47 @@ namespace Market_System.ServiceLayer
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + "in Read_System_Errors");
                 return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> AddNewAdmin(string Other_username)
+        {
+            try
+            {
+                Response<string> response = Response<string>.FromValue(this.usc.AddNewAdmin(session_id, Other_username));
+                Logger.get_instance().record_event("A new admin:" + Other_username + "has been added successfully");
+                return response;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddNewAdmin");
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> CheckIfAdmin(string Other_username)
+        {
+            try
+            {
+                Response<string> response;
+                if (this.usc.CheckIfAdmin(session_id, Other_username))
+                {
+                    response = Response<string>.FromValue("The user is an admin");
+                    Logger.get_instance().record_event("A check for this user:" + Other_username + "has been done successfully - he is an admin");
+                }
+
+                else
+                {
+                    response = Response<string>.FromValue("The user is NOT an admin");
+                    Logger.get_instance().record_event("A check for this user:" + Other_username + "has been done successfully - he is NOT an admin");
+                }
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in CheckIfAdmin");
+                return Response<string>.FromError(e.Message);
             }
         }
     }

@@ -135,7 +135,7 @@ namespace Market_System.Tests.ServiceLevelTests
         }
 
         [TestMethod]
-        public void successLogout()
+        public void SuccessLogout()
         {
             //Setup: 
             Setup();
@@ -143,13 +143,34 @@ namespace Market_System.Tests.ServiceLevelTests
             //Action:
             Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
             Response<string> response2 = service_Controller.login_member("user1", "pass1");
-            Response<string> responseLogout =service_Controller.log_out();
+            Response<string> responseLogout =service_Controller.log_out(); 
             Response<string> secondLogin = service_Controller.login_member("user1", "pass1");
 
 
             //Result:
             Assert.AreEqual(false, responseLogout.ErrorOccured);
             Assert.AreEqual(false, secondLogin.ErrorOccured);
+
+            //tearDown:
+            TestCleanup();
+        }
+
+        [TestMethod]
+        public void FailureLogout()
+        {
+            //Setup: 
+            Setup();
+
+            //Action:
+            Response<string> response1 = service_Controller.register("user1", "pass1", "add1");
+            Response<string> response2 = service_Controller.login_member("user1", "pass1");
+            Response<string> responseLogout1 = service_Controller.log_out();
+            Response<string> responseLogout2 = service_Controller.log_out();
+
+
+            //Result:
+            Assert.AreEqual(false, responseLogout1.ErrorOccured);
+            Assert.AreEqual(true, responseLogout2.ErrorOccured);
 
             //tearDown:
             TestCleanup();

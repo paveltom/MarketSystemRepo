@@ -311,13 +311,13 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public bool isAdministrator(string session)
+        public bool isLoggedInAdministrator(string session)
         {
             string user_id = userFacade.get_userID_from_session(session);
             string username = userFacade.get_username_from_user_id(user_id);
             try
             {
-                return userFacade.isAdministrator(username);
+                return userFacade.isLoggedInAdministrator(user_id, username);
             }
 
             catch (Exception e)
@@ -798,6 +798,30 @@ namespace Market_System.DomainLayer
             PurchaseRepo.GetInstance().destroy_me();
             UserRepo.GetInstance().destroy_me();
 
+        }
+
+        public void AddNewAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                userFacade.AddNewAdmin(sessionID, Other_username);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool CheckIfAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                return userFacade.CheckIfAdmin(sessionID, Other_username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
