@@ -802,12 +802,26 @@ namespace Market_System.DomainLayer
 
         public void AddNewAdmin(string sessionID, string Other_username)
         {
-
+            try
+            {
+                userFacade.AddNewAdmin(sessionID, Other_username);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public void CheckIfAdmin(string sessionID, string Other_username)
         {
-
+            try
+            {
+                userFacade.CheckIfAdmin(sessionID, Other_username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
