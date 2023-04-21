@@ -135,7 +135,7 @@ namespace Market_System.Tests.ServiceLevelTests
         }
 
         [TestMethod]
-        public void FailureLogout()
+        public void SuccessLogout()
         {
             //Setup: 
             Setup();
