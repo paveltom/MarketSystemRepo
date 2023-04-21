@@ -367,14 +367,17 @@ namespace Market_System.DomainLayer.UserComponent
             PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }
 
-        public void AddNewAdmin(string curr_Admin_userID, string userID)
+        public void AddNewAdmin(string curr_Admin_userName, string Other_username)
         {
             try
             {
-                if (Logged_In_Admins.Contains(curr_Admin_userID) && !Logged_In_Admins.Contains(userID))
+                string user_id_1 = userRepo.get_userID_from_username(curr_Admin_userName);
+                string user_id_2 = userRepo.get_userID_from_username(Other_username);
+
+                if (Logged_In_Admins.Contains(user_id_1) && !Logged_In_Admins.Contains(user_id_2))
                 {
-                    userRepo.AddNewAdmin(curr_Admin_userID, userID);
-                    Logged_In_Admins.Add(userID);
+                    userRepo.AddNewAdmin(user_id_1, user_id_2);
+                    Logged_In_Admins.Add(user_id_1);
                 }
 
                 else
@@ -389,13 +392,16 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public bool CheckIfAdmin(string curr_Admin_userID, string userID)
+        public bool CheckIfAdmin(string curr_Admin_userName, string Other_username)
         {
             try
             {
-                if (Logged_In_Admins.Contains(curr_Admin_userID)) //the performing admin is logged-in
+                string user_id_1 = userRepo.get_userID_from_username(curr_Admin_userName);
+                string user_id_2 = userRepo.get_userID_from_username(Other_username);
+
+                if (Logged_In_Admins.Contains(user_id_1)) //the performing admin is logged-in
                 {
-                    return userRepo.CheckIfAdmin(curr_Admin_userID, userID);
+                    return userRepo.CheckIfAdmin(user_id_1, user_id_2);
                 }
                 else
                 {
