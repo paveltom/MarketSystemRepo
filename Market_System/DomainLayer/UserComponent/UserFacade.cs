@@ -10,7 +10,7 @@ namespace Market_System.DomainLayer.UserComponent
         private static UserRepo userRepo;
         private static List<User> users;
         private static Dictionary<string, string> userID_sessionID_linker; // key = session_id    value=userID if it is a guest then guest username
-        private static List<string> Logged_In_Admins; //saved by the userID
+        private static List<string> Admins; //saved by the userID
         //*  Admin - 6.1, 6.2, 6.3, 6.4, 6.5 הרשאות מנהל מערכת=מנהל שוק
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
@@ -35,13 +35,17 @@ namespace Market_System.DomainLayer.UserComponent
                         userRepo = UserRepo.GetInstance();
                         Instance = new UserFacade();
                         userID_sessionID_linker = new Dictionary<string, string>();
-                        Logged_In_Admins = new List<string>();                      
-                    }
-                } //Critical Section End
-                //Once the thread releases the lock, the other thread allows entering into the critical section
-                //But only one thread is allowed to enter the critical section
-            }
+                        Admins = new List<string>();
 
+                        //Register an admin:
+                        userRepo.AddFirstAdmin("admin");
+
+                        //Critical Section End
+                        //Once the thread releases the lock, the other thread allows entering into the critical section
+                        //But only one thread is allowed to enter the critical section
+                    }
+                }
+            }
             //Return the Singleton Instance
             return Instance;
         }
@@ -87,11 +91,6 @@ namespace Market_System.DomainLayer.UserComponent
                 {
                     if (!user.GetUserState().Equals("Guest"))
                     {
-                        string user_id = userRepo.get_userID_from_username(username);
-                        if (Logged_In_Admins.Contains(user_id)) //Remove the admin from logged-in
-                        {
-                            Logged_In_Admins.Remove(user_id);
-                        }
                         user.Logout();
                         return;
                     }
@@ -239,7 +238,7 @@ namespace Market_System.DomainLayer.UserComponent
                 userID_sessionID_linker.Add(session_id, user_id);
                 if(userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
                 {
-                    Logged_In_Admins.Add(user_id);
+                    Admins.Add(user_id);
                 }
             }
             catch(Exception e)
@@ -374,15 +373,16 @@ namespace Market_System.DomainLayer.UserComponent
                 string user_id_1 = userRepo.get_userID_from_username(curr_Admin_userName);
                 string user_id_2 = userRepo.get_userID_from_username(Other_username);
 
-                if (Logged_In_Admins.Contains(user_id_1) && !Logged_In_Admins.Contains(user_id_2))
+                //The admin exists and is logged-in -> State == Admin
+                if (Admins.Contains(user_id_1) && !Admins.Contains(user_id_2) && getUserfromUsersByUsername(curr_Admin_userName).GetUserState().Equals("Administrator"))
                 {
                     userRepo.AddNewAdmin(curr_Admin_userName, Other_username);
-                    Logged_In_Admins.Add(user_id_1);
+                    Admins.Add(user_id_2);
                 }
 
                 else
                 {
-                    throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin)");
+                    throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in)");
                 }
             }
 
@@ -399,13 +399,19 @@ namespace Market_System.DomainLayer.UserComponent
                 string user_id_1 = userRepo.get_userID_from_username(curr_Admin_userName);
                 string user_id_2 = userRepo.get_userID_from_username(Other_username);
 
-                if (Logged_In_Admins.Contains(user_id_1)) //the performing admin is logged-in
+                //The admin exists and is logged-in -> State == Admin
+                if (Admins.Contains(user_id_1) && Admins.Contains(user_id_2) && getUserfromUsersByUsername(curr_Admin_userName).GetUserState().Equals("Administrator")) 
                 {
                     return userRepo.CheckIfAdmin(curr_Admin_userName, Other_username);
                 }
+
+                else if (Admins.Contains(user_id_1) && !Admins.Contains(user_id_2) && getUserfromUsersByUsername(curr_Admin_userName).GetUserState().Equals("Administrator"))
+                {
+                    return false;
+                }
                 else
                 {
-                    throw new Exception("The performing Admin isn't logged-in");
+                    throw new Exception("The performing Member isn't an admin or he isn't logged-in");
                 }
             }
 
@@ -413,6 +419,19 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 throw e;
             }
+        }
+
+        private User getUserfromUsersByUsername(string username)
+        {
+            foreach (User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    return user;
+                }
+            }
+
+            return null;
         }
     }
 }

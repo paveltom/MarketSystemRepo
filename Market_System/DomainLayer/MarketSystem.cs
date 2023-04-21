@@ -799,5 +799,10 @@ namespace Market_System.DomainLayer
             UserRepo.GetInstance().destroy_me();
 
         }
+
+        public void AddNewAdmin(string username)
+        {
+
+        }
     }
 }

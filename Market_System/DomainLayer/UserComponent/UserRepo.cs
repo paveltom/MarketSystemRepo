@@ -63,6 +63,11 @@ namespace Market_System.DomainLayer.UserComponent
             return false;
         }
 
+        internal void AddFirstAdmin(string username)
+        {
+            Admins.Add(username);
+        }
+
         public string register(string username, string password)
         {
             string hashed_Password = PasswordHasher.HashPassword(password);
