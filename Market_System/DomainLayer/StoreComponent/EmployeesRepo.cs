@@ -51,6 +51,35 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+        public void addNewAdmin(string userID)
+        {
+            foreach(Employee emp in employeesDatabase)
+            {
+                if (emp.UserID.Equals(userID))
+                {
+                    throw new Exception("This user is already an admin!");
+                }
+            }
+            employeesDatabase.Add(new Employee(userID, "", Role.Admin)); //No store specified because it is an admin...
+        }
 
+        public void Save_Employees()
+        { 
+
+        }
+
+        internal bool isMarketManager(string userID)
+        {
+            foreach (Employee emp in employeesDatabase)
+            {
+                if (emp.UserID.Equals(userID) && emp.Role.Equals(Role.Admin))
+                {
+                    return true;
+
+                }
+            }
+
+            return false;
+        }
     }
 }

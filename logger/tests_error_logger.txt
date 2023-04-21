@@ -622,3 +622,8 @@ Friday, 21 April 2023 : error!!: a user with same name exists, please change nam
 Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
 Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
 Friday, 21 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response' to type 'Market_System.ServiceLayer.Response`1[System.Collections.Generic.List`1[Market_System.DomainLayer.ItemDTO]]'.in get_products_from_shop
+Friday, 21 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Friday, 21 April 2023 : error!!: a user with same name exists, please change name!in register
+Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
+Friday, 21 April 2023 : error!!: Incorrect login information has been provided in login_member
+Friday, 21 April 2023 : error!!: Unable to cast object of type 'Market_System.ServiceLayer.Response' to type 'Market_System.ServiceLayer.Response`1[System.Collections.Generic.List`1[Market_System.DomainLayer.ItemDTO]]'.in get_products_from_shop

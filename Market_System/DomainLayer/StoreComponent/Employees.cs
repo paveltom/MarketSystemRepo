@@ -273,17 +273,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         internal bool isMarketManager(string userID)
         {
-            foreach(Employee em in empPermissions)
-            {
-                if(em.UserID.Equals(userID))
-                {
-                    if(em.Role.Equals(Role.Admin))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return EmployeeRepo.GetInstance().isMarketManager(userID);
         }
 
         //**add exeption catching.
