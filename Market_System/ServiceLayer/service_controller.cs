@@ -24,8 +24,6 @@ namespace Market_System.ServiceLayer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-
-
         }
 
         private void new_guest_entered_the_website(string session_id)
@@ -516,8 +514,6 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-
-
                 Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.GetProductsFromStore(storeID);
                 Logger.get_instance().record_event("getting products from store : " + storeID+" done successfully");
 
@@ -527,7 +523,7 @@ namespace Market_System.ServiceLayer
             {
 
                 Logger.get_instance().record_error("error!!: " + e.Message + "in get_products_from_shop");
-                return Response<List<ItemDTO>>.FromError(e.Message);
+                return null;
             }
         }
 
