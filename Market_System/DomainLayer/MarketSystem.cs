@@ -14,6 +14,7 @@ namespace Market_System.DomainLayer
     {
         private static UserFacade userFacade;
         private static StoreFacade storeFacade;
+        private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
 
         //This variable is going to store the Singleton Instance
@@ -805,6 +806,10 @@ namespace Market_System.DomainLayer
             try
             {
                 userFacade.AddNewAdmin(sessionID, Other_username);
+
+                //Add to Employees as well:
+                string user_ID = userFacade.get_userID_from_session(sessionID);
+                employeeRepo.addNewAdmin(user_ID);
             }
             catch(Exception e)
             {

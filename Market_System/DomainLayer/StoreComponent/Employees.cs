@@ -139,13 +139,16 @@ namespace Market_System.DomainLayer.StoreComponent
             Employee newEmp = new Employee(userID, storeID, role);
             newEmp.Permissions = permissions;
             AddEmp(newEmp);
+            EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
         /**remove 'userID' employee
         */
         public void removeEmployee(string userID, string storeID)
-        { 
-            removeEmp(getemployee(userID, storeID));
+        {
+            Employee emp = getemployee(userID, storeID);
+            removeEmp(emp);
+            EmployeeRepo.GetInstance().Remove_Employee(emp);
         }
 
 
@@ -220,6 +223,7 @@ namespace Market_System.DomainLayer.StoreComponent
             newEmp.OwnerAssignner = assignnerID;
             newEmp.Permissions = OwnerPermissions;
             AddEmp(newEmp);
+            EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
         /**add new  founder employee  with 'permissions' of an founder.
@@ -229,6 +233,7 @@ namespace Market_System.DomainLayer.StoreComponent
             Employee newEmp = new Employee(userID, storeID, Role.Founder);
             newEmp.Permissions = FounderPermissions;
             AddEmp(newEmp);
+            EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
         public void AddNewManagerEmpPermissions(string assignnerID, string newManagerID, string storeID, List<Permission> managingPermissions)
@@ -273,17 +278,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         internal bool isMarketManager(string userID)
         {
-            foreach(Employee em in empPermissions)
-            {
-                if(em.UserID.Equals(userID))
-                {
-                    if(em.Role.Equals(Role.Admin))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return EmployeeRepo.GetInstance().isMarketManager(userID);
         }
 
         //**add exeption catching.
