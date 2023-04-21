@@ -190,9 +190,10 @@ namespace Market_System.DomainLayer
 
         public string GetStorePurchaseHistory(string sessionID, string storeID)
         {
+            string user_id = get_userid_from_session_id(sessionID);
             try
             {
-               return storeFacade.GetPurchaseHistoryOfTheStore(sessionID, storeID);
+               return storeFacade.GetPurchaseHistoryOfTheStore(user_id, storeID);
 
             }
 

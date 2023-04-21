@@ -172,14 +172,15 @@ namespace Market_System.Tests.unit_tests
                 ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
                 ms.Check_Out("buyer", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
                 Cart cart = ms.get_cart_of_userID(user_id);
+                ItemDTO bought_item_1 = cart.convert_to_item_DTO()[0];
                 ms.purchase(session_id, cart.convert_to_item_DTO());
                 ms.Logout(user_id);
 
-
+                
 
                 ms.register("buyer2", "mypass16516", "char");
 
-                ms.Login("buyer2", "p@mypass16516");
+                ms.Login("buyer2", "mypass16516");
                 ms.link_user_with_session("buyer2", "bullshit");
                 session_id = ms.get_session_id_from_username("buyer2");
                 user_id = ms.get_userid_from_session_id(session_id);
@@ -188,20 +189,17 @@ namespace Market_System.Tests.unit_tests
                 ms.Check_Out("buyer2", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
                 Cart cart_2 = ms.get_cart_of_userID(user_id);
                 ms.purchase(session_id, cart_2.convert_to_item_DTO());
+                ItemDTO bought_item_2 = cart_2.convert_to_item_DTO()[0];
                 ms.Logout(user_id);
                 ms.Login("store_owner", "p@ssvv0rcl");
                  session_id = ms.get_session_id_from_username("store_owner");
-                string shouldbe = DateTime.Now.ToShortDateString() + ":\n";
-                shouldbe = shouldbe + "product " + item_dto_1.GetID() + " quantity: " + item_dto_1.GetQuantity() + "\n";
-                 shouldbe = shouldbe+DateTime.Now.ToShortDateString() + ":\n";
-                shouldbe = shouldbe + "product " + item_dto_2.GetID() + " quantity: " + item_dto_2.GetQuantity() + "\n";
-                Assert.IsTrue(ms.GetStorePurchaseHistory(session_id, store_dto.StoreID).Equals(shouldbe));
-                
-                
-                
+                string shouldbe = DateTime.Now.ToShortDateString() + ": \n";
+                shouldbe = shouldbe + "product " + item_dto_1.GetID() + " quantity: " + bought_item_1.GetQuantity() + "\n";
+                shouldbe = shouldbe + "product " + item_dto_2.GetID() + " quantity: " + bought_item_2.GetQuantity() + "\n";
+                string got = ms.GetStorePurchaseHistory(session_id, store_dto.StoreID);
+                Assert.IsTrue(got.Equals(shouldbe));
 
-
-
+           
             }
             catch (Exception e)
             {
