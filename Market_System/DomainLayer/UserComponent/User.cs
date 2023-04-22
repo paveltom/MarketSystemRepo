@@ -69,5 +69,10 @@ namespace Market_System.DomainLayer.UserComponent
         {
             this.my_cart.remove_product(product_id);
         }
+
+        internal void reset_cart()
+        {
+            my_cart = new Cart();
+        }
     }
 }

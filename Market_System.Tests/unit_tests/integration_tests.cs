@@ -231,12 +231,13 @@ namespace Market_System.Tests.unit_tests
                 user_id = ms.get_userid_from_session_id(session_id);
                 ms.ReserveProduct(new ItemDTO(item_dto_1.GetID(), 10));
                 ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
-                ms.ReserveProduct(new ItemDTO(item_dto_2.GetID(), 10));
+                ms.ReserveProduct(new ItemDTO(item_dto_2.GetID(), 5));
                 ms.Add_Product_To_basket(item_dto_2.GetID(), session_id, "5");
                 Cart cart = ms.get_cart_of_userID(user_id);
                 ms.Check_Out("buyer", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
                
                 ms.purchase(session_id, cart.convert_to_item_DTO());
+                ms.save_purhcase_in_user(session_id, cart);
                 List<PurchaseHistoryObj> history= ms.get_purchase_history_of_a_member(session_id);
                 ItemDTO bought_item_1 = cart.convert_to_item_DTO()[0];
                 ItemDTO bought_item_2 = cart.convert_to_item_DTO()[1];
@@ -252,6 +253,46 @@ namespace Market_System.Tests.unit_tests
                 }
                
                 Assert.IsTrue(got.Equals(shouldbe));
+
+
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
+            }
+        }
+
+
+        [TestMethod]
+        public void cart_resets_after_successful_purchase()
+        {
+            try
+            {
+                ms.register("store_owner", "p@ssvv0rcl", "aiur");
+
+                ms.Login("store_owner", "p@ssvv0rcl");
+                ms.link_user_with_session("store_owner", "random_shit");
+                string session_id = ms.get_session_id_from_username("store_owner");
+                StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                string user_id = ms.get_userid_from_session_id(session_id);
+                ms.Logout(user_id);
+                ms.register("buyer", "p@ssvv0rcl999999", "shakuras");
+
+                ms.Login("buyer", "p@ssvv0rcl999999");
+                ms.link_user_with_session("buyer", "random_shit69");
+                session_id = ms.get_session_id_from_username("buyer");
+                user_id = ms.get_userid_from_session_id(session_id);
+                ms.ReserveProduct(new ItemDTO(item_dto_1.GetID(), 10));
+                ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
+                Cart cart = ms.get_cart_of_userID(user_id);
+                ms.Check_Out("buyer", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
+
+                ms.purchase(session_id, cart.convert_to_item_DTO());
+                ms.save_purhcase_in_user(session_id, cart);
+                Cart cart_after_purchase = ms.get_cart_of_userID(user_id);
+
+                Assert.IsTrue(cart_after_purchase.gett_all_baskets().Count==0);
 
 
             }

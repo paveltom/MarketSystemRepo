@@ -394,7 +394,8 @@ namespace Market_System.Tests.unit_tests
                 user_facade.Login("test1", "pass");
                 user_facade.add_product_to_basket("132_151", "test1", 1);
                 user_facade.Check_Out("test1");
-                user_facade.save_purhcase_in_user("test1", user_facade.get_cart("test1"));
+                string user_id = user_facade.get_user_id_from_username("test1");
+                user_facade.save_purhcase_in_user(user_id, user_facade.get_cart("test1"));
                
 
                 string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket 132 : \n" + "product 132_151"+ " quantity: 1\n";
