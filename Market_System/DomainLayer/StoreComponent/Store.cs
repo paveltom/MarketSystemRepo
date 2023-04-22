@@ -95,7 +95,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OwnerOnly) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (this.employees.isFounder(userID, this.Store_ID) || (this.employees.isOwner(userID, this.Store_ID) && 
+                                                                this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.updateEmpPermissions(employeeID, this.Store_ID, perms);
                     else
                         throw new Exception("You can't manage this employee permissions.");
@@ -112,7 +113,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
                     else
                         throw new Exception("Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store.");
@@ -127,7 +128,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && !this.employees.isManager(newManagerID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !this.employees.isManager(newManagerID, this.Store_ID))
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
                     else
                         throw new Exception("Cannot assign new manager: you are not an owner or this employee is already a manager in this store.");
@@ -168,7 +169,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID)) || ((this.employees.isOwner(userID, this.Store_ID)) && 
+                                                                            this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
                     else
                         throw new Exception("You cannot add permissions for that employee.");
@@ -184,8 +186,10 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (userID == this.founderID || 
+                        (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.removeAnEmpPermission(employeeID, this.Store_ID, permToRemove); // validate this method added to EmployeesPermission
+                    else throw new Exception("You have no permission to remove this employee permisssion.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -239,15 +243,25 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (this.founderID != userID) // ADD - maket manager permission validation
                     throw new Exception("Only store founder or Market Manager can remove a store.");
                 this.storeRepo.close_store_temporary(this.Store_ID);
-                /*
-                foreach (String s in allProducts)
-                {
-                    AcquireProduct(s).RemoveProduct(this.founderID); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! don't remove product here so store can be restored
-                    ReleaseProduct(s);
-                }
-                */
                 this.employees.removeStore(this.Store_ID);
+                this.temporaryClosed = true;
                 // remove policies and strategies
+
+            }
+            catch (Exception ex) { throw ex; }
+
+        }
+
+        public void ReopenStore(string userID)
+        {
+            try
+            {
+                if (this.founderID != userID) // ADD - maket manager permission validation
+                    throw new Exception("Only store founder or Market Manager can reopen a store.");
+                this.storeRepo.re_open_closed_temporary_store(userID, this.Store_ID);
+                //this.employeesReopenStore(this.Store_ID);
+                this.temporaryClosed = false;
+                // restore policies and strategies
 
             }
             catch (Exception ex) { throw ex; }
@@ -265,7 +279,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     double price = 0;
                     foreach (ItemDTO item in productsToCalculate)
                     {
-                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), true);
+                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), false);
                         ReleaseProduct(item.GetID());
                     }
                     return price;
@@ -340,7 +354,9 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.defaultPolicies.TryRemove(policyID, out _))
                         Save();
+                    else throw new Exception("No such policy.");
                 }
+                else throw new Exception("You have no permission to remove store policy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -353,7 +369,9 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                         Save();
+                    else throw new Exception("Strategy already exists.");
                 }
+                else throw new Exception("You have no permission to add strategy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -546,7 +564,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.isMarketManager(userID)) // // change later after market manager permission enum added
+                if (this.employees.isMarketManager(userID))
                 {
                     AcquireProduct(productID).SetRating(rating);
                     ReleaseProduct(productID);

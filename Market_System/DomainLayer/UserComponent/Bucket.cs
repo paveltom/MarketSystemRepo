@@ -50,10 +50,10 @@ namespace Market_System.DomainLayer.UserComponent
             return this.products;
         }
 
-        internal int remove_product(string product_id)
+        internal int remove_product(string product_id, int quantity)
         {
-            this.products[product_id] = this.products[product_id] - 1;
-            if(this.products[product_id]==0)
+            this.products[product_id] = this.products[product_id] -quantity;
+            if(this.products[product_id]<=0)
             {
                 this.products.Remove(product_id);
             }

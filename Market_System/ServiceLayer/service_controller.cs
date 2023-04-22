@@ -42,6 +42,9 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+      
+
         public Response<string> add_product_to_basket(string product_id, string quantity)
         {
             try
@@ -175,6 +178,7 @@ namespace Market_System.ServiceLayer
                 
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
                 this.ssc.purchase(session_id, cart.convert_to_item_DTO());
+                this.usc.save_purhcase_in_user(session_id, cart);
                 Logger.get_instance().record_event("checkout completed by : " + username );
                 
                 return ok;
@@ -680,11 +684,11 @@ namespace Market_System.ServiceLayer
             }
 }
 
-        public Response<string> remove_product_from_basket(string product_id)
+        public Response<string> remove_product_from_basket(string product_id, string quantity)
         {
             try
             {
-                Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id));
+                Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id,quantity));
                 Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
              
                 return ok;

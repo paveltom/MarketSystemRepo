@@ -155,7 +155,15 @@ namespace Market_System.DomainLayer.UserComponent
 
          public string get_username_from_user_id(string userid)
         {
+            
             return userRepo.get_username_from_userID(userid);
+        }
+
+
+        public string get_user_id_from_username(string username)
+        {
+
+            return userRepo.get_userID_from_username(username);
         }
         internal void update_cart_total_price(string username, double price)
         {
@@ -195,14 +203,14 @@ namespace Market_System.DomainLayer.UserComponent
             
         }
 
-        public void remove_product_from_basket(string product_id, string username)
+        public void remove_product_from_basket(string product_id, string username,int quantity)
         {
             
             foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
                 {
-                    u.remove_product_from_basket(product_id);
+                    u.remove_product_from_basket(product_id, quantity);
                 }
             }
         }
@@ -245,12 +253,12 @@ namespace Market_System.DomainLayer.UserComponent
                     if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
                     {
                         Admins.Add(user_id);
+                        return;
                     }
                 }
 
                 catch(Exception e)
                 {
-                    //do nothing
                     return;
                 }
             }
@@ -374,8 +382,10 @@ namespace Market_System.DomainLayer.UserComponent
             return false;
         }
 
-        public void save_purhcase_in_user(string username,Cart cart)
+        public void save_purhcase_in_user(string user_id,Cart cart)
         {
+            
+            string username = get_username_from_user_id(user_id);
             PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }
 
@@ -460,6 +470,19 @@ namespace Market_System.DomainLayer.UserComponent
             }
 
             return null;
+        }
+
+        internal void reset_cart(string session_id)
+        {
+            string userid = get_userID_from_session(session_id);
+            string username = get_username_from_user_id(userid);
+            foreach (User user in users)
+            {
+                if(user.GetUsername().Equals(username))
+                {
+                    user.reset_cart();
+                }
+            }
         }
     }
 }

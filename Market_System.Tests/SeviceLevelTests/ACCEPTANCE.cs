@@ -73,6 +73,7 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
             Response<StoreDTO> response = service.open_new_store(new List<string> { "store_123" });
+            //the bug is response.Value.StoreID
             Response<ItemDTO> resProdAdd = service.add_product_to_store(response.Value.StoreID, "Prod1", "desc1", "1", "1", "1", "2.0", "1.0", "5.0", "5.0_2.0", "attr", "new_category");
         }
 
@@ -107,7 +108,7 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadSetUp();
 
             //Action:
-            Response<string> response = service.register("user1", "pass1", "add1");
+            Response<string> response = service.register("user5", "pass1", "add1");
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
@@ -154,7 +155,8 @@ namespace Market_System.Tests.SeviceLevelTests
         public void AssignNewMannegerSuccess()
         {
             //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
             //Action:
             Response<string> responseLogout = service.assign_new_manager("Store1", "user1");
             //Result:
@@ -242,7 +244,7 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
-
+            //oneThreadSetUp();
             //Action:
             Response<string> responseLogout = service.log_out();
 
@@ -256,7 +258,7 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
         //TODO:: Uncomment this when @Pasha fixes this - problem with Employees... when opening a new store 
-        /*
+        
         [TestMethod]
         public void openStoreSuccess()
         {
@@ -264,23 +266,24 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
 
             //Action:
-            Response<string> response = service.open_new_store(new List<string> { "Store_123" }); //TODO:: Should get STOREDTO here which contains the storeID
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_123" }); //TODO:: Should get STOREDTO here which contains the storeID
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
             //todo: check if store was added:
-            Response<ItemDTO> resGetStore = service.GetStore("Store1"); ////todo store id? Store1
-            Assert.AreEqual(false, resGetStore.ErrorOccured);
+            Response<StoreDTO> resGetStore = service.GetStore(response.Value.StoreID);
+            Assert.AreEqual(response.Value.StoreID, resGetStore.Value.StoreID);
 
             //tearDown:
             oneThreadCleanup();
-        }*/
+        }
 
         [TestMethod]
         public void comment_on_product()
         {
             //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
 
             //Action:
             //todo: what is the prod id?
@@ -302,6 +305,7 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+            //oneThreadSetUp();
 
             //Action:
             Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123"});
@@ -321,7 +325,8 @@ namespace Market_System.Tests.SeviceLevelTests
         public void addproduct_failure()
         {
             //Setup: 
-            registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+            //registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+            oneThreadSetUp();
 
             //Action:
             Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123" });
@@ -343,7 +348,8 @@ namespace Market_System.Tests.SeviceLevelTests
         public void changeProdName()
         {
             //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
 
             //Action:
             //todo: what is the prod id?

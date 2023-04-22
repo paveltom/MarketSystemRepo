@@ -93,7 +93,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal void close_store_temporary(string sessionID, string storeID)
+        internal void close_store_temporary(string userID, string storeID)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (entry.Key.Equals(storeID))
                     {
-                        entry.Value.RemoveStore(sessionID);
+                        entry.Value.RemoveStore(userID);
                     }
                 }
             }
@@ -264,7 +264,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                storeRepo.re_open_closed_temporary_store(userID, storeID);
+                AcquireStore(storeID).ReopenStore(userID);
             }
             catch (Exception e) { throw e; }
         }
@@ -703,6 +703,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public void Destroy_me()
         {
             Instance = null;
+            storeRepo.destroy();
         }
 
 

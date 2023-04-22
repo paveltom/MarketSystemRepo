@@ -110,12 +110,33 @@ namespace Market_System.ServiceLayer
             }
 
         }
-        public string remove_product_from_basket(string product_id, string session_id)
+
+        public void save_purhcase_in_user(string session_id, Cart cart)
         {
             try
             {
-               
-                return market_System.remove_product_from_basket(product_id, session_id);
+
+
+                this.market_System.save_purhcase_in_user(session_id, cart);
+
+
+            }
+
+            catch (Exception e)
+            {
+                //TODO:: לבטל שריון של ההזמנה!!!!
+                throw e;
+
+            }
+        }
+        public string remove_product_from_basket(string product_id, string session_id,string quantity)
+        {
+            try
+            {
+
+                market_System.LetGoProduct(new ItemDTO(product_id, int.Parse(quantity)));
+                
+                return market_System.remove_product_from_basket(product_id, session_id, int.Parse(quantity));
             }
             catch (Exception e)
             {
