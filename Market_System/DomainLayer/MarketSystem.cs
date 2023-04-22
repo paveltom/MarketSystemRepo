@@ -236,7 +236,7 @@ namespace Market_System.DomainLayer
             storeFacade.ReserveProduct(itemDTO);
         }
 
-        public string remove_product_from_basket(string product_id, string session_ID)
+        public string remove_product_from_basket(string product_id, string session_ID,int quantity)
         {
             string user_id = get_userid_from_session_id(session_ID);
             string username = userFacade.get_username_from_user_id(user_id);
@@ -247,12 +247,12 @@ namespace Market_System.DomainLayer
                     {
                         //storeFacade.add_Product_to_Store(product_id);
 
-                        userFacade.remove_product_from_basket(product_id, username);
+                        userFacade.remove_product_from_basket(product_id, username,quantity);
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
                         double  price  =  storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                       //  double price = 110;
                         userFacade.update_cart_total_price(username, price);
-                        return "removed product id : " + product_id + " from " + userFacade.get_username_from_user_id(user_id) + "'s cart";
+                        return "removed "+quantity+" of product id : " + product_id + " from " + userFacade.get_username_from_user_id(user_id) + "'s cart";
                     }
                     else
                     {

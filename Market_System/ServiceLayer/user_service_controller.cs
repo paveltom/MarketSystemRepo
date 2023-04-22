@@ -129,12 +129,14 @@ namespace Market_System.ServiceLayer
 
             }
         }
-        public string remove_product_from_basket(string product_id, string session_id)
+        public string remove_product_from_basket(string product_id, string session_id,string quantity)
         {
             try
             {
-               
-                return market_System.remove_product_from_basket(product_id, session_id);
+
+                market_System.LetGoProduct(new ItemDTO(product_id, int.Parse(quantity)));
+                
+                return market_System.remove_product_from_basket(product_id, session_id, int.Parse(quantity));
             }
             catch (Exception e)
             {

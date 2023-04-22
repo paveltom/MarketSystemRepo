@@ -684,11 +684,11 @@ namespace Market_System.ServiceLayer
             }
 }
 
-        public Response<string> remove_product_from_basket(string product_id)
+        public Response<string> remove_product_from_basket(string product_id, string quantity)
         {
             try
             {
-                Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id));
+                Response<string> ok=Response<string>.FromValue(this.usc.remove_product_from_basket(product_id, session_id,quantity));
                 Logger.get_instance().record_event(this.usc.get_userID_from_session_id(session_id)+" removed product with id: " +product_id+" from the basket");
              
                 return ok;

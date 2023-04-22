@@ -69,16 +69,16 @@ namespace Market_System.DomainLayer.UserComponent
             throw new Exception("basket does not exists");
         }
 
-        internal void remove_product(string product_id)
+        internal void remove_product(string product_id, int quantity)
         {
-            string store_id = product_id.Substring(0, 3);// 3 first digist are store id
+            string store_id = product_id.Substring(0, product_id.IndexOf('_'));
             int remove_basket_flag = -1; // if it is set to 1 then delete , if it is still -1 then error basket does not exists
 
             foreach (Bucket basket in this.baskets)
             {
                 if (basket.get_store_id().Equals(store_id))
                 {
-                    remove_basket_flag = basket.remove_product(product_id);
+                    remove_basket_flag = basket.remove_product(product_id,quantity);
 
                 }
 

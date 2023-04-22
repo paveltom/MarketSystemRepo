@@ -268,7 +268,7 @@ namespace Market_System.Tests.unit_tests
             user_facade.Login("test1", "pass");
             user_facade.add_product_to_basket("123_456", "test1",1);
             user_facade.add_product_to_basket("123_456", "test1",1);
-            user_facade.remove_product_from_basket("123_456", "test1");
+            user_facade.remove_product_from_basket("123_456", "test1",1);
             Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123_456"));
         }
 
@@ -280,7 +280,7 @@ namespace Market_System.Tests.unit_tests
                 user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
                 user_facade.add_product_to_basket("123_456", "test1",1);
-                user_facade.remove_product_from_basket("123_456", "test1");
+                user_facade.remove_product_from_basket("123_456", "test1",1);
                 user_facade.get_cart("test1").get_basket("123");
                 Assert.Fail("This test should've failed - no product is left in this basket then basket should not be existed");
             }
@@ -299,7 +299,7 @@ namespace Market_System.Tests.unit_tests
             {
                 user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
-                user_facade.remove_product_from_basket("123_456", "test1");
+                user_facade.remove_product_from_basket("123_456", "test1",1);
                 Assert.Fail("This test should've failed - basket does not exists");
             }
             catch (Exception e)

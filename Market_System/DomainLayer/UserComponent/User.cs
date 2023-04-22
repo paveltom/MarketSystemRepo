@@ -65,9 +65,9 @@ namespace Market_System.DomainLayer.UserComponent
             this.my_cart.update_total_price(price);
         }
 
-        internal void remove_product_from_basket(string product_id)
+        internal void remove_product_from_basket(string product_id,int quantity)
         {
-            this.my_cart.remove_product(product_id);
+            this.my_cart.remove_product(product_id,quantity);
         }
 
         internal void reset_cart()
