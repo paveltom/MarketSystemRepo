@@ -245,12 +245,12 @@ namespace Market_System.DomainLayer.UserComponent
                     if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
                     {
                         Admins.Add(user_id);
+                        return;
                     }
                 }
 
                 catch(Exception e)
                 {
-                    //do nothing
                     return;
                 }
             }
