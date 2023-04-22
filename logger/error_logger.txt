@@ -199,3 +199,10 @@ Friday, 21 April 2023 : error!!: Incorrect login information has been provided i
 יום שישי 21 אפריל 2023 : error!!: An item with the same key has already been added.in register
 שבת 22 אפריל 2023 : error!!: An item with the same key has already been added.in register
 
+Saturday, 22 April 2023 : error!!: Incorrect login information has been provided in login_member
+Saturday, 22 April 2023 : error!!: a user with same name exists, please change name!in register
+Saturday, 22 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Saturday, 22 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Saturday, 22 April 2023 : error!!: Incorrect login information has been provided in login_member
+Saturday, 22 April 2023 : error!!: An item with the same key has already been added.in register
+Saturday, 22 April 2023 : error!!: Incorrect login information has been provided in login_member

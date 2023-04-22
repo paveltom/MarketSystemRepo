@@ -750,3 +750,39 @@ Friday, 21 April 2023 : guest : guest1504700207 has logged in
 שבת 22 אפריל 2023 : 1457677925Logged-out succesfully
 שבת 22 אפריל 2023 : guest : guest1663787275 has logged in
 שבת 22 אפריל 2023 : guest : guest1255052345 has logged in
+Saturday, 22 April 2023 : guest : guest1419895472 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : guest : guest492526453 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : guest : guest1330838527 has logged in
+Saturday, 22 April 2023 : assigning new manager with id : user1 to the store with id: Store1
+Saturday, 22 April 2023 : guest : guest2056922039 has logged in
+Saturday, 22 April 2023 : opening store with id: 515866183 has failed
+Saturday, 22 April 2023 : guest : guest1555799990 has logged in
+Saturday, 22 April 2023 : user5 has registered!
+Saturday, 22 April 2023 : guest : guest471421767 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : 950848668Logged-out succesfully
+Saturday, 22 April 2023 : guest : guest1156958018 has logged in
+Saturday, 22 April 2023 : guest : guest703306050 has logged in
+Saturday, 22 April 2023 : a product name change for product id: Store1_Prod1
+Saturday, 22 April 2023 : guest : guest1159983683 has logged in
+Saturday, 22 April 2023 : guest : guest1579139720 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : guest : guest1811024003 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 1391867966 has failed
+Saturday, 22 April 2023 : Added the product:1391867966_882099228to store: 1391867966 has been done successfully
+Saturday, 22 April 2023 : guest : guest2080429882 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : guest : guest771258309 has logged in
+Saturday, 22 April 2023 : michel has registered!
+Saturday, 22 April 2023 : guest : guest1878976262 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 1459820225 has failed
+Saturday, 22 April 2023 : getting store with id: 1459820225 was done successfully 
+Saturday, 22 April 2023 : guest : guest1452729292 has logged in

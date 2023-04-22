@@ -93,7 +93,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal void close_store_temporary(string sessionID, string storeID)
+        internal void close_store_temporary(string userID, string storeID)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (entry.Key.Equals(storeID))
                     {
-                        entry.Value.RemoveStore(sessionID);
+                        entry.Value.RemoveStore(userID);
                     }
                 }
             }

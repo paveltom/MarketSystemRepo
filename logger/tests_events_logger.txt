@@ -2031,3 +2031,59 @@ Friday, 21 April 2023 : user1 has registered!
 Friday, 21 April 2023 : user1  has logged in!
 Friday, 21 April 2023 : guest : guest2108266554 has logged in
 Friday, 21 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : guest : guest1262886268 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : 538838423Logged-out succesfully
+Saturday, 22 April 2023 : guest : guest89316466 has logged in
+Saturday, 22 April 2023 : guest : guest536970869 has logged in
+Saturday, 22 April 2023 : a new comment for product id: Store1_Prod1
+Saturday, 22 April 2023 : guest : guest1726654834 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : guest : guest529879936 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 110723899 has failed
+Saturday, 22 April 2023 : guest : guest335517249 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : guest : guest1749994564 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : guest : guest1981878847 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : guest : guest1825037756 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 1405881719 has failed
+Saturday, 22 April 2023 : getting store with id: 1405881719 was done successfully 
+Saturday, 22 April 2023 : guest : guest1316824774 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 897668737 has failed
+Saturday, 22 April 2023 : guest : guest277059080 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : 1019528623Logged-out succesfully
+Saturday, 22 April 2023 : guest : guest1225637973 has logged in
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : guest : guest2042908286 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : guest : guest1384777033 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 965620996 has failed
+Saturday, 22 April 2023 : guest : guest1848545599 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 1429389562 has failed
+Saturday, 22 April 2023 : getting store with id: 1429389562 was done successfully 
+Saturday, 22 April 2023 : guest : guest1227935942 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 808779905 has failed
+Saturday, 22 April 2023 : guest : guest195261181 has logged in
+Saturday, 22 April 2023 : user1 has registered!
+Saturday, 22 April 2023 : user1  has logged in!
+Saturday, 22 April 2023 : opening store with id: 801688972 has failed
+Saturday, 22 April 2023 : Added the product:801688972_114488665to store: 801688972 has been done successfully
