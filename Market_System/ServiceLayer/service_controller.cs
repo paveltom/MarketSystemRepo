@@ -42,6 +42,9 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+      
+
         public Response<string> add_product_to_basket(string product_id, string quantity)
         {
             try
@@ -175,6 +178,7 @@ namespace Market_System.ServiceLayer
                 
                 Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
                 this.ssc.purchase(session_id, cart.convert_to_item_DTO());
+                this.usc.save_purhcase_in_user(session_id, cart);
                 Logger.get_instance().record_event("checkout completed by : " + username );
                 
                 return ok;

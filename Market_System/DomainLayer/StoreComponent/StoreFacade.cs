@@ -703,6 +703,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public void Destroy_me()
         {
             Instance = null;
+            storeRepo.destroy();
         }
 
 

@@ -266,9 +266,10 @@ namespace Market_System.DomainLayer
 
         public void purchase(string session_id,List<ItemDTO> itemDTOs)
         {
+            string userid = get_userid_from_session_id(session_id);
             try
             {
-                storeFacade.Purchase(session_id, itemDTOs);
+                storeFacade.Purchase(userid, itemDTOs);
             }
 
             catch (Exception e)
@@ -556,6 +557,29 @@ namespace Market_System.DomainLayer
             
         }
 
+
+
+        public void save_purhcase_in_user(string session_id,Cart cart)
+        {
+            string user_id = get_userid_from_session_id(session_id);
+            try
+            {
+
+             
+                userFacade.save_purhcase_in_user(user_id, cart);
+                userFacade.reset_cart(session_id);
+
+             
+            }
+
+            catch (Exception e)
+            {
+                //TODO:: לבטל שריון של ההזמנה!!!!
+                throw e;
+
+            }
+        }
+
         public string Check_Out(string username,string credit_card_details,Cart cart)
         {
             try
@@ -564,7 +588,7 @@ namespace Market_System.DomainLayer
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
-                userFacade.save_purhcase_in_user(username,cart);
+               // userFacade.save_purhcase_in_user(username,cart);
                 
                 return "Payment was successfull";
             }
@@ -589,7 +613,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByKeyword(string keyword)
+        public List<ItemDTO> SearchProductByKeyword(string keyword)
         {
             try
             {
@@ -613,7 +637,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByName(string name)
+        public List<ItemDTO> SearchProductByName(string name)
         {
             try
             {
@@ -649,7 +673,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByCategory( string category)
+        public List<ItemDTO> SearchProductByCategory( string category)
         {
             try
             {
