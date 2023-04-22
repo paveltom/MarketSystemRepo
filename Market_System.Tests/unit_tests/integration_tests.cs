@@ -302,6 +302,116 @@ namespace Market_System.Tests.unit_tests
             }
         }
 
+        [TestMethod]
+        public void searching_by_category_after_opening_store_and_adding_items()
+        {
+            try
+            {
+                ms.register("store_owner", "p@ssvv0rcl", "aiur");
+
+                ms.Login("store_owner", "p@ssvv0rcl");
+                ms.link_user_with_session("store_owner", "random_shit");
+                string session_id = ms.get_session_id_from_username("store_owner");
+                StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                string user_id = ms.get_userid_from_session_id(session_id);
+                ms.Logout(user_id);
+                ms.register("searcher", "p@ssvv0rcl999999", "shakuras");
+                ms.Login("searcher", "p@ssvv0rcl999999");
+                ms.link_user_with_session("searcher", "random_shit69");
+                session_id = ms.get_session_id_from_username("searcher");
+                user_id = ms.get_userid_from_session_id(session_id);
+                List<ItemDTO> search_result = ms.SearchProductByCategory("shoes");
+
+                List<ItemDTO> search_result_none = ms.SearchProductByName("drinks");
+
+
+                Assert.IsTrue(search_result[0].GetID().Equals(item_dto_1.GetID()));
+                Assert.IsTrue(search_result_none.Count == 0);
+
+
+                
+
+
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void searching_by_keyword_after_opening_store_and_adding_items()
+        {
+            try
+            {
+                ms.register("store_owner", "p@ssvv0rcl", "aiur");
+
+                ms.Login("store_owner", "p@ssvv0rcl");
+                ms.link_user_with_session("store_owner", "random_shit");
+                string session_id = ms.get_session_id_from_username("store_owner");
+                StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                string user_id = ms.get_userid_from_session_id(session_id);
+                ms.Logout(user_id);
+                ms.register("searcher", "p@ssvv0rcl999999", "shakuras");
+                ms.Login("searcher", "p@ssvv0rcl999999");
+                ms.link_user_with_session("searcher", "random_shit69");
+                session_id = ms.get_session_id_from_username("searcher");
+                user_id = ms.get_userid_from_session_id(session_id);
+                List<ItemDTO> search_result = ms.SearchProductByKeyword("bo");
+                List<ItemDTO> search_result_none = ms.SearchProductByKeyword("shir");
+
+
+                Assert.IsTrue(search_result[0].GetID().Equals(item_dto_1.GetID()));
+                Assert.IsTrue(search_result_none.Count == 0);
+
+
+                
+
+
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void searching_by_name_after_opening_store_and_adding_items()
+        {
+            try
+            {
+                ms.register("store_owner", "p@ssvv0rcl", "aiur");
+
+                ms.Login("store_owner", "p@ssvv0rcl");
+                ms.link_user_with_session("store_owner", "random_shit");
+                string session_id = ms.get_session_id_from_username("store_owner");
+                StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                string user_id = ms.get_userid_from_session_id(session_id);
+                ms.Logout(user_id);
+                ms.register("searcher", "p@ssvv0rcl999999", "shakuras");
+                ms.Login("searcher", "p@ssvv0rcl999999");
+                ms.link_user_with_session("searcher", "random_shit69");
+                session_id = ms.get_session_id_from_username("searcher");
+                user_id = ms.get_userid_from_session_id(session_id);
+                List<ItemDTO> search_result = ms.SearchProductByName("boots");
+                List<ItemDTO> search_result_none = ms.SearchProductByName("shirts");
+
+
+                Assert.IsTrue(search_result[0].GetID().Equals(item_dto_1.GetID()));
+                Assert.IsTrue(search_result_none.Count == 0);
+
+
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
+            }
+        }
+
+
     }
 
 

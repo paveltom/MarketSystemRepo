@@ -613,7 +613,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByKeyword(string keyword)
+        public List<ItemDTO> SearchProductByKeyword(string keyword)
         {
             try
             {
@@ -637,7 +637,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByName(string name)
+        public List<ItemDTO> SearchProductByName(string name)
         {
             try
             {
@@ -673,7 +673,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal List<ItemDTO> SearchProductByCategory( string category)
+        public List<ItemDTO> SearchProductByCategory( string category)
         {
             try
             {
