@@ -203,14 +203,14 @@ namespace Market_System.DomainLayer.UserComponent
             
         }
 
-        public void remove_product_from_basket(string product_id, string username)
+        public void remove_product_from_basket(string product_id, string username,int quantity)
         {
             
             foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
                 {
-                    u.remove_product_from_basket(product_id);
+                    u.remove_product_from_basket(product_id, quantity);
                 }
             }
         }
