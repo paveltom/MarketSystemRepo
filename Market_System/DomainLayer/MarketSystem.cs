@@ -9,7 +9,7 @@ using Market_System.DomainLayer.DeliveryComponent;
 
 namespace Market_System.DomainLayer
 {
-    //TODO:: Implement as a Mediator.
+    //TODO:: Implement this class as a Mediator.
     public sealed class MarketSystem
     {
         private static UserFacade userFacade;
