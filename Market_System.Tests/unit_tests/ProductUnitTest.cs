@@ -54,8 +54,8 @@ namespace Market_System.Tests.unit_tests
         public void AddPurchasePolicyProductTestSuccess()
         {
             // Arrange
-            Purchase_Policy purchase_Policy0 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy0ID", "AddPurchasePolicyProductTest_Policy0Name");
-            Purchase_Policy purchase_Policy1 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy1ID", "AddPurchasePolicyProductTest_Policy1Name");
+            Purchase_Policy purchase_Policy0 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy0ID", "AddPurchasePolicyProductTest_Policy0Name", 100, 0, 50);
+            Purchase_Policy purchase_Policy1 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy1ID", "AddPurchasePolicyProductTest_Policy1Name", 100, 0, 50);
 
             // Act
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
@@ -73,7 +73,7 @@ namespace Market_System.Tests.unit_tests
         public void AddPurchasePolicyAlreadyExistProductTest()
         {
             // Arrange
-            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name");
+            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name", 100, 0, 50);
             this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
             this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
             bool error0 = false;
@@ -100,8 +100,8 @@ namespace Market_System.Tests.unit_tests
         public void RemovePurchasePolicyProductTestSuccess()
         {
             // Arrange
-            Purchase_Policy purchase_Policy0 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy0ID", "RemovePurchasePolicyProductTest_Policy0Name");
-            Purchase_Policy purchase_Policy1 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy1ID", "RemovePurchasePolicyProductTest_Policy1Name");
+            Purchase_Policy purchase_Policy0 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy0ID", "RemovePurchasePolicyProductTest_Policy0Name", 100, 0, 50);
+            Purchase_Policy purchase_Policy1 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy1ID", "RemovePurchasePolicyProductTest_Policy1Name", 100, 0, 50);
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
             this.testProduct1.AddPurchasePolicy(purchase_Policy1);
 
@@ -118,7 +118,7 @@ namespace Market_System.Tests.unit_tests
         public void RemovePurchasePolicyDoesntExistProductTestFail()
         {
             // Arrange
-            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy_BOTH_ID", "RemovePurchasePolicyProductTest_Policy_BOTH_Name");
+            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy_BOTH_ID", "RemovePurchasePolicyProductTest_Policy_BOTH_Name", 100, 0, 50);
             bool error0 = false;
             bool error1 = false;
             this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
@@ -382,12 +382,12 @@ namespace Market_System.Tests.unit_tests
 
             List<string> fakeChosenAttributes = new List<string>() { "attr1" }; // this functionality doesn't support / consider attributes choice yet
 
-            double afterSale0 = p0Price - (p0Price / 100 * p0Sale);
-            double afterSale1 = p1Price - (p1Price / 100 * p1Sale);
+            double afterSale0 = this.testProduct0.Quantity * (p0Price - (p0Price / 100 * p0Sale));
+            double afterSale1 = this.testProduct1.Quantity * (p1Price - (p1Price / 100 * p1Sale));
 
             // Act
-            double out0 = this.testProduct0.ImplementSale(fakeChosenAttributes);
-            double out1 = this.testProduct1.ImplementSale(fakeChosenAttributes);
+            double out0 = this.testProduct0.ImplementSale(fakeChosenAttributes, this.testProduct0.Quantity);
+            double out1 = this.testProduct1.ImplementSale(fakeChosenAttributes, this.testProduct1.Quantity);
 
 
             // Assert
@@ -412,8 +412,8 @@ namespace Market_System.Tests.unit_tests
 
 
             // Act
-            double out0WithSale = this.testProduct0.CalculatePrice(quantityToBuy0, true);
-            double out1WithSale = this.testProduct1.CalculatePrice(quantityToBuy1, true); ;
+            double out0WithSale = this.testProduct0.CalculatePrice(quantityToBuy0);
+            double out1WithSale = this.testProduct1.CalculatePrice(quantityToBuy1); ;
 
 
             // Assert
@@ -429,13 +429,15 @@ namespace Market_System.Tests.unit_tests
             int quantityToBuy1 = 5;
             double p0Price = testProduct0.Price; // init parameter
             double p1Price = testProduct1.Price; // init parameter
+            this.testProduct0.SetSale(0);
+            this.testProduct1.SetSale(0);
 
             double priceBeforeSale0 = p0Price * quantityToBuy0;
             double priceBeforeSale1 = p1Price * quantityToBuy1;
 
             // Act
-            double out0WithoutSale = this.testProduct0.CalculatePrice(quantityToBuy0, false);
-            double out1WithoutSale = this.testProduct1.CalculatePrice(quantityToBuy1, false);
+            double out0WithoutSale = this.testProduct0.CalculatePrice(quantityToBuy0);
+            double out1WithoutSale = this.testProduct1.CalculatePrice(quantityToBuy1);
 
             // Assert
             Assert.AreEqual(priceBeforeSale0, out0WithoutSale);
@@ -452,13 +454,13 @@ namespace Market_System.Tests.unit_tests
             // Act
             try
             {
-                this.testProduct0.CalculatePrice(0, false);
+                this.testProduct0.CalculatePrice(0);
             }
             catch (Exception ex) { error0 = true; }
 
             try
             {
-                this.testProduct1.CalculatePrice(0, false);
+                this.testProduct1.CalculatePrice(0);
             }
             catch (Exception ex) { error1 = true; }
 
@@ -1107,7 +1109,7 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
@@ -1119,7 +1121,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetNewProduct()
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
+            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
@@ -1136,7 +1138,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetExistingProduct()
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
+            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
             String product_ID = "testProduct1StoreID465_tesProduct1ID";
             String name = "testProduct1Name";
