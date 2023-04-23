@@ -427,6 +427,5 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("user never bought anything!", e.Message);
             }
         }
-
     }
 }

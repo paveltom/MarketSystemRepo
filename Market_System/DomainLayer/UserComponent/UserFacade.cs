@@ -450,7 +450,7 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        internal string get_session_id_from_username(string username)
+        public string get_session_id_from_username(string username)
         {
             string userid = userRepo.get_userID_from_username(username);
             foreach(string session_id in userID_sessionID_linker.Keys)
@@ -459,6 +459,15 @@ namespace Market_System.DomainLayer.UserComponent
                 {
                     return session_id;
                 }
+            }
+            return null;
+        }
+
+        public string get_user_id_from_session_id(string session_id)
+        {
+            if (userID_sessionID_linker.ContainsKey(session_id))
+            {
+                return userID_sessionID_linker[session_id];
             }
             return null;
         }
