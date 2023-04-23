@@ -296,7 +296,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseCheckIfAdmin = service.CheckIfAdmin("admin");
 
             //Result:
-            Assert.AreEqual(false, responseAdminLogin.ErrorOccured);
+            Assert.AreEqual(false, responseCheckIfAdmin.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
@@ -314,7 +314,25 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> responseCheckIfAdmin = service.CheckIfAdmin("yotam");
 
             //Result:
-            Assert.AreEqual(false, responseAdminLogin.ErrorOccured);
+            Assert.AreEqual(false, responseCheckIfAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void CheckIfAdminFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseAdminLogin = service.login_member("yotam", "123554");
+
+            //Action:
+            Response<string> responseCheckIfAdmin = service.CheckIfAdmin("yotam");
+
+            //Result:
+            Assert.AreEqual(true, responseCheckIfAdmin.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
