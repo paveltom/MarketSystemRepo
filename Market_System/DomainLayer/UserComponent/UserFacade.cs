@@ -59,8 +59,12 @@ namespace Market_System.DomainLayer.UserComponent
                     try
                     {
                         string user_id = userRepo.get_userID_from_username(username);
-                        if (userRepo.CheckIfAdmin(user_id, user_id)) //Check if admin - login as admin if so
+                        if (userRepo.CheckIfAdmin(username, username)) //Check if admin - login as admin if so
                         {
+                            if (!Admins.Contains(user_id))
+                            {
+                                Admins.Add(user_id);
+                            }
                             user.AdminLogin();
                         }
                     }

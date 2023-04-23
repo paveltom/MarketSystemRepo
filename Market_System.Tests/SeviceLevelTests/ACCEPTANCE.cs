@@ -66,7 +66,6 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
 
-
         //(one thread)
         public void LoggedInOwnerWithOpenedOneProdStore(string username, string pass, string add)
         {
@@ -228,6 +227,40 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //Result:
             Assert.AreEqual(true, responseLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void LoginAdminSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+
+            //Action:
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Result:
+            Assert.AreEqual(false, responseAdminLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void AddNewAdminSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseRegisterNewMember = service.register("bobinka", "1234567", "addrr123");
+            Response<string> responseAddNewAdmin = service.AddNewAdmin("bobinka");
+
+            //Result:
+            Assert.AreEqual(false, responseAddNewAdmin.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
