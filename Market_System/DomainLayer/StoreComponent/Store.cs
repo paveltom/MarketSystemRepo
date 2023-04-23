@@ -261,13 +261,12 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (this.founderID != userID) // ADD - maket manager permission validation
                     throw new Exception("Only store founder or Market Manager can reopen a store.");
                 this.storeRepo.re_open_closed_temporary_store(userID, this.Store_ID);
-                //this.employeesReopenStore(this.Store_ID);                
+                this.employees.ReopenStore(this.Store_ID);
                 this.temporaryClosed = false;
             }
             catch (Exception ex) { throw ex; }
 
         }
-
 
         private static object CalculatePriceLock = new object();
         public double CalculatePrice(List<ItemDTO> productsToCalculate)

@@ -263,11 +263,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void removeStore(string storeID)
         {
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-            //save a backup
             List<Employee> emps = getStoreEmployees(storeID);
             foreach (Employee emp in emps)
             {
+                EmployeeRepo.GetInstance().Remove_Store(emp);
                 this.removeEmployee(emp.UserID, storeID);
             }
         }
@@ -297,6 +296,17 @@ namespace Market_System.DomainLayer.StoreComponent
         internal bool isMarketManager(string userID)
         {
             return EmployeeRepo.GetInstance().isMarketManager(userID);
+        }
+
+        internal void ReopenStore(string store_ID)
+        {
+            List<Employee> emps = EmployeeRepo.GetInstance().getClosedStoreEmployees(store_ID);
+            foreach (Employee emp in emps)
+            {
+                this.AddEmp(emp);
+            }
+
+            EmployeeRepo.GetInstance().ReopenStore(store_ID);
         }
 
         //**add exeption catching.
