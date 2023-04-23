@@ -126,7 +126,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         internal void ReopenStore(string store_ID)
         {
-            foreach (Employee emp in closedStoresDatabase)
+            foreach (Employee emp in closedStoresDatabase.ToList())
             {
                 if (emp.StoreID.Equals(store_ID))
                 {
