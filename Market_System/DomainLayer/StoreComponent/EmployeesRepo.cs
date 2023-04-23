@@ -12,6 +12,7 @@ namespace Market_System.DomainLayer.StoreComponent
     public class EmployeeRepo
     {
         private static List<Employee> employeesDatabase;
+        private static List<Employee> closedStoresDatabase;
 
 
         private static EmployeeRepo Instance = null;
@@ -33,6 +34,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (Instance == null)
                     {
                         employeesDatabase = new List<Employee>();
+                        closedStoresDatabase = new List<Employee>();
                         Instance = new EmployeeRepo();
                     }
                 } //Critical Section End
@@ -95,6 +97,43 @@ namespace Market_System.DomainLayer.StoreComponent
             }
 
             return false;
+        }
+
+        internal void Remove_Store(Employee emp)
+        {
+            lock (this)
+            {
+                if (!closedStoresDatabase.Contains(emp))
+                {
+                    closedStoresDatabase.Add(emp);
+                }
+            }
+        }
+
+        internal List<Employee> getClosedStoreEmployees(object storeID)
+        {
+            List<Employee> emps = new List<Employee>();
+            foreach(Employee emp in closedStoresDatabase)
+            {
+                if (emp.StoreID.Equals(storeID))
+                {
+                    emps.Add(emp);
+                }
+            }
+
+            return emps;
+        }
+
+        internal void ReopenStore(string store_ID)
+        {
+            foreach (Employee emp in closedStoresDatabase)
+            {
+                if (emp.StoreID.Equals(store_ID))
+                {
+                    closedStoresDatabase.Remove(emp);
+                    employeesDatabase.Add(emp);
+                }
+            }
         }
     }
 }
