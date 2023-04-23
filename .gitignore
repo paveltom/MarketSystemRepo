@@ -236,5 +236,5 @@ _Pvt_Extensions
 /Market_System.Tests/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 
 #Ignore the logger txt files
-logger/tests_error_logger.txt
-logger/tests_events_logger.txt
+/logger/tests_error_logger.txt
+/logger/tests_events_logger.txt
