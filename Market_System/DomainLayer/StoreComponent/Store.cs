@@ -20,8 +20,10 @@ namespace Market_System.DomainLayer.StoreComponent
         private Employees employees;
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
-        public ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Strategy> defaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
@@ -33,16 +35,18 @@ namespace Market_System.DomainLayer.StoreComponent
             this.employees = new Employees();
             this.products = new ConcurrentDictionary<string, Product>();
             this.productUsage = new ConcurrentDictionary<string, int>();
-            this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.storePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.storeStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.temporaryClosed = temporaryClosed;
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
-                    this.defaultPolicies.TryAdd(p.GetID(), p);
+                    this.storePolicies.TryAdd(p.GetID(), p);
             if (strategies != null)
                 foreach (Purchase_Strategy p in strategies)
-                    this.defaultStrategies.TryAdd(p.GetID(), p);
+                    this.storeStrategies.TryAdd(p.GetID(), p);
 
             this.allProducts = new ConcurrentDictionary<string, string>();
             if (allProductsIDS != null)                
@@ -245,8 +249,6 @@ namespace Market_System.DomainLayer.StoreComponent
                 this.storeRepo.close_store_temporary(this.Store_ID);
                 this.employees.removeStore(this.Store_ID);
                 this.temporaryClosed = true;
-                // remove policies and strategies
-
             }
             catch (Exception ex) { throw ex; }
 
@@ -261,8 +263,6 @@ namespace Market_System.DomainLayer.StoreComponent
                 this.storeRepo.re_open_closed_temporary_store(userID, this.Store_ID);
                 this.employees.ReopenStore(this.Store_ID);
                 this.temporaryClosed = false;
-                // restore policies and strategies
-
             }
             catch (Exception ex) { throw ex; }
 
@@ -275,13 +275,19 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    double price = 0;
+                    double productSalePrice = 0;
+                    double storeSalePrice = 0;
+                    int quantity = 0;
                     foreach (ItemDTO item in productsToCalculate)
                     {
-                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), false);
+                        productSalePrice += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity());
+                        quantity += item.GetQuantity();
                         ReleaseProduct(item.GetID());
                     }
-                    return price;
+                    storeSalePrice = productSalePrice;
+                    foreach(Purchase_Policy p in this.storePolicies.Values)
+                        storeSalePrice -= Math.Max(0, p.ApplyPolicy(productSalePrice, quantity));
+                    return storeSalePrice;
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -334,7 +340,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                    if (this.storePolicies.TryAdd(newPolicy.GetID(), newPolicy))
                         Save();
                     else
                         throw new Exception("Policy already exists.");
@@ -351,7 +357,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultPolicies.TryRemove(policyID, out _))
+                    if (this.storePolicies.TryRemove(policyID, out _))
                         Save();
                     else throw new Exception("No such policy.");
                 }
@@ -366,7 +372,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                    if (this.storeStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                         Save();
                     else throw new Exception("Strategy already exists.");
                 }
@@ -382,7 +388,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultStrategies.TryRemove(strategyID, out _))
+                    if (this.storeStrategies.TryRemove(strategyID, out _))
                         Save();
                     else
                         throw new Exception("No such strategy in this store.");
@@ -456,7 +462,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                     {
-                        Product newProduct = new Product(productProperties, this.Store_ID, this.defaultPolicies, this.defaultStrategies);
+                        Product newProduct = new Product(productProperties, this.Store_ID, this.productDefaultPolicies, this.productDefaultStrategies);
                         this.storeRepo.AddProduct(this.Store_ID, this.founderID, newProduct, 0);
                         this.allProducts.TryAdd(newProduct.Product_ID, newProduct.Product_ID);
                         Save();

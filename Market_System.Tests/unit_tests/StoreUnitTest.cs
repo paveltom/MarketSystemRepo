@@ -529,7 +529,8 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             ItemDTO p1 = this.testProduct1.GetProductDTO();
             int quantity = p1.GetQuantity();
-            double price = quantity * this.testProduct1.Price;
+            double price = quantity * (this.testProduct1.Price - (this.testProduct1.Price / 100 * this.testProduct1.Sale));
+            price = price / 2; // store purchase policy appliement
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
             double result = 0;
             bool error = false;
@@ -542,7 +543,7 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { error = true; }
 
             // Assert
-            Assert.AreEqual(price, result);
+            Assert.IsTrue(Math.Abs(price - result) < 0.01);
             Assert.IsFalse(error);
         }
 
@@ -604,20 +605,20 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
 
             // Act
             this.testStore.AddStorePurchasePolicy(this.testStore.founderID, newPolicy);
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultPolicies.ContainsKey(newPolicy.GetID()));
+            Assert.IsTrue(this.testStore.storePolicies.ContainsKey(newPolicy.GetID()));
         }
 
         [TestMethod]
         public void AddStorePurchasePolicyNoPermissionStoreTestFail()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
             string stockManagerID = "testStockManagerID0"; // init value
             bool errorNoPolicyPermission = false;
 
@@ -636,7 +637,7 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyAlreadyExistsStoreTestFail()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
             bool errorPolicyAlreadyExists = false;
 
             // Act
@@ -663,7 +664,7 @@ namespace Market_System.Tests.unit_tests
 
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(newStrategy.GetID()));
+            Assert.IsTrue(this.testStore.storeStrategies.ContainsKey(newStrategy.GetID()));
         }
 
         [TestMethod]
@@ -714,7 +715,7 @@ namespace Market_System.Tests.unit_tests
             this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
 
             // Assert
-            Assert.IsFalse(this.testStore.defaultStrategies.ContainsKey(policyToRemove));
+            Assert.IsFalse(this.testStore.storePolicies.ContainsKey(policyToRemove));
         }
 
         [TestMethod]
@@ -764,7 +765,7 @@ namespace Market_System.Tests.unit_tests
             this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
 
             // Assert
-            Assert.IsFalse(this.testStore.defaultStrategies.ContainsKey(strategyToRemove));
+            Assert.IsFalse(this.testStore.storeStrategies.ContainsKey(strategyToRemove));
         }
 
         [TestMethod]
@@ -909,7 +910,7 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
@@ -921,7 +922,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetNewProduct(string store)
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
+            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
@@ -938,7 +939,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetExistingProduct()
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
+            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
             String product_ID = "testStoreID326_tesProduct1ID";
             String name = "testProduct1Name";
