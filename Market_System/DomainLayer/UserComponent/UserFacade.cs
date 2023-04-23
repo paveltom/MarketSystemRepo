@@ -59,8 +59,12 @@ namespace Market_System.DomainLayer.UserComponent
                     try
                     {
                         string user_id = userRepo.get_userID_from_username(username);
-                        if (userRepo.CheckIfAdmin(user_id, user_id)) //Check if admin - login as admin if so
+                        if (userRepo.CheckIfAdmin(username, username)) //Check if admin - login as admin if so
                         {
+                            if (!Admins.Contains(user_id))
+                            {
+                                Admins.Add(user_id);
+                            }
                             user.AdminLogin();
                         }
                     }
@@ -446,7 +450,7 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        internal string get_session_id_from_username(string username)
+        public string get_session_id_from_username(string username)
         {
             string userid = userRepo.get_userID_from_username(username);
             foreach(string session_id in userID_sessionID_linker.Keys)
@@ -455,6 +459,15 @@ namespace Market_System.DomainLayer.UserComponent
                 {
                     return session_id;
                 }
+            }
+            return null;
+        }
+
+        public string get_user_id_from_session_id(string session_id)
+        {
+            if (userID_sessionID_linker.ContainsKey(session_id))
+            {
+                return userID_sessionID_linker[session_id];
             }
             return null;
         }
