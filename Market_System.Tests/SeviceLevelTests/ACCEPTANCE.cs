@@ -266,6 +266,60 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        [TestMethod]
+        public void AddNewAdminFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("user1", "admin", "bulyard123");
+            Response<string> responseUserLogin = service.login_member("user1", "admin");
+
+            //Action:
+            Response<string> responseRegisterNewMember = service.register("bobinka", "1234567", "addrr123");
+            Response<string> responseAddNewAdmin = service.AddNewAdmin("bobinka");
+
+            //Result:
+            Assert.AreEqual(true, responseAddNewAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void CheckIfAdminSucceess_returnsTrue()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseCheckIfAdmin = service.CheckIfAdmin("admin");
+
+            //Result:
+            Assert.AreEqual(false, responseAdminLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void CheckIfAdminSucceess_returnsFalse()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+
+            //Action:
+            Response<string> responseCheckIfAdmin = service.CheckIfAdmin("yotam");
+
+            //Result:
+            Assert.AreEqual(false, responseAdminLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
 
         #endregion
 
