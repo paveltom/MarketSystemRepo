@@ -126,6 +126,32 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        public void Remove_Store_Owner(string userID, string other_Owner_ID)
+        {
+            lock (EmployementLock)
+            {
+                try
+                {
+                    Employee emp = null;
+                    foreach (Employee tempEmp in employees.getStoreEmployees(this.Store_ID))
+                    {
+                        if (tempEmp.UserID.Equals(other_Owner_ID))
+                        {
+                            emp = tempEmp;
+                        }
+                    }
+
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner.Equals(userID)))
+                    {
+                        this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
+                    }
+                    else
+                        throw new Exception("Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in ths store");
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
         public void AssignNewManager(string userID, string newManagerID) // manager added with default Permission.Stock
         {
             lock (EmployementLock)
@@ -320,7 +346,6 @@ namespace Market_System.DomainLayer.StoreComponent
                 catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
             }
         }
-
 
         private string GetStoreIdFromProductID(string productID)
         {

@@ -338,6 +338,52 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        [TestMethod]
+        public void RemoveNewOwnerSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseotherUserRegister = service.register("layan", "123554", "meonot g");
+            Response<string> responseUserLogin = service.login_member("yotam", "123554");
+            Response<StoreDTO> responseOpenStoreUser = service.open_new_store(new List<string> { "store_123" });
+            Response<string> assignOtherAsOwner = service.assign_new_owner(responseOpenStoreUser.Value.StoreID, "layan");
+
+            //Action:
+            Response<string> responseRemoveOtherOwner = service.Remove_Store_Owner(responseOpenStoreUser.Value.StoreID, "layan");
+
+            //Result:
+            Assert.AreEqual(false, responseRemoveOtherOwner.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void RemoveNewOwnerFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseanotherUserRegister = service.register("bayanka", "12345", "meonot g");
+            Response<string> responseotherUserRegister = service.register("layan", "123554", "meonot g");
+            Response<string> responseUserLogin = service.login_member("yotam", "123554");
+            Response<StoreDTO> responseOpenStoreUser = service.open_new_store(new List<string> { "store_123" });
+            Response<string> assignOtherAsOwner = service.assign_new_owner(responseOpenStoreUser.Value.StoreID, "layan");
+            service.assign_new_owner(responseOpenStoreUser.Value.StoreID, "bayanka");
+            service.log_out();
+            service.login_member("bayanka", "12345");
+
+            //Action:
+            Response<string> responseRemoveOtherOwner = service.Remove_Store_Owner(responseOpenStoreUser.Value.StoreID, "layan");
+
+            //Result:
+            Assert.AreEqual(true, responseRemoveOtherOwner.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
 
         #endregion
 
