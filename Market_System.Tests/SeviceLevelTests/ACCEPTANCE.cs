@@ -45,12 +45,14 @@ namespace Market_System.Tests.SeviceLevelTests
 
 
         [ClassInitialize()]
-         public static void runs_before_first_test_runs(TestContext testContext) {
+        public static void runs_before_first_test_runs(TestContext testContext)
+        {
             Logger.get_instance().change_logger_path_to_tests();
         }
 
-         [ClassCleanup()]
-         public static void runs_after_last_test_finishes_running() {
+        [ClassCleanup()]
+        public static void runs_after_last_test_finishes_running()
+        {
             Logger.get_instance().change_logger_path_to_regular();
         }
 
@@ -64,14 +66,14 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
 
-
         //(one thread)
         public void LoggedInOwnerWithOpenedOneProdStore(string username, string pass, string add)
         {
             registeredLoggedInMemberSetUp(username, pass, add);
             //todo:
-            Response<string> response = service.open_new_store(new List<string>{ "store_name"}); ////todo store id? Store1
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "Prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "store_123" });
+            //the bug is response.Value.StoreID
+            Response<ItemDTO> resProdAdd = service.add_product_to_store(response.Value.StoreID, "Prod1", "desc1", "1", "1", "1", "2.0", "1.0", "5.0", "5.0_2.0", "attr", "new_category");
         }
 
         //(one thread)
@@ -105,7 +107,7 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadSetUp();
 
             //Action:
-            Response<string> response = service.register("user1", "pass1", "add1");
+            Response<string> response = service.register("user5", "pass1", "add1");
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
@@ -131,6 +133,38 @@ namespace Market_System.Tests.SeviceLevelTests
             //tearDown:
             oneThreadCleanup();
         }
+
+        //not sign in 
+        [TestMethod]
+        public void LogoutMemberfailed()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            //Action:
+            Response<string> responseLogout = service.log_out();
+
+            //Result:
+            Assert.AreEqual(true, responseLogout.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+        //check this test
+        [TestMethod]
+        public void AssignNewMannegerSuccess()
+        {
+            //Setup: 
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
+            //Action:
+            Response<string> responseLogout = service.assign_new_manager("Store1", "user1");
+            //Result:
+            Assert.AreEqual(false, responseLogout.ErrorOccured);
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+
 
         [TestMethod]
         public void FailUserRegistersUsedUserame()
@@ -182,7 +216,132 @@ namespace Market_System.Tests.SeviceLevelTests
             //tearDown:
             oneThreadCleanup();
         }
+        //Assign request failed because the user must be registered to the system so he can sign in 
+        [TestMethod]
+        public void failLoginNotRegister()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            //Action:
+            Response<string> responseLogin = service.login_member("user1", "pass1");
+
+            //Result:
+            Assert.AreEqual(true, responseLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void LoginAdminSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+
+            //Action:
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Result:
+            Assert.AreEqual(false, responseAdminLogin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void AddNewAdminSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseRegisterNewMember = service.register("bobinka", "1234567", "addrr123");
+            Response<string> responseAddNewAdmin = service.AddNewAdmin("bobinka");
+
+            //Result:
+            Assert.AreEqual(false, responseAddNewAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void AddNewAdminFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("user1", "admin", "bulyard123");
+            Response<string> responseUserLogin = service.login_member("user1", "admin");
+
+            //Action:
+            Response<string> responseRegisterNewMember = service.register("bobinka", "1234567", "addrr123");
+            Response<string> responseAddNewAdmin = service.AddNewAdmin("bobinka");
+
+            //Result:
+            Assert.AreEqual(true, responseAddNewAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void CheckIfAdminSucceess_returnsTrue()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseCheckIfAdmin = service.CheckIfAdmin("admin");
+
+            //Result:
+            Assert.AreEqual(false, responseCheckIfAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void CheckIfAdminSucceess_returnsFalse()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+
+            //Action:
+            Response<string> responseCheckIfAdmin = service.CheckIfAdmin("yotam");
+
+            //Result:
+            Assert.AreEqual(false, responseCheckIfAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void CheckIfAdminFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseAdminLogin = service.login_member("yotam", "123554");
+
+            //Action:
+            Response<string> responseCheckIfAdmin = service.CheckIfAdmin("yotam");
+
+            //Result:
+            Assert.AreEqual(true, responseCheckIfAdmin.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+
         #endregion
+
+
 
         #region//Member purchase actions Tests 3.1, 3,2, 3.3
         [TestMethod]
@@ -190,7 +349,7 @@ namespace Market_System.Tests.SeviceLevelTests
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
-
+            //oneThreadSetUp();
             //Action:
             Response<string> responseLogout = service.log_out();
 
@@ -204,7 +363,7 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
         //TODO:: Uncomment this when @Pasha fixes this - problem with Employees... when opening a new store 
-        /*
+        
         [TestMethod]
         public void openStoreSuccess()
         {
@@ -212,23 +371,24 @@ namespace Market_System.Tests.SeviceLevelTests
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
 
             //Action:
-            Response<string> response = service.open_new_store(new List<string> { "Store_123" }); //TODO:: Should get STOREDTO here which contains the storeID
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_123" }); //TODO:: Should get STOREDTO here which contains the storeID
 
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
             //todo: check if store was added:
-            Response<ItemDTO> resGetStore = service.GetStore("Store1"); ////todo store id? Store1
-            Assert.AreEqual(false, resGetStore.ErrorOccured);
+            Response<StoreDTO> resGetStore = service.GetStore(response.Value.StoreID);
+            Assert.AreEqual(response.Value.StoreID, resGetStore.Value.StoreID);
 
             //tearDown:
             oneThreadCleanup();
-        }*/
+        }
 
         [TestMethod]
         public void comment_on_product()
         {
             //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
 
             //Action:
             //todo: what is the prod id?
@@ -246,16 +406,39 @@ namespace Market_System.Tests.SeviceLevelTests
 
         #region//Owner  actions Tests 4.1
         [TestMethod]
-        public void addproduct()
+        public void addproduct_success()
         {
             //Setup: 
             registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+            //oneThreadSetUp();
 
             //Action:
-            Response<string> resProdAdd = service.add_product_to_store("Store1", "prod1", "desc1", "1", "1", "1", "", "", "", "", "", ""); ////todo store id? Store1
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123"});
+            Response<ItemDTO> resProdAdd = service.add_product_to_store(response.Value.StoreID, "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg"); 
 
             //Result:
             Assert.AreEqual(false, resProdAdd.ErrorOccured);
+            //todo: check if prod was added
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //Assert.AreEqual(false, resProdAdded.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+        [TestMethod]
+        public void addproduct_failure()
+        {
+            //Setup: 
+            //registeredLoggedInMemberSetUp("user1", "pass1", "add1");
+            oneThreadSetUp();
+
+            //Action:
+            Response<StoreDTO> response = service.open_new_store(new List<string> { "Store_ 123" });
+            Response<ItemDTO> resProdAdd = service.add_product_to_store("fake_ID_123", "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg");
+
+            //Result:
+            Assert.AreEqual(null, resProdAdd);
             //todo: check if prod was added
             //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
@@ -270,7 +453,8 @@ namespace Market_System.Tests.SeviceLevelTests
         public void changeProdName()
         {
             //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
 
             //Action:
             //todo: what is the prod id?

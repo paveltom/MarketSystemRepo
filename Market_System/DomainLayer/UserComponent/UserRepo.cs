@@ -9,6 +9,7 @@ namespace Market_System.DomainLayer.UserComponent
     {
 
         private static Dictionary<string, string> userDatabase;
+        private static List<string> Admins; //saved by username
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
 
@@ -32,6 +33,7 @@ namespace Market_System.DomainLayer.UserComponent
                     if (Instance == null)
                     {
                         userDatabase = new Dictionary<string, string>();
+                        Admins = new List<string>();
                         user_ID_username_linker = new Dictionary<string, string>();
                         userID_generator = new Random();
                         Instance = new UserRepo();
@@ -59,6 +61,11 @@ namespace Market_System.DomainLayer.UserComponent
                 return true;
             }
             return false;
+        }
+
+        internal void AddFirstAdmin(string username)
+        {
+            Admins.Add(username);
         }
 
         public string register(string username, string password)
@@ -122,6 +129,37 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
             throw new Exception("can't recive userID because username does not exists");
+        }
+
+        public void AddNewAdmin(string curr_Admin_username, string other_username)
+        {
+            if(Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
+            {
+                Admins.Add(other_username);
+            }
+
+            else
+            {
+                throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin)");
+            }
+        }
+
+        public bool CheckIfAdmin(string curr_Admin_username, string other_username)
+        {
+            if (Admins.Contains(curr_Admin_username) && Admins.Contains(other_username))
+            {
+                return true;
+            }
+
+            else if (Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
+            {
+                return false; //userID isn't an admin
+            }
+
+            else
+            {
+                throw new Exception("The checking user isn't an Admin");
+            }
         }
     }
 }

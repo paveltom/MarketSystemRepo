@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Market_System.Tests.unit_tests
 {
-    internal class StoreFacadeUnitTests
+    [TestClass]
+    public class StoreFacadeUnitTests
     {
         private Store testStore; // uses Builder of a new Product 
         private Product testProduct0;
@@ -18,17 +19,24 @@ namespace Market_System.Tests.unit_tests
         private Employees testEmployees;
         private StoreFacade facade;
 
+
+        [TestInitialize()]
         public void Setup()
         {
             facade = StoreFacade.GetInstance();
-            testStore = GetStore("testStoreID326");
-            testProduct0 = GetNewProduct("testStoreID326");
-            testProduct0.SetQuantity(23);
-            testProduct1 = GetExistingProduct();
 
+            testStore = GetStore("testStoreID326");
             StoreRepo.GetInstance().AddStore(testStore.founderID, testStore);
+
+            testProduct0 = GetNewProduct("testStoreID326"); // storeID
+            testProduct1 = GetExistingProduct("testStoreID326_tesProduct1ID"); // productID    
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct0, testProduct0.Quantity);
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
+
+            ConcurrentDictionary<string, string> products = new ConcurrentDictionary<string, string>();
+            products.TryAdd(this.testProduct0.Product_ID, this.testProduct0.Product_ID);
+            products.TryAdd(this.testProduct1.Product_ID, this.testProduct1.Product_ID);
+            testStore.allProducts = products;
 
             testEmployees = new Employees();
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testStockManagerID0", testStore.Store_ID, new List<Permission>() { Permission.STOCK });
@@ -36,14 +44,13 @@ namespace Market_System.Tests.unit_tests
             testEmployees.AddNewOwnerEmpPermissions(testStore.founderID, "testOwnerID0", testStore.Store_ID);
             testEmployees.AddNewManagerEmpPermissions("testOwnerID0", "testAllManagerID0", testStore.Store_ID, new List<Permission>() { Permission.INFO, Permission.STOCK });
             testStore.SetTestEmployees(testEmployees);
-
         }
 
         // after each test
         [TestCleanup()]
         public void TearDown()
         {
-            // destroy StoreRepo here cause it is singletone after it is done
+            StoreRepo.GetInstance().destroy();
             EmployeeRepo.GetInstance().destroy_me();
             facade.Destroy_me();
         }
@@ -55,20 +62,27 @@ namespace Market_System.Tests.unit_tests
         // ========================================= Tests =========================================
 
 
-        public void CalculatePriceStoreFacadeTest()
+        [TestMethod]
+        public void CalculatePriceStoreFacadeTestSuccess() // no fail test
         {
             // Arrange            
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
-            double validPrice = this.testProduct0.Price * this.testProduct0.Quantity + this.testProduct1.Price * this.testProduct1.Quantity;    
+            double preStorePolicyPrice = (this.testProduct0.Price - this.testProduct0.Price / 100 * this.testProduct0.Sale) * this.testProduct0.Quantity;
+            preStorePolicyPrice += (this.testProduct1.Price - this.testProduct1.Price / 100 * this.testProduct1.Sale) * this.testProduct1.Quantity;
+            double finalPrice = preStorePolicyPrice;
+            foreach (Purchase_Policy p in testStore.storePolicies.Values)
+                finalPrice -= Math.Max(0, p.ApplyPolicy(preStorePolicyPrice, this.testProduct0.Quantity + this.testProduct1.Quantity));
+
 
             // Act
             double retPrice = this.facade.CalculatePrice(itemsToCalculate);
 
             // Assert
-            Assert.Equals(validPrice, retPrice);    
+            Assert.AreEqual(finalPrice, retPrice);    
         }
 
-        public void PurchaseStoreFacadeTest()
+        [TestMethod]
+        public void PurchaseStoreFacadeTestSuccess() 
         {
             // Arrange            
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
@@ -80,22 +94,49 @@ namespace Market_System.Tests.unit_tests
             List<ItemDTO> updatedProducts = this.testStore.GetItems();
             foreach(ItemDTO item in updatedProducts)
             {
-                Assert.Equals(0, item.GetQuantity());
+                Assert.AreEqual(0, item.GetQuantity());
             }
         }
 
-        public void GatherStoresWithProductsByItemsStoreFacadeTest()
+        [TestMethod]
+        public void PurchaseCannotPurchaseStoreFacadeTestFail()
+        {
+            // Arrange            
+            this.testStore.ChangeProductQuantity(this.testStore.founderID, this.testProduct0.Product_ID, 0);
+            this.testProduct0.SetQuantity(0);
+            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
+            bool errorCannotPurchase = false;
+
+            // Act
+            try
+            {
+                this.facade.Purchase("PurchaseStoreFacadeTestUserID0", itemsToCalculate);
+            }catch (Exception ex) { errorCannotPurchase = true; }
+
+            // Assert
+            Assert.IsTrue(errorCannotPurchase);
+        }
+
+        [TestMethod]
+        public void GatherStoresWithProductsByItemsStoreFacadeTestSuccess() // no fail test
         {
             // Arrange
             string newProductStoreID = "GatherStoresWithProductsByItemsStoreFacadeTestStoreID0";
+            Store newProductStore = GetStore(newProductStoreID);
+            StoreRepo.GetInstance().AddStore(newProductStore.founderID, newProductStore);
             Product testProduct2 = GetNewProduct(newProductStoreID);
+            StoreRepo.GetInstance().AddProduct(newProductStore.Store_ID, newProductStore.founderID, testProduct2, testProduct2.Quantity);
+            ConcurrentDictionary<string, string> products = new ConcurrentDictionary<string, string>();
+            products.TryAdd(testProduct2.Product_ID, testProduct2.Product_ID);
+            newProductStore.allProducts = products;
+
             List<ItemDTO> thisItemsToGather = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
             List<ItemDTO> newItemsToGather = new List<ItemDTO>() { testProduct2.GetProductDTO() };
             List<ItemDTO> outThisStore;
             List<ItemDTO> outNewStore;
 
             // Act
-            ConcurrentDictionary<string, List<ItemDTO>> retStoresWIthProduct =  this.facade.GatherStoresWithProductsByItems(Enumerable.Concat(thisItemsToGather, newItemsToGather).ToList());
+            ConcurrentDictionary<string, List<ItemDTO>> retStoresWIthProduct = this.facade.GatherStoresWithProductsByItems(Enumerable.Concat(thisItemsToGather, newItemsToGather).ToList());
 
             // Assert
             retStoresWIthProduct.TryGetValue(this.testStore.Store_ID, out outThisStore);
@@ -103,65 +144,118 @@ namespace Market_System.Tests.unit_tests
 
             Assert.IsTrue(retStoresWIthProduct.ContainsKey(this.testStore.Store_ID));
             Assert.IsTrue(retStoresWIthProduct.ContainsKey(newProductStoreID));
-            Assert.Equals(thisItemsToGather, outThisStore);
-            Assert.Equals(newItemsToGather, outNewStore);
+
+            
+            
+            Assert.IsTrue(thisItemsToGather.Any(x => outThisStore.Any(y => x.GetID() == y.GetID())) && 
+                            thisItemsToGather.Count == outThisStore.Count);
+            Assert.IsTrue(newItemsToGather.Any(x => outNewStore.Any(y => x.GetID() == y.GetID())) &&
+                            newItemsToGather.Count == outNewStore.Count);
         }
 
-        public void AddNewStoreStoreFacadeTest()
+        [TestMethod]
+        public void AddNewStoreStoreFacadeTestSuccess()
         {
-            // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
-            List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
+            string storeName = "AddNewStoreStoreFacadeTestStoreName";
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
+            List<string> newStoreDetails = new List<string>() { storeName };
 
             // Act
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
+            StoreDTO added = this.facade.AddNewStore(founder, newStoreDetails);
 
             // Assert
-            Assert.Equals(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).Name, newStoreToAdd.Name);
+            Assert.AreEqual(StoreRepo.GetInstance().getStore(added.StoreID).Name, storeName);
         }
 
-        public void RemoveStoreStoreFacadeTest()
+        public void AddNewStoreNoNameStoreFacadeTestFail()
         {
             // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
+            List<string> newStoreDetails = new List<string>() { "" };
+            bool errorNoName = false;
+
+            // Act
+            try
+            {
+                this.facade.AddNewStore(founder, newStoreDetails);
+            } catch (Exception ex) { errorNoName = true; }
+
+            // Assert
+            Assert.IsTrue(errorNoName);
+        }
+
+        [TestMethod]
+        public void RemoveStoreStoreFacadeTestSuccess()
+        {
+            // Arrange
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
             List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
+            StoreDTO newStoreToAdd = this.facade.AddNewStore(founder, newStoreDetails);
+
+            // Act
+            this.facade.RemoveStore(founder, newStoreToAdd.StoreID);
+
+
+            // Assert
+            Assert.IsTrue(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
+        }
+
+        [TestMethod]
+        public void RemoveStoreNotFounderStoreFacadeTestFail()
+        {
+            // Arrange
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
+            List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
+            StoreDTO newStoreToAdd  = this.facade.AddNewStore(founder, newStoreDetails);
             bool notFounderErrorCatched = false;
 
             // Act
             try
             {
-                this.facade.RemoveStore("RemoveStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.Store_ID);
-            }catch (Exception ex) { notFounderErrorCatched = true; }
-
-            this.facade.RemoveStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
-
-
-            // Assert
-            Assert.Equals(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).Name, newStoreToAdd.Name);
-            Assert.IsTrue(notFounderErrorCatched);
-        }
-
-        public void RestoreStoreStoreFacadeTest()
-        {
-            // Arrange
-            Store newStoreToAdd = GetStore("AddNewStoreStoreFacadeTestStoreID0");
-            List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
-            this.facade.AddNewStore(newStoreToAdd.founderID, newStoreDetails);
-            this.facade.RemoveStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
-            bool notFounderErrorCatched = false;
-
-            // Act
-            try
-            {
-                this.facade.RestoreStore("RestoreStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.Store_ID);
+                this.facade.RemoveStore("RemoveStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.StoreID);
             }
             catch (Exception ex) { notFounderErrorCatched = true; }
 
-            this.facade.RestoreStore(newStoreToAdd.founderID, newStoreToAdd.Store_ID);
+            // Assert
+            Assert.IsFalse(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
+            Assert.IsTrue(notFounderErrorCatched);
+        }
+
+        [TestMethod]
+        public void RestoreStoreStoreFacadeTestSuccess()
+        {
+            // Arrange
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
+            List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
+            StoreDTO newStoreToAdd = this.facade.AddNewStore(founder, newStoreDetails);
+            this.facade.RemoveStore(founder, newStoreToAdd.StoreID);
+
+            // Act
+            this.facade.RestoreStore(founder, newStoreToAdd.StoreID);
 
             // Assert
-            Assert.Equals(StoreRepo.GetInstance().getStore(newStoreToAdd.Store_ID).Name, newStoreToAdd.Name);
+            Assert.IsFalse(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
+        }
+
+        [TestMethod]
+        public void RestoreStoreNotFounderStoreFacadeTestFail()
+        {
+            // Arrange
+            string founder = "AddNewStoreStoreFacadeTestFounderID";
+            List<string> newStoreDetails = new List<string>() { "AddNewStoreStoreFacadeTestStoreName" };
+            StoreDTO newStoreToAdd = this.facade.AddNewStore(founder, newStoreDetails);
+            this.facade.RemoveStore(founder, newStoreToAdd.StoreID);
+            bool notFounderErrorCatched = false;
+
+            // Act
+            try
+            {
+                this.facade.RestoreStore("RestoreStoreStoreFacadeTestNotFounderUserID0", newStoreToAdd.StoreID);
+            }
+            catch (Exception ex) { notFounderErrorCatched = true; }
+
+            // Assert
+            Assert.IsTrue(StoreRepo.GetInstance().getStore(newStoreToAdd.StoreID).is_closed_temporary());
             Assert.IsTrue(notFounderErrorCatched);
         }
 
@@ -176,7 +270,7 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
@@ -188,11 +282,11 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetNewProduct(string store)
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
+            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
-            List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "45", "0" , "0", "0", "67", "9.1_8.2_7.3",
+            List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "23", "0" , "0", "0", "67", "9.1_8.2_7.3",
                                                                    "testProduct0Atr1:testProduct0Atr1Opt1_testProduct0Atr1Opt2;testProduct0Atr2:testProduct0Atr2Opt1_testProduct0Atr2Opt2_testProduct0Atr2Opt3;",
                                                                    "testProduct0SomeCategory"};
             string storeID = store;
@@ -203,11 +297,11 @@ namespace Market_System.Tests.unit_tests
             return new Product(productProperties, storeID, defaultStorePolicies, defaultStoreStrategies);
         }
 
-        private Product GetExistingProduct()
+        private Product GetExistingProduct(string productid)
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
+            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
-            String product_ID = "testStoreID326_tesProduct1ID";
+            String product_ID = productid;
             String name = "testProduct1Name";
             String description = "testProduct1Description";
             double price = 678.9;

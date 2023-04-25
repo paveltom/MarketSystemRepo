@@ -29,7 +29,9 @@ namespace Market_System.ServiceLayer
             this.regular_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me2;
             this.tests_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests2;
             this.tests_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests1;
-      
+
+            log_event_path = regular_log_events_path;
+            log_errors_path = regular_log_errors_path;
         }
 
         public static Logger get_instance()

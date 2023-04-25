@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="SeviceLevelTests\ACCEPTANCE.cs" />
     <Compile Include="SeviceLevelTests\StoreUscasesTests.cs" />
+    <Compile Include="SeviceLevelTests\ConcurrencyTests.cs" />
     <Compile Include="SeviceLevelTests\UserUscasesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="unit_tests\StoreComponentUnitTests\ProductUnitTests.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="unit_tests\StoreUnitTest.cs" />
     <Compile Include="unit_tests\store_user_tests.cs" />
     <Compile Include="unit_tests\ProductUnitTest.cs" />
+    <Compile Include="unit_tests\integration_tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

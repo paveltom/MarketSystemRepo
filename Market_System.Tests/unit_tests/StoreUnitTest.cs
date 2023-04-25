@@ -21,15 +21,18 @@ namespace Market_System.Tests.unit_tests
         // before each test 
         [TestInitialize()]
         public void Setup()
-        {
-            testStore = GetStore("testStoreID326");            
+        {            
+            testStore = GetStore("testStoreID326");
+            StoreRepo.GetInstance().AddStore(testStore.founderID, testStore);            
             testProduct0 = GetNewProduct("testStoreID326");
             testProduct1 = GetExistingProduct();
-            
-            StoreRepo.GetInstance().AddStore(testStore.founderID, testStore);
             StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
-            
+            ConcurrentDictionary<string, string> products = new ConcurrentDictionary<string, string>();
+            products.TryAdd(this.testProduct1.Product_ID, this.testProduct1.Product_ID);
+            this.testStore.allProducts = products;
+
             testEmployees = new Employees();
+            testEmployees.AddNewFounderEmpPermissions(this.testStore.founderID, this.testStore.Store_ID);
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testStockManagerID0", testStore.Store_ID, new List<Permission>() { Permission.STOCK });
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testInfoManagerID0", testStore.Store_ID, new List<Permission>() { Permission.INFO });            
             testEmployees.AddNewOwnerEmpPermissions(testStore.founderID, "testOwnerID0", testStore.Store_ID);
@@ -57,7 +60,7 @@ namespace Market_System.Tests.unit_tests
 
 
             // Assert
-            Assert.Equals(newFounder, this.testStore.founderID);
+            Assert.AreEqual(newFounder, this.testStore.founderID);
         }
 
         [TestMethod]
@@ -65,14 +68,16 @@ namespace Market_System.Tests.unit_tests
         {
             // Arrange
             string newFounder = "TransferFoundershipStroeTestNewFounderID1";
+            bool errorNotFounder = false;
 
             // Act
-            this.testStore.TransferFoundership(newFounder + "NotFounder", newFounder);
-
-
+            try
+            {
+                this.testStore.TransferFoundership(newFounder + "NotFounder", newFounder);
+            } catch (Exception ex) { errorNotFounder = true; }
 
             // Assert
-            Assert.AreNotEqual(newFounder, this.testStore.founderID);
+            Assert.IsTrue(errorNotFounder);
         }
 
         [TestMethod]
@@ -91,7 +96,7 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { errorCatched = true; }
 
             // Assert
-            Assert.Equals(newName, this.testStore.Name);
+            Assert.AreEqual(newName, this.testStore.Name);
             Assert.IsTrue(errorCatched);
         }
 
@@ -207,6 +212,7 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             string storeOwner = "testOwnerID0"; // init parameter
             string newOwnerID = "AssignNewOwnerStoreTestOwnerID0";
+            this.testStore.AssignNewOwner(storeOwner, newOwnerID);
             bool errorCatchedAlreadyOwner = false;
 
             // Act
@@ -245,7 +251,7 @@ namespace Market_System.Tests.unit_tests
             // Act
             try
             {
-                this.testStore.AssignNewOwner(infoManager, stockManager);
+                this.testStore.AssignNewManager(infoManager, stockManager);
             }
             catch (Exception ex) { errorCatchedNotOwner = true; }
 
@@ -259,12 +265,13 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             string storeOwner = "testOwnerID0"; // init parameter
             string newManager = "AssignNewManagerStoreTestID0";
+            this.testStore.AssignNewManager(storeOwner, newManager);
             bool errorCatchedAlreadyManager = false;
 
             // Act
             try
             {
-                this.testStore.AssignNewOwner(storeOwner, newManager);
+                this.testStore.AssignNewManager(storeOwner, newManager);
             }
             catch (Exception ex) { errorCatchedAlreadyManager = true; }
 
@@ -276,13 +283,13 @@ namespace Market_System.Tests.unit_tests
         public void GetOwnersOfTheStoreTestSuccess()
         {
             // Arrange
-            List<string> owners = new List<string>() { "testStoreFounderID326", "testOwnerID0" }; // init values
+            List<string> owners = new List<string>() { "testOwnerID0" }; // init values
 
             // Act
             List<string> retOwners = this.testStore.GetOwnersOfTheStore("testStoreFounderID326");
 
             // Assert
-            Assert.IsTrue((!owners.Except(retOwners).Any()) && (!retOwners.Except(owners).Any()));
+            Assert.IsTrue(owners.Any(x => retOwners.Any(y => x == y)) && owners.Count == retOwners.Count);
         }
 
         [TestMethod]
@@ -307,13 +314,13 @@ namespace Market_System.Tests.unit_tests
         public void GetManagersOfTheStoreTestSuccess()
         {
             // Arrange
-            List<string> managers = new List<string>() { "testStockManagerID0", "testInfoManagerID0" }; // init values
+            List<string> managers = new List<string>() { "testStockManagerID0", "testInfoManagerID0", "testAllManagerID0" }; // init values
 
             // Act
             List<string> retManagers = this.testStore.GetManagersOfTheStore("testStoreFounderID326");
 
             // Assert
-            Assert.IsTrue((!managers.Except(retManagers).Any()) && (!retManagers.Except(managers).Any()));
+            Assert.IsTrue(managers.Any(x => retManagers.Any(y => x == y)) && managers.Count == retManagers.Count);
         }
 
         [TestMethod]
@@ -376,7 +383,7 @@ namespace Market_System.Tests.unit_tests
             this.testStore.RemoveEmployeePermission(this.testStore.founderID, employeeID, Permission.STOCK);
 
             // Assert
-            Assert.IsFalse(this.testEmployees.confirmPermission(this.testStore.founderID, this.testStore.Store_ID, Permission.STOCK));
+            Assert.IsFalse(this.testEmployees.confirmPermission(employeeID, this.testStore.Store_ID, Permission.STOCK));
         }
 
         [TestMethod]
@@ -390,7 +397,7 @@ namespace Market_System.Tests.unit_tests
             // Act            
             try
             {
-                this.testStore.RemoveEmployeePermission(this.testStore.founderID, employeeID, Permission.STOCK);
+                this.testStore.RemoveEmployeePermission("testOwnerID0", employeeID, Permission.STOCK);
             }
             catch (Exception ex) { errorCatchedNoPermission = true; }
 
@@ -413,7 +420,7 @@ namespace Market_System.Tests.unit_tests
             string retHistory = this.testStore.GetPurchaseHistoryOfTheStore(this.testStore.founderID);
 
             // Assert
-            Assert.Equals(history, retHistory);
+            Assert.AreEqual(history, retHistory);
         }
 
         [TestMethod]
@@ -444,27 +451,33 @@ namespace Market_System.Tests.unit_tests
             StoreDTO ret = this.testStore.GetStoreDTO();
 
             // Assert
-            Assert.Equals(dataStore.Name, ret.Name);
-            Assert.Equals(dataStore.StoreID, ret.StoreID);
-            Assert.Equals(dataStore.AllProducts, ret.AllProducts);
-            Assert.Equals(dataStore.owners, ret.managers);
-            Assert.Equals(dataStore.FounderID, ret.FounderID);
-            Assert.Equals(dataStore.DefaultPolicies, ret.DefaultPolicies);
-            Assert.Equals(dataStore.DefaultStrategies, ret.DefaultStrategies);
+            Assert.AreEqual(dataStore.Name, ret.Name);
+            Assert.AreEqual(dataStore.StoreID, ret.StoreID);
+            Assert.IsTrue(dataStore.AllProducts.Any(x => ret.AllProducts.Any(y => x.GetID() == y.GetID())) && 
+                                                                        ret.AllProducts.Count == dataStore.AllProducts.Count);
+            Assert.IsTrue(dataStore.owners.Any(x => ret.owners.Any(y => x.UserID == y.UserID)) &&
+                                                                        ret.owners.Count == dataStore.owners.Count);
+            Assert.IsTrue(dataStore.managers.Any(x => ret.managers.Any(y => x.UserID == y.UserID)) &&
+                                                                        ret.managers.Count == dataStore.managers.Count);
+            Assert.AreEqual(dataStore.FounderID, ret.FounderID);
+            Assert.IsTrue(dataStore.DefaultPolicies.Any(x => ret.DefaultPolicies.Any(y => x == y)) &&
+                                                                        ret.DefaultPolicies.Count == dataStore.DefaultPolicies.Count);
+            Assert.IsTrue(dataStore.DefaultStrategies.Any(x => ret.DefaultStrategies.Any(y => x == y)) &&
+                                                                        ret.DefaultStrategies.Count == dataStore.DefaultStrategies.Count);
         }
 
         [TestMethod]
         public void GetItemsStoreTestSuccess()
         {
             // Arrange
-            ItemDTO productInStore = new ItemDTO(this.testProduct1);
-            List<ItemDTO> items = new List<ItemDTO>() { productInStore };
+            List<ItemDTO> items = new List<ItemDTO>() { this.testProduct1.GetProductDTO() };
 
             // Act
             List<ItemDTO> retItems = this.testStore.GetItems();
 
             // Assert
-            Assert.IsTrue((!items.Except(retItems).Any()) && (!retItems.Except(items).Any()));
+            Assert.IsTrue(items.Any(x => retItems.Any(y => x.GetID() == y.GetID())) &&
+                            items.Count == retItems.Count);
         }
 
         [TestMethod]
@@ -477,7 +490,7 @@ namespace Market_System.Tests.unit_tests
             List<ItemDTO> retItems = this.testStore.GetItems();
 
             // Assert
-            Assert.Equals(retItems.Count(), 0);
+            Assert.AreEqual(retItems.Count(), 0);
         }
 
         [TestMethod]
@@ -489,14 +502,8 @@ namespace Market_System.Tests.unit_tests
             // Act
             this.testStore.RemoveStore(this.testStore.founderID);
 
-            try
-            {
-                StoreRepo.GetInstance().getStore(this.testStore.Store_ID); // change when StoreRepo is implemented!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            }
-            catch (Exception ex) { noStore = true; }
-
             // Assert
-            Assert.IsTrue(noStore);
+            Assert.IsTrue(this.testStore.is_closed_temporary());
         }
 
         [TestMethod]
@@ -522,7 +529,8 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             ItemDTO p1 = this.testProduct1.GetProductDTO();
             int quantity = p1.GetQuantity();
-            double price = quantity * this.testProduct1.Price;
+            double price = quantity * (this.testProduct1.Price - (this.testProduct1.Price / 100 * this.testProduct1.Sale));
+            price = price / 2; // store purchase policy appliement
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
             double result = 0;
             bool error = false;
@@ -535,7 +543,7 @@ namespace Market_System.Tests.unit_tests
             catch (Exception ex) { error = true; }
 
             // Assert
-            Assert.Equals(price, result);
+            Assert.IsTrue(Math.Abs(price - result) < 0.01);
             Assert.IsFalse(error);
         }
 
@@ -563,21 +571,21 @@ namespace Market_System.Tests.unit_tests
         public void PurchaseStoreTestSuccess()
         {
             // Arrange
-            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            ItemDTO p1 = this.testProduct1.GetProductDTO();
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
 
             // Act
             this.testStore.Purchase("PurchaseStoreTestUserID0", items);
 
             // Assert
-            Assert.Equals(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID)).Quantity);
+            Assert.AreEqual(0, ((Product)StoreRepo.GetInstance().getProduct(this.testProduct1.Product_ID)).Quantity);
         }
 
         [TestMethod]
         public void PurchaseNorEnoughInStockStoreTestFail()
         {
             // Arrange
-            ItemDTO p1 = this.testProduct0.GetProductDTO();
+            ItemDTO p1 = this.testProduct1.GetProductDTO();
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
             bool errorNotEnoughInStock = false;
             this.testStore.Purchase("PurchaseStoreTestUserID0", items);
@@ -597,20 +605,20 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
 
             // Act
             this.testStore.AddStorePurchasePolicy(this.testStore.founderID, newPolicy);
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultPolicies.ContainsKey(newPolicy.GetID()));
+            Assert.IsTrue(this.testStore.storePolicies.ContainsKey(newPolicy.GetID()));
         }
 
         [TestMethod]
         public void AddStorePurchasePolicyNoPermissionStoreTestFail()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
             string stockManagerID = "testStockManagerID0"; // init value
             bool errorNoPolicyPermission = false;
 
@@ -629,7 +637,7 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyAlreadyExistsStoreTestFail()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0");
+            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
             bool errorPolicyAlreadyExists = false;
 
             // Act
@@ -656,7 +664,7 @@ namespace Market_System.Tests.unit_tests
 
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(newStrategy.GetID()));
+            Assert.IsTrue(this.testStore.storeStrategies.ContainsKey(newStrategy.GetID()));
         }
 
         [TestMethod]
@@ -707,7 +715,7 @@ namespace Market_System.Tests.unit_tests
             this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(policyToRemove));
+            Assert.IsFalse(this.testStore.storePolicies.ContainsKey(policyToRemove));
         }
 
         [TestMethod]
@@ -748,17 +756,16 @@ namespace Market_System.Tests.unit_tests
         }
 
         [TestMethod]
-        public void RemoveStorePurchaseStrategyStoreTest()
+        public void RemoveStorePurchaseStrategyStoreTestSuccess()
         {
             // Arrange
             string strategyToRemove = "testStoreStrategyID";
-            string infoManagerID = "testInfoManagerID0"; // init value
 
             // Act
             this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
 
             // Assert
-            Assert.IsTrue(this.testStore.defaultStrategies.ContainsKey(strategyToRemove));
+            Assert.IsFalse(this.testStore.storeStrategies.ContainsKey(strategyToRemove));
         }
 
         [TestMethod]
@@ -809,13 +816,13 @@ namespace Market_System.Tests.unit_tests
                                                                    "testProduct0SomeCategory"}; // init value
 
             // Act
-            this.testStore.AddProduct(this.testStore.founderID, productProperties);
+            ItemDTO added = this.testStore.AddProduct(this.testStore.founderID, productProperties);
 
 
 
             // Assert
             foreach (ItemDTO item in this.testStore.GetItems())
-                if (item.GetID() == this.testProduct0.Product_ID)
+                if (item.GetID() == added.GetID())
                     itemAdded = true;
             Assert.IsTrue(itemAdded);
         }
@@ -903,7 +910,7 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
@@ -915,7 +922,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetNewProduct(string store)
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
+            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
@@ -932,7 +939,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetExistingProduct()
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
+            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
             String product_ID = "testStoreID326_tesProduct1ID";
             String name = "testProduct1Name";

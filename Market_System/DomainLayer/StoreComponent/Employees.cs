@@ -54,7 +54,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean isFounder(string employeeID, string storeID)
         {
-            return getemployee(employeeID, storeID).isFounder();
+            try
+            {
+                return getemployee(employeeID, storeID).isFounder();
+            } catch (Exception ex) { return false;  }
         }
 
         public Employees()
@@ -64,7 +67,7 @@ namespace Market_System.DomainLayer.StoreComponent
             FounderPermissions = new List<Permission>();
             OwnerPermissions.Add(Permission.INFO); OwnerPermissions.Add(Permission.STOCK);
             OwnerPermissions.Add(Permission.Policy); OwnerPermissions.Add(Permission.OwnerOnly);
-            foreach (Permission permissions in OwnerPermissions)
+            foreach (Permission permissions in OwnerPermissions.ToList())
             {
                 FounderPermissions.Add(permissions);
             }
@@ -114,22 +117,34 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean isOwnerSubject(string subjectUserID, string sellerID, string storeID)
         {
-            return getemployee(subjectUserID, storeID).isMyOwnerAssignner(storeID);
+            try
+            {
+                return getemployee(subjectUserID, storeID).isMyOwnerAssignner(storeID);
+            } catch (Exception e) { return false;  }
         }
 
         public Boolean isManagerSubject(string subjectUserID, string sellerID, string storeID)
         {
-            return getemployee(subjectUserID, storeID).isMyManagerAssignner(sellerID);
+            try
+            {
+                return getemployee(subjectUserID, storeID).isMyManagerAssignner(sellerID);
+            } catch (Exception e) { return false; } 
         }
 
         public Boolean isOwner(string employeeID, string storeID)
         {
-            return getemployee(employeeID, storeID).isOwner();
+            try
+            {
+                return getemployee(employeeID, storeID).isOwner();
+            } catch (Exception e) { return false; }
         }
 
         public Boolean isManager(string employeeID, string storeID)
         {
-            return getemployee(employeeID, storeID).isManager();
+            try
+            {
+                return getemployee(employeeID, storeID).isManager();
+            } catch (Exception e) { return false; }
         }
 
         /**add new 'userID' employee with 'permissions' in a store
@@ -139,13 +154,16 @@ namespace Market_System.DomainLayer.StoreComponent
             Employee newEmp = new Employee(userID, storeID, role);
             newEmp.Permissions = permissions;
             AddEmp(newEmp);
+            EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
         /**remove 'userID' employee
         */
         public void removeEmployee(string userID, string storeID)
-        { 
-            removeEmp(getemployee(userID, storeID));
+        {
+            Employee emp = getemployee(userID, storeID);
+            removeEmp(emp);
+            EmployeeRepo.GetInstance().Remove_Employee(emp);
         }
 
 
@@ -153,14 +171,17 @@ namespace Market_System.DomainLayer.StoreComponent
          */
         public Boolean confirmPermission(string userID, string storeID, Permission permissionRequiered)
         {
-            if (getemployeePermissions(userID, storeID) == null)
+            try
             {
-                return false; //employee not exist 
-            }
-            else
-            {
-                return getemployeePermissions(userID, storeID).Contains(permissionRequiered);
-            }
+                if (getemployeePermissions(userID, storeID) == null)
+                {
+                    return false; //employee not exist 
+                }
+                else
+                {
+                    return getemployeePermissions(userID, storeID).Contains(permissionRequiered);
+                }
+            } catch (Exception e) { return false; } 
         }
 
         public List<Permission> getemployeePermissions(string userID, string storeID)
@@ -220,6 +241,7 @@ namespace Market_System.DomainLayer.StoreComponent
             newEmp.OwnerAssignner = assignnerID;
             newEmp.Permissions = OwnerPermissions;
             AddEmp(newEmp);
+            EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
         /**add new  founder employee  with 'permissions' of an founder.
@@ -229,6 +251,7 @@ namespace Market_System.DomainLayer.StoreComponent
             Employee newEmp = new Employee(userID, storeID, Role.Founder);
             newEmp.Permissions = FounderPermissions;
             AddEmp(newEmp);
+            EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
         public void AddNewManagerEmpPermissions(string assignnerID, string newManagerID, string storeID, List<Permission> managingPermissions)
@@ -240,11 +263,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void removeStore(string storeID)
         {
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-            //save a backup
             List<Employee> emps = getStoreEmployees(storeID);
             foreach (Employee emp in emps)
             {
+                EmployeeRepo.GetInstance().Remove_Store(emp);
                 this.removeEmployee(emp.UserID, storeID);
             }
         }
@@ -273,17 +295,18 @@ namespace Market_System.DomainLayer.StoreComponent
 
         internal bool isMarketManager(string userID)
         {
-            foreach(Employee em in empPermissions)
+            return EmployeeRepo.GetInstance().isMarketManager(userID);
+        }
+
+        internal void ReopenStore(string store_ID)
+        {
+            List<Employee> emps = EmployeeRepo.GetInstance().getClosedStoreEmployees(store_ID);
+            foreach (Employee emp in emps)
             {
-                if(em.UserID.Equals(userID))
-                {
-                    if(em.Role.Equals(Role.Admin))
-                    {
-                        return true;
-                    }
-                }
+                this.AddEmp(emp);
             }
-            return false;
+
+            EmployeeRepo.GetInstance().ReopenStore(store_ID);
         }
 
         //**add exeption catching.

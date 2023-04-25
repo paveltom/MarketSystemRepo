@@ -36,6 +36,11 @@ namespace Market_System.DomainLayer.UserComponent
             this.user_State = new Member();
         }
 
+        public void AdminLogin()
+        {
+            this.user_State = new Administrator();
+        }
+
         public void Logout()
         {
             this.user_State = new Guest();
@@ -60,9 +65,14 @@ namespace Market_System.DomainLayer.UserComponent
             this.my_cart.update_total_price(price);
         }
 
-        internal void remove_product_from_basket(string product_id)
+        internal void remove_product_from_basket(string product_id,int quantity)
         {
-            this.my_cart.remove_product(product_id);
+            this.my_cart.remove_product(product_id,quantity);
+        }
+
+        internal void reset_cart()
+        {
+            my_cart = new Cart();
         }
     }
 }

@@ -26,11 +26,19 @@ namespace Market_System.Tests.unit_tests
     [TestInitialize()]
         public void Setup()
         {
-            testProduct0 = GetNewProduct();
-            testProduct1 = GetExistingProduct();
+            store0 = GetStore("testProduct0StoreID789");
+            store1 = GetStore("testProduct1StoreID465");
             this.repo = StoreRepo.GetInstance();
-            store0 = GetStore(this.testProduct0.GetStoreID());
-            store1 = GetStore(this.testProduct1.GetStoreID());
+            repo.AddStore(store0.founderID, store0);
+            repo.AddStore(store1.founderID, store1);
+            testProduct0 = GetNewProduct();
+            testProduct1 = GetExistingProduct();            
+            ConcurrentDictionary<string, string> store0AllProducts = new ConcurrentDictionary<string, string>();
+            ConcurrentDictionary<string, string> store1AllProducts = new ConcurrentDictionary<string, string>();
+            store0AllProducts.TryAdd(this.testProduct0.Product_ID, this.testProduct0.Product_ID);
+            store1AllProducts.TryAdd(this.testProduct1.Product_ID, this.testProduct1.Product_ID);
+            store0.allProducts = store0AllProducts;
+            store1.allProducts = store1AllProducts;
             this.repo.AddProduct(store0.Store_ID, store0.founderID,  this.testProduct0, testProduct0.Quantity);
             this.repo.AddProduct(store1.Store_ID, store1.founderID, this.testProduct1, testProduct1.Quantity);
         }
@@ -46,8 +54,8 @@ namespace Market_System.Tests.unit_tests
         public void AddPurchasePolicyProductTestSuccess()
         {
             // Arrange
-            Purchase_Policy purchase_Policy0 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy0ID", "AddPurchasePolicyProductTest_Policy0Name");
-            Purchase_Policy purchase_Policy1 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy1ID", "AddPurchasePolicyProductTest_Policy1Name");
+            Purchase_Policy purchase_Policy0 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy0ID", "AddPurchasePolicyProductTest_Policy0Name", 100, 0, 50);
+            Purchase_Policy purchase_Policy1 = new Purchase_Policy("AddPurchasePolicyProductTest_Policy1ID", "AddPurchasePolicyProductTest_Policy1Name", 100, 0, 50);
 
             // Act
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
@@ -65,7 +73,7 @@ namespace Market_System.Tests.unit_tests
         public void AddPurchasePolicyAlreadyExistProductTest()
         {
             // Arrange
-            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name");
+            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("AddPurchasePolicyProductTest_Policy_BOTH_ID", "AddPurchasePolicyProductTest_Policy_BOTH_Name", 100, 0, 50);
             this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
             this.testProduct1.AddPurchasePolicy(purchase_PolicyBoth);
             bool error0 = false;
@@ -92,8 +100,8 @@ namespace Market_System.Tests.unit_tests
         public void RemovePurchasePolicyProductTestSuccess()
         {
             // Arrange
-            Purchase_Policy purchase_Policy0 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy0ID", "RemovePurchasePolicyProductTest_Policy0Name");
-            Purchase_Policy purchase_Policy1 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy1ID", "RemovePurchasePolicyProductTest_Policy1Name");
+            Purchase_Policy purchase_Policy0 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy0ID", "RemovePurchasePolicyProductTest_Policy0Name", 100, 0, 50);
+            Purchase_Policy purchase_Policy1 = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy1ID", "RemovePurchasePolicyProductTest_Policy1Name", 100, 0, 50);
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
             this.testProduct1.AddPurchasePolicy(purchase_Policy1);
 
@@ -110,7 +118,7 @@ namespace Market_System.Tests.unit_tests
         public void RemovePurchasePolicyDoesntExistProductTestFail()
         {
             // Arrange
-            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy_BOTH_ID", "RemovePurchasePolicyProductTest_Policy_BOTH_Name");
+            Purchase_Policy purchase_PolicyBoth = new Purchase_Policy("RemovePurchasePolicyProductTest_Policy_BOTH_ID", "RemovePurchasePolicyProductTest_Policy_BOTH_Name", 100, 0, 50);
             bool error0 = false;
             bool error1 = false;
             this.testProduct0.AddPurchasePolicy(purchase_PolicyBoth);
@@ -358,8 +366,8 @@ namespace Market_System.Tests.unit_tests
 
 
             // Assert
-            Assert.Equals(p0StoreID, out0);
-            Assert.Equals(p1StoreID, out1);
+            Assert.AreEqual(p0StoreID, out0);
+            Assert.AreEqual(p1StoreID, out1);
         }
 
         [TestMethod]
@@ -374,17 +382,17 @@ namespace Market_System.Tests.unit_tests
 
             List<string> fakeChosenAttributes = new List<string>() { "attr1" }; // this functionality doesn't support / consider attributes choice yet
 
-            double afterSale0 = p0Price - (p0Price / 100 * p0Sale);
-            double afterSale1 = p1Price - (p1Price / 100 * p1Sale);
+            double afterSale0 = this.testProduct0.Quantity * (p0Price - (p0Price / 100 * p0Sale));
+            double afterSale1 = this.testProduct1.Quantity * (p1Price - (p1Price / 100 * p1Sale));
 
             // Act
-            double out0 = this.testProduct0.ImplementSale(fakeChosenAttributes);
-            double out1 = this.testProduct1.ImplementSale(fakeChosenAttributes);
+            double out0 = this.testProduct0.ImplementSale(fakeChosenAttributes, this.testProduct0.Quantity);
+            double out1 = this.testProduct1.ImplementSale(fakeChosenAttributes, this.testProduct1.Quantity);
 
 
             // Assert
-            Assert.Equals(afterSale0, out0);
-            Assert.Equals(afterSale1, out1);
+            Assert.AreEqual(afterSale0, out0);
+            Assert.AreEqual(afterSale1, out1);
         }
 
         [TestMethod]
@@ -404,13 +412,13 @@ namespace Market_System.Tests.unit_tests
 
 
             // Act
-            double out0WithSale = this.testProduct0.CalculatePrice(quantityToBuy0, true);
-            double out1WithSale = this.testProduct1.CalculatePrice(quantityToBuy1, true); ;
+            double out0WithSale = this.testProduct0.CalculatePrice(quantityToBuy0);
+            double out1WithSale = this.testProduct1.CalculatePrice(quantityToBuy1); ;
 
 
             // Assert
-            Assert.Equals(priceAfterSale0, out0WithSale);
-            Assert.Equals(priceAfterSale1, out1WithSale);
+            Assert.AreEqual(priceAfterSale0, out0WithSale);
+            Assert.AreEqual(priceAfterSale1, out1WithSale);
         }
 
         [TestMethod]
@@ -421,17 +429,19 @@ namespace Market_System.Tests.unit_tests
             int quantityToBuy1 = 5;
             double p0Price = testProduct0.Price; // init parameter
             double p1Price = testProduct1.Price; // init parameter
+            this.testProduct0.SetSale(0);
+            this.testProduct1.SetSale(0);
 
             double priceBeforeSale0 = p0Price * quantityToBuy0;
             double priceBeforeSale1 = p1Price * quantityToBuy1;
 
             // Act
-            double out0WithoutSale = this.testProduct0.CalculatePrice(quantityToBuy0, false);
-            double out1WithoutSale = this.testProduct1.CalculatePrice(quantityToBuy1, false);
+            double out0WithoutSale = this.testProduct0.CalculatePrice(quantityToBuy0);
+            double out1WithoutSale = this.testProduct1.CalculatePrice(quantityToBuy1);
 
             // Assert
-            Assert.Equals(priceBeforeSale0, out0WithoutSale);
-            Assert.Equals(priceBeforeSale1, out1WithoutSale);
+            Assert.AreEqual(priceBeforeSale0, out0WithoutSale);
+            Assert.AreEqual(priceBeforeSale1, out1WithoutSale);
         }
 
         [TestMethod]
@@ -444,13 +454,13 @@ namespace Market_System.Tests.unit_tests
             // Act
             try
             {
-                this.testProduct0.CalculatePrice(0, false);
+                this.testProduct0.CalculatePrice(0);
             }
             catch (Exception ex) { error0 = true; }
 
             try
             {
-                this.testProduct1.CalculatePrice(0, false);
+                this.testProduct1.CalculatePrice(0);
             }
             catch (Exception ex) { error1 = true; }
 
@@ -528,8 +538,8 @@ namespace Market_System.Tests.unit_tests
             // Assert
             Assert.IsFalse(error0);
             Assert.IsFalse(error1);
-            Assert.Equals(initQuantity0 - quantityToBuy0, this.testProduct0.Quantity);
-            Assert.Equals(initQuantity1 - quantityToBuy1, this.testProduct1.Quantity);
+            Assert.AreEqual(initQuantity0 - quantityToBuy0, this.testProduct0.Quantity);
+            Assert.AreEqual(initQuantity1 - quantityToBuy1, this.testProduct1.Quantity);
         }
 
         [TestMethod]
@@ -560,8 +570,8 @@ namespace Market_System.Tests.unit_tests
             // Assert
             Assert.IsTrue(error0);
             Assert.IsTrue(error1);
-            Assert.Equals(initQuantity0, this.testProduct0.Quantity);
-            Assert.Equals(initQuantity1, this.testProduct1.Quantity);
+            Assert.AreEqual(initQuantity0, this.testProduct0.Quantity);
+            Assert.AreEqual(initQuantity1, this.testProduct1.Quantity);
         }
 
         [TestMethod]
@@ -573,7 +583,7 @@ namespace Market_System.Tests.unit_tests
             int initReservedQuantity0 = this.testProduct0.ReservedQuantity; // = 0: init parameter
             int initReservedQuantity1 = this.testProduct1.ReservedQuantity; // = 12: init parameter
             int quantityToReserve0 = initQuantity0 / 2;
-            int quantityToReserve1 = 2;
+            int quantityToReserve1 = initQuantity1 / 2;
             bool error0 = false;
             bool error1 = false;
 
@@ -587,15 +597,15 @@ namespace Market_System.Tests.unit_tests
 
             try
             {
-                this.testProduct1.Purchase(quantityToReserve1);
+                this.testProduct1.Reserve(quantityToReserve1);
             }
             catch (Exception e) { error1 = true; }
 
             // Assert
             Assert.IsFalse(error0);
             Assert.IsFalse(error1);
-            Assert.Equals(initReservedQuantity0 + quantityToReserve0, this.testProduct0.ReservedQuantity);
-            Assert.Equals(initReservedQuantity1 + quantityToReserve1, this.testProduct1.ReservedQuantity);
+            Assert.AreEqual(initReservedQuantity0 + quantityToReserve0, this.testProduct0.ReservedQuantity);
+            Assert.AreEqual(initReservedQuantity1 + quantityToReserve1, this.testProduct1.ReservedQuantity);
         }
 
         [TestMethod]
@@ -621,15 +631,15 @@ namespace Market_System.Tests.unit_tests
 
             try
             {
-                this.testProduct1.Purchase(quantityToReserve1);
+                this.testProduct1.Reserve(quantityToReserve1);
             }
             catch (Exception e) { error1 = true; }
 
             // Assert
             Assert.IsTrue(error0);
             Assert.IsTrue(error1);
-            Assert.Equals(initReservedQuantity0, this.testProduct0.ReservedQuantity);
-            Assert.Equals(initReservedQuantity1, this.testProduct1.ReservedQuantity);
+            Assert.AreEqual(initReservedQuantity0, this.testProduct0.ReservedQuantity);
+            Assert.AreEqual(initReservedQuantity1, this.testProduct1.ReservedQuantity);
         }
 
         [TestMethod]
@@ -649,7 +659,7 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsFalse(error1); // everythin fine
-            Assert.Equals(initReservedQuantity1 - quantityToRelease1, this.testProduct1.ReservedQuantity);
+            Assert.AreEqual(initReservedQuantity1 - quantityToRelease1, this.testProduct1.ReservedQuantity);
         }
 
         [TestMethod]
@@ -670,7 +680,7 @@ namespace Market_System.Tests.unit_tests
 
             // Assert
             Assert.IsTrue(error0); // cannot release more than reserved
-            Assert.Equals(initReservedQuantity0, this.testProduct0.ReservedQuantity);
+            Assert.AreEqual(initReservedQuantity0, this.testProduct0.ReservedQuantity);
         }
 
         [TestMethod]
@@ -682,13 +692,14 @@ namespace Market_System.Tests.unit_tests
             string userID0 = "AddCommentAndUpdateRatingProductTestProduct0UserID0";
             double newRating0 = rating0;
             string newComment0 = userID0 + ": " + comment0 + ".\n Rating: " + rating0 + ".";
+            testProduct0.SetTimesBought(1);
 
             // Act
             this.testProduct0.AddComment(userID0, comment0, rating0);
 
             // Assert
             Assert.IsTrue(this.testProduct0.Comments.ToList().Contains(newComment0));
-            Assert.Equals(testProduct0.Rating, newRating0);
+            Assert.AreEqual(testProduct0.Rating, newRating0);
         }
 
         [TestMethod]
@@ -699,15 +710,14 @@ namespace Market_System.Tests.unit_tests
             double rating1 = 0;
             string userID1 = "AddCommentAndUpdateRatingProductTestProduct1UserID1";
             double initRating1 = this.testProduct1.Rating;
-            double newRating1 = (initRating1 * this.testProduct1.timesBought + rating1) / (this.testProduct1.timesBought + 1);
-            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: " + rating1 + ".";
+            string newComment1 = userID1 + ": " + comment1 + ".\n Rating: _ .";
 
             // Act
             this.testProduct1.AddComment(userID1, comment1, rating1);
 
             // Assert
             Assert.IsTrue(this.testProduct1.Comments.ToList().Contains(newComment1));
-            Assert.Equals(testProduct1.Rating, newRating1);
+            Assert.AreEqual(testProduct1.Rating, initRating1);
         }
 
         [TestMethod]
@@ -745,7 +755,7 @@ namespace Market_System.Tests.unit_tests
             ItemDTO retItem = this.testProduct0.GetProductDTO();
 
             // Assert
-            Assert.Equals(retItem.GetID(), item.GetID()); // the builder in ItemDTO does not implemented yet
+            Assert.AreEqual(retItem.GetID(), item.GetID()); // the builder in ItemDTO does not implemented yet
         }
 
         public void SetNameProductTestSuccess()
@@ -757,7 +767,7 @@ namespace Market_System.Tests.unit_tests
             this.testProduct0.SetName(name0);
 
             // Assert
-            Assert.Equals(testProduct0.Name, name0);
+            Assert.AreEqual(testProduct0.Name, name0);
         }
 
         [TestMethod]
@@ -788,7 +798,7 @@ namespace Market_System.Tests.unit_tests
             this.testProduct0.SetDescription(Description0);
 
             // Assert
-            Assert.Equals(testProduct0.Description, Description0);
+            Assert.AreEqual(testProduct0.Description, Description0);
         }
 
         [TestMethod]
@@ -821,8 +831,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetPrice(Price1);
 
             // Assert
-            Assert.Equals(testProduct0.Price, Price0);
-            Assert.Equals(testProduct1.Price, Price1);
+            Assert.AreEqual(testProduct0.Price, Price0);
+            Assert.AreEqual(testProduct1.Price, Price1);
         }
 
         [TestMethod]
@@ -854,8 +864,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetRating(Rating1);
 
             // Assert
-            Assert.Equals(testProduct0.Rating, Rating0);
-            Assert.Equals(testProduct1.Rating, Rating1);
+            Assert.AreEqual(testProduct0.Rating, Rating0);
+            Assert.AreEqual(testProduct1.Rating, Rating1);
         }
 
         [TestMethod]
@@ -894,8 +904,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetQuantity(Quantity1);
 
             // Assert
-            Assert.Equals(testProduct0.Quantity, Quantity0);
-            Assert.Equals(testProduct1.Quantity, Quantity1);
+            Assert.AreEqual(testProduct0.Quantity, Quantity0);
+            Assert.AreEqual(testProduct1.Quantity, Quantity1);
         }
 
         [TestMethod]
@@ -927,8 +937,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetWeight(weight1);
 
             // Assert
-            Assert.Equals(testProduct0.Weight, weight0);
-            Assert.Equals(testProduct1.Weight, weight1);
+            Assert.AreEqual(testProduct0.Weight, weight0);
+            Assert.AreEqual(testProduct1.Weight, weight1);
         }
 
         [TestMethod]
@@ -960,8 +970,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetSale(Sale1);
 
             // Assert
-            Assert.Equals(testProduct0.Sale, Sale0);
-            Assert.Equals(testProduct1.Sale, Sale1);
+            Assert.AreEqual(testProduct0.Sale, Sale0);
+            Assert.AreEqual(testProduct1.Sale, Sale1);
         }
 
         [TestMethod]
@@ -993,8 +1003,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetTimesBought(times1);
 
             // Assert
-            Assert.Equals(testProduct0.timesBought, times0);
-            Assert.Equals(testProduct1.timesBought, times1);
+            Assert.AreEqual(testProduct0.timesBought, times0);
+            Assert.AreEqual(testProduct1.timesBought, times1);
         }
 
         [TestMethod]
@@ -1026,8 +1036,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetProductCategory(cat1);
 
             // Assert
-            Assert.Equals(testProduct0.ProductCategory, cat0);
-            Assert.Equals(testProduct1.ProductCategory, cat1);
+            Assert.AreEqual(testProduct0.ProductCategory, cat0);
+            Assert.AreEqual(testProduct1.ProductCategory, cat1);
         }
 
         [TestMethod]
@@ -1041,8 +1051,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetProductCategory(null);
 
             // Assert
-            Assert.Equals(testProduct0.ProductCategory, noCategory);
-            Assert.Equals(testProduct1.ProductCategory, noCategory);
+            Assert.AreEqual(testProduct0.ProductCategory.CategoryName, noCategory);
+            Assert.AreEqual(testProduct1.ProductCategory.CategoryName, noCategory);
         }
 
         [TestMethod]
@@ -1057,8 +1067,8 @@ namespace Market_System.Tests.unit_tests
             this.testProduct1.SetDimenssions(dims1);
 
             // Assert
-            Assert.Equals(testProduct0.Dimenssions, dims0);
-            Assert.Equals(testProduct1.Dimenssions, dims1);
+            Assert.AreEqual(testProduct0.Dimenssions, dims0);
+            Assert.AreEqual(testProduct1.Dimenssions, dims1);
         }
 
         [TestMethod]
@@ -1099,19 +1109,19 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
 
-            List<string> allProductsIDS = new List<string>() { "testProduct1StoreID465_tesProduct1ID" };
+            List<string> allProductsIDS = new List<string>();
 
             return new Store(founderID, storeID, policies, strategies, allProductsIDS, false);
         }
 
         private Product GetNewProduct()
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
+            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
@@ -1128,7 +1138,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetExistingProduct()
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
+            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
             String product_ID = "testProduct1StoreID465_tesProduct1ID";
             String name = "testProduct1Name";

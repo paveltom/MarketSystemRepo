@@ -14,14 +14,16 @@ namespace Market_System.DomainLayer.StoreComponent
         public enum MarketManagerPermission { MARKETMANAGER, NOTMARKETMANAGER }; // remove this permission later - until EmployeePermissions class is done
         public string Store_ID { get; private set; }
         public string Name { get; private set; }
-        private ConcurrentDictionary<string, string> allProducts;
+        public ConcurrentDictionary<string, string> allProducts;
         private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
         private Employees employees;
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
-        public ConcurrentDictionary<string, Purchase_Policy> defaultPolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Strategy> defaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
@@ -33,21 +35,23 @@ namespace Market_System.DomainLayer.StoreComponent
             this.employees = new Employees();
             this.products = new ConcurrentDictionary<string, Product>();
             this.productUsage = new ConcurrentDictionary<string, int>();
-            this.defaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            this.defaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.storePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.storeStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.temporaryClosed = temporaryClosed;
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
-                    this.defaultPolicies.TryAdd(p.GetID(), p);
+                    this.storePolicies.TryAdd(p.GetID(), p);
             if (strategies != null)
                 foreach (Purchase_Strategy p in strategies)
-                    this.defaultStrategies.TryAdd(p.GetID(), p);
+                    this.storeStrategies.TryAdd(p.GetID(), p);
 
-            if (allProductsIDS == null)
-                this.allProducts = new ConcurrentDictionary<string, string>();
-            else
-                allProductsIDS.ForEach(s => this.allProducts.TryAdd(s, s));
+            this.allProducts = new ConcurrentDictionary<string, string>();
+            if (allProductsIDS != null)                
+                foreach(string s in allProductsIDS)
+                    this.allProducts.TryAdd(s, s);
             this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 
@@ -95,7 +99,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.confirmPermission(userID, this.Store_ID, Permission.OwnerOnly) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (this.employees.isFounder(userID, this.Store_ID) || (this.employees.isOwner(userID, this.Store_ID) && 
+                                                                this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.updateEmpPermissions(employeeID, this.Store_ID, perms);
                     else
                         throw new Exception("You can't manage this employee permissions.");
@@ -112,7 +117,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
                     else
                         throw new Exception("Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store.");
@@ -127,7 +132,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && !this.employees.isManager(newManagerID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !this.employees.isManager(newManagerID, this.Store_ID))
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
                     else
                         throw new Exception("Cannot assign new manager: you are not an owner or this employee is already a manager in this store.");
@@ -168,7 +173,8 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID)) || ((this.employees.isOwner(userID, this.Store_ID)) && 
+                                                                            this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.AddAnEmpPermission(employeeID, this.Store_ID, newP);
                     else
                         throw new Exception("You cannot add permissions for that employee.");
@@ -184,8 +190,10 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID))
+                    if (userID == this.founderID || 
+                        (this.employees.isOwner(userID, this.Store_ID) && this.employees.isManagerSubject(employeeID, userID, this.Store_ID)))
                         this.employees.removeAnEmpPermission(employeeID, this.Store_ID, permToRemove); // validate this method added to EmployeesPermission
+                    else throw new Exception("You have no permission to remove this employee permisssion.");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -239,21 +247,26 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (this.founderID != userID) // ADD - maket manager permission validation
                     throw new Exception("Only store founder or Market Manager can remove a store.");
                 this.storeRepo.close_store_temporary(this.Store_ID);
-                /*
-                foreach (String s in allProducts)
-                {
-                    AcquireProduct(s).RemoveProduct(this.founderID); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! don't remove product here so store can be restored
-                    ReleaseProduct(s);
-                }
-                */
                 this.employees.removeStore(this.Store_ID);
-                // remove policies and strategies
-
+                this.temporaryClosed = true;
             }
             catch (Exception ex) { throw ex; }
 
         }
 
+        public void ReopenStore(string userID)
+        {
+            try
+            {
+                if (this.founderID != userID) // ADD - maket manager permission validation
+                    throw new Exception("Only store founder or Market Manager can reopen a store.");
+                this.storeRepo.re_open_closed_temporary_store(userID, this.Store_ID);
+                this.employees.ReopenStore(this.Store_ID);
+                this.temporaryClosed = false;
+            }
+            catch (Exception ex) { throw ex; }
+
+        }
 
         private static object CalculatePriceLock = new object();
         public double CalculatePrice(List<ItemDTO> productsToCalculate)
@@ -262,13 +275,19 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    double price = 0;
+                    double productSalePrice = 0;
+                    double storeSalePrice = 0;
+                    int quantity = 0;
                     foreach (ItemDTO item in productsToCalculate)
                     {
-                        price += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity(), true);
+                        productSalePrice += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity());
+                        quantity += item.GetQuantity();
                         ReleaseProduct(item.GetID());
                     }
-                    return price;
+                    storeSalePrice = productSalePrice;
+                    foreach(Purchase_Policy p in this.storePolicies.Values)
+                        storeSalePrice -= Math.Max(0, p.ApplyPolicy(productSalePrice, quantity));
+                    return storeSalePrice;
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -321,7 +340,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultPolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                    if (this.storePolicies.TryAdd(newPolicy.GetID(), newPolicy))
                         Save();
                     else
                         throw new Exception("Policy already exists.");
@@ -338,9 +357,11 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultPolicies.TryRemove(policyID, out _))
+                    if (this.storePolicies.TryRemove(policyID, out _))
                         Save();
+                    else throw new Exception("No such policy.");
                 }
+                else throw new Exception("You have no permission to remove store policy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -351,9 +372,11 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                    if (this.storeStrategies.TryAdd(newStrategy.GetID(), newStrategy))
                         Save();
+                    else throw new Exception("Strategy already exists.");
                 }
+                else throw new Exception("You have no permission to add strategy.");
             }
             catch (Exception e) { throw e; }
         }
@@ -365,7 +388,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.defaultStrategies.TryRemove(strategyID, out _))
+                    if (this.storeStrategies.TryRemove(strategyID, out _))
                         Save();
                     else
                         throw new Exception("No such strategy in this store.");
@@ -431,7 +454,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object AddProductLock = new object();
-        public void AddProduct(string userID, List<string> productProperties)
+        public ItemDTO AddProduct(string userID, List<string> productProperties)
         {
             lock (AddProductLock)
             {
@@ -439,10 +462,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                     {
-                        Product newProduct = new Product(productProperties, this.Store_ID, this.defaultPolicies, this.defaultStrategies);
+                        Product newProduct = new Product(productProperties, this.Store_ID, this.productDefaultPolicies, this.productDefaultStrategies);
                         this.storeRepo.AddProduct(this.Store_ID, this.founderID, newProduct, 0);
                         this.allProducts.TryAdd(newProduct.Product_ID, newProduct.Product_ID);
                         Save();
+                        return newProduct.GetProductDTO();
                     }
                     else
                         throw new Exception("You dont have a permission to manage store stock.");
@@ -545,7 +569,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.isMarketManager(userID)) // // change later after market manager permission enum added
+                if (this.employees.isMarketManager(userID))
                 {
                     AcquireProduct(productID).SetRating(rating);
                     ReleaseProduct(productID);

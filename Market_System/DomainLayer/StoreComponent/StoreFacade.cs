@@ -93,7 +93,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal void close_store_temporary(string sessionID, string storeID)
+        internal void close_store_temporary(string userID, string storeID)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (entry.Key.Equals(storeID))
                     {
-                        entry.Value.RemoveStore(sessionID);
+                        entry.Value.RemoveStore(userID);
                     }
                 }
             }
@@ -225,7 +225,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object newStoreLock = new object();  // so data of 2 different new stores won't intervene
-        public void AddNewStore(string userID, List<string> newStoreDetails)
+        public StoreDTO AddNewStore(string userID, List<string> newStoreDetails)
         {
             lock (newStoreLock)
             {
@@ -234,9 +234,12 @@ namespace Market_System.DomainLayer.StoreComponent
                     string newIDForStore = storeRepo.getNewStoreID();
                     if (newIDForStore == "")
                         throw new Exception("Created bad store ID.");
-                    Store currStore = new Store(userID, newIDForStore, null, null, null, false);
-                    currStore.ChangeName(userID, newStoreDetails[0]);
+                    if (newStoreDetails[0] == "")
+                        throw new Exception("Store name missing.");
+                    Store currStore = new Store(userID, newIDForStore, null, null, null, false);                    
                     storeRepo.AddStore(userID, currStore);
+                    currStore.ChangeName(userID, newStoreDetails[0]);
+                    return currStore.GetStoreDTO();
                 }
                 catch (Exception e)
                 {
@@ -261,7 +264,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                storeRepo.re_open_closed_temporary_store(userID, storeID);
+                AcquireStore(storeID).ReopenStore(userID);
             }
             catch (Exception e) { throw e; }
         }
@@ -453,14 +456,15 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void AddProductToStore(string storeID, string usertID, List<String> productProperties)
+        public ItemDTO AddProductToStore(string storeID, string usertID, List<String> productProperties)
         {
             // List<string>, length 10, as foolows:
             // Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale, Weight, Dimenssions, PurchaseAttributes, ProductCategory 
             try
             {
-                AcquireStore(storeID).AddProduct(usertID, productProperties);
+                ItemDTO ret = AcquireStore(storeID).AddProduct(usertID, productProperties);
                 ReleaseStore(storeID);
+                return ret;
             }
             catch (Exception e)
             {
@@ -699,6 +703,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public void Destroy_me()
         {
             Instance = null;
+            storeRepo.destroy();
         }
 
 

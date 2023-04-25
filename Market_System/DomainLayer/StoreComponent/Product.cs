@@ -26,6 +26,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public Double Weight { get; private set; }
         public Double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
         public long timesBought { get; private set; }
+        public long timesRated { get ; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
         public Double[] Dimenssions { get; private set; } // array of 3
         public ConcurrentDictionary<string, Purchase_Policy> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
@@ -73,7 +74,7 @@ namespace Market_System.DomainLayer.StoreComponent
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             this.StoreID = storeID;
             this.storeRepo = StoreRepo.GetInstance();
-            this.Product_ID = DateTime.Now.ToString(); //this.storeRepo.getNewProductID(storeID); Change when StoreRepo done !!!!!!!!!!!!!!
+            this.Product_ID = storeRepo.getNewProductID(storeID); //this.storeRepo.getNewProductID(storeID); Change when StoreRepo done !!!!!!!!!!!!!!
             this.PurchasePolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultStorePolicies);
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
@@ -100,6 +101,8 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 List<string> wholeAtrs = atrs.Split(';').ToList();
+                if(wholeAtrs.Count > 0)
+                    wholeAtrs.RemoveAt(wholeAtrs.Count - 1);
                 ConcurrentDictionary<string, List<string>> ret = new ConcurrentDictionary<string, List<string>>();
                 foreach (string s in wholeAtrs)
                 {
@@ -185,13 +188,17 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public double ImplementSale(List<String> chosenAttributes)
+        public double ImplementSale(List<String> chosenAttributes, int quantity)
         {
-            return this.Price - (this.Price / 100 * this.Sale);
-            // PurchasePolicies.accept(chosenAttributes); // chain of responsibility that returns the price with implemented sale
-            // get items
-            // concrete product varies by PurchaseAttributes, so the sale calculated considering chosenAttributes by
-            // applying PurchasePolicies chain of responsibility
+            double saledPrice = this.Price - (this.Price / 100 * this.Sale);
+            ConcurrentDictionary<string, double> attributes = new ConcurrentDictionary<string, double>();
+            foreach (string s in chosenAttributes ?? Enumerable.Empty<string>())
+            {
+                if(PurchasePolicies.ContainsKey(s))
+                    saledPrice -= Math.Max(0, this.PurchasePolicies[s].ApplyPolicy(this.Price, quantity));
+            }
+                
+            return quantity * saledPrice;
         }
 
         public string GetStoreID()
@@ -206,17 +213,14 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public double CalculatePrice(int quantity, Boolean implementSale) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        public double CalculatePrice(int quantity) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
             //change later to - return ImplementSale(attributes) * quantity;
             try
             {
                 if (quantity < 1)
                     throw new Exception("Bad quantity!");
-                if (implementSale)
-                    return ImplementSale(null) * quantity; // add chosen attributes functionality
-                else
-                    return this.Price * quantity;
+                return ImplementSale(null, quantity); // add chosen attributes functionality
             }
             catch (Exception e) { throw e; }
         }
@@ -235,6 +239,7 @@ namespace Market_System.DomainLayer.StoreComponent
                             throw new Exception("Not enough product in Store.");
                         this.Quantity -= quantity;
                         this.ReservedQuantity -= quantity;
+                        this.timesBought += quantity;
                     }
                     Save();
                 }
@@ -289,8 +294,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (timesBought > 0)
                     {
-                        this.Rating = (this.Rating * timesBought + rating) / (timesBought + 1);
-                        this.timesBought++;
+                        this.Rating = (this.Rating * timesRated + rating) / (timesRated + 1);
+                        this.timesRated++;
                         Save();
                     }
                 }
@@ -340,7 +345,9 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                return new ItemDTO(this.Product_ID, this.Quantity); // !!!! Change to send ItemDTO(this) after StoreRepo done!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                ItemDTO return_me= new ItemDTO(this.Product_ID, this.Quantity); // !!!! Change to send ItemDTO(this) after StoreRepo done!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return_me.SetReservedQuantity(this.ReservedQuantity);
+                return return_me;
             }
             catch (Exception e) { throw e; }
         }
@@ -511,6 +518,9 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (this.Dimenssions)
                 {
+                    foreach(double d in dims)
+                        if(d <= 0)
+                            throw new Exception("Dimenssion cannot be 0 or negative.");  
                     this.Dimenssions = dims;
                     Save();
                 }

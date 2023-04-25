@@ -30,8 +30,8 @@ namespace Market_System.DomainLayer
             this.AllProducts = storeToCopy.GetItems();
             this.managers = GetEmployeesDTO(storeToCopy.GetManagersOfTheStore(FounderID));
             this.owners = GetEmployeesDTO(storeToCopy.GetOwnersOfTheStore(FounderID));
-            this.DefaultPolicies = GetPolicies(storeToCopy.defaultPolicies);
-            this.DefaultStrategies = GetStrategies(storeToCopy.defaultStrategies);
+            this.DefaultPolicies = GetPolicies(storeToCopy.storePolicies);
+            this.DefaultStrategies = GetStrategies(storeToCopy.storeStrategies);
         }
 
 

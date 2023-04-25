@@ -44,7 +44,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 string guest_name = market_System.login_guest();
-                market_System.link_user_with_session(guest_name, session_id);
+                market_System.link_guest_with_session(guest_name, session_id);
                 return guest_name;
             }
 
@@ -110,12 +110,33 @@ namespace Market_System.ServiceLayer
             }
 
         }
-        public string remove_product_from_basket(string product_id, string session_id)
+
+        public void save_purhcase_in_user(string session_id, Cart cart)
         {
             try
             {
-               
-                return market_System.remove_product_from_basket(product_id, session_id);
+
+
+                this.market_System.save_purhcase_in_user(session_id, cart);
+
+
+            }
+
+            catch (Exception e)
+            {
+                //TODO:: לבטל שריון של ההזמנה!!!!
+                throw e;
+
+            }
+        }
+        public string remove_product_from_basket(string product_id, string session_id,string quantity)
+        {
+            try
+            {
+
+                market_System.LetGoProduct(new ItemDTO(product_id, int.Parse(quantity)));
+                
+                return market_System.remove_product_from_basket(product_id, session_id, int.Parse(quantity));
             }
             catch (Exception e)
             {
@@ -208,12 +229,12 @@ namespace Market_System.ServiceLayer
    
         }
 
-        public bool isAdministrator(string session_ID)
+        public bool isLoggedInAdministrator(string session_ID)
         {
             try
             {
                 
-                return market_System.isAdministrator(session_ID);
+                return market_System.isLoggedInAdministrator(session_ID);
             }
 
             catch (Exception e)
@@ -221,6 +242,31 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
 
+        }
+
+        public string AddNewAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                market_System.AddNewAdmin(sessionID, Other_username);
+                return "Admin has been added succefully";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool CheckIfAdmin(string sessionID, string Other_username)
+        {
+            try
+            {
+                return market_System.CheckIfAdmin(sessionID, Other_username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
