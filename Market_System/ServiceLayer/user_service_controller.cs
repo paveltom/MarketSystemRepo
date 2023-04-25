@@ -268,5 +268,18 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
         }
+
+        public string Remove_A_Member(string sessionID, string member_Username)
+        {
+            try
+            {
+                market_System.Remove_A_Member(sessionID, member_Username);
+                return "removed the member successfully";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

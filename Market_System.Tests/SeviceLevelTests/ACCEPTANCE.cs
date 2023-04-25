@@ -384,6 +384,47 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        [TestMethod]
+        public void RemoveAMemberSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseotherUserRegister = service.register("layan", "123554", "meonot g");
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseRemoveAMember = service.Remove_A_Member("layan");
+
+            //Result:
+            Assert.AreEqual(false, responseRemoveAMember.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void RemoveAMemberFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseotherUserRegister = service.register("layan", "123554", "meonot g");
+            Response<string> responseUserLogin = service.login_member("yotam", "123554");
+            Response<StoreDTO> responseOpenStoreUser = service.open_new_store(new List<string> { "store_123" });
+            Response<string> assignOtherAsOwner = service.assign_new_owner(responseOpenStoreUser.Value.StoreID, "layan");
+            service.log_out();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseRemoveAMember = service.Remove_A_Member("layan");
+
+            //Result:
+            Assert.AreEqual(true, responseRemoveAMember.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
 
         #endregion
 

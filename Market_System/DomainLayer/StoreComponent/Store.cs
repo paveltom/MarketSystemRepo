@@ -628,6 +628,18 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        public bool Check_If_Member_Only(string member_ID)
+        {
+            foreach(Employee emp in employees.getStoreEmployees(Store_ID))
+            {
+                if (emp.UserID.Equals(member_ID))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public void ChangeProductSale(string userID, string productID, double sale)
         {
             try

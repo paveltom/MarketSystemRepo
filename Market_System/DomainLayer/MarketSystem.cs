@@ -58,7 +58,7 @@ namespace Market_System.DomainLayer
             return userFacade.get_cart(usrename);
         }
 
-        internal void link_guest_with_session(string guest_name, string session_id)
+        public void link_guest_with_session(string guest_name, string session_id)
         {
             userFacade.link_guest_with_session(guest_name, session_id);
         }
@@ -77,7 +77,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void ChangeStoreName(string sessionID, string storeID, string newName)
+        public void ChangeStoreName(string sessionID, string storeID, string newName)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void close_store_temporary(string sessionID, string storeID)
+        public void close_store_temporary(string sessionID, string storeID)
         {
             try
             {
@@ -151,7 +151,7 @@ namespace Market_System.DomainLayer
 
         }
 
-        internal void TransferFoundership(string sessionID, string storeID, string newFounderID)
+        public void TransferFoundership(string sessionID, string storeID, string newFounderID)
         {
             try
             {
@@ -166,7 +166,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void AddStorePurchasePolicy(string sessionID, string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        public void AddStorePurchasePolicy(string sessionID, string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
         {
             try
             {
@@ -181,7 +181,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void RemoveStorePurchasePolicy(string sessionID, string storeID, string policyID)
+        public void RemoveStorePurchasePolicy(string sessionID, string storeID, string policyID)
         {
             try
             {
@@ -211,7 +211,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void AddStorePurchaseStrategy(string sessionID, string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        public void AddStorePurchaseStrategy(string sessionID, string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
         {
             try
             {
@@ -226,7 +226,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        internal void RemoveStorePurchaseStrategy(string sessionID, string storeID, string strategyID)
+        public void RemoveStorePurchaseStrategy(string sessionID, string storeID, string strategyID)
         {
             try
             {
@@ -908,6 +908,31 @@ namespace Market_System.DomainLayer
             try
             {
                 return userFacade.CheckIfAdmin(sessionID, Other_username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Remove_A_Member(string sessionID, string member_Username)
+        {
+            try
+            {
+                //check if current user is an admin:
+                string user_ID = userFacade.get_userID_from_session(sessionID);
+                CheckIfAdmin(sessionID, userFacade.get_username_from_user_id(user_ID));
+
+                //check if he has any roles in the system: owner/manager/admin/etc...
+                string other_User_ID = userFacade.get_user_id_from_username(member_Username);
+                if (!CheckIfAdmin(sessionID, member_Username) && storeFacade.Check_If_Member_Only(other_User_ID))
+                {
+                    userFacade.Remove_A_Member(member_Username);
+                }
+                else
+                {
+                    throw new Exception("A member with roles in the system cannot be removed! You'll need to remove his roles first.");
+                }
             }
             catch (Exception e)
             {
