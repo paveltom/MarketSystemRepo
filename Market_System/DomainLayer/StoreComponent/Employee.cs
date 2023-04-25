@@ -52,8 +52,6 @@ namespace Market_System.DomainLayer.StoreComponent
             return Role.Equals(Role.Founder);
         }
 
-
-
         public string OwnerAssignner
         {
             get { return this.ownerAssignner; }

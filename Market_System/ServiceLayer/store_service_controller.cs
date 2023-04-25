@@ -224,12 +224,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewOwner(string storeID, string newOwner_ID)
+        public Response AssignNewOwner(string storeID, string newOwnerUsername)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.Assign_New_Owner(SessionID, newOwner_ID, storeID);
+                this.Market.Assign_New_Owner(SessionID, newOwnerUsername, storeID);
                 return new Response("New owner was added successfully.");
             }
             catch (Exception ex)
@@ -238,12 +238,26 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AssignNewManager(string storeID, string newManager_ID)
+        public Response<string> Remove_Store_Owner(string storeID, string other_Owner_Username)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.Assign_New_Manager(SessionID, newManager_ID, storeID);
+                this.Market.Remove_Store_Owner(SessionID, other_Owner_Username, storeID);
+                return Response<string>.FromValue(("The owner:" + other_Owner_Username + " was removed successfully from store: " + storeID));
+            }
+            catch (Exception ex)
+            {
+                return Response<string>.FromError(("ERROR: " + ex.Message));
+            }
+        }
+
+        public Response AssignNewManager(string storeID, string newOwnerUsername)
+        {
+            try
+            {
+                //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
+                this.Market.Assign_New_Manager(SessionID, newOwnerUsername, storeID);
                 return new Response("New manager was added successfully.");
             }
             catch (Exception ex)

@@ -497,11 +497,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Owner(string owner_SessionID, string newOwner_ID, string store_ID)
+        public void Assign_New_Owner(string owner_SessionID, string newOwnerUsername, string store_ID)
         {
             try
             {
                 string userID = userFacade.get_userID_from_session(owner_SessionID);
+                string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
                 storeFacade.AssignNewOwner(userID, store_ID, newOwner_ID);
             }
             catch (Exception e)
@@ -510,11 +511,26 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Manager(string founder_SessionID, string new_manager_ID, string store_ID)
+        public void Remove_Store_Owner(string sessionID, string other_Owner_Username, string storeID)
+        {
+            try
+            {
+                string userID = userFacade.get_userID_from_session(sessionID);
+                string other_Owner_ID = userFacade.get_user_id_from_username(other_Owner_Username);
+                storeFacade.Remove_Store_Owner(userID, storeID, other_Owner_ID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Assign_New_Manager(string founder_SessionID, string newOwnerUsername, string store_ID)
         {
             try
             {
                 string userID = userFacade.get_userID_from_session(founder_SessionID);
+                string new_manager_ID = userFacade.get_user_id_from_username(newOwnerUsername);
                 storeFacade.AssignNewManager(userID, store_ID, new_manager_ID); 
             }
             catch (Exception e)
