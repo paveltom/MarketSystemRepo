@@ -719,6 +719,22 @@ namespace Market_System.DomainLayer.StoreComponent
             storeRepo.destroy();
         }
 
+        public bool Check_If_Member_Only(string member_ID)
+        {
+            try
+            {
+                foreach(Store store in storeRepo.GetStores())
+                {
+                    if (!store.Check_If_Member_Only(member_ID))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
 
 

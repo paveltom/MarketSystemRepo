@@ -497,5 +497,40 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
         }
+
+        public void Remove_A_Member(string member_Username)
+        {
+            try
+            {
+                string user_ID = get_user_id_from_username(member_Username);
+
+                //remove from Users list
+                foreach(User user in users.ToList())
+                {
+                    if (user.GetUsername().Equals(member_Username))
+                    {
+                        users.Remove(user);
+                        break;
+                    }
+                }
+
+                //remove from UserRepo
+                userRepo.Remove_A_User(member_Username, user_ID);
+
+                //remove from linker
+                foreach(KeyValuePair<string, string> pair in userID_sessionID_linker.ToList())
+                {
+                    if (pair.Value.Equals(user_ID))
+                    {
+                        userID_sessionID_linker.Remove(pair.Key);
+                        break;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

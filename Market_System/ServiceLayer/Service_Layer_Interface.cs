@@ -57,5 +57,7 @@ namespace Market_System.ServiceLayer
         public Response<List<string>> get_owners_of_store( string storeID); //4.11
         public Response<string> get_purchase_history_from_store(string storeID); //4.13
         public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(); //6.4
+
+        public Response<string> Remove_A_Member(string member_Username); // II: 6.2
     }
 }

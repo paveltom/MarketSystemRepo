@@ -83,6 +83,12 @@ namespace Market_System.DomainLayer.UserComponent
 
         }
 
+        public void Remove_A_User(string username, string userID)
+        {
+            userDatabase.Remove(username);
+            user_ID_username_linker.Remove(userID);
+        }
+
         private bool unique_user_ID(string new_user_id)
         {
             foreach (string user_id in user_ID_username_linker.Keys)
