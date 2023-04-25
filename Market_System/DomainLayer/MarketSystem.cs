@@ -525,12 +525,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void Assign_New_Manager(string founder_SessionID, string newOwnerUsername, string store_ID)
+        public void Assign_New_Manager(string founder_SessionID, string newManagerUsername, string store_ID)
         {
             try
             {
                 string userID = userFacade.get_userID_from_session(founder_SessionID);
-                string new_manager_ID = userFacade.get_user_id_from_username(newOwnerUsername);
+                string new_manager_ID = userFacade.get_user_id_from_username(newManagerUsername);
                 storeFacade.AssignNewManager(userID, store_ID, new_manager_ID); 
             }
             catch (Exception e)

@@ -101,14 +101,14 @@ namespace Market_System.ServiceLayer
             }
         } 
 
-        public Response<string> assign_new_manager(string storeID, string newOwnerUsername)
+        public Response<string> assign_new_manager(string storeID, string newManagerUsername)
         {
             try
             {
-                this.ssc.AssignNewManager( storeID, newOwnerUsername);
+                this.ssc.AssignNewManager( storeID, newManagerUsername);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
-                Logger.get_instance().record_event("assigning new manager with username : " + newOwnerUsername + " to the store with id: " + storeID);
+                Logger.get_instance().record_event("assigning new manager with username : " + newManagerUsername + " to the store with id: " + storeID);
 
                 return ok;
             }
