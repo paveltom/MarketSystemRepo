@@ -101,14 +101,14 @@ namespace Market_System.ServiceLayer
             }
         } 
 
-        public Response<string> assign_new_manager(string storeID, string newManagerID)
+        public Response<string> assign_new_manager(string storeID, string newManagerUsername)
         {
             try
             {
-                this.ssc.AssignNewManager( storeID, newManagerID);
+                this.ssc.AssignNewManager( storeID, newManagerUsername);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
-                Logger.get_instance().record_event("assigning new manager with id : " + newManagerID + " to the store with id: " + storeID);
+                Logger.get_instance().record_event("assigning new manager with username : " + newManagerUsername + " to the store with id: " + storeID);
 
                 return ok;
             }
@@ -119,14 +119,14 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> assign_new_owner(string storeID, string newOwnerID)
+        public Response<string> assign_new_owner(string storeID, string newOwnerUsername)
         {
             try
             {
-                this.ssc.AssignNewOwner( storeID, newOwnerID);
+                this.ssc.AssignNewOwner( storeID, newOwnerUsername);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
-                Logger.get_instance().record_event("assigning new owner with id : " + newOwnerID + " to the store with id: " + storeID);
+                Logger.get_instance().record_event("assigning new owner with username : " + newOwnerUsername + " to the store with id: " + storeID);
 
                 return ok;
             }
@@ -900,6 +900,38 @@ namespace Market_System.ServiceLayer
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + " in CheckIfAdmin");
                 return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Remove_Store_Owner(string storeID, string other_Owner_Username)
+        {
+            try
+            {
+                Response<string> ok = this.ssc.Remove_Store_Owner(storeID, other_Owner_Username);
+                Logger.get_instance().record_event("removed owner with username : " + other_Owner_Username + " from the store with id: " + storeID);
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in Remove_Store_Owner");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> Remove_A_Member(string member_Username)
+        {
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.Remove_A_Member(session_id, member_Username));
+                Logger.get_instance().record_event("removed member with username : " + member_Username + " from market system");
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in Remove_A_Member");
+                return Response<String>.FromError(e.Message);
             }
         }
     }

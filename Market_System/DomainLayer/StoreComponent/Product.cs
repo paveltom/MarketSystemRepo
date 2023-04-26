@@ -188,13 +188,17 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public double ImplementSale(List<String> chosenAttributes)
+        public double ImplementSale(List<String> chosenAttributes, int quantity)
         {
-            return this.Price - (this.Price / 100 * this.Sale);
-            // PurchasePolicies.accept(chosenAttributes); // chain of responsibility that returns the price with implemented sale
-            // get items
-            // concrete product varies by PurchaseAttributes, so the sale calculated considering chosenAttributes by
-            // applying PurchasePolicies chain of responsibility
+            double saledPrice = this.Price - (this.Price / 100 * this.Sale);
+            ConcurrentDictionary<string, double> attributes = new ConcurrentDictionary<string, double>();
+            foreach (string s in chosenAttributes ?? Enumerable.Empty<string>())
+            {
+                if(PurchasePolicies.ContainsKey(s))
+                    saledPrice -= Math.Max(0, this.PurchasePolicies[s].ApplyPolicy(this.Price, quantity));
+            }
+                
+            return quantity * saledPrice;
         }
 
         public string GetStoreID()
@@ -209,17 +213,14 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public double CalculatePrice(int quantity, Boolean implementSale) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        public double CalculatePrice(int quantity) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
             //change later to - return ImplementSale(attributes) * quantity;
             try
             {
                 if (quantity < 1)
                     throw new Exception("Bad quantity!");
-                if (implementSale)
-                    return ImplementSale(null) * quantity; // add chosen attributes functionality
-                else
-                    return this.Price * quantity;
+                return ImplementSale(null, quantity); // add chosen attributes functionality
             }
             catch (Exception e) { throw e; }
         }

@@ -45,7 +45,8 @@ namespace Market_System.ServiceLayer
         public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
         public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties);
         public Response<string> RemoveProductPurchaseStrategy(string productID, String strategyID);
-        public Response<string> assign_new_owner(string storeID, string new_owner_ID); // 4.4
+        public Response<string> assign_new_owner(string storeID, string newOwnerUsername); // 4.4
+        public Response<string> Remove_Store_Owner(string storeID, string other_Owner_Username); //II: 4.5
         public Response<string> assign_new_manager(string storeID, string new_manager_ID); // 4.6
         // public void edit_manger_permissions(); //4.7
         public Response<string> ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms);
@@ -56,5 +57,7 @@ namespace Market_System.ServiceLayer
         public Response<List<string>> get_owners_of_store( string storeID); //4.11
         public Response<string> get_purchase_history_from_store(string storeID); //4.13
         public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(); //6.4
+
+        public Response<string> Remove_A_Member(string member_Username); // II: 6.2
     }
 }

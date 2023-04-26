@@ -378,6 +378,19 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        public void Remove_Store_Owner(string userID, string storeID, string other_Owner_ID)
+        {
+            try
+            {
+                AcquireStore(storeID).Remove_Store_Owner(userID, other_Owner_ID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void AssignNewManager(string userID, string storeID, string newManagerID)
         {
             try
@@ -704,6 +717,22 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             Instance = null;
             storeRepo.destroy();
+        }
+
+        public bool Check_If_Member_Only(string member_ID)
+        {
+            try
+            {
+                foreach(Store store in storeRepo.GetStores())
+                {
+                    if (!store.Check_If_Member_Only(member_ID))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception e) { throw e; }
         }
 
 

@@ -473,5 +473,14 @@ namespace Market_System.DomainLayer.StoreComponent
             Instance = null;
 
         }
+
+        public List<Store> GetStores()
+        {
+            List<Store> stores = new List<Store>();
+            foreach(KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase){
+                stores.Add(pair.Key);
+            }
+            return stores;
+        }
     }
 }

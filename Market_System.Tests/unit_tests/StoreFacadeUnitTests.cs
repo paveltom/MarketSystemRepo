@@ -67,13 +67,18 @@ namespace Market_System.Tests.unit_tests
         {
             // Arrange            
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
-            double validPrice = this.testProduct0.Price * this.testProduct0.Quantity + this.testProduct1.Price * this.testProduct1.Quantity;    
+            double preStorePolicyPrice = (this.testProduct0.Price - this.testProduct0.Price / 100 * this.testProduct0.Sale) * this.testProduct0.Quantity;
+            preStorePolicyPrice += (this.testProduct1.Price - this.testProduct1.Price / 100 * this.testProduct1.Sale) * this.testProduct1.Quantity;
+            double finalPrice = preStorePolicyPrice;
+            foreach (Purchase_Policy p in testStore.storePolicies.Values)
+                finalPrice -= Math.Max(0, p.ApplyPolicy(preStorePolicyPrice, this.testProduct0.Quantity + this.testProduct1.Quantity));
+
 
             // Act
             double retPrice = this.facade.CalculatePrice(itemsToCalculate);
 
             // Assert
-            Assert.AreEqual(validPrice, retPrice);    
+            Assert.AreEqual(finalPrice, retPrice);    
         }
 
         [TestMethod]
@@ -265,7 +270,7 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName");
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
@@ -277,7 +282,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetNewProduct(string store)
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name");
+            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
@@ -294,7 +299,7 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetExistingProduct(string productid)
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name");
+            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
             String product_ID = productid;
             String name = "testProduct1Name";
