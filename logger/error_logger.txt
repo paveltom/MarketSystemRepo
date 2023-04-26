@@ -188,3 +188,77 @@ Tuesday, 25 April 2023 : error!!: Incorrect login information has been provided 
 Tuesday, 25 April 2023 : error!!: An item with the same key has already been added.in register
 Tuesday, 25 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
 Tuesday, 25 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: user is not logged in! or he does not exists in GetMemberInfo
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: The given key was not present in the dictionary. in GetMemberInfo
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: The given key was not present in the dictionary. in GetMemberInfo
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: user never bought anything! in GetMemberInfo
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member
+Wednesday, 26 April 2023 : error!!: An item with the same key has already been added.in register
+Wednesday, 26 April 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
+Wednesday, 26 April 2023 : error!!: Incorrect login information has been provided in login_member

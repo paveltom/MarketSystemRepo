@@ -30,5 +30,10 @@ namespace Market_System.DomainLayer
             this.purchase_History = purchaseHistoryObjs;
             this.stores_Working_In = stores_Working_In;
         }
+
+        public bool IsAdmin()
+        {
+            return isAdmin;
+        }
     }
 }

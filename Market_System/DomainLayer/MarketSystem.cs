@@ -253,7 +253,16 @@ namespace Market_System.DomainLayer
                 string other_User_ID = userFacade.get_user_id_from_username(member_Username);
                 bool isAdmin = CheckIfAdmin(session_id, member_Username);
                 User otherUser = userFacade.getUser(member_Username);
-                List<PurchaseHistoryObj> pruchase_History = userFacade.get_purchase_history_of_a_member(member_Username);
+                List<PurchaseHistoryObj> pruchase_History = null;
+                try
+                {
+                    pruchase_History = userFacade.get_purchase_history_of_other_member(session_id, member_Username);
+                }
+
+                catch(Exception e)
+                {
+                    //do nothing...
+                }
                 Dictionary<string, string> stores_Working_In = storeFacade.GetStoresWorkingIn(other_User_ID);
                 return new MemberDTO(otherUser, isAdmin, pruchase_History, stores_Working_In);
 
