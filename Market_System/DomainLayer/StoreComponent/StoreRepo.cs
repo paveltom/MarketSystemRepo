@@ -263,6 +263,11 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        internal Dictionary<string, string> GetStoresWorkingIn(string other_User_ID)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddStore(string userID, Store currStore)
         {
             foreach (KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase)
