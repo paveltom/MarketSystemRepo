@@ -934,21 +934,5 @@ namespace Market_System.ServiceLayer
                 return Response<String>.FromError(e.Message);
             }
         }
-
-        public Response<MemberDTO> GetMemberInfo(string member_Username)
-        {
-            try
-            {
-                Response<MemberDTO> ok = Response<MemberDTO>.FromValue(this.usc.Get_Member_Info(session_id, member_Username));
-                Logger.get_instance().record_event("got member info with username : " + member_Username + " from market system");
-
-                return ok;
-            }
-            catch (Exception e)
-            {
-                Logger.get_instance().record_error("error!!: " + e.Message + " in GetMemberInfo");
-                return null;
-            }
-        }
     }
 }

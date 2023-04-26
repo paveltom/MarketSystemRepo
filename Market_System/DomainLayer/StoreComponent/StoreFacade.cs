@@ -248,24 +248,6 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal Dictionary<string, string> GetStoresWorkingIn(string other_User_ID)
-        {
-            try
-            {
-                Dictionary<string, string> stores_Working_In = new Dictionary<string, string>(); //<store_ID, Role>
-                foreach (Store store in storeRepo.GetStores())
-                {
-                    string temp_role = store.GetUsersRole(other_User_ID);
-                    if (temp_role != null)
-                    {
-                        stores_Working_In.Add(store.Store_ID, temp_role);
-                    }
-                }
-                return stores_Working_In;
-            }
-            catch (Exception e) { throw e; }
-        }
-
         public void RemoveStore(string userID, string storeID)
         {
             try

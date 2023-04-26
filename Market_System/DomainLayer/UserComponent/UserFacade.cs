@@ -333,20 +333,6 @@ namespace Market_System.DomainLayer.UserComponent
                 throw new Exception("user is not logged in! or he does not exists");
             }
         }
-
-        public List<PurchaseHistoryObj> get_purchase_history_of_other_member(string sessionID, string otherUsername)
-        {
-            string currUserID = get_user_id_from_session_id(sessionID);
-            string currUsername = get_username_from_user_id(currUserID);
-            if (CheckIfAdmin(sessionID, currUsername) && check_if_user_is_logged_in(currUsername))
-            {
-                return PurchaseRepo.GetInstance().get_history(otherUsername);
-            }
-            else
-            {
-                throw new Exception("user is not logged in! or he does not exists");
-            }
-        }
         /*
         public void Check_Delivery(string username)
         {
@@ -545,18 +531,6 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 throw e;
             }
-        }
-
-        internal User getUser(string username)
-        {
-            foreach(User user in users)
-            {
-                if (user.GetUsername().Equals(username))
-                {
-                    return user;
-                }
-            }
-            return null;
         }
     }
 }

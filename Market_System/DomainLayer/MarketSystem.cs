@@ -241,38 +241,6 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public MemberDTO Get_Member_Info(string session_id, string member_Username)
-        {
-            try
-            {
-                //check if current user is an admin:
-                string user_ID = userFacade.get_userID_from_session(session_id);
-                CheckIfAdmin(session_id, userFacade.get_username_from_user_id(user_ID));
-
-                //check if he has any roles in the system: owner/manager/admin/etc...
-                string other_User_ID = userFacade.get_user_id_from_username(member_Username);
-                bool isAdmin = CheckIfAdmin(session_id, member_Username);
-                User otherUser = userFacade.getUser(member_Username);
-                List<PurchaseHistoryObj> pruchase_History = null;
-                try
-                {
-                    pruchase_History = userFacade.get_purchase_history_of_other_member(session_id, member_Username);
-                }
-
-                catch(Exception e)
-                {
-                    //do nothing...
-                }
-                Dictionary<string, string> stores_Working_In = storeFacade.GetStoresWorkingIn(other_User_ID);
-                return new MemberDTO(otherUser, isAdmin, pruchase_History, stores_Working_In);
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
         public void ReserveProduct(ItemDTO itemDTO)
         {
             storeFacade.ReserveProduct(itemDTO);

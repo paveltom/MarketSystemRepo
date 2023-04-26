@@ -225,17 +225,6 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal string GetUsersRole(string other_User_ID)
-        {
-            foreach (Employee emp in employees.getStoreEmployees(Store_ID))
-            {
-                if (emp.UserID.Equals(other_User_ID))
-                {
-                    return emp.Role.ToString();
-                }
-            }
-            return null;
-        }
 
         public string GetPurchaseHistoryOfTheStore(string userID)
         {
