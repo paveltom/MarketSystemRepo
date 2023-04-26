@@ -425,7 +425,52 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        [TestMethod]
+        public void GetMemberSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseotherUserRegister = service.register("layan", "123554", "meonot g");
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseUserLogin = service.login_member("yotam", "123554");
+            Response<StoreDTO> responseOpenStoreUser = service.open_new_store(new List<string> { "store_123" });
+            Response<string> assignOtherAsOwner = service.assign_new_owner(responseOpenStoreUser.Value.StoreID, "layan");
+            service.log_out();
 
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+            service.AddNewAdmin("layan");
+
+            //Action:
+            Response<MemberDTO> responseGetMemberInfo = service.GetMemberInfo("layan");
+
+            //Result:
+            Assert.AreEqual(false, responseGetMemberInfo.ErrorOccured);
+            Assert.AreEqual(true, responseGetMemberInfo.Value.IsAdmin());
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void GetMemberFailure()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseotherUserRegister = service.register("layan", "123554", "meonot g");
+            Response<string> responseRegisterUser = service.register("yotam", "123554", "meonot g");
+            Response<string> responseUserLogin = service.login_member("yotam", "123554");
+            Response<StoreDTO> responseOpenStoreUser = service.open_new_store(new List<string> { "store_123" });
+            Response<string> assignOtherAsOwner = service.assign_new_owner(responseOpenStoreUser.Value.StoreID, "layan");
+
+            //Action:
+            Response<MemberDTO> responseGetMemberInfo = service.GetMemberInfo("layan");
+
+            //Result:
+            Assert.AreEqual(null, responseGetMemberInfo);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
         #endregion
 
 

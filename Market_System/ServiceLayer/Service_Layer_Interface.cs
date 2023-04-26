@@ -59,5 +59,6 @@ namespace Market_System.ServiceLayer
         public Response<List<PurchaseHistoryObj>> get_purchase_history_of_a_member(); //6.4
 
         public Response<string> Remove_A_Member(string member_Username); // II: 6.2
+        public Response<MemberDTO> GetMemberInfo(string member_Username); //II: 6.6
     }
 }
