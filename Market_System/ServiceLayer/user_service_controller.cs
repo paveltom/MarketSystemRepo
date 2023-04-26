@@ -281,5 +281,17 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
         }
+
+        public MemberDTO Get_Member_Info(string session_id, string member_Username)
+        {
+            try
+            {
+                return market_System.Get_Member_Info(session_id, member_Username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

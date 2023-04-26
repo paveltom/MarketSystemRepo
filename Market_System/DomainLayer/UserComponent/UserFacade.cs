@@ -532,5 +532,17 @@ namespace Market_System.DomainLayer.UserComponent
                 throw e;
             }
         }
+
+        internal User getUser(string username)
+        {
+            foreach(User user in users)
+            {
+                if (user.GetUsername().Equals(username))
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
     }
 }
