@@ -1288,6 +1288,7 @@ h6,
 }
 p {
   margin: 0 0 10px;
+    font-weight: 700;
 }
 .lead {
   margin-bottom: 20px;
@@ -4293,8 +4294,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-fixed-top,
 .navbar-fixed-bottom {
   position: fixed;
-  right: 0;
-  left: 0;
+  right: 73px;
+  left: -73px;
   z-index: 1030;
 }
 .navbar-fixed-top .navbar-collapse,
@@ -4314,7 +4315,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-fixed-top {
-  top: 0;
+  top: 56px;
   border-width: 0 0 1px;
 }
 .navbar-fixed-bottom {

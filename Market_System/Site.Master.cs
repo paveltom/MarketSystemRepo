@@ -13,5 +13,12 @@ namespace Market_System
         {
 
         }
+
+        protected void Home_click(object sender, EventArgs e)
+        {
+            Response.Redirect("Presentaion_Layer/Home_page");
+        }
+
+   
     }
 }

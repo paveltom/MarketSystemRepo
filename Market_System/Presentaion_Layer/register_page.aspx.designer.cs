@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Market_System
+namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class Contact
+    public partial class Register_page
     {
 
         /// <summary>

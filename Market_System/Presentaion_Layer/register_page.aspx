@@ -1,4 +1,4 @@
-﻿<%@ Page Title="register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="register_page.aspx.cs" Inherits="Market_System.Contact" %>
+﻿<%@ Page Title="register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="register_page.aspx.cs" Inherits="Market_System.Presentaion_Layer.Register_page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
@@ -12,6 +12,7 @@
         <label>password:</label>
         <asp:textbox ID="txt_password" TextMode="Password" runat="server" />
             <asp:RequiredFieldValidator runat="server" ID="password_validator" ControlToValidate="txt_password" ErrorMessage="please enter a password"></asp:RequiredFieldValidator>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
          <div>
         <label>address:</label>
