@@ -21,7 +21,9 @@ namespace Market_System.Presentaion_Layer
             string password = txt_password.Text;
             if (password.Equals("abc"))
             {
-                Response.Redirect("logged_in_user_master_page");
+                
+                Response.Redirect(string.Format("/Presentaion_Layer/logged_in_user_page.aspx?name={0}",username));
+                
             }
             else
             {
