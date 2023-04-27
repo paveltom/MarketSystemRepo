@@ -32,7 +32,7 @@ namespace Market_System.ServiceLayer
             {
                 string guest_name = this.usc.login_guest(session_id);
 
-                Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
+               // Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
 
             }
             catch (Exception e)
