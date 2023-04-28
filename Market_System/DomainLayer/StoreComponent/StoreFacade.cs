@@ -16,6 +16,10 @@ namespace Market_System.DomainLayer.StoreComponent
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
 
+        public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
+        public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
+
+
         private static readonly object Instancelock = new object();
 
         //The following Static Method is going to return the Singleton Instance
@@ -35,6 +39,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         storeUsage = new ConcurrentDictionary<string, int>();
                         storeRepo = StoreRepo.GetInstance();
                         Instance = new StoreFacade();
+                        marketPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+                        marketStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -146,6 +152,31 @@ namespace Market_System.DomainLayer.StoreComponent
                 throw new NotImplementedException();
             }
         }
+
+
+        private Boolean ValidateMarketStrategyRestrictions()
+        {
+            // validate all the items
+        }
+
+
+        private double ImplementMarketSale()
+        {
+            // consider all the items
+        }
+
+
+        private Boolean ValidateCategoryStrategyRestrictions()
+        {
+            // validate all the items
+        }
+
+
+        private double ImplementCategorySale()
+        {
+            // consider all the items
+        }
+
         // ====================== END of General class methods ===============================
         // ===================================================================================
 

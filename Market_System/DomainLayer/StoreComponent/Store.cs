@@ -338,6 +338,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 String cannotPurchase = ""; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
+                    foreach (Purchase_Strategy ps in this.storeStrategies)
+                    {
+                        ps.validate()
+                    }                   
+                    
                     foreach (ItemDTO item in productsToPurchase)
                         if (!AcquireProduct(item.GetID()).prePurchase(item.GetQuantity()))
                         {
@@ -345,7 +350,7 @@ namespace Market_System.DomainLayer.StoreComponent
                             ReleaseProduct(item.GetID());
                         }
 
-                    if (!cannotPurchase.Equals("")) throw new Exception(cannotPurchase);
+                    if (!cannotPurchase.Equals("")) throw new Exception(cannotPurchase + " - not enough in stock.");
                     else
                         foreach (ItemDTO item in productsToPurchase)
                         {

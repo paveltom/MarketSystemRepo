@@ -24,7 +24,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public Double Rating { get; private set; } // between 1-10
         public int Quantity { get; private set; }
         public Double Weight { get; private set; }
-        public Double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
+        //public Double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
         public long timesBought { get; private set; }
         public long timesRated { get ; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
@@ -190,12 +190,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public double ImplementSale(List<String> chosenAttributes, int quantity)
         {
-            double saledPrice = this.Price - (this.Price / 100 * this.Sale);
-            ConcurrentDictionary<string, double> attributes = new ConcurrentDictionary<string, double>();
-            foreach (string s in chosenAttributes ?? Enumerable.Empty<string>())
+            //double saledPrice = this.Price - (this.Price / 100 * this.Sale);
+            double saledPrice = this.Price;
+            foreach(Purchase_Policy pp in this.PurchasePolicies.Values)
             {
-                if(PurchasePolicies.ContainsKey(s))
-                    saledPrice -= Math.Max(0, this.PurchasePolicies[s].ApplyPolicy(this.Price, quantity));
+                saledPrice -= Math.Max(0, pp.ApplyPolicy(this.Price, quantity, chosenAttributes));
             }
                 
             return quantity * saledPrice;
@@ -213,14 +212,14 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public double CalculatePrice(int quantity) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        public double CalculatePrice(int quantity, List<string> attributes) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
             //change later to - return ImplementSale(attributes) * quantity;
             try
             {
                 if (quantity < 1)
                     throw new Exception("Bad quantity!");
-                return ImplementSale(null, quantity); // add chosen attributes functionality
+                return ImplementSale(attributes, quantity); // add chosen attributes functionality
             }
             catch (Exception e) { throw e; }
         }
@@ -326,7 +325,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public Boolean prePurchase(int quantity)
+        public Boolean prePurchase(int quantity, List<string> chosenAttributes)
         {
             try
             {
@@ -334,6 +333,14 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (quantity < 1)
                         throw new Exception("Bad quantity.");
+                    
+                    foreach(Purchase_Strategy ps in this.PurchaseStrategies.Values)
+                    {
+                        if(!ps.validate(quantity, chosenAttributes))
+                        {
+                            throw new Exception(ps.Description);
+                        }
+                    }
                     return (this.Quantity - quantity) >= 0;
                 }
             }

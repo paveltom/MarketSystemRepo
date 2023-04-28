@@ -8,8 +8,9 @@ namespace Market_System.DomainLayer.StoreComponent
     //TODO:: Implement this as chain of responsibility
     public class Purchase_Strategy
     {
-        private string strategyID;
-        private string strategyName;
+        public string strategyID { get; private set; }
+        public string strategyName { get; private set; }
+        public string Description { get; private set; }
 
         public Purchase_Strategy(string stratID, string stratName)
         {
@@ -20,6 +21,30 @@ namespace Market_System.DomainLayer.StoreComponent
         public string GetID()
         {
             return this.strategyID;
+        }
+
+        public Boolean validateProduct(int quantity, List<string> chosenAttributes)
+        {
+            // foreach attribute validate purchase restrictions
+            return false;
+        }
+
+        public Boolean validateStore(int quantity, List<string> chosenAttributes)
+        {
+            // foreach attribute validate purchase restrictions
+            return false;
+        }
+
+        public Boolean validateCategory(int quantity, List<string> chosenAttributes)
+        {
+            // foreach attribute validate purchase restrictions
+            return false;
+        }
+
+        public Boolean validateMarket(int quantity, List<string> chosenAttributes)
+        {
+            // foreach attribute validate purchase restrictions
+            return false;
         }
     }
 }

@@ -15,13 +15,16 @@ namespace Market_System.DomainLayer.StoreComponent
         public int maxValue { get; private set; }
         public double salePercentage { get; private set; }
 
-        public Purchase_Policy(string polID, string polName, int max, int min, double salePercentage)
+        public string Description { get; private set; }
+
+        public Purchase_Policy(string polID, string polName, int max, int min, double salePercentage, string description)
         {
             this.policyID = polID;
             this.policyName = polName;
             this.maxValue = max;
             this.minValue = min;
             this.salePercentage = salePercentage;   
+            this.Description = description;
         }
 
         public string GetID()
@@ -29,7 +32,7 @@ namespace Market_System.DomainLayer.StoreComponent
             return this.policyID;
         }
 
-        public double ApplyPolicy(double price, int quantity)
+        public double ApplyPolicy(double price, int quantity, List<string> chosenAttributes)
         {
             if (ValidatePolicy(price, quantity))
                 return price / 100 * salePercentage;
@@ -39,6 +42,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Boolean ValidatePolicy(double price, int quantity)
         {
+            // very simple validation: has to be modified later => max / min fields to be removed
             if (quantity >= minValue && quantity <= maxValue)
                 return true;
             else
