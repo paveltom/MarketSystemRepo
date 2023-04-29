@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market_System.ServiceLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,23 +14,26 @@ namespace Market_System.Presentaion_Layer
         protected void Page_Load(object sender, EventArgs e)
         {
             txt_username.Text = "artanis";
-            txt_password.Text = "abc";
+            
         }
 
         protected void Login_click(object sender, EventArgs e)
         {
             string username = txt_username.Text;
             string password = txt_password.Text;
-            if (password.Equals("abc"))
+            Service_Controller sv = (this.Master as SiteMaster).get_service_controller();
+            Response<string> result = sv.login_member(txt_username.Text, txt_password.Text);
+            if (!result.ErrorOccured)
             {
-                
-                Response.Redirect(string.Format("/Presentaion_Layer/logged_in_user_page.aspx?name={0}",username));
-                
+                Response.Redirect(string.Format("/Presentaion_Layer/logged_in_user_page.aspx?name={0}", username));
             }
             else
             {
-                error_message.Text = "wrong password !!! the password is: abc";
+                error_message.Text = result.ErrorMessage;
+                error_message.ForeColor = System.Drawing.Color.Red;
             }
+           
+         
         }
 
         
