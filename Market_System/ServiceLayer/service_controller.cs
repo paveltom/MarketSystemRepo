@@ -32,7 +32,7 @@ namespace Market_System.ServiceLayer
             {
                 string guest_name = this.usc.login_guest(session_id);
 
-                Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
+               //logger.get_instance().record_event("guest : " + guest_name + " has logged in");
 
             }
             catch (Exception e)
@@ -612,13 +612,13 @@ namespace Market_System.ServiceLayer
             {
                 Response<string> ok = Response<string>.FromValue(this.usc.Login_Member(username, pass, session_id));
                // this.usc.link_user_with_session(username, session_id);
-                Logger.get_instance().record_event(username+"  has logged in!");
+              //  Logger.get_instance().record_event(username+"  has logged in!");
                 
                 return ok;
             }
             catch (Exception e)
             {
-                Logger.get_instance().record_error("error!!: " + e.Message+ " in login_member");
+               // Logger.get_instance().record_error("error!!: " + e.Message+ " in login_member");
                 return Response<String>.FromError(e.Message);
             }
         }
@@ -672,14 +672,14 @@ namespace Market_System.ServiceLayer
              try
             {
                 Response<string>ok= Response<string>.FromValue(this.usc.register(username, pass, address));
-                Logger.get_instance().record_event(username+" has registered!");
+               // Logger.get_instance().record_event(username+" has registered!");
                
                 return ok;
                  
             }
             catch (Exception e)
             {
-                Logger.get_instance().record_error("error!!: " + e.Message+ "in register");
+               // Logger.get_instance().record_error("error!!: " + e.Message+ "in register");
                 return Response<String>.FromError(e.Message);
             }
 }

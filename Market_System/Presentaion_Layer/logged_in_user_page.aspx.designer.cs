@@ -7,38 +7,43 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Market_System
+namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class SiteMaster
+    public partial class logged_in_user_page
     {
 
         /// <summary>
-        /// register_href control.
+        /// username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor register_href;
+        protected global::System.Web.UI.WebControls.Label username;
 
         /// <summary>
-        /// login_href control.
+        /// logout_button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor login_href;
+        protected global::System.Web.UI.WebControls.Button logout_button;
 
         /// <summary>
-        /// MainContent control.
+        /// Master property.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Auto-generated property.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        public new Market_System.SiteMaster Master
+        {
+            get
+            {
+                return ((Market_System.SiteMaster)(base.Master));
+            }
+        }
     }
 }

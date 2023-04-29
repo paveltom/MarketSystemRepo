@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Market_System
+namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class Contact
+    public partial class Login
     {
 
         /// <summary>
@@ -51,39 +51,21 @@ namespace Market_System
         protected global::System.Web.UI.WebControls.RequiredFieldValidator password_validator;
 
         /// <summary>
-        /// txt_address control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_address;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// address_validator control.
+        /// error_message control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator address_validator;
-
-        /// <summary>
-        /// ddlproduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlproduct;
-
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Label error_message;
     }
 }
