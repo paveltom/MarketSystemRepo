@@ -22,10 +22,11 @@ namespace Market_System.Presentaion_Layer
             
             string username = txt_username.Text;
             string password = txt_password.Text;
-            Service_Controller sv = (this.Master as SiteMaster).get_service_controller();
+            Service_Controller sv = (Service_Controller)Session["service_controller"];
             Response<string> result = sv.login_member(txt_username.Text, txt_password.Text);
             if (!result.ErrorOccured)
             {
+                Session["username"] = username;
                 Response.Redirect(string.Format("/Presentaion_Layer/logged_in_user_page.aspx?name={0}", username));
             }
             else
