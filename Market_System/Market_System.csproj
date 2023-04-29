@@ -204,10 +204,6 @@
     <Compile Include="Presentaion_Layer\register_page.aspx.designer.cs">
       <DependentUpon>register_page.aspx</DependentUpon>
     </Compile>
-    <Compile Include="register_page.aspx.cs">
-      <DependentUpon>register_page.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

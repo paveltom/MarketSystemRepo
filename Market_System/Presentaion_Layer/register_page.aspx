@@ -28,7 +28,8 @@
     </div>
     <div>
         <asp:Button ID="btnSubmit" runat="server" Text="register" Onclick="register_button"/>
-    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="message" runat="server" Font-Size="Medium" ForeColor="Black"></asp:Label>
+    &nbsp;</div>
 
 
     <address>
