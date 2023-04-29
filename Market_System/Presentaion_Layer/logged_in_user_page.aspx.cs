@@ -14,6 +14,17 @@ namespace Market_System.Presentaion_Layer
         {
             this.logged_in_username = Request.QueryString["name"];
             username.Text = "hello "+logged_in_username+" !";
+            (this.Master as SiteMaster).a_user_logs_in();
+            
         }
+
+
+        public void onclick_Logout(object sender, EventArgs e)
+        {
+
+            Response.Redirect("~/");
+        }
+
+        
     }
 }

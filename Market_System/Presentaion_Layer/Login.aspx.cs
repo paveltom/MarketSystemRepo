@@ -12,7 +12,8 @@ namespace Market_System.Presentaion_Layer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txt_username.Text = "artanis";
+            txt_password.Text = "abc";
         }
 
         protected void Login_click(object sender, EventArgs e)

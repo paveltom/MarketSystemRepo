@@ -11,7 +11,22 @@ namespace Market_System
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
+            
         }
+
+        public void a_user_logs_in()
+        {
+           login_href.Visible = false;
+          register_href.Visible = false;
+        
+    }
+
+
+      
+
+
+
+
     }
 }
