@@ -9,14 +9,15 @@ namespace Market_System
 {
     public partial class SiteMaster : MasterPage
     {
-        ServiceLayer.Service_Controller service_controller;
+        private ServiceLayer.Service_Controller service_controller;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.IsPostBack)
-            {
-                this.service_controller = new ServiceLayer.Service_Controller();
-                
-            }
+
+            if (this.service_controller == null)
+            { 
+            this.service_controller = new ServiceLayer.Service_Controller();
+        }  
+            
 
             
         }

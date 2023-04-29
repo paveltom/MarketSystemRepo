@@ -13,12 +13,13 @@ namespace Market_System.Presentaion_Layer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            txt_username.Text = "artanis";
+            
             
         }
 
         protected void Login_click(object sender, EventArgs e)
         {
+            
             string username = txt_username.Text;
             string password = txt_password.Text;
             Service_Controller sv = (this.Master as SiteMaster).get_service_controller();
