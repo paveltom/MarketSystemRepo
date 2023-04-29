@@ -17,6 +17,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public string Description { get; private set; }
 
+        public Predicate SalePolicy { get; private set; }
+
         public Purchase_Policy(string polID, string polName, int max, int min, double salePercentage, string description)
         {
             this.policyID = polID;
