@@ -628,7 +628,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ok=Response<string>.FromValue(this.usc.Logout(session_id));
-                Logger.get_instance().record_event(ok.Value);
+                //Logger.get_instance().record_event(ok.Value);
                 this.session_id = this.session_id_generator.Next().ToString(); //generate nwe session id
                 new_guest_entered_the_website(session_id);// because now i am a guest
                 return ok;
@@ -636,7 +636,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception e)
             {
-                Logger.get_instance().record_error("error!!: " + e.Message+ " in log_out");
+               // Logger.get_instance().record_error("error!!: " + e.Message+ " in log_out");
                 return Response<String>.FromError(e.Message);
             }
         }

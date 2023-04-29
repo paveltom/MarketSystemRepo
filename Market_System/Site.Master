@@ -63,6 +63,9 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+            <asp:Label ID="Label1" runat="server"></asp:Label>
+&nbsp;&nbsp;
+            <asp:Button ID="logout_button" Onclick="Logout_click" runat="server" Height="26px" Text="Logout" Width="60px" />
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
