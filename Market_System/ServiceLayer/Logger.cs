@@ -20,16 +20,16 @@ namespace Market_System.ServiceLayer
         private StreamReader log_event_reader;
         private StreamReader log_error_reader;
 
-        private Logger ()
+        private Logger()
         {
             string combine_me = "\\logger\\event_logger.txt";
             string combine_me2 = "\\logger\\error_logger.txt";
             string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
 
-            try
+            string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+            if (hosting_path != null)
             {
-                string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
                 int slice_me = HostingEnvironment.ApplicationPhysicalPath.LastIndexOf('\\');
                 string current_path = hosting_path.Substring(0, slice_me);
                 slice_me = current_path.LastIndexOf('\\');
@@ -38,7 +38,7 @@ namespace Market_System.ServiceLayer
                 log_event_path = regular_log_events_path;
                 log_errors_path = regular_log_errors_path;
             }
-            catch(Exception e)
+            else
             {
                 this.regular_log_events_path = null;
                 this.regular_log_errors_path = null;
@@ -48,11 +48,6 @@ namespace Market_System.ServiceLayer
                 log_event_path = tests_log_events_path;
                 log_errors_path = tests_log_errors_path;
             }
-          
-           
-          
-
-
         }
 
         public static Logger get_instance()
