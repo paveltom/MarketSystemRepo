@@ -7,6 +7,7 @@ using Market_System.DomainLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer.StoreComponent;
 using System.Collections.Generic;
+using Market_System.ServiceLayer;
 
 namespace Market_System.Tests.unit_tests
 {
