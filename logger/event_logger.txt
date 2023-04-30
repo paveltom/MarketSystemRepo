@@ -98,3 +98,77 @@ Wednesday, 26 April 2023 : guest : guest1216572066 has logged in
 Wednesday, 26 April 2023 : admin  has logged in!
 Wednesday, 26 April 2023 : A new admin:layanhas been added successfully
 Wednesday, 26 April 2023 : got member info with username : layan from market system
+
+Wednesday, 26 April 2023 : guest : guest1512107177 has logged in
+Wednesday, 26 April 2023 : user5 has registered!
+Wednesday, 26 April 2023 : guest : guest427728954 has logged in
+Wednesday, 26 April 2023 : user1 has registered!
+Wednesday, 26 April 2023 : user1  has logged in!
+Wednesday, 26 April 2023 : 760795688Logged-out succesfully
+Wednesday, 26 April 2023 : guest : guest966905038 has logged in
+Wednesday, 26 April 2023 : guest : guest659613237 has logged in
+Wednesday, 26 April 2023 : a product name change for product id: Store1_Prod1
+Wednesday, 26 April 2023 : guest : guest1078769274 has logged in
+Wednesday, 26 April 2023 : yotam has registered!
+Wednesday, 26 April 2023 : layan has registered!
+Wednesday, 26 April 2023 : yotam  has logged in!
+Wednesday, 26 April 2023 : opening store with id: 1430141165 has failed
+Wednesday, 26 April 2023 : assigning new owner with username : layan to the store with id: 1430141165
+Wednesday, 26 April 2023 : 1559713464Logged-out succesfully
+Wednesday, 26 April 2023 : guest : guest273970474 has logged in
+Wednesday, 26 April 2023 : admin  has logged in!
+Wednesday, 26 April 2023 : guest : guest1123381803 has logged in
+Wednesday, 26 April 2023 : admin  has logged in!
+Wednesday, 26 April 2023 : guest : guest1647843582 has logged in
+Wednesday, 26 April 2023 : guest : guest1041415791 has logged in
+Wednesday, 26 April 2023 : user1 has registered!
+Wednesday, 26 April 2023 : user1  has logged in!
+Wednesday, 26 April 2023 : guest : guest502772146 has logged in
+Wednesday, 26 April 2023 : user1 has registered!
+Wednesday, 26 April 2023 : user1  has logged in!
+Wednesday, 26 April 2023 : opening store with id: 83616109 has failed
+Wednesday, 26 April 2023 : Added the product:83616109_1247551417to store: 83616109 has been done successfully
+Wednesday, 26 April 2023 : guest : guest1685365178 has logged in
+Wednesday, 26 April 2023 : yotam has registered!
+Wednesday, 26 April 2023 : bayanka has registered!
+Wednesday, 26 April 2023 : layan has registered!
+Wednesday, 26 April 2023 : yotam  has logged in!
+Wednesday, 26 April 2023 : opening store with id: 2036737069 has failed
+Wednesday, 26 April 2023 : assigning new owner with username : layan to the store with id: 2036737069
+Wednesday, 26 April 2023 : assigning new owner with username : bayanka to the store with id: 2036737069
+Wednesday, 26 April 2023 : 1316231372Logged-out succesfully
+Wednesday, 26 April 2023 : guest : guest30488382 has logged in
+Wednesday, 26 April 2023 : bayanka  has logged in!
+Wednesday, 26 April 2023 : removed owner with username : layan from the store with id: 2036737069
+Wednesday, 26 April 2023 : guest : guest2029646136 has logged in
+Wednesday, 26 April 2023 : layan has registered!
+Wednesday, 26 April 2023 : admin  has logged in!
+Wednesday, 26 April 2023 : removed member with username : layan from market system
+Wednesday, 26 April 2023 : guest : guest1722886774 has logged in
+Wednesday, 26 April 2023 : user1 has registered!
+Wednesday, 26 April 2023 : guest : guest1184243129 has logged in
+Wednesday, 26 April 2023 : michel has registered!
+Wednesday, 26 April 2023 : guest : guest1760408370 has logged in
+Wednesday, 26 April 2023 : yotam has registered!
+Wednesday, 26 April 2023 : yotam  has logged in!
+Wednesday, 26 April 2023 : guest : guest24989827 has logged in
+Wednesday, 26 April 2023 : user1 has registered!
+Wednesday, 26 April 2023 : user1  has logged in!
+Wednesday, 26 April 2023 : opening store with id: 1753317437 has failed
+Wednesday, 26 April 2023 : getting store with id: 1753317437 was done successfully 
+Wednesday, 26 April 2023 : guest : guest1865714112 has logged in
+Wednesday, 26 April 2023 : admin  has logged in!
+Wednesday, 26 April 2023 : yotam has registered!
+Wednesday, 26 April 2023 : A check for this user:yotamhas been done successfully - he is NOT an admin
+Wednesday, 26 April 2023 : guest : guest181999031 has logged in
+Wednesday, 26 April 2023 : guest : guest413883314 has logged in
+Wednesday, 26 April 2023 : admin  has logged in!
+Wednesday, 26 April 2023 : bobinka has registered!
+Wednesday, 26 April 2023 : A new admin:bobinkahas been added successfully
+יום ראשון 30 אפריל 2023 : guest : guest1505546968 has logged in
+יום ראשון 30 אפריל 2023 : bayan has registered!
+יום ראשון 30 אפריל 2023 : guest : guest697120232 has logged in
+יום ראשון 30 אפריל 2023 : bayan has registered!
+יום ראשון 30 אפריל 2023 : 907217221Logged-out succesfully
+יום ראשון 30 אפריל 2023 : guest : guest1113326571 has logged in
+
