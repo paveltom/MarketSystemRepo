@@ -26,6 +26,7 @@ namespace Market_System.ServiceLayer
             string combine_me2 = "\\logger\\error_logger.txt";
             string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
+
             try
             {
                 string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
@@ -50,6 +51,7 @@ namespace Market_System.ServiceLayer
           
            
           
+
 
         }
 
