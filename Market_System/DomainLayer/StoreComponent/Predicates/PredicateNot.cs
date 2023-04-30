@@ -10,21 +10,26 @@ using System.Collections.Concurrent;
 
 namespace Market_System.DomainLayer.StoreComponent.Predicates
 {
-    public class PredicateXOR : Predicate
+    public class PredicateNot : Predicate
     {
+        public Predicate Statement { get; private set;}
 
-        public PredicateXOR(List<Predicate> formula) : base(formula) { }
+        public PredicateNot() : base() { }
+
+        public PredicateNot(List<Predicate> formula) : base(formula) 
+        {
+            this.Statement = formula[0];
+        }
+
+        public void SetStatement(Predicate stat)
+        {
+            this.Statement = stat;
+        }
 
         public override Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess)
         {
-            bool onlyOne = false;
-            foreach (Predicate p in this.Formula)
-            {
-                if (p.Satisfies(quantity, attributess))
-                    if (onlyOne)
-                        return false;
-            }
-            return onlyOne;
+            return !this.Statement.Satisfies(quantity, attributess);
         }
     }
 }
+

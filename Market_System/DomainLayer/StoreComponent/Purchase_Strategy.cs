@@ -2,49 +2,65 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.DomainLayer.StoreComponent.Predicates;
+
 
 namespace Market_System.DomainLayer.StoreComponent
 {
     //TODO:: Implement this as chain of responsibility
     public class Purchase_Strategy
     {
-        public string strategyID { get; private set; }
-        public string strategyName { get; private set; }
+        public string StrategyID { get; private set; }
+        public string StrategyName { get; private set; }
         public string Description { get; private set; }
+        public Predicate StrategyFormula { get; private set; }
 
-        public Purchase_Strategy(string stratID, string stratName)
+        public Purchase_Strategy(string stratID, string stratName, string description)
         {
-            this.strategyID = stratID;
-            this.strategyName = stratName;
+            this.StrategyID = stratID;
+            this.StrategyName = stratName;
+            this.Description = description;
         }
 
-        public string GetID()
+        public void SetName(string name)
         {
-            return this.strategyID;
+            this.StrategyName = name;
         }
 
-        public Boolean validateProduct(int quantity, List<string> chosenAttributes)
+        public void SetDescription(string description)
+        {
+            this.Description = description;
+        }
+
+
+        public Boolean ValidateProduct(int quantity, List<string> chosenAttributes)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public Boolean ValidateStore(int quantity, List<string> chosenAttributes)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public Boolean ValidateCategory(int quantity, List<string> chosenAttributes)
+        {
+            throw new NotImplementedException();
+
+        }
+
+
+
+
+
+
+
+        public Boolean ValidateMarket(int quantity, List<string> chosenAttributes)
         {
             // foreach attribute validate purchase restrictions
-            return false;
-        }
-
-        public Boolean validateStore(int quantity, List<string> chosenAttributes)
-        {
-            // foreach attribute validate purchase restrictions
-            return false;
-        }
-
-        public Boolean validateCategory(int quantity, List<string> chosenAttributes)
-        {
-            // foreach attribute validate purchase restrictions
-            return false;
-        }
-
-        public Boolean validateMarket(int quantity, List<string> chosenAttributes)
-        {
-            // foreach attribute validate purchase restrictions
-            return false;
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,17 +10,20 @@ using System.Collections.Concurrent;
 
 namespace Market_System.DomainLayer.StoreComponent.Predicates
 {
-    public class PredicateSmaller : Predicate
+    public class PredicateSmallerOrGreater : Predicate
     {
         public Object Smaller { get; private set; }
         public Object Greater { get; private set; }
         public string SmallerName { get; private set; }
         public string GreaterName { get; private set; }
 
-        public PredicateSmaller() : base() 
+        
+        public PredicateSmallerOrGreater() : base() 
         {
             this.Smaller = null;
             this.Greater = null;
+            this.SmallerName = "";
+            this.GreaterName = "";
         }
 
         public void SetSmaller(Object smaller)
@@ -33,20 +36,29 @@ namespace Market_System.DomainLayer.StoreComponent.Predicates
             this.Greater = greater;
         }
 
+        public void SetSmallerName(string smaller)
+        {
+            this.SmallerName = smaller;
+        }
+
+        public void SetGreaterName(string greater)
+        {
+            this.GreaterName = greater;
+        }
+
         public override Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess)
         {
             string small;
             string great;
-            if (this.Smaller == null && attributess.TryGetValue(SmallerName, out small))
+            if (SmallerName == "Quantity")
+                Smaller = quantity;
+            else if (this.Smaller == null && attributess.TryGetValue(SmallerName, out small))
                 this.Smaller = small;
-            if (this.Greater == null && attributess.TryGetValue(GreaterName, out great))
+            if (GreaterName == "Quantity")
+                this.Greater = quantity;
+            else if (this.Greater == null && attributess.TryGetValue(GreaterName, out great))
                 this.Greater = great;
-            return false;
-        }
-        public override double ImplementSale(int quantity, ConcurrentDictionary<string, string> attributess, double initPrice)
-        {
-            // if Satisfies() -> implement sale percentage and return the prce
-            return 0;
+            return Smaller.ToString().CompareTo(Greater.ToString()) < 0;
         }
     }
 }

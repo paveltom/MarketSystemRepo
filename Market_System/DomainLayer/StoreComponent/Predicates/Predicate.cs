@@ -12,26 +12,30 @@ namespace Market_System.DomainLayer.StoreComponent.Predicates
 {
     public abstract class Predicate : IPredicate
     {
-        public Predicate[] Formula { get; protected set; }
-        public double SalePercentage { get; protected set; }
+        public List<Predicate> Formula { get; protected set; }
         public string AttributeToValidate { get; protected set; }
 
         public Predicate()
         {
-            this.Formula = new Predicate[1];
+            this.Formula = new List<Predicate>();
         }
         
-        public Predicate(Predicate[] formula)
+        public Predicate(List<Predicate> formula)
         {
             this.Formula = formula;
         }
 
-        public void SetFormula(Predicate[] newFormula)
+        public abstract Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess);
+
+        public void SetFormula(List<Predicate> newFormula)
         {
             this.Formula = newFormula;
         }
-        public abstract Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess);
-        public abstract double ImplementSale(int quantity, ConcurrentDictionary<string, string> attributess, double initPrice);
+
+        public void AddPredicate(Predicate toAdd)
+        {
+            this.Formula.Add(toAdd);
+        }
 
     }
 }

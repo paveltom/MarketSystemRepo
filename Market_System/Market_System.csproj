@@ -172,8 +172,15 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
-    <Compile Include="DomainLayer\StoreComponent\IPredicate.cs" />
-    <Compile Include="DomainLayer\StoreComponent\Predicate.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\IPredicate.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\Predicate.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateAnd.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateEqual.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateNot.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateOr.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateSmallerOrGreater.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateIfThen.cs" />
+    <Compile Include="DomainLayer\StoreComponent\Predicates\PredicateXOR.cs" />
     <Compile Include="register_page.aspx.cs">
       <DependentUpon>register_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

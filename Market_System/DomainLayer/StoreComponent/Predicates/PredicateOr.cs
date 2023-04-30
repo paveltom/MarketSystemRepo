@@ -10,21 +10,14 @@ using System.Collections.Concurrent;
 
 namespace Market_System.DomainLayer.StoreComponent.Predicates
 {
-    public class PredicateXOR : Predicate
+    public class PredicateOr : Predicate
     {
 
-        public PredicateXOR(List<Predicate> formula) : base(formula) { }
+        public PredicateOr(List<Predicate> formula) : base(formula) { }
 
         public override Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess)
         {
-            bool onlyOne = false;
-            foreach (Predicate p in this.Formula)
-            {
-                if (p.Satisfies(quantity, attributess))
-                    if (onlyOne)
-                        return false;
-            }
-            return onlyOne;
+            return this.Formula.Any(x => x.Satisfies(quantity, attributess));
         }
     }
 }

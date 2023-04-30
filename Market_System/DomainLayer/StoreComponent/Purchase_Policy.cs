@@ -3,52 +3,72 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Market_System.DomainLayer.StoreComponent.Predicates;
+
 
 namespace Market_System.DomainLayer.StoreComponent
 {
-    //TODO:: Implement this as chain of responsibility.
     public class Purchase_Policy
     {
-        public string policyID { get; private set; }
-        public string policyName { get; private set; } // as of attribute
-        public int minValue { get; private set; }
-        public int maxValue { get; private set; }
-        public double salePercentage { get; private set; }
+        public string PolicyID { get; private set; }
+        public string PolicyName { get; private set; } 
+        public double SalePercentage { get; private set; }
 
         public string Description { get; private set; }
 
-        public Predicate SalePolicy { get; private set; }
+        public Predicate SalePolicyFormula { get; private set; }
 
         public Purchase_Policy(string polID, string polName, int max, int min, double salePercentage, string description)
         {
-            this.policyID = polID;
-            this.policyName = polName;
-            this.maxValue = max;
-            this.minValue = min;
-            this.salePercentage = salePercentage;   
+            this.PolicyID = polID;
+            this.PolicyName = polName;
+            this.SalePercentage = salePercentage;   
             this.Description = description;
         }
 
-        public string GetID()
+        // returns the SALE VALUE: 10% sale on 20$ returns '2'.
+        public double ApplyProductPolicy(double initPrice, int quantity, ConcurrentDictionary<string, string> chosenAttributes)
         {
-            return this.policyID;
-        }
-
-        public double ApplyPolicy(double price, int quantity, List<string> chosenAttributes)
-        {
-            if (ValidatePolicy(price, quantity))
-                return price / 100 * salePercentage;
+            if (ValidateProduct(chosenAttributes, quantity))
+                return initPrice / 100 * SalePercentage;
             else
-                return -1;
+                return 0;
         }
 
-        public Boolean ValidatePolicy(double price, int quantity)
+        public double ApplyStorePolicy(List<ItemDTO> chosenProductsWithAttributes)
         {
-            // very simple validation: has to be modified later => max / min fields to be removed
-            if (quantity >= minValue && quantity <= maxValue)
+            double initPrice = 0;
+            chosenProductsWithAttributes.Select(x => initPrice += x.Price);
+            if (ValidateStore(chosenProductsWithAttributes))
+                return initPrice / 100 * SalePercentage;
+            else
+                return 0;
+        }
+
+        public double ApplyCategoryPolicy(double initPrice, int quantity, ConcurrentDictionary<string, string> chosenAttributes)
+        {
+            if (ValidateCategory(chosenAttributes, quantity))
+                return initPrice / 100 * SalePercentage;
+            else
+                return 0;
+        }
+
+        public Boolean ValidateProduct(ConcurrentDictionary<string, string> chosenAttributes, int quantity)
+        {
+            if (this.SalePolicyFormula.Satisfies(quantity, chosenAttributes))
                 return true;
             else
                 return false;
+        }
+
+        public Boolean ValidateStore(List<ItemDTO> chosenProductsWithAttributes)
+        {
+            throw new NotImplementedException();    
+        }
+
+        public Boolean ValidateCategory(ConcurrentDictionary<string, string> chosenAttributes, Category category)
+        {
+            throw new NotImplementedException();
         }
     }
 }
