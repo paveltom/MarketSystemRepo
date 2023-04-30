@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web.Hosting;
 
 namespace Market_System.ServiceLayer
 {
@@ -25,13 +26,30 @@ namespace Market_System.ServiceLayer
             string combine_me2 = "\\logger\\error_logger.txt";
             string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
-            this.regular_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me;
-            this.regular_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me2;
-            this.tests_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests2;
-            this.tests_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests1;
+            string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+            if(hosting_path==null)
+            {
+                this.regular_log_events_path = null;
+                this.regular_log_errors_path = null;
+                this.tests_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests2;
+                this.tests_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests1;
 
-            log_event_path = regular_log_events_path;
-            log_errors_path = regular_log_errors_path;
+                log_event_path = tests_log_events_path;
+                log_errors_path = tests_log_errors_path;
+            }
+            else
+            {
+                int slice_me= HostingEnvironment.ApplicationPhysicalPath.LastIndexOf('\\');
+                string current_path = hosting_path.Substring(0, slice_me);
+                 slice_me = current_path.LastIndexOf('\\');
+                this.regular_log_events_path = current_path.Substring(0, slice_me) + combine_me;
+                this.regular_log_errors_path = current_path.Substring(0, slice_me) + combine_me2;
+                log_event_path = regular_log_events_path;
+                log_errors_path = regular_log_errors_path;
+            }
+           
+          
+
         }
 
         public static Logger get_instance()
