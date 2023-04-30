@@ -6,19 +6,20 @@ using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
+using System.Collections.Concurrent;
 
-namespace Market_System.DomainLayer.StoreComponent
+namespace Market_System.DomainLayer.StoreComponent.Predicates
 {
     public class PredicateXOR : Predicate
     {
-        public PredicateXOR() { }
+        public PredicateXOR(Predicate[] formula) : base(formula) { }
 
-        public override Boolean Satisfies(int quantity, List<string> attributes)
+        public override Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess)
         {
             // go over array of predicates - validate only one is true
             return false;
         }
-        public override double ImplementSale(int quantity, List<string> attributes, double initPrice)
+        public override double ImplementSale(int quantity, ConcurrentDictionary<string, string> attributess, double initPrice)
         {
             // if Satisfies() -> implement sale percentage and return the prce
             return 0;
