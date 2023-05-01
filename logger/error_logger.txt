@@ -7,3 +7,13 @@ Wednesday, 26 April 2023 : error!!: Incorrect login information has been provide
 Wednesday, 26 April 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
 Wednesday, 26 April 2023 : error!!: can't recive username because userID does not exists in log_out
 Wednesday, 26 April 2023 : error!!: a user with same name exists, please change name!in register
+Monday, 1 May 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in GetMemberInfo
+Monday, 1 May 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Monday, 1 May 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Monday, 1 May 2023 : error!!: a user with same name exists, please change name!in register
+Monday, 1 May 2023 : error!!: An item with the same key has already been added.in register
+Monday, 1 May 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in GetMemberInfo
+Monday, 1 May 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
+Monday, 1 May 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Monday, 1 May 2023 : error!!: a user with same name exists, please change name!in register
+Monday, 1 May 2023 : error!!: An item with the same key has already been added.in register
