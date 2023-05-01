@@ -27,9 +27,10 @@ namespace Market_System.ServiceLayer
             string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
 
-            string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
-            if (hosting_path != null)
+            var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
+            if (temp_path.Equals("C:\\Program Files (x86)")) //Meaning that we're running the project.
             {
+                string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
                 int slice_me = HostingEnvironment.ApplicationPhysicalPath.LastIndexOf('\\');
                 string current_path = hosting_path.Substring(0, slice_me);
                 slice_me = current_path.LastIndexOf('\\');
@@ -37,13 +38,23 @@ namespace Market_System.ServiceLayer
                 this.regular_log_errors_path = current_path.Substring(0, slice_me) + combine_me2;
                 log_event_path = regular_log_events_path;
                 log_errors_path = regular_log_errors_path;
+                tests_log_events_path = current_path.Substring(0, slice_me) + combine_me_tests2;
+                tests_log_errors_path = current_path.Substring(0, slice_me) + combine_me_tests1;
             }
-            else
+
+            else //Meaning that we're running the tests.
             {
-                this.regular_log_events_path = null;
-                this.regular_log_errors_path = null;
-                this.tests_log_events_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests2;
-                this.tests_log_errors_path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + combine_me_tests1;
+                int slice_me = temp_path.LastIndexOf('\\');
+                while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo"))
+                {
+                    temp_path = temp_path.Substring(0, slice_me);
+                    slice_me = temp_path.LastIndexOf('\\');
+                }
+
+                this.regular_log_events_path = temp_path + combine_me;
+                this.regular_log_errors_path = temp_path + combine_me2;
+                this.tests_log_events_path = temp_path + combine_me_tests2;
+                this.tests_log_errors_path = temp_path + combine_me_tests1;
 
                 log_event_path = tests_log_events_path;
                 log_errors_path = tests_log_errors_path;
