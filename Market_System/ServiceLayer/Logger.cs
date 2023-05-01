@@ -30,6 +30,7 @@ namespace Market_System.ServiceLayer
             var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
             if (temp_path.Equals("C:\\Program Files (x86)")) //Meaning that we're running the project.
             {
+                
                 string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
                 int slice_me = HostingEnvironment.ApplicationPhysicalPath.LastIndexOf('\\');
                 string current_path = hosting_path.Substring(0, slice_me);

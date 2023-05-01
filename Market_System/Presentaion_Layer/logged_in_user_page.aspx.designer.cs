@@ -15,15 +15,6 @@ namespace Market_System.Presentaion_Layer
     {
 
         /// <summary>
-        /// username control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label username;
-
-        /// <summary>
         /// logout_button control.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button logout_button;
+
+        /// <summary>
+        /// username control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label username;
 
         /// <summary>
         /// Master property.
