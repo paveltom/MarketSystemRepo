@@ -127,6 +127,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Presentaion_Layer\allProducts.aspx" />
     <Content Include="Presentaion_Layer\Home_page.aspx" />
     <Content Include="Presentaion_Layer\logged_in_user_page.aspx" />
     <Content Include="Presentaion_Layer\Login.aspx" />
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
+    <Compile Include="Presentaion_Layer\allProducts.aspx.cs">
+      <DependentUpon>allProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\allProducts.aspx.designer.cs">
+      <DependentUpon>allProducts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentaion_Layer\Home_page.aspx.cs">
       <DependentUpon>Home_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
