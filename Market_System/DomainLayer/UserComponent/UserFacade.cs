@@ -50,6 +50,11 @@ namespace Market_System.DomainLayer.UserComponent
             return Instance;
         }
 
+        internal void remove_guest_id_from_userRepo(string guest_id)
+        {
+            userRepo.remove_guest_id_from_userRepo(guest_id);
+        }
+
         public void Login(string username, string password)
         {
             foreach(User user in users)
@@ -80,9 +85,14 @@ namespace Market_System.DomainLayer.UserComponent
             throw new ArgumentException("Incorrect login information has been provided");
         }
 
-        internal void link_guest_with_session(string guest_name, string session_id)
+        internal string link_guest_with_user_id(string guest_name)
         {
-            userID_sessionID_linker.Add(session_id, guest_name);
+          return  userRepo.link_guest_with_user_id(guest_name);
+        }
+
+        internal void link_guest_with_session(string guest_id, string session_id)
+        {
+            userID_sessionID_linker.Add(session_id, guest_id);
         }
 
         internal string get_userID_from_session(string session_id)
@@ -272,9 +282,13 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        internal void unlink_userID_with_session(string session_id)
+        internal string unlink_userID_with_session(string session_id)
         {
+            string gueset_id = userID_sessionID_linker[session_id];
             userID_sessionID_linker.Remove(session_id);
+            return gueset_id;
+
+
         }
 
         public void Login_guset(string guest_name)
