@@ -45,9 +45,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 return 0;
         }
 
-        public double ApplyCategoryPolicy(double initPrice, int quantity, ConcurrentDictionary<string, string> chosenAttributes)
+        public double ApplyCategoryPolicy(List<ItemDTO> chosenProductsWithAttributes)
         {
-            if (ValidateCategory(chosenAttributes, quantity))
+            double initPrice = 0;
+            chosenProductsWithAttributes.Select(x => initPrice += x.Price);
+            if (ValidateCategory(chosenProductsWithAttributes))
                 return initPrice / 100 * SalePercentage;
             else
                 return 0;
@@ -66,7 +68,7 @@ namespace Market_System.DomainLayer.StoreComponent
             throw new NotImplementedException();    
         }
 
-        public Boolean ValidateCategory(ConcurrentDictionary<string, string> chosenAttributes, Category category)
+        public Boolean ValidateCategory(List<ItemDTO> chosenProductsWithAttributes)
         {
             throw new NotImplementedException();
         }

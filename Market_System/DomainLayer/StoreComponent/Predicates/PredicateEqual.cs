@@ -17,8 +17,6 @@ namespace Market_System.DomainLayer.StoreComponent.Predicates
         public string FirstName { get; private set; }
         public string SecondName { get; private set; }
 
-        public PredicateEqual() : base() { }
-
         public PredicateEqual() : base()
         {
             this.First = null;

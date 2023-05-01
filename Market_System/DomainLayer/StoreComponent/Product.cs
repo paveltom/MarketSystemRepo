@@ -37,8 +37,6 @@ namespace Market_System.DomainLayer.StoreComponent
         private static Category defaultCategory = new Category("NoCategory");
         private static object QuantityLock = new object();
         private static object GeneralPropertiesLock = new object();
-        public IStoreRepoMock testRepo = null;
-
 
         // ==========================================================================================================
 
