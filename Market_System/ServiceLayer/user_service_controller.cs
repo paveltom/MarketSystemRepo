@@ -96,6 +96,21 @@ namespace Market_System.ServiceLayer
             }
 
         }
+
+        public List<string> get_store_ids_from_cart(string session_id)
+        {
+            try
+            {
+
+                return market_System.get_store_ids_from_cart(session_id);
+               
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public string add_product_to_basket(string product_id,string session_id,string quantity)
         {
             try

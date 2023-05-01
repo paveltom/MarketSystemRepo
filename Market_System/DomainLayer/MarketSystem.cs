@@ -77,6 +77,26 @@ namespace Market_System.DomainLayer
             }
         }
 
+        public List<string> get_store_ids_from_cart(string session_id)
+        {
+            
+                string user_id = get_userid_from_session_id(session_id);
+                Cart cart = get_cart_of_userID(user_id);
+                if(cart.gett_all_baskets().Count==0)
+            {
+                throw new Exception("cart is empty!!");
+            }
+                List<string> return_me = new List<string>();
+                foreach (Bucket basket in cart.gett_all_baskets())
+                {
+                    return_me.Add(basket.get_store_id());
+                }
+
+                return return_me;
+            
+            
+        }
+
         public void ChangeStoreName(string sessionID, string storeID, string newName)
         {
             try

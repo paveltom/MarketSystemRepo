@@ -2612,6 +2612,7 @@ label {
   margin-bottom: 5px;
   font-weight: 700;
     direction: ltr;
+    text-align: left;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
