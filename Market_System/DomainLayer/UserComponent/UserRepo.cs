@@ -63,6 +63,11 @@ namespace Market_System.DomainLayer.UserComponent
             return false;
         }
 
+        internal void remove_guest_id_from_userRepo(string guest_id)
+        {
+            user_ID_username_linker.Remove(guest_id);
+        }
+
         internal void AddFirstAdmin(string username)
         {
             Admins.Add(username);
@@ -99,6 +104,17 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
             return true;
+        }
+
+        internal string link_guest_with_user_id(string guest_name)
+        {
+            string new_user_id = userID_generator.Next().ToString();
+            while (!unique_user_ID(new_user_id))
+            {
+                new_user_id = userID_generator.Next().ToString();
+            }
+            user_ID_username_linker.Add(new_user_id, guest_name);
+            return new_user_id;
         }
 
         internal string get_username_from_userID(string userID)

@@ -27,7 +27,8 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                market_System.unlink_userID_with_session(session_id); // unlinks the guest, because when we enter website we are a guest with sessino id
+               string guest_id= market_System.unlink_userID_with_session(session_id); // unlinks the guest, because when we enter website we are a guest with sessino id
+                market_System.remove_guest_id_from_userRepo(guest_id);
                 market_System.Login(username, password);
                 market_System.link_user_with_session(username, session_id);
                
@@ -44,7 +45,8 @@ namespace Market_System.ServiceLayer
             try
             {
                 string guest_name = market_System.login_guest();
-                market_System.link_guest_with_session(guest_name, session_id);
+                string guest_id=market_System.link_guest_with_user_id(guest_name);
+                market_System.link_guest_with_session(guest_id, session_id);
                 return guest_name;
             }
 
@@ -96,6 +98,21 @@ namespace Market_System.ServiceLayer
             }
 
         }
+
+        public List<string> get_store_ids_from_cart(string session_id)
+        {
+            try
+            {
+
+                return market_System.get_store_ids_from_cart(session_id);
+               
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public string add_product_to_basket(string product_id,string session_id,string quantity)
         {
             try

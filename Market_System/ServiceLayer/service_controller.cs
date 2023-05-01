@@ -64,6 +64,19 @@ namespace Market_System.ServiceLayer
 
         }
 
+        public Response<List<string>> get_store_ids_from_cart()
+        {
+            try
+            {
+                Response < List<string> > ok= Response < List<string> >.FromValue(this.usc.get_store_ids_from_cart(session_id));
+                return ok;
+            }
+            catch(Exception e)
+            {
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
         public Response<ItemDTO> add_product_to_store(string storeID, string product_name, string description, string price, string quantity, string reserved_quantity, string rating, string sale, string wieght, string dimenstions, string attributes, string product_category)
         {
             List<string> ProductProperties = new List<string>();

@@ -17,3 +17,4 @@ Monday, 1 May 2023 : error!!: Admin cannot be added (already exists, or the perf
 Monday, 1 May 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
 Monday, 1 May 2023 : error!!: a user with same name exists, please change name!in register
 Monday, 1 May 2023 : error!!: An item with the same key has already been added.in register
+יום שני 01 מאי 2023 : error!!: a user with same name exists, please change name!in register

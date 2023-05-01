@@ -300,3 +300,22 @@ Monday, 1 May 2023 : guest : guest195995918 has logged in
 Monday, 1 May 2023 : user1 has registered!
 Monday, 1 May 2023 : opening store with id: 1924323528 has failed
 Monday, 1 May 2023 : Added the product:1924323528_124431245to store: 1924323528 has been done successfully
+יום שני 01 מאי 2023 : guest : guest1950652493 has logged in
+יום שני 01 מאי 2023 : bayan has registered!
+יום שני 01 מאי 2023 : 1679812293Logged-out succesfully
+יום שני 01 מאי 2023 : guest : guest574659029 has logged in
+יום שני 01 מאי 2023 : guest : guest1540716402 has logged in
+יום שני 01 מאי 2023 : bayan has registered!
+יום שני 01 מאי 2023 : guest : guest1764054899 has logged in
+יום שני 01 מאי 2023 : bayan has registered!
+יום שני 01 מאי 2023 : 1571120396Logged-out succesfully
+יום שני 01 מאי 2023 : guest : guest905202332 has logged in
+יום שני 01 מאי 2023 : bayan1 has registered!
+יום שני 01 מאי 2023 : 827477630Logged-out succesfully
+יום שני 01 מאי 2023 : guest : guest1648952505 has logged in
+יום שני 01 מאי 2023 : guest : guest342564203 has logged in
+יום שני 01 מאי 2023 : 1300363885Logged-out succesfully
+יום שני 01 מאי 2023 : guest : guest1596218428 has logged in
+יום שני 01 מאי 2023 : bayan has registered!
+יום שני 01 מאי 2023 : 924192301Logged-out succesfully
+יום שני 01 מאי 2023 : guest : guest684947903 has logged in

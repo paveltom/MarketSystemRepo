@@ -23,6 +23,11 @@ namespace Market_System.DomainLayer
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
+        internal void remove_guest_id_from_userRepo(string guest_id)
+        {
+            userFacade.remove_guest_id_from_userRepo(guest_id);
+        }
+
         //The following Static Method is going to return the Singleton Instance
         public static MarketSystem GetInstance()
         {
@@ -52,15 +57,20 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal string link_guest_with_user_id(string guest_name)
+        {
+           return userFacade.link_guest_with_user_id(guest_name);
+        }
+
         public Cart get_cart_of_userID(string user_id)
         {
             string usrename = userFacade.get_username_from_user_id(user_id);
             return userFacade.get_cart(usrename);
         }
 
-        public void link_guest_with_session(string guest_name, string session_id)
+        public void link_guest_with_session(string guest_id, string session_id)
         {
-            userFacade.link_guest_with_session(guest_name, session_id);
+            userFacade.link_guest_with_session(guest_id, session_id);
         }
 
       
@@ -75,6 +85,26 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
+        }
+
+        public List<string> get_store_ids_from_cart(string session_id)
+        {
+            
+                string user_id = get_userid_from_session_id(session_id);
+                Cart cart = get_cart_of_userID(user_id);
+                if(cart.gett_all_baskets().Count==0)
+            {
+                throw new Exception("cart is empty!!");
+            }
+                List<string> return_me = new List<string>();
+                foreach (Bucket basket in cart.gett_all_baskets())
+                {
+                    return_me.Add(basket.get_store_id());
+                }
+
+                return return_me;
+            
+            
         }
 
         public void ChangeStoreName(string sessionID, string storeID, string newName)
@@ -413,9 +443,9 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void unlink_userID_with_session(string session_id)
+        public string unlink_userID_with_session(string session_id)
         {
-            userFacade.unlink_userID_with_session(session_id);
+            return userFacade.unlink_userID_with_session(session_id);
         }
         
 
