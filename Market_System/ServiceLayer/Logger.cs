@@ -28,6 +28,7 @@ namespace Market_System.ServiceLayer
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
             try
             {
+                
                 string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
                 int slice_me = HostingEnvironment.ApplicationPhysicalPath.LastIndexOf('\\');
                 string current_path = hosting_path.Substring(0, slice_me);

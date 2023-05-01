@@ -18,6 +18,7 @@ namespace Market_System.Presentaion_Layer
             string send_me = "hello "+logged_in_username+" !";
             (this.Master as SiteMaster).a_user_logs_in();
             (this.Master as SiteMaster).set_username_message(send_me);
+            
 
         }
 
