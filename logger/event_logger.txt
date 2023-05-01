@@ -175,3 +175,127 @@ Wednesday, 26 April 2023 : A new admin:bobinkahas been added successfully
 Monday, 1 May 2023 : guest : guest1913702975 has logged in
 Monday, 1 May 2023 : 724019010Logged-out succesfully
 Monday, 1 May 2023 : guest : guest1638908667 has logged in
+Monday, 1 May 2023 : guest : guest983356744 has logged in
+Monday, 1 May 2023 : layan has registered!
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : opening store with id: 564200707 has failed
+Monday, 1 May 2023 : assigning new owner with username : layan to the store with id: 564200707
+Monday, 1 May 2023 : guest : guest1634397064 has logged in
+Monday, 1 May 2023 : a new comment for product id: Store1_Prod1
+Monday, 1 May 2023 : guest : guest1027969273 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : opening store with id: 1634397064 has failed
+Monday, 1 May 2023 : getting store with id: 1634397064 was done successfully 
+Monday, 1 May 2023 : guest : guest908481665 has logged in
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : bayanka has registered!
+Monday, 1 May 2023 : layan has registered!
+Monday, 1 May 2023 : opening store with id: 1866281347 has failed
+Monday, 1 May 2023 : assigning new owner with username : layan to the store with id: 1866281347
+Monday, 1 May 2023 : assigning new owner with username : bayanka to the store with id: 1866281347
+Monday, 1 May 2023 : 179153198Logged-out succesfully
+Monday, 1 May 2023 : guest : guest1877114888 has logged in
+Monday, 1 May 2023 : removed owner with username : layan from the store with id: 1866281347
+Monday, 1 May 2023 : guest : guest1440034377 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : bobinka has registered!
+Monday, 1 May 2023 : guest : guest100600254 has logged in
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : A check for this user:yotamhas been done successfully - he is NOT an admin
+Monday, 1 May 2023 : guest : guest1358068365 has logged in
+Monday, 1 May 2023 : guest : guest751640574 has logged in
+Monday, 1 May 2023 : A check for this user:adminhas been done successfully - he is an admin
+Monday, 1 May 2023 : guest : guest212996929 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : guest : guest1821836931 has logged in
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : layan has registered!
+Monday, 1 May 2023 : opening store with id: 1402680894 has failed
+Monday, 1 May 2023 : assigning new owner with username : layan to the store with id: 1402680894
+Monday, 1 May 2023 : 422496320Logged-out succesfully
+Monday, 1 May 2023 : guest : guest628605670 has logged in
+Monday, 1 May 2023 : guest : guest744549641 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : guest : guest976433924 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : guest : guest901558845 has logged in
+Monday, 1 May 2023 : assigning new manager with username : user1 to the store with id: Store1
+Monday, 1 May 2023 : guest : guest1320714882 has logged in
+Monday, 1 May 2023 : user5 has registered!
+Monday, 1 May 2023 : guest : guest243427592 has logged in
+Monday, 1 May 2023 : michel has registered!
+Monday, 1 May 2023 : guest : guest1313623949 has logged in
+Monday, 1 May 2023 : bobinka has registered!
+Monday, 1 May 2023 : A new admin:bobinkahas been added successfully
+Monday, 1 May 2023 : guest : guest1426020624 has logged in
+Monday, 1 May 2023 : opening store with id: 1006864587 has failed
+Monday, 1 May 2023 : guest : guest819592833 has logged in
+Monday, 1 May 2023 : a product name change for product id: Store1_Prod1
+Monday, 1 May 2023 : guest : guest1238748870 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : opening store with id: 819592833 has failed
+Monday, 1 May 2023 : Added the product:819592833_628536185to store: 819592833 has been done successfully
+Monday, 1 May 2023 : guest : guest665609663 has logged in
+Monday, 1 May 2023 : gfgfg has registered!
+Monday, 1 May 2023 : 1623409345Logged-out succesfully
+Monday, 1 May 2023 : guest : guest1353479590 has logged in
+Monday, 1 May 2023 : guest : guest1549443794 has logged in
+Monday, 1 May 2023 : layan has registered!
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : opening store with id: 1130287757 has failed
+Monday, 1 May 2023 : assigning new owner with username : layan to the store with id: 1130287757
+Monday, 1 May 2023 : guest : guest53000467 has logged in
+Monday, 1 May 2023 : a new comment for product id: Store1_Prod1
+Monday, 1 May 2023 : guest : guest1594056323 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : opening store with id: 53000467 has failed
+Monday, 1 May 2023 : getting store with id: 53000467 was done successfully 
+Monday, 1 May 2023 : guest : guest704040787 has logged in
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : bayanka has registered!
+Monday, 1 May 2023 : layan has registered!
+Monday, 1 May 2023 : opening store with id: 284884750 has failed
+Monday, 1 May 2023 : assigning new owner with username : layan to the store with id: 284884750
+Monday, 1 May 2023 : assigning new owner with username : bayanka to the store with id: 284884750
+Monday, 1 May 2023 : 1579119298Logged-out succesfully
+Monday, 1 May 2023 : guest : guest1785228648 has logged in
+Monday, 1 May 2023 : removed owner with username : layan from the store with id: 284884750
+Monday, 1 May 2023 : guest : guest1167809353 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : bobinka has registered!
+Monday, 1 May 2023 : guest : guest853959058 has logged in
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : A check for this user:yotamhas been done successfully - he is NOT an admin
+Monday, 1 May 2023 : guest : guest1085843341 has logged in
+Monday, 1 May 2023 : guest : guest1504999378 has logged in
+Monday, 1 May 2023 : A check for this user:adminhas been done successfully - he is an admin
+Monday, 1 May 2023 : guest : guest1317727624 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : guest : guest1549611907 has logged in
+Monday, 1 May 2023 : yotam has registered!
+Monday, 1 May 2023 : layan has registered!
+Monday, 1 May 2023 : opening store with id: 8556051 has failed
+Monday, 1 May 2023 : assigning new owner with username : layan to the store with id: 8556051
+Monday, 1 May 2023 : 780132037Logged-out succesfully
+Monday, 1 May 2023 : guest : guest1616353070 has logged in
+Monday, 1 May 2023 : guest : guest472324617 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : guest : guest704208900 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : guest : guest2006289540 has logged in
+Monday, 1 May 2023 : assigning new manager with username : user1 to the store with id: Store1
+Monday, 1 May 2023 : guest : guest277961930 has logged in
+Monday, 1 May 2023 : user5 has registered!
+Monday, 1 May 2023 : guest : guest1348158287 has logged in
+Monday, 1 May 2023 : michel has registered!
+Monday, 1 May 2023 : guest : guest1041398925 has logged in
+Monday, 1 May 2023 : bobinka has registered!
+Monday, 1 May 2023 : A new admin:bobinkahas been added successfully
+Monday, 1 May 2023 : guest : guest383267672 has logged in
+Monday, 1 May 2023 : opening store with id: 2111595282 has failed
+Monday, 1 May 2023 : guest : guest1924323528 has logged in
+Monday, 1 May 2023 : a product name change for product id: Store1_Prod1
+Monday, 1 May 2023 : guest : guest195995918 has logged in
+Monday, 1 May 2023 : user1 has registered!
+Monday, 1 May 2023 : opening store with id: 1924323528 has failed
+Monday, 1 May 2023 : Added the product:1924323528_124431245to store: 1924323528 has been done successfully
