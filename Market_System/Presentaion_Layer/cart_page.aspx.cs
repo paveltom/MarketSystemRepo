@@ -51,7 +51,11 @@ namespace Market_System.Presentaion_Layer
 
            if(product_id_txt.Text=="")
             {
-                error_message_GO_button.Text = "please enter product ID";
+                error_message_GO_button.Text = "please enter product name";
+            }
+           else
+            {
+                Response.Redirect(string.Format("/Presentaion_Layer/product_in_basket_page.aspx?product_id={0}", product_id_txt.Text));
             }
 
         }

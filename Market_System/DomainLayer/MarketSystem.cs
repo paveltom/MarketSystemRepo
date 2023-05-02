@@ -57,6 +57,20 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal Dictionary<string, string> extract_item_from_basket(string product_id, string session_id)
+        {
+            Dictionary<string, string> dict_to_return = new Dictionary<string, string>();
+            dict_to_return.Add("name", storeFacade.get_product_name_from_prodcut_id(product_id));
+            string user_id = get_userid_from_session_id(session_id);
+            Cart cart = get_cart_of_userID(user_id);
+            ItemDTO item=    cart.get_basket(storeFacade.GetStoreIdFromProductID(product_id)).extract_item(product_id);
+            dict_to_return.Add("quantity", item.GetQuantity().ToString());
+            double price = storeFacade.CalculatePrice(new List < ItemDTO > {item});
+            dict_to_return.Add("price", price.ToString());
+            return dict_to_return;
+
+        }
+
         internal List<string> show_basket_in_cart(string selected_store_id,string session_id)
         {
             string user_id = get_userid_from_session_id(session_id);

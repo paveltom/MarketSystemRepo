@@ -26,6 +26,11 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
         }
 
+        internal Dictionary<string, string> extract_item_from_basket(string product_id)
+        {
+            return this.usc.extract_item_from_basket(product_id,this.session_id);
+        }
+
         private void new_guest_entered_the_website(string session_id)
         {
             try
@@ -68,6 +73,8 @@ namespace Market_System.ServiceLayer
 
 
         }
+
+      
 
         public Response<List<string>> get_store_ids_from_cart()
         {
