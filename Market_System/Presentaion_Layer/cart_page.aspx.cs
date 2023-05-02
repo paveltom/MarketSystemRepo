@@ -19,14 +19,22 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
+                    if ((List<string>)Session["cart_page_drop_down_list_datasoruce"]!=null && response.Value.All(((List<string>)Session["cart_page_drop_down_list_datasoruce"]).Contains)) // this so it wont always load the list
+                    {
+                        
+                        return;
+                    }
+                ddl_store_id.AppendDataBoundItems = true;
                 ddl_store_id.DataSource = response.Value;
                 ddl_store_id.DataBind();
+                Session["cart_page_drop_down_list_datasoruce"] = response.Value;
             }
           
         }
 
         protected void show_basket_of_selected_store_id(object sender, EventArgs e)
         {
+            
             string selected_store_id = ddl_store_id.SelectedValue;
 
 
