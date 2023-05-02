@@ -1,5 +1,6 @@
 ﻿using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Concurrent;
@@ -269,8 +270,8 @@ namespace Market_System.Tests.unit_tests
         {
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
-
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
+            Statement statement = new AtLeastStatement(1, );
+            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 50, "testStorePolicyDescription");
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };

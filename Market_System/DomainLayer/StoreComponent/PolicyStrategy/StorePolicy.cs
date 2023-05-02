@@ -10,8 +10,8 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
     public abstract class StorePolicy : Purchase_Policy
     {
         public String SaledStoreID { get; private set; }
-        public StorePolicy(string polID, string polName, double salePercentage, string description, string storeID) :
-            base(polID, polName, salePercentage, description)
+        public StorePolicy(string polID, string polName, double salePercentage, string description, string storeID, Statement formula) :
+            base(polID, polName, salePercentage, description, formula)
         { this.SaledStoreID = storeID; }
 
         public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)

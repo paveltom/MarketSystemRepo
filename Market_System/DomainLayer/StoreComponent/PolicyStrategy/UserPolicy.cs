@@ -10,8 +10,8 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
     public abstract class UserPolicy : Purchase_Policy
     {
         public String UserAttributeName { get; private set; }
-        public UserPolicy(string polID, string polName, double salePercentage, string description, string userAttribute) :
-            base(polID, polName, salePercentage, description)
+        public UserPolicy(string polID, string polName, double salePercentage, string description, string userAttribute, Statement formula) :
+            base(polID, polName, salePercentage, description, formula)
         { this.UserAttributeName = userAttribute; }
 
         public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)

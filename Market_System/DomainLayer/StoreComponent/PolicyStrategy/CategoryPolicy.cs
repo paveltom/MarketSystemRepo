@@ -10,8 +10,8 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
     public abstract class CategoryPolicy : Purchase_Policy
     {
         public String SaledCategoryName { get; private set; }
-        public CategoryPolicy(string polID, string polName, double salePercentage, string description, string category) :
-            base(polID, polName, salePercentage, description)
+        public CategoryPolicy(string polID, string polName, double salePercentage, string description, string category, Statement formula) :
+            base(polID, polName, salePercentage, description, formula)
         { this.SaledCategoryName = category; }
 
         public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)

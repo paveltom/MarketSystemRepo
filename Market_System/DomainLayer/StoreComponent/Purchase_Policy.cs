@@ -16,12 +16,13 @@ namespace Market_System.DomainLayer.StoreComponent
         public Statement SalePolicyFormula { get; private set; }
 
 
-        public Purchase_Policy(string polID, string polName, double salePercentage, string description)
+        public Purchase_Policy(string polID, string polName, double salePercentage, string description, Statement formula)
         {
             this.PolicyID = polID;
             this.PolicyName = polName;
             this.SalePercentage = salePercentage;
             this.Description = description;
+            this.SalePolicyFormula = formula;
         }
 
         // returns items with saled price
