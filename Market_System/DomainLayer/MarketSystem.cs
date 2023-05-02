@@ -85,9 +85,10 @@ namespace Market_System.DomainLayer
         private List<string> convert_basket_to_list_of_strings_to_show_user_in_GUI(Bucket basket)
         {
            
-
+           
                 List<string> list_of_strings = new List<string>();
                 string product_name = "";
+    
                 foreach (KeyValuePair<string, int> entry in basket.get_products()) // each entry is < product_id , quantity > 
                 {
                 product_name = storeFacade.get_product_name_from_prodcut_id(entry.Key);

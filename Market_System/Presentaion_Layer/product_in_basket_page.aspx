@@ -2,13 +2,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div style="text-align: left"> </div>
       <div style="text-align: left"> </div>
-      <div style="text-align: left"> product name:
+      <div style="text-align: left"> &nbsp;<asp:Label ID="product_name_label_label" runat="server" Text="product name:"></asp:Label>
           <asp:Label ID="product_name_label" runat="server"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quantity in basket:<asp:Label ID="quantity_label" runat="server"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; price:<asp:Label ID="price_label" runat="server"></asp:Label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="quantity_in_basket_label" runat="server" Text="quantity:"></asp:Label>
+          &nbsp;&nbsp;<asp:Label ID="quantity_label" runat="server"></asp:Label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="price_label_label" runat="server" Text="price:"></asp:Label>
+          &nbsp; <asp:Label ID="price_label" runat="server"></asp:Label>
     </div>
     <div style="text-align: left"> </div>
-    <div style="text-align: left"> </div>
+    <div style="text-align: center"> 
+        <asp:Label ID="invalid_product_id" runat="server" Font-Size="XX-Large" ForeColor="Red"></asp:Label>
+    </div>
     <div style="text-align: left"> </div>
     <div style="text-align: left"> 
         <asp:TextBox ID="add_quantity" runat="server"></asp:TextBox>

@@ -26,9 +26,18 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
         }
 
-        internal Dictionary<string, string> extract_item_from_basket(string product_id)
+        internal Response< Dictionary<string, string>> extract_item_from_basket(string product_id)
         {
-            return this.usc.extract_item_from_basket(product_id,this.session_id);
+            try
+            {
+                Response<Dictionary<string,string>> result= Response < Dictionary<string, string> > .FromValue(this.usc.extract_item_from_basket(product_id, this.session_id));
+                return result;
+            }
+            catch(Exception e)
+            {
+                return Response<Dictionary<string, string>>.FromError(e.Message);
+            }
+           
         }
 
         private void new_guest_entered_the_website(string session_id)

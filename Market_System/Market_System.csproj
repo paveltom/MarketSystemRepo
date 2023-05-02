@@ -132,6 +132,7 @@
     <Content Include="Presentaion_Layer\logged_in_user_page.aspx" />
     <Content Include="Presentaion_Layer\Login.aspx" />
     <Content Include="Presentaion_Layer\products_page.aspx" />
+    <Content Include="Presentaion_Layer\product_in_basket_page.aspx" />
     <Content Include="Presentaion_Layer\register_page.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -212,6 +213,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\products_page.aspx.designer.cs">
       <DependentUpon>products_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\product_in_basket_page.aspx.cs">
+      <DependentUpon>product_in_basket_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\product_in_basket_page.aspx.designer.cs">
+      <DependentUpon>product_in_basket_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\register_page.aspx.cs">
       <DependentUpon>register_page.aspx</DependentUpon>

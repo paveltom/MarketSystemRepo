@@ -150,7 +150,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e)
             {
-                throw new NotImplementedException();
+                throw new Exception("invalid product ID, please type in valid product ID");
             }
         }
         // ====================== END of General class methods ===============================

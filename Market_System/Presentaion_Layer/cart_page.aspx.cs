@@ -10,6 +10,7 @@ namespace Market_System.Presentaion_Layer
 {
     public partial class cart_page : System.Web.UI.Page
     {
+        private List<string> product_ids;
         protected void Page_Load(object sender, EventArgs e)
         {
            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).get_store_ids_from_cart();
@@ -55,6 +56,8 @@ namespace Market_System.Presentaion_Layer
             }
            else
             {
+                
+
                 Response.Redirect(string.Format("/Presentaion_Layer/product_in_basket_page.aspx?product_id={0}", product_id_txt.Text));
             }
 

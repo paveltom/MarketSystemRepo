@@ -15,6 +15,15 @@ namespace Market_System.Presentaion_Layer
     {
 
         /// <summary>
+        /// product_name_label_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label product_name_label_label;
+
+        /// <summary>
         /// product_name_label control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label product_name_label;
+
+        /// <summary>
+        /// quantity_in_basket_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label quantity_in_basket_label;
 
         /// <summary>
         /// quantity_label control.
@@ -33,6 +51,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label quantity_label;
 
         /// <summary>
+        /// price_label_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label price_label_label;
+
+        /// <summary>
         /// price_label control.
         /// </summary>
         /// <remarks>
@@ -40,6 +67,15 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label price_label;
+
+        /// <summary>
+        /// invalid_product_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label invalid_product_id;
 
         /// <summary>
         /// add_quantity control.

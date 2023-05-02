@@ -15,10 +15,27 @@ namespace Market_System.Presentaion_Layer
         protected void Page_Load(object sender, EventArgs e)
         {
            this.product_id = Request.QueryString["product_id"];
-            Response<Dictionary<string, string>> item = Response<Dictionary<string, string>>.FromValue(((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id));
-            product_name_label.Text = item.Value["name"];
-            price_label.Text = item.Value["price"];
-            quantity_label.Text = item.Value["quantity"];
+            Response<Dictionary<string, string>> item = ((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id);
+            if (item.ErrorOccured)
+            {
+                invalid_product_id.Text = item.ErrorMessage;
+                add_button.Visible = false;
+                remove_button.Visible = false;
+                quantity_label.Visible = false;
+                product_name_label.Visible = false;
+                quantity_label.Visible = false;
+                product_name_label_label.Visible = false;
+                quantity_in_basket_label.Visible = false;
+                price_label_label.Visible = false;
+                add_quantity.Visible = false;
+                remove_quantity.Visible = false;
+            }
+            else
+            {
+                product_name_label.Text = item.Value["name"];
+                price_label.Text = item.Value["price"];
+                quantity_label.Text = item.Value["quantity"];
+            }
  
         }
 
@@ -33,7 +50,7 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                Response<Dictionary<string, string>> item = Response<Dictionary<string, string>>.FromValue(((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id));
+                Response<Dictionary<string, string>> item = ((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id);
                 price_label.Text = item.Value["price"];
                 quantity_label.Text = item.Value["quantity"];
             }
@@ -50,7 +67,7 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                Response<Dictionary<string, string>> item = Response<Dictionary<string, string>>.FromValue(((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id));
+                Response<Dictionary<string, string>> item = (((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id));
                 if (remove_quantity.Equals(quantity_label.Text))
                 {
                     
