@@ -40,6 +40,12 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
         }
+
+        internal Dictionary<string, string> extract_item_from_basket(string product_id,string session_id)
+        {
+            return market_System.extract_item_from_basket(product_id, session_id);
+        }
+
         public string login_guest(string session_id)//1.1
         {
             try

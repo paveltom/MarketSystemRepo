@@ -75,6 +75,9 @@ namespace Market_System.DomainLayer.UserComponent
             return list_of_dtos;
         }
 
-      
+        internal ItemDTO extract_item(string product_id)
+        {
+            return new ItemDTO(product_id, products[product_id]);
+        }
     }
 }
