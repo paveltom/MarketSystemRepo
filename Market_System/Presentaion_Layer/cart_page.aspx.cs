@@ -45,5 +45,15 @@ namespace Market_System.Presentaion_Layer
             products_list.DataBind();
 
         }
+
+        protected void GO_button_click(object sender, EventArgs e)
+        {
+
+           if(product_id_txt.Text=="")
+            {
+                error_message_GO_button.Text = "please enter product ID";
+            }
+
+        }
     }
 }
