@@ -7,48 +7,57 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Market_System
+namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class SiteMaster
+    public partial class change_password_page
     {
 
         /// <summary>
-        /// register_href control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor register_href;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// login_href control.
+        /// new_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor login_href;
+        protected global::System.Web.UI.WebControls.TextBox new_password;
 
         /// <summary>
-        /// cart_href control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cart_href;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// MainContent control.
+        /// confirm_new_password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.TextBox confirm_new_password;
+
+        /// <summary>
+        /// message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label message;
 
         /// <summary>
         /// change_password_button control.
@@ -58,23 +67,5 @@ namespace Market_System
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button change_password_button;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// logout_button control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logout_button;
     }
 }
