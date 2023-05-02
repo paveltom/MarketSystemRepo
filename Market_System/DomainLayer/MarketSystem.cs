@@ -63,9 +63,9 @@ namespace Market_System.DomainLayer
             Cart cart = get_cart_of_userID(user_id);
             Bucket basket = cart.get_basket(selected_store_id);
             List<string> return_me = convert_basket_to_list_of_strings_to_show_user_in_GUI(basket);
+            return return_me;
             
             
-            throw new NotImplementedException();
         }
 
         private List<string> convert_basket_to_list_of_strings_to_show_user_in_GUI(Bucket basket)
