@@ -42,8 +42,13 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<List<string>> show_basket_in_cart(string selected_store_id)
+        {
 
-      
+            return this.usc.show_basket_in_cart(selected_store_id,this.session_id);
+
+            
+        }
 
         public Response<string> add_product_to_basket(string product_id, string quantity)
         {
@@ -69,6 +74,7 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response < List<string> > ok= Response < List<string> >.FromValue(this.usc.get_store_ids_from_cart(session_id));
+               
                 return ok;
             }
             catch(Exception e)

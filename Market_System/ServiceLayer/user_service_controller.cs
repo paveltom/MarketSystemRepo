@@ -56,6 +56,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<List<string>> show_basket_in_cart(string selected_store_id,string session_id)
+        {
+            Response<List<string>> list_of_items = Response < List<string> > .FromValue(market_System.show_basket_in_cart(selected_store_id, session_id));
+            return list_of_items;
+        }
 
         public string get_userID_from_session_id(string session_id)
         {

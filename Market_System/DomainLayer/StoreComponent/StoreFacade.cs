@@ -93,6 +93,13 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        internal string get_product_name_from_prodcut_id(string product_id)
+        {
+            string store_id = GetStoreIdFromProductID(product_id);
+            Store s = stores[store_id];
+            return s.get_product_name_from_prodcut_id(product_id);
+        }
+
         internal void close_store_temporary(string userID, string storeID)
         {
             try

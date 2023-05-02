@@ -19,9 +19,41 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
+                    if ((List<string>)Session["cart_page_drop_down_list_datasoruce"]!=null && response.Value.All(((List<string>)Session["cart_page_drop_down_list_datasoruce"]).Contains)) // this so it wont always load the list
+                    {
+                        
+                        return;
+                    }
+                ddl_store_id.AppendDataBoundItems = true;
                 ddl_store_id.DataSource = response.Value;
                 ddl_store_id.DataBind();
+                Session["cart_page_drop_down_list_datasoruce"] = response.Value;
             }
+          
+        }
+
+        protected void show_basket_of_selected_store_id(object sender, EventArgs e)
+        {
+            
+            string selected_store_id = ddl_store_id.SelectedValue;
+
+
+            
+            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).show_basket_in_cart(selected_store_id);
+            string[] show_me = response.Value.ToArray();
+            products_list.DataSource = show_me;
+            products_list.DataBind();
+
+        }
+
+        protected void GO_button_click(object sender, EventArgs e)
+        {
+
+           if(product_id_txt.Text=="")
+            {
+                error_message_GO_button.Text = "please enter product ID";
+            }
+
         }
     }
 }

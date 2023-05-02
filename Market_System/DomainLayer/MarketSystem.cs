@@ -57,6 +57,32 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal List<string> show_basket_in_cart(string selected_store_id,string session_id)
+        {
+            string user_id = get_userid_from_session_id(session_id);
+            Cart cart = get_cart_of_userID(user_id);
+            Bucket basket = cart.get_basket(selected_store_id);
+            List<string> return_me = convert_basket_to_list_of_strings_to_show_user_in_GUI(basket);
+            return return_me;
+            
+            
+        }
+
+        private List<string> convert_basket_to_list_of_strings_to_show_user_in_GUI(Bucket basket)
+        {
+           
+
+                List<string> list_of_strings = new List<string>();
+                string product_name = "";
+                foreach (KeyValuePair<string, int> entry in basket.get_products()) // each entry is < product_id , quantity > 
+                {
+                product_name = storeFacade.get_product_name_from_prodcut_id(entry.Key);
+                list_of_strings.Add("product ID: "+entry.Key+"  "+product_name + "   quantity : " + entry.Value.ToString());
+                }
+                return list_of_strings;
+            
+        }
+
         internal string link_guest_with_user_id(string guest_name)
         {
            return userFacade.link_guest_with_user_id(guest_name);
