@@ -90,7 +90,10 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception ex) { throw ex; }
         }
 
-
+        internal string get_product_name_from_prodcut_id(string product_id)
+        {
+            return products[product_id].Name;
+        }
 
         private static object EmployementLock = new object();
         public void ManagePermissions(string userID, string employeeID, List<Permission> perms) // update only for store manager

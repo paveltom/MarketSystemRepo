@@ -22,6 +22,20 @@ namespace Market_System.Presentaion_Layer
                 ddl_store_id.DataSource = response.Value;
                 ddl_store_id.DataBind();
             }
+          
+        }
+
+        protected void show_basket_of_selected_store_id(object sender, EventArgs e)
+        {
+            string selected_store_id = ddl_store_id.SelectedValue;
+
+
+            
+            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).show_basket_in_cart(selected_store_id);
+            string[] show_me = response.Value.ToArray();
+            products_list.DataSource = show_me;
+            products_list.DataBind();
+
         }
     }
 }

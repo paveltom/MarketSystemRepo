@@ -42,8 +42,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<List<string>> show_basket_in_cart(string selected_store_id)
+        {
 
-      
+            return this.usc.show_basket_in_cart(selected_store_id,this.session_id);
+        }
 
         public Response<string> add_product_to_basket(string product_id, string quantity)
         {

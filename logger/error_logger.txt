@@ -18,3 +18,4 @@ Monday, 1 May 2023 : error!!: A member with roles in the system cannot be remove
 Monday, 1 May 2023 : error!!: a user with same name exists, please change name!in register
 Monday, 1 May 2023 : error!!: An item with the same key has already been added.in register
 יום שני 01 מאי 2023 : error!!: a user with same name exists, please change name!in register
+יום שלישי 02 מאי 2023 : error!!: a user with same name exists, please change name!in register
