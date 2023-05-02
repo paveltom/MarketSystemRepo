@@ -1,30 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
 using System.Collections.Concurrent;
 
-namespace Market_System.DomainLayer.StoreComponent.Predicates
+namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public class PredicateXOR : Predicate
+    public class LogicXOR : Statement
     {
 
-        public PredicateXOR(List<Predicate> formula) : base(formula) { }
 
-        public override Boolean Satisfies(int quantity, ConcurrentDictionary<string, string> attributess)
+        public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes)
         {
             bool onlyOne = false;
-            foreach (Predicate p in this.Formula)
+            foreach(Statement s in this.Formula)
             {
-                if (p.Satisfies(quantity, attributess))
+                if (s.Satisfies(choseProductsWithAttributes))
                     if (onlyOne)
                         return false;
+                    else
+                        onlyOne = true;
             }
             return onlyOne;
         }
+
     }
+
 }

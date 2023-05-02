@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Market_System.DomainLayer.StoreComponent.Predicates;
-
+using Market_System.DomainLayer.StoreComponent.SalePolicy;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -13,7 +13,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public string StrategyID { get; private set; }
         public string StrategyName { get; private set; }
         public string Description { get; private set; }
-        public Predicate StrategyFormula { get; private set; }
+        public Statement StrategyFormula { get; private set; }
 
         public Purchase_Strategy(string stratID, string stratName, string description)
         {

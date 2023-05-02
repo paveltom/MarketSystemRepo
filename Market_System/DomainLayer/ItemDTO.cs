@@ -89,6 +89,23 @@ namespace Market_System.DomainLayer
             return this.reserved_quantity = this.reserved_quantity + set_me;
         }
 
+        public Dictionary<string, string> GetStringValuesDict()
+        {
+            Dictionary<string, string> FieldValue = new Dictionary<string, string>();
+            FieldValue.Add("ItemID", this._itemId);
+            FieldValue.Add("ItemID", this.quantity.ToString());
+            FieldValue.Add("ItemID", this.reserved_quantity.ToString());
+            FieldValue.Add("ItemID", this.Price.ToString());
+            FieldValue.Add("ItemID", this.Name);
+            FieldValue.Add("ItemID", this.Description);
+            FieldValue.Add("ItemID", this.Rating.ToString());
+            FieldValue.Add("ItemID", this.Weight.ToString());
+            FieldValue.Add("ItemID", this.timesBought.ToString());
+            FieldValue.Add("ItemID", this.ProductCategory.CategoryName);
+            FieldValue.Add("ItemID", this.PurchaseAttributes.ToString());
+            return FieldValue;
+        }
+
 
     }
 }

@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+
+namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
+{
+    public abstract class ProductPolicy : Purchase_Policy
+    {
+        public String SaledProductID { get; private set; }
+        public ProductPolicy(string polID, string polName, double salePercentage, string description, string productID) : 
+            base(polID, polName, salePercentage, description) { this.SaledProductID = productID; }
+
+        public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)
+        {
+            List<ItemDTO> saledItems = new List<ItemDTO>();
+            foreach (ItemDTO item in chosenProductsWithAttributes) {
+                if (item.GetID() == this.SaledProductID)
+                    if (Validate(chosenProductsWithAttributes))
+                        item.SetPrice(item.Price - item.Price / 100 * this.SalePercentage);
+                saledItems.Add(item);
+                
+
+            }
+            return saledItems;
+        }
+
+        public override Boolean Validate(List<ItemDTO> chosenProductsWithAttributes)
+        {
+            return this.SalePolicyFormula.Satisfies(chosenProductsWithAttributes);
+        }
+    }
+}

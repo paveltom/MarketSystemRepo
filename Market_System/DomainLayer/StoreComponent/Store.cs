@@ -21,13 +21,15 @@ namespace Market_System.DomainLayer.StoreComponent
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> productDefaultStrategies; // passed to every new added product
+        //public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> storeStrategies; // passed to every new added product
+        //public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed)
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Policy> strategies, List<string> allProductsIDS, bool temporaryClosed)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -36,17 +38,17 @@ namespace Market_System.DomainLayer.StoreComponent
             this.products = new ConcurrentDictionary<string, Product>();
             this.productUsage = new ConcurrentDictionary<string, int>();
             this.storePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            this.storeStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.storeStrategies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+            this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.temporaryClosed = temporaryClosed;
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
-                    this.storePolicies.TryAdd(p.GetID(), p);
+                    this.storePolicies.TryAdd(p.PolicyID, p);
             if (strategies != null)
-                foreach (Purchase_Strategy p in strategies)
-                    this.storeStrategies.TryAdd(p.GetID(), p);
+                foreach (Purchase_Policy p in strategies)
+                    this.storeStrategies.TryAdd(p.PolicyID, p);
 
             this.allProducts = new ConcurrentDictionary<string, string>();
             if (allProductsIDS != null)                
@@ -315,16 +317,19 @@ namespace Market_System.DomainLayer.StoreComponent
                     double productSalePrice = 0;
                     double storeSalePrice = 0;
                     int quantity = 0;
+                    List<ItemDTO> saledProducts = new List<ItemDTO>(); 
                     foreach (ItemDTO item in productsToCalculate)
                     {
-                        productSalePrice += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity());
+                        productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item);
+                        item.SetPrice(productSalePrice);
+                        saledProducts.Add(item);
                         quantity += item.GetQuantity();
                         ReleaseProduct(item.GetID());
                     }
-                    storeSalePrice = productSalePrice;
+                    // storeSalePrice = productSalePrice;
                     foreach(Purchase_Policy p in this.storePolicies.Values)
-                        storeSalePrice -= Math.Max(0, p.ApplyPolicy(productSalePrice, quantity));
-                    return storeSalePrice;
+                        saledProducts = p.ApplyPolicy(saledProducts);
+                    return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price);
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -338,13 +343,13 @@ namespace Market_System.DomainLayer.StoreComponent
                 String cannotPurchase = ""; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
-                    foreach (Purchase_Strategy ps in this.storeStrategies)
+                    foreach (Purchase_Policy ps in this.storeStrategies.Values)
                     {
-                        ps.validate()
+                        ps.Validate(productsToPurchase);
                     }                   
                     
                     foreach (ItemDTO item in productsToPurchase)
-                        if (!AcquireProduct(item.GetID()).prePurchase(item.GetQuantity()))
+                        if (!AcquireProduct(item.GetID()).prePurchase(item))
                         {
                             cannotPurchase.Concat(item.GetID().Concat(";"));
                             ReleaseProduct(item.GetID());
@@ -381,7 +386,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.storePolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                    if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                         Save();
                     else
                         throw new Exception("Policy already exists.");
@@ -407,13 +412,13 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy)
+        public void AddStorePurchaseStrategy(string userID, Purchase_Policy newStrategy)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.storeStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                    if (this.storeStrategies.TryAdd(newStrategy.PolicyID, newStrategy))
                         Save();
                     else throw new Exception("Strategy already exists.");
                 }
@@ -656,19 +661,6 @@ namespace Market_System.DomainLayer.StoreComponent
             return true;
         }
 
-        public void ChangeProductSale(string userID, string productID, double sale)
-        {
-            try
-            {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                {
-                    AcquireProduct(productID).SetSale(sale);
-                    ReleaseProduct(productID);
-                }
-            }
-            catch (Exception e) { throw e; }
-        }
-
         public void ChangeProductTimesBought(string userID, string productID, int times) // only market manager can do
         {
             try
@@ -734,7 +726,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Strategy newStrategy)
+        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Policy newStrategy)
         {
             try
             {
