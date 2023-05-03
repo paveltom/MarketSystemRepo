@@ -135,6 +135,7 @@
     <Content Include="Presentaion_Layer\products_page.aspx" />
     <Content Include="Presentaion_Layer\product_in_basket_page.aspx" />
     <Content Include="Presentaion_Layer\register_page.aspx" />
+    <Content Include="Presentaion_Layer\search.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

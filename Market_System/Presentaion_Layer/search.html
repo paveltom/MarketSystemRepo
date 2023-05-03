@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Search and Categories Example</title>
+    <style>
+        /* CSS styles for search and categories */
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .search-bar {
+            width: 60%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+        }
+
+        .category-select {
+            width: 30%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+        }
+
+        .item {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Search bar -->
+        <input type="text" class="search-bar" placeholder="Search...">
+
+        <!-- Category select -->
+        <select class="category-select">
+            <option value="">All Categories</option>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+            <option value="category3">Category 3</option>
+        </select>
+    </div>
+
+    <!-- List of items -->
+    <div id="item-list">
+        <div class="item category1">Item 1</div>
+        <div class="item category2">Item 2</div>
+        <div class="item category3">Item 3</div>
+        <div class="item category1">Item 4</div>
+        <div class="item category2">Item 5</div>
+        <div class="item category3">Item 6</div>
+    </div>
+
+    <script>
+		// JavaScript code for search and categories
+		const searchInput = document.querySelector('.search-bar');
+		const categorySelect = document.querySelector('.category-select');
+		const itemList = document.querySelector('#item-list');
+		const items = itemList.querySelectorAll('.item');
+
+		// Add event listeners to search bar and category select
+		searchInput.addEventListener('keyup', searchItems);
+		categorySelect.addEventListener('change', filterItems);
+
+		// Search function
+		function searchItems() {
+			const searchValue = searchInput.value.toLowerCase();
+
+			for (let i = 0; i < items.length; i++) {
+				const itemText = items[i].textContent.toLowerCase();
+
+				if (itemText.includes(searchValue)) {
+					items[i].style.display = '';
+				} else {
+					items[i].style.display = 'none';
+				}
+			}
+		}
+
+		// Filter function
+		function filterItems() {
+			const categoryValue = categorySelect.value;
+
+			for (let i = 0; i < items.length; i++) {
+				const itemCategory = items[i].classList.contains(categoryValue);
+
+				if (categoryValue === '' || itemCategory) {
+					items[i].style.display = '';
+                }else  items[i].style.display = 'none';
+            }
+        }
+}
+        </script>
+
+</body>
+</html>
