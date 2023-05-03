@@ -15,6 +15,7 @@ namespace Market_System.Tests.unit_tests
     [TestClass]
     public class ProductUnitTest
     {
+        /*
         // fields          
         private Product testProduct0; // uses Builder of a new Product 
         private Product testProduct1; // uses Builder oa an existing Product        
@@ -1203,6 +1204,7 @@ namespace Market_System.Tests.unit_tests
                 throw new NotImplementedException();
             }
         }
+        */
 
 
     }

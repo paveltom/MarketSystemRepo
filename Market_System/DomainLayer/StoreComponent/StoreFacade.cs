@@ -366,7 +366,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Policy newStrategy)
+        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy)
         {
             try
             {
@@ -645,6 +645,18 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void ChangeProductSale(string userID, string productID, double sale)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductSale(userID, productID, sale);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
         public void ChangeProductRating(string userID, string productID, double rating)
         {
             try
@@ -727,7 +739,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddProductPurchaseStrategy(string userID, string storeID, string productID, Purchase_Policy newStrategy)
+        public void AddProductPurchaseStrategy(string userID, string storeID, string productID, Purchase_Strategy newStrategy)
         {
             try
             {

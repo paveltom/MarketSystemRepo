@@ -9,15 +9,15 @@ using System.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
+
     public class LogicAND : Statement
     {
+        public LogicAND(Statement[] formula) : base(formula) { }
 
-
-        public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes)
+        public override bool Satisfies(List<ItemDTO> chosenItemsWithAttributes, Dictionary<string, string> userData)
         {
-            return this.Formula.All(x => x.Satisfies(choseProductsWithAttributes));
+            return this.Formula.All(s => s.Satisfies(chosenItemsWithAttributes, userData));
         }
-
     }
 
 }

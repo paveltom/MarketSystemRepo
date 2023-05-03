@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Market_System.DomainLayer.StoreComponent.Predicates;
-using Market_System.DomainLayer.StoreComponent.SalePolicy;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DomainLayer.UserComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -15,11 +15,12 @@ namespace Market_System.DomainLayer.StoreComponent
         public string Description { get; private set; }
         public Statement StrategyFormula { get; private set; }
 
-        public Purchase_Strategy(string stratID, string stratName, string description)
+        public Purchase_Strategy(string stratID, string stratName, string description, Statement formula)
         {
             this.StrategyID = stratID;
             this.StrategyName = stratName;
             this.Description = description;
+            this.StrategyFormula = formula;
         }
 
         public void SetName(string name)
@@ -32,35 +33,19 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Description = description;
         }
 
-
-        public Boolean ValidateProduct(int quantity, List<string> chosenAttributes)
+        public Boolean Validate(List<ItemDTO> chosenProductsWithAttributes, string userID)
         {
-            throw new NotImplementedException();
-
+            User currUser = UserFacade.GetInstance().getUser(userID);
+            Dictionary<string, string> rellevantUserPolicyData = new Dictionary<string, string>
+                    {
+                        { "username", currUser.GetUsername() },
+                        { "address", currUser.get_Address() }
+                    };
+            return this.StrategyFormula.Satisfies(chosenProductsWithAttributes, rellevantUserPolicyData);
         }
 
-        public Boolean ValidateStore(int quantity, List<string> chosenAttributes)
-        {
-            throw new NotImplementedException();
-
-        }
-
-        public Boolean ValidateCategory(int quantity, List<string> chosenAttributes)
-        {
-            throw new NotImplementedException();
-
-        }
+        //public Boolean Validate(String value);
 
 
-
-
-
-
-
-        public Boolean ValidateMarket(int quantity, List<string> chosenAttributes)
-        {
-            // foreach attribute validate purchase restrictions
-            throw new NotImplementedException();
-        }
     }
 }

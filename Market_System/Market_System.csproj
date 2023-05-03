@@ -172,19 +172,25 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\ForAllStatement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AnyStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtLeastStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtMostStatement.cs" />
-    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\CategoryPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\CategoryPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\CategoryStrategy.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\EqualRelation.cs" />
-    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\GreaterRelation.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\GreaterThenThisRelation.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\IfThenStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\LogicAND.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\LogicOR.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\LogicXOR.cs" />
-    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\ProductPolicy.cs" />
-    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\SmallerRelation.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\ProductPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\ProductStrategy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\SmallerThenThisRelation.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\Statement.cs" />
-    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StorePolicy.cs" />
-    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\UserPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\StorePolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\StoreStrategy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotVerified\UserStrategy.cs" />
     <Compile Include="DomainLayer\StoreComponent\StorePolicy.cs" />
     <Compile Include="register_page.aspx.cs">
       <DependentUpon>register_page.aspx</DependentUpon>

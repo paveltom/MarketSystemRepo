@@ -5,26 +5,33 @@ using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
 using System.Collections.Concurrent;
+using System.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public abstract class SmallerRelation : Statement
+    public abstract class SmallerThenThisRelation : Statement
     {
 
         public String FocusAttributeName { get; private set; }
 
         public String FocusAttributeValue { get; private set; }
+        private bool userIndicatore = false;
 
-        public SmallerRelation(string GreaterAttributeName, string GreaterAttributeValue) 
+        public SmallerThenThisRelation(string GreaterAttributeName, string GreaterAttributeValue, bool userAttribute) 
         {
             FocusAttributeName = GreaterAttributeName;
             FocusAttributeValue = GreaterAttributeValue;
+            if(userAttribute)
+                userIndicatore = true;
         }
 
 
-        public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes)
+        public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes, Dictionary<string, string> userData)
         {
-            return GetValue(choseProductsWithAttributes[0], FocusAttributeName).CompareTo(FocusAttributeValue) < 0;
+            if (userIndicatore)
+                return userData[FocusAttributeName].CompareTo(FocusAttributeValue) < 0;
+            else
+                return choseProductsWithAttributes[0].GetStringValuesDict()[FocusAttributeName].CompareTo(FocusAttributeValue) < 0;
         }
 
         private String GetValue(ItemDTO item, string attribute)

@@ -19,7 +19,8 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
             this.Formula = formula;
         }
 
-        public abstract Boolean Satisfies(List<ItemDTO> chosenItemsWithAttributes);
+        public abstract Boolean Satisfies(List<ItemDTO> chosenItemsWithAttributes, Dictionary<string, string> userData);
+
         //public double ImplementSale(int quantity, ConcurrentDictionary<string, string> attributes, double initPrice);
 
     }

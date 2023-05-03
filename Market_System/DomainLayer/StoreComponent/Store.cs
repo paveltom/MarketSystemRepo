@@ -6,6 +6,8 @@ using System.Web;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
 using System.Web.WebSockets;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DomainLayer.UserComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -21,15 +23,15 @@ namespace Market_System.DomainLayer.StoreComponent
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Policy> productDefaultStrategies; // passed to every new added product
-        //public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
+        // public ConcurrentDictionary<string, Purchase_Policy> productDefaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Policy> storeStrategies; // passed to every new added product
-        //public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
+        // public ConcurrentDictionary<string, Purchase_Policy> storeStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Policy> strategies, List<string> allProductsIDS, bool temporaryClosed)
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -38,17 +40,17 @@ namespace Market_System.DomainLayer.StoreComponent
             this.products = new ConcurrentDictionary<string, Product>();
             this.productUsage = new ConcurrentDictionary<string, int>();
             this.storePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            this.storeStrategies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.storeStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Policy>();
+            this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.temporaryClosed = temporaryClosed;
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
                     this.storePolicies.TryAdd(p.PolicyID, p);
             if (strategies != null)
-                foreach (Purchase_Policy p in strategies)
-                    this.storeStrategies.TryAdd(p.PolicyID, p);
+                foreach (Purchase_Strategy p in strategies)
+                    this.storeStrategies.TryAdd(p.StrategyID, p);
 
             this.allProducts = new ConcurrentDictionary<string, string>();
             if (allProductsIDS != null)                
@@ -343,13 +345,16 @@ namespace Market_System.DomainLayer.StoreComponent
                 String cannotPurchase = ""; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
-                    foreach (Purchase_Policy ps in this.storeStrategies.Values)
+
+                    bool validation = true;
+                    foreach (Purchase_Strategy ps in this.storeStrategies.Values)
                     {
-                        ps.Validate(productsToPurchase);
-                    }                   
-                    
+                        if (!ps.Validate(productsToPurchase, userID))
+                            throw new Exception("Restrictions violated: " + ps.Description);
+                    }
+
                     foreach (ItemDTO item in productsToPurchase)
-                        if (!AcquireProduct(item.GetID()).prePurchase(item))
+                        if (!AcquireProduct(item.GetID()).prePurchase(userID, item))
                         {
                             cannotPurchase.Concat(item.GetID().Concat(";"));
                             ReleaseProduct(item.GetID());
@@ -412,13 +417,13 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchaseStrategy(string userID, Purchase_Policy newStrategy)
+        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.storeStrategies.TryAdd(newStrategy.PolicyID, newStrategy))
+                    if (this.storeStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                         Save();
                     else throw new Exception("Strategy already exists.");
                 }
@@ -611,6 +616,20 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void ChangeProductSale(string userID, string productID, double sale)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetSale(sale);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
         public void ChangeProductRating(string userID, string productID, double rating)
         {
             try
@@ -726,7 +745,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Policy newStrategy)
+        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Strategy newStrategy)
         {
             try
             {

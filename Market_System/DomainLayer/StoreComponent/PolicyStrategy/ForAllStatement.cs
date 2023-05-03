@@ -9,27 +9,18 @@ using System.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public class AtMostStatement : Statement
+    public class ForAllStatement : Statement
     {
-
-        public int AtMostQuantity { get; private set; }
-
-        public AtMostStatement(int atLeastQuantity, Statement[] formula) : base(formula)
-        {
-            AtMostQuantity = atLeastQuantity;
-        }
+        public ForAllStatement(Statement[] formula) : base(formula) { }
 
         public override Boolean Satisfies(List<ItemDTO> chosenItemsWithAttributes, Dictionary<string, string> userData)
         {
-            int counter = 0;
             foreach (ItemDTO item in chosenItemsWithAttributes)
             {
-                if (this.Formula[0].Satisfies(new List<ItemDTO>() { item }, userData))
-                    counter++;
-                if (counter > this.AtMostQuantity)
-                    return false;
+                if(!this.Formula.All(s => s.Satisfies(new List<ItemDTO>() { item}, userData)))
+                    return false; 
             }
-            return counter <= this.AtMostQuantity;
+            return true;
         }
     }
 

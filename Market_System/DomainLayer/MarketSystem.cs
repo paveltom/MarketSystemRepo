@@ -790,6 +790,7 @@ namespace Market_System.DomainLayer
             }
         }
 
+        
         public void ChangeProductSale(string SessionID, string productID, double sale)
         {
             try
@@ -802,6 +803,7 @@ namespace Market_System.DomainLayer
                 throw e;
             }
         }
+        
 
         public void ChangeProductTimesBought(string SessionID, string productID, int times)
         {

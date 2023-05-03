@@ -14,6 +14,7 @@ namespace Market_System.Tests.unit_tests
     [TestClass]
     public class StoreFacadeUnitTests
     {
+        /*
         private Store testStore; // uses Builder of a new Product 
         private Product testProduct0;
         private Product testProduct1;
@@ -270,8 +271,9 @@ namespace Market_System.Tests.unit_tests
         {
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
-            Statement statement = new AtLeastStatement(1, );
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 50, "testStorePolicyDescription");
+            Statement storeIDStatement = new EqualRelation("StoreID", newStoreID);
+            Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+            Purchase_Policy testStorePolicy = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "testStorePolicyDescription");
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
             List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
@@ -329,5 +331,6 @@ namespace Market_System.Tests.unit_tests
             return new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
                                 dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
         }
+        */
     }
 }

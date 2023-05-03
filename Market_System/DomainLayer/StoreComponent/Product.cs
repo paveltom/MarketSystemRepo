@@ -24,16 +24,13 @@ namespace Market_System.DomainLayer.StoreComponent
         public Double Rating { get; private set; } // between 1-10
         public int Quantity { get; private set; }
         public Double Weight { get; private set; }
-        //public Double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
+        public Double Sale { get; private set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
         public long timesBought { get; private set; }
         public long timesRated { get ; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
         public Double[] Dimenssions { get; private set; } // array of 3
         public ConcurrentDictionary<string, Purchase_Policy> PurchasePolicies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
-
-        public ConcurrentDictionary<string, Purchase_Policy> PurchaseStrategies { get; private set; } // make it threadsafe ChaiinOfResponsobolities 
-
-        //public ConcurrentDictionary<string, Purchase_Strategy> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
+        public ConcurrentDictionary<string, Purchase_Strategy> PurchaseStrategies { get; private set; } // make it threadsafe ChainOfResponsibilities
         public ConcurrentBag<string> Comments { get; private set; }
         private StoreRepo storeRepo;
         public ConcurrentDictionary<String, List<String>> PurchaseAttributes { get; private set; }
@@ -46,7 +43,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Product(String product_ID, String name, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight,
                         double[] dimenssions, List<String> comments, ConcurrentDictionary<string, Purchase_Policy> purchase_Policies,
-                        ConcurrentDictionary<string, Purchase_Policy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, int boughtTimes, Category category)
+                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, int boughtTimes, Category category)
         {
             this.Product_ID = product_ID;
             this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
@@ -62,6 +59,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Dimenssions = dimenssions;
             this.PurchasePolicies = purchase_Policies;
             this.PurchaseStrategies = purchase_Strategies;
+            this.Sale = sale;
             this.Comments = new ConcurrentBag<string>(comments);
             this.storeRepo = StoreRepo.GetInstance();
             this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
@@ -69,14 +67,14 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         public Product(List<String> productProperties, string storeID, ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies,
-                        ConcurrentDictionary<string, Purchase_Policy> defaultStoreStrategies)
+                        ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies)
         {
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             this.StoreID = storeID;
             this.storeRepo = StoreRepo.GetInstance();
             this.Product_ID = storeRepo.getNewProductID(storeID); //this.storeRepo.getNewProductID(storeID); Change when StoreRepo done !!!!!!!!!!!!!!
             this.PurchasePolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultStorePolicies);
-            this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Policy>(defaultStoreStrategies);
+            this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
             this.timesBought = 0;
 
@@ -88,6 +86,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Quantity = Int32.Parse(properties[3]);
             this.ReservedQuantity = Int32.Parse(properties[4]);
             this.Rating = Double.Parse(properties[5]);
+            this.Sale = Double.Parse(properties[6]);
             this.Weight = Double.Parse(properties[7]);
             this.Dimenssions = properties[8].Split('_').Select(s => Double.Parse(s)).ToArray(); // dim1_dim2_dim3
             this.PurchaseAttributes = RetreiveAttributres(properties[9]); // atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
@@ -139,11 +138,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddPurchaseStrategy(Purchase_Policy newStrategy)
+        public void AddPurchaseStrategy(Purchase_Strategy newStrategy)
         {
             try
             {
-                if (this.PurchaseStrategies.TryAdd(newStrategy.PolicyID, newStrategy))
+                if (this.PurchaseStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                     Save();
                 else throw new Exception("Strategy already exist.");
             }
@@ -190,13 +189,14 @@ namespace Market_System.DomainLayer.StoreComponent
         public double ImplementSale(ItemDTO item)
         {
             //double saledPrice = this.Price - (this.Price / 100 * this.Sale);
-            double saledPrice = this.Price;
+            double saledPrice = this.Price - this.Price / 100 * this.Sale;
+            item.SetPrice(saledPrice);
             List<ItemDTO> product = new List<ItemDTO>() { item };
             foreach (Purchase_Policy pp in this.PurchasePolicies.Values)
             {
                 product = pp.ApplyPolicy(product);
             }
-                
+
             return product[0].Price * item.GetQuantity();
         }
 
@@ -325,7 +325,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public Boolean prePurchase(ItemDTO item)
+        public Boolean prePurchase(string userID, ItemDTO item)
         {
             try
             {
@@ -335,9 +335,9 @@ namespace Market_System.DomainLayer.StoreComponent
                         throw new Exception("Bad quantity.");
                     
                     List<ItemDTO> product = new List<ItemDTO> { item }; 
-                    foreach(Purchase_Policy ps in this.PurchaseStrategies.Values)
+                    foreach(Purchase_Strategy ps in this.PurchaseStrategies.Values)
                     {
-                        if(!ps.Validate(product))
+                        if(!ps.Validate(product, userID))
                         {
                             throw new Exception(ps.Description);
                         }
@@ -450,6 +450,21 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (quantity < 0)
                         throw new Exception("Quantity cannot be negative.");
                     this.Quantity = quantity;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void SetSale(double sale)
+        {
+            try
+            {
+                lock (QuantityLock)
+                {
+                    if (sale < 0 || sale > 100)
+                        throw new Exception("Sale has to be between 0 - 100.");
+                    this.Sale = sale;
                     Save();
                 }
             }

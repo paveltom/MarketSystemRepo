@@ -7,7 +7,7 @@ using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
-    public abstract class Purchase_Policy
+    public class Purchase_Policy
     {
         public string PolicyID { get; private set; }// ???
         public string PolicyName { get; private set; }
@@ -26,9 +26,15 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         // returns items with saled price
-        public abstract List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes);
+        public List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract Boolean Validate(List<ItemDTO> chosenProductsWithAttributes);
+        public Boolean Validate(List<ItemDTO> chosenProductsWithAttributes)
+        {
+            throw new NotImplementedException();
+        }
 
 
 

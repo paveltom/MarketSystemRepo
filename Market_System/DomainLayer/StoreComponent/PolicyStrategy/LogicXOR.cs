@@ -10,14 +10,13 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
     public class LogicXOR : Statement
     {
-
-
-        public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes)
+        public LogicXOR(Statement[] formula) : base(formula) { }
+        public override bool Satisfies(List<ItemDTO> chosenItemsWithAttributes, Dictionary<string, string> userData)
         {
             bool onlyOne = false;
-            foreach(Statement s in this.Formula)
+            foreach (Statement s in this.Formula)
             {
-                if (s.Satisfies(choseProductsWithAttributes))
+                if (s.Satisfies(chosenItemsWithAttributes, userData))
                     if (onlyOne)
                         return false;
                     else
@@ -25,7 +24,6 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
             }
             return onlyOne;
         }
-
     }
 
 }

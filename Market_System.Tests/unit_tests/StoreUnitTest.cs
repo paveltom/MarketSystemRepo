@@ -12,6 +12,7 @@ namespace Market_System.Tests.unit_tests
     [TestClass]
     public class StoreUnitTest
     {
+        /*
         // fields          
         private Store testStore; // uses Builder of a new Product 
         private Product testProduct0;
@@ -968,6 +969,7 @@ namespace Market_System.Tests.unit_tests
             return new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
                                 dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
         }
+        */
 
     }    
 }

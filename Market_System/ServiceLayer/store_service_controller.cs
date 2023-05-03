@@ -517,6 +517,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        
         public Response ChangeProductSale(string productID, double sale)
         {
             try
@@ -530,6 +531,7 @@ namespace Market_System.ServiceLayer
                 return new Response("ERROR: " + ex.Message);
             }
         }
+        
 
         public Response ChangeProductTimesBought(string productID, int times)
         {

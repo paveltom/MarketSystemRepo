@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public abstract class StorePolicy : Purchase_Policy
+    public class StorePolicy : Purchase_Policy
     {
         public String SaledStoreID { get; private set; }
         public StorePolicy(string polID, string polName, double salePercentage, string description, string storeID, Statement formula) :
@@ -33,4 +33,4 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
             return this.SalePolicyFormula.Satisfies(chosenProductsWithAttributes);
         }
     }
-}
+}*/
