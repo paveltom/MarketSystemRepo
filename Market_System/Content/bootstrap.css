@@ -4298,8 +4298,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-fixed-top,
 .navbar-fixed-bottom {
   position: fixed;
-  right: 0;
-  left: 0;
+  right: 16px;
+  left: -16px;
   z-index: 1030;
 }
 .navbar-fixed-top .navbar-collapse,
@@ -4672,6 +4672,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse {
   background-color: #222;
   border-color: #080808;
+    height: 49px;
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;

@@ -63,10 +63,40 @@
         </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                
+               
             </asp:ContentPlaceHolder>
+
+             <div style="height: 221px">
+                   
+                </div>
+            <div>  
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+             <div>
+
+            </div>
+             <div>
+
+            </div>
+             <div>
+
+            </div>
+             <div>
+                  <asp:Button ID="change_password_button" runat="server" onclick="change_password_click" Text="change password" />
+              
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
             <asp:Label ID="Label1" runat="server"></asp:Label>
-&nbsp;&nbsp;
             <asp:Button ID="logout_button" Onclick="Logout_click" runat="server" Height="26px" Text="Logout" Width="60px" />
+            </div>
+&nbsp;&nbsp;
+          
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>

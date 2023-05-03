@@ -28,14 +28,15 @@ namespace Market_System
             if (Session["service_controller"] == null)
             {
                 Session["service_controller"] = new ServiceLayer.Service_Controller();
-                Session["username"] = "";
-                
-                logout_button.Visible = false ;
+                Session["username"] = ""; 
+               // logout_button.Visible = false ;
+              // change_password_button.Visible = false;
             }
 
             if (Session["username"].Equals(""))
             {
                 logout_button.Visible = false;
+                change_password_button.Visible = false;
                 Label1.Text = "";
             }
             else
@@ -68,8 +69,9 @@ namespace Market_System
             login_href.Visible = false;
             register_href.Visible = false;
             logout_button.Visible = true;
-            
-            
+            change_password_button.Visible = true;
+
+
 
         }
 
@@ -84,8 +86,15 @@ namespace Market_System
 
         }
 
+        public void change_password_click(object sender, EventArgs e)
+        {
 
-      
+            Response.Redirect("/Presentaion_Layer/change_password_page.aspx");
+
+        }
+
+
+
 
 
 
