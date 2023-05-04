@@ -1132,6 +1132,9 @@ namespace Market_System.DomainLayer
             {
                 userFacade.AddNewMessage(emp.UserID, message);
             }
+            //Send to founder as well - he is sort of owner too...
+            var founderID = storeFacade.GetStore(storeID).FounderID;
+            userFacade.AddNewMessage(founderID, message);
         }
 
         private void sendMessageToStoreManagers(Message message, string storeID)
@@ -1156,6 +1159,10 @@ namespace Market_System.DomainLayer
             {
                 userFacade.AddNewMessage(emp.UserID, message);
             }
+
+            //Send Notification to the Founder as well
+            var founderID = storeFacade.GetStore(storeID).FounderID;
+            userFacade.AddNewMessage(founderID, message);
         }
 
         private void sendMessageToUser(Message message, string userID)
