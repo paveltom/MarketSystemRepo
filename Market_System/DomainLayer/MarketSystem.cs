@@ -727,12 +727,22 @@ namespace Market_System.DomainLayer
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
                 // userFacade.save_purhcase_in_user(username,cart);
 
-                //Check if the product's quantity is 0
+                //Check if the product's quantity is 0                
                 foreach(ItemDTO product in cart.convert_to_item_DTO())
                 {
-                    if(product.GetQuantity() <= 0)
+                    if(product.GetQuantity() <= 0) //Send Notification to the store Owners if so
                     {
-                        
+                        Message message = notificationFacade.SendMessage("The quantity of product id: " + product.GetID() + " has ended.", "System");
+                        var userID = userFacade.get_user_id_from_username(username);
+                        //get Store ID and store Owners:
+                        char[] spearator = { '_'};
+                        var storeID = product.GetID().Split(spearator)[0];
+
+                        //Send Notification to the store Owners
+                        foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
+                        {
+                            userFacade.AddNewMessage(emp.UserID, message);
+                        }
                     }
                 }
                 
