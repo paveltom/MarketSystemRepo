@@ -27,6 +27,8 @@ namespace Market_System.DomainLayer
 
         internal void remove_guest_id_from_userRepo(string guest_id)
         {
+            string guest_name = userFacade.get_username_from_user_id(guest_id);
+            userFacade.remove_guest_from_users(guest_name);
             userFacade.remove_guest_id_from_userRepo(guest_id);
         }
 
@@ -83,6 +85,13 @@ namespace Market_System.DomainLayer
             return return_me;
             
             
+        }
+
+        internal bool check_if_working_in_a_store(string sessionID)
+        {
+            string user_id = get_userid_from_session_id(sessionID);
+            Dictionary<string, string> dict = storeFacade.GetStoresWorkingIn(user_id);
+            return dict.Count > 0;
         }
 
         private List<string> convert_basket_to_list_of_strings_to_show_user_in_GUI(Bucket basket)

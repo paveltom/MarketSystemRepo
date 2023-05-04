@@ -101,6 +101,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal bool check_if_working_in_a_store()
+        {
+            return this.Market.check_if_working_in_a_store(this.SessionID);
+        }
+
         public Response TransferFoundership(string storeID, string newFounderID) // change founder
         {
             try
@@ -627,6 +632,11 @@ namespace Market_System.ServiceLayer
             {
                 return new Response("ERROR: " + ex.Message);
             }
+        }
+
+        internal void set_new_session(string session_id)
+        {
+            this.SessionID = session_id;
         }
 
 

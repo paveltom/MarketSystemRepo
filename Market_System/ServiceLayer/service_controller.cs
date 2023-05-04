@@ -99,6 +99,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public Response<bool> check_if_working_in_a_store()
+        {
+             Response<bool> result = Response<bool>.FromValue(this.ssc.check_if_working_in_a_store());
+            return result;
+        }
+
         public Response<ItemDTO> add_product_to_store(string storeID, string product_name, string description, string price, string quantity, string reserved_quantity, string rating, string sale, string wieght, string dimenstions, string attributes, string product_category)
         {
             List<string> ProductProperties = new List<string>();
@@ -665,6 +671,7 @@ namespace Market_System.ServiceLayer
                 Response<string> ok=Response<string>.FromValue(this.usc.Logout(session_id));
                 Logger.get_instance().record_event(ok.Value);
                 this.session_id = this.session_id_generator.Next().ToString(); //generate nwe session id
+                this.ssc.set_new_session(session_id);
                 new_guest_entered_the_website(session_id);// because now i am a guest
                 return ok;
                

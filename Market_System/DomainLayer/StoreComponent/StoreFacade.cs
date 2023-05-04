@@ -255,7 +255,7 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        internal Dictionary<string, string> GetStoresWorkingIn(string other_User_ID)
+        public Dictionary<string, string> GetStoresWorkingIn(string other_User_ID)
         {
             try
             {

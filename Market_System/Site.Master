@@ -20,13 +20,7 @@
             font-size: xx-small;
             color: #CCCCCC;
         }
-        .auto-style3 {
-            color: #CCCCCC;
-        }
-        .auto-style4 {
-            font-size: xx-small;
-        }
-    </style>
+        </style>
 
 </head>
 <body>
@@ -102,6 +96,8 @@
 
             </div>
              <div>
+                  <asp:Button ID="manage_store_button" runat="server" Text="store managing" Width="111px" Visible="False" />
+&nbsp;
                   <asp:Button ID="open_new_store_button" runat="server" Text="Open Store" OnClick="open_new_store_click" Width="100px" />
 &nbsp;
                   <asp:Button ID="change_password_button" runat="server" onclick="change_password_click" Text="change password" />
