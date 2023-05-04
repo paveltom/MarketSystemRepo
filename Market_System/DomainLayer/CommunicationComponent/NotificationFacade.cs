@@ -36,5 +36,10 @@ namespace Market_System.Domain_Layer.Communication_Component
             //Return the Singleton Instance
             return Instance;
         }
+
+        public Message SendMessage(string message, string from_Username)
+        {
+            return new Message(message, from_Username);
+        }
     }
 }
