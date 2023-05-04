@@ -22,8 +22,8 @@ namespace Market_System.Presentaion_Layer
             
             string username = txt_username.Text;
             string password = txt_password.Text;
-            Service_Controller sv = (Service_Controller)Session["service_controller"];
-            Response<string> result = sv.login_member(txt_username.Text, txt_password.Text);
+            
+            Response<string> result = ((Service_Controller)Session["service_controller"]).login_member(txt_username.Text, txt_password.Text);
             if (!result.ErrorOccured)
             {
                 Session["username"] = username;

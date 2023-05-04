@@ -51,8 +51,22 @@ namespace Market_System.DomainLayer.UserComponent
             return Instance;
         }
 
+        internal void remove_guest_from_users(string guest_name)
+        {
+            
+            foreach(User user in users)
+            {
+                if(user.GetUsername().Equals(guest_name))
+                {
+                    users.Remove(user);
+                    return;
+                }
+            }
+        }
+
         internal void remove_guest_id_from_userRepo(string guest_id)
         {
+            
             userRepo.remove_guest_id_from_userRepo(guest_id);
         }
 

@@ -37,11 +37,17 @@ namespace Market_System.Presentaion_Layer
         {
             
             string selected_store_id = ddl_store_id.SelectedValue;
+            if(selected_store_id.Equals("nothing_to_show"))
+                {
+                products_list.DataSource = null;
+                products_list.DataBind();
+                return;
+            }
 
 
-            
-            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).show_basket_in_cart(selected_store_id);
+             Response<List<String>> response = ((Service_Controller)Session["service_controller"]).show_basket_in_cart(selected_store_id);
             string[] show_me = response.Value.ToArray();
+            
             products_list.DataSource = show_me;
             products_list.DataBind();
 

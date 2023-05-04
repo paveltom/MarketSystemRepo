@@ -3,7 +3,8 @@
     <div style="text-align: left; margin-bottom: 0px">
         <label>please select a Store</label>
         <asp:DropDownList ID="ddl_store_id"  OnSelectedIndexChanged="show_basket_of_selected_store_id" runat="server" AutoPostBack="True"  >
-        </asp:DropDownList>
+         <asp:ListItem Text="please select a store id" Value="nothing_to_show" />
+            </asp:DropDownList>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="error_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
     &nbsp;&nbsp; product ID:<asp:TextBox ID="product_id_txt" runat="server"></asp:TextBox>

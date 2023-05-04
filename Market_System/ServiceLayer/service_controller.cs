@@ -14,6 +14,20 @@ namespace Market_System.ServiceLayer
         private User_Service_Controller usc;
         private Store_Service_Controller ssc;
         private Random session_id_generator;
+
+        internal Response<List<string>> get_stores_that_user_works_in()
+        {
+            try
+            {
+                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in());
+                return okay;
+            }
+            catch(Exception e)
+            {
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
         private string session_id;
 
         public Service_Controller()
@@ -25,6 +39,8 @@ namespace Market_System.ServiceLayer
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
         }
+
+
 
         internal Response< Dictionary<string, string>> extract_item_from_basket(string product_id)
         {
@@ -97,6 +113,12 @@ namespace Market_System.ServiceLayer
             {
                 return Response<List<string>>.FromError(e.Message);
             }
+        }
+
+        public Response<bool> check_if_working_in_a_store()
+        {
+             Response<bool> result = Response<bool>.FromValue(this.ssc.check_if_working_in_a_store());
+            return result;
         }
 
         public Response<ItemDTO> add_product_to_store(string storeID, string product_name, string description, string price, string quantity, string reserved_quantity, string rating, string sale, string wieght, string dimenstions, string attributes, string product_category)
@@ -549,6 +571,26 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+        public Response<List<string>> get_products_from_shop_as_list_of_string(string storeID)
+        {
+
+            try
+            {
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetProductsFromStore_as_string(storeID);
+                
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                
+                return null;
+            }
+        }
+
+
         public Response<List<ItemDTO>> get_products_from_shop(string storeID)
         {
             try
@@ -665,6 +707,7 @@ namespace Market_System.ServiceLayer
                 Response<string> ok=Response<string>.FromValue(this.usc.Logout(session_id));
                 Logger.get_instance().record_event(ok.Value);
                 this.session_id = this.session_id_generator.Next().ToString(); //generate nwe session id
+                this.ssc.set_new_session(session_id);
                 new_guest_entered_the_website(session_id);// because now i am a guest
                 return ok;
                
@@ -986,7 +1029,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        protected bool HasNewMessages()
+        public bool HasNewMessages()
         {
             try
             {
