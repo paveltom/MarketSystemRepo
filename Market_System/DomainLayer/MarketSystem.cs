@@ -668,7 +668,19 @@ namespace Market_System.DomainLayer
             try
             {
                 string userID = userFacade.get_userID_from_session(sessionID);
-                 storeFacade.AddProductComment(userID,productID,comment,rating);
+                storeFacade.AddProductComment(userID,productID,comment,rating);
+                var username = userFacade.get_username_from_user_id(userID);
+
+                //Send notification to store owners
+                Message message = notificationFacade.SendMessage("New product comment has been added by: "
+                    + username + ", on product id: " + productID, username);
+
+                //get Store ID and store Owners:
+                var storeID = getStoreIDFromProductID(productID);
+
+                //Send Notification to the store Owners
+                sendMessageToStoreOwners(message, storeID);
+
             }
             catch (Exception e)
             {
@@ -735,17 +747,12 @@ namespace Market_System.DomainLayer
                         Message message = notificationFacade.SendMessage("The quantity of product id: " + product.GetID() + " has ended.", "System");
                         var userID = userFacade.get_user_id_from_username(username);
                         //get Store ID and store Owners:
-                        char[] spearator = { '_'};
-                        var storeID = product.GetID().Split(spearator)[0];
+                        var storeID = getStoreIDFromProductID(product.GetID());
 
                         //Send Notification to the store Owners
-                        foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
-                        {
-                            userFacade.AddNewMessage(emp.UserID, message);
-                        }
+                        sendMessageToStoreOwners(message, storeID);
                     }
-                }
-                
+                }             
                 return "Payment was successfull";
             }
 
@@ -1062,6 +1069,21 @@ namespace Market_System.DomainLayer
             catch (Exception e)
             {
                 throw e;
+            }
+        }
+
+        private string getStoreIDFromProductID(string productID)
+        {
+            char[] spearator = { '_' };
+            return productID.Split(spearator)[0];
+        }
+
+        private void sendMessageToStoreOwners(Message message, string storeID)
+        {
+            //Send Notification to the store Owners
+            foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
+            {
+                userFacade.AddNewMessage(emp.UserID, message);
             }
         }
     }
