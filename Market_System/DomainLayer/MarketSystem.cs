@@ -19,6 +19,13 @@ namespace Market_System.DomainLayer
         private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
 
+        internal List<string> get_user_wokring_stores(string session_id)
+        {
+            string user_id = get_userid_from_session_id(session_id);
+          return storeFacade.get_user_wokring_stores(user_id);
+            
+        }
+
         //This variable is going to store the Singleton Instance
         private static MarketSystem Instance = null;
 
@@ -27,6 +34,8 @@ namespace Market_System.DomainLayer
 
         internal void remove_guest_id_from_userRepo(string guest_id)
         {
+            string guest_name = userFacade.get_username_from_user_id(guest_id);
+            userFacade.remove_guest_from_users(guest_name);
             userFacade.remove_guest_id_from_userRepo(guest_id);
         }
 
@@ -83,6 +92,13 @@ namespace Market_System.DomainLayer
             return return_me;
             
             
+        }
+
+        internal bool check_if_working_in_a_store(string sessionID)
+        {
+            string user_id = get_userid_from_session_id(sessionID);
+            Dictionary<string, string> dict = storeFacade.GetStoresWorkingIn(user_id);
+            return dict.Count > 0;
         }
 
         private List<string> convert_basket_to_list_of_strings_to_show_user_in_GUI(Bucket basket)
@@ -650,6 +666,17 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
+        }
+
+        internal List<string> GetProductsFromStore_as_string(string sessionID, string storeID)
+        {
+            List<string> return_me = new List<string>();
+            List<ItemDTO> items = this.GetProductsFromStore(sessionID, storeID);
+            foreach(ItemDTO item in items)
+            {
+                return_me.Add("product name:  " + storeFacade.get_product_name_from_prodcut_id(item.GetID()) + "   ID:   " + item.GetID() + "   quantity:  " + item.GetQuantity());
+            }
+            return return_me;
         }
 
         public void Remove_Store_Owner(string sessionID, string other_Owner_Username, string storeID)

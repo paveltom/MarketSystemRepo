@@ -20,6 +20,11 @@ namespace Market_System.ServiceLayer
             this.SessionID = sessionID;
         }
 
+        internal List<string> get_stores_that_user_works_in()
+        {
+            return this.Market.get_user_wokring_stores(SessionID);
+        }
+
         // ====================================================================
         // ====================== General class methods ===============================
 
@@ -99,6 +104,11 @@ namespace Market_System.ServiceLayer
             {
                 return Response<string>.FromError(ex.Message);
             }
+        }
+
+        internal bool check_if_working_in_a_store()
+        {
+            return this.Market.check_if_working_in_a_store(this.SessionID);
         }
 
         public Response TransferFoundership(string storeID, string newFounderID) // change founder
@@ -545,6 +555,20 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<List<string>> GetProductsFromStore_as_string(string storeID)
+        {
+            try
+            {
+                //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
+                List<string> products = this.Market.GetProductsFromStore_as_string(SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<string>>.FromValue(products);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<string>>.FromError(ex.Message);
+            }
+        }
+
         public Response ChangeProductCategory(string productID, string categoryID)
         {
             try
@@ -627,6 +651,11 @@ namespace Market_System.ServiceLayer
             {
                 return new Response("ERROR: " + ex.Message);
             }
+        }
+
+        internal void set_new_session(string session_id)
+        {
+            this.SessionID = session_id;
         }
 
 

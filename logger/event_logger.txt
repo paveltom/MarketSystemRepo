@@ -419,3 +419,133 @@ Thursday, 4 May 2023 : guest : guest424732724 has logged in
 Thursday, 4 May 2023 : guest : guest258898463 has logged in
 Thursday, 4 May 2023 : 565657825Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest53807986 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1517642061 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1224935228 has logged in
+יום חמישי 04 מאי 2023 : guest : guest208093276 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1086082228 has logged in
+יום חמישי 04 מאי 2023 : guest : guest744462850 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1256650170 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1770331119 has logged in
+יום חמישי 04 מאי 2023 : guest : guest223430084 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1442051083 has logged in
+יום חמישי 04 מאי 2023 : guest : guest370815861 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 2099143471 has failed
+יום חמישי 04 מאי 2023 : guest : guest2059582921 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1284287455 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1835283111 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1566500109 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1141824320 has logged in
+יום חמישי 04 מאי 2023 : guest : guest714706598 has logged in
+יום חמישי 04 מאי 2023 : guest : guest755473624 has logged in
+יום חמישי 04 מאי 2023 : guest : guest47052776 has logged in
+יום חמישי 04 מאי 2023 : guest : guest38961754 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1259192710 has logged in
+יום חמישי 04 מאי 2023 : guest : guest124524892 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1021918012 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 1628345803 has failed
+יום חמישי 04 מאי 2023 : 1628345803Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1946975297 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest183060613 has logged in
+יום חמישי 04 מאי 2023 : 1140860295Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest727153196 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest1827799245 has logged in
+יום חמישי 04 מאי 2023 : 638115280Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1285888565 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest2128284431 has logged in
+יום חמישי 04 מאי 2023 : 587228575Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1034615670 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest243557485 has logged in
+יום חמישי 04 מאי 2023 : 1201357167Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest276000857 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest1604290174 has logged in
+יום חמישי 04 מאי 2023 : 414606209Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1372592205 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest1501297028 has logged in
+יום חמישי 04 מאי 2023 : 311613063Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1814130165 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest1323883567 has logged in
+יום חמישי 04 מאי 2023 : 1256099421Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1918966022 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest281208167 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1693737089 has logged in
+יום חמישי 04 מאי 2023 : 504053124Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest358064263 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest1193147356 has logged in
+יום חמישי 04 מאי 2023 : guest : guest160927359 has logged in
+יום חמישי 04 מאי 2023 : 767355150Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1692795841 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest1298491874 has logged in
+יום חמישי 04 מאי 2023 : 460179800Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1313989238 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : guest : guest867386805 has logged in
+יום חמישי 04 מאי 2023 : 1825186487Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest65249526 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 1825186487 has failed
+יום חמישי 04 מאי 2023 : 485312573Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1713587780 has logged in
+יום חמישי 04 מאי 2023 : 1825186487Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest553640644 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1972401690 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 782717725 has failed
+יום חמישי 04 מאי 2023 : guest : guest397473149 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 1355272831 has failed
+יום חמישי 04 מאי 2023 : guest : guest1526789328 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 1714061082 has failed
+יום חמישי 04 מאי 2023 : opening store with id: 2052256755 has failed
+יום חמישי 04 מאי 2023 : guest : guest1559388031 has logged in
+יום חמישי 04 מאי 2023 : guest : guest147936750 has logged in
+יום חמישי 04 מאי 2023 : guest : guest2087498721 has logged in
+יום חמישי 04 מאי 2023 : guest : guest945285206 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 526129169 has failed
+יום חמישי 04 מאי 2023 : guest : guest1962762793 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 773078828 has failed
+יום חמישי 04 מאי 2023 : 773078828Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest226112206 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1300644193 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 881488156 has failed
+יום חמישי 04 מאי 2023 : opening store with id: 187453139 has failed
+יום חמישי 04 מאי 2023 : guest : guest1910263419 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 720579454 has failed
+יום חמישי 04 מאי 2023 : 37448092Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest430380972 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1101433453 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 2059233135 has failed
+יום חמישי 04 מאי 2023 : guest : guest1280585957 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 697329783 has failed
+יום חמישי 04 מאי 2023 : assigning new manager with username : admin to the store with id: 697329783 
+יום חמישי 04 מאי 2023 : guest : guest924394743 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 1530822534 has failed
+יום חמישי 04 מאי 2023 : guest : guest1615398592 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 425714627 has failed
+יום חמישי 04 מאי 2023 : guest : guest1276585601 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 86901636 has failed
+יום חמישי 04 מאי 2023 : guest : guest1560953537 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 1141797500 has failed
+יום חמישי 04 מאי 2023 : guest : guest343319618 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 2071647228 has failed
+יום חמישי 04 מאי 2023 : guest : guest888379534 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 820595388 has failed
+יום חמישי 04 מאי 2023 : assigning new manager with username : admin to the store with id: 820595388
+יום חמישי 04 מאי 2023 : 121019484Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1744490682 has logged in
