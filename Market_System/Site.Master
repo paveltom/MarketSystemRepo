@@ -15,6 +15,19 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <style type="text/css">
+        .auto-style2 {
+            font-size: xx-small;
+            color: #CCCCCC;
+        }
+        .auto-style3 {
+            color: #CCCCCC;
+        }
+        .auto-style4 {
+            font-size: xx-small;
+        }
+    </style>
+
 </head>
 <body>
     <form runat="server">
@@ -56,6 +69,7 @@
                         <li><a runat="server" href="~/Presentaion_Layer/products_page">shop</a></li>
                         <li><a runat="server" id="login_href" href="~/Presentaion_Layer/Login">Login</a></li>
                         <li><a runat="server" id="cart_href" href="~/Presentaion_Layer/cart_page">Cart</a></li>
+                        <li><a runat="server" id="search" href="~/Presentaion_Layer/search.html">search</a></li>
                         
                     </ul>
                 </div>
@@ -88,6 +102,8 @@
 
             </div>
              <div>
+                  <asp:Button ID="open_new_store_button" runat="server" Text="Open Store" OnClick="open_new_store_click" Width="100px" />
+&nbsp;
                   <asp:Button ID="change_password_button" runat="server" onclick="change_password_click" Text="change password" />
               
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -99,7 +115,8 @@
           
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application </p>
+                <p class="auto-style2">  how's my coding? dial 052-EAT SHIT!</p>
             </footer>
         </div>
 

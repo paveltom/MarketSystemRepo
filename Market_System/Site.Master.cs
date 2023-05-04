@@ -37,6 +37,7 @@ namespace Market_System
             {
                 logout_button.Visible = false;
                 change_password_button.Visible = false;
+                open_new_store_button.Visible = false;
                 Label1.Text = "";
             }
             else
@@ -70,6 +71,7 @@ namespace Market_System
             register_href.Visible = false;
             logout_button.Visible = true;
             change_password_button.Visible = true;
+            open_new_store_button.Visible = true;
 
 
 
@@ -90,6 +92,13 @@ namespace Market_System
         {
 
             Response.Redirect("/Presentaion_Layer/change_password_page.aspx");
+
+        }
+
+        public void open_new_store_click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("/Presentaion_Layer/open_new_store_page.aspx");
 
         }
 

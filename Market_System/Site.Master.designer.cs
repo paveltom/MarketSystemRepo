@@ -42,6 +42,15 @@ namespace Market_System
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cart_href;
 
         /// <summary>
+        /// search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor search;
+
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Market_System
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+
+        /// <summary>
+        /// open_new_store_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button open_new_store_button;
 
         /// <summary>
         /// change_password_button control.
