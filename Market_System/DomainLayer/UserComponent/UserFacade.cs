@@ -294,6 +294,26 @@ namespace Market_System.DomainLayer.UserComponent
 
         }
 
+        internal bool HasNewMessages(string userID)
+        {
+            try
+            {
+                foreach (Message message in userRepo.GetMessages(userID))
+                {
+                    if (message.IsNewMessage())
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void Login_guset(string guest_name)
         {
             users.Add(new User(guest_name,null));

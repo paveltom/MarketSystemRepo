@@ -245,6 +245,19 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal bool HasNewMessages(string sessionID)
+        {
+            try
+            {
+                string user_id = get_userid_from_session_id(sessionID);
+                return userFacade.HasNewMessages(user_id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void AddStorePurchasePolicy(string sessionID, string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
         {
             try

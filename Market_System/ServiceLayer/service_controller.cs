@@ -985,5 +985,17 @@ namespace Market_System.ServiceLayer
                 return null;
             }
         }
+
+        protected bool HasNewMessages()
+        {
+            try
+            {
+                return this.usc.HasNewMessages(session_id);
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in HasNewMessages");
+                return false;
+            }
     }
 }
