@@ -127,12 +127,15 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Presentaion_Layer\allProducts.aspx" />
     <Content Include="Presentaion_Layer\Home_page.aspx" />
     <Content Include="Presentaion_Layer\logged_in_user_page.aspx" />
     <Content Include="Presentaion_Layer\Login.aspx" />
+    <Content Include="Presentaion_Layer\myShops.aspx" />
+    <Content Include="Presentaion_Layer\Product.aspx" />
+    <Content Include="Presentaion_Layer\Products.aspx" />
     <Content Include="Presentaion_Layer\products_page.aspx" />
     <Content Include="Presentaion_Layer\register_page.aspx" />
+    <Content Include="Presentaion_Layer\WebForm1.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -178,13 +181,6 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
-    <Compile Include="Presentaion_Layer\allProducts.aspx.cs">
-      <DependentUpon>allProducts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentaion_Layer\allProducts.aspx.designer.cs">
-      <DependentUpon>allProducts.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Presentaion_Layer\Home_page.aspx.cs">
       <DependentUpon>Home_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,6 +201,27 @@
     </Compile>
     <Compile Include="Presentaion_Layer\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\myShops.aspx.cs">
+      <DependentUpon>myShops.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\myShops.aspx.designer.cs">
+      <DependentUpon>myShops.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\products_page.aspx.cs">
       <DependentUpon>products_page.aspx</DependentUpon>
@@ -274,6 +291,13 @@
     <Compile Include="DomainLayer\UserComponent\User_State.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLayer\Logger.cs" />

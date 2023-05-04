@@ -11,16 +11,16 @@ namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class allProducts
+    public partial class Products
     {
 
         /// <summary>
-        /// productList control.
+        /// ListView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView productList;
+        protected global::System.Web.UI.WebControls.ListView ListView1;
     }
 }

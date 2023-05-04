@@ -55,9 +55,10 @@
                         <li><a runat="server" id="register_href" href="~/Presentaion_Layer/register_page">Register</a></li>
                         <li><a runat="server" href="~/Presentaion_Layer/products_page">shop</a></li>
                         <li><a runat="server" id="login_href" href="~/Presentaion_Layer/Login">Login</a></li>
-                        <li><a runat="server" id="A1" href="~/Presentaion_Layer/allProducts">prods</a></li>
+                        <li><a runat="server" id="A1" href="~/Presentaion_Layer/Products">Products</a></li>
+                        <li><a runat="server" id="A2" href="~/Presentaion_Layer/myShops">my Shops</a></li>
 
-                        
+
                     </ul>
                 </div>
             </div>

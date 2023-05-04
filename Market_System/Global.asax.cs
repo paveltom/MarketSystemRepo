@@ -16,6 +16,21 @@ namespace Market_System
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["totalApplications"] = 0;
+            Application["totalUserSessions"] = 0;
+            Application["totalApplications"] = (int)Application["totalApplications"] + 1;
+        }
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            Application["TotalUserSessions"] = (int)Application["totalUserSessions"] + 1;
+
+        }
+
+        void Session_End(object sender, EventArgs e)
+        {
+            Application["TotalUserSessions"] = (int)Application["totalUserSessions"] - 1;
+
         }
     }
 }

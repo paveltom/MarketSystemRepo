@@ -950,5 +950,15 @@ namespace Market_System.ServiceLayer
                 return null;
             }
         }
+
+        internal List<ItemDTO> getRandomProducts()
+        {
+            List<ItemDTO> l = new List<ItemDTO>();
+            l.Add(new ItemDTO("prod1", 5));
+            l.Add(new ItemDTO("prod2", 5));
+            l.Add(new ItemDTO("item3", 5));
+            l.Add(new ItemDTO("item4", 5));
+            return l;
+        }
     }
 }

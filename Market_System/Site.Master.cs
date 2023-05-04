@@ -14,6 +14,23 @@ namespace Market_System
         private string username;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //yotam
+            Response.Write("<br/>");
+
+            Response.Write("number of application " + Application["totalApplications"]);
+            Response.Write("<br/>");
+            Response.Write("<br/>");
+            Response.Write("<br/>");
+            Response.Write("<br/>");
+            Response.Write("<br/>");
+            Response.Write("<br/>");
+            Response.Write("number of Users online " + Application["TotalUserSessions"]);
+            Response.Write("<br/>");
+            Response.Write("<br/>");
+
+
+            //yotam
             /*
             if (this.service_controller == null)
             { 

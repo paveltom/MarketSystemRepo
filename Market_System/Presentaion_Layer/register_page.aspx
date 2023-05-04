@@ -5,7 +5,7 @@
     
     <div>
         <label>username:</label>
-        <asp:textbox ID="txt_username" runat="server" />
+        <asp:TextBox ID="txt_username" runat="server" OnTextChanged="txt_username_TextChanged" />
         <asp:RequiredFieldValidator runat="server" ID="user_name_validator" ControlToValidate="txt_username" ErrorMessage="please enter a username"></asp:RequiredFieldValidator>
     </div>
         <div>

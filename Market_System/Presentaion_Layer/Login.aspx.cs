@@ -38,6 +38,9 @@ namespace Market_System.Presentaion_Layer
          
         }
 
-        
+        protected void txt_username_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
