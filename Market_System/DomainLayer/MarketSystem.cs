@@ -193,9 +193,9 @@ namespace Market_System.DomainLayer
                 storeFacade.close_store_temporary(user_id,storeID);
 
                 //Send Notification to store Employees (owners & managers)
-                Message message = notificationFacade.SendMessage("The store id: " + storeID + " has been temporarely closed.",
-                    storeFacade.GetStore(storeID).FounderID); //message sent by foudner of the store.
-                sendMessageToStoreEmployees(message, storeID);
+                var message = "The store id: " + storeID + " has been temporarely closed.";
+                var founderID = storeFacade.GetStore(storeID).FounderID;
+                sendMessageToStoreEmployees(message, userFacade.get_username_from_user_id(founderID), storeID);
             }
 
             catch (Exception e)
@@ -250,7 +250,7 @@ namespace Market_System.DomainLayer
             try
             {
                 string user_id = get_userid_from_session_id(sessionID);
-                return userFacade.HasNewMessages(user_id);
+                return notificationFacade.HasNewMessages(user_id);
             }
             catch (Exception e)
             {
@@ -263,7 +263,7 @@ namespace Market_System.DomainLayer
             try
             {
                 string user_id = get_userid_from_session_id(session_id);
-                return userFacade.GetMessages(user_id);
+                return notificationFacade.GetMessages(user_id);
             }
             catch (Exception e)
             {
@@ -643,9 +643,8 @@ namespace Market_System.DomainLayer
                 storeFacade.AssignNewOwner(userID, store_ID, newOwner_ID);
 
                 //Notify the new owner
-                Message message = notificationFacade.SendMessage("You've been promoted to a store owner in store id: " + store_ID,
-                    userFacade.get_username_from_user_id(userID));
-                sendMessageToUser(message, newOwner_ID);
+                var message = "You've been promoted to a store owner in store id: " + store_ID;
+                notificationFacade.AddNewMessage(newOwner_ID, userFacade.get_username_from_user_id(userID), message);
             }
             catch (Exception e)
             {
@@ -662,9 +661,8 @@ namespace Market_System.DomainLayer
                 storeFacade.Remove_Store_Owner(userID, storeID, other_Owner_ID);
 
                 //Notify the removed owner
-                Message message = notificationFacade.SendMessage("You have been removed from store ownership in store id: " + storeID
-                    , userFacade.get_username_from_user_id(userID));
-                sendMessageToUser(message, other_Owner_ID);
+                var message = "You have been removed from store ownership in store id: " + storeID;
+                notificationFacade.AddNewMessage(other_Owner_ID, userFacade.get_username_from_user_id(userID), message);
             }
             catch (Exception e)
             {
@@ -681,10 +679,8 @@ namespace Market_System.DomainLayer
                 storeFacade.AssignNewManager(userID, store_ID, new_manager_ID);
 
                 //Notify the new manager
-                Message message = notificationFacade.SendMessage("You've been promoted to a store manager in store id: " + store_ID,
-                    userFacade.get_username_from_user_id(userID));
-                sendMessageToUser(message, new_manager_ID);
-
+                var message = "You've been promoted to a store manager in store id: " + store_ID;
+                notificationFacade.AddNewMessage(new_manager_ID, userFacade.get_username_from_user_id(userID), message);
             }
             catch (Exception e)
             {
@@ -719,15 +715,13 @@ namespace Market_System.DomainLayer
                 var username = userFacade.get_username_from_user_id(userID);
 
                 //Send notification to store owners
-                Message message = notificationFacade.SendMessage("New product comment has been added by: "
-                    + username + ", on product id: " + productID, username);
+                var message = "New product comment has been added by: " + username + ", on product id: " + productID;
 
                 //get Store ID and store Owners:
                 var storeID = getStoreIDFromProductID(productID);
 
                 //Send Notification to the store Owners
-                sendMessageToStoreOwners(message, storeID);
-
+                sendMessageToStoreOwners(message, "System", storeID);
             }
             catch (Exception e)
             {
@@ -791,13 +785,13 @@ namespace Market_System.DomainLayer
                 {
                     if(product.GetQuantity() <= 0) //Send Notification to the store Owners if so
                     {
-                        Message message = notificationFacade.SendMessage("The quantity of product id: " + product.GetID() + " has ended.", "System");
+                        var message = "The quantity of product id: " + product.GetID() + " has ended.";
                         var userID = userFacade.get_user_id_from_username(username);
                         //get Store ID and store Owners:
                         var storeID = getStoreIDFromProductID(product.GetID());
 
                         //Send Notification to the store Owners
-                        sendMessageToStoreOwners(message, storeID);
+                        sendMessageToStoreOwners(message, "System", storeID);
                     }
                 }             
                 return "Payment was successfull";
@@ -1125,49 +1119,49 @@ namespace Market_System.DomainLayer
             return productID.Split(spearator)[0];
         }
 
-        private void sendMessageToStoreOwners(Message message, string storeID)
+        private void sendMessageToStoreOwners(string message, string senderUsername, string storeID)
         {
             //Send Notification to the store Owners
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
             {
-                userFacade.AddNewMessage(emp.UserID, message);
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
             }
             //Send to founder as well - he is sort of owner too...
             var founderID = storeFacade.GetStore(storeID).FounderID;
-            userFacade.AddNewMessage(founderID, message);
+            notificationFacade.AddNewMessage(founderID, senderUsername, message);
         }
 
-        private void sendMessageToStoreManagers(Message message, string storeID)
+        private void sendMessageToStoreManagers(string message, string senderUsername, string storeID)
         {
             //Send Notification to the store Managers
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).managers)
             {
-                userFacade.AddNewMessage(emp.UserID, message);
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
             }
         }
 
-        private void sendMessageToStoreEmployees(Message message, string storeID)
+        private void sendMessageToStoreEmployees(string message, string senderUsername, string storeID)
         {
             //Send Notification to the store Owners
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
             {
-                userFacade.AddNewMessage(emp.UserID, message);
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
             }
 
             //Send Notification to the store Managers
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).managers)
             {
-                userFacade.AddNewMessage(emp.UserID, message);
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
             }
 
             //Send Notification to the Founder as well
             var founderID = storeFacade.GetStore(storeID).FounderID;
-            userFacade.AddNewMessage(founderID, message);
+            notificationFacade.AddNewMessage(founderID, senderUsername, message);
         }
 
-        private void sendMessageToUser(Message message, string userID)
+        private void sendMessageToUser(string message, string userID, string from)
         {
-            userFacade.AddNewMessage(userID, message);
+            notificationFacade.AddNewMessage(userID, from, message);
         }
     }
 }

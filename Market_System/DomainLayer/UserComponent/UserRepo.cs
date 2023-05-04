@@ -10,7 +10,7 @@ namespace Market_System.DomainLayer.UserComponent
     {
 
         private static Dictionary<string, string> userDatabase;
-        private static Dictionary<string, List<Message>> messages; //key = userID
+        //private static Dictionary<string, List<Message>> messages; //key = userID
         private static List<string> Admins; //saved by username
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
@@ -39,7 +39,7 @@ namespace Market_System.DomainLayer.UserComponent
                         user_ID_username_linker = new Dictionary<string, string>();
                         userID_generator = new Random();
                         Instance = new UserRepo();    
-                        messages = new Dictionary<string, List<Message>>();
+                        //messages = new Dictionary<string, List<Message>>();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -187,6 +187,7 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
+        /*
         public void addNewMessage(string userID, Message message)
         {
             try
@@ -209,6 +210,6 @@ namespace Market_System.DomainLayer.UserComponent
         public List<Message> GetMessages(string userID)
         {
             return messages[userID];
-        }
+        }*/
     }
 }
