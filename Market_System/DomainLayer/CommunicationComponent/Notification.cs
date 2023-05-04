@@ -8,5 +8,6 @@ namespace Market_System.Domain_Layer.Communication_Component
 {
     interface Notification
     {
+        
     }
 }

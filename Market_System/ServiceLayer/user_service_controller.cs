@@ -321,5 +321,29 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
         }
+
+        internal bool HasNewMessages(string session_id)
+        {
+            try
+            {
+                return market_System.HasNewMessages(session_id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<string> GetMessages(string session_id)
+        {
+            try
+            {
+                return market_System.GetMessages(session_id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

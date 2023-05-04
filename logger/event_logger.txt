@@ -407,3 +407,8 @@ Monday, 1 May 2023 : Added the product:1924323528_124431245to store: 1924323528 
 יום שלישי 02 מאי 2023 : guest : guest1337555861 has logged in
 יום שלישי 02 מאי 2023 : 498355864Logged-out succesfully
 יום שלישי 02 מאי 2023 : guest : guest970436698 has logged in
+Wednesday, 3 May 2023 : guest : guest96803059 has logged in
+Wednesday, 3 May 2023 : amihai has registered!
+Wednesday, 3 May 2023 : amihai changed password successfully
+Wednesday, 3 May 2023 : 324691939Logged-out succesfully
+Wednesday, 3 May 2023 : guest : guest1449517200 has logged in

@@ -985,5 +985,35 @@ namespace Market_System.ServiceLayer
                 return null;
             }
         }
+
+        protected bool HasNewMessages()
+        {
+            try
+            {
+                return this.usc.HasNewMessages(session_id);
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in HasNewMessages");
+                return false;
+            }
+        }
+
+        public Response<List<string>> GetMessages() //"Reads" the messages as well - The messages ARE NO LONGER NEW - we assume here that
+            //the user has read them!!! 
+            //NOTICE:: Use this function only when displaying messages to the user!!!!!!!!!!
+        {
+            try
+            {
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.usc.GetMessages(session_id));
+                Logger.get_instance().record_event("user with session ID : " + session_id + " got his Messages");
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetMessages");
+                return null;
+            }
+        }
     }
 }

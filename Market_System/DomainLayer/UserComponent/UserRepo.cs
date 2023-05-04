@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market_System.Domain_Layer.Communication_Component;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace Market_System.DomainLayer.UserComponent
     {
 
         private static Dictionary<string, string> userDatabase;
+        private static Dictionary<string, List<Message>> messages; //key = userID
         private static List<string> Admins; //saved by username
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
@@ -36,7 +38,8 @@ namespace Market_System.DomainLayer.UserComponent
                         Admins = new List<string>();
                         user_ID_username_linker = new Dictionary<string, string>();
                         userID_generator = new Random();
-                        Instance = new UserRepo();
+                        Instance = new UserRepo();    
+                        messages = new Dictionary<string, List<Message>>();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -182,6 +185,30 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 throw new Exception("The checking user isn't an Admin");
             }
+        }
+
+        public void addNewMessage(string userID, Message message)
+        {
+            try
+            {
+                if (messages.ContainsKey(userID))
+                {
+                    messages[userID].Add(message);
+                }
+                else
+                {
+                    messages.Add(userID, new List<Message> { message });
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<Message> GetMessages(string userID)
+        {
+            return messages[userID];
         }
     }
 }
