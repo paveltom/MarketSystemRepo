@@ -6,6 +6,7 @@ using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
+using Market_System.Domain_Layer.Communication_Component;
 
 namespace Market_System.DomainLayer
 {
@@ -14,6 +15,7 @@ namespace Market_System.DomainLayer
     {
         private static UserFacade userFacade;
         private static StoreFacade storeFacade;
+        private static NotificationFacade notificationFacade;
         private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
 
@@ -47,6 +49,7 @@ namespace Market_System.DomainLayer
                         Instance.register("admin", "admin", "address"); //registering an admin 
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
+                        notificationFacade = NotificationFacade.GetInstance();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -722,7 +725,16 @@ namespace Market_System.DomainLayer
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
-               // userFacade.save_purhcase_in_user(username,cart);
+                // userFacade.save_purhcase_in_user(username,cart);
+
+                //Check if the product's quantity is 0
+                foreach(ItemDTO product in cart.convert_to_item_DTO())
+                {
+                    if(product.GetQuantity() <= 0)
+                    {
+                        
+                    }
+                }
                 
                 return "Payment was successfull";
             }

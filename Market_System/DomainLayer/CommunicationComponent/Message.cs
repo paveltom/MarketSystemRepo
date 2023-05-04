@@ -24,14 +24,14 @@ namespace Market_System.Domain_Layer.Communication_Component
             return "New message received from: " + from + ".\n" + "The message is: \n" + message;
         }
 
-        public bool IsNewMessage()
-        {
-            return this.isNewMessage;
-        }
-
         public string GetMessageWithoutReading()
         {
             return "New message received from: " + from + ".\n" + "The message is: \n" + message;
+        }
+
+        public bool IsNewMessage()
+        {
+            return this.isNewMessage;
         }
     }
 }

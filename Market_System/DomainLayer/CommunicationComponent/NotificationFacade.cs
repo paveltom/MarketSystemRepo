@@ -37,9 +37,9 @@ namespace Market_System.Domain_Layer.Communication_Component
             return Instance;
         }
 
-        public Message SendMessage(string message, string from_Username)
+        public Message SendMessage(string message, string from) //from = username (if from user), storeName(if from store), or 'System'
         {
-            return new Message(message, from_Username);
+            return new Message(message, from);
         }
     }
 }
