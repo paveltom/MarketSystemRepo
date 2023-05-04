@@ -615,6 +615,11 @@ namespace Market_System.DomainLayer
                 string userID = userFacade.get_userID_from_session(owner_SessionID);
                 string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
                 storeFacade.AssignNewOwner(userID, store_ID, newOwner_ID);
+
+                //Notify the new owner
+                Message message = notificationFacade.SendMessage("You've been promoted to a store owner in store id: " + store_ID,
+                    userFacade.get_username_from_user_id(userID));
+                sendMessageToUser(message, newOwner_ID);
             }
             catch (Exception e)
             {
