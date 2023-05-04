@@ -608,11 +608,16 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public void GetMessages(string userID)
+        public List<string> GetMessages(string userID)
         {
             try
             {
-                userRepo.GetMessages(userID);
+                List<string> messages = new List<string>();
+                foreach(Message message in userRepo.GetMessages(userID))
+                {
+                    messages.Add(message.GetAndReadMessage());
+                }
+                return messages;
             }
             catch(Exception e)
             {

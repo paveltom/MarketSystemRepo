@@ -333,5 +333,17 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
         }
+
+        public List<string> GetMessages(string session_id)
+        {
+            try
+            {
+                return market_System.GetMessages(session_id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
