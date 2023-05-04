@@ -590,3 +590,7 @@ Thursday, 4 May 2023 : guest : guest518701593 has logged in
 Thursday, 4 May 2023 : assigning new manager with username : bayan to the store with id: 1670047121
 Thursday, 4 May 2023 : 2021419012Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest549730579 has logged in
+Thursday, 4 May 2023 : guest : guest1386754114 has logged in
+Thursday, 4 May 2023 : opening store with id: 1993181905 has failed
+Thursday, 4 May 2023 : 1993181905Logged-out succesfully
+Thursday, 4 May 2023 : guest : guest1458134507 has logged in
