@@ -22,3 +22,4 @@ Monday, 1 May 2023 : error!!: An item with the same key has already been added.i
 Wednesday, 3 May 2023 : error!!: You can't change a password to the same one, you need to provide an other new passwordin change_password
 Wednesday, 3 May 2023 : error!!: a user with same name exists, please change name!in register
 Thursday, 4 May 2023 : error!!: a user with same name exists, please change name!in register
+Thursday, 4 May 2023 : error!!: a user with same name exists, please change name!in register

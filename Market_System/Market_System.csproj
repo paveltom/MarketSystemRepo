@@ -180,6 +180,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DomainLayer\CommunicationComponent\NotificationRepo.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
     <Compile Include="Presentaion_Layer\cart_page.aspx.cs">
       <DependentUpon>cart_page.aspx</DependentUpon>
