@@ -92,6 +92,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public Response Reopen_Store(string storeID)
+        {
+            try
+            {
+                this.Market.Reopen_Store(SessionID, storeID);
+                return new Response("Store was reopened successfully.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response<string> GetPurchaseHistoryOfTheStore(string storeID)
         {
             try

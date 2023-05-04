@@ -255,8 +255,6 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-
-
                 this.ssc.close_store_temporary( storeID);
                 
                 Logger.get_instance().record_event(usc.get_userID_from_session_id(session_id)+" closed a store with the ID: "+storeID);
@@ -270,6 +268,25 @@ namespace Market_System.ServiceLayer
                 return Response<String>.FromError(e.Message);
             }
         }
+
+        public Response<string> Reopen_Store(string storeID)
+        {
+            try
+            {
+                this.ssc.Reopen_Store(storeID);
+                Logger.get_instance().record_event(usc.get_userID_from_session_id(session_id) + " reopend a store with the ID: " + storeID);
+                Response<string> ok = Response<string>.FromValue("successfully reopend store with ID: " + storeID);
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                Logger.get_instance().record_error("error!!: " + e.Message + "in Reopen_Store");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+
 
         public Response<string> comment_on_product(string productID, string comment, double rating)
         {
