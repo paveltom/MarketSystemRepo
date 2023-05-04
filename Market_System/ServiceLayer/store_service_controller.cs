@@ -47,7 +47,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -60,7 +60,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -74,7 +74,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -88,7 +88,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -102,7 +102,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return Response<string>.FromError(ex.Message);
+                throw ex;
             }
         }
 
@@ -121,7 +121,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -135,7 +135,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -149,7 +149,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -164,7 +164,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -178,7 +178,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -202,7 +202,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
 
         }
@@ -230,7 +230,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -244,7 +244,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -258,7 +258,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return Response<string>.FromError(("ERROR: " + ex.Message));
+                throw ex;
             }
         }
 
@@ -272,7 +272,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -286,7 +286,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -300,7 +300,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -314,7 +314,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -338,7 +338,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -352,7 +352,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -366,7 +366,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -380,7 +380,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -394,7 +394,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -408,7 +408,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -422,7 +422,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -435,7 +435,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -449,7 +449,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -463,7 +463,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
         //
@@ -481,7 +481,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -495,7 +495,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -509,7 +509,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -523,7 +523,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -537,7 +537,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -551,7 +551,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -565,7 +565,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return Response<List<string>>.FromError(ex.Message);
+                throw ex;
             }
         }
 
@@ -579,7 +579,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -593,7 +593,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -607,7 +607,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -621,7 +621,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -635,7 +635,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -649,7 +649,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -673,7 +673,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception ex)
             {
-                return new Response("ERROR: " + ex.Message);
+                throw ex;
             }
         }
 
