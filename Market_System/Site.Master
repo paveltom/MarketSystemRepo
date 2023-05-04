@@ -96,7 +96,7 @@
 
             </div>
              <div>
-                  <asp:Button ID="manage_store_button" runat="server" Text="store managing" Width="111px" Visible="False" />
+                  <asp:Button ID="manage_store_button" OnClick="store_managing_click" runat="server" Text="store managing" Width="111px" Visible="False" />
 &nbsp;
                   <asp:Button ID="open_new_store_button" runat="server" Text="Open Store" OnClick="open_new_store_click" Width="100px" />
 &nbsp;

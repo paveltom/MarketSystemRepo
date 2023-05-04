@@ -45,6 +45,19 @@ namespace Market_System.DomainLayer.StoreComponent
             return Instance;
         }
 
+        internal List<string> get_user_wokring_stores(string user_id)
+        {
+            List<string> return_me = new List<string>();
+            Dictionary<string, string> storeID_role = GetStoresWorkingIn(user_id);
+
+            foreach(KeyValuePair<string, string> entry in storeID_role)
+            {
+                return_me.Add("store name:   " + GetStore(entry.Key).Name + "       ID:      " + entry.Key + "       Role:   " + entry.Value);
+            }
+            return return_me;
+           
+        }
+
         // ====================================================================
         // ====================== General class methods ===============================
 

@@ -490,3 +490,15 @@ Wednesday, 3 May 2023 : guest : guest1449517200 has logged in
 יום חמישי 04 מאי 2023 : guest : guest1713587780 has logged in
 יום חמישי 04 מאי 2023 : 1825186487Logged-out succesfully
 יום חמישי 04 מאי 2023 : guest : guest553640644 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1972401690 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 782717725 has failed
+יום חמישי 04 מאי 2023 : guest : guest397473149 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 1355272831 has failed
+יום חמישי 04 מאי 2023 : guest : guest1526789328 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 1714061082 has failed
+יום חמישי 04 מאי 2023 : opening store with id: 2052256755 has failed
+יום חמישי 04 מאי 2023 : guest : guest1559388031 has logged in
+יום חמישי 04 מאי 2023 : guest : guest147936750 has logged in
+יום חמישי 04 מאי 2023 : guest : guest2087498721 has logged in
+יום חמישי 04 מאי 2023 : guest : guest945285206 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 526129169 has failed

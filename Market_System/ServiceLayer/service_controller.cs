@@ -14,6 +14,20 @@ namespace Market_System.ServiceLayer
         private User_Service_Controller usc;
         private Store_Service_Controller ssc;
         private Random session_id_generator;
+
+        internal Response<List<string>> get_stores_that_user_works_in()
+        {
+            try
+            {
+                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in());
+                return okay;
+            }
+            catch(Exception e)
+            {
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
         private string session_id;
 
         public Service_Controller()

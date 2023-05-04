@@ -20,6 +20,11 @@ namespace Market_System.ServiceLayer
             this.SessionID = sessionID;
         }
 
+        internal List<string> get_stores_that_user_works_in()
+        {
+            return this.Market.get_user_wokring_stores(SessionID);
+        }
+
         // ====================================================================
         // ====================== General class methods ===============================
 

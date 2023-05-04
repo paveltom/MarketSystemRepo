@@ -19,6 +19,13 @@ namespace Market_System.DomainLayer
         private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
 
+        internal List<string> get_user_wokring_stores(string session_id)
+        {
+            string user_id = get_userid_from_session_id(session_id);
+          return storeFacade.get_user_wokring_stores(user_id);
+            
+        }
+
         //This variable is going to store the Singleton Instance
         private static MarketSystem Instance = null;
 
