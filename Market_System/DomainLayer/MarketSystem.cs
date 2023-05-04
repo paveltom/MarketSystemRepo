@@ -647,7 +647,13 @@ namespace Market_System.DomainLayer
             {
                 string userID = userFacade.get_userID_from_session(founder_SessionID);
                 string new_manager_ID = userFacade.get_user_id_from_username(newManagerUsername);
-                storeFacade.AssignNewManager(userID, store_ID, new_manager_ID); 
+                storeFacade.AssignNewManager(userID, store_ID, new_manager_ID);
+
+                //Notify the new manager
+                Message message = notificationFacade.SendMessage("You've been promoted to a store manager in store id: " + store_ID,
+                    userFacade.get_username_from_user_id(userID));
+                sendMessageToUser(message, new_manager_ID);
+
             }
             catch (Exception e)
             {
