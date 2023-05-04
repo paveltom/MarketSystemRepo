@@ -191,6 +191,11 @@ namespace Market_System.DomainLayer
             {
                 string user_id = get_userid_from_session_id(sessionID);
                 storeFacade.close_store_temporary(user_id,storeID);
+
+                //Send Notification to store Employees (owners & managers)
+                Message message = notificationFacade.SendMessage("The store id: " + storeID + " has been temporarely closed.",
+                    storeFacade.GetStore(storeID).FounderID); //message sent by foudner of the store.
+                sendMessageToStoreEmployees(message, storeID);
             }
 
             catch (Exception e)
@@ -1082,6 +1087,30 @@ namespace Market_System.DomainLayer
         {
             //Send Notification to the store Owners
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
+            {
+                userFacade.AddNewMessage(emp.UserID, message);
+            }
+        }
+
+        private void sendMessageToStoreManagers(Message message, string storeID)
+        {
+            //Send Notification to the store Managers
+            foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).managers)
+            {
+                userFacade.AddNewMessage(emp.UserID, message);
+            }
+        }
+
+        private void sendMessageToStoreEmployees(Message message, string storeID)
+        {
+            //Send Notification to the store Owners
+            foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
+            {
+                userFacade.AddNewMessage(emp.UserID, message);
+            }
+
+            //Send Notification to the store Managers
+            foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).managers)
             {
                 userFacade.AddNewMessage(emp.UserID, message);
             }
