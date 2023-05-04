@@ -307,7 +307,7 @@ namespace Market_System.DomainLayer.UserComponent
 
 
         }
-
+        /*
         internal bool HasNewMessages(string userID)
         {
             try
@@ -326,7 +326,7 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 throw e;
             }
-        }
+        }*/
 
         public void Login_guset(string guest_name)
         {
@@ -609,7 +609,7 @@ namespace Market_System.DomainLayer.UserComponent
             }
             return null;
         }
-
+        /*
         public void AddNewMessage(string userID, Message message)
         {
             try
@@ -637,6 +637,6 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 throw e;
             }
-        }
+        }*/
     }
 }

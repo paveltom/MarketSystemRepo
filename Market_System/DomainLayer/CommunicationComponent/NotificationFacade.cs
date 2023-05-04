@@ -9,6 +9,7 @@ namespace Market_System.Domain_Layer.Communication_Component
     {
         //This variable is going to store the Singleton Instance
         private static NotificationFacade Instance = null;
+        private static NotificationRepo notificationRepo = null;
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
@@ -26,6 +27,7 @@ namespace Market_System.Domain_Layer.Communication_Component
                 { //Critical Section Start
                     if (Instance == null)
                     {
+                        notificationRepo = NotificationRepo.GetInstance();
                         Instance = new NotificationFacade();
                     }
                 } //Critical Section End
@@ -37,9 +39,59 @@ namespace Market_System.Domain_Layer.Communication_Component
             return Instance;
         }
 
-        public Message SendMessage(string message, string from) //from = username (if from user), storeName(if from store), or 'System'
+        /*public Message SendMessage(string message, string from) 
         {
             return new Message(message, from);
+        }*/
+
+        public void AddNewMessage(string userID, string from, string mesg) //from = userID (if from user), storeID(if from store), or 'System'
+        {
+            try
+            {
+                Message message = new Message(mesg, from);
+                notificationRepo.addNewMessage(userID, message);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<string> GetMessages(string userID)
+        {
+            try
+            {
+                List<string> messages = new List<string>();
+                foreach (Message message in notificationRepo.GetMessages(userID))
+                {
+                    messages.Add(message.GetAndReadMessage());
+                }
+                return messages;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal bool HasNewMessages(string userID)
+        {
+            try
+            {
+                foreach (Message message in notificationRepo.GetMessages(userID))
+                {
+                    if (message.IsNewMessage())
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
