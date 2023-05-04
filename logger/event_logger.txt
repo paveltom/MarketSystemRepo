@@ -549,3 +549,27 @@ Thursday, 4 May 2023 : guest : guest53807986 has logged in
 יום חמישי 04 מאי 2023 : assigning new manager with username : admin to the store with id: 820595388
 יום חמישי 04 מאי 2023 : 121019484Logged-out succesfully
 יום חמישי 04 מאי 2023 : guest : guest1744490682 has logged in
+Thursday, 4 May 2023 : guest : guest492834458 has logged in
+Thursday, 4 May 2023 : amihai has registered!
+Thursday, 4 May 2023 : opening store with id: 73678421 has failed
+Thursday, 4 May 2023 : guest : guest802074529 has logged in
+Thursday, 4 May 2023 : amihai has registered!
+Thursday, 4 May 2023 : opening store with id: 734290383 has failed
+Thursday, 4 May 2023 : assigning new manager with username : amihai to the store with id: 734290383
+Thursday, 4 May 2023 : 2111246102Logged-out succesfully
+Thursday, 4 May 2023 : guest : guest2120560251 has logged in
+Thursday, 4 May 2023 : 1012318740Logged-out succesfully
+Thursday, 4 May 2023 : guest : guest1736569217 has logged in
+Thursday, 4 May 2023 : guest : guest933536936 has logged in
+Thursday, 4 May 2023 : amihai has registered!
+Thursday, 4 May 2023 : opening store with id: 1472180581 has failed
+Thursday, 4 May 2023 : assigning new manager with username : amihaia to the store with id: 1472180581
+Thursday, 4 May 2023 : assigning new manager with username : amihai to the store with id: 1472180581
+Thursday, 4 May 2023 : assigning new manager with username : amihaighgggjh to the store with id: 1472180581
+Thursday, 4 May 2023 : 1472180581Logged-out succesfully
+Thursday, 4 May 2023 : guest : guest2037622315 has logged in
+Thursday, 4 May 2023 : assigning new manager with username : goooo to the store with id: 1472180581
+Thursday, 4 May 2023 : guest : guest550512185 has logged in
+Thursday, 4 May 2023 : opening store with id: 131356148 has failed
+Thursday, 4 May 2023 : guest : guest68871856 has logged in
+Thursday, 4 May 2023 : opening store with id: 1984471220 has failed

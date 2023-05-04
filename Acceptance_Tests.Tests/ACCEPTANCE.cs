@@ -157,9 +157,12 @@ namespace Market_System.Tests.SeviceLevelTests
             //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
             oneThreadSetUp();
             //Action:
-            Response<string> responseLogout = service.assign_new_manager("Store1", "user1");
+            service.register("user1", "pass", "addr");
+            service.login_member("admin", "admin");
+            Response<StoreDTO> response_temp = service.open_new_store(new List<string> {"Store1" });
+            Response<string> response = service.assign_new_manager(response_temp.Value.StoreID, "user1");
             //Result:
-            Assert.AreEqual(false, responseLogout.ErrorOccured);
+            Assert.AreEqual(false, response.ErrorOccured);
             //tearDown:
             oneThreadCleanup();
         }
@@ -516,7 +519,7 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
         [TestMethod]
-        public void comment_on_product()
+        public void comment_on_productSuccess()
         {
             //Setup: 
             //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
@@ -524,10 +527,34 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //Action:
             //todo: what is the prod id?
-            Response<string> response = service.comment_on_product("Store1_Prod1", "newName is very bad product", 0.5);
-
+            service.login_member("admin", "admin");
+            Response<StoreDTO> response_temp = service.open_new_store(new List<string> { "Store_ 123" });
+            Response<ItemDTO> resProdAdd = service.add_product_to_store(response_temp.Value.StoreID, "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg");
+            Response<string> response = service.comment_on_product(resProdAdd.Value.GetID(), "newName is very bad product", 0.5);
+            
             //Result:
             Assert.AreEqual(false, response.ErrorOccured);
+            //todo: check if prod comment added
+            //check if new name there
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void comment_on_productFailure()
+        {
+            //Setup: 
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
+
+            //Action:
+            //todo: what is the prod id?
+            service.login_member("admin", "admin");
+            Response<string> response = service.comment_on_product("FAKEID", "newName is very bad product", 0.5);
+
+            //Result:
+            Assert.AreEqual(true, response.ErrorOccured);
             //todo: check if prod comment added
             //check if new name there
 
@@ -580,9 +607,32 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        [TestMethod]
+        public void changeProdNameSuccess()
+        {
+            //Setup: 
+            //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
+            oneThreadSetUp();
+
+            //Action:
+            //todo: what is the prod id?
+            service.login_member("admin", "admin");
+            Response<StoreDTO> resp = service.open_new_store(new List<string> { "Bayanka" });
+            Response<ItemDTO> resp2 = service.add_product_to_store(resp.Value.StoreID, "Bayanka", "ggg", "500.0", "5",
+                "5", "5.0", "5.0", "5.0", "5.0_5.0", "ggg", "ggggg");
+            Response<string> response = service.ChangeProductName(resp2.Value.GetID(), "Bayankisss");
+
+            //Result:
+            Assert.AreEqual(false, response.ErrorOccured);
+            //todo: check if prod name changed
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //tearDown:
+            oneThreadCleanup();
+        }
 
         [TestMethod]
-        public void changeProdName()
+        public void changeProdNameFailure()
         {
             //Setup: 
             //LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
@@ -593,7 +643,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<string> response = service.ChangeProductName("Store1_Prod1", "newName");
 
             //Result:
-            Assert.AreEqual(false, response.ErrorOccured);
+            Assert.AreEqual(true, response.ErrorOccured);
             //todo: check if prod name changed
             //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
