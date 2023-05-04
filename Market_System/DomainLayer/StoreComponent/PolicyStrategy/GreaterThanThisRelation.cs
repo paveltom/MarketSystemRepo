@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public class GreaterThenThisRelation : Statement
+    public class GreaterThanThisRelation : Statement
     {
 
         public String FocusAttributeName { get; private set; }
@@ -16,7 +16,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
         public String FocusAttributeValue { get; private set; }
         private bool userIndicatore = false;
 
-        public GreaterThenThisRelation(string SmallerAttributeName, string SmallerAttributeValue, bool userAttribute)
+        public GreaterThanThisRelation(string SmallerAttributeName, string SmallerAttributeValue, bool userAttribute)
         {
             FocusAttributeName = SmallerAttributeName;
             FocusAttributeValue = SmallerAttributeValue;

@@ -13,7 +13,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
     {
 
 
-        public IfThenStatement(int atLeastQuantity, Statement[] formula) : base(formula) { }
+        public IfThenStatement(Statement[] formula) : base(formula) { }
 
         public override Boolean Satisfies(List<ItemDTO> chosenItemsWithAttributes, Dictionary<string, string> userData)
         {

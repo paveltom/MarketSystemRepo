@@ -317,7 +317,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     double productSalePrice = 0;
-                    double storeSalePrice = 0;
+                    //double storeSalePrice = 0;
                     int quantity = 0;
                     List<ItemDTO> saledProducts = new List<ItemDTO>(); 
                     foreach (ItemDTO item in productsToCalculate)
@@ -342,7 +342,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             lock (PurchaseLock)
             {
-                String cannotPurchase = ""; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
+                string initErrorMSG = "Cannot purchase: ";
+                String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
 
@@ -360,7 +361,7 @@ namespace Market_System.DomainLayer.StoreComponent
                             ReleaseProduct(item.GetID());
                         }
 
-                    if (!cannotPurchase.Equals("")) throw new Exception(cannotPurchase + " - not enough in stock.");
+                    if (!cannotPurchase.Equals(initErrorMSG)) throw new Exception(cannotPurchase + " - not enough in stock.");
                     else
                         foreach (ItemDTO item in productsToPurchase)
                         {

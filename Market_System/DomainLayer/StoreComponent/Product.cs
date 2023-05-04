@@ -188,7 +188,6 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public double ImplementSale(ItemDTO item)
         {
-            //double saledPrice = this.Price - (this.Price / 100 * this.Sale);
             double saledPrice = this.Price - this.Price / 100 * this.Sale;
             item.SetPrice(saledPrice);
             List<ItemDTO> product = new List<ItemDTO>() { item };
@@ -219,7 +218,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (item.GetQuantity() < 1)
                     throw new Exception("Bad quantity!");
-                return ImplementSale(item); // add chosen attributes functionality
+                return Math.Round(ImplementSale(item), 2); // add chosen attributes functionality
             }
             catch (Exception e) { throw e; }
         }

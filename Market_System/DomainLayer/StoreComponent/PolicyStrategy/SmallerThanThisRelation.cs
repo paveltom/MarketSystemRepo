@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public abstract class SmallerThenThisRelation : Statement
+    public abstract class SmallerThanThisRelation : Statement
     {
 
         public String FocusAttributeName { get; private set; }
@@ -17,7 +17,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
         public String FocusAttributeValue { get; private set; }
         private bool userIndicatore = false;
 
-        public SmallerThenThisRelation(string GreaterAttributeName, string GreaterAttributeValue, bool userAttribute) 
+        public SmallerThanThisRelation(string GreaterAttributeName, string GreaterAttributeValue, bool userAttribute) 
         {
             FocusAttributeName = GreaterAttributeName;
             FocusAttributeValue = GreaterAttributeValue;

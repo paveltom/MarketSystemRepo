@@ -53,11 +53,12 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 
 
         [TestMethod]
-        public void ValidateUserAllowedToBuyStrategyTestSuccess() 
+        public void ValidateUserAllowedToCalculateStoreStrategyTestSuccess() 
         {
-            // Arrange            
+            // Arrange
+            this.testProduct0.SetSale(50);
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO() };
-            double price = this.testProduct0.Price * this.testProduct0.Quantity;
+            double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity;
             double retPrice = 0;
             bool error = false;
 
@@ -69,7 +70,53 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 
             // Assert
             Assert.IsFalse(error);
-            Assert.AreEqual(price, retPrice);
+            Assert.IsTrue((price - retPrice) < 0.001 );
+        }
+
+        [TestMethod]
+        public void ValidateUserAllowedToPurchaseStoreStrategyTestSuccess()
+        {
+            // Arrange            
+            this.testProduct0.SetSale(50);
+            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO() };
+            double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity;
+            bool error = false;
+
+            // Act
+            try
+            {
+                this.facade.Purchase(this.legitTestUser1, itemsToCalculate);
+            }
+            catch (Exception ex) { error = true; }
+            this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
+            
+            // Assert
+            Assert.IsFalse(error);
+            Assert.AreEqual(this.testProduct0.Quantity, 0);
+        }
+
+        [TestMethod]
+        public void ValidateUserAllowedToPurchaseStoreStrategyTestFail()
+        {
+            // Arrange            
+            this.testProduct0.SetSale(50);
+            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO() };
+            double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity;
+            bool error = false;
+            Exception exc = null;
+
+            // Act
+            try
+            {
+                this.facade.Purchase("someUser", itemsToCalculate);
+            }
+            catch (Exception ex) { error = true; exc = ex; }
+            this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
+
+            // Assert
+            Assert.IsTrue(error);
+            Assert.AreEqual(this.testProduct0.Quantity, itemsToCalculate[0].GetQuantity());
+            Assert.AreEqual(exc.InnerException.Message, "Restrictions violated: Test strategy policy description.");
         }
 
 
@@ -95,9 +142,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             Statement[] usersFormula = new Statement[] { userIDStatement1, userIDStatement2};
             Statement logicOrFormula = new LogicOR(usersFormula);
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", logicOrFormula);
-            List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
-
-            List<string> allProductsIDS = new List<string>() { "testProduct1StoreID465_tesProduct1ID" };
+            this.facade.AddStorePurchaseStrategy(founderID, newStore.StoreID, testStoreStrategy);
 
             return StoreRepo.GetInstance().getStore(newStore.StoreID);
         }

@@ -14,9 +14,9 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 
         public int AtMostQuantity { get; private set; }
 
-        public AtMostStatement(int atLeastQuantity, Statement[] formula) : base(formula)
+        public AtMostStatement(int atMoststQuantity, Statement[] formula) : base(formula)
         {
-            AtMostQuantity = atLeastQuantity;
+            AtMostQuantity = atMoststQuantity;
         }
 
         public override Boolean Satisfies(List<ItemDTO> chosenItemsWithAttributes, Dictionary<string, string> userData)
