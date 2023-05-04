@@ -629,6 +629,11 @@ namespace Market_System.DomainLayer
                 string userID = userFacade.get_userID_from_session(sessionID);
                 string other_Owner_ID = userFacade.get_user_id_from_username(other_Owner_Username);
                 storeFacade.Remove_Store_Owner(userID, storeID, other_Owner_ID);
+
+                //Notify the removed owner
+                Message message = notificationFacade.SendMessage("You have been removed from store ownership in store id: " + storeID
+                    , userFacade.get_username_from_user_id(userID));
+                sendMessageToUser(message, other_Owner_ID);
             }
             catch (Exception e)
             {
@@ -1114,6 +1119,11 @@ namespace Market_System.DomainLayer
             {
                 userFacade.AddNewMessage(emp.UserID, message);
             }
+        }
+
+        private void sendMessageToUser(Message message, string userID)
+        {
+            userFacade.AddNewMessage(userID, message);
         }
     }
 }
