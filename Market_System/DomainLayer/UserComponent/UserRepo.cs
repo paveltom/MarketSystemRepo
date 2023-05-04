@@ -191,7 +191,14 @@ namespace Market_System.DomainLayer.UserComponent
         {
             try
             {
-                messages[userID].Add(message);
+                if (messages.ContainsKey(userID))
+                {
+                    messages[userID].Add(message);
+                }
+                else
+                {
+                    messages.Add(userID, new List<Message> { message });
+                }
             }
             catch(Exception e)
             {
