@@ -506,3 +506,39 @@ Wednesday, 3 May 2023 : guest : guest1449517200 has logged in
 יום חמישי 04 מאי 2023 : opening store with id: 773078828 has failed
 יום חמישי 04 מאי 2023 : 773078828Logged-out succesfully
 יום חמישי 04 מאי 2023 : guest : guest226112206 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1300644193 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 881488156 has failed
+יום חמישי 04 מאי 2023 : opening store with id: 187453139 has failed
+יום חמישי 04 מאי 2023 : guest : guest1910263419 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 720579454 has failed
+יום חמישי 04 מאי 2023 : 37448092Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest430380972 has logged in
+יום חמישי 04 מאי 2023 : guest : guest1101433453 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 2059233135 has failed
+יום חמישי 04 מאי 2023 : guest : guest1280585957 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 697329783 has failed
+יום חמישי 04 מאי 2023 : assigning new manager with username : admin to the store with id: 697329783 
+יום חמישי 04 מאי 2023 : guest : guest924394743 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 1530822534 has failed
+יום חמישי 04 מאי 2023 : guest : guest1615398592 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 425714627 has failed
+יום חמישי 04 מאי 2023 : guest : guest1276585601 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 86901636 has failed
+יום חמישי 04 מאי 2023 : guest : guest1560953537 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 1141797500 has failed
+יום חמישי 04 מאי 2023 : guest : guest343319618 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 2071647228 has failed
+יום חמישי 04 מאי 2023 : guest : guest888379534 has logged in
+יום חמישי 04 מאי 2023 : bayan has registered!
+יום חמישי 04 מאי 2023 : opening store with id: 820595388 has failed
+יום חמישי 04 מאי 2023 : assigning new manager with username : admin to the store with id: 820595388
+יום חמישי 04 מאי 2023 : 121019484Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest1744490682 has logged in

@@ -555,6 +555,20 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<List<string>> GetProductsFromStore_as_string(string storeID)
+        {
+            try
+            {
+                //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
+                List<string> products = this.Market.GetProductsFromStore_as_string(SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                return Response<List<string>>.FromValue(products);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<string>>.FromError(ex.Message);
+            }
+        }
+
         public Response ChangeProductCategory(string productID, string categoryID)
         {
             try

@@ -16,27 +16,24 @@
         <asp:TextBox ID="entered_store_id" runat="server"></asp:TextBox>
         <asp:Label ID="error_message" runat="server" Font-Size="Large" ForeColor="Red"></asp:Label>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button1" runat="server" Text="manage store's products" />
+        <asp:Button ID="manage_store_products" runat="server" OnClick="manage_store_products_Click" Text="manage store's products" />
 &nbsp;&nbsp;
         <div></div>
     </div>
     <div style="text-align: left">
-        <asp:Label ID="Label4" runat="server" Text="add product to store"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="add_product_button" runat="server" Text="GO!" />
-&nbsp;</div>
+        </div>
        <div></div>
     <div style="text-align: left">
-        <asp:Label ID="Label5" runat="server" Text="remove product form store"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="add_product_button0" runat="server" Text="GO!" />
-&nbsp;</div>
+        </div>
        <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label6" runat="server" Text="assign new manager"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="add_product_button1" runat="server" Text="GO!" />
-&nbsp;</div>
+    &nbsp;&nbsp;&nbsp; &nbsp;<asp:Label ID="Label15" runat="server" Text="type new manager name"></asp:Label>
+        &nbsp;&nbsp;<asp:TextBox ID="new_manager_username" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="add_product_button1" onclick="add_product_button1_Click" runat="server" Text="GO!" Height="26px" />
+&nbsp;<asp:Label ID="new_manager_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
+    </div>
        <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label7" runat="server" Text="assign new owner"></asp:Label>

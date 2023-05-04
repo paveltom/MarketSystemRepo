@@ -40,6 +40,8 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
         }
 
+
+
         internal Response< Dictionary<string, string>> extract_item_from_basket(string product_id)
         {
             try
@@ -568,6 +570,26 @@ namespace Market_System.ServiceLayer
                 return Response<List<string>>.FromError(e.Message);
             }
         }
+
+
+        public Response<List<string>> get_products_from_shop_as_list_of_string(string storeID)
+        {
+
+            try
+            {
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetProductsFromStore_as_string(storeID);
+                
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+                
+                return null;
+            }
+        }
+
 
         public Response<List<ItemDTO>> get_products_from_shop(string storeID)
         {

@@ -669,6 +669,17 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal List<string> GetProductsFromStore_as_string(string sessionID, string storeID)
+        {
+            List<string> return_me = new List<string>();
+            List<ItemDTO> items = this.GetProductsFromStore(sessionID, storeID);
+            foreach(ItemDTO item in items)
+            {
+                return_me.Add("product name:  " + storeFacade.get_product_name_from_prodcut_id(item.GetID()) + "   ID:   " + item.GetID() + "   quantity:  " + item.GetQuantity());
+            }
+            return return_me;
+        }
+
         public void Remove_Store_Owner(string sessionID, string other_Owner_Username, string storeID)
         {
             try
