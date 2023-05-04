@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %>- My ASP.NET Application</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -95,6 +95,9 @@
              <div>
 
             </div>
+              <div style="text-align: center">
+                  <asp:Label ID="notification_messages" runat="server" Font-Size="Large" ForeColor="#00CC00"></asp:Label>
+            </div>
              <div>
                   <asp:Button ID="manage_store_button" OnClick="store_managing_click" runat="server" Text="store managing" Width="111px" Visible="False" />
 &nbsp;
@@ -107,11 +110,12 @@
             <asp:Label ID="Label1" runat="server"></asp:Label>
             <asp:Button ID="logout_button" Onclick="Logout_click" runat="server" Height="26px" Text="Logout" Width="60px" />
             </div>
+          
 &nbsp;&nbsp;
           
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application </p>
+                <p>&copy; <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>- My ASP.NET Application </p>
                 <p class="auto-style2">  how's my coding? dial 052-EAT SHIT!</p>
             </footer>
         </div>

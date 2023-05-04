@@ -502,3 +502,7 @@ Wednesday, 3 May 2023 : guest : guest1449517200 has logged in
 יום חמישי 04 מאי 2023 : guest : guest2087498721 has logged in
 יום חמישי 04 מאי 2023 : guest : guest945285206 has logged in
 יום חמישי 04 מאי 2023 : opening store with id: 526129169 has failed
+יום חמישי 04 מאי 2023 : guest : guest1962762793 has logged in
+יום חמישי 04 מאי 2023 : opening store with id: 773078828 has failed
+יום חמישי 04 מאי 2023 : 773078828Logged-out succesfully
+יום חמישי 04 מאי 2023 : guest : guest226112206 has logged in

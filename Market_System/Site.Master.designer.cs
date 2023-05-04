@@ -60,6 +60,15 @@ namespace Market_System
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
 
         /// <summary>
+        /// notification_messages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label notification_messages;
+
+        /// <summary>
         /// manage_store_button control.
         /// </summary>
         /// <remarks>

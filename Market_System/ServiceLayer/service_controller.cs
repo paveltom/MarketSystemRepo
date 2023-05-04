@@ -1007,7 +1007,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        protected bool HasNewMessages()
+        public bool HasNewMessages()
         {
             try
             {
