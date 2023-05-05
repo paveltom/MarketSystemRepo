@@ -773,6 +773,13 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        public ConcurrentDictionary<string, Product> get_products()
+        {
+            return products;
+        }
+
+
+
         // ===================== END of Product operations =========================
         // =========================================================================
 

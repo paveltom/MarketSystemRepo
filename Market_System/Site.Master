@@ -60,10 +60,13 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" id="register_href" href="~/Presentaion_Layer/register_page">Register</a></li>
-                        <li><a runat="server" href="~/Presentaion_Layer/products_page">shop</a></li>
+                        <li><a runat="server" href="~/Presentaion_Layer/productsPage">Products</a></li>
                         <li><a runat="server" id="login_href" href="~/Presentaion_Layer/Login">Login</a></li>
                         <li><a runat="server" id="cart_href" href="~/Presentaion_Layer/cart_page">Cart</a></li>
                         <li><a runat="server" id="search" href="~/Presentaion_Layer/search.html">search</a></li>
+                         <li><a runat="server" id="notfications_href" href="~/Presentaion_Layer/notifications">notifications</a></li>
+                         <li><a runat="server" id="Logout_href" onserverclick="Logout_click" href="~/">Logout</a></li>
+                        <li><asp:Label ID="username_hello_label" text="" runat="server" Font-Size="Small" ForeColor="White"></asp:Label></li>
                         
                     </ul>
                 </div>
@@ -108,7 +111,6 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               
             <asp:Label ID="Label1" runat="server"></asp:Label>
-            <asp:Button ID="logout_button" Onclick="Logout_click" runat="server" Height="26px" Text="Logout" Width="60px" />
             </div>
           
 &nbsp;&nbsp;

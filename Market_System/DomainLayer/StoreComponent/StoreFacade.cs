@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Threading;
 using Market_System.DomainLayer;
+using Market_System.Domain_Layer.Store_Component;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -109,8 +110,9 @@ namespace Market_System.DomainLayer.StoreComponent
         internal string get_product_name_from_prodcut_id(string product_id)
         {
             string store_id = GetStoreIdFromProductID(product_id);
-            Store s = stores[store_id];
-            return s.get_product_name_from_prodcut_id(product_id);
+            Store s =StoreRepo.GetInstance().getStore(store_id);
+
+            return storeRepo.get_product_name_from_prodcut_id_and_store(product_id, s);
         }
 
         internal void close_store_temporary(string userID, string storeID)
@@ -253,6 +255,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     Store currStore = new Store(userID, newIDForStore, null, null, null, false);                    
                     storeRepo.AddStore(userID, currStore);
                     currStore.ChangeName(userID, newStoreDetails[0]);
+                    
                     return currStore.GetStoreDTO();
                 }
                 catch (Exception e)
@@ -665,6 +668,22 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        internal List<ItemDTO> GetProductsFromAllStores()
+        {
+            try
+            {
+               List<Store> all_stores= StoreRepo.GetInstance().GetStores();
+                List<ItemDTO> return_me = new List<ItemDTO>();
+               foreach(Store store in all_stores)
+                {
+
+                    return_me = (List<ItemDTO>)return_me.Concat(store.GetItems()).ToList();
+                }
+                return return_me;
+            }
+            catch (Exception e) { throw e; }
+        }
+
         public void ChangeProductTimesBought(string userID, string productID, int times)
         {
             try
@@ -736,6 +755,17 @@ namespace Market_System.DomainLayer.StoreComponent
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
+        }
+
+        internal List<string> get_all_categories()
+        {
+            CategoriesOptions categories = new CategoriesOptions();
+            List<string> return_me = new List<string>();
+            foreach(Category cat in categories.Categories)
+            {
+                return_me.Add(cat.CategoryName);
+            }
+            return return_me;
         }
 
 

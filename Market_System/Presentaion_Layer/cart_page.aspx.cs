@@ -10,7 +10,7 @@ namespace Market_System.Presentaion_Layer
 {
     public partial class cart_page : System.Web.UI.Page
     {
-        private List<string> product_ids;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).get_store_ids_from_cart();
@@ -20,15 +20,37 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                    if ((List<string>)Session["cart_page_drop_down_list_datasoruce"]!=null && response.Value.All(((List<string>)Session["cart_page_drop_down_list_datasoruce"]).Contains)) // this so it wont always load the list
-                    {
+                
+                List<string> current_shown_store_ids = new List<string>();
+
+                foreach (ListItem item in ddl_store_id.Items)
+                {
+
+                    current_shown_store_ids.Add(item.Text);
+
+                }
+
+
+
+                //if((List<string>)Session["categories_drop_down_list_datasoruce"] != null && response.Value.All(((List<string>)Session["categories_drop_down_list_datasoruce"]).Contains)) // this so it wont always load the list
+                if (response.Value.All(current_shown_store_ids.Contains)) // this so it wont always load the list
+                {
+                    return;
+                }
+
+               // ddl_categories.AppendDataBoundItems = true;
+                //ddl_categories.DataSource = response.Value;
+
+               // ddl_categories.DataBind();
+              ///  if ((List<string>)Session["cart_page_drop_down_list_datasoruce"]!=null && response.Value.All(((List<string>)Session["cart_page_drop_down_list_datasoruce"]).Contains)) // this so it wont always load the list
+               //     {
                         
-                        return;
-                    }
+                  //      return;
+                 //   }
                 ddl_store_id.AppendDataBoundItems = true;
                 ddl_store_id.DataSource = response.Value;
                 ddl_store_id.DataBind();
-                Session["cart_page_drop_down_list_datasoruce"] = response.Value;
+               // Session["cart_page_drop_down_list_datasoruce"] = response.Value;
             }
           
         }
