@@ -804,7 +804,7 @@ namespace Market_System.Tests.SeviceLevelTests
             service.register("amihai", "bbb", "addr");
             service.assign_new_owner(store.Value.StoreID, "amihai");
             service.log_out();
-            service.login_member("admin", "admin");
+            service.login_member("amihai", "bbb");
             bool response = service.HasNewMessages();
             //Result:
             Assert.AreEqual(true, response);
