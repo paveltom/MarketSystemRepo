@@ -64,12 +64,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddNewStore(List<string> newStoreDetails)
+        public Response AddNewStore(string session_id,List<string> newStoreDetails)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                StoreDTO added = this.Market.Add_New_Store(this.SessionID, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                StoreDTO added = this.Market.Add_New_Store(session_id, newStoreDetails); // change method in MarketSystem - cannot receive StoreID yet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<StoreDTO>.FromValue(added);
             }
             catch (Exception ex)
@@ -568,12 +568,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        internal Response<List<string>> GetProductsFromStore_as_string(string storeID)
+        internal Response<List<string>> GetProductsFromStore_as_string(string session_id,string storeID)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                List<string> products = this.Market.GetProductsFromStore_as_string(SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                List<string> products = this.Market.GetProductsFromStore_as_string(session_id, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(products);
             }
             catch (Exception ex)
@@ -663,6 +663,18 @@ namespace Market_System.ServiceLayer
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        internal List<string> get_all_categories()
+        {
+            try
+            {
+                return Market.get_all_categories();
+            }
+            catch(Exception e)
+            {
+                throw e;
             }
         }
 

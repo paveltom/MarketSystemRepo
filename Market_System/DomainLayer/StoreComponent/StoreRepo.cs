@@ -115,6 +115,17 @@ namespace Market_System.DomainLayer.StoreComponent
             }  
         }
 
+        internal string get_product_name_from_prodcut_id_and_store(string product_id, Store s)
+        {
+           foreach(KeyValuePair<Product, int> pair in storeDatabase[s])
+            {
+                if(pair.Key.Product_ID.Equals(product_id))
+                {
+                    return pair.Key.Name;
+                }
+            }
+            return null;
+        }
 
         public List<ItemDTO> SearchProductsByKeyword(string keyword)
         {

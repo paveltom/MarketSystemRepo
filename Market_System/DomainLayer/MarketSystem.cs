@@ -734,7 +734,17 @@ namespace Market_System.DomainLayer
             }
         }
 
-        
+        internal List<string> get_all_categories()
+        {
+            try
+            {
+                return storeFacade.get_all_categories();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string session_ID)
         {

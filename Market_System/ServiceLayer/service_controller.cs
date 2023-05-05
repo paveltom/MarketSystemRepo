@@ -115,6 +115,8 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+
         public Response<bool> check_if_working_in_a_store()
         {
              Response<bool> result = Response<bool>.FromValue(this.ssc.check_if_working_in_a_store());
@@ -154,7 +156,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception e)
             {
-                return null;
+                return Response<ItemDTO>.FromError(e.Message);
             }
         } 
 
@@ -594,7 +596,7 @@ namespace Market_System.ServiceLayer
 
             try
             {
-                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetProductsFromStore_as_string(storeID);
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetProductsFromStore_as_string(this.session_id,storeID);
                 
 
                 return ok;
@@ -658,6 +660,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public Response<List<string>> get_all_categories()
+        {
+            try
+            {
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.get_all_categories());
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
 
         public Response<StoreDTO> GetStore(string store_id)
         {
@@ -741,7 +756,7 @@ namespace Market_System.ServiceLayer
             List<string> empty_list = new List<string>();
             try
             {
-                Response<StoreDTO> ok = (Response<StoreDTO>)this.ssc.AddNewStore(newStoreDetails); //empty_list thye are doing nothing wiht it
+                Response<StoreDTO> ok = (Response<StoreDTO>)this.ssc.AddNewStore(this.session_id,newStoreDetails); //empty_list thye are doing nothing wiht it
 
                 if (ok.ErrorOccured)
                 {
