@@ -1044,3 +1044,12 @@ Friday, 5 May 2023 : user with session ID : 968147637 got his Messages
 יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
 יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
 יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1485491215 has logged in
+יום שישי 05 מאי 2023 : guest : guest1275698698 has logged in
+יום שישי 05 מאי 2023 : guest : guest1028307033 has logged in
+יום שישי 05 מאי 2023 : guest : guest1240825924 has logged in
+יום שישי 05 מאי 2023 : guest : guest1805835333 has logged in
+יום שישי 05 מאי 2023 : guest : guest1463709657 has logged in
+יום שישי 05 מאי 2023 : guest : guest929533890 has logged in
+יום שישי 05 מאי 2023 : guest : guest997524925 has logged in
+יום שישי 05 מאי 2023 : guest : guest1509089368 has logged in
