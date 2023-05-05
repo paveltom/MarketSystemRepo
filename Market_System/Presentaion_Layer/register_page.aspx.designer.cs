@@ -87,12 +87,12 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
-        /// message control.
+        /// messageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label message;
+        protected global::System.Web.UI.WebControls.Label messageLabel;
     }
 }

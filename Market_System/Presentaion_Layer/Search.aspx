@@ -49,7 +49,6 @@
                 margin-right: 10px;
             }
     </style>
-    <link href="Site.Master" rel="import" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -135,6 +134,7 @@
         }
 
     </script>
+        </form>
 </body>
 </html>
     </asp:Content>
