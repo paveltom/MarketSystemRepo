@@ -35,7 +35,9 @@ namespace Market_System
 
             if (Session["username"].Equals(""))
             {
-                logout_button.Visible = false;
+                username_hello_label.Text = "";
+                Logout_href.Visible = false;
+                notfications_href.Visible = false;
                 change_password_button.Visible = false;
                 open_new_store_button.Visible = false;
                 manage_store_button.Visible = false;
@@ -44,7 +46,8 @@ namespace Market_System
             else
             {
                 a_user_logs_in();
-               Label1.Text="hello " + Session["username"] + " !";
+                username_hello_label.Text = "hello " + Session["username"] + " !";
+                 Label1.Text="hello " + Session["username"] + " !";
             }
            
 
@@ -68,9 +71,13 @@ namespace Market_System
 
         public void a_user_logs_in()
         {
+            
+            
+            notfications_href.Visible = true;
             login_href.Visible = false;
             register_href.Visible = false;
-            logout_button.Visible = true;
+          
+            Logout_href.Visible = true; ;
             change_password_button.Visible = true;
             open_new_store_button.Visible = true;
             if(((Service_Controller)Session["service_controller"]).check_if_working_in_a_store().Value)

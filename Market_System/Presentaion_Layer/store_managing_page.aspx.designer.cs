@@ -96,13 +96,13 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.TextBox new_manager_username;
 
         /// <summary>
-        /// add_product_button1 control.
+        /// assign_new_manager_button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button add_product_button1;
+        protected global::System.Web.UI.WebControls.Button assign_new_manager_button;
 
         /// <summary>
         /// new_manager_message control.
@@ -123,13 +123,40 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// add_product_button2 control.
+        /// Label16 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button add_product_button2;
+        protected global::System.Web.UI.WebControls.Label Label16;
+
+        /// <summary>
+        /// new_owner_username control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox new_owner_username;
+
+        /// <summary>
+        /// assign_new_owner_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button assign_new_owner_button;
+
+        /// <summary>
+        /// new_owner_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label new_owner_message;
 
         /// <summary>
         /// Label8 control.
@@ -141,13 +168,40 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
-        /// add_product_button3 control.
+        /// Label17 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button add_product_button3;
+        protected global::System.Web.UI.WebControls.Label Label17;
+
+        /// <summary>
+        /// owner_to_remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox owner_to_remove;
+
+        /// <summary>
+        /// owner_remove_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button owner_remove_button;
+
+        /// <summary>
+        /// owner_remove_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label owner_remove_message;
 
         /// <summary>
         /// Label9 control.
@@ -222,6 +276,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Button add_product_button7;
 
         /// <summary>
+        /// show_managers_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label show_managers_message;
+
+        /// <summary>
         /// Label13 control.
         /// </summary>
         /// <remarks>
@@ -240,6 +303,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Button add_product_button8;
 
         /// <summary>
+        /// show_owners_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label show_owners_message;
+
+        /// <summary>
         /// Label14 control.
         /// </summary>
         /// <remarks>
@@ -256,5 +328,32 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button add_product_button9;
+
+        /// <summary>
+        /// show_purchase_history_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label show_purchase_history_message;
+
+        /// <summary>
+        /// show_info_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label show_info_label;
+
+        /// <summary>
+        /// show_info_list control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList show_info_list;
     }
 }

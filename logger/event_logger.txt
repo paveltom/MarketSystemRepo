@@ -606,3 +606,65 @@ Thursday, 4 May 2023 : 1549198057Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest837581472 has logged in
 Thursday, 4 May 2023 : 1549198057Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest1169455295 has logged in
+יום שישי 05 מאי 2023 : guest : guest333389356 has logged in
+יום שישי 05 מאי 2023 : 1829832683Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2060584456 has logged in
+יום שישי 05 מאי 2023 : guest : guest47021242 has logged in
+יום שישי 05 מאי 2023 : guest : guest356390650 has logged in
+יום שישי 05 מאי 2023 : 962818441Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1960505764 has logged in
+יום שישי 05 מאי 2023 : 962818441Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1711756411 has logged in
+יום שישי 05 מאי 2023 : guest : guest1831429631 has logged in
+יום שישי 05 מאי 2023 : guest : guest1083825445 has logged in
+יום שישי 05 מאי 2023 : 245513371Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest665916140 has logged in
+יום שישי 05 מאי 2023 : guest : guest1513630765 has logged in
+יום שישי 05 מאי 2023 : guest : guest884682211 has logged in
+יום שישי 05 מאי 2023 : artanis has registered!
+יום שישי 05 מאי 2023 : 1125587594Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest8066386 has logged in
+יום שישי 05 מאי 2023 : guest : guest2064807292 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1226495218 has failed
+יום שישי 05 מאי 2023 : 1226495218Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest684871947 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : assigning new manager with username : bayan to the store with id: 1226495218
+יום שישי 05 מאי 2023 : 1226495218Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1331217595 has logged in
+יום שישי 05 מאי 2023 : user with session ID : 606967124 got his Messages
+יום שישי 05 מאי 2023 : 1600328368Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2101683543 has logged in
+יום שישי 05 מאי 2023 : guest : guest146259446 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : opening store with id: 1104059128 has failed
+יום שישי 05 מאי 2023 : assigning new manager with username : bayan to the store with id: 1104059128
+יום שישי 05 מאי 2023 : 1104059128Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1343879202 has logged in
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : 242685956Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2073277365 has logged in
+יום שישי 05 מאי 2023 : guest : guest2115836092 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : opening store with id: 1277524018 has failed
+יום שישי 05 מאי 2023 : assigning new manager with username : bayan to the store with id: 1277524018
+יום שישי 05 מאי 2023 : 1277524018Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1146433438 has logged in
+יום שישי 05 מאי 2023 : user with session ID : 734214738 got his Messages
+יום שישי 05 מאי 2023 : 2067074771Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest643841601 has logged in
+יום שישי 05 מאי 2023 : guest : guest945801960 has logged in
+יום שישי 05 מאי 2023 : guest : guest818807431 has logged in
+יום שישי 05 מאי 2023 : guest : guest1112630681 has logged in
+יום שישי 05 מאי 2023 : 2070430363Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1526412803 has logged in
+יום שישי 05 מאי 2023 : guest : guest1712174428 has logged in
+יום שישי 05 מאי 2023 : 873862354Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1054247219 has logged in
+יום שישי 05 מאי 2023 : guest : guest1886132858 has logged in
+יום שישי 05 מאי 2023 : guest : guest102827877 has logged in
+יום שישי 05 מאי 2023 : 1831155487Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1235023361 has logged in

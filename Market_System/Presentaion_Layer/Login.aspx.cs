@@ -27,7 +27,9 @@ namespace Market_System.Presentaion_Layer
             if (!result.ErrorOccured)
             {
                 Session["username"] = username;
-                Response.Redirect(string.Format("/Presentaion_Layer/logged_in_user_page.aspx?name={0}", username));
+                //  Response.Redirect(string.Format("/Presentaion_Layer/logged_in_user_page.aspx?name={0}", username));
+                // this.name = Request.QueryString["name"];
+                Response.Redirect("~/");
             }
             else
             {
