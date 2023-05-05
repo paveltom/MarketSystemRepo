@@ -298,8 +298,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.founderID != userID) // ADD - maket manager permission validation
-                    throw new Exception("Only store founder or Market Manager can reopen a store.");
+                if (this.founderID != userID || !this.is_closed_temporary()) // ADD - maket manager permission validation
+                    throw new Exception("Only store founder or Market Manager can reopen a store OR store isn't closed.");
                 this.storeRepo.re_open_closed_temporary_store(userID, this.Store_ID);
                 this.employees.ReopenStore(this.Store_ID);
                 this.temporaryClosed = false;

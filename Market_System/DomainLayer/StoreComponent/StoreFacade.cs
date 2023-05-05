@@ -117,13 +117,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                foreach (KeyValuePair<string, Store> entry in stores)
-                {
-                    if (entry.Key.Equals(storeID))
-                    {
-                        entry.Value.RemoveStore(userID);
-                    }
-                }
+                AcquireStore(storeID).RemoveStore(userID);
             }
             catch(Exception ex)
             {

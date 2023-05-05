@@ -220,6 +220,25 @@ namespace Market_System.DomainLayer
             }
         }
 
+        public void Reopen_Store(string sessionID, string storeID)
+        {
+            try
+            {
+                string user_id = get_userid_from_session_id(sessionID);
+                storeFacade.RestoreStore(user_id, storeID);
+
+                //Send Notification to store Employees (owners & managers)
+                var message = "The store id: " + storeID + " has been Reopened.";
+                var founderID = storeFacade.GetStore(storeID).FounderID;
+                sendMessageToStoreEmployees(message, userFacade.get_username_from_user_id(founderID), storeID);
+            }
+
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public string Add_Product_To_basket(string product_id,string session_id,string quantity)
         {
             try
