@@ -868,6 +868,69 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
+        [TestMethod]
+        public void Notification_RemoveStoreOwner() //the remove owner of the store should be notified about it 
+        {
+            //Setup: 
+            oneThreadSetUp();
+
+            //Action:
+            service.login_member("admin", "admin");
+            Response<StoreDTO> store = service.open_new_store(new List<string> { "Bayanka" });
+            service.register("amihai", "bbb", "addr");
+            service.assign_new_owner(store.Value.StoreID, "amihai");
+            service.log_out();
+            service.login_member("amihai", "bbb");
+            Response<List<string>> response_temp = service.GetMessages(); //read the messages - no new messages appear after that
+            service.log_out();
+            service.login_member("admin", "admin");
+            service.Remove_Store_Owner(store.Value.StoreID, "amihai");
+            service.Reopen_Store(store.Value.StoreID);
+            service.log_out();
+            service.login_member("amihai", "bbb");
+            bool response = service.HasNewMessages();
+            //Result:
+            Assert.AreEqual(true, response);
+            //todo: check if prod name changed
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        //The method bellow doesn't work currently due to a bug in close_store_temporarely method
+        /*
+        [TestMethod]
+        public void Notification_closeStoreTemp() //the employees of the store should be notified about it 
+        {
+            //Setup: 
+            oneThreadSetUp();
+
+            //Action:
+            service.login_member("admin", "admin");
+            Response<StoreDTO> store = service.open_new_store(new List<string> { "Bayanka" });
+            service.register("amihai", "bbb", "addr");
+            service.assign_new_manager(store.Value.StoreID, "amihai");
+            service.log_out();
+            service.login_member("amihai", "bbb");
+            Response<List<string>> response_temp = service.GetMessages(); //read the messages - no new messages appear after that
+            service.log_out();
+            service.login_member("admin", "admin");
+            service.close_store_temporary(store.Value.StoreID);
+            service.log_out();
+            service.login_member("amihai", "bbb");
+            bool response = service.HasNewMessages();
+            //Result:
+            Assert.AreEqual(true, response);
+            //todo: check if prod name changed
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //tearDown:
+            oneThreadCleanup();
+        } */
+
+
+
         #region /*TODO: add more tests like  changeProdName() test for all product atrributes that can be eddited by store owner.
         /*
         [TestMethod]
