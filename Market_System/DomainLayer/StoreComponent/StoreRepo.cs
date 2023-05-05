@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -115,6 +116,17 @@ namespace Market_System.DomainLayer.StoreComponent
             }  
         }
 
+        internal string get_product_name_from_prodcut_id_and_store(string product_id, Store s)
+        {
+           foreach(KeyValuePair<Product, int> pair in storeDatabase[s])
+            {
+                if(pair.Key.Product_ID.Equals(product_id))
+                {
+                    return pair.Key.Name;
+                }
+            }
+            return null;
+        }
 
         public List<ItemDTO> SearchProductsByKeyword(string keyword)
         {
@@ -386,20 +398,35 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+
+        
+
         public void saveStore(Store storeToSave)
         {
             Dictionary<Product, int> save_me = null;
+            
+
             foreach (Store s in storeDatabase.Keys)
             {
                 if (s.Store_ID.Equals(storeToSave.Store_ID))
                 {
+
                     save_me = storeDatabase[s];
                     storeDatabase.Remove(s);
+                    
                     break;
                 }
             }
             if (save_me != null)
             {
+                /*
+                save_me = new Dictionary<Product, int>();
+                ConcurrentDictionary<string, Product> items = storeToSave.get_products();
+                foreach(KeyValuePair<string,Product> entry in items)
+                {
+                    save_me.Add(entry.Value, entry.Value.Quantity);
+                }
+                */
                 storeDatabase.Add(storeToSave, save_me);
                 return;
             }

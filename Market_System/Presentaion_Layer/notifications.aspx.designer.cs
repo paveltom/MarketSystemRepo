@@ -11,39 +11,34 @@ namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class logged_in_user_page
+    public partial class notifications
     {
 
         /// <summary>
-        /// logout_button control.
+        /// messages_label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logout_button;
+        protected global::System.Web.UI.WebControls.Label messages_label;
 
         /// <summary>
-        /// username control.
+        /// no_messages_label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label username;
+        protected global::System.Web.UI.WebControls.Label no_messages_label;
 
         /// <summary>
-        /// Master property.
+        /// messages_list control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new Market_System.SiteMaster Master
-        {
-            get
-            {
-                return ((Market_System.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.DataList messages_list;
     }
 }

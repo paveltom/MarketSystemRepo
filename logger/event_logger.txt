@@ -608,3 +608,313 @@ Thursday, 4 May 2023 : 1549198057Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest1169455295 has logged in
 יום שישי 05 מאי 2023 : guest : guest316037526 has logged in
 יום שישי 05 מאי 2023 : guest : guest744426769 has logged in
+יום שישי 05 מאי 2023 : guest : guest333389356 has logged in
+יום שישי 05 מאי 2023 : 1829832683Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2060584456 has logged in
+יום שישי 05 מאי 2023 : guest : guest47021242 has logged in
+יום שישי 05 מאי 2023 : guest : guest356390650 has logged in
+יום שישי 05 מאי 2023 : 962818441Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1960505764 has logged in
+יום שישי 05 מאי 2023 : 962818441Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1711756411 has logged in
+יום שישי 05 מאי 2023 : guest : guest1831429631 has logged in
+יום שישי 05 מאי 2023 : guest : guest1083825445 has logged in
+יום שישי 05 מאי 2023 : 245513371Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest665916140 has logged in
+יום שישי 05 מאי 2023 : guest : guest1513630765 has logged in
+יום שישי 05 מאי 2023 : guest : guest884682211 has logged in
+יום שישי 05 מאי 2023 : artanis has registered!
+יום שישי 05 מאי 2023 : 1125587594Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest8066386 has logged in
+יום שישי 05 מאי 2023 : guest : guest2064807292 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1226495218 has failed
+יום שישי 05 מאי 2023 : 1226495218Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest684871947 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : assigning new manager with username : bayan to the store with id: 1226495218
+יום שישי 05 מאי 2023 : 1226495218Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1331217595 has logged in
+יום שישי 05 מאי 2023 : user with session ID : 606967124 got his Messages
+יום שישי 05 מאי 2023 : 1600328368Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2101683543 has logged in
+יום שישי 05 מאי 2023 : guest : guest146259446 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : opening store with id: 1104059128 has failed
+יום שישי 05 מאי 2023 : assigning new manager with username : bayan to the store with id: 1104059128
+יום שישי 05 מאי 2023 : 1104059128Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1343879202 has logged in
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : user with session ID : 1793401159 got his Messages
+יום שישי 05 מאי 2023 : 242685956Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2073277365 has logged in
+יום שישי 05 מאי 2023 : guest : guest2115836092 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : opening store with id: 1277524018 has failed
+יום שישי 05 מאי 2023 : assigning new manager with username : bayan to the store with id: 1277524018
+יום שישי 05 מאי 2023 : 1277524018Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1146433438 has logged in
+יום שישי 05 מאי 2023 : user with session ID : 734214738 got his Messages
+יום שישי 05 מאי 2023 : 2067074771Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest643841601 has logged in
+יום שישי 05 מאי 2023 : guest : guest945801960 has logged in
+יום שישי 05 מאי 2023 : guest : guest818807431 has logged in
+יום שישי 05 מאי 2023 : guest : guest1112630681 has logged in
+יום שישי 05 מאי 2023 : 2070430363Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1526412803 has logged in
+יום שישי 05 מאי 2023 : guest : guest1712174428 has logged in
+יום שישי 05 מאי 2023 : 873862354Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1054247219 has logged in
+יום שישי 05 מאי 2023 : guest : guest1886132858 has logged in
+יום שישי 05 מאי 2023 : guest : guest102827877 has logged in
+יום שישי 05 מאי 2023 : 1831155487Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1235023361 has logged in
+יום שישי 05 מאי 2023 : guest : guest1540016872 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 350332907 has failed
+יום שישי 05 מאי 2023 : getting store with id: 350332907 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 350332907 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 350332907 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:350332907_2109994859to store: 350332907 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 350332907 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest2076621563 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1238309489 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1238309489 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1238309489 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1238309489 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest549202248 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1858373821 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1858373821 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1858373821 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1858373821 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest500354497 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1458154179 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1458154179 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1458154179 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1299403471 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1905831262 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1905831262 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1905831262 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest443038512 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 211154229 has failed
+יום שישי 05 מאי 2023 : getting store with id: 211154229 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 211154229 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 211154229 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 211154229 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 211154229 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 211154229 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest283664927 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1241464609 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1241464609 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1783589052 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1970860806 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1970860806 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1785160233 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 244104377 has failed
+יום שישי 05 מאי 2023 : getting store with id: 244104377 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 244104377 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest959693710 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 121381636 has failed
+יום שישי 05 מאי 2023 : getting store with id: 121381636 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest783941991 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1390369782 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1390369782 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest2135973790 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1716817753 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1716817753 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1716817753 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1578951833 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 808423905 has failed
+יום שישי 05 מאי 2023 : getting store with id: 808423905 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 808423905 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest409033778 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1366833460 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1366833460_917168407to store: 1366833460 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1366833460 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1065087301 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1671515092 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1671515092 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1347922832 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 158238867 has failed
+יום שישי 05 מאי 2023 : getting store with id: 158238867 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 158238867 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 158238867 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:158238867_1345665226to store: 158238867 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 158238867 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest839242077 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 420086040 has failed
+יום שישי 05 מאי 2023 : getting store with id: 420086040 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 420086040 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 420086040 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 420086040 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 420086040 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:420086040_1472421043to store: 420086040 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 420086040 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1250097993 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 60414028 has failed
+יום שישי 05 מאי 2023 : getting store with id: 60414028 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 60414028 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 60414028 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1386015269 has logged in
+יום שישי 05 מאי 2023 : guest : guest371276814 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1329076496 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1329076496 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest588731356 has logged in
+יום שישי 05 מאי 2023 : guest : guest1929243120 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 739559155 has failed
+יום שישי 05 מאי 2023 : getting store with id: 739559155 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 739559155 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 739559155 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:739559155_2048525915to store: 739559155 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 739559155 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest865592371 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1823392053 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1823392053 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1823392053 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1823392053 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1823392053_553914509to store: 1823392053 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1823392053 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest351027661 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 957455452 has failed
+יום שישי 05 מאי 2023 : getting store with id: 957455452 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest35099636 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1763427246 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1763427246 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1763427246 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1763427246 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1763427246_1368734162to store: 1763427246 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1763427246 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest457398035 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1415197717 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1415197717 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1415197717 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1415197717 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1415197717_102291036to store: 1415197717 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1415197717 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1450757911 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1031601874 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1031601874 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest356637723 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1314437405 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1314437405 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1314437405 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1314437405 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1644652825 has logged in
+יום שישי 05 מאי 2023 : guest : guest1799245863 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 609561898 has failed
+יום שישי 05 מאי 2023 : getting store with id: 609561898 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 609561898 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 609561898 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:609561898_14985691to store: 609561898 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 609561898 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest739907888 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 320751851 has failed
+יום שישי 05 מאי 2023 : getting store with id: 320751851 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 320751851 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 320751851 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:320751851_1421086805to store: 320751851 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 320751851 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest2013687129 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1594531092 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1594531092 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1594531092 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1594531092 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1594531092 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1594531092_1733258998to store: 1594531092 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1594531092 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1458227715 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 619915641 has failed
+יום שישי 05 מאי 2023 : getting store with id: 619915641 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 619915641 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 619915641 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:619915641_1997701522to store: 619915641 has been done successfully
+יום שישי 05 מאי 2023 : guest : guest1347895761 has logged in
+יום שישי 05 מאי 2023 : guest : guest1341102027 has logged in
+יום שישי 05 מאי 2023 : guest : guest458216200 has logged in
+יום שישי 05 מאי 2023 : guest : guest908919317 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 70607243 has failed
+יום שישי 05 מאי 2023 : getting store with id: 70607243 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest324831167 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1282630849 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1282630849 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1282630849 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1282630849 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest2023415283 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 833731318 has failed
+יום שישי 05 מאי 2023 : getting store with id: 833731318 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 833731318 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 833731318 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:833731318_275003088to store: 833731318 has been done successfully
+יום שישי 05 מאי 2023 : guest : guest1149568782 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1688212427 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1688212427 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1688212427 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1688212427 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1688212427_1456520325to store: 1688212427 has been done successfully
+יום שישי 05 מאי 2023 : guest : guest1561386011 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1748657765 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1748657765 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1748657765 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1748657765 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1748657765_1183627449to store: 1748657765 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1748657765 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest773844063 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1312487708 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1312487708 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1312487708 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1312487708 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1312487708_675685573to store: 1312487708 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1312487708 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1555437262 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 553025051 has failed
+יום שישי 05 מאי 2023 : getting store with id: 553025051 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 553025051 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 553025051 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:553025051_2096446317to store: 553025051 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 553025051 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1538475027 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 348791062 has failed
+יום שישי 05 מאי 2023 : getting store with id: 348791062 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 348791062 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 348791062 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:348791062_1194782307to store: 348791062 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 348791062 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest2119679238 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1236754635 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1236754635_1488779952to store: 1236754635 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : 466226707 added product with id: 1236754635_1488779952 to basket
+יום שישי 05 מאי 2023 : 466226707Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2044285121 has logged in
+יום שישי 05 מאי 2023 : guest : guest873056500 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 341503788 has failed
+יום שישי 05 מאי 2023 : getting store with id: 341503788 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 341503788 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 341503788 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:341503788_1823263608to store: 341503788 has been done successfully
+יום שישי 05 מאי 2023 : 341503788Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1093025787 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
+יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
+יום שישי 05 מאי 2023 : 1417709372 removed product with id: 341503788_1823263608 from the basket

@@ -27,7 +27,7 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                Response.Redirect(string.Format("/Presentaion_Layer/store_products_managing.aspx?store_id={0}", entered_store_id.Text));
+                Response.Redirect(string.Format("/Presentaion_Layer/store_products_managing_page.aspx?store_id={0}", entered_store_id.Text));
             }
         }
 
