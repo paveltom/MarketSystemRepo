@@ -1,4 +1,5 @@
 ﻿using Market_System.DomainLayer;
+using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,42 +11,34 @@ namespace Market_System.Presentaion_Layer
 {
     public partial class ProductPage : System.Web.UI.Page
     {
-        Service sv;
-        ItemDTO item;
-
+        
+      
+        private string product_id;
         protected void Page_Load(object sender, EventArgs e)
         {
-            sv = new Service();
-            string product_id = Request.QueryString["product_id"];
+          
+            this.product_id = Request.QueryString["product_id"];
             //Response.Write(product_id);
-            item = sv.getItemDemo(product_id);
-            id.Text = "Name: " + item.GetID();
-            quantity.Text = "Quantity in stock: " + item.GetQuantity().ToString();
+            Response<ItemDTO> item = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id);
+            id.Text = "Name: " + item.Value.get_name();
+            quantity.Text = "Quantity in stock: " + item.Value.GetQuantity().ToString();
         }
 
         protected void addToCart_Click(object sender, EventArgs e)
         {
-            int amount;
-            try
-            {
-                amount = Int32.Parse(quantityToAdd.Text);
-                if (amount > item.GetQuantity())
-                {
-                    clickmsg.Text = " not enough in stock";
-                    clickmsg.ForeColor = System.Drawing.Color.Red;
-                }
-                else
-                {
-                    sv.addToCart(item.GetID(), amount);
-                    clickmsg.Text = "product added to cart";
-                    clickmsg.ForeColor = System.Drawing.Color.Green;
 
-                }
-            }
-            catch (FormatException)
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).add_product_to_basket(product_id, quantityToAdd.Text);
+            if (okay.ErrorOccured)
             {
-                clickmsg.Text = quantityToAdd.Text + " please write a legal number";
+                clickmsg.Text = okay.ErrorMessage;
+                clickmsg.ForeColor = System.Drawing.Color.Red;
             }
+            else
+            {
+                clickmsg.Text = okay.Value;
+                clickmsg.ForeColor = System.Drawing.Color.Green;
+            }
+ 
 
         }
     }

@@ -606,3 +606,10 @@ Thursday, 4 May 2023 : 1549198057Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest837581472 has logged in
 Thursday, 4 May 2023 : 1549198057Logged-out succesfully
 Thursday, 4 May 2023 : guest : guest1169455295 has logged in
+יום שישי 05 מאי 2023 : guest : guest331291889 has logged in
+יום שישי 05 מאי 2023 : guest : guest772046152 has logged in
+יום שישי 05 מאי 2023 : guest : guest1352314817 has logged in
+יום שישי 05 מאי 2023 : guest : guest1758909242 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 456828602 has failed
+יום שישי 05 מאי 2023 : 37672565Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest556515598 has logged in

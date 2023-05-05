@@ -596,6 +596,34 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<ItemDTO> get_product_by_productID(string product_id)
+        {
+            try
+            {
+                
+                Response<ItemDTO> item = Response<ItemDTO>.FromValue(this.Market.get_product_by_productID(product_id));
+                return item;
+            }
+            catch (Exception ex)
+            {
+                return Response<ItemDTO>.FromError(ex.Message);
+            }
+        }
+
+        internal Response<List<ItemDTO>> GetProductsFromStores()
+        {
+            try
+            {
+                Response < List < ItemDTO >> okay= Response < List < ItemDTO >>.FromValue(this.Market.GetProductsFromAllStores());
+
+                return okay;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response ChangeProductDimenssions(string productID, double[] dims)
         {
             try

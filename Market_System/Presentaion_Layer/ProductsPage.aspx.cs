@@ -1,4 +1,5 @@
 ﻿using Market_System.DomainLayer;
+using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,14 @@ namespace Market_System.Presentaion_Layer
 {
     public partial class ProductsPage : System.Web.UI.Page
     {
-        Service sv;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            sv = new Service();
-            List<ItemDTO> items = sv.getItemsDemo();
+            ListView1.Items.Clear();
+            Response<List<ItemDTO>> items = ((Service_Controller)Session["service_controller"]).get_products_from_all_shop();
+            
             List<string> list = new List<string>();
-            foreach (ItemDTO item in items)
+            foreach (ItemDTO item in items.Value)
             {
                 list.Add("id: " + item.GetID() + "       quantity: " + item.GetQuantity());
             }
@@ -33,11 +35,11 @@ namespace Market_System.Presentaion_Layer
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect(string.Format("~/ProductPage.aspx?product_id={0}", product_id_text.Text));
+            Response.Redirect(string.Format("~/Presentaion_Layer/ProductPage.aspx?product_id={0}", product_id_text.Text));
         }
     }
 
-    public class Service
+  /*public class Service
     {
         public Service() { }
 
@@ -60,5 +62,7 @@ namespace Market_System.Presentaion_Layer
         {
 
         }
+
     }
+  */
 }

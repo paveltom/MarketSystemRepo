@@ -11,6 +11,7 @@ namespace Market_System.DomainLayer
         private string _itemId;
         private int quantity;
         private int reserved_quantity;
+        private string name;
 
     public ItemDTO(string id,int quantity)
         {
@@ -45,6 +46,16 @@ namespace Market_System.DomainLayer
         public int SetReservedQuantity(int set_me)
         {
             return this.reserved_quantity = this.reserved_quantity + set_me;
+        }
+
+        public string get_name()
+        {
+            return name;
+        }
+
+        public void set_name(string name)
+        {
+            this.name = name;
         }
 
 

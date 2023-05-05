@@ -669,6 +669,33 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal ItemDTO get_product_by_productID(string product_id)
+        {
+            string store_id = getStoreIDFromProductID(product_id);
+            List<ItemDTO> items = GetProductsFromStore(null,store_id);
+            foreach(ItemDTO item in items)
+            {
+                if (item.GetID().Equals(product_id))
+                {
+                    item.set_name(storeFacade.get_product_name_from_prodcut_id(product_id));
+                    return item;
+                }
+            }
+            throw new Exception("item is not found");
+        }
+
+        internal List<ItemDTO> GetProductsFromAllStores()
+        {
+            try
+            {
+                return storeFacade.GetProductsFromAllStores();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void Assign_New_Owner(string owner_SessionID, string newOwnerUsername, string store_ID)
         {
             try

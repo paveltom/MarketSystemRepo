@@ -665,6 +665,22 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        internal List<ItemDTO> GetProductsFromAllStores()
+        {
+            try
+            {
+               List<Store> all_stores= StoreRepo.GetInstance().GetStores();
+                List<ItemDTO> return_me = new List<ItemDTO>();
+               foreach(Store store in all_stores)
+                {
+                    
+                   return_me= (List<ItemDTO>)return_me.Concat(store.GetItems());
+                }
+                return return_me;
+            }
+            catch (Exception e) { throw e; }
+        }
+
         public void ChangeProductTimesBought(string userID, string productID, int times)
         {
             try
