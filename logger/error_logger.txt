@@ -1064,3 +1064,175 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: Cannot release more tha reserved. in remove_product_from_basket
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_purchase_history_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_purchase_history_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_managers_of_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_managers_of_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון.in get_purchase_history_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_purchase_history_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון.in get_purchase_history_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: No such product in this store. in remove_product_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: No such product in this store. in remove_product_from_store
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages

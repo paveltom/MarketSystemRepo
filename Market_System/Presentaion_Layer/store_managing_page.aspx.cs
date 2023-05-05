@@ -99,7 +99,7 @@ namespace Market_System.Presentaion_Layer
             {
                 show_info_label.Text = "Managers of the store:  " + store_id;
                 string[] show_me = ok.Value.ToArray();
-
+                show_managers_message.Text = "";
                 show_info_list.DataSource = show_me;
                 show_info_list.DataBind();
             }
@@ -120,7 +120,7 @@ namespace Market_System.Presentaion_Layer
             {
                 show_info_label.Text = "Owners of the store:  " + store_id;
                 string[] show_me = ok.Value.ToArray();
-
+                show_owners_message.Text = "";
                 show_info_list.DataSource = show_me;
                 show_info_list.DataBind();
             }
@@ -144,6 +144,7 @@ namespace Market_System.Presentaion_Layer
 
                 show_info_list.DataSource = show_me;
                 show_info_list.DataBind();
+                show_purchase_history_message.Text = "";
             }
 
         }

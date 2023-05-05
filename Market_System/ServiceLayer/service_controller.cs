@@ -560,7 +560,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetManagersOfTheStore( storeID);
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetManagersOfTheStore( this.session_id,storeID);
                 Logger.get_instance().record_event("getting managers from store : " + storeID + " done successfully");
 
                 return ok;
@@ -577,7 +577,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetOwnersOfTheStore(storeID);
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetOwnersOfTheStore(this.session_id,storeID);
                 Logger.get_instance().record_event("getting owners from store : " + storeID + " done successfully");
 
                 return ok;
@@ -664,7 +664,7 @@ namespace Market_System.ServiceLayer
 
         public Response<string> get_purchase_history_from_store(string storeID)
         {
-            Response<string> response = this.ssc.GetPurchaseHistoryOfTheStore(storeID);
+            Response<string> response = this.ssc.GetPurchaseHistoryOfTheStore(this.session_id, storeID);
             if (response.ErrorOccured)
             {
                 Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in get_purchase_history_from_store");

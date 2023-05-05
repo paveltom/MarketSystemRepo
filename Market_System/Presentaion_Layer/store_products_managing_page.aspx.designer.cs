@@ -240,6 +240,24 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
+        /// Label20 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label20;
+
+        /// <summary>
+        /// product_to_remove_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox product_to_remove_id;
+
+        /// <summary>
         /// remove_product_button control.
         /// </summary>
         /// <remarks>
@@ -247,5 +265,14 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button remove_product_button;
+
+        /// <summary>
+        /// remove_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label remove_message;
     }
 }

@@ -301,6 +301,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Store getStore(string store_id)
         {
+
             foreach (Store S in storeDatabase.Keys)
             {
                 if (S.Store_ID.Equals(store_id))
