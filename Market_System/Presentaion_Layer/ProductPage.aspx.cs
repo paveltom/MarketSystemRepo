@@ -23,6 +23,7 @@ namespace Market_System.Presentaion_Layer
 
             id.Text = "Name: " + item.Value.get_name();
             quantity.Text = "Quantity in stock: " + item.Value.GetQuantity().ToString();
+            description.Text = "Description: \n" + item.Value.getDescription();
         }
 
         protected void addToCart_Click(object sender, EventArgs e)

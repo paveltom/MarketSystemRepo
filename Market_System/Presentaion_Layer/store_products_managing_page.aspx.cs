@@ -70,7 +70,30 @@ namespace Market_System.Presentaion_Layer
                 }
             }
         }
-        
+
+        protected void remove_product_button_Click(object sender, EventArgs e)
+        {
+
+            if (product_to_remove_id.Text.Equals(""))
+            {
+                remove_message.Text = "please type in the ID of the product that you wish to remove.";
+            }
+            else
+            {
+                Response<string> response = ((Service_Controller)Session["service_controller"]).remove_product_from_store(store_id, product_to_remove_id.Text);
+                if (response.ErrorOccured)
+                {
+                    remove_message.Text = response.ErrorMessage;
+                    remove_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    remove_message.Text = response.Value;
+                    remove_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+          
+        }
     }
     
 }
