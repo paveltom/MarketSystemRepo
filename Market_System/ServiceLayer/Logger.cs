@@ -28,7 +28,7 @@ namespace Market_System.ServiceLayer
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
 
             var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
-            if (temp_path.Equals("C:\\Program Files (x86)")) //Meaning that we're running the project.
+            if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
             {
                 
                 string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
