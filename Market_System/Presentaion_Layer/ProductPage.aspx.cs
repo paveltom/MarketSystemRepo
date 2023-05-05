@@ -20,6 +20,7 @@ namespace Market_System.Presentaion_Layer
             this.product_id = Request.QueryString["product_id"];
             //Response.Write(product_id);
             Response<ItemDTO> item = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id);
+
             id.Text = "Name: " + item.Value.get_name();
             quantity.Text = "Quantity in stock: " + item.Value.GetQuantity().ToString();
         }

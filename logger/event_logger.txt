@@ -894,3 +894,25 @@ Thursday, 4 May 2023 : guest : guest1169455295 has logged in
 יום שישי 05 מאי 2023 : getting store with id: 348791062 was done successfully 
 יום שישי 05 מאי 2023 : Added the product:348791062_1194782307to store: 348791062 has been done successfully
 יום שישי 05 מאי 2023 : getting store with id: 348791062 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest2119679238 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1236754635 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1236754635_1488779952to store: 1236754635 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1236754635 was done successfully 
+יום שישי 05 מאי 2023 : 466226707 added product with id: 1236754635_1488779952 to basket
+יום שישי 05 מאי 2023 : 466226707Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest2044285121 has logged in
+יום שישי 05 מאי 2023 : guest : guest873056500 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 341503788 has failed
+יום שישי 05 מאי 2023 : getting store with id: 341503788 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 341503788 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 341503788 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:341503788_1823263608to store: 341503788 has been done successfully
+יום שישי 05 מאי 2023 : 341503788Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1093025787 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
+יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
+יום שישי 05 מאי 2023 : 1417709372 removed product with id: 341503788_1823263608 from the basket

@@ -15,7 +15,8 @@
         <asp:Label ID="id" runat="server" Text=""></asp:Label>
     </div>
     <div>&nbsp;</div>
-    <div>&nbsp;</div>
+    <div style="text-align: center">
+        &nbsp;</div>
     <div>&nbsp;</div>
     <div style="text-align: left">
         <asp:Label ID="quantity" runat="server" Text=""></asp:Label>

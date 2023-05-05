@@ -53,6 +53,7 @@ namespace Market_System.Presentaion_Layer
                 Response<Dictionary<string, string>> item = ((Service_Controller)Session["service_controller"]).extract_item_from_basket(product_id);
                 price_label.Text = item.Value["price"];
                 quantity_label.Text = item.Value["quantity"];
+                add_error.Text = "";
             }
 
         }
@@ -73,8 +74,8 @@ namespace Market_System.Presentaion_Layer
                     
                     Response.Redirect(string.Format("/Presentaion_Layer/cart_page.aspx"));
                 }
-               
-                
+
+                remove_error.Text = "";
                 price_label.Text = item.Value["price"];
                 quantity_label.Text = item.Value["quantity"];
             }

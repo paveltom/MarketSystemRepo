@@ -35,6 +35,12 @@ namespace Market_System.Presentaion_Layer
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            Response<ItemDTO> item = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id_text.Text);
+            if (item.ErrorOccured)
+            {
+                error_message.Text = item.ErrorMessage;
+                return;
+            }
             Response.Redirect(string.Format("~/Presentaion_Layer/ProductPage.aspx?product_id={0}", product_id_text.Text));
         }
     }
