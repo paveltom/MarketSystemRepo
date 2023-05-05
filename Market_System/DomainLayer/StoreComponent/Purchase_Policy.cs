@@ -55,7 +55,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     { "Username", userID },
                     { "Address", "" },
-                    { "Age" , "17" }
+                    { "Age" , "19" }
                 };
             return this.SalePolicyFormula.Satisfies(chosenProductsWithAttributes, rellevantUserPolicyData);
         }

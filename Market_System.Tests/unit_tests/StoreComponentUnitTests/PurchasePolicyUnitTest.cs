@@ -223,7 +223,6 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
 
             Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, statement);
-            List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
 
             Statement userIDStatement1 = new EqualRelation("Username", this.legitTestUser1, true);
             Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true);
