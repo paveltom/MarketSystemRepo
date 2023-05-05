@@ -591,6 +591,41 @@ namespace Market_System.ServiceLayer
         }
 
 
+        public Response<ItemDTO> get_product_by_productID(string product_id)
+        {
+            try
+            {
+                Response<ItemDTO> ok = (Response<ItemDTO>)this.ssc.get_product_by_productID(product_id);
+                
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                return null;
+            }
+        }
+
+
+        public Response<List<ItemDTO>> get_products_from_all_shop()
+        {
+            try
+            {
+                Response<List<ItemDTO>> ok = (Response<List<ItemDTO>>)this.ssc.GetProductsFromStores();
+
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                return null;
+            }
+        }
+
         public Response<List<string>> get_products_from_shop_as_list_of_string(string storeID)
         {
 

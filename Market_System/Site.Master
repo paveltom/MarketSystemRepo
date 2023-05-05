@@ -60,7 +60,7 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" id="register_href" href="~/Presentaion_Layer/register_page">Register</a></li>
-                        <li><a runat="server" href="~/Presentaion_Layer/products_page">shop</a></li>
+                        <li><a runat="server" href="~/Presentaion_Layer/productsPage">Products</a></li>
                         <li><a runat="server" id="login_href" href="~/Presentaion_Layer/Login">Login</a></li>
                         <li><a runat="server" id="cart_href" href="~/Presentaion_Layer/cart_page">Cart</a></li>
                         <li><a runat="server" id="search" href="~/Presentaion_Layer/search.html">search</a></li>

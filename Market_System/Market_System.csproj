@@ -133,6 +133,8 @@
     <Content Include="Presentaion_Layer\Login.aspx" />
     <Content Include="Presentaion_Layer\notifications.aspx" />
     <Content Include="Presentaion_Layer\open_new_store_page.aspx" />
+    <Content Include="Presentaion_Layer\ProductPage.aspx" />
+    <Content Include="Presentaion_Layer\ProductsPage.aspx" />
     <Content Include="Presentaion_Layer\products_page.aspx" />
     <Content Include="Presentaion_Layer\product_in_basket_page.aspx" />
     <Content Include="Presentaion_Layer\register_page.aspx" />
@@ -227,6 +229,20 @@
     </Compile>
     <Compile Include="Presentaion_Layer\open_new_store_page.aspx.designer.cs">
       <DependentUpon>open_new_store_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\ProductsPage.aspx.cs">
+      <DependentUpon>ProductsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\ProductsPage.aspx.designer.cs">
+      <DependentUpon>ProductsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\products_page.aspx.cs">
       <DependentUpon>products_page.aspx</DependentUpon>
