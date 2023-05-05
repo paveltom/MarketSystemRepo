@@ -97,6 +97,7 @@ namespace Market_System.DomainLayer
         {
             Dictionary<string, string> FieldValue = new Dictionary<string, string>
             {
+                { "StoreID", this.StoreID },
                 { "ItemID", this._itemId },
                 { "Quantity", this.quantity.ToString() },
                 { "ReservedQuantity", this.reserved_quantity.ToString() },

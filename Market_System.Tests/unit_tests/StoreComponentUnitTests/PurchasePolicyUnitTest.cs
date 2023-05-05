@@ -58,7 +58,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Arrange
             this.testProduct0.SetSale(50);
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO() };
-            double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity;
+            double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity / 2; // divide by 2 for sale and by another 2 for store sale policy
             double retPrice = 0;
             bool error = false;
 
@@ -70,7 +70,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 
             // Assert
             Assert.IsFalse(error);
-            Assert.IsTrue((price - retPrice) < 0.001 );
+            Assert.IsTrue((price - retPrice) < 0.001);
         }
 
         [TestMethod]
@@ -223,6 +223,8 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
 
             Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, statement);
+
+            this.facade.AddStorePurchasePolicy(newStore.FounderID, newStore.StoreID, testStorePolicy);
 
             Statement userIDStatement1 = new EqualRelation("Username", this.legitTestUser1, true);
             Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true);
