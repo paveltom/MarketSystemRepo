@@ -720,7 +720,7 @@ namespace Market_System.Tests.SeviceLevelTests
         }
 
         //Something doesn't work in the test bellow
-        /*
+        
         [TestMethod]
         public void CloseStoreTemporarelyStoreSuccess()
         {
@@ -741,7 +741,7 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //tearDown:
             oneThreadCleanup();
-        } */
+        } 
 
         [TestMethod]
         public void CloseStoreTemporarelyFailure()
@@ -898,8 +898,6 @@ namespace Market_System.Tests.SeviceLevelTests
             oneThreadCleanup();
         }
 
-        //The method bellow doesn't work currently due to a bug in close_store_temporarely method
-        /*
         [TestMethod]
         public void Notification_closeStoreTemp() //the employees of the store should be notified about it 
         {
@@ -927,7 +925,7 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //tearDown:
             oneThreadCleanup();
-        } */
+        } 
 
 
 
