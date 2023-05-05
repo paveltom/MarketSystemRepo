@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YourProjectNamespace
+namespace Market_System.Presentaion_Layer
 {
 
 

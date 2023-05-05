@@ -14,5 +14,6 @@
         </div>
 
         <asp:Button ID="Button1" runat="server" OnClick="Login_click" Text="Login" CssClass="btn btn-primary" />
+         <asp:Label ID="error_message" runat="server" Font-Size="Large" ForeColor="Red"></asp:Label>
     </div>
 </asp:Content>
