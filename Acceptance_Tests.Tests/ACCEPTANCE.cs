@@ -597,7 +597,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<ItemDTO> resProdAdd = service.add_product_to_store("fake_ID_123", "prod1", "desc1", "1", "1", "1", "2.0", "2.0", "5.0", "5.0_2.0", "attr", "catg");
 
             //Result:
-            Assert.AreEqual(null, resProdAdd);
+            Assert.AreEqual(true, resProdAdd.ErrorOccured);
             //todo: check if prod was added
             //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
@@ -758,6 +758,56 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //Result:
             Assert.AreEqual(true, response.ErrorOccured);
+            //todo: check if prod name changed
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void Notification_ProductCommentSuccess()
+        {
+            //Setup: 
+            oneThreadSetUp();
+
+            //Action:
+            service.login_member("admin", "admin");
+            Response<StoreDTO> store = service.open_new_store(new List<string> { "Bayanka" });
+            Response<ItemDTO> resp2 = service.add_product_to_store(store.Value.StoreID, "Bayanka", "ggg", "500.0", "5",
+    "5", "5.0", "5.0", "5.0", "5.0_5.0", "ggg", "ggggg");
+            service.log_out();
+            service.register("amihai", "bbb", "addr");
+            service.login_member("amihai", "bbb");
+            Response<string> resp3 = service.comment_on_product(resp2.Value.GetID(), "great product!!! 5/5", 5.0);
+            service.log_out();
+            service.login_member("admin", "admin");
+            bool response = service.HasNewMessages();
+            //Result:
+            Assert.AreEqual(true, response);
+            //todo: check if prod name changed
+            //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
+
+            //tearDown:
+            oneThreadCleanup();
+        }
+
+        [TestMethod]
+        public void Notification_AssignNewOwner() //the new owner should be notified about it 
+        {
+            //Setup: 
+            oneThreadSetUp();
+
+            //Action:
+            service.login_member("admin", "admin");
+            Response<StoreDTO> store = service.open_new_store(new List<string> { "Bayanka" });
+            service.register("amihai", "bbb", "addr");
+            service.assign_new_owner(store.Value.StoreID, "amihai");
+            service.log_out();
+            service.login_member("admin", "admin");
+            bool response = service.HasNewMessages();
+            //Result:
+            Assert.AreEqual(true, response);
             //todo: check if prod name changed
             //Response < List < ItemDTO >> resProdAdded = service.get_products_from_shop("Store1");
 
