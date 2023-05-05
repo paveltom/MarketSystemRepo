@@ -205,13 +205,18 @@ namespace Market_System.DomainLayer
         {
             try
             {
+                var founderID = storeFacade.GetStore(storeID).FounderID;
+                List<EmployeeDTO> employees = new List<EmployeeDTO>();
+                employees.AddRange(storeFacade.GetStore(storeID).owners);
+                employees.AddRange(storeFacade.GetStore(storeID).managers);
+
                 string user_id = get_userid_from_session_id(sessionID);
                 storeFacade.close_store_temporary(user_id,storeID);
 
                 //Send Notification to store Employees (owners & managers)
                 var message = "The store id: " + storeID + " has been temporarely closed.";
-                var founderID = storeFacade.GetStore(storeID).FounderID;
-                sendMessageToStoreEmployees(message, userFacade.get_username_from_user_id(founderID), storeID);
+                sendMessageToStoreEmployees_ForCloseTempStore(employees, message, userFacade.get_username_from_user_id(founderID), storeID);
+                sendMessageToUser(message, founderID, "System");
             }
 
             catch (Exception e)
@@ -1240,6 +1245,15 @@ namespace Market_System.DomainLayer
             //Send Notification to the Founder as well
             var founderID = storeFacade.GetStore(storeID).FounderID;
             notificationFacade.AddNewMessage(founderID, senderUsername, message);
+        }
+
+        private void sendMessageToStoreEmployees_ForCloseTempStore(List<EmployeeDTO> employees, string message, string senderUsername, string storeID)
+        {
+            //Send Notification to the store Owners & Managers & Founder - employees of the store
+            foreach (EmployeeDTO emp in employees)
+            {
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
+            }
         }
 
         private void sendMessageToUser(string message, string userID, string from)
