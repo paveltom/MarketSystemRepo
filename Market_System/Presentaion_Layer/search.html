@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Search and Categories Example</title>
+    <title>Search and Categories</title>
     <style>
         /* CSS styles for search and categories */
         .container {
@@ -36,8 +36,17 @@
             border: 2px solid #ccc;
             border-radius: 5px;
             background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
         }
+
+            .item img {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+            }
     </style>
+    <link href="Site.Master" rel="import" />
 </head>
 <body>
     <div class="container">
@@ -47,62 +56,81 @@
         <!-- Category select -->
         <select class="category-select">
             <option value="">All Categories</option>
-            <option value="category1">Category 1</option>
-            <option value="category2">Category 2</option>
-            <option value="category3">Category 3</option>
+            <option value="category1">Men</option>
+            <option value="category2">Women</option>
+            <option value="category3">Children</option>
         </select>
     </div>
 
     <!-- List of items -->
     <div id="item-list">
-        <div class="item category1">Item 1</div>
-        <div class="item category2">Item 2</div>
-        <div class="item category3">Item 3</div>
-        <div class="item category1">Item 4</div>
-        <div class="item category2">Item 5</div>
-        <div class="item category3">Item 6</div>
+        <div class="item category1">
+            <img src="https://litb-cgis.rightinthebox.com/images/640x640/202211/bps/product/inc/ihkbey1668222138935.jpg" alt="Pants">
+            pants
+        </div>
+        <div class="item category2">
+            <img src="https://images.asos-media.com/products/asos-design-ultimate-t-shirt-with-crew-neck-in-cotton-blend-in-black-black/201351926-1-black?$n_480w$&wid=476&fit=constrain" alt="Tshirt">
+            Tshirts
+        </div>
+        <div class="item category3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPOJPIfzHr7tPsli9syWCX1NJj5kr7WqvQ7g&usqp=CAU" alt="Pants">
+            pants
+        </div>
+        <div class="item category1">
+            <img src="https://www.next.co.il/nxtcms/resource/image/5487892/portrait_ratio4x5/320/400/33f0eec5e67c6fa86a8ad0f39181d3b6/7F5B416972E2D3FDFDF7ED6405B5D428/shirts.jpg" alt="Shirt">
+            shirts
+        </div>
+        <div class="item category2">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrY--pqDNzx0jpa3YNJZeGy5FuQpARzP3YdA&usqp=CAU" alt="Dress">
+            dresses
+        </div>
+        <div class="item category3">
+            <img src="https://xcdn.next.co.uk/COMMON/Items/Default/Default/ItemImages/AltItemShot/315x472/C84056s.jpg" alt="Shoes">
+            shoes
+        </div>
     </div>
 
     <script>
-		// JavaScript code for search and categories
-		const searchInput = document.querySelector('.search-bar');
-		const categorySelect = document.querySelector('.category-select');
-		const itemList = document.querySelector('#item-list');
-		const items = itemList.querySelectorAll('.item');
+        // JavaScript code for search and categories
+        const searchInput = document.querySelector('.search-bar');
+        const categorySelect = document.querySelector('.category-select');
+        const itemList = document.querySelector('#item-list');
+        const items = itemList.querySelectorAll('.item');
 
-		// Add event listeners to search bar and category select
-		searchInput.addEventListener('keyup', searchItems);
-		categorySelect.addEventListener('change', filterItems);
+        // Add event listeners to search bar and category select
+        searchInput.addEventListener('keyup', searchItems);
+        categorySelect.addEventListener('change', filterItems);
 
-		// Search function
-		function searchItems() {
-			const searchValue = searchInput.value.toLowerCase();
+        // Search function
 
-			for (let i = 0; i < items.length; i++) {
-				const itemText = items[i].textContent.toLowerCase();
+        function searchItems() {
+            const searchValue = searchInput.value.toLowerCase();
 
-				if (itemText.includes(searchValue)) {
-					items[i].style.display = '';
-				} else {
-					items[i].style.display = 'none';
-				}
-			}
-		}
+            for (let i = 0; i < items.length; i++) {
+                const itemText = items[i].textContent.toLowerCase();
 
-		// Filter function
-		function filterItems() {
-			const categoryValue = categorySelect.value;
-
-			for (let i = 0; i < items.length; i++) {
-				const itemCategory = items[i].classList.contains(categoryValue);
-
-				if (categoryValue === '' || itemCategory) {
-					items[i].style.display = '';
-                }else  items[i].style.display = 'none';
+                if (itemText.includes(searchValue)) {
+                    items[i].style.display = '';
+                } else {
+                    items[i].style.display = 'none';
+                }
             }
         }
-}
-        </script>
+
+        // Filter function
+        function filterItems() {
+            const categoryValue = categorySelect.value;
+
+            for (let i = 0; i < items.length; i++) {
+                const itemCategory = items[i].classList.contains(categoryValue);
+
+                if (categoryValue === '' || itemCategory) {
+                    items[i].style.display = '';
+                } else items[i].style.display = 'none';
+            }
+        }
+
+    </script>
 
 </body>
 </html>
