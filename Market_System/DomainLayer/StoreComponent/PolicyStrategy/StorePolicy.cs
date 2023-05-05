@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,21 +16,20 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 
         public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)
         {
-            List<ItemDTO> saledItems = new List<ItemDTO>();
-            foreach (var item in chosenProductsWithAttributes)
+            if (Validate(chosenProductsWithAttributes, ""))
             {
-                if (item.StoreID == this.SaledStoreID)
-                    if (Validate(chosenProductsWithAttributes))
+                List<ItemDTO> saledItems = new List<ItemDTO>();
+                foreach (var item in chosenProductsWithAttributes)
+                {
+                    if (item.StoreID == this.SaledStoreID)
                         item.SetPrice(item.Price - item.Price / 100 * this.SalePercentage);
-                saledItems.Add(item);
+                    saledItems.Add(item);
 
+                }
+                return saledItems;
             }
-            return saledItems;
-        }
-
-        public override Boolean Validate(List<ItemDTO> chosenProductsWithAttributes)
-        {
-            return this.SalePolicyFormula.Satisfies(chosenProductsWithAttributes);
+            else
+                return chosenProductsWithAttributes;
         }
     }
-}*/
+}

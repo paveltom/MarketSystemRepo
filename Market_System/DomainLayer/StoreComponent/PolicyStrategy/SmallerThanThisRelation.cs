@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
-    public abstract class SmallerThanThisRelation : Statement
+    public class SmallerThanThisRelation : Statement
     {
 
         public String FocusAttributeName { get; private set; }

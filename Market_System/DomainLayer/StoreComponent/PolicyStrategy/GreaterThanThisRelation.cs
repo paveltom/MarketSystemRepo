@@ -14,20 +14,20 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
         public String FocusAttributeName { get; private set; }
 
         public String FocusAttributeValue { get; private set; }
-        private bool userIndicatore = false;
+        private bool userIndicator = false;
 
         public GreaterThanThisRelation(string SmallerAttributeName, string SmallerAttributeValue, bool userAttribute)
         {
             FocusAttributeName = SmallerAttributeName;
             FocusAttributeValue = SmallerAttributeValue;
             if (userAttribute)
-                userIndicatore = true;
+                userIndicator = true;
         }
 
 
         public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes, Dictionary<string, string> userData)
         {
-            if (userIndicatore)
+            if (userIndicator)
                 return userData[FocusAttributeName].CompareTo(FocusAttributeValue) > 0;
             else
                 return choseProductsWithAttributes[0].GetStringValuesDict()[FocusAttributeName].CompareTo(FocusAttributeValue) > 0;

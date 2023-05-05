@@ -120,6 +120,94 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
         }
 
 
+        [TestMethod]
+        public void ValidateUserAllowedToPurchaseProductStrategyTestSuccess()
+        {
+            // Arrange            
+            this.testProduct0.SetSale(50);
+
+
+
+
+            List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO() };
+            double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity;
+            bool error = false;
+            Exception exc = null;
+
+            // Act
+            try
+            {
+                this.facade.Purchase("someUser", itemsToCalculate);
+            }
+            catch (Exception ex) { error = true; exc = ex; }
+            this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
+
+            // Assert
+            Assert.IsTrue(error);
+            Assert.AreEqual(this.testProduct0.Quantity, itemsToCalculate[0].GetQuantity());
+            Assert.AreEqual(exc.InnerException.Message, "Restrictions violated: Test strategy policy description.");
+        }
+
+
+
+
+        // ========================================= Formula as String Tests =========================================
+
+        [TestMethod]
+        public void AlcoholAgeStoreStrategySuccess()
+        {
+            // Arrange
+            facade.ChangeProductCategory(this.testStore.founderID, this.testProduct0.Product_ID, new Category("Alcohol"));
+            List<ItemDTO> itemsToPurchase = new List<ItemDTO>() { StoreRepo.GetInstance().GetProduct(this.testProduct0.Product_ID).GetProductDTO() };
+            string formula = "[   IfThen[ [Equal[ [Category] [Alcohol] ] ]  [GreaterThan[ [User.Age]  [18] ] ] ] ]";
+            Purchase_Strategy alcoholAgeGreaterThan18 = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
+            facade.AddStorePurchaseStrategy(this.testStore.founderID, this.testStore.Store_ID, alcoholAgeGreaterThan18);
+            bool error = false;
+
+            // Act
+            try
+            {
+                this.facade.Purchase("legitTestUser1", itemsToPurchase);
+            }
+            catch (Exception ex) { error = true;}
+            this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
+
+            // Assert
+            Assert.IsTrue(error);
+            Assert.AreEqual(this.testProduct0.Quantity, itemsToPurchase[0].GetQuantity());
+        }
+
+        [TestMethod]
+        public void QuantityLessThanStoreStrategySuccess()
+        {
+            // Arrange
+            facade.ChangeProductCategory(this.testStore.founderID, this.testProduct0.Product_ID, new Category("Alcohol"));
+            List<ItemDTO> itemsToPurchase = new List<ItemDTO>() { StoreRepo.GetInstance().GetProduct(this.testProduct0.Product_ID).GetProductDTO() };
+            string formula = "[AND[     [ IfThen[ [Equal[ [Name] [testProduct0Name] ] ]  [SmallerThan[ [Quantity]  [500] ] ] ] ]    [AtLeast[ [9] [Equal[[Category][testProduct0SomeCategory]]]]]    ]]";
+            Purchase_Strategy quantityAndCategory = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
+            facade.AddStorePurchaseStrategy(this.testStore.founderID, this.testStore.Store_ID, quantityAndCategory);
+            bool error = false;
+
+            // Act
+            try
+            {
+                this.facade.Purchase("legitTestUser1", itemsToPurchase);
+            }
+            catch (Exception ex) { error = true; }
+            this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
+
+            // Assert
+            Assert.IsTrue(error);
+            Assert.AreEqual(this.testProduct0.Quantity, itemsToPurchase[0].GetQuantity());
+        }
+
+
+
+
+
+
+
+
         // ========================================= END of Tests =========================================
         // ================================================================================================
 
@@ -134,11 +222,11 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             Statement storeIDStatement = new EqualRelation("StoreID", newStore.StoreID, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement);
+            Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, statement);
             List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
 
-            Statement userIDStatement1 = new EqualRelation("username", this.legitTestUser1, true);
-            Statement userIDStatement2 = new EqualRelation("username", this.legitTestUser2, true);
+            Statement userIDStatement1 = new EqualRelation("Username", this.legitTestUser1, true);
+            Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true);
             Statement[] usersFormula = new Statement[] { userIDStatement1, userIDStatement2};
             Statement logicOrFormula = new LogicOR(usersFormula);
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", logicOrFormula);

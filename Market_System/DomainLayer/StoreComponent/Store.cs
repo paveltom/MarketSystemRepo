@@ -317,9 +317,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     double productSalePrice = 0;
-                    //double storeSalePrice = 0;
                     int quantity = 0;
                     List<ItemDTO> saledProducts = new List<ItemDTO>(); 
+                    
+                    // Apply each Product Sale:
                     foreach (ItemDTO item in productsToCalculate)
                     {
                         productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item);
@@ -328,7 +329,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         quantity += item.GetQuantity();
                         ReleaseProduct(item.GetID());
                     }
-                    // storeSalePrice = productSalePrice;
+                    
+                    // Apply Store Policy:
                     foreach(Purchase_Policy p in this.storePolicies.Values)
                         saledProducts = p.ApplyPolicy(saledProducts);
                     return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price);
@@ -338,16 +340,20 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object PurchaseLock = new object();
-        public void Purchase(string userID, List<ItemDTO> productsToPurchase)
+        public void Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
         {
             lock (PurchaseLock)
             {
+                List<ItemDTO> productsToPurchase = productsToPurchaseFewInfo.Select(i => {
+                                                                                            ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
+                                                                                            ReleaseProduct(i.GetID());
+                                                                                            newItem.SetQuantity(i.GetQuantity());
+                                                                                            return newItem;                                                                                          
+                                                                                        }).ToList();
                 string initErrorMSG = "Cannot purchase: ";
                 String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
-
-                    bool validation = true;
                     foreach (Purchase_Strategy ps in this.storeStrategies.Values)
                     {
                         if (!ps.Validate(productsToPurchase, userID))

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DomainLayer.UserComponent;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -28,7 +30,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.StrategyID = stratID;
             this.StrategyName = stratName;
             this.Description = description;
-            this.StrategyFormula = GenerateFormula(formula) ;
+            this.StrategyFormula = StatementBuilder.GenerateFormula(formula) ;
         }
 
         public void SetName(string name)
@@ -41,6 +43,11 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Description = description;
         }
 
+        public void SetFormula(Statement formula)
+        {
+            this.StrategyFormula = formula;
+        }
+
         public Boolean Validate(List<ItemDTO> chosenProductsWithAttributes, string userID)
         {
             User currUser = UserFacade.GetInstance().getUser(userID);
@@ -48,103 +55,18 @@ namespace Market_System.DomainLayer.StoreComponent
             if (currUser != null)
                 rellevantUserPolicyData = new Dictionary<string, string>
                 {
-                    { "username", currUser.GetUsername() },
-                    { "address", currUser.get_Address() }
+                    { "Username", currUser.GetUsername() },
+                    { "Address", currUser.get_Address() },
+                    { "Age" , "17" }
                 };
             else
                 rellevantUserPolicyData = new Dictionary<string, string>
                 {
-                    { "username", userID },
-                    { "address", "" }
+                    { "Username", userID },
+                    { "Address", "" },
+                    { "Age" , "17" }
                 };
             return this.StrategyFormula.Satisfies(chosenProductsWithAttributes, rellevantUserPolicyData);
         }
-
-        // store strategy exmpl: ForAll[IfThen[[Equals[Category.<SomeCategory>]][GreaterThan.UserAge.<SomeAge>]]]
-        // ForAll[  -  implemented to every item that sent 
-        //      IfThen[
-        //          if:   [Equals[Category.<SomeCategory>]]  -  AttributeType, AttributeValue
-        //          then: [GreaterThan[UserAge.<SomeAge>]]  -  then
-        //            ]
-        //       ]
-
-        // ====================== Legend ======================
-        // * Statements:
-                // ForAll: ForAll[<Statement>]
-                // Any: Any[<Statement>]]
-                // IfThen: IfThen[[<Statement>][<Statement>]]
-                // XOR: XOR[[<Statement>][<Statement>]...]
-                // OR: OR[[<Statement>][<Statement>]...]
-                // AND: AND[[<Statement>][<Statement>]...]
-                // AtLeast: AtLeast[[<Quantity>][<Statement>]]
-                // AtMost: AtMost[[<StringQuantity>][<Statement>]]
-                // Equal: Equal[[<StringAttributeName>][<StringAttributeValue>]]
-                // SmallerThan: SmallerThan[[<StringAttributeName>][<StringAttributeValue>]]
-                // GreaterThan: GreaterThan[[<StringAttributeName>][<StringAttributeValue>]]
-
-        // * StringAttributeName:
-                // Product attribute: Category, StoreID, Quantity...
-                // User attribute: User.Age, User.Address...
-        // ===================================================
-        public Statement GenerateFormula(String formula) // [ <formula> ]
-        {
-            
-            String withoutBrakets = formula.Substring(1, formula.Length - 2);
-            int continueIndex = withoutBrakets.IndexOf('[');
-            // int endIndex = withoutBrakets.LastIndexOf("]");
-            string statementType = withoutBrakets.Substring(0, continueIndex);
-            string continueString = withoutBrakets.Substring(continueIndex, withoutBrakets.Length - continueIndex);
-            switch (statementType) {
-                case "ForAll": return new ForAllStatement(new Statement[] { GenerateFormula(continueString) });
-                
-                case "Any": return new AnyStatement(new Statement[] { GenerateFormula(continueString) });
-
-                case "IfThen":
-                    int index = GetIndexOfNextStatement(continueString);
-                    return new IfThenStatement(new Statement[] { GenerateFormula(continueString.Substring(0, index)), GenerateFormula(continueString.Substring(index)) });
-
-                case "XOR": return new LogicXOR(new Statement[] {. GenerateFormula(continueString) });
-
-                case "OR": return new LogicOR(new Statement[] {. GenerateFormula(continueString) });
-
-                case "AND": return new LogicAND(new Statement[] {. GenerateFormula(continueString) });
-
-                case "AtLeast": return new AtLeastStatement(new Statement[] {. GenerateFormula(continueString) });
-
-                case "AtMost": return new AtMostStatement(new Statement[] {. GenerateFormula(continueString) });
-
-                case "Equal": return new EqualRelation(new Statement[] {. GenerateFormula(continueString) });
-
-                case "SmallerThan": return new SmallerThanThisRelation(new Statement[] { .GenerateFormula(continueString) });
-
-                case "GreaterThan": return new GreaterThanThisRelation(new Statement[] {. GenerateFormula(continueString) });
-                
-            }
-              
-            throw new NotImplementedException();
-        }
-
-        public int GetIndexOfNextStatement(String formula) 
-        {
-            if (formula[0] == '[')
-            {
-                int equality = 0;
-                for (int i = 0; i < formula.Length; i++)
-                {
-                    if (formula[i] == '[')
-                        equality++;
-                    else if (formula[i] == ']')
-                        equality--;
-                    if (equality == 0 && i != formula.Length - 1)
-                        return i + 1;
-                }
-            }            
-            return 0;
-        }
-
-
-        //public Boolean Validate(String value);
-
-
     }
 }

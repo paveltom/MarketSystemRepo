@@ -83,6 +83,10 @@ namespace Market_System.DomainLayer
             this.Price = price;
         }
 
+        public int SetQuantity(int set_me)
+        {
+            return this.quantity = set_me;
+        }
 
         public int SetReservedQuantity(int set_me)
         {
@@ -91,18 +95,20 @@ namespace Market_System.DomainLayer
 
         public Dictionary<string, string> GetStringValuesDict()
         {
-            Dictionary<string, string> FieldValue = new Dictionary<string, string>();
-            FieldValue.Add("ItemID", this._itemId);
-            FieldValue.Add("ItemID", this.quantity.ToString());
-            FieldValue.Add("ItemID", this.reserved_quantity.ToString());
-            FieldValue.Add("ItemID", this.Price.ToString());
-            FieldValue.Add("ItemID", this.Name);
-            FieldValue.Add("ItemID", this.Description);
-            FieldValue.Add("ItemID", this.Rating.ToString());
-            FieldValue.Add("ItemID", this.Weight.ToString());
-            FieldValue.Add("ItemID", this.timesBought.ToString());
-            FieldValue.Add("ItemID", this.ProductCategory.CategoryName);
-            FieldValue.Add("ItemID", this.PurchaseAttributes.ToString());
+            Dictionary<string, string> FieldValue = new Dictionary<string, string>
+            {
+                { "ItemID", this._itemId },
+                { "Quantity", this.quantity.ToString() },
+                { "ReservedQuantity", this.reserved_quantity.ToString() },
+                { "Price", this.Price.ToString() },
+                { "Name", this.Name },
+                { "Description", this.Description },
+                { "Rating", this.Rating.ToString() },
+                { "Weight", this.Weight.ToString() },
+                { "TimesBought", this.timesBought.ToString() },
+                { "Category", this.ProductCategory.CategoryName },
+                { "Attributes", this.PurchaseAttributes.ToString() }
+            };
             return FieldValue;
         }
 

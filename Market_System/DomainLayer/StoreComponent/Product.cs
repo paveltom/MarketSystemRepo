@@ -352,9 +352,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                ItemDTO return_me= new ItemDTO(this.Product_ID, this.Quantity); // !!!! Change to send ItemDTO(this) after StoreRepo done!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                return_me.SetReservedQuantity(this.ReservedQuantity);
-                return return_me;
+                return new ItemDTO(this);
             }
             catch (Exception e) { throw e; }
         }
