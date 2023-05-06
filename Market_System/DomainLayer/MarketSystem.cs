@@ -239,6 +239,11 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal string getusername(string session_id)
+        {
+            return userFacade.get_username_from_user_id(get_userid_from_session_id(session_id));
+        }
+
         public void Reopen_Store(string sessionID, string storeID)
         {
             try
@@ -884,10 +889,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Check_Out(string username,string credit_card_details)
+        public string Check_Out(string session_id,string credit_card_details)
         {
             try
             {
+                string user_id = get_userid_from_session_id(session_id);
+                string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;

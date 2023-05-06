@@ -41,6 +41,7 @@ namespace Market_System
                 change_password_button.Visible = false;
                 open_new_store_button.Visible = false;
                 manage_store_button.Visible = false;
+                admin_spec_ops_button.Visible = false;
                 Label1.Text = "";
             }
             else
@@ -88,6 +89,10 @@ namespace Market_System
             {
                 notification_messages.Text = "you have a new message!";
             }
+            if (((Service_Controller)Session["service_controller"]).CheckIfAdmin((string)Session["username"]).Value.Equals("The user is an admin"))
+            {
+                admin_spec_ops_button.Visible = true;
+            }
 
 
 
@@ -127,7 +132,12 @@ namespace Market_System
 
         }
 
-        
+        public void spec_ops_click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("/Presentaion_Layer/Admin_operations_page.aspx");
+
+        }
 
 
 

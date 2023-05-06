@@ -13,7 +13,7 @@ namespace Market_System.ServiceLayer
 {
     interface Service_Layer_Interface
     {
-        public Response<string> check_out(string username,string credit_card_details); //I.3 מערכת
+        public Response<string> check_out(string credit_card_details); //I.3 מערכת
         public Response<string> check_delivery(string address); //I.4 מערכת
         public Response<string> login_member(string username,string pass); // 1.4
        // public Response login_guest(); //1.1
