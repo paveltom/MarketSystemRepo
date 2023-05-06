@@ -1357,3 +1357,4 @@ Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary.
 Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
 Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
 Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
