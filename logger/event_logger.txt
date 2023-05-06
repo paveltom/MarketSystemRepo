@@ -1138,3 +1138,24 @@ Saturday, 6 May 2023 : guest : guest176785162 has logged in
 Saturday, 6 May 2023 : guest : guest884974048 has logged in
 Saturday, 6 May 2023 : amihai has registered!
 Saturday, 6 May 2023 : opening store with id: 255187175 has failed
+Saturday, 6 May 2023 : guest : guest790565464 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 463378312 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : removed owner with username : admin from the store with id: 463378312
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : 1637253319Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1104598858 has logged in
+Saturday, 6 May 2023 : user with session ID : 1104598858 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1104598858 got his Messages
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 790565464
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 790565464
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 790565464
+Saturday, 6 May 2023 : 790565464Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1637253319 has logged in
+Saturday, 6 May 2023 : user with session ID : 1637253319 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1637253319 got his Messages
+Saturday, 6 May 2023 : 1637253319Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest463378312 has logged in
