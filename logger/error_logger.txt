@@ -937,6 +937,7 @@ Thursday, 4 May 2023 : error!!: The given key was not present in the dictionary.
 יום שישי 05 מאי 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -1064,6 +1065,7 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
 Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1088,22 +1090,23 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
+יום שישי 05 מאי 2023 : error!!: a user with same name exists, please change name!in register
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: Cannot release more tha reserved. in remove_product_from_basket
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1117,10 +1120,12 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1130,7 +1135,6 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1139,6 +1143,7 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1152,11 +1157,13 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1166,7 +1173,7 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_purchase_history_from_store
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1176,17 +1183,12 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_purchase_history_from_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_managers_of_store
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_managers_of_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון.in get_purchase_history_from_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1194,53 +1196,18 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_purchase_history_from_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: store does not existsin get_owners_of_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון.in get_purchase_history_from_store
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: No such product in this store. in remove_product_from_store
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: No such product in this store. in remove_product_from_store
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 05 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -1256,147 +1223,7 @@ Friday, 5 May 2023 : error!!: The given key was not present in the dictionary. i
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
-Saturday, 6 May 2023 : error!!: a user with same name exists, please change name!in register
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
-Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
-Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
-Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in ths store in Remove_Store_Owner
-שבת 06 מאי 2023 : error!!: store does not exists in ChangeProductName
-שבת 06 מאי 2023 : error!!: Only store founder or Market Manager can reopen a store OR store isn't closed.in Reopen_Store
-שבת 06 מאי 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin
-שבת 06 מאי 2023 : error!!: Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in) in AddNewAdmin
-שבת 06 מאי 2023 : error!!: invalid product ID, please type in valid product ID in comment_on_product
-שבת 06 מאי 2023 : error!!: פריט עם מפתח זהה נוסף כבר.in register
-שבת 06 מאי 2023 : error!!: You're already logged-out in log_out
-שבת 06 מאי 2023 : error!!: store does not existsin close_store_temporary
-שבת 06 מאי 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
-שבת 06 מאי 2023 : error!!: You're already logged-out in log_out
-שבת 06 מאי 2023 : error!!: Only store founder or Market Manager can reopen a store OR store isn't closed.in Reopen_Store
-שבת 06 מאי 2023 : error!!: Cannot release more tha reserved. in remove_product_from_basket
-שבת 06 מאי 2023 : error!!: Cannot release more tha reserved. in remove_product_from_basket
-שבת 06 מאי 2023 : error!!: This user is already an admin! in AddNewAdmin
-שבת 06 מאי 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in GetMemberInfo
-שבת 06 מאי 2023 : error!!: a user with same name exists, please change name!in register
-שבת 06 מאי 2023 : error!!: store does not existsin Reopen_Store
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages

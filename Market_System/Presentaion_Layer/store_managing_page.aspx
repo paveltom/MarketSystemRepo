@@ -55,15 +55,25 @@
        <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label9" runat="server" Text="add employe permission"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="add_product_button4" runat="server" Text="GO!" />
-&nbsp;</div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type userName of employee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+        <asp:TextBox ID="add_employee_permissionT" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;add permission: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="add_permission" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <asp:Button ID="add_employee_permission" runat="server" Text="Add" OnClick="add_employee_permission_Click" Width="42px" />
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Add_Permission_Message" runat="server"  Font-Size="Medium" ForeColor="Red"></asp:Label>
+    </div>
        <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label10" runat="server" Text="remove employe permission"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="add_product_button5" runat="server" Text="GO!" />
-&nbsp;</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type userName of employee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="remove_username" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;remove permission:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="remove_employee_permission" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        <asp:Button ID="remove_permission_button5" runat="server" Text="remove" OnClick="remove_permission_Click" />
+&nbsp;&nbsp;&nbsp;&nbsp;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Remove_Permission_Message" runat="server" Font-Size="Medium" ForeColor="Red" ></asp:Label>
+        </div>
        <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label11" runat="server" Text="close store temporary"></asp:Label>
