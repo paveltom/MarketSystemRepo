@@ -1598,3 +1598,16 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 שבת 06 מאי 2023 : 1835343955 added product with id: 2021716946_2025080076 to basket
 שבת 06 מאי 2023 : 1835343955 removed product with id: 2021716946_2025080076 from the basket
 
+שבת 06 מאי 2023 : guest : guest153833446 has logged in
+שבת 06 מאי 2023 : 153833446 closed a store with the ID: 153833446
+שבת 06 מאי 2023 : guest : guest1462420918 has logged in
+שבת 06 מאי 2023 : guest : guest1921579260 has logged in
+שבת 06 מאי 2023 : bayan has registered!
+שבת 06 מאי 2023 : 1921579260Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest500541145 has logged in
+שבת 06 מאי 2023 : guest : guest1320293758 has logged in
+שבת 06 מאי 2023 : guest : guest1786555791 has logged in
+שבת 06 מאי 2023 : guest : guest874732930 has logged in
+שבת 06 מאי 2023 : guest : guest1254002990 has logged in
+שבת 06 מאי 2023 : guest : guest42291802 has logged in
+שבת 06 מאי 2023 : guest : guest369194537 has logged in

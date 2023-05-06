@@ -14,7 +14,6 @@
     </div>
     <div></div>
     <div>
-        <asp:Label ID="Label3" runat="server" Text="show fuckers"></asp:Label>
     </div>
     <div style="text-align: center">
         <asp:Label ID="Label5" runat="server" Text="show member info"></asp:Label>
