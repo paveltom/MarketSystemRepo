@@ -205,9 +205,16 @@ namespace Market_System.DomainLayer
 
         public string get_userid_from_session_id(string session_id)
         {
+            try
+            {
+                string user_id = userFacade.get_userID_from_session(session_id);
+                return user_id;
+            }
 
-            return userFacade.get_userID_from_session(session_id);
-
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Login(string username, string password) //for a registered Member
@@ -1200,10 +1207,10 @@ namespace Market_System.DomainLayer
                     //Add to Employees as well:
                     user_ID = userFacade.get_userID_from_session(sessionID);
                 }
-                employeeRepo.addNewAdmin(user_ID);
+                string other_UserID = userFacade.get_user_id_from_username(Other_username);
+                employeeRepo.addNewAdmin(other_UserID);
 
                 //Notify the new admin
-                string other_UserID = userFacade.get_user_id_from_username(Other_username);
                 var message = "You've been promoted to a system administrator";
                 notificationFacade.AddNewMessage(other_UserID, userFacade.get_username_from_user_id(user_ID), message);
             }
@@ -1308,6 +1315,35 @@ namespace Market_System.DomainLayer
         private void sendMessageToUser(string message, string userID, string from)
         {
             notificationFacade.AddNewMessage(userID, from, message);
+        }
+
+   
+        /// <returns>empty string if 'userid not a member'.
+        /// else, returns the member adress</returns>
+        internal string getUserAdress(string userid)
+        {
+            try
+            {
+                return userFacade.getUserAdress(userid);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal string calculatePrice(string session_id)
+        {
+            try
+            {
+                string userId = get_userid_from_session_id(session_id);
+                Cart cart = get_cart_of_userID(userId);
+                return storeFacade.CalculatePrice(cart.convert_to_item_DTO()).ToString();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

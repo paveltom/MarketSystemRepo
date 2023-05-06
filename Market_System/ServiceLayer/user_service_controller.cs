@@ -358,5 +358,18 @@ namespace Market_System.ServiceLayer
                 throw e;
             }
         }
+
+        internal string getAdressOrEmpty(string session_id)
+        {
+            try
+            {
+                string userid = market_System.get_userid_from_session_id(session_id);
+                return market_System.getUserAdress(userid);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@
             <asp:DropDownList ID="ddl_store_id" OnSelectedIndexChanged="show_basket_of_selected_store_id" runat="server" AutoPostBack="True">
                 <asp:ListItem Text="Please select a store" Value="nothing_to_show" />
             </asp:DropDownList>
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="error_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
         </div>
@@ -18,7 +19,9 @@
         <div>
             <asp:Label ID="cart_empty_label" runat="server" Text="Cart is empty" Font-Size="Medium" ForeColor="Red" Visible="false"></asp:Label>
         </div>
+
     </div>
+
 
     <div style="margin-top: 50px; text-align: center;">
         <asp:DataList ID="products_list" runat="server" RepeatColumns="3" ItemStyle-CssClass="product-item">
@@ -26,5 +29,6 @@
                 <asp:Label Text="<%#Container.DataItem %>" runat="server" />
             </ItemTemplate>
         </asp:DataList>
+
     </div>
 </asp:Content>

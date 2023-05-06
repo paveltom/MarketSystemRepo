@@ -51,7 +51,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+   
         <div class="container">
             <!-- Search bar -->
             <asp:TextBox ID="searchBar" CssClass="search-bar" runat="server" placeholder="Search..." OnTextChanged="searchItems" AutoPostBack="true"></asp:TextBox>
@@ -134,7 +134,7 @@
         }
 
     </script>
-        </form>
+        
 </body>
 </html>
     </asp:Content>
