@@ -171,7 +171,7 @@ namespace Market_System.Presentaion_Layer
             }
             //yotam
         }
-            }
+            
             
         protected void add_employee_permission_Click(object sender, EventArgs e)
         {
@@ -191,7 +191,7 @@ namespace Market_System.Presentaion_Layer
                 Add_Permission_Message.Text = ok.Value;
             }
 
-            }
+        }
 
         protected void remove_permission_Click(object sender, EventArgs e)
         {
