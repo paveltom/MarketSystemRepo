@@ -465,12 +465,14 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void purchase(string session_id,List<ItemDTO> itemDTOs)
+        public void purchase(string session_id)
         {
             try
             {
+               
                 string userID = userFacade.get_userID_from_session(session_id);
-                storeFacade.Purchase(userID, itemDTOs);
+                Cart cart = get_cart_of_userID(userID);
+                storeFacade.Purchase(userID, cart.convert_to_item_DTO());
             }
 
             catch (Exception e)
@@ -861,13 +863,13 @@ namespace Market_System.DomainLayer
 
 
 
-        public void save_purhcase_in_user(string session_id,Cart cart)
+        public void save_purhcase_in_user(string session_id)
         {
             string user_id = get_userid_from_session_id(session_id);
             try
             {
 
-             
+                Cart cart = get_cart_of_userID(user_id);
                 userFacade.save_purhcase_in_user(user_id, cart);
                 userFacade.reset_cart(session_id);
 
@@ -882,11 +884,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Check_Out(string username,string credit_card_details,Cart cart)
+        public string Check_Out(string username,string credit_card_details)
         {
             try
             {
-                
+                Cart cart = userFacade.get_cart(username);
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
