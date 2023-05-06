@@ -56,7 +56,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             foreach(Employee emp in employeesDatabase)
             {
-                if (emp.UserID.Equals(userID))
+                if (emp.UserID.Equals(userID) && emp.Role.Equals(Role.Admin))
                 {
                     throw new Exception("This user is already an admin!");
                 }

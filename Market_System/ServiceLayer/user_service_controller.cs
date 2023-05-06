@@ -232,11 +232,12 @@ namespace Market_System.ServiceLayer
         }
         
         
-        public string Check_Out(string username,string credit_card)
+        public string Check_Out(string session_id,string credit_card)
         {
             try
             {
-                return market_System.Check_Out(username, credit_card);
+
+                return market_System.Check_Out(session_id, credit_card);
             }
 
             catch (Exception e)
@@ -322,6 +323,11 @@ namespace Market_System.ServiceLayer
             {
                 throw e;
             }
+        }
+
+        internal string getusername(string session_id)
+        {
+            return market_System.getusername(session_id);
         }
 
         internal bool HasNewMessages(string session_id)

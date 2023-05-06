@@ -925,7 +925,27 @@ namespace Market_System.Tests.SeviceLevelTests
 
             //tearDown:
             oneThreadCleanup();
-        } 
+        }
+
+        [TestMethod]
+        public void Notification_AddNewAdmin()
+        {
+            //Setup: 
+            oneThreadSetUp();
+            Response<string> responseAdminLogin = service.login_member("admin", "admin");
+
+            //Action:
+            Response<string> responseRegisterNewMember = service.register("bobinka", "1234567", "addrr123");
+            Response<string> responseAddNewAdmin = service.AddNewAdmin("bobinka");
+            service.log_out();
+            service.login_member("bobinka", "1234567");
+            bool response = service.HasNewMessages();
+            //Result:
+            Assert.AreEqual(true, response);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
 
 
 

@@ -1097,6 +1097,69 @@ Friday, 5 May 2023 : guest : guest1003602199 has logged in
 שבת 06 מאי 2023 : guest : guest1803618738 has logged in
 שבת 06 מאי 2023 : guest : guest1343723443 has logged in
 שבת 06 מאי 2023 : getting store with id: 1343723443 was done successfully 
+Saturday, 6 May 2023 : guest : guest886599475 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 1420045120 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 1420045120
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : Added the product:1420045120_1055638977to store: 1420045120 has been done successfully
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : 229759276Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest229759276 has logged in
+Saturday, 6 May 2023 : user with session ID : 652667007 got his Messages
+Saturday, 6 May 2023 : 886599475 added product with id: 1420045120_1055638977 to basket
+Saturday, 6 May 2023 : 886599475 added product with id: 886599475_229759276 to basket
+Saturday, 6 May 2023 : 886599475 added product with id: 1420045120_1055638977 to basket
+Saturday, 6 May 2023 : 886599475 removed product with id: 1420045120_1055638977 from the basket
+Saturday, 6 May 2023 : user with session ID : 652667007 got his Messages
+Saturday, 6 May 2023 : guest : guest1723299131 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 1093401897 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 1093401897
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 1093401897
+Saturday, 6 May 2023 : 288003730Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest288003730 has logged in
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1093401897
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1093401897
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1723299131
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1723299131
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : 1723299131Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1093401897 has logged in
+Saturday, 6 May 2023 : user with session ID : 288003730 got his Messages
+Saturday, 6 May 2023 : user with session ID : 288003730 got his Messages
+Saturday, 6 May 2023 : 288003730Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest176785162 has logged in
+Saturday, 6 May 2023 : guest : guest884974048 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 255187175 has failed
+Saturday, 6 May 2023 : guest : guest790565464 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 463378312 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : removed owner with username : admin from the store with id: 463378312
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : 1637253319Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1104598858 has logged in
+Saturday, 6 May 2023 : user with session ID : 1104598858 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1104598858 got his Messages
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 790565464
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 790565464
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 790565464
+Saturday, 6 May 2023 : 790565464Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1637253319 has logged in
+Saturday, 6 May 2023 : user with session ID : 1637253319 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1637253319 got his Messages
+Saturday, 6 May 2023 : 1637253319Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest463378312 has logged in
+Saturday, 6 May 2023 : guest : guest2113634211 has logged in
 שבת 06 מאי 2023 : guest : guest1651066655 has logged in
 שבת 06 מאי 2023 : guest : guest521996141 has logged in
 שבת 06 מאי 2023 : getting store with id: 521996141 was done successfully 
@@ -1260,39 +1323,45 @@ Friday, 5 May 2023 : guest : guest1003602199 has logged in
 שבת 06 מאי 2023 : Added the product:44003311_1497314851to store: 44003311 has been done successfully
 שבת 06 מאי 2023 : a product name change for product id: 44003311_1497314851
 שבת 06 מאי 2023 : guest : guest1126447060 has logged in
-Saturday, May 6, 2023 : guest : guest1833005521 has logged in
-Saturday, May 6, 2023 : member has registered!
-Saturday, May 6, 2023 : guest : guest592044630 has logged in
-Saturday, May 6, 2023 : guest : guest772471116 has logged in
-Saturday, May 6, 2023 : admin1 has registered!
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : 30593446 added product with id: 772471116_724776194 to basket
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : checkout completed by : admin1
-Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
-Saturday, May 6, 2023 : 30593446Logged-out succesfully
-Saturday, May 6, 2023 : guest : guest724776194 has logged in
-Saturday, May 6, 2023 : guest : guest1430421247 has logged in
-Saturday, May 6, 2023 : guest : guest572769548 has logged in
-Saturday, May 6, 2023 : guest : guest2003780101 has logged in
-Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaaa succefully done.
-Saturday, May 6, 2023 : guest : guest612304080 has logged in
-Saturday, May 6, 2023 : checking deilvery for address: gfh succefully done.
-Saturday, May 6, 2023 : guest : guest494919969 has logged in
-Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
-Saturday, May 6, 2023 : guest : guest1155947919 has logged in
-Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaa succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaa succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaa succefully done.
-Saturday, May 6, 2023 : guest : guest1125708173 has logged in
-Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
-Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+שבת 06 מאי 2023 : guest : guest1681104385 has logged in
+שבת 06 מאי 2023 : guest : guest1944532785 has logged in
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+שבת 06 מאי 2023 : a product name change for product id: 1944532785_1067061142
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+
+Saturday, 6 May 2023 : guest : guest1758595227 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1758595227
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1758595227
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 1758595227
+Saturday, 6 May 2023 : 1758595227Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1528326493 has logged in
+Saturday, 6 May 2023 : user with session ID : 1528326493 got his Messages
+Saturday, 6 May 2023 : guest : guest122844136 has logged in
+Saturday, 6 May 2023 : 122844136Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1662434164 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : getting store with id: 122844136 was done successfully 
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 122844136
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : 122844136Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest457616903 has logged in
+Saturday, 6 May 2023 : user with session ID : 457616903 got his Messages
+Saturday, 6 May 2023 : guest : guest1587233834 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 606772450 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : removed owner with username : admin from the store with id: 606772450
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : 2063850264Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1496927756 has logged in
+Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
+Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
+Saturday, 6 May 2023 : 1938605725Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest957509332 has logged in
+

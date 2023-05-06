@@ -73,7 +73,6 @@ namespace Market_System.Presentaion_Layer
 
         protected void remove_product_button_Click(object sender, EventArgs e)
         {
-
             if (product_to_remove_id.Text.Equals(""))
             {
                 remove_message.Text = "please type in the ID of the product that you wish to remove.";
@@ -92,8 +91,231 @@ namespace Market_System.Presentaion_Layer
                     remove_message.ForeColor = System.Drawing.Color.Green;
                 }
             }
-          
         }
+        protected void edit_dimensions_click(object sender, EventArgs e)
+        {
+            if (edit_dimensions_txt.Text.Equals("")|| edit_dimensions_txt.Text.Equals("new dimensions") || product_ID_txt.Text.Equals(""))
+            {
+                edit_dimensions_message.Text = "please type in the new dimensions.";
+            }
+            else
+            {
+                
+                Double[] why_the_fuck_is_this_not_string_array= Array.ConvertAll(edit_dimensions_txt.Text.Split('_'), Double.Parse);
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductDimenssions(product_ID_txt.Text, why_the_fuck_is_this_not_string_array);
+                if (response.ErrorOccured)
+                {
+                    edit_dimensions_message.Text = response.ErrorMessage;
+                    edit_dimensions_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_dimensions_message.Text = response.Value;
+                    edit_dimensions_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+        private void reload_products()
+        {
+            Response<List<string>> products = ((Service_Controller)Session["service_controller"]).get_products_from_shop_as_list_of_string(store_id);
+            if (products.Value.Count > 0)
+            {
+                products_list.DataSource = products.Value;
+                products_list.DataBind();
+            }
+        }
+
+        protected void edit_name_click(object sender, EventArgs e)
+        {
+            if (edit_name_txt.Text.Equals("") || edit_name_txt.Text.Equals("new name")|| product_ID_txt.Text.Equals(""))
+            {
+                edit_name_message.Text = "please type in the new name.";
+            }
+            else
+            {
+
+
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductName(product_ID_txt.Text, edit_name_txt.Text);
+                if (response.ErrorOccured)
+                {
+                    edit_name_message.Text = response.ErrorMessage;
+                    edit_name_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_name_message.Text = response.Value;
+                    edit_name_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+        protected void edit_description_click(object sender, EventArgs e)
+        {
+            if (edit_description_txt.Text.Equals("") || edit_description_txt.Text.Equals("new description") || product_ID_txt.Text.Equals(""))
+            {
+                edit_description_message.Text = "please type in the new description.";
+            }
+            else
+            {
+
+
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductDescription(product_ID_txt.Text, edit_description_txt.Text);
+                if (response.ErrorOccured)
+                {
+                    edit_description_message.Text = response.ErrorMessage;
+                    edit_description_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_description_message.Text = response.Value;
+                    edit_description_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+        protected void edit_price_click(object sender, EventArgs e)
+        {
+            if (edit_price_txt.Text.Equals("") || edit_price_txt.Text.Equals("new price") || product_ID_txt.Text.Equals(""))
+            {
+                edit_description_message.Text = "please type in the new price.";
+            }
+            else
+            {
+
+                
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductPrice(product_ID_txt.Text, double.Parse( edit_price_txt.Text));
+                if (response.ErrorOccured)
+                {
+                    edit_price_message.Text = response.ErrorMessage;
+                    edit_price_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_price_message.Text = response.Value;
+                    edit_price_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+
+
+        protected void edit_quantity_click(object sender, EventArgs e)
+        {
+            if (edit_quantity_txt.Text.Equals("") || edit_quantity_txt.Text.Equals("new quantity") || edit_quantity_txt.Text.Equals(""))
+            {
+                edit_quantity_message.Text = "please type in the new quantity.";
+            }
+            else
+            {
+
+
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductQuantity(product_ID_txt.Text,int.Parse(edit_quantity_txt.Text));
+                if (response.ErrorOccured)
+                {
+                    edit_quantity_message.Text = response.ErrorMessage;
+                    edit_quantity_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_quantity_message.Text = response.Value;
+                    edit_quantity_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+
+
+
+
+
+        protected void edit_wieght_click(object sender, EventArgs e)
+        {
+            if (edit_wieght_txt.Text.Equals("") || edit_price_txt.Text.Equals("new wieght") || product_ID_txt.Text.Equals(""))
+            {
+                edit_wieght_message.Text = "please type in the new wieght.";
+            }
+            else
+            {
+
+
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductWeight(product_ID_txt.Text, double.Parse(edit_wieght_txt.Text));
+                if (response.ErrorOccured)
+                {
+                    edit_wieght_message.Text = response.ErrorMessage;
+                    edit_wieght_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_wieght_message.Text = response.Value;
+                    edit_wieght_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+
+        protected void edit_sale_click(object sender, EventArgs e)
+        {
+            if (edit_sale_txt.Text.Equals("") || edit_sale_txt.Text.Equals("new sale") || product_ID_txt.Text.Equals(""))
+            {
+                edit_sale_message.Text = "please type in the new sale.";
+            }
+            else
+            {
+
+
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductSale(product_ID_txt.Text, double.Parse(edit_sale_txt.Text));
+                if (response.ErrorOccured)
+                {
+                    edit_sale_message.Text = response.ErrorMessage;
+                    edit_sale_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_sale_message.Text = response.Value;
+                    edit_sale_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+                }
+            }
+        }
+
+
+
+
+
+        protected void edit_category_click(object sender, EventArgs e)
+        {
+            if (edit_category_txt.Text.Equals("") || edit_category_txt.Text.Equals("new category") || product_ID_txt.Text.Equals(""))
+            {
+                edit_category_message.Text = "please type in the new category.";
+            }
+            else
+            {
+
+
+                Response<string> response = ((Service_Controller)Session["service_controller"]).ChangeProductCategory(product_ID_txt.Text, edit_category_txt.Text);
+                if (response.ErrorOccured)
+                {
+                    edit_category_message.Text = response.ErrorMessage;
+                    edit_category_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    edit_category_message.Text = response.Value;
+                    edit_category_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+
+                }
+            }
+        }
+
+      
     }
     
 }

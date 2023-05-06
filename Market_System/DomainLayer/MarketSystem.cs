@@ -246,6 +246,11 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal string getusername(string session_id)
+        {
+            return userFacade.get_username_from_user_id(get_userid_from_session_id(session_id));
+        }
+
         public void Reopen_Store(string sessionID, string storeID)
         {
             try
@@ -891,10 +896,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Check_Out(string username,string credit_card_details)
+        public string Check_Out(string session_id,string credit_card_details)
         {
             try
             {
+                string user_id = get_userid_from_session_id(session_id);
+                string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
@@ -1190,6 +1197,11 @@ namespace Market_System.DomainLayer
                 //Add to Employees as well:
                 string user_ID = userFacade.get_userID_from_session(sessionID);
                 employeeRepo.addNewAdmin(user_ID);
+
+                //Notify the new admin
+                string other_UserID = userFacade.get_user_id_from_username(Other_username);
+                var message = "You've been promoted to a system administrator";
+                notificationFacade.AddNewMessage(other_UserID, userFacade.get_username_from_user_id(user_ID), message);
             }
             catch(Exception e)
             {
