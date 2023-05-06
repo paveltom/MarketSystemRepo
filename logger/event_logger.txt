@@ -1330,3 +1330,36 @@ Saturday, 6 May 2023 : guest : guest2113634211 has logged in
 שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
 שבת 06 מאי 2023 : a product name change for product id: 1944532785_1067061142
 שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+Saturday, 6 May 2023 : guest : guest1758595227 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1758595227
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1758595227
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 1758595227
+Saturday, 6 May 2023 : 1758595227Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1528326493 has logged in
+Saturday, 6 May 2023 : user with session ID : 1528326493 got his Messages
+Saturday, 6 May 2023 : guest : guest122844136 has logged in
+Saturday, 6 May 2023 : 122844136Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1662434164 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : getting store with id: 122844136 was done successfully 
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 122844136
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : 122844136Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest457616903 has logged in
+Saturday, 6 May 2023 : user with session ID : 457616903 got his Messages
+Saturday, 6 May 2023 : guest : guest1587233834 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 606772450 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : removed owner with username : admin from the store with id: 606772450
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : 2063850264Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1496927756 has logged in
+Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
+Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
+Saturday, 6 May 2023 : 1938605725Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest957509332 has logged in
