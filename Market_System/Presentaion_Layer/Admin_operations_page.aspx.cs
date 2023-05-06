@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Market_System.Presentaion_Layer
 {
-    public partial class products_page : System.Web.UI.Page
+    public partial class Admin_operations_page : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

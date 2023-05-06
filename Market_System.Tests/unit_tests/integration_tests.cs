@@ -212,10 +212,10 @@ namespace Market_System.Tests.unit_tests
                 user_id = ms.get_userid_from_session_id(session_id);
                 ms.ReserveProduct(new ItemDTO(item_dto_1.GetID(), 10));
                 ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
-                ms.Check_Out("buyer", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
+                ms.Check_Out(session_id, "5998-5858-7161-2561");
                 Cart cart = ms.get_cart_of_userID(user_id);
                 ItemDTO bought_item_1 = cart.convert_to_item_DTO()[0];
-                ms.purchase(session_id, cart.convert_to_item_DTO());
+                ms.purchase(session_id);
                 ms.Logout(user_id);
 
                 
@@ -228,9 +228,9 @@ namespace Market_System.Tests.unit_tests
                 user_id = ms.get_userid_from_session_id(session_id);
                 ms.ReserveProduct(new ItemDTO(item_dto_2.GetID(), 5));
                 ms.Add_Product_To_basket(item_dto_2.GetID(), session_id, "5");
-                ms.Check_Out("buyer2", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
+                ms.Check_Out(session_id, "5998-5858-7161-2561");
                 Cart cart_2 = ms.get_cart_of_userID(user_id);
-                ms.purchase(session_id, cart_2.convert_to_item_DTO());
+                ms.purchase(session_id);
                 ItemDTO bought_item_2 = cart_2.convert_to_item_DTO()[0];
                 ms.Logout(user_id);
                 ms.Login("store_owner", "p@ssvv0rcl");
@@ -276,10 +276,10 @@ namespace Market_System.Tests.unit_tests
                 ms.ReserveProduct(new ItemDTO(item_dto_2.GetID(), 5));
                 ms.Add_Product_To_basket(item_dto_2.GetID(), session_id, "5");
                 Cart cart = ms.get_cart_of_userID(user_id);
-                ms.Check_Out("buyer", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
+                ms.Check_Out(session_id, "5998-5858-7161-2561");
                
-                ms.purchase(session_id, cart.convert_to_item_DTO());
-                ms.save_purhcase_in_user(session_id, cart);
+                ms.purchase(session_id);
+                ms.save_purhcase_in_user(session_id);
                 List<PurchaseHistoryObj> history= ms.get_purchase_history_of_a_member(session_id);
                 ItemDTO bought_item_1 = cart.convert_to_item_DTO()[0];
                 ItemDTO bought_item_2 = cart.convert_to_item_DTO()[1];
@@ -328,10 +328,10 @@ namespace Market_System.Tests.unit_tests
                 ms.ReserveProduct(new ItemDTO(item_dto_1.GetID(), 10));
                 ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
                 Cart cart = ms.get_cart_of_userID(user_id);
-                ms.Check_Out("buyer", "5998-5858-7161-2561", ms.get_cart_of_userID(user_id));
+                ms.Check_Out(session_id,"5998-5858-7161-2561");
 
-                ms.purchase(session_id, cart.convert_to_item_DTO());
-                ms.save_purhcase_in_user(session_id, cart);
+                ms.purchase(session_id);
+                ms.save_purhcase_in_user(session_id);
                 Cart cart_after_purchase = ms.get_cart_of_userID(user_id);
 
                 Assert.IsTrue(cart_after_purchase.gett_all_baskets().Count==0);
@@ -355,7 +355,7 @@ namespace Market_System.Tests.unit_tests
                 ms.link_user_with_session("store_owner", "random_shit");
                 string session_id = ms.get_session_id_from_username("store_owner");
                 StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
-                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "dog_shit", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "dog_products" });
                 string user_id = ms.get_userid_from_session_id(session_id);
                 ms.Logout(user_id);
                 ms.register("searcher", "p@ssvv0rcl999999", "shakuras");
@@ -363,7 +363,7 @@ namespace Market_System.Tests.unit_tests
                 ms.link_user_with_session("searcher", "random_shit69");
                 session_id = ms.get_session_id_from_username("searcher");
                 user_id = ms.get_userid_from_session_id(session_id);
-                List<ItemDTO> search_result = ms.SearchProductByCategory("shoes");
+                List<ItemDTO> search_result = ms.SearchProductByCategory("dog_products");
 
                 List<ItemDTO> search_result_none = ms.SearchProductByName("drinks");
 
@@ -393,7 +393,7 @@ namespace Market_System.Tests.unit_tests
                 ms.link_user_with_session("store_owner", "random_shit");
                 string session_id = ms.get_session_id_from_username("store_owner");
                 StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
-                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "dog_shit", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
                 string user_id = ms.get_userid_from_session_id(session_id);
                 ms.Logout(user_id);
                 ms.register("searcher", "p@ssvv0rcl999999", "shakuras");
@@ -401,7 +401,7 @@ namespace Market_System.Tests.unit_tests
                 ms.link_user_with_session("searcher", "random_shit69");
                 session_id = ms.get_session_id_from_username("searcher");
                 user_id = ms.get_userid_from_session_id(session_id);
-                List<ItemDTO> search_result = ms.SearchProductByKeyword("bo");
+                List<ItemDTO> search_result = ms.SearchProductByKeyword("do");
                 List<ItemDTO> search_result_none = ms.SearchProductByKeyword("shir");
 
 
@@ -430,7 +430,7 @@ namespace Market_System.Tests.unit_tests
                 ms.link_user_with_session("store_owner", "random_shit");
                 string session_id = ms.get_session_id_from_username("store_owner");
                 StoreDTO store_dto = ms.Add_New_Store(session_id, new List<string> { "store_123" });
-                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                ItemDTO item_dto_1 = ms.Add_Product_To_Store(store_dto.StoreID, session_id, new List<string> { "dog_shit", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
                 string user_id = ms.get_userid_from_session_id(session_id);
                 ms.Logout(user_id);
                 ms.register("searcher", "p@ssvv0rcl999999", "shakuras");
@@ -438,7 +438,7 @@ namespace Market_System.Tests.unit_tests
                 ms.link_user_with_session("searcher", "random_shit69");
                 session_id = ms.get_session_id_from_username("searcher");
                 user_id = ms.get_userid_from_session_id(session_id);
-                List<ItemDTO> search_result = ms.SearchProductByName("boots");
+                List<ItemDTO> search_result = ms.SearchProductByName("dog_shit");
                 List<ItemDTO> search_result_none = ms.SearchProductByName("shirts");
 
 

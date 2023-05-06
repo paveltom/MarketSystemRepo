@@ -55,10 +55,14 @@ namespace Market_System.DomainLayer
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
-                        Instance.register("admin", "admin", "address"); //registering an admin 
+                        
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
+                        Instance.register("admin", "admin", "address"); //registering an admin 
+                        StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
+                        Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                        Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -67,6 +71,16 @@ namespace Market_System.DomainLayer
 
             //Return the Singleton Instance
             return Instance;
+        }
+
+        private void initializing_product(string storeid, List<string> list)
+        {
+            Add_Product_To_Store(storeid, null, list);
+        }
+
+        private StoreDTO initializing_store(List<string> list)
+        {
+           return Add_New_Store(null, list);
         }
 
         internal Dictionary<string, string> extract_item_from_basket(string product_id, string session_id)
@@ -205,19 +219,29 @@ namespace Market_System.DomainLayer
         {
             try
             {
+                var founderID = storeFacade.GetStore(storeID).FounderID;
+                List<EmployeeDTO> employees = new List<EmployeeDTO>();
+                employees.AddRange(storeFacade.GetStore(storeID).owners);
+                employees.AddRange(storeFacade.GetStore(storeID).managers);
+
                 string user_id = get_userid_from_session_id(sessionID);
                 storeFacade.close_store_temporary(user_id,storeID);
 
                 //Send Notification to store Employees (owners & managers)
                 var message = "The store id: " + storeID + " has been temporarely closed.";
-                var founderID = storeFacade.GetStore(storeID).FounderID;
-                sendMessageToStoreEmployees(message, userFacade.get_username_from_user_id(founderID), storeID);
+                sendMessageToStoreEmployees_ForCloseTempStore(employees, message, userFacade.get_username_from_user_id(founderID), storeID);
+                sendMessageToUser(message, founderID, "System");
             }
 
             catch (Exception e)
             {
                 throw e;
             }
+        }
+
+        internal string getusername(string session_id)
+        {
+            return userFacade.get_username_from_user_id(get_userid_from_session_id(session_id));
         }
 
         public void Reopen_Store(string sessionID, string storeID)
@@ -446,12 +470,14 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void purchase(string session_id,List<ItemDTO> itemDTOs)
+        public void purchase(string session_id)
         {
             try
             {
+               
                 string userID = userFacade.get_userID_from_session(session_id);
-                storeFacade.Purchase(userID, itemDTOs);
+                Cart cart = get_cart_of_userID(userID);
+                storeFacade.Purchase(userID, cart.convert_to_item_DTO());
             }
 
             catch (Exception e)
@@ -617,6 +643,11 @@ namespace Market_System.DomainLayer
         {
             try
             {
+                if(session_id==null)//it means it is the inizilating of the system
+                {
+                    string admin_id = userFacade.get_user_id_from_username("admin");
+                    return storeFacade.AddNewStore(admin_id, newStoreDetails);
+                }
                 string user_id = get_userid_from_session_id(session_id);
                 return storeFacade.AddNewStore(user_id, newStoreDetails);
             }
@@ -630,6 +661,11 @@ namespace Market_System.DomainLayer
         {
             try
             {
+                if (session_id == null)//it means it is the inizilating of the system
+                {
+                    string admin_id = userFacade.get_user_id_from_username("admin");
+                    return storeFacade.AddProductToStore(storeID, admin_id, productProperties);
+                }
                 string user_id = get_userid_from_session_id(session_id);
                 return storeFacade.AddProductToStore(storeID, user_id, productProperties);
             }
@@ -832,13 +868,13 @@ namespace Market_System.DomainLayer
 
 
 
-        public void save_purhcase_in_user(string session_id,Cart cart)
+        public void save_purhcase_in_user(string session_id)
         {
             string user_id = get_userid_from_session_id(session_id);
             try
             {
 
-             
+                Cart cart = get_cart_of_userID(user_id);
                 userFacade.save_purhcase_in_user(user_id, cart);
                 userFacade.reset_cart(session_id);
 
@@ -853,11 +889,13 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Check_Out(string username,string credit_card_details,Cart cart)
+        public string Check_Out(string session_id,string credit_card_details)
         {
             try
             {
-                
+                string user_id = get_userid_from_session_id(session_id);
+                string username = userFacade.get_username_from_user_id(user_id);
+                Cart cart = userFacade.get_cart(username);
               double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
@@ -1152,6 +1190,11 @@ namespace Market_System.DomainLayer
                 //Add to Employees as well:
                 string user_ID = userFacade.get_userID_from_session(sessionID);
                 employeeRepo.addNewAdmin(user_ID);
+
+                //Notify the new admin
+                string other_UserID = userFacade.get_user_id_from_username(Other_username);
+                var message = "You've been promoted to a system administrator";
+                notificationFacade.AddNewMessage(other_UserID, userFacade.get_username_from_user_id(user_ID), message);
             }
             catch(Exception e)
             {
@@ -1240,6 +1283,15 @@ namespace Market_System.DomainLayer
             //Send Notification to the Founder as well
             var founderID = storeFacade.GetStore(storeID).FounderID;
             notificationFacade.AddNewMessage(founderID, senderUsername, message);
+        }
+
+        private void sendMessageToStoreEmployees_ForCloseTempStore(List<EmployeeDTO> employees, string message, string senderUsername, string storeID)
+        {
+            //Send Notification to the store Owners & Managers & Founder - employees of the store
+            foreach (EmployeeDTO emp in employees)
+            {
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
+            }
         }
 
         private void sendMessageToUser(string message, string userID, string from)

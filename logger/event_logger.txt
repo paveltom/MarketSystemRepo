@@ -918,6 +918,7 @@ Thursday, 4 May 2023 : guest : guest1169455295 has logged in
 יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
 יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
 יום שישי 05 מאי 2023 : 1417709372 removed product with id: 341503788_1823263608 from the basket
+
 יום שישי 05 מאי 2023 : guest : guest1319020578 has logged in
 יום שישי 05 מאי 2023 : michel has registered!
 יום שישי 05 מאי 2023 : mic has registered!
@@ -1017,3 +1018,452 @@ Thursday, 4 May 2023 : guest : guest1169455295 has logged in
 שבת 06 מאי 2023 : guest : guest231046245 has logged in
 שבת 06 מאי 2023 : michel has registered!
 שבת 06 מאי 2023 : opening store with id: 1188845927 has failed
+=======
+Friday, 5 May 2023 : guest : guest828182886 has logged in
+Friday, 5 May 2023 : amihai has registered!
+Friday, 5 May 2023 : opening store with id: 409026849 has failed
+Friday, 5 May 2023 : guest : guest38250790 has logged in
+Friday, 5 May 2023 : amihai has registered!
+Friday, 5 May 2023 : opening store with id: 1766578400 has failed
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : Added the product:1766578400_974330223to store: 1766578400 has been done successfully
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : Added the product:1766578400_1030345203to store: 1766578400 has been done successfully
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : 1030345203 added product with id: 1766578400_974330223 to basket
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : getting store with id: 1766578400 was done successfully 
+Friday, 5 May 2023 : 1030345203 added product with id: 1766578400_974330223 to basket
+Friday, 5 May 2023 : 1030345203 added product with id: 1766578400_1030345203 to basket
+Friday, 5 May 2023 : 1030345203 added product with id: 1766578400_1030345203 to basket
+Friday, 5 May 2023 : 1030345203Logged-out succesfully
+Friday, 5 May 2023 : guest : guest1180439573 has logged in
+Friday, 5 May 2023 : opening store with id: 594240396 has failed
+Friday, 5 May 2023 : assigning new manager with username : amihai to the store with id: 594240396
+Friday, 5 May 2023 : 1766578400Logged-out succesfully
+Friday, 5 May 2023 : guest : guest318728618 has logged in
+Friday, 5 May 2023 : user with session ID : 1030345203 got his Messages
+Friday, 5 May 2023 : 1030345203Logged-out succesfully
+Friday, 5 May 2023 : guest : guest1918659807 has logged in
+Friday, 5 May 2023 : guest : guest329864512 has logged in
+Friday, 5 May 2023 : 936292303Logged-out succesfully
+Friday, 5 May 2023 : guest : guest1787643203 has logged in
+Friday, 5 May 2023 : guest : guest1553185794 has logged in
+Friday, 5 May 2023 : amihai has registered!
+Friday, 5 May 2023 : opening store with id: 1134029757 has failed
+Friday, 5 May 2023 : getting store with id: 1134029757 was done successfully 
+Friday, 5 May 2023 : getting store with id: 1134029757 was done successfully 
+Friday, 5 May 2023 : assigning new manager with username : amihai to the store with id: 1134029757
+Friday, 5 May 2023 : 1134029757Logged-out succesfully
+Friday, 5 May 2023 : guest : guest599404508 has logged in
+Friday, 5 May 2023 : user with session ID : 393295158 got his Messages
+Friday, 5 May 2023 : user with session ID : 393295158 got his Messages
+Friday, 5 May 2023 : user with session ID : 393295158 got his Messages
+Friday, 5 May 2023 : 978875117Logged-out succesfully
+Friday, 5 May 2023 : guest : guest267258532 has logged in
+Friday, 5 May 2023 : guest : guest808801522 has logged in
+Friday, 5 May 2023 : amihai has registered!
+Friday, 5 May 2023 : opening store with id: 389645485 has failed
+Friday, 5 May 2023 : assigning new manager with username : admin to the store with id: 389645485
+Friday, 5 May 2023 : 1250620120Logged-out succesfully
+Friday, 5 May 2023 : guest : guest1174256987 has logged in
+Friday, 5 May 2023 : user with session ID : 968147637 got his Messages
+Friday, 5 May 2023 : getting store with id: 389645485 was done successfully 
+Friday, 5 May 2023 : getting store with id: 389645485 was done successfully 
+Friday, 5 May 2023 : getting store with id: 389645485 was done successfully 
+Friday, 5 May 2023 : Added the product:389645485_968147637to store: 389645485 has been done successfully
+Friday, 5 May 2023 : user with session ID : 968147637 got his Messages
+
+יום שישי 05 מאי 2023 : guest : guest682771470 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1991943043 has failed
+יום שישי 05 מאי 2023 : 1991943043Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1280247068 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 868028368 has failed
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:868028368_1051870272to store: 868028368 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : 1991943043Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1776120755 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : 1988823182 added product with id: 868028368_1051870272 to basket
+יום שישי 05 מאי 2023 : 1988823182 added product with id: 868028368_1051870272 to basket
+יום שישי 05 מאי 2023 : 1988823182 removed product with id: 868028368_1051870272 from the basket
+יום שישי 05 מאי 2023 : 1988823182 added product with id: 868028368_1051870272 to basket
+יום שישי 05 מאי 2023 : 1988823182 removed product with id: 868028368_1051870272 from the basket
+יום שישי 05 מאי 2023 : 1988823182 added product with id: 868028368_1051870272 to basket
+יום שישי 05 מאי 2023 : 1988823182Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest989802487 has logged in
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 868028368 was done successfully 
+יום שישי 05 מאי 2023 : 1991943043Logged-out succesfully
+יום שישי 05 מאי 2023 : guest : guest1971892132 has logged in
+יום שישי 05 מאי 2023 : guest : guest2048543129 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 88331236 has failed
+יום שישי 05 מאי 2023 : getting store with id: 88331236 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 88331236 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 88331236 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:88331236_1073000509to store: 88331236 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 88331236 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest39638589 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 646066380 has failed
+יום שישי 05 מאי 2023 : getting store with id: 646066380 was done successfully 
+יום שישי 05 מאי 2023 : getting owners from store : 646066380 done successfully
+יום שישי 05 מאי 2023 : getting managers from store : 646066380 done successfully
+יום שישי 05 מאי 2023 : guest : guest387309784 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1696481357 has failed
+יום שישי 05 מאי 2023 : guest : guest1307794759 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1914222550 has failed
+יום שישי 05 מאי 2023 : guest : guest20092075 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1748419685 has failed
+יום שישי 05 מאי 2023 : getting owners from store : 1748419685 done successfully
+יום שישי 05 מאי 2023 : getting managers from store : 1748419685 done successfully
+יום שישי 05 מאי 2023 : guest : guest605867734 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1563667416 has failed
+יום שישי 05 מאי 2023 : getting owners from store : 1563667416 done successfully
+יום שישי 05 מאי 2023 : guest : guest175865822 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1133665504 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1133665504 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1133665504 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1346600383 has logged in
+יום שישי 05 מאי 2023 : opening store with id: 1533872137 has failed
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:1533872137_816982216to store: 1533872137 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : successfully removed product: 1533872137_816982216 from store: 1533872137
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1485491215 has logged in
+יום שישי 05 מאי 2023 : guest : guest1275698698 has logged in
+יום שישי 05 מאי 2023 : guest : guest1028307033 has logged in
+יום שישי 05 מאי 2023 : guest : guest1240825924 has logged in
+יום שישי 05 מאי 2023 : guest : guest1805835333 has logged in
+יום שישי 05 מאי 2023 : guest : guest1463709657 has logged in
+יום שישי 05 מאי 2023 : guest : guest929533890 has logged in
+יום שישי 05 מאי 2023 : guest : guest997524925 has logged in
+יום שישי 05 מאי 2023 : guest : guest1509089368 has logged in
+Friday, 5 May 2023 : guest : guest1207055997 has logged in
+Friday, 5 May 2023 : guest : guest104767235 has logged in
+Friday, 5 May 2023 : guest : guest177277933 has logged in
+Friday, 5 May 2023 : guest : guest80882180 has logged in
+Friday, 5 May 2023 : guest : guest1003602199 has logged in
+יום שישי 05 מאי 2023 : guest : guest1126891169 has logged in
+יום שישי 05 מאי 2023 : guest : guest963491461 has logged in
+יום שישי 05 מאי 2023 : guest : guest1918991305 has logged in
+יום שישי 05 מאי 2023 : guest : guest455459350 has logged in
+יום שישי 05 מאי 2023 : guest : guest1254508324 has logged in
+יום שישי 05 מאי 2023 : guest : guest208768114 has logged in
+יום שישי 05 מאי 2023 : guest : guest1211999292 has logged in
+יום שישי 05 מאי 2023 : guest : guest1163035213 has logged in
+יום שישי 05 מאי 2023 : guest : guest660913075 has logged in
+יום שישי 05 מאי 2023 : guest : guest1250053204 has logged in
+יום שישי 05 מאי 2023 : guest : guest1138188845 has logged in
+שבת 06 מאי 2023 : guest : guest2143081765 has logged in
+שבת 06 מאי 2023 : guest : guest1459161873 has logged in
+שבת 06 מאי 2023 : guest : guest1634575156 has logged in
+שבת 06 מאי 2023 : guest : guest2096265992 has logged in
+שבת 06 מאי 2023 : 906582027Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest2097672499 has logged in
+שבת 06 מאי 2023 : guest : guest1500073706 has logged in
+שבת 06 מאי 2023 : guest : guest388407182 has logged in
+שבת 06 מאי 2023 : bayan has registered!
+שבת 06 מאי 2023 : 2095579790Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest426618428 has logged in
+שבת 06 מאי 2023 : guest : guest1981323814 has logged in
+שבת 06 מאי 2023 : bay has registered!
+שבת 06 מאי 2023 : guest : guest156145687 has logged in
+שבת 06 מאי 2023 : bay has registered!
+שבת 06 מאי 2023 : 120986066Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1110797882 has logged in
+שבת 06 מאי 2023 : guest : guest706789898 has logged in
+שבת 06 מאי 2023 : 639005752Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest903595347 has logged in
+שבת 06 מאי 2023 : guest : guest1647756682 has logged in
+שבת 06 מאי 2023 : bayan has registered!
+שבת 06 מאי 2023 : 2040434668Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest2118266777 has logged in
+שבת 06 מאי 2023 : 2040434668Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1803618738 has logged in
+שבת 06 מאי 2023 : guest : guest1343723443 has logged in
+שבת 06 מאי 2023 : getting store with id: 1343723443 was done successfully 
+Saturday, 6 May 2023 : guest : guest886599475 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 1420045120 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 1420045120
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : Added the product:1420045120_1055638977to store: 1420045120 has been done successfully
+Saturday, 6 May 2023 : getting store with id: 1420045120 was done successfully 
+Saturday, 6 May 2023 : 229759276Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest229759276 has logged in
+Saturday, 6 May 2023 : user with session ID : 652667007 got his Messages
+Saturday, 6 May 2023 : 886599475 added product with id: 1420045120_1055638977 to basket
+Saturday, 6 May 2023 : 886599475 added product with id: 886599475_229759276 to basket
+Saturday, 6 May 2023 : 886599475 added product with id: 1420045120_1055638977 to basket
+Saturday, 6 May 2023 : 886599475 removed product with id: 1420045120_1055638977 from the basket
+Saturday, 6 May 2023 : user with session ID : 652667007 got his Messages
+Saturday, 6 May 2023 : guest : guest1723299131 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 1093401897 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 1093401897
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 1093401897
+Saturday, 6 May 2023 : 288003730Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest288003730 has logged in
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1093401897
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1093401897
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1723299131
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1723299131
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1342267954 got his Messages
+Saturday, 6 May 2023 : 1723299131Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1093401897 has logged in
+Saturday, 6 May 2023 : user with session ID : 288003730 got his Messages
+Saturday, 6 May 2023 : user with session ID : 288003730 got his Messages
+Saturday, 6 May 2023 : 288003730Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest176785162 has logged in
+Saturday, 6 May 2023 : guest : guest884974048 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 255187175 has failed
+Saturday, 6 May 2023 : guest : guest790565464 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 463378312 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : removed owner with username : admin from the store with id: 463378312
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 463378312
+Saturday, 6 May 2023 : 1637253319Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1104598858 has logged in
+Saturday, 6 May 2023 : user with session ID : 1104598858 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1104598858 got his Messages
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 790565464
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 790565464
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 790565464
+Saturday, 6 May 2023 : 790565464Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1637253319 has logged in
+Saturday, 6 May 2023 : user with session ID : 1637253319 got his Messages
+Saturday, 6 May 2023 : user with session ID : 1637253319 got his Messages
+Saturday, 6 May 2023 : 1637253319Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest463378312 has logged in
+Saturday, 6 May 2023 : guest : guest2113634211 has logged in
+שבת 06 מאי 2023 : guest : guest1651066655 has logged in
+שבת 06 מאי 2023 : guest : guest521996141 has logged in
+שבת 06 מאי 2023 : getting store with id: 521996141 was done successfully 
+שבת 06 מאי 2023 : guest : guest1700041031 has logged in
+שבת 06 מאי 2023 : opening store with id: 1229168132 has failed
+שבת 06 מאי 2023 : 1700041031 closed a store with the ID: 1229168132
+שבת 06 מאי 2023 : 1700041031 reopend a store with the ID: 1229168132
+שבת 06 מאי 2023 : guest : guest622753741 has logged in
+שבת 06 מאי 2023 : guest : guest1041909778 has logged in
+שבת 06 מאי 2023 : opening store with id: 1044115213 has failed
+שבת 06 מאי 2023 : Added the product:1044115213_1512387273to store: 1044115213 has been done successfully
+שבת 06 מאי 2023 : 1041909778Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1941927713 has logged in
+שבת 06 מאי 2023 : amihai has registered!
+שבת 06 מאי 2023 : a new comment for product id: 1044115213_1512387273
+שבת 06 מאי 2023 : 1044115213Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest101222954 has logged in
+שבת 06 מאי 2023 : guest : guest547878662 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : opening store with id: 1385755568 has failed
+שבת 06 מאי 2023 : getting store with id: 1385755568 was done successfully 
+שבת 06 מאי 2023 : guest : guest1198918982 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : opening store with id: 699347474 has failed
+שבת 06 מאי 2023 : Added the product:699347474_513520292to store: 699347474 has been done successfully
+שבת 06 מאי 2023 : guest : guest308903446 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : guest : guest121631692 has logged in
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : bayanka has registered!
+שבת 06 מאי 2023 : layan has registered!
+שבת 06 מאי 2023 : opening store with id: 1337358791 has failed
+שבת 06 מאי 2023 : assigning new owner with username : layan to the store with id: 1337358791
+שבת 06 מאי 2023 : assigning new owner with username : bayanka to the store with id: 1337358791
+שבת 06 מאי 2023 : 1556793998Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest662041797 has logged in
+שבת 06 מאי 2023 : guest : guest226937434 has logged in
+שבת 06 מאי 2023 : guest : guest1767993290 has logged in
+שבת 06 מאי 2023 : opening store with id: 807538133 has failed
+שבת 06 מאי 2023 : amihai has registered!
+שבת 06 מאי 2023 : assigning new manager with username : amihai to the store with id: 807538133
+שבת 06 מאי 2023 : 1767993290Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1735748878 has logged in
+שבת 06 מאי 2023 : user with session ID : 1735748878 got his Messages
+שבת 06 מאי 2023 : 153264810Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest153264810 has logged in
+שבת 06 מאי 2023 : 1767993290 closed a store with the ID: 807538133
+שבת 06 מאי 2023 : 1767993290 reopend a store with the ID: 807538133
+שבת 06 מאי 2023 : 1767993290Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest807538133 has logged in
+שבת 06 מאי 2023 : guest : guest1109862037 has logged in
+שבת 06 מאי 2023 : opening store with id: 622485214 has failed
+שבת 06 מאי 2023 : amihai has registered!
+שבת 06 מאי 2023 : assigning new owner with username : amihai to the store with id: 622485214
+שבת 06 מאי 2023 : 1109862037Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1455033014 has logged in
+שבת 06 מאי 2023 : user with session ID : 1455033014 got his Messages
+שבת 06 מאי 2023 : 1679597873Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1679597873 has logged in
+שבת 06 מאי 2023 : removed owner with username : amihai from the store with id: 622485214
+שבת 06 מאי 2023 : 1109862037Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest622485214 has logged in
+שבת 06 מאי 2023 : guest : guest1222258712 has logged in
+שבת 06 מאי 2023 : A check for this user:adminhas been done successfully - he is an admin
+שבת 06 מאי 2023 : guest : guest683615067 has logged in
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : guest : guest376855705 has logged in
+שבת 06 מאי 2023 : opening store with id: 2103492061 has failed
+שבת 06 מאי 2023 : amihai has registered!
+שבת 06 מאי 2023 : assigning new owner with username : amihai to the store with id: 2103492061
+שבת 06 מאי 2023 : 376855705Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1280300362 has logged in
+שבת 06 מאי 2023 : guest : guest1027896025 has logged in
+שבת 06 מאי 2023 : michel has registered!
+שבת 06 מאי 2023 : guest : guest1417083967 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : bobinka has registered!
+שבת 06 מאי 2023 : guest : guest1140292700 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : guest : guest2142704911 has logged in
+שבת 06 מאי 2023 : michellm has registered!
+שבת 06 מאי 2023 : opening store with id: 1003988157 has failed
+שבת 06 מאי 2023 : Added the product:1003988157_719898887to store: 1003988157 has been done successfully
+שבת 06 מאי 2023 : Added the product:1003988157_1593560039to store: 1003988157 has been done successfully
+שבת 06 מאי 2023 : guest : guest646261584 has logged in
+שבת 06 מאי 2023 : opening store with id: 317580063 has failed
+שבת 06 מאי 2023 : guest : guest1065417621 has logged in
+שבת 06 מאי 2023 : guest : guest878145867 has logged in
+שבת 06 מאי 2023 : michel has registered!
+שבת 06 מאי 2023 : guest : guest1716457941 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : 2138997968Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1211550922 has logged in
+שבת 06 מאי 2023 : guest : guest32742860 has logged in
+שבת 06 מאי 2023 : opening store with id: 1228903664 has failed
+שבת 06 מאי 2023 : guest : guest871054934 has logged in
+שבת 06 מאי 2023 : opening store with id: 1730258839 has failed
+שבת 06 מאי 2023 : amihai has registered!
+שבת 06 מאי 2023 : assigning new manager with username : amihai to the store with id: 1730258839
+שבת 06 מאי 2023 : 871054934Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1973165441 has logged in
+שבת 06 מאי 2023 : guest : guest1334823500 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : guest : guest796179855 has logged in
+שבת 06 מאי 2023 : opening store with id: 1248834958 has failed
+שבת 06 מאי 2023 : Added the product:1248834958_363705638to store: 1248834958 has been done successfully
+שבת 06 מאי 2023 : a new comment for product id: 1248834958_363705638
+שבת 06 מאי 2023 : guest : guest2053647966 has logged in
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : layan has registered!
+שבת 06 מאי 2023 : opening store with id: 927125897 has failed
+שבת 06 מאי 2023 : assigning new owner with username : layan to the store with id: 927125897
+שבת 06 מאי 2023 : 1459719257Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest549993056 has logged in
+שבת 06 מאי 2023 : guest : guest2098260495 has logged in
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : A check for this user:yotamhas been done successfully - he is NOT an admin
+שבת 06 מאי 2023 : guest : guest1208244959 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : opening store with id: 1701793356 has failed
+שבת 06 מאי 2023 : assigning new manager with username : user1 to the store with id: 1701793356
+שבת 06 מאי 2023 : guest : guest1440129242 has logged in
+שבת 06 מאי 2023 : guest : guest1859285279 has logged in
+שבת 06 מאי 2023 : user5 has registered!
+שבת 06 מאי 2023 : guest : guest1672013525 has logged in
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : layan has registered!
+שבת 06 מאי 2023 : opening store with id: 1975105640 has failed
+שבת 06 מאי 2023 : assigning new owner with username : layan to the store with id: 1975105640
+שבת 06 מאי 2023 : removed owner with username : layan from the store with id: 1975105640
+שבת 06 מאי 2023 : guest : guest56082590 has logged in
+שבת 06 מאי 2023 : opening store with id: 1858380792 has failed
+שבת 06 מאי 2023 : guest : guest2016294483 has logged in
+שבת 06 מאי 2023 : user123 has registered!
+שבת 06 מאי 2023 : opening store with id: 670617523 has failed
+שבת 06 מאי 2023 : Added the product:670617523_2146530511to store: 670617523 has been done successfully
+שבת 06 מאי 2023 : 936104764 added product with id: 670617523_2146530511 to basket
+שבת 06 מאי 2023 : 936104764 removed product with id: 670617523_2146530511 from the basket
+שבת 06 מאי 2023 : guest : guest2128691158 has logged in
+שבת 06 מאי 2023 : layan has registered!
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : opening store with id: 1376956911 has failed
+שבת 06 מאי 2023 : assigning new owner with username : layan to the store with id: 1376956911
+שבת 06 מאי 2023 : 1376956911Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1036748785 has logged in
+שבת 06 מאי 2023 : got member info with username : layan from market system
+שבת 06 מאי 2023 : guest : guest625156898 has logged in
+שבת 06 מאי 2023 : layan has registered!
+שבת 06 מאי 2023 : yotam has registered!
+שבת 06 מאי 2023 : opening store with id: 1966571451 has failed
+שבת 06 מאי 2023 : assigning new owner with username : layan to the store with id: 1966571451
+שבת 06 מאי 2023 : guest : guest1276197218 has logged in
+שבת 06 מאי 2023 : user1 has registered!
+שבת 06 מאי 2023 : guest : guest1088925464 has logged in
+שבת 06 מאי 2023 : layan has registered!
+שבת 06 מאי 2023 : removed member with username : layan from market system
+שבת 06 מאי 2023 : guest : guest1320809747 has logged in
+שבת 06 מאי 2023 : opening store with id: 229056230 has failed
+שבת 06 מאי 2023 : guest : guest662678494 has logged in
+שבת 06 מאי 2023 : opening store with id: 44003311 has failed
+שבת 06 מאי 2023 : Added the product:44003311_1497314851to store: 44003311 has been done successfully
+שבת 06 מאי 2023 : a product name change for product id: 44003311_1497314851
+שבת 06 מאי 2023 : guest : guest1126447060 has logged in
+שבת 06 מאי 2023 : guest : guest1681104385 has logged in
+שבת 06 מאי 2023 : guest : guest1944532785 has logged in
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+שבת 06 מאי 2023 : a product name change for product id: 1944532785_1067061142
+שבת 06 מאי 2023 : getting store with id: 1944532785 was done successfully 
+
+Saturday, 6 May 2023 : guest : guest1758595227 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 1758595227
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 1758595227
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 1758595227
+Saturday, 6 May 2023 : 1758595227Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1528326493 has logged in
+Saturday, 6 May 2023 : user with session ID : 1528326493 got his Messages
+Saturday, 6 May 2023 : guest : guest122844136 has logged in
+Saturday, 6 May 2023 : 122844136Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1662434164 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : getting store with id: 122844136 was done successfully 
+Saturday, 6 May 2023 : assigning new manager with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : removed owner with username : amihai from the store with id: 122844136
+Saturday, 6 May 2023 : assigning new owner with username : amihai to the store with id: 122844136
+Saturday, 6 May 2023 : 122844136Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest457616903 has logged in
+Saturday, 6 May 2023 : user with session ID : 457616903 got his Messages
+Saturday, 6 May 2023 : guest : guest1587233834 has logged in
+Saturday, 6 May 2023 : amihai has registered!
+Saturday, 6 May 2023 : opening store with id: 606772450 has failed
+Saturday, 6 May 2023 : assigning new manager with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : removed owner with username : admin from the store with id: 606772450
+Saturday, 6 May 2023 : assigning new owner with username : admin to the store with id: 606772450
+Saturday, 6 May 2023 : 2063850264Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest1496927756 has logged in
+Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
+Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
+Saturday, 6 May 2023 : 1938605725Logged-out succesfully
+Saturday, 6 May 2023 : guest : guest957509332 has logged in
+
+

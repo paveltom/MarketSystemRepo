@@ -105,17 +105,17 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> GetPurchaseHistoryOfTheStore(string storeID)
+        public Response<string> GetPurchaseHistoryOfTheStore(string session_id,string storeID)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                string history = this.Market.GetStorePurchaseHistory(SessionID, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                string history = this.Market.GetStorePurchaseHistory(session_id, storeID); // add method to MarketSystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<string>.FromValue(history);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return Response<string>.FromError(ex.Message);
             }
         }
 
@@ -220,11 +220,11 @@ namespace Market_System.ServiceLayer
 
         }
 
-        internal void purchase(string session_id, List<ItemDTO> itemDTOs)
+        internal void purchase(string session_id)
         {
             try
             {
-                this.Market.purchase(session_id, itemDTOs);
+                this.Market.purchase(session_id);
 
                 
             }
@@ -289,12 +289,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response GetManagersOfTheStore(string storeID)
+        public Response GetManagersOfTheStore(string session_id,string storeID)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                List<string> managers = this.Market.GetStoreManagers(SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                List<string> managers = this.Market.GetStoreManagers(session_id, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(managers);
             }
             catch (Exception ex)
@@ -303,12 +303,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response GetOwnersOfTheStore(string storeID)
+        public Response GetOwnersOfTheStore(string session_id,string storeID)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                List<string> owners = this.Market.GetOwnersOfTheStore(SessionID, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                List<string> owners = this.Market.GetOwnersOfTheStore(session_id, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(owners);
             }
             catch (Exception ex)

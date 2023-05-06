@@ -67,6 +67,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception e)
             {
+
                 Logger.get_instance().record_error("error!!: " + e.Message + " in login_guest");
 
             }
@@ -99,7 +100,7 @@ namespace Market_System.ServiceLayer
 
         }
 
-      
+     
 
         public Response<List<string>> get_store_ids_from_cart()
         {
@@ -229,16 +230,18 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> check_out(string username,string credit_card, Cart cart)
+        public Response<string> check_out(string credit_card)
         {
             try
             {
 
                 
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
-                this.ssc.purchase(session_id, cart.convert_to_item_DTO());
-                this.usc.save_purhcase_in_user(session_id, cart);
-                Logger.get_instance().record_event("checkout completed by : " + username );
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(this.session_id, credit_card));
+                //this.ssc.purchase(session_id, cart.convert_to_item_DTO());
+                this.ssc.purchase(session_id);
+                this.usc.save_purhcase_in_user(session_id);
+               
+                Logger.get_instance().record_event("checkout completed by : " + this.usc.getusername(session_id) );
                 
                 return ok;
             }
@@ -560,7 +563,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetManagersOfTheStore( storeID);
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetManagersOfTheStore( this.session_id,storeID);
                 Logger.get_instance().record_event("getting managers from store : " + storeID + " done successfully");
 
                 return ok;
@@ -577,7 +580,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetOwnersOfTheStore(storeID);
+                Response<List<string>> ok = (Response<List<string>>)this.ssc.GetOwnersOfTheStore(this.session_id,storeID);
                 Logger.get_instance().record_event("getting owners from store : " + storeID + " done successfully");
 
                 return ok;
@@ -664,7 +667,7 @@ namespace Market_System.ServiceLayer
 
         public Response<string> get_purchase_history_from_store(string storeID)
         {
-            Response<string> response = this.ssc.GetPurchaseHistoryOfTheStore(storeID);
+            Response<string> response = this.ssc.GetPurchaseHistoryOfTheStore(this.session_id, storeID);
             if (response.ErrorOccured)
             {
                 Logger.get_instance().record_error("error!!: " + response.ErrorMessage + "in get_purchase_history_from_store");
