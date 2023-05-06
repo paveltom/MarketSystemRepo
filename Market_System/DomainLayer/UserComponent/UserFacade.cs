@@ -625,10 +625,14 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 if (user.GetUsername().Equals(username))
                 {
-                    return user.get_Address();
+                    if (user.GetUserState().Equals("Member"))
+                    {
+                        return user.get_Address();
+                    }
+                    else return "";
                 }     
             }
-            return "";
+            throw new Exception(userid + "does not exist");
         }
         /*
 public void AddNewMessage(string userID, Message message)

@@ -37,15 +37,15 @@ namespace Market_System.Presentaion_Layer
 
         protected void payClick(object sender, EventArgs e)
         {
-            /*
+            
             //Response<Cart> response = ((Service_Controller)Session["service_controller"]).get_cart(username);
-            //Response<String> response = ((Service_Controller)Session["service_controller"]).check_out(username,creditTextBox,);
+            Response<String> response = ((Service_Controller)Session["service_controller"]).check_out(username,creditTextBox);
             if (response.ErrorOccured)
             {
                 adressTextBox.Text = response.ErrorMessage;
             }
             else adressTextBox.Text = response.Value;
-        }*/
+        }
         }
     }
 }

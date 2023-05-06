@@ -1097,3 +1097,23 @@ Friday, 5 May 2023 : guest : guest1003602199 has logged in
 שבת 06 מאי 2023 : guest : guest1803618738 has logged in
 שבת 06 מאי 2023 : guest : guest1343723443 has logged in
 שבת 06 מאי 2023 : getting store with id: 1343723443 was done successfully 
+Saturday, May 6, 2023 : guest : guest244507945 has logged in
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : guest : guest991476245 has logged in
+Saturday, May 6, 2023 : guest : guest805152795 has logged in
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : guest : guest1353784070 has logged in
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : guest : guest2142338865 has logged in
+Saturday, May 6, 2023 : guest : guest1219060512 has logged in
+Saturday, May 6, 2023 : checking deilvery for address:  succefully done.
+Saturday, May 6, 2023 : guest : guest216764629 has logged in
