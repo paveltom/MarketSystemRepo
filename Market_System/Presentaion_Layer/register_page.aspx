@@ -35,7 +35,7 @@
         </div>
 
         <div style="text-align: center;">
-            <asp:Label ID="messageLabel" runat="server" Visible="False"></asp:Label>
+            <asp:Label ID="messageLabel" runat="server" ></asp:Label>
         </div>
     </div>
 </asp:Content>

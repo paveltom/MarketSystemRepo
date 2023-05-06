@@ -37,6 +37,8 @@ namespace Market_System.ServiceLayer
 
             catch(Exception e)
             {
+                //if something fail we should re login as guest
+                login_guest(session_id);
                 throw e;
             }
         }

@@ -67,6 +67,7 @@ namespace Market_System.ServiceLayer
             }
             catch (Exception e)
             {
+
                 Logger.get_instance().record_error("error!!: " + e.Message + " in login_guest");
 
             }

@@ -1070,3 +1070,30 @@ Friday, 5 May 2023 : guest : guest1003602199 has logged in
 יום שישי 05 מאי 2023 : guest : guest1250053204 has logged in
 יום שישי 05 מאי 2023 : guest : guest1138188845 has logged in
 שבת 06 מאי 2023 : guest : guest2143081765 has logged in
+שבת 06 מאי 2023 : guest : guest1459161873 has logged in
+שבת 06 מאי 2023 : guest : guest1634575156 has logged in
+שבת 06 מאי 2023 : guest : guest2096265992 has logged in
+שבת 06 מאי 2023 : 906582027Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest2097672499 has logged in
+שבת 06 מאי 2023 : guest : guest1500073706 has logged in
+שבת 06 מאי 2023 : guest : guest388407182 has logged in
+שבת 06 מאי 2023 : bayan has registered!
+שבת 06 מאי 2023 : 2095579790Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest426618428 has logged in
+שבת 06 מאי 2023 : guest : guest1981323814 has logged in
+שבת 06 מאי 2023 : bay has registered!
+שבת 06 מאי 2023 : guest : guest156145687 has logged in
+שבת 06 מאי 2023 : bay has registered!
+שבת 06 מאי 2023 : 120986066Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1110797882 has logged in
+שבת 06 מאי 2023 : guest : guest706789898 has logged in
+שבת 06 מאי 2023 : 639005752Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest903595347 has logged in
+שבת 06 מאי 2023 : guest : guest1647756682 has logged in
+שבת 06 מאי 2023 : bayan has registered!
+שבת 06 מאי 2023 : 2040434668Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest2118266777 has logged in
+שבת 06 מאי 2023 : 2040434668Logged-out succesfully
+שבת 06 מאי 2023 : guest : guest1803618738 has logged in
+שבת 06 מאי 2023 : guest : guest1343723443 has logged in
+שבת 06 מאי 2023 : getting store with id: 1343723443 was done successfully 

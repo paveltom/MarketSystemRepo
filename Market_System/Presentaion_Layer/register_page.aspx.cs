@@ -24,13 +24,13 @@ namespace Market_System.Presentaion_Layer
             Response<string> result = sv.register(txt_username.Text, txt_password.Text, txt_address.Text);
             if (!result.ErrorOccured)
             {
-                message.Text = result.Value;
-                message.ForeColor = System.Drawing.Color.Green;
+                messageLabel.Text = result.Value;
+                messageLabel.ForeColor = System.Drawing.Color.Green;
               }
             else
             {
-                message.Text = result.ErrorMessage;
-                message.ForeColor = System.Drawing.Color.Red;
+                messageLabel.Text = result.ErrorMessage;
+                messageLabel.ForeColor = System.Drawing.Color.Red;
             }
         }
 
