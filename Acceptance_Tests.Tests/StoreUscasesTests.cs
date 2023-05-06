@@ -119,7 +119,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<ItemDTO> product = service_Controller.add_product_to_store("fake_store_ID", "prod1", "desc1", "1", "1", "1", "5.0", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
 
             //Result:
-            Assert.AreEqual(null, product);
+            Assert.AreEqual(true, product.ErrorOccured);
 
             //tearDown:
             TestCleanup();
@@ -136,7 +136,7 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<ItemDTO> product = service_Controller.add_product_to_store(store.Value.StoreID, "prod1", "desc1", "1", "1", "1", "", "2.0", "77.0", "0.5_20.0", "Attr", "ctgr");
 
             //Result:
-            Assert.AreEqual(null, product);
+            Assert.AreEqual(true, product.ErrorOccured);
 
             //tearDown:
             TestCleanup();
