@@ -289,7 +289,7 @@ namespace Market_System.Tests.unit_tests
 
             Product newP0 = new Product(productProperties, productStore.Store_ID, defaultStorePolicies, defaultStoreStrategies);
 
-            Statement storeIDStatement = new EqualRelation("Name", "testProduct0Name", false);
+            Statement storeIDStatement = new EqualRelation("Name", "testProduct0Name", false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
             Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newP0.Product_ID);
 
@@ -328,7 +328,7 @@ namespace Market_System.Tests.unit_tests
             Product newp1 = new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
                                 dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
 
-            Statement storeIDStatement = new EqualRelation("Name", newp1.Name, false);
+            Statement storeIDStatement = new EqualRelation("Name", newp1.Name, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
             Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newp1.Product_ID);
 

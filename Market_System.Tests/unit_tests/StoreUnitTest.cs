@@ -606,7 +606,7 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
-            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false);
+            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
             Purchase_Policy newPolicy = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", this.testStore.Store_ID, statement);
 
@@ -640,7 +640,7 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyAlreadyExistsStoreTestFail()
         {
             // Arrange
-            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false);
+            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
             Purchase_Policy newPolicy = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", this.testStore.Store_ID, statement);
             bool errorPolicyAlreadyExists = false;
@@ -716,7 +716,7 @@ namespace Market_System.Tests.unit_tests
         public void RemoveStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
-            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false);
+            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
             Purchase_Policy policyToRemove = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", this.testStore.Store_ID, statement);
             this.testStore.AddStorePurchasePolicy(this.testStore.founderID, policyToRemove);

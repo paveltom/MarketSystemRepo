@@ -56,15 +56,15 @@ namespace Market_System.DomainLayer.StoreComponent
 
                 case "Equal":
                     List<string> listEqual = GetRelationParams(continueString);
-                    return new EqualRelation(listEqual[0], listEqual[1], Boolean.Parse(listEqual[2]));
+                    return new EqualRelation(listEqual[0], listEqual[1], Boolean.Parse(listEqual[2]), Boolean.Parse(listEqual[3]));
 
                 case "SmallerThan":
                     List<string> listSmaller = GetRelationParams(continueString);
-                    return new SmallerThanThisRelation(listSmaller[0], listSmaller[1], Boolean.Parse(listSmaller[2]));
+                    return new SmallerThanThisRelation(listSmaller[0], listSmaller[1], Boolean.Parse(listSmaller[2]), Boolean.Parse(listSmaller[3]));
 
                 case "GreaterThan":
                     List<string> listGreater = GetRelationParams(continueString);
-                    return new GreaterThanThisRelation(listGreater[0], listGreater[1], Boolean.Parse(listGreater[2]));
+                    return new GreaterThanThisRelation(listGreater[0], listGreater[1], Boolean.Parse(listGreater[2]), Boolean.Parse(listGreater[3]));
             }
 
             throw new Exception("Bad formula.");
@@ -118,11 +118,16 @@ namespace Market_System.DomainLayer.StoreComponent
             int equalNameLastIndex = GetIndexOfNextStatement(continueString);
             string equalName = continueString.Substring(1, equalNameLastIndex - 2); // without brackets
             bool userAttribute = equalName.Substring(0, 4) == "User";
+            bool productAttribute = false;
+            if(equalName.Length > 9)
+                productAttribute = equalName.Substring(0, 9) == "Attribute";
             if (userAttribute)
                 equalName = equalName.Substring(5);
+            else if(productAttribute)
+                equalName = equalName.Substring(10);
             continueString = continueString.Substring(equalNameLastIndex);
             string equalValue = continueString.Substring(1, continueString.Length - 2); // without brackets
-            return new List<string>() { equalName, equalValue, userAttribute.ToString() };
+            return new List<string>() { equalName, equalValue, userAttribute.ToString(), productAttribute.ToString() };
         }
 
 

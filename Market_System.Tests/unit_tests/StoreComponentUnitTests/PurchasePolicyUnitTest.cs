@@ -253,15 +253,15 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 
             StoreDTO newStore = this.facade.AddNewStore(founderID, new List<string>() { "policyTestStoreName"});
 
-            Statement storeIDStatement = new EqualRelation("StoreID", newStore.StoreID, false);
+            Statement storeIDStatement = new EqualRelation("StoreID", newStore.StoreID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
 
             Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, statement);
 
             this.facade.AddStorePurchasePolicy(newStore.FounderID, newStore.StoreID, testStorePolicy);
 
-            Statement userIDStatement1 = new EqualRelation("Username", this.legitTestUser1, true);
-            Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true);
+            Statement userIDStatement1 = new EqualRelation("Username", this.legitTestUser1, true, false);
+            Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true, false);
             Statement[] usersFormula = new Statement[] { userIDStatement1, userIDStatement2};
             Statement logicOrFormula = new LogicOR(usersFormula);
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", logicOrFormula);

@@ -15,21 +15,28 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
         public String FocusAttributeName { get; private set; }
 
         public String FocusAttributeValue { get; private set; }
-        private bool userIndicatore = false;
+        private bool userIndicator;
+        private bool productIndicator;
 
-        public SmallerThanThisRelation(string GreaterAttributeName, string GreaterAttributeValue, bool userAttribute) 
+        public SmallerThanThisRelation(string GreaterAttributeName, string GreaterAttributeValue, bool userAttribute, bool productAttribute) 
         {
             FocusAttributeName = GreaterAttributeName;
             FocusAttributeValue = GreaterAttributeValue;
-            if(userAttribute)
-                userIndicatore = true;
+            userIndicator = userAttribute;
+            productIndicator = productAttribute;
         }
 
 
         public override Boolean Satisfies(List<ItemDTO> choseProductsWithAttributes, Dictionary<string, string> userData)
         {
-            if (userIndicatore)
+            if (userIndicator)
                 return userData[FocusAttributeName].CompareTo(FocusAttributeValue) < 0;
+            else if (productIndicator)
+            {
+                String attributes = choseProductsWithAttributes[0].GetStringValuesDict()["Attributes"];
+                Dictionary<string, string> coupleParsing = attributes.Substring(0, attributes.LastIndexOf(';')).Split(';').ToDictionary(s => s.Split('_')[0], s => s.Split('_')[1]);
+                return coupleParsing[FocusAttributeName].CompareTo(FocusAttributeValue) == 0;
+            }
             else
                 return choseProductsWithAttributes[0].GetStringValuesDict()[FocusAttributeName].CompareTo(FocusAttributeValue) < 0;
         }
