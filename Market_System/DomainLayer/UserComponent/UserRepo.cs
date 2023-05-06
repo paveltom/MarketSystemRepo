@@ -158,14 +158,21 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void AddNewAdmin(string curr_Admin_username, string other_username)
         {
-            if(Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
+            if (curr_Admin_username == null)//it means it is the inizilating of the system
             {
                 Admins.Add(other_username);
             }
-
             else
             {
-                throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin)");
+                if (Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
+                {
+                    Admins.Add(other_username);
+                }
+
+                else
+                {
+                    throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin)");
+                }
             }
         }
 

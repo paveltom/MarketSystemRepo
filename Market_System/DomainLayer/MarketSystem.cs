@@ -60,6 +60,7 @@ namespace Market_System.DomainLayer
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
                         Instance.register("admin", "admin", "address"); //registering an admin 
+                        Instance.AddNewAdmin(null, "admin");
                         StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
@@ -76,6 +77,13 @@ namespace Market_System.DomainLayer
         private void initializing_product(string storeid, List<string> list)
         {
             Add_Product_To_Store(storeid, null, list);
+        }
+
+        internal bool check_if_current_user_is_admin(string session_id)
+        {
+       
+
+            return userFacade.check_if_current_user_is_admin(get_userid_from_session_id(session_id));
         }
 
         private StoreDTO initializing_store(List<string> list)
@@ -1185,10 +1193,19 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                userFacade.AddNewAdmin(sessionID, Other_username);
+                string user_ID;
+                if (sessionID == null)//it means it is the inizilating of the system
+                {
+                    userFacade.AddNewAdmin(null, Other_username);
+                    user_ID = sessionID = userFacade.get_user_id_from_username("admin");
+                }
+                else
+                {
+                    userFacade.AddNewAdmin(sessionID, Other_username);
 
-                //Add to Employees as well:
-                string user_ID = userFacade.get_userID_from_session(sessionID);
+                    //Add to Employees as well:
+                    user_ID = userFacade.get_userID_from_session(sessionID);
+                }
                 employeeRepo.addNewAdmin(user_ID);
             }
             catch(Exception e)
