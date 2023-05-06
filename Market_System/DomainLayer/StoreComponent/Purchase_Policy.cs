@@ -2,47 +2,84 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DomainLayer.UserComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
-    //TODO:: Implement this as chain of responsibility.
-    public class Purchase_Policy
+    public abstract class Purchase_Policy
     {
-        public string policyID { get; private set; }
-        public string policyName { get; private set; } // as of attribute
-        public int minValue { get; private set; }
-        public int maxValue { get; private set; }
-        public double salePercentage { get; private set; }
+        public string PolicyID { get; private set; }// ???
+        public string PolicyName { get; private set; }
+        public double SalePercentage { get; private set; }
+        public string Description { get; private set; }
+        public Statement SalePolicyFormula { get; private set; }
 
-        public Purchase_Policy(string polID, string polName, int max, int min, double salePercentage)
+
+        public Purchase_Policy(string polID, string polName, double salePercentage, string description, Statement formula)
         {
-            this.policyID = polID;
-            this.policyName = polName;
-            this.maxValue = max;
-            this.minValue = min;
-            this.salePercentage = salePercentage;   
+            this.PolicyID = polID;
+            this.PolicyName = polName;
+            this.SalePercentage = salePercentage;
+            this.Description = description;
+            this.SalePolicyFormula = formula;
         }
 
-        public string GetID()
+        public Purchase_Policy(string polID, string polName, double salePercentage, string description, String formula)
         {
-            return this.policyID;
+            this.PolicyID = polID;
+            this.PolicyName = polName;
+            this.SalePercentage = salePercentage;
+            this.Description = description;
+            this.SalePolicyFormula = StatementBuilder.GenerateFormula(formula);
         }
 
-        public double ApplyPolicy(double price, int quantity)
+        // returns items with saled price
+        public abstract List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes);
+
+        public Boolean Validate(List<ItemDTO> chosenProductsWithAttributes, string userID)
         {
-            if (ValidatePolicy(price, quantity))
-                return price / 100 * salePercentage;
+            User currUser = UserFacade.GetInstance().getUser(userID);
+            Dictionary<string, string> rellevantUserPolicyData = new Dictionary<string, string>();
+            if (currUser != null)
+                rellevantUserPolicyData = new Dictionary<string, string>
+                {
+                    { "Username", currUser.GetUsername() },
+                    { "Address", currUser.get_Address() },
+                    { "Age" , "17" }
+                };
             else
-                return -1;
+                rellevantUserPolicyData = new Dictionary<string, string>
+                {
+                    { "Username", userID },
+                    { "Address", "" },
+                    { "Age" , "19" }
+                };
+            return this.SalePolicyFormula.Satisfies(chosenProductsWithAttributes, rellevantUserPolicyData);
         }
 
-        public Boolean ValidatePolicy(double price, int quantity)
+
+        public void SetName(string name)
         {
-            if (quantity >= minValue && quantity <= maxValue)
-                return true;
-            else
-                return false;
+            this.PolicyName = name;
+        }
+
+        public void SetDescription(string description)
+        {
+            this.Description = description;
+        }
+
+        public void SetSale(double sale)
+        {
+            if (sale > 0 && sale < 100)
+                this.SalePercentage = sale;
+        }
+
+        public void SetFormula(Statement formula)
+        {
+            this.SalePolicyFormula = formula;
         }
     }
 }

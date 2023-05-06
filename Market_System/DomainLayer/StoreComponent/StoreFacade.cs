@@ -17,6 +17,10 @@ namespace Market_System.DomainLayer.StoreComponent
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
 
+        public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
+        public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
+
+
         private static readonly object Instancelock = new object();
 
         //The following Static Method is going to return the Singleton Instance
@@ -36,6 +40,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         storeUsage = new ConcurrentDictionary<string, int>();
                         storeRepo = StoreRepo.GetInstance();
                         Instance = new StoreFacade();
+                        marketPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
+                        marketStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -162,6 +168,33 @@ namespace Market_System.DomainLayer.StoreComponent
                 throw new Exception("invalid product ID, please type in valid product ID");
             }
         }
+
+
+        /*
+        private Boolean ValidateMarketStrategyRestrictions()
+        {
+            // validate all the items
+        }
+
+
+        private double ImplementMarketSale()
+        {
+            // consider all the items
+        }
+
+
+        private Boolean ValidateCategoryStrategyRestrictions()
+        {
+            // validate all the items
+        }
+
+
+        private double ImplementCategorySale()
+        {
+            // consider all the items
+        }
+        */
+
         // ====================== END of General class methods ===============================
         // ===================================================================================
 
@@ -629,6 +662,18 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void ChangeProductSale(string userID, string productID, double sale)
+        {
+            try
+            {
+                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductSale(userID, productID, sale);
+                ReleaseStore(this.GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
         public void ChangeProductRating(string userID, string productID, double rating)
         {
             try
@@ -658,15 +703,6 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void ChangeProductSale(string userID, string productID, double sale)
-        {
-            try
-            {
-                AcquireStore(this.GetStoreIdFromProductID(productID)).ChangeProductSale(userID, productID, sale);
-                ReleaseStore(this.GetStoreIdFromProductID(productID));
-            }
-            catch (Exception e) { throw e; }
-        }
 
         internal List<ItemDTO> GetProductsFromAllStores()
         {

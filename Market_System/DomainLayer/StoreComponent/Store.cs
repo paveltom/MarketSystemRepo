@@ -6,6 +6,8 @@ using System.Web;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
 using System.Web.WebSockets;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DomainLayer.UserComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -21,8 +23,10 @@ namespace Market_System.DomainLayer.StoreComponent
         public String founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
+        // public ConcurrentDictionary<string, Purchase_Policy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
+        // public ConcurrentDictionary<string, Purchase_Policy> storeStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
         private bool temporaryClosed = false;
 
@@ -43,10 +47,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
-                    this.storePolicies.TryAdd(p.GetID(), p);
+                    this.storePolicies.TryAdd(p.PolicyID, p);
             if (strategies != null)
                 foreach (Purchase_Strategy p in strategies)
-                    this.storeStrategies.TryAdd(p.GetID(), p);
+                    this.storeStrategies.TryAdd(p.StrategyID, p);
 
             this.allProducts = new ConcurrentDictionary<string, string>();
             if (allProductsIDS != null)                
@@ -111,9 +115,6 @@ namespace Market_System.DomainLayer.StoreComponent
                 catch (Exception ex) { throw ex; }
             }
         }
-
-
-
         public void AssignNewOwner(string userID, string newOwnerID)
         {
             lock (EmployementLock)
@@ -122,7 +123,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     //the new owner is not already an owner, and isn't a manager - nor he is the founder of this store!
                     if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
-                        !(this.employees.isOwner(newOwnerID, this.Store_ID)) && !(this.employees.isManager(newOwnerID, this.Store_ID)) 
+                        !(this.employees.isOwner(newOwnerID, this.Store_ID)) && !(this.employees.isManager(newOwnerID, this.Store_ID))
                         && !(this.employees.isFounder(newOwnerID, this.Store_ID)))
                     {
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
@@ -177,7 +178,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
-                        !this.employees.isManager(newManagerID, this.Store_ID) && !this.employees.isOwner(newManagerID, this.Store_ID) 
+                        !this.employees.isManager(newManagerID, this.Store_ID) && !this.employees.isOwner(newManagerID, this.Store_ID)
                         && !(this.employees.isFounder(newManagerID, this.Store_ID)))
                     {
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
@@ -335,39 +336,70 @@ namespace Market_System.DomainLayer.StoreComponent
                 try
                 {
                     double productSalePrice = 0;
-                    double storeSalePrice = 0;
                     int quantity = 0;
-                    foreach (ItemDTO item in productsToCalculate)
+                    List<ItemDTO> saledProducts = new List<ItemDTO>();
+                    bool maxPolicy = false;
+                    foreach(Purchase_Policy pp in this.storePolicies.Values)
                     {
-                        productSalePrice += AcquireProduct(item.GetID()).CalculatePrice(item.GetQuantity());
-                        quantity += item.GetQuantity();
-                        ReleaseProduct(item.GetID());
+                        if (pp is MaximumPolicy)
+                        {
+                            saledProducts = pp.ApplyPolicy(productsToCalculate);
+                            maxPolicy = true;
+                        }
                     }
-                    storeSalePrice = productSalePrice;
-                    foreach(Purchase_Policy p in this.storePolicies.Values)
-                        storeSalePrice -= Math.Max(0, p.ApplyPolicy(productSalePrice, quantity));
-                    return storeSalePrice;
+
+                    if (!maxPolicy) // if Maximum Policy was applied other policies cannot be applied
+                    {
+                        // Apply each Product Sale:
+                        foreach (ItemDTO item in productsToCalculate)
+                        {
+                            productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item);
+                            item.SetPrice(productSalePrice / item.GetQuantity());
+                            saledProducts.Add(item);
+                            quantity += item.GetQuantity();
+                            ReleaseProduct(item.GetID());
+                        }
+
+                        // Apply Store Policy:
+                        foreach (Purchase_Policy p in this.storePolicies.Values)
+                            saledProducts = p.ApplyPolicy(saledProducts);
+                    }
+
+                    return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
                 }
                 catch (Exception ex) { throw ex; }
             }
         }
 
         private static object PurchaseLock = new object();
-        public void Purchase(string userID, List<ItemDTO> productsToPurchase)
+        public void Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
         {
             lock (PurchaseLock)
             {
-                String cannotPurchase = ""; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
+                List<ItemDTO> productsToPurchase = productsToPurchaseFewInfo.Select(i => {
+                                                                                            ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
+                                                                                            ReleaseProduct(i.GetID());
+                                                                                            newItem.SetQuantity(i.GetQuantity());
+                                                                                            return newItem;                                                                                          
+                                                                                        }).ToList();
+                string initErrorMSG = "Cannot purchase: ";
+                String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 try
                 {
+                    foreach (Purchase_Strategy ps in this.storeStrategies.Values)
+                    {
+                        if (!ps.Validate(productsToPurchase, userID))
+                            throw new Exception("Restrictions violated: " + ps.Description);
+                    }
+
                     foreach (ItemDTO item in productsToPurchase)
-                        if (!AcquireProduct(item.GetID()).prePurchase(item.GetQuantity()))
+                        if (!AcquireProduct(item.GetID()).prePurchase(userID, item))
                         {
                             cannotPurchase.Concat(item.GetID().Concat(";"));
                             ReleaseProduct(item.GetID());
                         }
 
-                    if (!cannotPurchase.Equals("")) throw new Exception(cannotPurchase);
+                    if (!cannotPurchase.Equals(initErrorMSG)) throw new Exception(cannotPurchase + " - not enough in stock.");
                     else
                         foreach (ItemDTO item in productsToPurchase)
                         {
@@ -398,7 +430,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.storePolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                    if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                         Save();
                     else
                         throw new Exception("Policy already exists.");
@@ -430,7 +462,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    if (this.storeStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                    if (this.storeStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                         Save();
                     else throw new Exception("Strategy already exists.");
                 }
@@ -623,6 +655,20 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void ChangeProductSale(string userID, string productID, double sale)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    AcquireProduct(productID).SetSale(sale);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
         public void ChangeProductRating(string userID, string productID, double rating)
         {
             try
@@ -671,19 +717,6 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
             }
             return true;
-        }
-
-        public void ChangeProductSale(string userID, string productID, double sale)
-        {
-            try
-            {
-                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                {
-                    AcquireProduct(productID).SetSale(sale);
-                    ReleaseProduct(productID);
-                }
-            }
-            catch (Exception e) { throw e; }
         }
 
         public void ChangeProductTimesBought(string userID, string productID, int times) // only market manager can do
