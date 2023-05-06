@@ -1,37 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cart_page.aspx.cs" Inherits="Market_System.Presentaion_Layer.cart_page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="text-align: center; margin-top: 50px;">
-        <div style="margin-bottom: 10px;">
-            <label style="font-size: large; font-weight: bold;">Please select a store:</label>
-            <asp:DropDownList ID="ddl_store_id" OnSelectedIndexChanged="show_basket_of_selected_store_id" runat="server" AutoPostBack="True">
-                <asp:ListItem Text="Please select a store" Value="nothing_to_show" />
-            </asp:DropDownList>
+   <div style="text-align: center;">
+    <img src="https://img.freepik.com/premium-vector/shopping-cart-logo-design-vector-modern-shopping-cart-logo-template_472998-93.jpg?w=2000" alt="cart" style="width: 120px; height: 120px; margin-bottom: 10px;" />
+    <br />
+    <label style="font-size: 18px; font-weight: bold; margin-top: -10px;">Please select a store:</label>
+    <asp:DropDownList ID="ddl_store_id" runat="server" AutoPostBack="True" OnSelectedIndexChanged="show_basket_of_selected_store_id">
+        <asp:ListItem Text="Please select a store" Value="nothing_to_show" />
+    </asp:DropDownList>
+    <br />
+    <br />
+    <asp:Label ID="error_message" runat="server" Font-Size="Medium" ForeColor="Orange"></asp:Label>
+</div>
 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="error_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
-        </div>
-        <div style="margin-bottom: 10px;">
-            <asp:Label ID="product_id_label" runat="server" Text="Product ID:" style="font-size: large; font-weight: bold;"></asp:Label>
-            <asp:TextBox ID="product_id_txt" runat="server" placeholder="Enter product ID"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" Text="GO" OnClick="GO_button_click" CssClass="btn btn-primary" />
-            <asp:Label ID="error_message_GO_button" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
-        </div>
-        <div>
-            <asp:Label ID="cart_empty_label" runat="server" Text="Cart is empty" Font-Size="Medium" ForeColor="Red" Visible="false"></asp:Label>
-        </div>
-
+    <br />
+    <div style="text-align: center; margin-top: 30px;">
+        <label style="font-size: 18px; font-weight: bold;">Product ID:</label>
+        <asp:TextBox ID="product_id_txt" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Edit Amount" OnClick="GO_button_click" />
+        <br />
+        <asp:Label ID="error_message_GO_button" runat="server" Font-Size="Medium" ForeColor="Orange"></asp:Label>
     </div>
-
-
-    <div style="margin-top: 50px; text-align: center;">
-        <asp:DataList ID="products_list" runat="server" RepeatColumns="3" ItemStyle-CssClass="product-item">
+    <br />
+    <div style="text-align: center;">
+        <asp:DataList ID="products_list" runat="server">
             <ItemTemplate>
-                <asp:Label Text="<%#Container.DataItem %>" runat="server" />
+                <asp:Label Text="<%# Container.DataItem %>" runat="server" />
             </ItemTemplate>
         </asp:DataList>
-
     </div>
-    <div>
-        <asp:Button ID="checkout_button" runat="server" OnClick="checkoutButton_Click" Text="checkout" />
+    <br />
+    <div style="text-align: center;">
+        <asp:Button ID="checkoutButton" runat="server" Text="Checkout" OnClick="checkoutButton_Click" CssClass="btn btn-primary"/>
     </div>
 </asp:Content>
