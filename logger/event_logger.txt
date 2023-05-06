@@ -985,3 +985,13 @@ Thursday, 4 May 2023 : guest : guest1169455295 has logged in
 יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
 יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
 יום שישי 05 מאי 2023 : getting store with id: 1533872137 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1088830867 has logged in
+יום שישי 05 מאי 2023 : bayan has registered!
+יום שישי 05 מאי 2023 : opening store with id: 669674830 has failed
+יום שישי 05 מאי 2023 : getting store with id: 669674830 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 669674830 was done successfully 
+יום שישי 05 מאי 2023 : getting store with id: 669674830 was done successfully 
+יום שישי 05 מאי 2023 : Added the product:669674830_1644988758to store: 669674830 has been done successfully
+יום שישי 05 מאי 2023 : getting store with id: 669674830 was done successfully 
+יום שישי 05 מאי 2023 : guest : guest1667554369 has logged in
+יום שישי 05 מאי 2023 : guest : guest1249385412 has logged in
