@@ -84,8 +84,8 @@
     <div></div>
     <div class="text-center">
         <asp:Label ID="Label24" runat="server" Text="edit product quantity:"></asp:Label>
-        <asp:TextBox ID="edit_quantity_txt" runat="server" Text="new quantity" CssClass="glyphicon"></asp:TextBox>
-        <asp:Button ID="edit_quantity_button" OnClick="edit_quantity_click" runat="server" Text="Edit" CssClass="btn btn-primary" />
+        <asp:TextBox ID="edit_quantity_txt"   runat="server" Text="new quantity" CssClass="glyphicon" ></asp:TextBox>
+        <asp:Button ID="edit_quantity_button" OnClick="edit_quantity_click"  runat="server" Text="Edit" CssClass="btn btn-primary" />
         <asp:Label ID="edit_quantity_message" runat="server" ></asp:Label>
     </div>
      <div></div>

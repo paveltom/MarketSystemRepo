@@ -112,7 +112,18 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_dimensions_message.Text = response.Value;
                     edit_dimensions_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
+            }
+        }
+
+        private void reload_products()
+        {
+            Response<List<string>> products = ((Service_Controller)Session["service_controller"]).get_products_from_shop_as_list_of_string(store_id);
+            if (products.Value.Count > 0)
+            {
+                products_list.DataSource = products.Value;
+                products_list.DataBind();
             }
         }
 
@@ -136,6 +147,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_name_message.Text = response.Value;
                     edit_name_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
             }
         }
@@ -160,6 +172,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_description_message.Text = response.Value;
                     edit_description_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
             }
         }
@@ -184,6 +197,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_price_message.Text = response.Value;
                     edit_price_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
             }
         }
@@ -210,6 +224,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_quantity_message.Text = response.Value;
                     edit_quantity_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
             }
         }
@@ -239,6 +254,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_wieght_message.Text = response.Value;
                     edit_wieght_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
             }
         }
@@ -264,6 +280,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_sale_message.Text = response.Value;
                     edit_sale_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
                 }
             }
         }
@@ -292,11 +309,13 @@ namespace Market_System.Presentaion_Layer
                 {
                     edit_category_message.Text = response.Value;
                     edit_category_message.ForeColor = System.Drawing.Color.Green;
+                    reload_products();
+
                 }
             }
         }
 
-
+      
     }
     
 }
