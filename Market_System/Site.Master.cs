@@ -85,6 +85,10 @@ namespace Market_System
             {
                 manage_store_button.Visible = true;
             }
+            else
+            {
+                manage_store_button.Visible = false;
+            }
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
                 notification_messages.Text = "you have a new message!";

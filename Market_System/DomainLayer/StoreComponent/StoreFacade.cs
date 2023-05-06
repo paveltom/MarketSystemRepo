@@ -676,8 +676,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 List<ItemDTO> return_me = new List<ItemDTO>();
                foreach(Store store in all_stores)
                 {
-
-                    return_me = (List<ItemDTO>)return_me.Concat(store.GetItems()).ToList();
+                    if (!store.is_closed_temporary())
+                    {
+                        return_me = (List<ItemDTO>)return_me.Concat(store.GetItems()).ToList();
+                    }
                 }
                 return return_me;
             }

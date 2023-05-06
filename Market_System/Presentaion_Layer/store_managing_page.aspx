@@ -78,8 +78,8 @@
     <div style="text-align: left">
         <asp:Label ID="Label11" runat="server" Text="close store temporary"></asp:Label>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="add_product_button6" runat="server" Text="GO!" />
-&nbsp;</div>
+        <asp:Button ID="closeStoreButton" runat="server" Text="close" OnClick="closeStoreClick" />
+&nbsp;<asp:Label ID="closeStoreMsg" runat="server" Text=""></asp:Label></div>
        <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label12" runat="server" Text="get managers of store"></asp:Label>

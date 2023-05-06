@@ -46,6 +46,10 @@ namespace Market_System.DomainLayer.DeliveryComponent
         */
         public bool deliver(string address, double weight)
         {
+            if(address.Equals(""))
+            {
+                throw new Exception("cannot deliver due to address or weight");
+            }
             if (weight > 0)
             {
                 return true;

@@ -266,14 +266,12 @@ namespace Market_System.ServiceLayer
             try
             {
                 this.ssc.close_store_temporary( storeID);
-                
                 Logger.get_instance().record_event(usc.get_userID_from_session_id(session_id)+" closed a store with the ID: "+storeID);
                 Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
                 return ok;
             }
             catch (Exception e)
             {
-
                 Logger.get_instance().record_error("error!!: " + e.Message + "in close_store_temporary");
                 return Response<String>.FromError(e.Message);
             }
@@ -1133,5 +1131,38 @@ namespace Market_System.ServiceLayer
                 return null;
             }
         }
+
+        //yotam
+        /// <summary>
+        /// get user adress if 'username' is a logged in member
+        /// </summary>
+        /// <returns>'username' member adress or empty string</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        internal Response<string> getAdressOrEmpty()
+        {
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.getAdressOrEmpty(session_id));
+                return ok;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+        internal Response<string> calculataePrice()
+        {
+            try
+            {
+               return Response<string>.FromValue(ssc.calculatePrice(session_id));
+              
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+        //yotam
     }
 }

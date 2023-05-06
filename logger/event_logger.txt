@@ -1468,6 +1468,62 @@ Saturday, 6 May 2023 : 1938605725Logged-out succesfully
 Saturday, 6 May 2023 : guest : guest957509332 has logged in
 
 
+Saturday, May 6, 2023 : guest : guest1163849432 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : 1206782905 added product with id: 1163849432_1206782905 to basket
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest1163849432
+Saturday, May 6, 2023 : guest : guest1895801429 has logged in
+Saturday, May 6, 2023 : 1543274806 added product with id: 1895801429_1543274806 to basket
+Saturday, May 6, 2023 : guest : guest120990449 has logged in
+Saturday, May 6, 2023 : 724033520 added product with id: 120990449_1148180318 to basket
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : guest : guest1767300262 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : 1292418821 added product with id: 1767300262_2066231308 to basket
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest1767300262
+Saturday, May 6, 2023 : guest : guest1540478255 has logged in
+Saturday, May 6, 2023 : 1799082771 added product with id: 1540478255_860408342 to basket
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest1540478255
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : guest : guest619654844 has logged in
+Saturday, May 6, 2023 : 1859077101 added product with id: 619654844_1859077101 to basket
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest619654844
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : 1859077101 added product with id: 619654844_1859077101 to basket
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest619654844
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : guest : guest513258452 has logged in
+Saturday, May 6, 2023 : 6384251 added product with id: 513258452_538632499 to basket
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest513258452
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : guest : guest1235328599 has logged in
+
+
 שבת 06 מאי 2023 : guest : guest2138763674 has logged in
 שבת 06 מאי 2023 : getting store with id: 2138763674 was done successfully 
 שבת 06 מאי 2023 : getting store with id: 2138763674 was done successfully 
@@ -1541,34 +1597,4 @@ Saturday, 6 May 2023 : guest : guest957509332 has logged in
 שבת 06 מאי 2023 : guest : guest2021716946 has logged in
 שבת 06 מאי 2023 : 1835343955 added product with id: 2021716946_2025080076 to basket
 שבת 06 מאי 2023 : 1835343955 removed product with id: 2021716946_2025080076 from the basket
-שבת 06 מאי 2023 : guest : guest1319189205 has logged in
-שבת 06 מאי 2023 : michel has registered!
-שבת 06 מאי 2023 : guest : guest736139920 has logged in
-שבת 06 מאי 2023 : michel has registered!
-שבת 06 מאי 2023 : opening store with id: 1216261315 has failed
-שבת 06 מאי 2023 : guest : guest726710373 has logged in
-שבת 06 מאי 2023 : michel has registered!
-שבת 06 מאי 2023 : guest : guest1216883479 has logged in
-שבת 06 מאי 2023 : guest : guest1387777099 has logged in
-שבת 06 מאי 2023 : guest : guest1432715055 has logged in
-שבת 06 מאי 2023 : guest : guest1163932053 has logged in
-שבת 06 מאי 2023 : guest : guest754724870 has logged in
-שבת 06 מאי 2023 : guest : guest724748971 has logged in
-שבת 06 מאי 2023 : guest : guest1160944795 has logged in
-שבת 06 מאי 2023 : guest : guest204677518 has logged in
-שבת 06 מאי 2023 : guest : guest895681367 has logged in
-שבת 06 מאי 2023 : guest : guest959607503 has logged in
-שבת 06 מאי 2023 : guest : guest1530214216 has logged in
-שבת 06 מאי 2023 : guest : guest1879663481 has logged in
-שבת 06 מאי 2023 : guest : guest841455959 has logged in
-שבת 06 מאי 2023 : guest : guest1023830838 has logged in
-שבת 06 מאי 2023 : guest : guest22067271 has logged in
-שבת 06 מאי 2023 : guest : guest191428486 has logged in
-שבת 06 מאי 2023 : guest : guest3117867 has logged in
-שבת 06 מאי 2023 : guest : guest1788280680 has logged in
-שבת 06 מאי 2023 : guest : guest1422647161 has logged in
-שבת 06 מאי 2023 : michel has registered!
-שבת 06 מאי 2023 : opening store with id: 842200776 has failed
-שבת 06 מאי 2023 : guest : guest1814476121 has logged in
-שבת 06 מאי 2023 : guest : guest1156877184 has logged in
-שבת 06 מאי 2023 : guest : guest1687559144 has logged in
+

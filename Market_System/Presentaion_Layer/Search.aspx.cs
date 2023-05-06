@@ -13,5 +13,46 @@ namespace Market_System.Presentaion_Layer
         {
 
         }
+
+        protected void searchItems(object sender, EventArgs e)
+        {
+            /*
+                string searchValue = searchBar.Text.ToLower();
+
+                for (let i = 0; i < items.length; i++)
+                {
+                    const itemText = items[i].textContent.toLowerCase();
+
+                    if (itemText.includes(searchValue))
+                    {
+                        items[i].style.display = '';
+                    }
+                    else
+                    {
+                        items[i].style.display = 'none';
+                    }
+                }
+            */
+            
+        }
+
+        
+             protected void filterItems(object sender, EventArgs e)
+        {
+            /*
+            const categoryValue = categorySelect.value;
+
+            for (let i = 0; i < items.length; i++)
+            {
+                const itemCategory = items[i].classList.contains(categoryValue);
+
+                if (categoryValue === '' || itemCategory)
+                {
+                    items[i].style.display = '';
+                }
+                else items[i].style.display = 'none';
+            }
+            */
+        }
     }
 }

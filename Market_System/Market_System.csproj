@@ -130,6 +130,7 @@
     <Content Include="Presentaion_Layer\Admin_operations_page.aspx" />
     <Content Include="Presentaion_Layer\cart_page.aspx" />
     <Content Include="Presentaion_Layer\change_password_page.aspx" />
+    <Content Include="Presentaion_Layer\checkoutPage.aspx" />
     <Content Include="Presentaion_Layer\Home_page.aspx" />
     <Content Include="Presentaion_Layer\Login.aspx" />
     <Content Include="Presentaion_Layer\notifications.aspx" />
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\change_password_page.aspx.designer.cs">
       <DependentUpon>change_password_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\checkoutPage.aspx.cs">
+      <DependentUpon>checkoutPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\checkoutPage.aspx.designer.cs">
+      <DependentUpon>checkoutPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\Home_page.aspx.cs">
       <DependentUpon>Home_page.aspx</DependentUpon>

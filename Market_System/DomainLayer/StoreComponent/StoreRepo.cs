@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Xml.Linq;
 
@@ -301,16 +302,21 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Store getStore(string store_id)
         {
-
-            foreach (Store S in storeDatabase.Keys)
+            try
             {
-                if (S.Store_ID.Equals(store_id))
+                foreach (Store S in storeDatabase.Keys)
                 {
-                    return S;
+                    if (S.Store_ID.Equals(store_id))
+                    {
+                        return S;
+                    }
                 }
+                throw new Exception("store does not exists");
             }
-
-            throw new Exception("store does not exists");
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
    

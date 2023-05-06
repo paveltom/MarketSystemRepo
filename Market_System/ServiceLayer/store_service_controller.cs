@@ -736,6 +736,18 @@ namespace Market_System.ServiceLayer
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!TODO
         }
 
+        internal string calculatePrice(string session_id)
+        {
+            try
+            {
+                return Market.calculatePrice(session_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         // ======================== END of TODO ========================
         // =============================================================
 
