@@ -53,7 +53,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="~/">B.A.Y.L.M.P store</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -63,7 +63,7 @@
                         <li><a runat="server" href="~/Presentaion_Layer/productsPage">Products</a></li>
                         <li><a runat="server" id="login_href" href="~/Presentaion_Layer/Login">Login</a></li>
                         <li><a runat="server" id="cart_href" href="~/Presentaion_Layer/cart_page">Cart</a></li>
-                        <li><a runat="server" id="search" href="~/Presentaion_Layer/search.html">search</a></li>
+                        <li><a runat="server" id="search" href="~/Presentaion_Layer/Search">Search</a></li>
                          <li><a runat="server" id="notfications_href" href="~/Presentaion_Layer/notifications">notifications</a></li>
                          <li><a runat="server" id="Logout_href" onserverclick="Logout_click" href="~/">Logout</a></li>
                         <li><asp:Label ID="username_hello_label" text="" runat="server" Font-Size="Small" ForeColor="White"></asp:Label></li>

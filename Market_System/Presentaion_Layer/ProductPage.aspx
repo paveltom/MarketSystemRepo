@@ -15,11 +15,17 @@
         <asp:Label ID="id" runat="server" Text=""></asp:Label>
     </div>
     <div>&nbsp;</div>
-    <div style="text-align: center">
+    <div style="text-align: left">
         &nbsp;</div>
     <div>&nbsp;</div>
     <div style="text-align: left">
         <asp:Label ID="quantity" runat="server" Text=""></asp:Label>
     </div>
     <div>&nbsp;</div>
+    <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="description" runat="server" style="text-align: left" Text=""></asp:Label>
+    </div>
+    <div></div>
+    <div></div>
 </asp:Content>

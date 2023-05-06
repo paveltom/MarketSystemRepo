@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="Market_System.Presentaion_Layer.Search" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Search and Categories</title>
@@ -46,35 +49,35 @@
                 margin-right: 10px;
             }
     </style>
-    <link href="Site.Master" rel="import" />
 </head>
 <body>
-    <div class="container">
-        <!-- Search bar -->
-        <input type="text" class="search-bar" placeholder="Search...">
+    <form id="form1" runat="server">
+        <div class="container">
+            <!-- Search bar -->
+            <asp:TextBox ID="searchBar" CssClass="search-bar" runat="server" placeholder="Search..." OnTextChanged="searchItems" AutoPostBack="true"></asp:TextBox>
 
-        <!-- Category select -->
-        <select class="category-select">
-            <option value="">All Categories</option>
-            <option value="category1">Men</option>
-            <option value="category2">Women</option>
-            <option value="category3">Children</option>
-        </select>
-    </div>
+            <!-- Category select -->
+            <asp:DropDownList ID="categorySelect" CssClass="category-select" runat="server" OnSelectedIndexChanged="filterItems">
+                <asp:ListItem Text="All Categories" Value=""></asp:ListItem>
+                <asp:ListItem Text="Men" Value="category1"></asp:ListItem>
+                <asp:ListItem Text="Women" Value="category2"></asp:ListItem>
+                <asp:ListItem Text="Children" Value="category3"></asp:ListItem>
+            </asp:DropDownList>
+        </div>
 
-    <!-- List of items -->
-    <div id="item-list">
-        <div class="item category1">
-            <img src="https://litb-cgis.rightinthebox.com/images/640x640/202211/bps/product/inc/ihkbey1668222138935.jpg" alt="Pants">
-            pants
-        </div>
-        <div class="item category2">
-            <img src="https://images.asos-media.com/products/asos-design-ultimate-t-shirt-with-crew-neck-in-cotton-blend-in-black-black/201351926-1-black?$n_480w$&wid=476&fit=constrain" alt="Tshirt">
-            Tshirts
-        </div>
-        <div class="item category3">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPOJPIfzHr7tPsli9syWCX1NJj5kr7WqvQ7g&usqp=CAU" alt="Pants">
-            pants
+        <!-- List of items -->
+        <div id="Div1" runat="server">
+            <div class="item category1">
+                <img src="https://litb-cgis.rightinthebox.com/images/640x640/202211/bps/product/inc/ihkbey1668222138935.jpg" alt="Pants">
+                pants
+            </div>
+            <div class="item category2">
+                <img src="https://images.asos-media.com/products/asos-design-ultimate-t-shirt-with-crew-neck-in-cotton-blend-in-black-black/201351926-1-black?$n_480w$&wid=476&fit=constrain" alt="Tshirt">
+                Tshirts
+            </div>
+            <div class="item category3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPOJPIfzHr7tPsli9syWCX1NJj5kr7WqvQ7g&usqp=CAU" alt="Pants">
+                pants
         </div>
         <div class="item category1">
             <img src="https://www.next.co.il/nxtcms/resource/image/5487892/portrait_ratio4x5/320/400/33f0eec5e67c6fa86a8ad0f39181d3b6/7F5B416972E2D3FDFDF7ED6405B5D428/shirts.jpg" alt="Shirt">
@@ -131,6 +134,7 @@
         }
 
     </script>
-
+        </form>
 </body>
 </html>
+    </asp:Content>

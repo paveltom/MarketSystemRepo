@@ -44,9 +44,12 @@
         <div></div>
     <div style="text-align: center">
         <asp:Label ID="Label10" runat="server" Text="remove product"></asp:Label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="remove_product_button" runat="server" Text="!Remove" />
-&nbsp;</div>
+    &nbsp;&nbsp;<asp:Label ID="Label20" runat="server" Text="please type-in product to remove ID:"></asp:Label>
+        &nbsp;&nbsp;&nbsp;<asp:TextBox ID="product_to_remove_id" runat="server"></asp:TextBox>
+        &nbsp;
+        <asp:Button ID="remove_product_button" OnClick="remove_product_button_Click" runat="server" Text="!Remove" />
+&nbsp;<asp:Label ID="remove_message" runat="server" ForeColor="Red"></asp:Label>
+        </div>
        </div>
     <div></div>
     <div></div>
