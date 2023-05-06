@@ -163,7 +163,15 @@ namespace Market_System.Presentaion_Layer
             {
                 closeStoreMsg.Text = "store "+store_id+" closed ";
             }
+
+            //yotam
+            if (!((Service_Controller)Session["service_controller"]).check_if_working_in_a_store().Value)
+            {
+                Response.Redirect("~/");
             }
+            //yotam
+        }
+            
             
         protected void add_employee_permission_Click(object sender, EventArgs e)
         {
@@ -183,7 +191,7 @@ namespace Market_System.Presentaion_Layer
                 Add_Permission_Message.Text = ok.Value;
             }
 
-            }
+        }
 
         protected void remove_permission_Click(object sender, EventArgs e)
         {
