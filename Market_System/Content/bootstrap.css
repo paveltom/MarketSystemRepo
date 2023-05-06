@@ -118,7 +118,7 @@ optgroup,
 select,
 textarea {
   color: inherit;
-  margin: 4px 0 0 0px;
+  margin: 4px 0 0 6px;
 }
 button {
   overflow: visible;
@@ -1115,6 +1115,8 @@ figure {
 }
 img {
   vertical-align: middle;
+    margin-left: 0px;
+    margin-bottom: 40px;
 }
 .img-responsive,
 .thumbnail > img,
@@ -2612,6 +2614,7 @@ label {
   font-weight: 700;
     direction: ltr;
     text-align: left;
+    margin-right: 0px;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;

@@ -372,6 +372,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Presentaion_Layer\images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

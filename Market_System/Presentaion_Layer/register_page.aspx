@@ -5,8 +5,12 @@
         <h2><%: Title %></h2>
 
         <div style="text-align: center; margin-bottom: 20px;">
-            <label>Username:</label>
-            <asp:TextBox ID="txt_username" runat="server"></asp:TextBox>
+            <asp:Image ID="Image1" runat="server" Width="551px" src="images/register.jpg" Height="273px" />
+            &nbsp;<br />
+            <br />
+            <br />
+            <br />
+            <label>Username:</label><asp:TextBox ID="txt_username" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator runat="server" ID="user_name_validator" ControlToValidate="txt_username" ErrorMessage="Please enter a username"></asp:RequiredFieldValidator>
         </div>
 
