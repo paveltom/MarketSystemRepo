@@ -1320,5 +1320,19 @@ namespace Market_System.DomainLayer
                 throw e;
             }
         }
+
+        internal string calculatePrice(string session_id)
+        {
+            try
+            {
+                string userId = get_userid_from_session_id(session_id);
+                Cart cart = get_cart_of_userID(userId);
+                return storeFacade.CalculatePrice(cart.convert_to_item_DTO()).ToString();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -25,9 +25,16 @@ namespace Market_System.Presentaion_Layer
                     adressTextBox.Text = response.ErrorMessage;
                 }
                 else adressTextBox.Text = response.Value;
+
             }
             availDelivery();
-            
+            Response<String> price = ((Service_Controller)Session["service_controller"]).calculataePrice();
+            if (price.ErrorOccured)
+            {
+                priceLabel2.Text = price.ErrorMessage;
+            }
+            else priceLabel2.Text = price.Value;
+
         }
 
         protected void payClick(object sender, EventArgs e)
@@ -43,12 +50,12 @@ namespace Market_System.Presentaion_Layer
                 payButtonMsg.Text = response.Value;
                 payButtonMsg.ForeColor = Color.Green;
             }
+            Page_Load(null,null);
         }
 
         protected void adressTextBox_TextChanged(object sender, EventArgs e)
         {
             availDelivery();
-            Response.Write("button availe checked");
         }
 
         protected void availDelivery()

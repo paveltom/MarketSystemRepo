@@ -1147,6 +1147,19 @@ namespace Market_System.ServiceLayer
                 return Response<string>.FromError(e.Message);
             }
         }
+
+        internal Response<string> calculataePrice()
+        {
+            try
+            {
+               return Response<string>.FromValue(ssc.calculatePrice(session_id));
+              
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
         //yotam
     }
 }

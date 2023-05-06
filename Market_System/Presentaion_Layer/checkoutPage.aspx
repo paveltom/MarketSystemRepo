@@ -16,6 +16,13 @@
         <asp:Label ID="Label1" runat="server" Text="credit card number:"></asp:Label>
         <asp:TextBox ID = "creditTextBox" runat="server"></asp:TextBox>
     </div>
+
+    <div>&nbsp;</div>
+    <div style="text-align: left">
+        <asp:Label ID="priceLabel" runat="server" Text="total price: "></asp:Label>
+        <asp:Label ID="priceLabel2" runat="server" Text=""></asp:Label>
+    </div>
+
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     <div>

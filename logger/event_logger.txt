@@ -1365,3 +1365,56 @@ Saturday, 6 May 2023 : user with session ID : 635187099 got his Messages
 Saturday, 6 May 2023 : 1938605725Logged-out succesfully
 Saturday, 6 May 2023 : guest : guest957509332 has logged in
 
+Saturday, May 6, 2023 : guest : guest1163849432 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : 1206782905 added product with id: 1163849432_1206782905 to basket
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest1163849432
+Saturday, May 6, 2023 : guest : guest1895801429 has logged in
+Saturday, May 6, 2023 : 1543274806 added product with id: 1895801429_1543274806 to basket
+Saturday, May 6, 2023 : guest : guest120990449 has logged in
+Saturday, May 6, 2023 : 724033520 added product with id: 120990449_1148180318 to basket
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : guest : guest1767300262 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : 1292418821 added product with id: 1767300262_2066231308 to basket
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest1767300262
+Saturday, May 6, 2023 : guest : guest1540478255 has logged in
+Saturday, May 6, 2023 : 1799082771 added product with id: 1540478255_860408342 to basket
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest1540478255
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : guest : guest619654844 has logged in
+Saturday, May 6, 2023 : 1859077101 added product with id: 619654844_1859077101 to basket
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest619654844
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : 1859077101 added product with id: 619654844_1859077101 to basket
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest619654844
+Saturday, May 6, 2023 : checking deilvery for address: d succefully done.
+Saturday, May 6, 2023 : guest : guest513258452 has logged in
+Saturday, May 6, 2023 : 6384251 added product with id: 513258452_538632499 to basket
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checkout completed by : guest513258452
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
