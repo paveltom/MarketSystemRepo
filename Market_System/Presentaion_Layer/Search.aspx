@@ -51,7 +51,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server">/script>
         <div class="container">
             <!-- Search bar -->
             <asp:TextBox ID="searchBar" CssClass="search-bar" runat="server" placeholder="Search..." OnTextChanged="searchItems" AutoPostBack="true"></asp:TextBox>
@@ -91,7 +91,7 @@
             <img src="https://xcdn.next.co.uk/COMMON/Items/Default/Default/ItemImages/AltItemShot/315x472/C84056s.jpg" alt="Shoes">
             shoes
         </div>
-    </div>
+  
 
     <script>
         // JavaScript code for search and categories
@@ -133,7 +133,7 @@
             }
         }
 
-    </script>
+    </script>  </div>
         </form>
 </body>
 </html>

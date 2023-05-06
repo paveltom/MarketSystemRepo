@@ -29,7 +29,7 @@
                 <asp:ListItem Text="Meat" Value="Red" />
             </asp:DropDownList>
         </div>
-
+        <asp:Label ID="message" runat="server" Font-Size="Medium" ForeColor="Black"></asp:Label>
         <div style="text-align: center; margin-bottom: 20px;">
             <asp:Button ID="btnSubmit" runat="server" Text="Register" OnClick="register_button" CssClass="btn btn-primary"></asp:Button>
         </div>
