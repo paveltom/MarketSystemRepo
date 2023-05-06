@@ -93,9 +93,14 @@ namespace Market_System
             {
                 notification_messages.Text = "you have a new message!";
             }
-            if (((Service_Controller)Session["service_controller"]).CheckIfAdmin((string)Session["username"]).Value.Equals("The user is an admin"))
+            if (((Service_Controller)Session["service_controller"]).check_if_current_user_is_admin().Value)
+            
             {
                 admin_spec_ops_button.Visible = true;
+            }
+            else
+            {
+                admin_spec_ops_button.Visible = false;
             }
 
 

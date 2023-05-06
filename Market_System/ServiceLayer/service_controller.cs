@@ -100,7 +100,12 @@ namespace Market_System.ServiceLayer
 
         }
 
-     
+        internal Response<bool> check_if_current_user_is_admin()
+        {
+            return Response<bool>.FromValue(this.usc.check_if_current_user_is_admin(session_id));
+        }
+
+        
 
         public Response<List<string>> get_store_ids_from_cart()
         {
