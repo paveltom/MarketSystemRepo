@@ -220,11 +220,11 @@ namespace Market_System.ServiceLayer
 
         }
 
-        internal void purchase(string session_id, List<ItemDTO> itemDTOs)
+        internal void purchase(string session_id)
         {
             try
             {
-                this.Market.purchase(session_id, itemDTOs);
+                this.Market.purchase(session_id);
 
                 
             }
