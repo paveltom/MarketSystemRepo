@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Concurrent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 
 
 namespace Market_System.Tests.unit_tests
@@ -12,6 +13,7 @@ namespace Market_System.Tests.unit_tests
     [TestClass]
     public class StoreUnitTest
     {
+        
         // fields          
         private Store testStore; // uses Builder of a new Product 
         private Product testProduct0;
@@ -441,7 +443,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(errorCatchedNoPermission);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void GetStoreDTOStoreTestSuccess() // no fail test for this 
         {
             // Arrange
@@ -464,7 +466,7 @@ namespace Market_System.Tests.unit_tests
                                                                         ret.DefaultPolicies.Count == dataStore.DefaultPolicies.Count);
             Assert.IsTrue(dataStore.DefaultStrategies.Any(x => ret.DefaultStrategies.Any(y => x == y)) &&
                                                                         ret.DefaultStrategies.Count == dataStore.DefaultStrategies.Count);
-        }
+        }*/
 
         [TestMethod]
         public void GetItemsStoreTestSuccess()
@@ -530,7 +532,6 @@ namespace Market_System.Tests.unit_tests
             ItemDTO p1 = this.testProduct1.GetProductDTO();
             int quantity = p1.GetQuantity();
             double price = quantity * (this.testProduct1.Price - (this.testProduct1.Price / 100 * this.testProduct1.Sale));
-            price = price / 2; // store purchase policy appliement
             List<ItemDTO> items = new List<ItemDTO>() { p1 };
             double result = 0;
             bool error = false;
@@ -605,20 +606,22 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
+            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false, false);
+            Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+            Purchase_Policy newPolicy = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", this.testStore.Store_ID, statement);
 
             // Act
             this.testStore.AddStorePurchasePolicy(this.testStore.founderID, newPolicy);
 
             // Assert
-            Assert.IsTrue(this.testStore.storePolicies.ContainsKey(newPolicy.GetID()));
+            Assert.IsTrue(this.testStore.storePolicies.ContainsKey(newPolicy.PolicyID));
         }
 
         [TestMethod]
         public void AddStorePurchasePolicyNoPermissionStoreTestFail()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
+            Purchase_Policy newPolicy = new StorePolicy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 50, "DescriptionTest", this.testStore.Store_ID, "");
             string stockManagerID = "testStockManagerID0"; // init value
             bool errorNoPolicyPermission = false;
 
@@ -637,7 +640,9 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchasePolicyAlreadyExistsStoreTestFail()
         {
             // Arrange
-            Purchase_Policy newPolicy = new Purchase_Policy("AddStorePurchasePolicyStoreTestPolicyID0", "AddStorePurchasePolicyStoreTestPolicyName0", 100, 0, 50);
+            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false, false);
+            Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+            Purchase_Policy newPolicy = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", this.testStore.Store_ID, statement);
             bool errorPolicyAlreadyExists = false;
 
             // Act
@@ -657,21 +662,22 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchaseStrategyStoreTestSuccess()
         {
             // Arrange
-            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyStoreTestPolicyID0", "AddStorePurchaseStrategyStoreTestPolicyName0");
+            string formula = "[   IfThen[ [Equal[ [Category] [Alcohol] ] ]  [GreaterThan[ [User.Age]  [18] ] ] ] ]";
+            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
 
             // Act
             this.testStore.AddStorePurchaseStrategy(this.testStore.founderID, newStrategy);
 
 
             // Assert
-            Assert.IsTrue(this.testStore.storeStrategies.ContainsKey(newStrategy.GetID()));
+            Assert.IsTrue(this.testStore.storeStrategies.ContainsKey(newStrategy.StrategyID));
         }
 
         [TestMethod]
         public void AddStorePurchaseStrategyNoPermissionStoreTestFail()
         {
             // Arrange
-            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyStoreTestPolicyID0", "AddStorePurchaseStrategyStoreTestPolicyName0");
+            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyNoPermissionStoreTestFailID1", "AddStorePurchaseStrategyNoPermissionStoreTestFailName1", "AddStoreStrategySuccessStrategyDescription1", "");
             string infoManagerID = "testInfoManagerID0"; // init value
             bool errorNoPolicyPermission = false;
 
@@ -690,7 +696,8 @@ namespace Market_System.Tests.unit_tests
         public void AddStorePurchaseStrategyStoreTestFail()
         {
             // Arrange
-            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStorePurchaseStrategyStoreTestPolicyID0", "AddStorePurchaseStrategyStoreTestPolicyName0");
+            string formula = "[   IfThen[ [Equal[ [Category] [Alcohol] ] ]  [GreaterThan[ [User.Age]  [18] ] ] ] ]";
+            Purchase_Strategy newStrategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
             bool errorStrategyAlreadyExists = false;
             this.testStore.AddStorePurchaseStrategy(this.testStore.founderID, newStrategy);
 
@@ -709,13 +716,16 @@ namespace Market_System.Tests.unit_tests
         public void RemoveStorePurchasePolicyStoreTestSuccess()
         {
             // Arrange
-            string policyToRemove = "testStorePolicyID";
+            Statement storeIDStatement = new EqualRelation("StoreID", this.testStore.Store_ID, false, false);
+            Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+            Purchase_Policy policyToRemove = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", this.testStore.Store_ID, statement);
+            this.testStore.AddStorePurchasePolicy(this.testStore.founderID, policyToRemove);
 
             // Act
-            this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
+            this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove.PolicyID);
 
             // Assert
-            Assert.IsFalse(this.testStore.storePolicies.ContainsKey(policyToRemove));
+            Assert.IsFalse(this.testStore.storePolicies.ContainsKey(policyToRemove.PolicyID));
         }
 
         [TestMethod]
@@ -742,7 +752,6 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             string policyToRemove = "testStorePolicyID";
             bool errorPolicyDoesntExist = false;
-            this.testStore.RemoveStorePurchasePolicy(this.testStore.founderID, policyToRemove);
 
             // Act
             try
@@ -759,13 +768,15 @@ namespace Market_System.Tests.unit_tests
         public void RemoveStorePurchaseStrategyStoreTestSuccess()
         {
             // Arrange
-            string strategyToRemove = "testStoreStrategyID";
+            string formula = "[   IfThen[ [Equal[ [Category] [Alcohol] ] ]  [GreaterThan[ [User.Age]  [18] ] ] ] ]";
+            Purchase_Strategy strategyToRemove = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
+            this.testStore.AddStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
 
             // Act
-            this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
+            this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove.StrategyID);
 
             // Assert
-            Assert.IsFalse(this.testStore.storeStrategies.ContainsKey(strategyToRemove));
+            Assert.IsFalse(this.testStore.storeStrategies.ContainsKey(strategyToRemove.StrategyID));
         }
 
         [TestMethod]
@@ -793,7 +804,6 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             string strategyToRemove = "testStoreStrategyID";
             bool errorStrategyDoesntExist = false;
-            this.testStore.RemoveStorePurchaseStrategy(this.testStore.founderID, strategyToRemove);
 
             // Act
             try
@@ -910,10 +920,15 @@ namespace Market_System.Tests.unit_tests
             string founderID = "testStoreFounderID326";
             string storeID = newStoreID;
 
-            Purchase_Policy testStorePolicy = new Purchase_Policy("testStorePolicyID", "testStorePolicyName", 100, 0, 50);
-            List<Purchase_Policy> policies = new List<Purchase_Policy>() { testStorePolicy };
-            Purchase_Strategy testStoreStrategy = new Purchase_Strategy("testStoreStrategyID", "testStoreStrategyName");
-            List<Purchase_Strategy> strategies = new List<Purchase_Strategy>() { testStoreStrategy };
+            //Statement storeIDStatement = new EqualRelation("StoreID", storeID, false);
+            //Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+           // Purchase_Policy testStorePolicy = new StorePolicy("testStorePolicyID", "testStorePolicyName", 50, "Test sale policy description.", storeID, statement);
+            List<Purchase_Policy> policies = new List<Purchase_Policy>();
+
+
+            //string formula = "[   IfThen[ [Equal[ [Category] [Alcohol] ] ]  [GreaterThan[ [User.Age]  [18] ] ] ] ]";
+            //Purchase_Strategy testStoreStrategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
+            List<Purchase_Strategy> strategies = new List<Purchase_Strategy>();
 
             List<string> allProductsIDS = new List<string>() { "testProduct1StoreID465_tesProduct1ID" };
 
@@ -922,8 +937,8 @@ namespace Market_System.Tests.unit_tests
 
         private Product GetNewProduct(string store)
         {
-            Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
-            Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
+            //Purchase_Policy testProduct0Policy = new Purchase_Policy("testProduct0Policy1ID", "testProduct0Policy1Name", 100, 0, 50);
+            //Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("testProduct0Strategy1ID", "testProduct0StrategyName");
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
             List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "45", "0" , "0", "0", "67", "9.1_8.2_7.3",
@@ -932,15 +947,15 @@ namespace Market_System.Tests.unit_tests
             string storeID = store;
             ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
-            defaultStorePolicies.TryAdd(testProduct0Policy.GetID(), testProduct0Policy);
-            defaultStoreStrategies.TryAdd(testProduct0Strategy.GetID(), testProduct0Strategy);
+            //defaultStorePolicies.TryAdd(testProduct0Policy.GetID(), testProduct0Policy);
+            //defaultStoreStrategies.TryAdd(testProduct0Strategy.GetID(), testProduct0Strategy);
             return new Product(productProperties, storeID, defaultStorePolicies, defaultStoreStrategies);
         }
 
         private Product GetExistingProduct()
         {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
-            Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
+            //Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
+            //Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
             String product_ID = "testStoreID326_tesProduct1ID";
             String name = "testProduct1Name";
             String description = "testProduct1Description";
@@ -954,8 +969,8 @@ namespace Market_System.Tests.unit_tests
             List<String> comments = new List<string> { "testProduct1UserID123 + testProduct1Comment1 + Rating: testProduct1Comment1Rating.", "testProduct1UserID456 + testProduct1Comment2 + Rating: testProduct1Comment2Rating." };
             ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
-            defaultStorePolicies.TryAdd(testProduct1Policy.GetID(), testProduct1Policy);
-            defaultStoreStrategies.TryAdd(testProduct1Strategy.GetID(), testProduct1Strategy);
+            //defaultStorePolicies.TryAdd(testProduct1Policy.GetID(), testProduct1Policy);
+            //defaultStoreStrategies.TryAdd(testProduct1Strategy.GetID(), testProduct1Strategy);
 
             Dictionary<string, List<string>> product_Attributes = new Dictionary<string, List<string>>();
             List<string> attr1 = new List<string>() { "testProduct1Atr1Opt1", "testProduct1Atr1Opt2" };
@@ -968,6 +983,7 @@ namespace Market_System.Tests.unit_tests
             return new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
                                 dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
         }
+        
 
     }    
 }

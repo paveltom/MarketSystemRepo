@@ -37,8 +37,6 @@ namespace Market_System.DomainLayer.StoreComponent
         private static Category defaultCategory = new Category("NoCategory");
         private static object QuantityLock = new object();
         private static object GeneralPropertiesLock = new object();
-        public IStoreRepoMock testRepo = null;
-
 
         // ==========================================================================================================
 
@@ -56,12 +54,12 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Rating = rating;
             this.Quantity = initQuantity;
             this.Weight = weight;
-            this.Sale = sale;
             this.timesBought = boughtTimes;
             this.ProductCategory = category;
             this.Dimenssions = dimenssions;
             this.PurchasePolicies = purchase_Policies;
             this.PurchaseStrategies = purchase_Strategies;
+            this.Sale = sale;
             this.Comments = new ConcurrentBag<string>(comments);
             this.storeRepo = StoreRepo.GetInstance();
             this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
@@ -121,7 +119,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.PurchasePolicies.TryAdd(newPolicy.GetID(), newPolicy))
+                if (this.PurchasePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                     Save();
                 else
                     throw new Exception("Policy already exists.");
@@ -144,7 +142,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.PurchaseStrategies.TryAdd(newStrategy.GetID(), newStrategy))
+                if (this.PurchaseStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                     Save();
                 else throw new Exception("Strategy already exist.");
             }
@@ -188,17 +186,17 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public double ImplementSale(List<String> chosenAttributes, int quantity)
+        public double ImplementSale(ItemDTO item)
         {
-            double saledPrice = this.Price - (this.Price / 100 * this.Sale);
-            ConcurrentDictionary<string, double> attributes = new ConcurrentDictionary<string, double>();
-            foreach (string s in chosenAttributes ?? Enumerable.Empty<string>())
+            double saledPrice = this.Price - this.Price / 100 * this.Sale;
+            item.SetPrice(saledPrice);
+            List<ItemDTO> product = new List<ItemDTO>() { item };
+            foreach (Purchase_Policy pp in this.PurchasePolicies.Values)
             {
-                if(PurchasePolicies.ContainsKey(s))
-                    saledPrice -= Math.Max(0, this.PurchasePolicies[s].ApplyPolicy(this.Price, quantity));
+                product = pp.ApplyPolicy(product);
             }
-                
-            return quantity * saledPrice;
+
+            return product[0].Price * item.GetQuantity();
         }
 
         public string GetStoreID()
@@ -213,14 +211,14 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public double CalculatePrice(int quantity) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        public double CalculatePrice(ItemDTO item) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
             //change later to - return ImplementSale(attributes) * quantity;
             try
             {
-                if (quantity < 1)
+                if (item.GetQuantity() < 1)
                     throw new Exception("Bad quantity!");
-                return ImplementSale(null, quantity); // add chosen attributes functionality
+                return Math.Round(ImplementSale(item), 2); // add chosen attributes functionality
             }
             catch (Exception e) { throw e; }
         }
@@ -326,15 +324,24 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public Boolean prePurchase(int quantity)
+        public Boolean prePurchase(string userID, ItemDTO item)
         {
             try
             {
                 lock (QuantityLock)
                 {
-                    if (quantity < 1)
+                    if (item.GetQuantity() < 1)
                         throw new Exception("Bad quantity.");
-                    return (this.Quantity - quantity) >= 0;
+                    
+                    List<ItemDTO> product = new List<ItemDTO> { item }; 
+                    foreach(Purchase_Strategy ps in this.PurchaseStrategies.Values)
+                    {
+                        if(!ps.Validate(product, userID))
+                        {
+                            throw new Exception(ps.Description);
+                        }
+                    }
+                    return (this.Quantity - item.GetQuantity()) >= 0;
                 }
             }
             catch (Exception e) { throw e; }
@@ -345,11 +352,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                ItemDTO return_me= new ItemDTO(this.Product_ID, this.Quantity); // !!!! Change to send ItemDTO(this) after StoreRepo done!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                return_me.SetReservedQuantity(this.ReservedQuantity);
-                return_me.set_name(this.Name);
-                return_me.setDescription(this.Description);
-                return return_me;
+                return new ItemDTO(this); 
             }
             catch (Exception e) { throw e; }
         }
@@ -371,10 +374,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.testRepo != null)
-                    testRepo.Save(this);
-                else
-                    this.storeRepo.saveProduct(this);
+                this.storeRepo.saveProduct(this);
             }
             catch (Exception e) { throw e; }
         }
@@ -453,6 +453,21 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        public void SetSale(double sale)
+        {
+            try
+            {
+                lock (QuantityLock)
+                {
+                    if (sale < 0 || sale > 100)
+                        throw new Exception("Sale has to be between 0 - 100.");
+                    this.Sale = sale;
+                    Save();
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
         public void SetWeight(double weight)
         {
             try
@@ -462,21 +477,6 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (weight < 0)
                         throw new Exception("Weight cannot be negative (unless you are selling helium balloons, than contact our support).");
                     this.Weight = weight;
-                    Save();
-                }
-            }
-            catch (Exception e) { throw e; }
-        }
-
-        public void SetSale(double sale)
-        {
-            try
-            {
-                lock (GeneralPropertiesLock)
-                {
-                    if (sale < 0 || sale > 100)
-                        throw new Exception("Sale is percents, so must be between 0-100.");
-                    this.Sale = sale;
                     Save();
                 }
             }

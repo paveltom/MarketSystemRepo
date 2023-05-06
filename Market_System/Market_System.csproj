@@ -188,6 +188,23 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DomainLayer\CommunicationComponent\NotificationRepo.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AnyStatement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtLeastStatement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtMostStatement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\CategoryPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\EqualRelation.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\ForAllStatement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\GreaterThanThisRelation.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\IfThenStatement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\LogicAND.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\LogicOR.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\LogicXOR.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\MaximumPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\ProductPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\SmallerThanThisRelation.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\Statement.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StatementBuilder.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StorePolicy.cs" />
     <Compile Include="Presentaion_Layer\Admin_operations_page.aspx.cs">
       <DependentUpon>Admin_operations_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
