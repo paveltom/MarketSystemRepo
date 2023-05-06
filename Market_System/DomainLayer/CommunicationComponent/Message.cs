@@ -17,18 +17,18 @@ namespace Market_System.Domain_Layer.Communication_Component
             this.message = message;
             this.from = from_Username;
             isNewMessage = true;
-            dateTime = new DateTime();
+            dateTime = DateTime.Now;
         }
 
         public string GetAndReadMessage()
         {
             isNewMessage = false;
-            return dateTime.ToString("yyyyMMddHHmmss") + "New message received from: " + from + ".\n" + "The message is: \n" + message;
+            return dateTime.ToString() + " New message received from: " + from + ".\n" + "The message is: \n" + message;
         }
 
         public string GetMessageWithoutReading()
         {
-            return dateTime.ToString("yyyyMMddHHmmss") + "New message received from: " + from + ".\n" + "The message is: \n" + message;
+            return dateTime.ToString() + " New message received from: " + from + ".\n" + "The message is: \n" + message;
         }
 
         public bool IsNewMessage()

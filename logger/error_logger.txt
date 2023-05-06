@@ -1397,3 +1397,64 @@ Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary.
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: can't recive userID because username does not exists in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
