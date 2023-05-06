@@ -90,5 +90,10 @@ namespace Market_System.Presentaion_Layer
             }
 
         }
+
+        protected void checkoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Presentaion_Layer/checkoutPage.aspx?totalPrice");
+        }
     }
 }

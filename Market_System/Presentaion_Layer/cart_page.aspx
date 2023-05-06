@@ -8,7 +8,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="error_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
     &nbsp;&nbsp; product ID:<asp:TextBox ID="product_id_txt" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="GO!" OnClick="GO_button_click" />
+        <asp:Button ID="Button1" runat="server" Text="edit amount" OnClick="GO_button_click" />
         <asp:Label ID="error_message_GO_button" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
     </div>
     
@@ -16,15 +16,15 @@
 
 
     <div>
-  
         <asp:DataList ID="products_list" runat="server">
                   <ItemTemplate>
         <asp:Label Text="<%#Container.DataItem %>" runat="server" />
     </ItemTemplate>
         </asp:DataList>
-        
-      
-        
+    </div>
+
+    <div>
+        <asp:Button ID="checkoutButton" runat="server" Text="checkout" OnClick="checkoutButton_Click" />
     </div>
 </asp:Content>
 

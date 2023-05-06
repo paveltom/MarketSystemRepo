@@ -11,70 +11,79 @@ namespace Market_System.Presentaion_Layer
 {
 
 
-    public partial class cart_page
+    public partial class checkoutPage
     {
 
         /// <summary>
-        /// ddl_store_id control.
+        /// adressLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_store_id;
+        protected global::System.Web.UI.WebControls.Label adressLabel;
 
         /// <summary>
-        /// error_message control.
+        /// adressTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_message;
+        protected global::System.Web.UI.WebControls.TextBox adressTextBox;
 
         /// <summary>
-        /// product_id_txt control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox product_id_txt;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Button1 control.
+        /// creditTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox creditTextBox;
 
         /// <summary>
-        /// error_message_GO_button control.
+        /// priceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_message_GO_button;
+        protected global::System.Web.UI.WebControls.Label priceLabel;
 
         /// <summary>
-        /// products_list control.
+        /// priceLabel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList products_list;
+        protected global::System.Web.UI.WebControls.Label priceLabel2;
 
         /// <summary>
-        /// checkoutButton control.
+        /// payButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button checkoutButton;
+        protected global::System.Web.UI.WebControls.Button payButton;
+
+        /// <summary>
+        /// payButtonMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label payButtonMsg;
     }
 }

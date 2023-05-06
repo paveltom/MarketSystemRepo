@@ -149,6 +149,22 @@ namespace Market_System.Presentaion_Layer
 
         }
 
+
+        protected void closeStoreClick(object sender, EventArgs e)
+        {
+            string store_id = entered_store_id.Text;
+            Response<string> closeResponse = ((Service_Controller)Session["service_controller"]).close_store_temporary(store_id);
+            if (closeResponse.ErrorOccured)
+            {
+                closeStoreMsg.ForeColor = System.Drawing.Color.Red;
+                closeStoreMsg.Text = closeResponse.ErrorMessage;
+            }
+            else
+            {
+                closeStoreMsg.Text = "store "+store_id+" closed ";
+            }
+            }
+            
         protected void add_employee_permission_Click(object sender, EventArgs e)
         {
             string username = add_employee_permissionT.Text;
@@ -184,6 +200,7 @@ namespace Market_System.Presentaion_Layer
             {
                 Remove_Permission_Message.ForeColor= System.Drawing.Color.Green;
                 Remove_Permission_Message.Text= ok.Value;
+
             }
         }
     }
