@@ -159,7 +159,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         }
                     }
 
-                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner.Equals(userID)))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner != null) && (emp.OwnerAssignner.Equals(userID)))
                     {
                         this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
                     }
