@@ -1377,4 +1377,4 @@ Saturday, May 6, 2023 : error!!: cannot pay invaild price or credit card details
 שבת 06 מאי 2023 : error!!: user is not logged in in remove_product_from_basket
 שבת 06 מאי 2023 : error!!: user is not logged in in remove_product_from_basket
 שבת 06 מאי 2023 : error!!: user is not logged in in remove_product_from_basket
-שבת 06 מאי 2023 : error!!: This user is already an admin! in AddNewAdmin
+

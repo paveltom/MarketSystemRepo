@@ -1207,10 +1207,10 @@ namespace Market_System.DomainLayer
                     //Add to Employees as well:
                     user_ID = userFacade.get_userID_from_session(sessionID);
                 }
-                employeeRepo.addNewAdmin(user_ID);
+                string other_UserID = userFacade.get_user_id_from_username(Other_username);
+                employeeRepo.addNewAdmin(other_UserID);
 
                 //Notify the new admin
-                string other_UserID = userFacade.get_user_id_from_username(Other_username);
                 var message = "You've been promoted to a system administrator";
                 notificationFacade.AddNewMessage(other_UserID, userFacade.get_username_from_user_id(user_ID), message);
             }
