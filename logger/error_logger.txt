@@ -1416,3 +1416,10 @@ Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary.
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+שבת 06 מאי 2023 : error!!: The performing Member isn't an admin or he isn't logged-in in CheckIfAdmin

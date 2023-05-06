@@ -102,6 +102,8 @@
                   <asp:Label ID="notification_messages" runat="server" Font-Size="Large" ForeColor="#00CC00"></asp:Label>
             </div>
              <div>
+                  <asp:Button ID="admin_spec_ops_button" runat="server" OnClick="spec_ops_click" Text="admin's spec OPS" Width="127px" />
+&nbsp;&nbsp;
                   <asp:Button ID="manage_store_button" OnClick="store_managing_click" runat="server" Text="store managing" Width="111px" Visible="False" />
 &nbsp;
                   <asp:Button ID="open_new_store_button" runat="server" Text="Open Store" OnClick="open_new_store_click" Width="100px" />
