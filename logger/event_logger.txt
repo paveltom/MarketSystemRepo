@@ -1376,3 +1376,30 @@ Saturday, 6 May 2023 : guest : guest2113634211 has logged in
 שבת 06 מאי 2023 : removed member with username : bayan from market system
 שבת 06 מאי 2023 : 826699775Logged-out succesfully
 שבת 06 מאי 2023 : guest : guest317241264 has logged in
+שבת 06 מאי 2023 : guest : guest1780873852 has logged in
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : 1213836645 added product with id: 1780873852_1649832968 to basket
+שבת 06 מאי 2023 : guest : guest1899839190 has logged in
+שבת 06 מאי 2023 : 1776566465 added product with id: 1899839190_1776566465 to basket
+שבת 06 מאי 2023 : 1776566465 added product with id: 1899839190_1776566465 to basket
+שבת 06 מאי 2023 : 1776566465 added product with id: 1899839190_1776566465 to basket
+שבת 06 מאי 2023 : guest : guest1161313106 has logged in
+שבת 06 מאי 2023 : 637833317 added product with id: 1161313106_813226035 to basket
+שבת 06 מאי 2023 : guest : guest1238343467 has logged in
+שבת 06 מאי 2023 : guest : guest2021716946 has logged in
+שבת 06 מאי 2023 : 1835343955 added product with id: 2021716946_2025080076 to basket
+שבת 06 מאי 2023 : 1835343955 removed product with id: 2021716946_2025080076 from the basket

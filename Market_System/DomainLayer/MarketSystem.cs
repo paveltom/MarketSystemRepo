@@ -457,9 +457,7 @@ namespace Market_System.DomainLayer
             lock (this)
             {
               
-                    if (userFacade.check_if_user_is_logged_in(username))// no need to check if he register , it is enought to check if he is logged in
-                    {
-                        //storeFacade.add_Product_to_Store(product_id);
+                     //storeFacade.add_Product_to_Store(product_id);
 
                         userFacade.remove_product_from_basket(product_id, username,quantity);
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
@@ -467,11 +465,7 @@ namespace Market_System.DomainLayer
                       //  double price = 110;
                         userFacade.update_cart_total_price(username, price);
                         return "removed "+quantity+" of product id : " + product_id + " from " + userFacade.get_username_from_user_id(user_id) + "'s cart";
-                    }
-                    else
-                    {
-                        throw new Exception("user is not logged in");
-                    }
+                 
                 
                 
             }
