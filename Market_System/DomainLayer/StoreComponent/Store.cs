@@ -120,8 +120,23 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !(this.employees.isOwner(newOwnerID, this.Store_ID)))
+                    //the new owner is not already an owner, and isn't a manager - nor he is the founder of this store!
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
+                        !(this.employees.isOwner(newOwnerID, this.Store_ID)) && !(this.employees.isManager(newOwnerID, this.Store_ID)) 
+                        && !(this.employees.isFounder(newOwnerID, this.Store_ID)))
+                    {
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
+                    }
+
+                    //the new owner is not already an owner, and is a manager -> we need to remove him as a manager first!
+                    else if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
+                        !(this.employees.isOwner(newOwnerID, this.Store_ID)) && (this.employees.isManager(newOwnerID, this.Store_ID))
+                        && !(this.employees.isFounder(newOwnerID, this.Store_ID)))
+                    {
+                        this.employees.removeEmployee(newOwnerID, this.Store_ID);
+                        this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
+                    }
+
                     else
                         throw new Exception("Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store.");
                 }
@@ -144,12 +159,12 @@ namespace Market_System.DomainLayer.StoreComponent
                         }
                     }
 
-                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner.Equals(userID)))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner != null) && (emp.OwnerAssignner.Equals(userID)))
                     {
                         this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
                     }
                     else
-                        throw new Exception("Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in ths store");
+                        throw new Exception("Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store");
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -161,10 +176,14 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && !this.employees.isManager(newManagerID, this.Store_ID))
+                    if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
+                        !this.employees.isManager(newManagerID, this.Store_ID) && !this.employees.isOwner(newManagerID, this.Store_ID) 
+                        && !(this.employees.isFounder(newManagerID, this.Store_ID)))
+                    {
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
+                    }
                     else
-                        throw new Exception("Cannot assign new manager: you are not an owner or this employee is already a manager in this store.");
+                        throw new Exception("Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store.");
                 }
                 catch (Exception ex) { throw ex; }
             }
