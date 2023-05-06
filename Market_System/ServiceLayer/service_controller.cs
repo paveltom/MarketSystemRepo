@@ -230,15 +230,16 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> check_out(string username,string credit_card, Cart cart)
+        public Response<string> check_out(string username,string credit_card)
         {
             try
             {
 
                 
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card, cart));
-                this.ssc.purchase(session_id, cart.convert_to_item_DTO());
-                this.usc.save_purhcase_in_user(session_id, cart);
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(username,credit_card));
+                //this.ssc.purchase(session_id, cart.convert_to_item_DTO());
+                this.ssc.purchase(session_id);
+                this.usc.save_purhcase_in_user(session_id);
                 Logger.get_instance().record_event("checkout completed by : " + username );
                 
                 return ok;

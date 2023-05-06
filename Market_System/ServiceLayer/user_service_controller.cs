@@ -141,13 +141,13 @@ namespace Market_System.ServiceLayer
 
         }
 
-        public void save_purhcase_in_user(string session_id, Cart cart)
+        public void save_purhcase_in_user(string session_id)
         {
             try
             {
 
 
-                this.market_System.save_purhcase_in_user(session_id, cart);
+                this.market_System.save_purhcase_in_user(session_id);
 
 
             }
@@ -232,11 +232,11 @@ namespace Market_System.ServiceLayer
         }
         
         
-        public string Check_Out(string username,string credit_card, Cart cart)
+        public string Check_Out(string username,string credit_card)
         {
             try
             {
-                return market_System.Check_Out(username, credit_card, cart);
+                return market_System.Check_Out(username, credit_card);
             }
 
             catch (Exception e)
