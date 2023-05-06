@@ -1125,5 +1125,25 @@ namespace Market_System.ServiceLayer
                 return null;
             }
         }
+
+        //yotam
+        /// <summary>
+        /// get user adress if 'username' is a logged in member
+        /// </summary>
+        /// <returns>'username' member adress or empty string</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        internal Response<string> getAdressOrEmpty()
+        {
+            try
+            {
+                Response<string> ok = Response<string>.FromValue(this.usc.getAdressOrEmpty(session_id));
+                return ok;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+        //yotam
     }
 }

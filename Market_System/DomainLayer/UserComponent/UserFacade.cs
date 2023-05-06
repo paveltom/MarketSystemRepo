@@ -114,7 +114,14 @@ namespace Market_System.DomainLayer.UserComponent
 
         internal string get_userID_from_session(string session_id)
         {
-            return userID_sessionID_linker[session_id];
+            try
+            {
+                return userID_sessionID_linker[session_id];
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Logout(string username)
@@ -609,34 +616,48 @@ namespace Market_System.DomainLayer.UserComponent
             }
             return null;
         }
-        /*
-        public void AddNewMessage(string userID, Message message)
-        {
-            try
-            {
-                userRepo.addNewMessage(userID, message);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
 
-        public List<string> GetMessages(string userID)
+        /// <returns>empty string if 'userid not a member'.
+        internal string getUserAdress(string userid)
         {
-            try
+            string username = get_username_from_user_id(userid);
+            foreach (User user in users)
             {
-                List<string> messages = new List<string>();
-                foreach(Message message in userRepo.GetMessages(userID))
+                if (user.GetUsername().Equals(username))
                 {
-                    messages.Add(message.GetAndReadMessage());
-                }
-                return messages;
+                    return user.get_Address();
+                }     
             }
-            catch(Exception e)
-            {
-                throw e;
-            }
-        }*/
+            return "";
+        }
+        /*
+public void AddNewMessage(string userID, Message message)
+{
+   try
+   {
+       userRepo.addNewMessage(userID, message);
+   }
+   catch (Exception e)
+   {
+       throw e;
+   }
+}
+
+public List<string> GetMessages(string userID)
+{
+   try
+   {
+       List<string> messages = new List<string>();
+       foreach(Message message in userRepo.GetMessages(userID))
+       {
+           messages.Add(message.GetAndReadMessage());
+       }
+       return messages;
+   }
+   catch(Exception e)
+   {
+       throw e;
+   }
+}*/
     }
 }

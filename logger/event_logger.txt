@@ -918,3 +918,13 @@ Thursday, 4 May 2023 : guest : guest1169455295 has logged in
 יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
 יום שישי 05 מאי 2023 : 1417709372 added product with id: 341503788_1823263608 to basket
 יום שישי 05 מאי 2023 : 1417709372 removed product with id: 341503788_1823263608 from the basket
+Friday, May 5, 2023 : guest : guest803065111 has logged in
+Friday, May 5, 2023 : guest : guest300056249 has logged in
+Saturday, May 6, 2023 : guest : guest958454220 has logged in
+Saturday, May 6, 2023 : opening store with id: 2035741510 has failed
+Saturday, May 6, 2023 : opening store with id: 369332106 has failed
+Saturday, May 6, 2023 : 2035741510Logged-out succesfully
+Saturday, May 6, 2023 : guest : guest2029990539 has logged in
+Saturday, May 6, 2023 : member has registered!
+Saturday, May 6, 2023 : guest : guest381560322 has logged in
+Saturday, May 6, 2023 : admin1 has registered!

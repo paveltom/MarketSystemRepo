@@ -249,13 +249,22 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label11;
 
         /// <summary>
-        /// add_product_button6 control.
+        /// closeStoreButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button add_product_button6;
+        protected global::System.Web.UI.WebControls.Button closeStoreButton;
+
+        /// <summary>
+        /// closeStoreMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label closeStoreMsg;
 
         /// <summary>
         /// Label12 control.

@@ -9,5 +9,6 @@ namespace Market_System.DomainLayer.UserComponent
     interface User_State
     {
         public string GetUserState();
+
     }
 }
