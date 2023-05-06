@@ -3,10 +3,10 @@
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-    <div style="text-align: left">
+    <div style="text-align: left; margin-bottom: 20px;">
         <asp:Label ID="quantityToAddLabel" runat="server" Text="amount: "></asp:Label>
         <asp:TextBox ID="quantityToAdd" runat="server"></asp:TextBox>
-        <asp:Button ID="addToCart" runat="server" Text="add To Cart" OnClick="addToCart_Click" />
+        <asp:Button ID="addToCart" runat="server" Text="add To Cart" OnClick="addToCart_Click" CssClass="btn btn-primary" />
         <asp:Label ID="clickmsg" runat="server" Text=""></asp:Label>
     </div>
     <div>&nbsp;</div>

@@ -8,7 +8,8 @@
     <div>&nbsp;</div>
      <div style="text-align: left">
         <asp:Label ID="adressLabel" runat="server" Text="adress:"></asp:Label>
-        <asp:TextBox ID = "adressTextBox" Text="" runat="server"></asp:TextBox>
+         <asp:TextBox ID="adressTextBox" Text="" runat="server" 
+             OnTextChanged="adressTextBox_TextChanged" AutoPostBack="true"></asp:TextBox>
     </div>
     <div>&nbsp;</div>
     <div style="text-align: left">
@@ -19,5 +20,5 @@
     <div>&nbsp;</div>
     <div>
         <asp:Button ID="payButton" runat="server" Text="Pay" OnClick="payClick"></asp:Button>&nbsp;</div>
-    <div>&nbsp;</div>
+        <asp:Label ID="payButtonMsg" runat="server" Text=""></asp:Label>
 </asp:Content>

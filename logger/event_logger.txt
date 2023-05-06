@@ -1260,3 +1260,39 @@ Friday, 5 May 2023 : guest : guest1003602199 has logged in
 שבת 06 מאי 2023 : Added the product:44003311_1497314851to store: 44003311 has been done successfully
 שבת 06 מאי 2023 : a product name change for product id: 44003311_1497314851
 שבת 06 מאי 2023 : guest : guest1126447060 has logged in
+Saturday, May 6, 2023 : guest : guest1833005521 has logged in
+Saturday, May 6, 2023 : member has registered!
+Saturday, May 6, 2023 : guest : guest592044630 has logged in
+Saturday, May 6, 2023 : guest : guest772471116 has logged in
+Saturday, May 6, 2023 : admin1 has registered!
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : 30593446 added product with id: 772471116_724776194 to basket
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : checkout completed by : admin1
+Saturday, May 6, 2023 : checking deilvery for address: 1 succefully done.
+Saturday, May 6, 2023 : 30593446Logged-out succesfully
+Saturday, May 6, 2023 : guest : guest724776194 has logged in
+Saturday, May 6, 2023 : guest : guest1430421247 has logged in
+Saturday, May 6, 2023 : guest : guest572769548 has logged in
+Saturday, May 6, 2023 : guest : guest2003780101 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaaa succefully done.
+Saturday, May 6, 2023 : guest : guest612304080 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: gfh succefully done.
+Saturday, May 6, 2023 : guest : guest494919969 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaa succefully done.
+Saturday, May 6, 2023 : guest : guest1155947919 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaaaaaaaaa succefully done.
+Saturday, May 6, 2023 : guest : guest1125708173 has logged in
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
+Saturday, May 6, 2023 : checking deilvery for address: aaaa succefully done.
