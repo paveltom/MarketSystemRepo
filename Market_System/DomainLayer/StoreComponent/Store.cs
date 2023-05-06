@@ -318,22 +318,35 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     double productSalePrice = 0;
                     int quantity = 0;
-                    List<ItemDTO> saledProducts = new List<ItemDTO>(); 
-                    
-                    // Apply each Product Sale:
-                    foreach (ItemDTO item in productsToCalculate)
+                    List<ItemDTO> saledProducts = new List<ItemDTO>();
+                    bool maxPolicy = false;
+                    foreach(Purchase_Policy pp in this.storePolicies.Values)
                     {
-                        productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item);
-                        item.SetPrice(productSalePrice);
-                        saledProducts.Add(item);
-                        quantity += item.GetQuantity();
-                        ReleaseProduct(item.GetID());
+                        if (pp is MaximumPolicy)
+                        {
+                            saledProducts = pp.ApplyPolicy(productsToCalculate);
+                            maxPolicy = true;
+                        }
                     }
-                    
-                    // Apply Store Policy:
-                    foreach(Purchase_Policy p in this.storePolicies.Values)
-                        saledProducts = p.ApplyPolicy(saledProducts);
-                    return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price);
+
+                    if (!maxPolicy) // if Maximum Policy was applied other policies cannot be applied
+                    {
+                        // Apply each Product Sale:
+                        foreach (ItemDTO item in productsToCalculate)
+                        {
+                            productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item);
+                            item.SetPrice(productSalePrice / item.GetQuantity());
+                            saledProducts.Add(item);
+                            quantity += item.GetQuantity();
+                            ReleaseProduct(item.GetID());
+                        }
+
+                        // Apply Store Policy:
+                        foreach (Purchase_Policy p in this.storePolicies.Values)
+                            saledProducts = p.ApplyPolicy(saledProducts);
+                    }
+
+                    return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
                 }
                 catch (Exception ex) { throw ex; }
             }

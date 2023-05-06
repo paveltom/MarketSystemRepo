@@ -23,6 +23,7 @@ namespace Market_System.DomainLayer
         public String Description { get; private set; }
         public Double Rating { get; private set; } // between 1-10
         public Double Weight { get; private set; }
+        public Double Sale { get; private set; }
         public long timesBought { get; private set; }
         public long timesRated { get; private set; }
         public Category ProductCategory { get; private set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
@@ -54,6 +55,7 @@ namespace Market_System.DomainLayer
             this.Description = product.Description;
             this.Rating = product.Rating;
             this.Weight = product.Weight;
+            this.Sale = product.Sale;
             this.timesBought = product.timesBought;
             this.timesRated = product.timesRated;
             this.ProductCategory = product.ProductCategory;
@@ -103,6 +105,7 @@ namespace Market_System.DomainLayer
                 { "ReservedQuantity", this.reserved_quantity.ToString() },
                 { "Price", this.Price.ToString() },
                 { "Name", this.Name },
+                { "Sale", this.Sale.ToString() },
                 { "Description", this.Description },
                 { "Rating", this.Rating.ToString() },
                 { "Weight", this.Weight.ToString() },

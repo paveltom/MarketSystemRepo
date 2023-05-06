@@ -32,7 +32,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
         {
             facade = StoreFacade.GetInstance();
             testStore = GetStore();
-            testProduct0 = GetNewProduct(testStore.Store_ID, testStore.founderID); // added via facadee with storeID         
+            testProduct0 = GetNewProduct(""); // added via facadee with storeID         
 
         }
 
@@ -204,6 +204,40 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 
 
 
+        // ========================================= Maximum sale Policy Tests =========================================
+
+        [TestMethod]
+        public void MaximumPolicyTestSuccess()
+        {
+            // Arrange
+            Product newP = GetNewProduct("MaximumPolicyTestSuccessProductName");
+            ItemDTO item0 = testProduct0.GetProductDTO();
+            ItemDTO newItem = newP.GetProductDTO();
+            double maxSaledPrice = item0.Price * item0.GetQuantity() + (newItem.Price - newItem.Price / 100 * 90) * newItem.GetQuantity();
+            double retPrice = 0;
+            Dictionary<string, double> productIdWithSale = new Dictionary<string, double>()
+            {
+                {newItem.GetID(), 90},
+                {item0.GetID(), 40 }
+            };
+            Purchase_Policy mp = new MaximumPolicy("maxPolicyTestID", "maxPolicyTestName", "Yael policy description.", productIdWithSale);
+            this.facade.AddStorePurchasePolicy(this.testStore.founderID, this.testStore.Store_ID, mp);
+            bool error = false;
+
+            // Act
+            try
+            {
+                retPrice = this.facade.CalculatePrice(new List<ItemDTO>() { item0, newItem });
+            }
+            catch (Exception ex) { error = true; }
+
+            // Assert
+            Assert.IsFalse(error);
+            Assert.IsTrue(Math.Abs(maxSaledPrice - retPrice) < 0.01);
+        }
+
+
+
 
 
 
@@ -236,50 +270,21 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             return StoreRepo.GetInstance().getStore(newStore.StoreID);
         }
 
-        private Product GetNewProduct(string store, string founder)
+        private Product GetNewProduct(string productName)
         {
+            string name;
+            if (productName != "")
+                name = productName;
+            else
+                name = "testProduct0Name";
             // productProperties = {Name, Description, Price, Quantity, ReservedQuantity, Rating, Sale ,Weight, Dimenssions, PurchaseAttributes, ProductCategory}
             // ProductAttributes = atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
-            List<String> productProperties = new List<String>() { "testProduct0Name", "testProduct0Desription", "123.5", "23", "0" , "0", "0", "67", "9.1_8.2_7.3",
+            List<String> productProperties = new List<String>() { name, "testProduct0Desription", "123.5", "23", "0" , "0", "0", "67", "9.1_8.2_7.3",
                                                                    "testProduct0Atr1:testProduct0Atr1Opt1_testProduct0Atr1Opt2;testProduct0Atr2:testProduct0Atr2Opt1_testProduct0Atr2Opt2_testProduct0Atr2Opt3;",
                                                                    "testProduct0SomeCategory"};
-            ItemDTO newItem = facade.AddProductToStore(store, testStore.founderID, productProperties);
+            ItemDTO newItem = facade.AddProductToStore(testStore.Store_ID, testStore.founderID, productProperties);
             return StoreRepo.GetInstance().getProduct(newItem.GetID());
         }
-
-        /*
-        private Product GetExistingProduct(string productid)
-        {
-            Purchase_Policy testProduct1Policy = new Purchase_Policy("testProduct1Policy1ID", "testProduct1Policy1Name", 100, 0, 50);
-            Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("testProduct1Strategy1ID", "testProduct1StrategyName");
-            String product_ID = productid;
-            String name = "testProduct1Name";
-            String description = "testProduct1Description";
-            double price = 678.9;
-            int initQuantity = 89;
-            int reservedQuantity = 12;
-            double rating = 7.8; // 1-10 
-            double sale = 15; // % 
-            double weight = 5.1;
-            double[] dimenssions = new double[] { 10.2, 30.4, 50.6 };
-            List<String> comments = new List<string> { "testProduct1UserID123 + testProduct1Comment1 + Rating: testProduct1Comment1Rating.", "testProduct1UserID456 + testProduct1Comment2 + Rating: testProduct1Comment2Rating." };
-            ConcurrentDictionary<string, Purchase_Policy> defaultStorePolicies = new ConcurrentDictionary<string, Purchase_Policy>();
-            ConcurrentDictionary<string, Purchase_Strategy> defaultStoreStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
-            defaultStorePolicies.TryAdd(testProduct1Policy.GetID(), testProduct1Policy);
-            defaultStoreStrategies.TryAdd(testProduct1Strategy.GetID(), testProduct1Strategy);
-
-            Dictionary<string, List<string>> product_Attributes = new Dictionary<string, List<string>>();
-            List<string> attr1 = new List<string>() { "testProduct1Atr1Opt1", "testProduct1Atr1Opt2" };
-            List<string> attr2 = new List<string>() { "testProduct1Atr2Opt1", "testProduct1Atr2Opt2", "testProduct1Atr2Opt3" };
-            product_Attributes.Add("testProduct1Atr1", attr1);
-            product_Attributes.Add("testProduct1Atr2", attr2);
-
-            int boughtTimes = 11;
-            Category category = new Category("testProduct1SomeCategory");
-            return new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
-                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
-        }
-        */
     }
 }
 

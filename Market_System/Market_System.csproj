@@ -177,6 +177,7 @@
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtLeastStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtMostStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\CategoryPolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\MaximumPolicy.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotNeeded\CategoryStrategy.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\EqualRelation.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\GreaterThanThisRelation.cs" />
@@ -192,7 +193,6 @@
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotNeeded\StoreStrategy.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\NotNeeded\UserStrategy.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StatementBuilder.cs" />
-    <Compile Include="DomainLayer\StoreComponent\StorePolicy.cs" />
     <Compile Include="register_page.aspx.cs">
       <DependentUpon>register_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -16,6 +16,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public static Statement GenerateFormula(String formulaWithWhiteSpaces) // [ <formula> ]
         {
+            if (formulaWithWhiteSpaces == "")
+                return null;
             String formula = Regex.Replace(formulaWithWhiteSpaces, " ", "");
             String withoutBrakets = formula.Substring(1, formula.Length - 2);
             int continueIndex = withoutBrakets.IndexOf('[');
