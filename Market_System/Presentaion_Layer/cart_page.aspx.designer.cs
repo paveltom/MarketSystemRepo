@@ -87,12 +87,12 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.DataList products_list;
 
         /// <summary>
-        /// checkoutButton control.
+        /// checkout_button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button checkoutButton;
+        protected global::System.Web.UI.WebControls.Button checkout_button;
     }
 }

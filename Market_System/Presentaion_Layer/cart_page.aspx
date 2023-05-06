@@ -31,4 +31,7 @@
         </asp:DataList>
 
     </div>
+    <div>
+        <asp:Button ID="checkout_button" runat="server" OnClick="checkoutButton_Click" Text="checkout" />
+    </div>
 </asp:Content>
