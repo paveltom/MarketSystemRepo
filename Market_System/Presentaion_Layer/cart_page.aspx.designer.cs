@@ -33,6 +33,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label error_message;
 
         /// <summary>
+        /// product_id_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label product_id_label;
+
+        /// <summary>
         /// product_id_txt control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label error_message_GO_button;
+
+        /// <summary>
+        /// cart_empty_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label cart_empty_label;
 
         /// <summary>
         /// products_list control.
