@@ -1598,15 +1598,4 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 שבת 06 מאי 2023 : 1835343955 added product with id: 2021716946_2025080076 to basket
 שבת 06 מאי 2023 : 1835343955 removed product with id: 2021716946_2025080076 from the basket
 
-Saturday, 6 May 2023 : guest : guest1867820008 has logged in
-Saturday, 6 May 2023 : amihai has registered!
-Saturday, 6 May 2023 : got member info with username : amihai from market system
-Saturday, 6 May 2023 : guest : guest912462259 has logged in
-Saturday, 6 May 2023 : 912462259Logged-out succesfully
-Saturday, 6 May 2023 : guest : guest149041012 has logged in
-Saturday, 6 May 2023 : amihai has registered!
-Saturday, 6 May 2023 : guest : guest1901302472 has logged in
-Saturday, 6 May 2023 : guest : guest1852338393 has logged in
-Saturday, 6 May 2023 : amihai has registered!
-Saturday, 6 May 2023 : A new admin:amihaihas been added successfully
-Saturday, 6 May 2023 : got member info with username : amihai from market system
+
