@@ -112,6 +112,11 @@ namespace Market_System.ServiceLayer
 
         }
 
+        internal bool check_if_current_user_is_admin(string session_id)
+        {
+            return market_System.check_if_current_user_is_admin(session_id);
+        }
+
         public List<string> get_store_ids_from_cart(string session_id)
         {
             try
