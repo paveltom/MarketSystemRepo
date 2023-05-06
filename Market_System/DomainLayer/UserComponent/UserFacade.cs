@@ -100,7 +100,17 @@ namespace Market_System.DomainLayer.UserComponent
             throw new ArgumentException("Incorrect login information has been provided");
         }
 
-       
+        internal bool check_if_current_user_is_admin(string user_id)
+        {
+            //The admin exists and is logged-in -> State == Admin
+
+
+
+            return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
+            
+             
+            
+        }
 
         internal string link_guest_with_user_id(string guest_name)
         {
@@ -469,6 +479,14 @@ namespace Market_System.DomainLayer.UserComponent
         {
             try
             {
+                if (curr_Admin_Session_ID == null)//it means it is the inizilating of the system
+                {
+                    string admin_id = get_user_id_from_username("admin");
+                    userRepo.AddNewAdmin(null, "admin");
+                    Admins.Add(admin_id);
+                }
+                else { 
+
                 string user_id_1 = userID_sessionID_linker[curr_Admin_Session_ID];
                 string curr_Admin_userName = get_username_from_user_id(user_id_1);
                 string user_id_2 = userRepo.get_userID_from_username(Other_username);
@@ -484,6 +502,7 @@ namespace Market_System.DomainLayer.UserComponent
                 {
                     throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin or isn't logged-in)");
                 }
+            }
             }
 
             catch(Exception e)

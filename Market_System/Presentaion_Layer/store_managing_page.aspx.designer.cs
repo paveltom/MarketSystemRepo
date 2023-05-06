@@ -213,13 +213,40 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label9;
 
         /// <summary>
-        /// add_product_button4 control.
+        /// add_employee_permissionT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button add_product_button4;
+        protected global::System.Web.UI.WebControls.TextBox add_employee_permissionT;
+
+        /// <summary>
+        /// add_permission control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox add_permission;
+
+        /// <summary>
+        /// add_employee_permission control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button add_employee_permission;
+
+        /// <summary>
+        /// Add_Permission_Message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Add_Permission_Message;
 
         /// <summary>
         /// Label10 control.
@@ -231,13 +258,40 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
-        /// add_product_button5 control.
+        /// remove_username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button add_product_button5;
+        protected global::System.Web.UI.WebControls.TextBox remove_username;
+
+        /// <summary>
+        /// remove_employee_permission control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox remove_employee_permission;
+
+        /// <summary>
+        /// remove_permission_button5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button remove_permission_button5;
+
+        /// <summary>
+        /// Remove_Permission_Message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Remove_Permission_Message;
 
         /// <summary>
         /// Label11 control.

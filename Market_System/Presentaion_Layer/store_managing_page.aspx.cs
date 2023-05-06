@@ -149,6 +149,7 @@ namespace Market_System.Presentaion_Layer
 
         }
 
+
         protected void closeStoreClick(object sender, EventArgs e)
         {
             string store_id = entered_store_id.Text;
@@ -161,6 +162,45 @@ namespace Market_System.Presentaion_Layer
             else
             {
                 closeStoreMsg.Text = "store "+store_id+" closed ";
+            }
+            }
+            
+        protected void add_employee_permission_Click(object sender, EventArgs e)
+        {
+            string username = add_employee_permissionT.Text;
+
+            string store_id = entered_store_id.Text;
+            string permission = add_permission.Text;
+            Response<string> ok = ((Service_Controller)Session["service_controller"]).AddEmployeePermission(store_id,username, permission);
+            if (ok.ErrorOccured)
+            {
+                Add_Permission_Message.ForeColor = System.Drawing.Color.Red;
+                Add_Permission_Message.Text = ok.ErrorMessage;
+                }
+            else
+            {
+                Add_Permission_Message.ForeColor = System.Drawing.Color.Green;
+                Add_Permission_Message.Text = ok.Value;
+            }
+
+            }
+
+        protected void remove_permission_Click(object sender, EventArgs e)
+        {
+            string username=remove_username.Text;
+            string storeID= entered_store_id.Text;
+            string permission =remove_employee_permission.Text;
+            Response<string> ok = ((Service_Controller)Session["service_controller"]).RemoveEmployeePermission(storeID,username,permission);
+            if (ok.ErrorOccured)
+            {
+                Remove_Permission_Message.ForeColor=System.Drawing.Color.Red;
+                Remove_Permission_Message.Text=ok.ErrorMessage;
+            }
+            else
+            {
+                Remove_Permission_Message.ForeColor= System.Drawing.Color.Green;
+                Remove_Permission_Message.Text= ok.Value;
+
             }
         }
     }

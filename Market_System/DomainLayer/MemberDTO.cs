@@ -35,5 +35,10 @@ namespace Market_System.DomainLayer
         {
             return isAdmin;
         }
+
+        public string tostring()
+        {
+            return "username: " + this.username + "  address:  " + this.address + "Admin: " + isAdmin.ToString(); // if anyone wants more details you are welcomed to type here you'r shit
+        }
     }
 }
