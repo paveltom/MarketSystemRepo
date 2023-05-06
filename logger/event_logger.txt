@@ -1605,3 +1605,4 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 שבת 06 מאי 2023 : checking deilvery for address: okay succefully done.
 שבת 06 מאי 2023 : checkout completed by : guest561083598
 שבת 06 מאי 2023 : checking deilvery for address: okay succefully done.
+שבת 06 מאי 2023 : guest : guest545411920 has logged in
