@@ -1278,3 +1278,36 @@ Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary.
 Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Saturday, 6 May 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
+Saturday, 6 May 2023 : error!!: a user with same name exists, please change name!in register
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Saturday, 6 May 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 6 May 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner
+Saturday, 6 May 2023 : error!!: Cannot assign new owner: you are not an owner in this store or employee is already an owner in this store. in assign_new_owner

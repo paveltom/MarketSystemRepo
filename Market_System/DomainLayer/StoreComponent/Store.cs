@@ -123,7 +123,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     //the new owner is not already an owner, and isn't a manager - nor he is the founder of this store!
                     if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
                         !(this.employees.isOwner(newOwnerID, this.Store_ID)) && !(this.employees.isManager(newOwnerID, this.Store_ID)) 
-                        && !(userID.Equals(newOwnerID)))
+                        && !(this.employees.isFounder(newOwnerID, this.Store_ID)))
                     {
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
                     }
@@ -131,7 +131,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     //the new owner is not already an owner, and is a manager -> we need to remove him as a manager first!
                     else if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
                         !(this.employees.isOwner(newOwnerID, this.Store_ID)) && (this.employees.isManager(newOwnerID, this.Store_ID))
-                        && !(userID.Equals(newOwnerID)))
+                        && !(this.employees.isFounder(newOwnerID, this.Store_ID)))
                     {
                         this.employees.removeEmployee(newOwnerID, this.Store_ID);
                         this.employees.AddNewOwnerEmpPermissions(userID, newOwnerID, this.Store_ID);
@@ -178,7 +178,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) &&
                         !this.employees.isManager(newManagerID, this.Store_ID) && !this.employees.isOwner(newManagerID, this.Store_ID) 
-                        && !(userID.Equals(newManagerID)))
+                        && !(this.employees.isFounder(newManagerID, this.Store_ID)))
                     {
                         this.employees.AddNewManagerEmpPermissions(userID, newManagerID, Store_ID, new List<Permission>() { Permission.STOCK });
                     }
