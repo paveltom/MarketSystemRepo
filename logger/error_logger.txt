@@ -1487,3 +1487,27 @@ Saturday, May 6, 2023 : error!!: cannot deliver due to address or weight in chec
 Saturday, May 6, 2023 : error!!: cannot pay invaild price or credit card detailsin check_out
 Saturday, May 6, 2023 : error!!: cannot deliver due to address or weight in check_delivery
 Saturday, May 6, 2023 : error!!: cannot pay invaild price or credit card detailsin check_out
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, May 6, 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages

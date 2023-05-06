@@ -1419,3 +1419,46 @@ Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
 Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
 Saturday, May 6, 2023 : checking deilvery for address: s succefully done.
 Saturday, May 6, 2023 : guest : guest1235328599 has logged in
+Saturday, May 6, 2023 : guest : guest672409678 has logged in
+Saturday, May 6, 2023 : guest : guest471561 has logged in
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : guest : guest2034051895 has logged in
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : 2034051895 closed a store with the ID: 2034051895
+Saturday, May 6, 2023 : guest : guest1547307802 has logged in
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : 1547307802 closed a store with the ID: 1547307802
+Saturday, May 6, 2023 : guest : guest35928185 has logged in
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : 35928185 closed a store with the ID: 35928185
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : guest : guest1549072863 has logged in
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : 778544935 closed a store with the ID: 1549072863
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : guest : guest1378282562 has logged in
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : 1378282562 closed a store with the ID: 1378282562
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin
+Saturday, May 6, 2023 : A check for this user:adminhas been done successfully - he is an admin

@@ -162,6 +162,13 @@ namespace Market_System.Presentaion_Layer
             {
                 closeStoreMsg.Text = "store "+store_id+" closed ";
             }
+
+            //yotam
+            if (!((Service_Controller)Session["service_controller"]).check_if_working_in_a_store().Value)
+            {
+                Response.Redirect("~/");
+            }
+            //yotam
         }
     }
 }

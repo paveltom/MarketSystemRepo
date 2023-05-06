@@ -261,14 +261,12 @@ namespace Market_System.ServiceLayer
             try
             {
                 this.ssc.close_store_temporary( storeID);
-                
                 Logger.get_instance().record_event(usc.get_userID_from_session_id(session_id)+" closed a store with the ID: "+storeID);
                 Response<string> ok = Response<string>.FromValue("successfully closed store with ID: "+storeID);
                 return ok;
             }
             catch (Exception e)
             {
-
                 Logger.get_instance().record_error("error!!: " + e.Message + "in close_store_temporary");
                 return Response<String>.FromError(e.Message);
             }
