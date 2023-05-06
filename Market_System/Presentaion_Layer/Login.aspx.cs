@@ -40,6 +40,5 @@ namespace Market_System.Presentaion_Layer
          
         }
 
-        
     }
 }
