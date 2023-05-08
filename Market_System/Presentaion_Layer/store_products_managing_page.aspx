@@ -34,7 +34,7 @@
 &nbsp;&nbsp; <asp:Label ID="Label18" runat="server" Text="attributes:"></asp:Label>
         <asp:TextBox ID="attribute_txt" Text="attr" runat="server" Width="50px"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;<asp:Label ID="Label19" runat="server" Text="category:"></asp:Label>
-        <asp:DropDownList ID="ddl_categories"  runat="server" AutoPostBack="True" Height="16px" Width="129px" OnSelectedIndexChanged="ddl_categories_SelectedIndexChanged"  >
+        <asp:DropDownList ID="ddl_categories"  runat="server" AutoPostBack="True" Height="16px" Width="129px"    >
          <asp:ListItem Text="please select a category" Value="nothing_to_show" />
             </asp:DropDownList></div>
 &nbsp;<div style="text-align: center"><asp:Button ID="add_product_button" runat="server" OnClick="add_product_click" Text="!Add" Width="285px" CssClass="btn btn-primary" />
