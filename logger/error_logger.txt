@@ -1380,3 +1380,23 @@ Saturday, May 6, 2023 : error!!: cannot pay invaild price or credit card details
 
 שבת 06 מאי 2023 : error!!: cannot deliver due to address or weight in check_delivery
 שבת 06 מאי 2023 : error!!: cannot deliver due to address or weight in check_delivery
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
+יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages

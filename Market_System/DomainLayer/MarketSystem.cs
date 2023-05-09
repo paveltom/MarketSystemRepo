@@ -74,6 +74,20 @@ namespace Market_System.DomainLayer
             return Instance;
         }
 
+        internal bool check_if_user_bought_item(string product_id, string session_id)
+        {
+            string user_id = get_userid_from_session_id(session_id);
+            try
+            {
+                bool result = userFacade.check_if_user_bought_item(product_id, user_id);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         private void initializing_product(string storeid, List<string> list)
         {
             Add_Product_To_Store(storeid, null, list);

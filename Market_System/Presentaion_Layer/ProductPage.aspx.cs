@@ -31,6 +31,26 @@ namespace Market_System.Presentaion_Layer
             comments_list.DataSource = show_me;
             comments_list.DataBind();
 
+            Response<Boolean> bought_or_not= ((Service_Controller)Session["service_controller"]).check_if_user_bought_item(product_id);
+            if(bought_or_not.Value)
+            {
+                add_commnet_label.Visible = true;
+                commnet_txtbox.Visible = true;
+                rating_label.Visible = true;
+                ddl_rating.Visible = true;
+                comment_button.Visible = true;
+            }
+            else
+            {
+                add_commnet_label.Visible = false;
+                commnet_txtbox.Visible = false;
+                rating_label.Visible = false;
+                ddl_rating.Visible = false;
+                comment_button.Visible = false;
+            }
+
+            
+
 
         }
 
@@ -49,6 +69,33 @@ namespace Market_System.Presentaion_Layer
                 clickmsg.ForeColor = System.Drawing.Color.Green;
             }
  
+
+        }
+
+        protected void add_commnet_click(object sender, EventArgs e)
+        {
+            if (ddl_rating.SelectedValue.Equals("nothing_to_show") || commnet_txtbox.Equals(""))
+            {
+                comment_message.ForeColor = System.Drawing.Color.Red;
+                comment_message.Text = "please choose rating and typein comment properly";
+            }
+            else
+            {
+                double rating = Double.Parse(ddl_rating.SelectedValue);
+
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).comment_on_product(product_id, commnet_txtbox.Text, rating);
+                if (okay.ErrorOccured)
+                {
+                    comment_message.Text = okay.ErrorMessage;
+                    comment_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    comment_message.Text = okay.Value;
+                    comment_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+
 
         }
     }

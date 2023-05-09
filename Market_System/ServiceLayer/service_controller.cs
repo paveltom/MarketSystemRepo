@@ -40,7 +40,18 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
         }
 
-
+        internal Response<bool> check_if_user_bought_item(string product_id)
+        {
+            try
+            {
+                Response<bool> result = Response<bool>.FromValue(this.usc.check_if_user_bought_item(product_id, this.session_id));
+                return result;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
 
         internal Response< Dictionary<string, string>> extract_item_from_basket(string product_id)
         {

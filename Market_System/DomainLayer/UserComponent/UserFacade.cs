@@ -100,6 +100,20 @@ namespace Market_System.DomainLayer.UserComponent
             throw new ArgumentException("Incorrect login information has been provided");
         }
 
+        internal bool check_if_user_bought_item(string product_id, string user_id)
+        {
+            string username = get_username_from_user_id(user_id);
+            try
+            {
+                bool result = PurchaseRepo.GetInstance().check_if_user_bought_item(username, product_id);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal bool check_if_current_user_is_admin(string user_id)
         {
             //The admin exists and is logged-in -> State == Admin

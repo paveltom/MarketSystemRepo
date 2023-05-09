@@ -92,6 +92,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+
         private static object PurchaseLock = new object();
         public void Purchase(string userID, List<ItemDTO> products)
         {

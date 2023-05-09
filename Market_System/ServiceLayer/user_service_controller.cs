@@ -48,6 +48,19 @@ namespace Market_System.ServiceLayer
             return market_System.extract_item_from_basket(product_id, session_id);
         }
 
+        internal bool check_if_user_bought_item(string product_id, string session_id)
+        {
+            try
+            {
+                return this.market_System.check_if_user_bought_item(product_id, session_id);
+                
+            }
+            catch (Exception e)
+            {
+                 throw e;
+            }
+        }
+
         public string login_guest(string session_id)//1.1
         {
             try

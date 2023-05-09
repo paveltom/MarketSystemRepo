@@ -1606,3 +1606,13 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 שבת 06 מאי 2023 : checkout completed by : guest561083598
 שבת 06 מאי 2023 : checking deilvery for address: okay succefully done.
 יום שלישי 09 מאי 2023 : guest : guest132504876 has logged in
+יום שלישי 09 מאי 2023 : guest : guest1105822237 has logged in
+יום שלישי 09 מאי 2023 : bayan has registered!
+יום שלישי 09 מאי 2023 : 177236216 added product with id: 1105822237_177236216 to basket
+יום שלישי 09 מאי 2023 : checking deilvery for address: kos succefully done.
+יום שלישי 09 מאי 2023 : checking deilvery for address: kos succefully done.
+יום שלישי 09 מאי 2023 : checkout completed by : bayan
+יום שלישי 09 מאי 2023 : checking deilvery for address: kos succefully done.
+יום שלישי 09 מאי 2023 : a new comment for product id: 1105822237_177236216
+יום שלישי 09 מאי 2023 : 177236216Logged-out succesfully
+יום שלישי 09 מאי 2023 : guest : guest767869240 has logged in
