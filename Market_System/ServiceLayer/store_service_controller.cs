@@ -51,18 +51,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        internal bool check_if_user_bought_item(string product_id, string session_id)
-        {
-            try
-            {
-                bool result = this.Market.check_if_user_bought_item(product_id, session_id);
-                return result;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+  
 
         public Response GetStore(string storeID)
         {
