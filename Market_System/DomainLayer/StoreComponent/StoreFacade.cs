@@ -566,6 +566,21 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        public List<string> get_all_comments_of_product(string productID)
+        {
+            try
+            {
+                List<string> list_of_comments= AcquireStore(GetStoreIdFromProductID(productID)).get_all_comments_of_product(productID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+                return list_of_comments;
+                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void AddProductComment(string userID, string productID, string comment, double rating)
         {
             try

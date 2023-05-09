@@ -27,5 +27,13 @@
         <asp:Label ID="description" runat="server" style="text-align: left" Text=""></asp:Label>
     </div>
     <div></div>
-    <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="Label2" runat="server" Text="comments:"></asp:Label>
+    </div>
+    <div><asp:DataList ID="comments_list" runat="server">
+            <ItemTemplate>
+                <asp:Label Text="<%# Container.DataItem %>" runat="server" />
+            </ItemTemplate>
+        </asp:DataList></div>
 </asp:Content>
+

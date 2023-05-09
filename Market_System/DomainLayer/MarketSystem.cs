@@ -684,6 +684,19 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal List<string> get_all_comments_of_product(string product_id)
+        {
+            try
+            {
+
+
+                return storeFacade.get_all_comments_of_product(product_id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public string get_session_id_from_username(string username)
         {

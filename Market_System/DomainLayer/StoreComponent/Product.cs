@@ -530,6 +530,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        internal List<string> get_all_comments_of_product()
+        {
+            return Comments.ToList();
+        }
+
 
 
 

@@ -624,6 +624,20 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public List<string> get_all_comments_of_product(string product_id)
+        {
+            try
+            {
+                List<string> okay = this.Market.get_all_comments_of_product(product_id);
+
+                return okay;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response ChangeProductDimenssions(string productID, double[] dims)
         {
             try

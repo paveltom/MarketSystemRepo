@@ -615,6 +615,24 @@ namespace Market_System.ServiceLayer
         }
 
 
+
+        public Response<List<string>> get_all_comments_of_product(string product_id)
+        {
+            try
+            {
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.get_all_comments_of_product(product_id));
+
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
         public Response<List<ItemDTO>> get_products_from_all_shop()
         {
             try

@@ -24,6 +24,14 @@ namespace Market_System.Presentaion_Layer
             id.Text = "Name: " + item.Value.get_name();
             quantity.Text = "Quantity in stock: " + item.Value.GetQuantity().ToString();
             description.Text = "Description: \n" + item.Value.getDescription();
+
+            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).get_all_comments_of_product(product_id);
+            string[] show_me = response.Value.ToArray();
+
+            comments_list.DataSource = show_me;
+            comments_list.DataBind();
+
+
         }
 
         protected void addToCart_Click(object sender, EventArgs e)
