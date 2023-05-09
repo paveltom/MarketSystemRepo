@@ -68,5 +68,18 @@ namespace Market_System.DomainLayer.UserComponent
             }
             throw new Exception("user never bought anything!");
         }
+
+        internal bool check_if_user_bought_item(string username, string product_id)
+        {
+            List<PurchaseHistoryObj> history = purchases_database[username];
+            foreach(PurchaseHistoryObj history_obj in history)
+            {
+                if(history_obj.check_if_contains_product(product_id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

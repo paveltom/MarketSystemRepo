@@ -51,6 +51,8 @@ namespace Market_System.ServiceLayer
             }
         }
 
+  
+
         public Response GetStore(string storeID)
         {
             try
@@ -615,6 +617,20 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response < List < ItemDTO >> okay= Response < List < ItemDTO >>.FromValue(this.Market.GetProductsFromAllStores());
+
+                return okay;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<string> get_all_comments_of_product(string product_id)
+        {
+            try
+            {
+                List<string> okay = this.Market.get_all_comments_of_product(product_id);
 
                 return okay;
             }

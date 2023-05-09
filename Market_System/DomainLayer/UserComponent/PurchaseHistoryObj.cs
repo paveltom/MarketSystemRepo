@@ -21,7 +21,17 @@ namespace Market_System.DomainLayer.UserComponent
             this.purchase_date = DateTime.Now.ToShortDateString(); 
         }
 
-
+        public bool check_if_contains_product(string product_id)
+        {
+            foreach(Bucket basket in baskets)
+            {
+                if(basket.check_if_product_exists(product_id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public string tostring()
         {
             string return_me = purchase_date+": \n";

@@ -40,7 +40,18 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
         }
 
-
+        internal Response<bool> check_if_user_bought_item(string product_id)
+        {
+            try
+            {
+                Response<bool> result = Response<bool>.FromValue(this.usc.check_if_user_bought_item(product_id, this.session_id));
+                return result;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
 
         internal Response< Dictionary<string, string>> extract_item_from_basket(string product_id)
         {
@@ -614,6 +625,24 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+
+        public Response<List<string>> get_all_comments_of_product(string product_id)
+        {
+            try
+            {
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.ssc.get_all_comments_of_product(product_id));
+
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
 
         public Response<List<ItemDTO>> get_products_from_all_shop()
         {

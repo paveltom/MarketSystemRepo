@@ -92,6 +92,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+
         private static object PurchaseLock = new object();
         public void Purchase(string userID, List<ItemDTO> products)
         {
@@ -559,6 +560,21 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 AcquireStore(storeID).RemoveProduct(userID, productID);
                 ReleaseStore(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<string> get_all_comments_of_product(string productID)
+        {
+            try
+            {
+                List<string> list_of_comments= AcquireStore(GetStoreIdFromProductID(productID)).get_all_comments_of_product(productID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+                return list_of_comments;
+                
             }
             catch (Exception e)
             {
