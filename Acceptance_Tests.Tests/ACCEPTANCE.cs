@@ -1051,28 +1051,45 @@ namespace Market_System.Tests.SeviceLevelTests
         */
 
 
-        //TODO:: Uncomment this test when @Pasha fixes The Employees() function... fails when opening a new store
-        /*
         [TestMethod]
-        public void checkoutCartGuest()
+        public void checkoutSuccess()
         {
             //Setup: 
-            LoggedInOwnerWithOpenedOneProdStore("user1", "pass1", "add1");
-            //todo: fix Prod1-->prod_id
-            Response<string> response = service.add_product_to_basket("Prod1", "1");
-
+            oneThreadSetUp();
+            service.login_member("admin", "admin");
+            Response<StoreDTO> store = service.open_new_store(new List<string> { "Bayanka" });
+            Response<ItemDTO> resp2 = service.add_product_to_store(store.Value.StoreID, "Bayanka", "ggg", "500.0", "5",
+    "0", "5.0", "5.0", "5.0", "5.0_5.0", "ggg", "ggggg");
             //Action:
-            //todo:
-            //service.check_out("user1", "1234567812345678", DomainLayer.UserComponent.)
-            //Response<string> response2 = service.c
-
+            Response<string> response = service.add_product_to_basket(resp2.Value.GetID(), "3");
+            Response<string> checkout = service.check_out("5665654");
+            
             //Result:
-            //Assert.Equals(false, response.ErrorOccured);
+            Assert.AreEqual(false, checkout.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
         }
-        */
+
+        [TestMethod]
+        public void checkoutFailure() //all of the quantity is reserved
+        {
+            //Setup: 
+            oneThreadSetUp();
+            service.login_member("admin", "admin");
+            Response<StoreDTO> store = service.open_new_store(new List<string> { "Bayanka" });
+            Response<ItemDTO> resp2 = service.add_product_to_store(store.Value.StoreID, "Bayanka", "ggg", "500.0", "5",
+    "5", "5.0", "5.0", "5.0", "5.0_5.0", "ggg", "ggggg");
+            //Action:
+            Response<string> response = service.add_product_to_basket(resp2.Value.GetID(), "1");
+            Response<string> checkout = service.check_out("5665654");
+
+            //Result:
+            Assert.AreEqual(true, checkout.ErrorOccured);
+
+            //tearDown:
+            oneThreadCleanup();
+        }
 
         #endregion
 
