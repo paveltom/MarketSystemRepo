@@ -1723,3 +1723,8 @@ Wednesday, 10 May 2023 : user with session ID : 2011220229 got his Messages
 Wednesday, 10 May 2023 : 1067985753Logged-out succesfully
 Wednesday, 10 May 2023 : guest : guest1501012857 has logged in
 Wednesday, 10 May 2023 : user with session ID : 1067985753 got his Messages
+Wednesday, 10 May 2023 : guest : guest152894825 has logged in
+Wednesday, 10 May 2023 : 152894825 added product with id: 152894825_1214936068 to basket
+Wednesday, 10 May 2023 : 152894825 removed product with id: 152894825_1214936068 from the basket
+Wednesday, 10 May 2023 : 152894825Logged-out succesfully
+Wednesday, 10 May 2023 : guest : guest1430052587 has logged in
