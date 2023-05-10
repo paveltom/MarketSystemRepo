@@ -497,10 +497,29 @@ namespace Market_System.DomainLayer
         {
             try
             {
-               
                 string userID = userFacade.get_userID_from_session(session_id);
                 Cart cart = get_cart_of_userID(userID);
+                string username = userFacade.get_username_from_user_id(userID);
+                List<ItemDTO> cartItems = cart.convert_to_item_DTO();
                 storeFacade.Purchase(userID, cart.convert_to_item_DTO());
+
+                //Check if the product's quantity is 0
+                foreach (ItemDTO product in cartItems)
+                {
+                    List<ItemDTO> store_products = storeFacade.GetProductsFromStore(getStoreIDFromProductID(product.GetID()));
+                    foreach (ItemDTO item in store_products)
+                    {
+                        if ((item.GetID().Equals(product.GetID())) && (item.GetQuantity() <= 0)) //Send Notification to the store Owners if so
+                        {
+                            var message = "The quantity of product id: " + product.GetID() + " has ended.";
+                            //get Store ID and store Owners:
+                            var storeID = getStoreIDFromProductID(product.GetID());
+
+                            //Send Notification to the store Owners
+                            sendMessageToStoreOwners(message, "System", storeID);
+                        }
+                    }
+                }
             }
 
             catch (Exception e)
@@ -932,25 +951,10 @@ namespace Market_System.DomainLayer
                 string user_id = get_userid_from_session_id(session_id);
                 string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
-              double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
+                double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
                 PayCashService_Dummy.get_instance().pay(credit_card_details, price);
                 // userFacade.save_purhcase_in_user(username,cart);
-
-                //Check if the product's quantity is 0                
-                foreach(ItemDTO product in cart.convert_to_item_DTO())
-                {
-                    if(product.GetQuantity() <= 0) //Send Notification to the store Owners if so
-                    {
-                        var message = "The quantity of product id: " + product.GetID() + " has ended.";
-                        var userID = userFacade.get_user_id_from_username(username);
-                        //get Store ID and store Owners:
-                        var storeID = getStoreIDFromProductID(product.GetID());
-
-                        //Send Notification to the store Owners
-                        sendMessageToStoreOwners(message, "System", storeID);
-                    }
-                }             
                 return "Payment was successfull";
             }
 
