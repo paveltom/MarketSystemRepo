@@ -11,6 +11,9 @@ namespace Market_System.Domain_Layer.Communication_Component
         private static NotificationFacade Instance = null;
         private static NotificationRepo notificationRepo = null;
 
+        public delegate void NotificationEventHandler(object sender, string userID);
+        public static event NotificationEventHandler NotificationEvent;
+
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
@@ -50,6 +53,9 @@ namespace Market_System.Domain_Layer.Communication_Component
             {
                 Message message = new Message(mesg, from);
                 notificationRepo.addNewMessage(userID, message);
+
+                // Raise the event
+                NotificationEvent?.Invoke(this, userID);
             }
             catch (Exception e)
             {
