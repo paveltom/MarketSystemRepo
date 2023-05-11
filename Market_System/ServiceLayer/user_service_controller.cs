@@ -27,8 +27,10 @@ namespace Market_System.ServiceLayer
         {
             try
             {
+                
                string guest_id= market_System.unlink_userID_with_session(session_id); // unlinks the guest, because when we enter website we are a guest with sessino id
                 market_System.remove_guest_id_from_userRepo(guest_id);
+                market_System.check_username_is_logged_out(username);
                 market_System.Login(username, password);
                 market_System.link_user_with_session(username, session_id);
                

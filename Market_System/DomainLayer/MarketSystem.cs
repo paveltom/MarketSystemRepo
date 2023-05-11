@@ -26,6 +26,18 @@ namespace Market_System.DomainLayer
             
         }
 
+        internal void check_username_is_logged_out(string username)
+        {
+            try
+            {
+                 userFacade.check_username_is_logged_out(username);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         //This variable is going to store the Singleton Instance
         private static MarketSystem Instance = null;
 
