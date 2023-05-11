@@ -1728,3 +1728,21 @@ Wednesday, 10 May 2023 : 152894825 added product with id: 152894825_1214936068 t
 Wednesday, 10 May 2023 : 152894825 removed product with id: 152894825_1214936068 from the basket
 Wednesday, 10 May 2023 : 152894825Logged-out succesfully
 Wednesday, 10 May 2023 : guest : guest1430052587 has logged in
+Wednesday, 10 May 2023 : guest : guest1064298986 has logged in
+Wednesday, 10 May 2023 : user with session ID : 1064298986 got his Messages
+Wednesday, 10 May 2023 : 1064298986 added product with id: 1064298986_305446849 to basket
+Wednesday, 10 May 2023 : checking deilvery for address: gfgd succefully done.
+Wednesday, 10 May 2023 : checking deilvery for address: gfgd succefully done.
+Wednesday, 10 May 2023 : checking deilvery for address: gfgd succefully done.
+Wednesday, 10 May 2023 : checkout completed by : admin
+Wednesday, 10 May 2023 : checking deilvery for address: gfgd succefully done.
+Wednesday, 10 May 2023 : user with session ID : 1064298986 got his Messages
+Wednesday, 10 May 2023 : guest : guest153995521 has logged in
+Wednesday, 10 May 2023 : user with session ID : 153995521 got his Messages
+Wednesday, 10 May 2023 : 153995521 added product with id: 153995521_322967215 to basket
+Wednesday, 10 May 2023 : checking deilvery for address: gfgf succefully done.
+Wednesday, 10 May 2023 : checking deilvery for address: gfgf succefully done.
+Wednesday, 10 May 2023 : checking deilvery for address: gfgf succefully done.
+Wednesday, 10 May 2023 : checkout completed by : admin
+Wednesday, 10 May 2023 : checking deilvery for address: gfgf succefully done.
+Wednesday, 10 May 2023 : user with session ID : 153995521 got his Messages
