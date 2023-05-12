@@ -19,7 +19,7 @@ namespace Market_System.Tests.unit_tests
         [TestInitialize()]
         public void Setup()
         {
-            Logger.get_instance().change_logger_path_to_tests();
+            //Logger.get_instance().change_logger_path_to_tests();
             ms = MarketSystem.GetInstance();
         }
 
@@ -27,7 +27,7 @@ namespace Market_System.Tests.unit_tests
         [TestCleanup()]
         public void TearDown()
         {
-            Logger.get_instance().change_logger_path_to_regular();
+            //Logger.get_instance().change_logger_path_to_regular();
             ms.destroy_me();
 
         }
