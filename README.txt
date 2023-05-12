@@ -1,18 +1,12 @@
          check_out(string credit_card_details);
-         check_delivery(string address);
          login_member(string username,string pass);
          log_out();
          register(string username, string pass,string address); 
-         GetStore(string store_id);
-         get_products_from_shop(string storeID);
-         search_product_by_category(string category); 
-         search_product_by_keyword(string keyword); 
-        search_product_by_name(string name); 
          add_product_to_basket(string product_id,string quantity);
          remove_product_from_basket(string product_id, string quantity);
          open_new_store(List<string> newStoreDetails); 
          comment_on_product(string productID, string comment, double rating); 
-      add_product_to_store(string storeID, string product_name,string description, string price,string quantity,string reserved_quantity,string rating,string sale,string wieght,string dimenstions,string attributes,string product_category); //4.1
+      add_product_to_store(string storeID, string product_name,string description, string price,string quantity,string reserved_quantity,string rating,string sale,string wieght,string dimenstions,string attributes,string product_category);
        remove_product_from_store(string storeID, string productID);
       ChangeProductName(string productID, string name);
        ChangeProductDescription(string productID, string desc);
@@ -30,9 +24,4 @@
         AddEmployeePermission(string storeID, string employee_username, string newPerm);
         RemoveEmployeePermission(string storeID, string employee_username, string permToRemove);
          close_store_temporary(string storeID); 
-        get_managers_of_store(string storeID); 
-        get_owners_of_store( string storeID); 
-        get_purchase_history_from_store(string storeID); 
-       get_purchase_history_of_a_member(); 
        Remove_A_Member(string member_Username); 
-         GetMemberInfo(string member_Username); 
