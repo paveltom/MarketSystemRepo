@@ -42,13 +42,13 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// entered_store_id control.
+        /// ddl_store_id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox entered_store_id;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_store_id;
 
         /// <summary>
         /// error_message control.
@@ -213,6 +213,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label9;
 
         /// <summary>
+        /// Label18 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label18;
+
+        /// <summary>
         /// add_employee_permissionT control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,15 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox add_employee_permissionT;
+
+        /// <summary>
+        /// Label19 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label19;
 
         /// <summary>
         /// add_permission control.
@@ -258,6 +276,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
+        /// Label20 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label20;
+
+        /// <summary>
         /// remove_username control.
         /// </summary>
         /// <remarks>
@@ -265,6 +292,15 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox remove_username;
+
+        /// <summary>
+        /// Label21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label21;
 
         /// <summary>
         /// remove_employee_permission control.

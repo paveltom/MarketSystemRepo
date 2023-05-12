@@ -19,10 +19,36 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in());
+                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in(session_id));
                 return okay;
             }
             catch(Exception e)
+            {
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_user_can_manage_stock(string store_id)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_user_can_manage_stock(session_id,store_id));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
+
+        internal Response<List<string>> get_stores_id_that_user_works_in()
+        {
+            try
+            {
+                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_id_that_user_works_in(session_id));
+                return okay;
+            }
+            catch (Exception e)
             {
                 return Response<List<string>>.FromError(e.Message);
             }
@@ -271,6 +297,18 @@ namespace Market_System.ServiceLayer
            
         }
 
+        internal Response<bool> check_if_can_assign_manager_or_owner(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_assign_manager_or_owner(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
 
         public Response<string> close_store_temporary(string storeID)
         {
@@ -285,6 +323,45 @@ namespace Market_System.ServiceLayer
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + "in close_store_temporary");
                 return Response<String>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_can_show_infos(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_show_infos(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_can_close_store(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_close_store(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_can_remove_or_add_permessions(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_remove_or_add_permessions(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
             }
         }
 
