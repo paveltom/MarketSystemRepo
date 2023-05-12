@@ -1400,7 +1400,4 @@ Saturday, May 6, 2023 : error!!: cannot pay invaild price or credit card details
 יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שלישי 09 מאי 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-יום שישי 12 מאי 2023 : error!!: יש לציין מידע חוקי עבור פרישה במחרוזת. in AddEmployeePermission
-יום שישי 12 מאי 2023 : error!!: can't recive userID because username does not exists in assign_new_manager
-יום שישי 12 מאי 2023 : error!!: can't recive userID because username does not exists in assign_new_owner
-יום שישי 12 מאי 2023 : error!!: can't recive userID because username does not exists in Remove_Store_Owner
+

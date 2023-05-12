@@ -4,7 +4,7 @@
     <div style="height: 58px"></div>
     <div style="text-align: left; height: 43px;">
         <asp:Label ID="Label2" runat="server" Text="new password:"></asp:Label>
-        <asp:TextBox ID="new_password" TextMode="Password" runat="server" OnTextChanged="new_password_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="new_password" TextMode="Password" runat="server" ></asp:TextBox>
     </div>
     <div style="text-align: left"> <asp:Label ID="Label3" runat="server" Text="retype new password:"></asp:Label>
         <asp:TextBox ID="confirm_new_password" textmode="Password" runat="server"></asp:TextBox></div>

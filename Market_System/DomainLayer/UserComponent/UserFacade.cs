@@ -51,6 +51,31 @@ namespace Market_System.DomainLayer.UserComponent
             return Instance;
         }
 
+        internal void check_username_is_logged_out(string username)
+        {
+            try
+            {
+
+                foreach (User user in users)
+                {
+                    if (user.GetUsername().Equals(username))
+                    {
+                        if (!user.GetUserState().Equals("Guest"))
+                        {
+                            throw new Exception(username + " is already logged in!");
+                        }
+                       
+                      return;
+                        
+                    }
+                }
+                        }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal void remove_guest_from_users(string guest_name)
         {
             

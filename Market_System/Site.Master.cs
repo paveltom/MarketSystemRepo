@@ -50,9 +50,18 @@ namespace Market_System
                 username_hello_label.Text = "hello " + Session["username"] + " !";
                  Label1.Text="hello " + Session["username"] + " !";
             }
-           
 
+        }
 
+        private void BusinessLayer_NotificationEvent(object sender, string userID)
+        {
+            // Handle the notification event
+            //TODO:: NEED TO SEND IT TO THE SPECIFIC USER!
+            if (((Service_Controller)Session["service_controller"]).HasNewMessages())
+            {
+                notification_messages.Text = "you have a new message!";
+            }
+            // Perform any required actions, such as displaying a notification on the site master page
         }
 
         internal void set_username_message(string hello)
@@ -103,7 +112,8 @@ namespace Market_System
                 admin_spec_ops_button.Visible = false;
             }
 
-
+            // Subscribe to the event
+            Domain_Layer.Communication_Component.NotificationFacade.NotificationEvent += BusinessLayer_NotificationEvent;
 
 
 

@@ -124,7 +124,7 @@ namespace Market_System.DomainLayer.UserComponent
             
             foreach(Bucket basket in this.baskets)
             {
-                list_of_dtos = list_of_dtos.Concat(basket.convert_basket_to_dtos_list()).ToList();
+                list_of_dtos.AddRange(basket.convert_basket_to_dtos_list());
             }
 
             return list_of_dtos;
