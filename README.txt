@@ -1,0 +1,17 @@
+         check_out(string credit_card_details);
+         login_member(string username,string pass);
+         log_out();
+         register(string username, string pass,string address); 
+         add_product_to_basket(string product_id,string quantity);
+         remove_product_from_basket(string product_id, string quantity);
+         open_new_store(List<string> newStoreDetails); 
+         comment_on_product(string productID, string comment, double rating); 
+      add_product_to_store( string product_name,string description, string price,string quantity,string reserved_quantity,string rating,string sale,string wieght,string dimenstions,string attributes,string product_category);
+       remove_product_from_store( string productID);
+        assign_new_owner(string newOwnerUsername); 
+       Remove_Store_Owner(string storeID, string other_Owner_Username); 
+        assign_new_manager(string storeID, string new_manager_ID);
+        AddEmployeePermission(string storeID, string employee_username, string newPerm);
+        RemoveEmployeePermission(string storeID, string employee_username, string permToRemove);
+         close_store_temporary(string storeID); 
+       Remove_A_Member(string member_Username); 
