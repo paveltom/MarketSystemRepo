@@ -18,6 +18,7 @@ namespace Market_System.DomainLayer
         private static NotificationFacade notificationFacade;
         private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
+        private bool first_time_running;
 
         internal List<string> get_user_wokring_stores(string session_id)
         {
@@ -103,7 +104,7 @@ namespace Market_System.DomainLayer
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
-                        
+                        Instance.first_time_running = true;
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
@@ -120,6 +121,16 @@ namespace Market_System.DomainLayer
 
             //Return the Singleton Instance
             return Instance;
+        }
+
+        internal void set_first_time_running_to_false()
+        {
+            this.first_time_running = false;
+        }
+
+        internal bool first_time_running_project()
+        {
+            return this.first_time_running;
         }
 
         internal bool check_if_user_bought_item(string product_id, string session_id)
@@ -879,7 +890,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                return storeFacade.GetProductsFromAllStores();
+                return storeFacade.GetProductsFromAllStores_not_zero_quantity();
             }
             catch (Exception e)
             {

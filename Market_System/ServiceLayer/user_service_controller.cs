@@ -85,6 +85,16 @@ namespace Market_System.ServiceLayer
             return list_of_items;
         }
 
+        internal void set_first_time_running_to_false()
+        {
+            market_System.set_first_time_running_to_false();
+        }
+
+        internal bool first_time_running_project()
+        {
+            return market_System.first_time_running_project();
+        }
+
         public string get_userID_from_session_id(string session_id)
         {
 
