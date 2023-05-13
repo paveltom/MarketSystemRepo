@@ -102,14 +102,15 @@ namespace Market_System.ServiceLayer
                 }
                 else//Meaning that we're running the tests.
                 {
+                    string combine_me_2 = "\\Market_System\\";
                     int slice_me = temp_path.LastIndexOf('\\');
-                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo\\Market_System"))
+                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo"))
                     {
                         temp_path = temp_path.Substring(0, slice_me);
                         slice_me = temp_path.LastIndexOf('\\');
                     }
 
-                    path = temp_path + combine_me;
+                    path = temp_path + combine_me_2 + combine_me;
                 }
               
             }
