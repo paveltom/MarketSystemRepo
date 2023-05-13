@@ -398,6 +398,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Presentaion_Layer\images\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
