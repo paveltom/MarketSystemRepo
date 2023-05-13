@@ -47,56 +47,68 @@ namespace Market_System.Domain_Layer.Communication_Component
             return new Message(message, from);
         }*/
 
+        private static object addNewMessage = new object();
         public void AddNewMessage(string userID, string from, string mesg) //from = userID (if from user), storeID(if from store), or 'System'
         {
-            try
+            lock (addNewMessage)
             {
-                Message message = new Message(mesg, from);
-                notificationRepo.addNewMessage(userID, message);
+                try
+                {
+                    Message message = new Message(mesg, from);
+                    notificationRepo.addNewMessage(userID, message);
 
-                // Raise the event
-                NotificationEvent?.Invoke(this, userID);
-            }
-            catch (Exception e)
-            {
-                throw e;
+                    // Raise the event
+                    NotificationEvent?.Invoke(this, userID);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
         }
 
+        private static object getMessages = new object();
         public List<string> GetMessages(string userID)
         {
-            try
+            lock (getMessages)
             {
-                List<string> messages = new List<string>();
-                foreach (Message message in notificationRepo.GetMessages(userID))
+                try
                 {
-                    messages.Add(message.GetAndReadMessage());
+                    List<string> messages = new List<string>();
+                    foreach (Message message in notificationRepo.GetMessages(userID))
+                    {
+                        messages.Add(message.GetAndReadMessage());
+                    }
+                    return messages;
                 }
-                return messages;
-            }
-            catch (Exception e)
-            {
-                throw e;
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
         }
 
+        private static object hasMessages = new object();
         internal bool HasNewMessages(string userID)
         {
-            try
+            lock (hasMessages)
             {
-                foreach (Message message in notificationRepo.GetMessages(userID))
+                try
                 {
-                    if (message.IsNewMessage())
+                    foreach (Message message in notificationRepo.GetMessages(userID))
                     {
-                        return true;
+                        if (message.IsNewMessage())
+                        {
+                            return true;
+                        }
                     }
-                }
 
-                return false;
-            }
-            catch (Exception e)
-            {
-                throw e;
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
         }
     }
