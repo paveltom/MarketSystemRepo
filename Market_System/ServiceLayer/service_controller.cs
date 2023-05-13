@@ -71,7 +71,21 @@ namespace Market_System.ServiceLayer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            read_from_config_file();
+            if (first_time_running_project())
+            {
+                read_from_config_file();
+                set_first_time_running_to_false();
+            }
+        }
+
+        private void set_first_time_running_to_false()
+        {
+            this.usc.set_first_time_running_to_false();
+        }
+
+        private bool first_time_running_project()
+        {
+            return this.usc.first_time_running_project();
         }
 
         private void read_from_config_file()

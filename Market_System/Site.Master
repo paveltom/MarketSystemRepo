@@ -78,10 +78,16 @@
                
             </asp:ContentPlaceHolder>
 
-             <div style="height: 221px">
-                   
-                </div>
-            <div>  
+             <div style="height: 221px"></div>
+                    <asp:Panel ID="message_popup_window" runat="server" style="text-align: center" BackColor="Blue" ForeColor="Black" Width="106px" Height="76px" >
+                <asp:Label ID="Label2" runat="server" Text="you have a new message!"></asp:Label>
+                
+                    <asp:Button ID="close_popup_button" runat="server" Text="close" OnClick="close_popup_button_Click" />
+                
+            </asp:Panel>
+                
+            &nbsp;<div>  
+                &nbsp;&nbsp;  
             </div>
             <div>
 
@@ -116,6 +122,8 @@
             </div>
           
 &nbsp;&nbsp;
+          
+            
           
             <hr />
             <footer>
