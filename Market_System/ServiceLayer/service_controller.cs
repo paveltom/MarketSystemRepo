@@ -91,16 +91,26 @@ namespace Market_System.ServiceLayer
          
             }
 
-            else //Meaning that we're running the tests.
+            else 
             {
-                int slice_me = temp_path.LastIndexOf('\\');
-                while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo\\Market_System"))
+                if (temp_path.Equals("c:\\windows\\system32"))//Meaning that we're running a server
                 {
-                    temp_path = temp_path.Substring(0, slice_me);
-                    slice_me = temp_path.LastIndexOf('\\');
-                }
 
-            path = temp_path + combine_me;
+                    string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+                    path = hosting_path + combine_me;
+                    path = hosting_path + combine_me;
+                }
+                else//Meaning that we're running the tests.
+                {
+                    int slice_me = temp_path.LastIndexOf('\\');
+                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo\\Market_System"))
+                    {
+                        temp_path = temp_path.Substring(0, slice_me);
+                        slice_me = temp_path.LastIndexOf('\\');
+                    }
+
+                    path = temp_path + combine_me;
+                }
               
             }
 
