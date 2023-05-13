@@ -1444,3 +1444,5 @@ Saturday, 13 May 2023 : error!!: cannot deliver due to address or weight in chec
 Saturday, 13 May 2023 : error!!: cannot deliver due to address or weight in check_delivery
 Saturday, 13 May 2023 : error!!: cannot deliver due to address or weight in check_delivery
 Saturday, 13 May 2023 : error!!: cannot deliver due to address or weight in check_delivery
+Saturday, 13 May 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
+Saturday, 13 May 2023 : error!!: cannot deliver due to address or weight in check_delivery
