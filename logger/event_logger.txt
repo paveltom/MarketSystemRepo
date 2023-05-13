@@ -1617,3 +1617,139 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 יום שלישי 09 מאי 2023 : 177236216Logged-out succesfully
 יום שלישי 09 מאי 2023 : guest : guest767869240 has logged in
 
+יום שישי 12 מאי 2023 : guest : guest1050495999 has logged in
+יום שישי 12 מאי 2023 : 1050495999Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1222158047 has logged in
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : assigning new manager with username : bayan to the store with id: 1050495999
+יום שישי 12 מאי 2023 : 1050495999Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1678211890 has logged in
+יום שישי 12 מאי 2023 : 228085539Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest228085539 has logged in
+יום שישי 12 מאי 2023 : assigning new owner with username : bayan to the store with id: 1050495999
+יום שישי 12 מאי 2023 : 1050495999Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1693016530 has logged in
+יום שישי 12 מאי 2023 : 228085539Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1388450978 has logged in
+יום שישי 12 מאי 2023 : guest : guest1047673891 has logged in
+יום שישי 12 מאי 2023 : guest : guest1363343242 has logged in
+יום שישי 12 מאי 2023 : guest : guest840700519 has logged in
+יום שישי 12 מאי 2023 : guest : guest1409813603 has logged in
+יום שישי 12 מאי 2023 : guest : guest14363244 has logged in
+יום שישי 12 מאי 2023 : guest : guest310134887 has logged in
+יום שישי 12 מאי 2023 : guest : guest1476804549 has logged in
+יום שישי 12 מאי 2023 : guest : guest532196690 has logged in
+יום שישי 12 מאי 2023 : 1909152409Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest59418474 has logged in
+יום שישי 12 מאי 2023 : 1909152409Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest409487616 has logged in
+יום שישי 12 מאי 2023 : guest : guest1040396663 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 213461045 has failed
+יום שישי 12 מאי 2023 : Added the product:213461045_458099933to store: 213461045 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 213461045
+יום שישי 12 מאי 2023 : 213461045Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest199006977 has logged in
+יום שישי 12 מאי 2023 : guest : guest1988572918 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 187501546 has failed
+יום שישי 12 מאי 2023 : Added the product:187501546_455388217to store: 187501546 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 187501546
+יום שישי 12 מאי 2023 : 408105539Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest45277424 has logged in
+יום שישי 12 מאי 2023 : 187501546Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest408105539 has logged in
+יום שישי 12 מאי 2023 : guest : guest545236121 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 1797238822 has failed
+יום שישי 12 מאי 2023 : Added the product:1797238822_2004610297to store: 1797238822 has been done successfully
+יום שישי 12 מאי 2023 : 1797238822Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest2033674395 has logged in
+יום שישי 12 מאי 2023 : guest : guest308416187 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : guest : guest1881721762 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : guest : guest207955535 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : guest : guest1826744391 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : guest : guest1934698955 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : guest : guest279504920 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 1735093439 has failed
+יום שישי 12 מאי 2023 : Added the product:1735093439_575498401to store: 1735093439 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 1735093439
+יום שישי 12 מאי 2023 : 1735093439Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest534663395 has logged in
+יום שישי 12 מאי 2023 : 1735093439Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest835398437 has logged in
+יום שישי 12 מאי 2023 : guest : guest167640561 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 208057103 has failed
+יום שישי 12 מאי 2023 : Added the product:208057103_1624409909to store: 208057103 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 208057103
+יום שישי 12 מאי 2023 : 208057103Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest370775476 has logged in
+יום שישי 12 מאי 2023 : 167640561Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest170366372 has logged in
+יום שישי 12 מאי 2023 : guest : guest244541585 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 1241117520 has failed
+יום שישי 12 מאי 2023 : Added the product:1241117520_1090276733to store: 1241117520 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 1241117520
+יום שישי 12 מאי 2023 : 1241117520Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1979240528 has logged in
+יום שישי 12 מאי 2023 : loser has registered!
+יום שישי 12 מאי 2023 : 966886776Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest408393393 has logged in
+יום שישי 12 מאי 2023 : guest : guest519376655 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 1133409565 has failed
+יום שישי 12 מאי 2023 : Added the product:1133409565_1149656855to store: 1133409565 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 1133409565
+יום שישי 12 מאי 2023 : 242017258Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest2111028082 has logged in
+יום שישי 12 מאי 2023 : loser has registered!
+יום שישי 12 מאי 2023 : guest : guest1039512651 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 2102221779 has failed
+יום שישי 12 מאי 2023 : Added the product:2102221779_1442131082to store: 2102221779 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 2102221779
+יום שישי 12 מאי 2023 : 2102221779Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1385408456 has logged in
+יום שישי 12 מאי 2023 : loser has registered!
+יום שישי 12 מאי 2023 : guest : guest1412898756 has logged in
+יום שישי 12 מאי 2023 : guest : guest213759477 has logged in
+יום שישי 12 מאי 2023 : guest : guest1868576300 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 1416904865 has failed
+יום שישי 12 מאי 2023 : Added the product:1416904865_528201741to store: 1416904865 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 1416904865
+יום שישי 12 מאי 2023 : 525512558Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest977336817 has logged in
+יום שישי 12 מאי 2023 : 525512558Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1704167787 has logged in
+יום שישי 12 מאי 2023 : guest : guest686892796 has logged in
+יום שישי 12 מאי 2023 : nekola has registered!
+יום שישי 12 מאי 2023 : bayan has registered!
+יום שישי 12 מאי 2023 : opening store with id: 947096325 has failed
+יום שישי 12 מאי 2023 : Added the product:947096325_1499740059to store: 947096325 has been done successfully
+יום שישי 12 מאי 2023 : assigning new manager with username : nekola to the store with id: 947096325
+יום שישי 12 מאי 2023 : 947096325Logged-out succesfully
+יום שישי 12 מאי 2023 : guest : guest1515138572 has logged in
+יום שישי 12 מאי 2023 : loser has registered!
+יום שישי 12 מאי 2023 : guest : guest1682214074 has logged in
