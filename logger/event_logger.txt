@@ -2297,3 +2297,41 @@ Saturday, 13 May 2023 : checking deilvery for address: gfgf succefully done.
 Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
 Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
 
+שבת 13 מאי 2023 : guest : guest71533210 has logged in
+שבת 13 מאי 2023 : nekola has registered!
+שבת 13 מאי 2023 : bayan has registered!
+שבת 13 מאי 2023 : opening store with id: 2128795180 has failed
+שבת 13 מאי 2023 : Added the product:2128795180_412706932to store: 2128795180 has been done successfully
+שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 2128795180
+שבת 13 מאי 2023 : 2128795180Logged-out succesfully
+שבת 13 מאי 2023 : guest : guest939130230 has logged in
+שבת 13 מאי 2023 : 71533210 added product with id: 71533210_939130230 to basket
+שבת 13 מאי 2023 : guest : guest1804874023 has logged in
+שבת 13 מאי 2023 : nekola has registered!
+שבת 13 מאי 2023 : bayan has registered!
+שבת 13 מאי 2023 : opening store with id: 1953195626 has failed
+שבת 13 מאי 2023 : Added the product:1953195626_978142944to store: 1953195626 has been done successfully
+שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 1953195626
+שבת 13 מאי 2023 : 1953195626Logged-out succesfully
+שבת 13 מאי 2023 : guest : guest1634384911 has logged in
+שבת 13 מאי 2023 : 978142944 added product with id: 1804874023_834290227 to basket
+שבת 13 מאי 2023 : guest : guest1582977370 has logged in
+שבת 13 מאי 2023 : nekola has registered!
+שבת 13 מאי 2023 : bayan has registered!
+שבת 13 מאי 2023 : opening store with id: 985066831 has failed
+שבת 13 מאי 2023 : Added the product:985066831_748330867to store: 985066831 has been done successfully
+שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 985066831
+שבת 13 מאי 2023 : 552039727Logged-out succesfully
+שבת 13 מאי 2023 : guest : guest1443706304 has logged in
+שבת 13 מאי 2023 : 1934349261 added product with id: 1582977370_85394986 to basket
+שבת 13 מאי 2023 : 1934349261 removed product with id: 1582977370_85394986 from the basket
+שבת 13 מאי 2023 : guest : guest1156937289 has logged in
+שבת 13 מאי 2023 : nekola has registered!
+שבת 13 מאי 2023 : bayan has registered!
+שבת 13 מאי 2023 : opening store with id: 1886705907 has failed
+שבת 13 מאי 2023 : Added the product:1886705907_2127869615to store: 1886705907 has been done successfully
+שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 1886705907
+שבת 13 מאי 2023 : 1886705907Logged-out succesfully
+שבת 13 מאי 2023 : guest : guest1601652403 has logged in
+שבת 13 מאי 2023 : 2127869615 added product with id: 1156937289_1601652403 to basket
+שבת 13 מאי 2023 : 2127869615 removed product with id: 1156937289_1601652403 from the basket
