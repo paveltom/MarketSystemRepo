@@ -26,7 +26,7 @@ namespace Market_System.ServiceLayer
             string combine_me2 = "\\logger\\error_logger.txt";
             string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
-            string mydick=AppDomain.CurrentDomain.BaseDirectory;
+           
             var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
             if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
             {
