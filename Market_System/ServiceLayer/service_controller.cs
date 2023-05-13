@@ -6,6 +6,8 @@ using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
+using System.IO;
+using System.Web.Hosting;
 
 namespace Market_System.ServiceLayer
 {
@@ -14,12 +16,13 @@ namespace Market_System.ServiceLayer
         private User_Service_Controller usc;
         private Store_Service_Controller ssc;
         private Random session_id_generator;
+        private string store_id_config;// this is used only for the config file
 
         internal Response<List<string>> get_stores_that_user_works_in()
         {
             try
             {
-                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in());
+                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in(session_id));
                 return okay;
             }
             catch(Exception e)
@@ -28,7 +31,37 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal Response<bool> check_if_user_can_manage_stock(string store_id)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_user_can_manage_stock(session_id,store_id));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
+
+        internal Response<List<string>> get_stores_id_that_user_works_in()
+        {
+            try
+            {
+                Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_id_that_user_works_in(session_id));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
         private string session_id;
+
+
+
+
 
         public Service_Controller()
         {
@@ -38,6 +71,167 @@ namespace Market_System.ServiceLayer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
+            read_from_config_file();
+        }
+
+        private void read_from_config_file()
+        {
+            string combine_me = "config_file.txt";
+          
+            string path;
+            var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
+            if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
+            {
+
+                string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+                
+             
+                
+               path = hosting_path + combine_me;
+         
+            }
+
+            else //Meaning that we're running the tests.
+            {
+                int slice_me = temp_path.LastIndexOf('\\');
+                while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo\\Market_System"))
+                {
+                    temp_path = temp_path.Substring(0, slice_me);
+                    slice_me = temp_path.LastIndexOf('\\');
+                }
+
+            path = temp_path + combine_me;
+              
+            }
+
+            StreamReader reader = new StreamReader(path);
+            
+            string current_command;
+            try
+            {
+                while (!reader.EndOfStream)
+                {
+                    current_command = reader.ReadLine();
+                    if (current_command[0] == '/')
+                        continue;
+                    execute_command(current_command);
+                }
+
+                reader.Close();
+            }
+            catch(Exception e)
+            {
+                //save somewhere the error
+                Logger.get_instance().record_error("reading from configartion file failed due to: " + e.Message + " starting system without any configration");
+                this.destroy();
+                this.usc = new User_Service_Controller();
+                this.ssc = new Store_Service_Controller(session_id);
+                new_guest_entered_the_website(session_id);
+            }
+        }
+
+        private void execute_command(string current_command)
+        {
+            Response res;
+            string[] command = current_command.Split(' ');
+            try
+            {
+                switch (command[0])
+                {
+                    case "register":
+                        res= register(command[1], command[2], command[3]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "login":
+                        res = login_member(command[1], command[2]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "checkout":
+                        res=check_out(command[1]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "logout":
+                       res= log_out();
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "add_product_to_basket":
+                        res=add_product_to_basket(command[1], command[2]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "remove_product_from_basket":
+                       res= remove_product_from_basket(command[1], command[2]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "open_new_store":
+                        res = open_new_store(new List<string> { command[1] });
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        store_id_config = ((Response<StoreDTO>)res).Value.StoreID;
+                        return;
+                    case "comment_on_product":
+                        res=comment_on_product(command[1], command[2], double.Parse(command[3]));
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "add_product_to_store":
+                        res=add_product_to_store(store_id_config, command[1], command[2], command[3], command[4], command[5], command[6], command[7], command[8], command[9], command[10], command[11]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "remove_product_from_store":
+                       res= remove_product_from_store(store_id_config, command[1]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "assign_new_owner":
+                       res= assign_new_owner(store_id_config, command[1]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "remove_store_owner":
+                      res=  Remove_Store_Owner(store_id_config, command[1]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "assign_new_manager":
+                        res=assign_new_manager(store_id_config, command[1]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "addemployeepermission":
+                       res= AddEmployeePermission(store_id_config, command[1], command[2]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "removeemployeepermission":
+                       res= RemoveEmployeePermission(store_id_config, command[1], command[2]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                         return;
+                    case "close_store_temporary":
+                        res=close_store_temporary(store_id_config);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+                    case "remove_a_member":
+                        res=Remove_A_Member(command[1]);
+                        if (res.ErrorOccured)
+                            throw new Exception(res.ErrorMessage);
+                        return;
+
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
         }
 
         internal Response<bool> check_if_user_bought_item(string product_id)
@@ -271,6 +465,18 @@ namespace Market_System.ServiceLayer
            
         }
 
+        internal Response<bool> check_if_can_assign_manager_or_owner(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_assign_manager_or_owner(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
 
         public Response<string> close_store_temporary(string storeID)
         {
@@ -285,6 +491,45 @@ namespace Market_System.ServiceLayer
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + "in close_store_temporary");
                 return Response<String>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_can_show_infos(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_show_infos(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_can_close_store(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_close_store(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
+            }
+        }
+
+        internal Response<bool> check_if_can_remove_or_add_permessions(string storeID)
+        {
+            try
+            {
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_can_remove_or_add_permessions(session_id, storeID));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<bool>.FromError(e.Message);
             }
         }
 

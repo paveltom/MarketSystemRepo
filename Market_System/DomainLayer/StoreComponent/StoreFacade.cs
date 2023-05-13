@@ -52,6 +52,32 @@ namespace Market_System.DomainLayer.StoreComponent
             return Instance;
         }
 
+        internal List<string> get_user_wokring_stores_id(string user_id)
+        {
+            List<string> return_me = new List<string>();
+            Dictionary<string, string> storeID_role = GetStoresWorkingIn(user_id);
+
+            foreach (KeyValuePair<string, string> entry in storeID_role)
+            {
+                return_me.Add(entry.Key);
+            }
+            return return_me;
+        }
+
+        internal bool check_if_user_can_manage_stock(string storeID, string usertID)
+        {
+            try
+            {
+                bool ret = AcquireStore(storeID).check_if_can_manage_stock(usertID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal List<string> get_user_wokring_stores(string user_id)
         {
             List<string> return_me = new List<string>();
@@ -299,6 +325,20 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        internal bool check_if_can_assign_manager_or_owner(string store_id, string userid)
+        {
+            try
+            {
+                bool ret = AcquireStore(store_id).check_if_can_assign_manager_or_owner(userid);
+                ReleaseStore(store_id);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public Dictionary<string, string> GetStoresWorkingIn(string other_User_ID)
         {
             try
@@ -317,6 +357,34 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        internal bool check_if_can_show_infos(string storeID, string userid)
+        {
+            try
+            {
+                bool ret = AcquireStore(storeID).check_if_can_show_infos(userid);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal bool check_if_can_close_store(string storeID, string userid)
+        {
+            try
+            {
+                bool ret = AcquireStore(storeID).check_if_can_close_store(userid);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void RemoveStore(string userID, string storeID)
         {
             try
@@ -327,6 +395,20 @@ namespace Market_System.DomainLayer.StoreComponent
 
             }
             catch (Exception e) { throw e; }
+        }
+
+        internal bool check_if_can_remove_or_add_permessions(string storeID, string userid)
+        {
+            try
+            {
+                bool ret = AcquireStore(storeID).check_if_can_remove_or_add_permessions(userid);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void RestoreStore(string userID, string storeID)

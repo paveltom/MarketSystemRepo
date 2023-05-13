@@ -17,24 +17,54 @@ namespace Market_System.Presentaion_Layer
 
             stores_user_works_in.DataSource = show_me;
             stores_user_works_in.DataBind();
+
+            List<string> current_shown_store_ids = new List<string>();
+
+            foreach (ListItem item in ddl_store_id.Items)
+            {
+
+                current_shown_store_ids.Add(item.Text);
+
+            }
+
+            Response<List<String>> store_ids = ((Service_Controller)Session["service_controller"]).get_stores_id_that_user_works_in();
+
+
+            if (store_ids.Value.All(current_shown_store_ids.Contains)) // this so it wont always load the list
+            {
+                return;
+            }
+
+            ddl_store_id.AppendDataBoundItems = true;
+            ddl_store_id.DataSource = store_ids.Value;
+            ddl_store_id.DataBind();
+
+
+            manage_store_products.Visible = false;
+
+          
         }
+    
+
 
         protected void manage_store_products_Click(object sender, EventArgs e)
         {
-            if(entered_store_id.Text=="")
+
+            string selected_store_id = ddl_store_id.SelectedValue;
+            if (selected_store_id.Equals("nothing_to_show"))
             {
                 error_message.Text = "please enter store ID";
             }
             else
             {
-                Response.Redirect(string.Format("/Presentaion_Layer/store_products_managing_page.aspx?store_id={0}", entered_store_id.Text));
+                Response.Redirect(string.Format("/Presentaion_Layer/store_products_managing_page.aspx?store_id={0}", selected_store_id));
             }
         }
 
         protected void assign_new_manager_click(object sender, EventArgs e)
         {
             string username = new_manager_username.Text;
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             Response<string> ok= ((Service_Controller)Session["service_controller"]).assign_new_manager(store_id, username);
             if(ok.ErrorOccured)
             {
@@ -52,7 +82,7 @@ namespace Market_System.Presentaion_Layer
         protected void assign_new_owner_click(object sender, EventArgs e)
         {
             string username = new_owner_username.Text;
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             Response<string> ok = ((Service_Controller)Session["service_controller"]).assign_new_owner(store_id, username);
             if (ok.ErrorOccured)
             {
@@ -70,7 +100,7 @@ namespace Market_System.Presentaion_Layer
         protected void remove_owner_click(object sender, EventArgs e)
         {
             string username = owner_to_remove.Text;
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             Response<string> ok = ((Service_Controller)Session["service_controller"]).Remove_Store_Owner(store_id, username);
             if (ok.ErrorOccured)
             {
@@ -88,7 +118,7 @@ namespace Market_System.Presentaion_Layer
         protected void show_managers_click(object sender, EventArgs e)
         {
             
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             Response<List<string>> ok = ((Service_Controller)Session["service_controller"]).get_managers_of_store(store_id);
             if (ok.ErrorOccured)
             {
@@ -109,7 +139,7 @@ namespace Market_System.Presentaion_Layer
         protected void show_owners_click(object sender, EventArgs e)
         {
             string username = new_manager_username.Text;
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             Response<List<string>> ok = ((Service_Controller)Session["service_controller"]).get_owners_of_store(store_id);
             if (ok.ErrorOccured)
             {
@@ -130,7 +160,7 @@ namespace Market_System.Presentaion_Layer
         protected void show_purchase_history_click(object sender, EventArgs e)
         {
             string username = new_manager_username.Text;
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue; 
             Response<string> ok = ((Service_Controller)Session["service_controller"]).get_purchase_history_from_store(store_id);
             if (ok.ErrorOccured)
             {
@@ -152,7 +182,7 @@ namespace Market_System.Presentaion_Layer
 
         protected void closeStoreClick(object sender, EventArgs e)
         {
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             Response<string> closeResponse = ((Service_Controller)Session["service_controller"]).close_store_temporary(store_id);
             if (closeResponse.ErrorOccured)
             {
@@ -177,7 +207,7 @@ namespace Market_System.Presentaion_Layer
         {
             string username = add_employee_permissionT.Text;
 
-            string store_id = entered_store_id.Text;
+            string store_id = ddl_store_id.SelectedValue;
             string permission = add_permission.Text;
             Response<string> ok = ((Service_Controller)Session["service_controller"]).AddEmployeePermission(store_id,username, permission);
             if (ok.ErrorOccured)
@@ -196,7 +226,7 @@ namespace Market_System.Presentaion_Layer
         protected void remove_permission_Click(object sender, EventArgs e)
         {
             string username=remove_username.Text;
-            string storeID= entered_store_id.Text;
+            string storeID = ddl_store_id.SelectedValue;
             string permission =remove_employee_permission.Text;
             Response<string> ok = ((Service_Controller)Session["service_controller"]).RemoveEmployeePermission(storeID,username,permission);
             if (ok.ErrorOccured)
@@ -211,5 +241,117 @@ namespace Market_System.Presentaion_Layer
 
             }
         }
+
+        protected void selected_store_id(object sender, EventArgs e)
+        {
+            string storeID = ddl_store_id.SelectedValue;
+            Response<bool> product_managing_checker = ((Service_Controller)Session["service_controller"]).check_if_user_can_manage_stock(storeID);
+            if (product_managing_checker.Value)
+            {
+                manage_store_products.Visible = true;
+            }
+            else
+            {
+                manage_store_products.Visible = false;
+            }
+            Response<bool> managing_owners_and_managers_checker = ((Service_Controller)Session["service_controller"]).check_if_can_assign_manager_or_owner(storeID);
+            if (managing_owners_and_managers_checker.Value)
+            {
+                Label6.Visible = true;
+                Label8.Visible = true;
+                Label7.Visible = true;
+                Label15.Visible = true;
+                Label16.Visible = true;
+                Label17.Visible = true;
+                new_owner_username.Visible = true;
+                new_manager_username.Visible = true;
+                owner_to_remove.Visible = true;
+                assign_new_manager_button.Visible = true;
+                assign_new_owner_button.Visible = true;
+                owner_remove_button.Visible = true;
+
+            }
+            else
+            {
+                Label6.Visible = false;
+                Label8.Visible = false;
+                Label7.Visible = false;
+                Label15.Visible = false;
+                Label16.Visible = false;
+                Label17.Visible = false;
+                new_owner_username.Visible = false;
+                new_manager_username.Visible = false;
+                owner_to_remove.Visible = false;
+                assign_new_manager_button.Visible = false;
+                assign_new_owner_button.Visible = false;
+                owner_remove_button.Visible = false;
+            }
+
+            Response<bool> add_remove_permession_checker = ((Service_Controller)Session["service_controller"]).check_if_can_remove_or_add_permessions(storeID);
+            if (add_remove_permession_checker.Value)
+            {
+                Label9.Visible = true;
+                Label10.Visible = true;
+                Label18.Visible = true;
+                Label19.Visible = true;
+                Label20.Visible = true;
+                Label21.Visible = true;
+                add_employee_permissionT.Visible = true;
+                remove_username.Visible = true;
+                add_permission.Visible = true;
+                remove_employee_permission.Visible = true;
+                add_employee_permission.Visible = true;
+                remove_permission_button5.Visible = true;
+            }
+            else
+            {
+                Label9.Visible = false;
+                Label10.Visible = false;
+                Label18.Visible = false;
+                Label19.Visible = false;
+                Label20.Visible = false;
+                Label21.Visible = false;
+                add_employee_permissionT.Visible = false;
+                remove_username.Visible = false;
+                add_permission.Visible = false;
+                remove_employee_permission.Visible = false;
+                add_employee_permission.Visible = false;
+                remove_permission_button5.Visible = false;
+            }
+                Response<bool> close_store_checker = ((Service_Controller)Session["service_controller"]).check_if_can_close_store(storeID);
+            if (close_store_checker.Value)
+            {
+                Label11.Visible = true;
+                closeStoreButton.Visible = true;
+            }
+            else
+            {
+                Label11.Visible = false;
+                closeStoreButton.Visible = false;
+            }
+                Response<bool> show_info_checker = ((Service_Controller)Session["service_controller"]).check_if_can_show_infos(storeID);
+            if (show_info_checker.Value)
+            {
+                add_product_button7.Visible = true;
+                add_product_button8.Visible = true;
+                add_product_button9.Visible = true;
+                Label12.Visible = true;
+                Label13.Visible = true;
+                Label14.Visible = true;
+            }
+            else
+            {
+                add_product_button7.Visible = false;
+                add_product_button8.Visible = false;
+                add_product_button9.Visible = false;
+                Label12.Visible = false;
+                Label13.Visible = false;
+                Label14.Visible = false;
+            }
+        }
+
+    
+
+       
     }
 }

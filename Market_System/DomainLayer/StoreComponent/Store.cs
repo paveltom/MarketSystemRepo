@@ -171,6 +171,57 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+
+        public bool check_if_can_remove_or_add_permessions(string userID)
+        {
+            lock (EmployementLock)
+            {
+                try
+                {
+                    if ((this.employees.isFounder(userID, this.Store_ID)) || ((this.employees.isOwner(userID, this.Store_ID)) ))
+                        return true;
+                    else
+                        return false;
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
+        public bool check_if_can_close_store(string userID)
+        {
+            lock (EmployementLock)
+            {
+                try
+                {
+                    if ((this.employees.isFounder(userID, this.Store_ID)))
+                        return true;
+                    else
+                        return false;
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
+
+        public bool check_if_can_assign_manager_or_owner(string userid)
+        {
+            lock (EmployementLock)
+            {
+                try
+                {
+                    if ((this.employees.isFounder(userid, this.Store_ID) || this.employees.isOwner(userid, this.Store_ID)))
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        
+        }
+
+
         public void AssignNewManager(string userID, string newManagerID) // manager added with default Permission.Stock
         {
             lock (EmployementLock)
@@ -565,6 +616,43 @@ namespace Market_System.DomainLayer.StoreComponent
             }
 
         }
+
+        public bool check_if_can_show_infos(string userID)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.INFO))
+                {
+
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+         
+
+        private static object check_if_can_manage_stock_lock = new object();
+        public bool check_if_can_manage_stock(string userID)
+        {
+            lock (check_if_can_manage_stock_lock)
+            {
+                try
+                {
+                    if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                catch (Exception ex) { throw ex; }
+            }
+
+        }
+
 
 
         public void RemoveProduct(string userID, string product_id)

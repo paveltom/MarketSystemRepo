@@ -20,9 +20,43 @@ namespace Market_System.ServiceLayer
             this.SessionID = sessionID;
         }
 
-        internal List<string> get_stores_that_user_works_in()
+        internal List<string> get_stores_that_user_works_in(string session_id)
         {
-            return this.Market.get_user_wokring_stores(SessionID);
+            try
+            {
+
+                return this.Market.get_user_wokring_stores(session_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal bool check_if_user_can_manage_stock(string session_id,string store_id)
+        {
+            try
+            {
+                
+                return Market.check_if_user_can_manage_stock(session_id, store_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal List<string> get_stores_id_that_user_works_in(string session_id)
+        {
+            try
+            {
+
+                return this.Market.get_stores_id_that_user_works_in(session_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // ====================================================================
@@ -277,6 +311,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal bool check_if_can_assign_manager_or_owner(string session_id, string store_id)
+        {
+            try
+            {
+
+                return Market.check_if_can_assign_manager_or_owner(session_id, store_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response AssignNewManager(string storeID, string newManagerUsername)
         {
             try
@@ -298,6 +345,45 @@ namespace Market_System.ServiceLayer
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
                 List<string> managers = this.Market.GetStoreManagers(session_id, storeID); // add to marketsystem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return Response<List<string>>.FromValue(managers);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal bool check_if_can_show_infos(string session_id, string storeID)
+        {
+            try
+            {
+
+                return Market.check_if_can_show_infos(session_id, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal bool check_if_can_close_store(string session_id, string storeID)
+        {
+            try
+            {
+
+                return Market.check_if_can_close_store(session_id, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal bool check_if_can_remove_or_add_permessions(string session_id, string storeID)
+        {
+            try
+            {
+
+                return Market.check_if_can_remove_or_add_permessions(session_id, storeID);
             }
             catch (Exception ex)
             {

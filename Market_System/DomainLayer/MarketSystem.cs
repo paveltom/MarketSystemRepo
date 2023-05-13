@@ -21,9 +21,31 @@ namespace Market_System.DomainLayer
 
         internal List<string> get_user_wokring_stores(string session_id)
         {
-            string user_id = get_userid_from_session_id(session_id);
-          return storeFacade.get_user_wokring_stores(user_id);
-            
+          
+            try
+            {
+
+                string user_id = get_userid_from_session_id(session_id);
+                return storeFacade.get_user_wokring_stores(user_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        internal bool check_if_user_can_manage_stock(string session_id,string store_id)
+        {
+            try
+            {
+                string userid = get_userid_from_session_id(session_id);
+                return storeFacade.check_if_user_can_manage_stock(store_id, userid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         internal void check_username_is_logged_out(string username)
@@ -40,6 +62,20 @@ namespace Market_System.DomainLayer
 
         //This variable is going to store the Singleton Instance
         private static MarketSystem Instance = null;
+
+        internal List<string> get_stores_id_that_user_works_in(string session_id)
+        {
+            try
+            {
+
+                string user_id = get_userid_from_session_id(session_id);
+                return storeFacade.get_user_wokring_stores_id(user_id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
@@ -280,6 +316,19 @@ namespace Market_System.DomainLayer
             }
         }
 
+        internal bool check_if_can_assign_manager_or_owner(string session_id, string store_id)
+        {
+            try
+            {
+                string userid = get_userid_from_session_id(session_id);
+                return storeFacade.check_if_can_assign_manager_or_owner(store_id, userid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         internal string getusername(string session_id)
         {
             return userFacade.get_username_from_user_id(get_userid_from_session_id(session_id));
@@ -301,6 +350,45 @@ namespace Market_System.DomainLayer
             catch (Exception e)
             {
                 throw e;
+            }
+        }
+
+        internal bool check_if_can_show_infos(string session_id, string storeID)
+        {
+            try
+            {
+                string userid = get_userid_from_session_id(session_id);
+                return storeFacade.check_if_can_show_infos(storeID, userid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal bool check_if_can_close_store(string session_id, string storeID)
+        {
+            try
+            {
+                string userid = get_userid_from_session_id(session_id);
+                return storeFacade.check_if_can_close_store(storeID, userid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal bool check_if_can_remove_or_add_permessions(string session_id, string storeID)
+        {
+            try
+            {
+                string userid = get_userid_from_session_id(session_id);
+                return storeFacade.check_if_can_remove_or_add_permessions(storeID, userid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
