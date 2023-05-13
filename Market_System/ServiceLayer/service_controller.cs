@@ -914,7 +914,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<List<ItemDTO>> get_products_from_all_shop()
+        public Response<List<ItemDTO>> get_not_zero_quantity_products_from_all_shop()
         {
             try
             {

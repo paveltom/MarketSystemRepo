@@ -2335,3 +2335,22 @@ Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
 שבת 13 מאי 2023 : guest : guest1601652403 has logged in
 שבת 13 מאי 2023 : 2127869615 added product with id: 1156937289_1601652403 to basket
 שבת 13 מאי 2023 : 2127869615 removed product with id: 1156937289_1601652403 from the basket
+שבת 13 מאי 2023 : guest : guest1456293049 has logged in
+שבת 13 מאי 2023 : nekola has registered!
+שבת 13 מאי 2023 : bayan has registered!
+שבת 13 מאי 2023 : opening store with id: 1564483697 has failed
+שבת 13 מאי 2023 : Added the product:1564483697_710256846to store: 1564483697 has been done successfully
+שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 1564483697
+שבת 13 מאי 2023 : 1564483697Logged-out succesfully
+שבת 13 מאי 2023 : guest : guest1137689417 has logged in
+שבת 13 מאי 2023 : guest : guest1995040013 has logged in
+שבת 13 מאי 2023 : nekola has registered!
+שבת 13 מאי 2023 : bayan has registered!
+שבת 13 מאי 2023 : opening store with id: 632279181 has failed
+שבת 13 מאי 2023 : Added the product:632279181_1779276967to store: 632279181 has been done successfully
+שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 632279181
+שבת 13 מאי 2023 : 1888370521Logged-out succesfully
+שבת 13 מאי 2023 : guest : guest1708164341 has logged in
+שבת 13 מאי 2023 : guest : guest1292540895 has logged in
+שבת 13 מאי 2023 : 1298730608 added product with id: 1995040013_1708164341 to basket
+שבת 13 מאי 2023 : 1298730608 removed product with id: 1995040013_1708164341 from the basket

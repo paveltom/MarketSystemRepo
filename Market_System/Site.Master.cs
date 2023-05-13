@@ -12,7 +12,7 @@ namespace Market_System
     public partial class SiteMaster : MasterPage
     {
 
-        private string username;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
           
@@ -60,16 +60,6 @@ namespace Market_System
         internal void set_username_message(string hello)
         {
             Label1.Text = hello;
-        }
-
-        public string get_username()
-        {
-            return this.username;
-        }
-
-        public void set_username(string username)
-        {
-            this.username = username;
         }
 
         public void a_user_logs_in()

@@ -904,6 +904,24 @@ namespace Market_System.DomainLayer.StoreComponent
             return return_me;
         }
 
+        internal List<ItemDTO> GetProductsFromAllStores_not_zero_quantity()
+        {
+            try
+            {
+                List<Store> all_stores = StoreRepo.GetInstance().GetStores();
+                List<ItemDTO> return_me = new List<ItemDTO>();
+                foreach (Store store in all_stores)
+                {
+                    if (!store.is_closed_temporary())
+                    {
+                        return_me = (List<ItemDTO>)return_me.Concat(store.GetItems_not_zero_quantity()).ToList();
+                    }
+                }
+                return return_me;
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
 
         // ====================== END of Product methods =============================

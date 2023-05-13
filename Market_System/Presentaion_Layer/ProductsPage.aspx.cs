@@ -15,7 +15,7 @@ namespace Market_System.Presentaion_Layer
         protected void Page_Load(object sender, EventArgs e)
         {
             ListView1.Items.Clear();
-            Response<List<ItemDTO>> items = ((Service_Controller)Session["service_controller"]).get_products_from_all_shop();
+            Response<List<ItemDTO>> items = ((Service_Controller)Session["service_controller"]).get_not_zero_quantity_products_from_all_shop();
             
             List<string> list = new List<string>();
             foreach (ItemDTO item in items.Value)

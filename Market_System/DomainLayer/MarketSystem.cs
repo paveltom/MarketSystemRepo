@@ -890,7 +890,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                return storeFacade.GetProductsFromAllStores();
+                return storeFacade.GetProductsFromAllStores_not_zero_quantity();
             }
             catch (Exception e)
             {
