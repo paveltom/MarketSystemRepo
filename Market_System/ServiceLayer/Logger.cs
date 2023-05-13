@@ -26,7 +26,7 @@ namespace Market_System.ServiceLayer
             string combine_me2 = "\\logger\\error_logger.txt";
             string combine_me_tests1 = "\\logger\\tests_error_logger.txt";
             string combine_me_tests2 = "\\logger\\tests_events_logger.txt";
-
+            string mydick=AppDomain.CurrentDomain.BaseDirectory;
             var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
             if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
             {
@@ -43,22 +43,35 @@ namespace Market_System.ServiceLayer
                 tests_log_errors_path = current_path.Substring(0, slice_me) + combine_me_tests1;
             }
 
-            else //Meaning that we're running the tests.
+            else 
             {
-                int slice_me = temp_path.LastIndexOf('\\');
-                while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo"))
+                if (temp_path.Equals("c:\\windows\\system32"))//Meaning that we're running a server
                 {
-                    temp_path = temp_path.Substring(0, slice_me);
-                    slice_me = temp_path.LastIndexOf('\\');
+
+                    string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+                    this.regular_log_events_path = hosting_path + "logger\\event_logger.txt";
+                    this.regular_log_errors_path = hosting_path + "logger\\error_logger.txt";
+
+
+                    log_event_path = regular_log_events_path;
+                    log_errors_path = regular_log_errors_path;
                 }
+                else //Meaning that we're running the tests
+                { int slice_me = temp_path.LastIndexOf('\\');
+                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo"))
+                    {
+                        temp_path = temp_path.Substring(0, slice_me);
+                        slice_me = temp_path.LastIndexOf('\\');
+                    }
 
-                this.regular_log_events_path = temp_path + combine_me;
-                this.regular_log_errors_path = temp_path + combine_me2;
-                this.tests_log_events_path = temp_path + combine_me_tests2;
-                this.tests_log_errors_path = temp_path + combine_me_tests1;
+                    this.regular_log_events_path = temp_path + combine_me;
+                    this.regular_log_errors_path = temp_path + combine_me2;
+                    this.tests_log_events_path = temp_path + combine_me_tests2;
+                    this.tests_log_errors_path = temp_path + combine_me_tests1;
 
-                log_event_path = tests_log_events_path;
-                log_errors_path = tests_log_errors_path;
+                    log_event_path = tests_log_events_path;
+                    log_errors_path = tests_log_errors_path;
+                }
             }
         }
 
