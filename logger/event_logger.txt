@@ -1761,6 +1761,7 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 שבת 13 מאי 2023 : assigning new manager with username : nekola to the store with id: 1548686730
 שבת 13 מאי 2023 : 1548686730Logged-out succesfully
 שבת 13 מאי 2023 : guest : guest864453072 has logged in
+
 שבת 13 מאי 2023 : guest : guest1115114018 has logged in
 שבת 13 מאי 2023 : nekola has registered!
 שבת 13 מאי 2023 : bayan has registered!
@@ -2101,3 +2102,198 @@ Saturday, May 6, 2023 : guest : guest1235328599 has logged in
 שבת 13 מאי 2023 : 539940553Logged-out succesfully
 שבת 13 מאי 2023 : guest : guest804746366 has logged in
 שבת 13 מאי 2023 : user with session ID : 1460377673 got his Messages
+
+Saturday, 13 May 2023 : guest : guest1352414011 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 319566700 has failed
+Saturday, 13 May 2023 : Added the product:319566700_117958263to store: 319566700 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 319566700
+Saturday, 13 May 2023 : 319566700Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest143845940 has logged in
+Saturday, 13 May 2023 : 1352414011Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest112678484 has logged in
+Saturday, 13 May 2023 : amihai has registered!
+Saturday, 13 May 2023 : assigning new manager with username : amihai to the store with id: 1352414011
+Saturday, 13 May 2023 : assigning new owner with username : amihai to the store with id: 1352414011
+Saturday, 13 May 2023 : removed owner with username : amihai from the store with id: 1352414011
+Saturday, 13 May 2023 : assigning new manager with username : amihai to the store with id: 1352414011
+Saturday, 13 May 2023 : 1352414011Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest319566700 has logged in
+Saturday, 13 May 2023 : user with session ID : 319566700 got his Messages
+Saturday, 13 May 2023 : user with session ID : 319566700 got his Messages
+Saturday, 13 May 2023 : getting store with id: 1352414011 was done successfully 
+Saturday, 13 May 2023 : getting store with id: 1352414011 was done successfully 
+Saturday, 13 May 2023 : 943878927Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest1781938374 has logged in
+Saturday, 13 May 2023 : guest : guest1310631175 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 1530563514 has failed
+Saturday, 13 May 2023 : Added the product:1530563514_989370218to store: 1530563514 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 1530563514
+Saturday, 13 May 2023 : 1530563514Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest1534573903 has logged in
+Saturday, 13 May 2023 : user with session ID : 42721563 got his Messages
+Saturday, 13 May 2023 : 1310631175 added product with id: 1310631175_1755155424 to basket
+Saturday, 13 May 2023 : 1310631175 added product with id: 1310631175_1534573903 to basket
+Saturday, 13 May 2023 : user with session ID : 42721563 got his Messages
+Saturday, 13 May 2023 : checking deilvery for address: ggdfgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: ggdfgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: ggdfgdf succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: ggdfgdf succefully done.
+Saturday, 13 May 2023 : user with session ID : 42721563 got his Messages
+Saturday, 13 May 2023 : user with session ID : 42721563 got his Messages
+Saturday, 13 May 2023 : guest : guest1062862298 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 846787176 has failed
+Saturday, 13 May 2023 : Added the product:846787176_504228042to store: 846787176 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 846787176
+Saturday, 13 May 2023 : 846787176Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest196991735 has logged in
+Saturday, 13 May 2023 : user with session ID : 196991735 got his Messages
+Saturday, 13 May 2023 : 1062862298 added product with id: 1062862298_196991735 to basket
+Saturday, 13 May 2023 : 1062862298 added product with id: 846787176_504228042 to basket
+Saturday, 13 May 2023 : 1062862298 added product with id: 1062862298_80857168 to basket
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : user with session ID : 196991735 got his Messages
+Saturday, 13 May 2023 : guest : guest2121654948 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 759711455 has failed
+Saturday, 13 May 2023 : Added the product:759711455_2146709326to store: 759711455 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 759711455
+Saturday, 13 May 2023 : 759711455Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest1622623207 has logged in
+Saturday, 13 May 2023 : user with session ID : 1622623207 got his Messages
+Saturday, 13 May 2023 : 2121654948 added product with id: 2121654948_805914022 to basket
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gfgdf succefully done.
+Saturday, 13 May 2023 : user with session ID : 1622623207 got his Messages
+Saturday, 13 May 2023 : guest : guest882590916 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 377851580 has failed
+Saturday, 13 May 2023 : Added the product:377851580_1284556161to store: 377851580 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 377851580
+Saturday, 13 May 2023 : 1633942920Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest962683830 has logged in
+Saturday, 13 May 2023 : user with session ID : 1618315137 got his Messages
+Saturday, 13 May 2023 : 112062988 added product with id: 882590916_1109194464 to basket
+Saturday, 13 May 2023 : 112062988 added product with id: 882590916_962683830 to basket
+Saturday, 13 May 2023 : 112062988 added product with id: 377851580_1284556161 to basket
+Saturday, 13 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Saturday, 13 May 2023 : user with session ID : 1618315137 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1618315137 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1618315137 got his Messages
+Saturday, 13 May 2023 : guest : guest1301785729 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 536416064 has failed
+Saturday, 13 May 2023 : Added the product:536416064_1675682019to store: 536416064 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 536416064
+Saturday, 13 May 2023 : 536416064Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest1913760116 has logged in
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : 1301785729 added product with id: 1301785729_1587720868 to basket
+Saturday, 13 May 2023 : 1301785729 added product with id: 1301785729_1913760116 to basket
+Saturday, 13 May 2023 : 1301785729 added product with id: 536416064_1675682019 to basket
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : 1301785729 added product with id: 1301785729_1913760116 to basket
+Saturday, 13 May 2023 : a new comment for product id: 1301785729_1913760116
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : checking deilvery for address: gdfg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gdfg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gdfg succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gdfg succefully done.
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1913760116 got his Messages
+Saturday, 13 May 2023 : guest : guest1601570486 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 1080437587 has failed
+Saturday, 13 May 2023 : Added the product:1080437587_1173656780to store: 1080437587 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 1080437587
+Saturday, 13 May 2023 : 1080437587Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest22499723 has logged in
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : 1601570486 added product with id: 1601570486_558924195 to basket
+Saturday, 13 May 2023 : 1601570486 added product with id: 1601570486_22499723 to basket
+Saturday, 13 May 2023 : 1601570486 added product with id: 1080437587_1173656780 to basket
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gfgfg succefully done.
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : user with session ID : 678131030 got his Messages
+Saturday, 13 May 2023 : guest : guest1352269204 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 190182692 has failed
+Saturday, 13 May 2023 : Added the product:190182692_919340712to store: 190182692 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 190182692
+Saturday, 13 May 2023 : 190182692Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest1567718206 has logged in
+Saturday, 13 May 2023 : user with session ID : 1567718206 got his Messages
+Saturday, 13 May 2023 : 1352269204 added product with id: 1352269204_1567718206 to basket
+Saturday, 13 May 2023 : 1352269204 added product with id: 1352269204_1008559049 to basket
+Saturday, 13 May 2023 : 1352269204 added product with id: 190182692_919340712 to basket
+Saturday, 13 May 2023 : checking deilvery for address: gffg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gffg succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gffg succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gffg succefully done.
+Saturday, 13 May 2023 : user with session ID : 1567718206 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1567718206 got his Messages
+Saturday, 13 May 2023 : a new comment for product id: 1352269204_1567718206
+Saturday, 13 May 2023 : a new comment for product id: 1352269204_1008559049
+Saturday, 13 May 2023 : user with session ID : 1567718206 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1567718206 got his Messages
+Saturday, 13 May 2023 : guest : guest1339462178 has logged in
+Saturday, 13 May 2023 : nekola has registered!
+Saturday, 13 May 2023 : bayan has registered!
+Saturday, 13 May 2023 : opening store with id: 363929236 has failed
+Saturday, 13 May 2023 : Added the product:363929236_1984021933to store: 363929236 has been done successfully
+Saturday, 13 May 2023 : assigning new manager with username : nekola to the store with id: 363929236
+Saturday, 13 May 2023 : 363929236Logged-out succesfully
+Saturday, 13 May 2023 : guest : guest1232199011 has logged in
+Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
+Saturday, 13 May 2023 : 1339462178 added product with id: 1339462178_518715773 to basket
+Saturday, 13 May 2023 : 1339462178 added product with id: 1339462178_1232199011 to basket
+Saturday, 13 May 2023 : 1339462178 added product with id: 363929236_1984021933 to basket
+Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
+Saturday, 13 May 2023 : checking deilvery for address: gfgf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgf succefully done.
+Saturday, 13 May 2023 : checking deilvery for address: gfgf succefully done.
+Saturday, 13 May 2023 : checkout completed by : admin
+Saturday, 13 May 2023 : checking deilvery for address: gfgf succefully done.
+Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
+Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
+
