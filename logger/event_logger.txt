@@ -2354,3 +2354,794 @@ Saturday, 13 May 2023 : user with session ID : 1232199011 got his Messages
 שבת 13 מאי 2023 : guest : guest1292540895 has logged in
 שבת 13 מאי 2023 : 1298730608 added product with id: 1995040013_1708164341 to basket
 שבת 13 מאי 2023 : 1298730608 removed product with id: 1995040013_1708164341 from the basket
+Monday, 15 May 2023 : guest : guest175522876 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 544854231 has failed
+Monday, 15 May 2023 : Added the product:544854231_1297699339to store: 544854231 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 544854231
+Monday, 15 May 2023 : 544854231Logged-out succesfully
+Monday, 15 May 2023 : guest : guest605201421 has logged in
+Monday, 15 May 2023 : guest : guest658484261 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : user with session ID : 605201421 got his Messages
+Monday, 15 May 2023 : 615106460 added product with id: 175522876_658484261 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : user with session ID : 605201421 got his Messages
+Monday, 15 May 2023 : guest : guest1537165093 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1414757147 has failed
+Monday, 15 May 2023 : Added the product:1414757147_1976503168to store: 1414757147 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1414757147
+Monday, 15 May 2023 : 1414757147Logged-out succesfully
+Monday, 15 May 2023 : guest : guest816422139 has logged in
+Monday, 15 May 2023 : guest : guest401845516 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : user with session ID : 2102165129 got his Messages
+Monday, 15 May 2023 : 1756421865 added product with id: 1537165093_401845516 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : guest : guest12394600 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1742304888 has failed
+Monday, 15 May 2023 : Added the product:1742304888_2070959860to store: 1742304888 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1742304888
+Monday, 15 May 2023 : 850912581Logged-out succesfully
+Monday, 15 May 2023 : guest : guest836916804 has logged in
+Monday, 15 May 2023 : guest : guest1720251689 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : user with session ID : 1492548111 got his Messages
+Monday, 15 May 2023 : 1389350319 added product with id: 12394600_1720251689 to basket
+Monday, 15 May 2023 : user with session ID : 1492548111 got his Messages
+Monday, 15 May 2023 : user with session ID : 1492548111 got his Messages
+Monday, 15 May 2023 : 1389350319 added product with id: 12394600_1720251689 to basket
+Monday, 15 May 2023 : user with session ID : 1492548111 got his Messages
+Monday, 15 May 2023 : 1389350319 removed product with id: 12394600_1720251689 from the basket
+Monday, 15 May 2023 : 1339197945 added product with id: 12394600_1720251689 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : guest : guest1253978117 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 873475631 has failed
+Monday, 15 May 2023 : Added the product:873475631_357099130to store: 873475631 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 873475631
+Monday, 15 May 2023 : 873475631Logged-out succesfully
+Monday, 15 May 2023 : guest : guest1366102419 has logged in
+Monday, 15 May 2023 : guest : guest1572286496 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : user with session ID : 1366102419 got his Messages
+Monday, 15 May 2023 : user with session ID : 1366102419 got his Messages
+Monday, 15 May 2023 : user with session ID : 1366102419 got his Messages
+Monday, 15 May 2023 : user with session ID : 1366102419 got his Messages
+Monday, 15 May 2023 : 243463452 added product with id: 1253978117_1572286496 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : guest : guest1388427782 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1786994516 has failed
+Monday, 15 May 2023 : Added the product:1786994516_773678041to store: 1786994516 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1786994516
+Monday, 15 May 2023 : 1786994516Logged-out succesfully
+Monday, 15 May 2023 : guest : guest470080250 has logged in
+Monday, 15 May 2023 : user with session ID : 470080250 got his Messages
+Monday, 15 May 2023 : user with session ID : 470080250 got his Messages
+Monday, 15 May 2023 : guest : guest643320834 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : 512557648 added product with id: 1388427782_470080250 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : guest : guest62332750 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1879908917 has failed
+Monday, 15 May 2023 : Added the product:1879908917_1347740521to store: 1879908917 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1879908917
+Monday, 15 May 2023 : 1446881813Logged-out succesfully
+Monday, 15 May 2023 : guest : guest1830755140 has logged in
+Monday, 15 May 2023 : guest : guest1249304045 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : 670254965 added product with id: 62332750_1830755140 to basket
+Monday, 15 May 2023 : user with session ID : 969014483 got his Messages
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : guest : guest413743417 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 281026886 has failed
+Monday, 15 May 2023 : Added the product:281026886_88860141to store: 281026886 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 281026886
+Monday, 15 May 2023 : 281026886Logged-out succesfully
+Monday, 15 May 2023 : guest : guest1713981419 has logged in
+Monday, 15 May 2023 : guest : guest33018504 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 56065147 has failed
+Monday, 15 May 2023 : Added the product:56065147_704205210to store: 56065147 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 56065147
+Monday, 15 May 2023 : 56065147Logged-out succesfully
+Monday, 15 May 2023 : guest : guest1939621127 has logged in
+Monday, 15 May 2023 : guest : guest1633862920 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : user with session ID : 1939621127 got his Messages
+Monday, 15 May 2023 : user with session ID : 1939621127 got his Messages
+Monday, 15 May 2023 : 1228522378 added product with id: 33018504_1633862920 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : guest : guest299230233 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : guest : guest94580008 has logged in
+Monday, 15 May 2023 : guest : guest1435482255 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : user with session ID : 2082651294 got his Messages
+Monday, 15 May 2023 : 29218046 added product with id: 94580008_1435482255 to basket
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checkout completed by : amihai
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : checking deilvery for address: b succefully done.
+Monday, 15 May 2023 : user with session ID : 186040110 got his Messages
+Monday, 15 May 2023 : guest : guest1586581224 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1875221702 has failed
+Monday, 15 May 2023 : Added the product:1875221702_1204808850to store: 1875221702 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1875221702
+Monday, 15 May 2023 : 1875221702Logged-out succesfully
+Monday, 15 May 2023 : guest : guest871784634 has logged in
+Monday, 15 May 2023 : guest : guest528878032 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : guest : guest2027751475 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : guest : guest1719043720 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : guest : guest2108846735 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1737679692 has failed
+Monday, 15 May 2023 : Added the product:1737679692_1299065103to store: 1737679692 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1737679692
+Monday, 15 May 2023 : 1737679692Logged-out succesfully
+Monday, 15 May 2023 : guest : guest723773185 has logged in
+Monday, 15 May 2023 : guest : guest838385136 has logged in
+Monday, 15 May 2023 : user with session ID : 723773185 got his Messages
+Monday, 15 May 2023 : 485276091 added product with id: 2108846735_838385136 to basket
+Monday, 15 May 2023 : checking deilvery for address: 54654 succefully done.
+Monday, 15 May 2023 : checking deilvery for address: 54654 succefully done.
+Monday, 15 May 2023 : checking deilvery for address: 54654 succefully done.
+Monday, 15 May 2023 : checkout completed by : guest838385136
+Monday, 15 May 2023 : checking deilvery for address: 54654 succefully done.
+Monday, 15 May 2023 : guest : guest474421160 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 24406793 has failed
+Monday, 15 May 2023 : Added the product:24406793_964655638to store: 24406793 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 24406793
+Monday, 15 May 2023 : 1280498133Logged-out succesfully
+Monday, 15 May 2023 : guest : guest932341622 has logged in
+Monday, 15 May 2023 : guest : guest715865169 has logged in
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : 1077211256 added product with id: 474421160_932341622 to basket
+Monday, 15 May 2023 : checking deilvery for address: g succefully done.
+Monday, 15 May 2023 : checking deilvery for address: g succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checkout completed by : guest715865169
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : user with session ID : 1587972929 got his Messages
+Monday, 15 May 2023 : 1077211256 added product with id: 474421160_715865169 to basket
+Monday, 15 May 2023 : guest : guest783322795 has logged in
+Monday, 15 May 2023 : nekola has registered!
+Monday, 15 May 2023 : bayan has registered!
+Monday, 15 May 2023 : opening store with id: 1991525865 has failed
+Monday, 15 May 2023 : Added the product:1991525865_425974632to store: 1991525865 has been done successfully
+Monday, 15 May 2023 : assigning new manager with username : nekola to the store with id: 1991525865
+Monday, 15 May 2023 : 1991525865Logged-out succesfully
+Monday, 15 May 2023 : guest : guest1729179921 has logged in
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : guest : guest1743053034 has logged in
+Monday, 15 May 2023 : amihai has registered!
+Monday, 15 May 2023 : 81207622 added product with id: 783322795_1743053034 to basket
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checkout completed by : guest1743053034
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : user with session ID : 1729179921 got his Messages
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
+Monday, 15 May 2023 : checking deilvery for address: gfdgdf succefully done.
