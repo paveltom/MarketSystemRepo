@@ -68,5 +68,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 };
             return this.StrategyFormula.Satisfies(chosenProductsWithAttributes, rellevantUserPolicyData);
         }
+
+        public override string ToString()
+        {
+            return this.StrategyID + ": " + this.StrategyName + ". " + this.Description;
+        }
     }
 }

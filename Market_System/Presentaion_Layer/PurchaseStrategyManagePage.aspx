@@ -1,17 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PurchaseStrategyManagePage.aspx.cs" Inherits="Market_System.Presentaion_Layer.PurchaseStrategyManagePage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <br />
-    <asp:DropDownList ID="SelectStrategiesToViewList" runat="server" Height="37px" OnSelectedIndexChanged="SelectStrategiesToViewList_SelectedIndexChanged" Width="213px">
-        <asp:ListItem>Store Strategies</asp:ListItem>
-        <asp:ListItem>Product Strategies</asp:ListItem>
-    </asp:DropDownList>
-    <input id="ProductIDToViewStrategies" type="text" name="productID" placeholder="Enter wanted product ID..." runat="server"/>
-    <br />
-    
-    <br />
-    <div style="text-align: center;">
-        <asp:DataList ID="products_list" runat="server">
+    <br>
+    <div style="text-align: left;">
+        <asp:DropDownList ID="SelectStrategiesToViewList" runat="server" Height="37px" AutoPostBack="True" OnSelectedIndexChanged="SelectStrategiesToViewList_SelectedIndexChanged" Width="213px">
+            <asp:ListItem>Store Strategies</asp:ListItem>
+            <asp:ListItem>Product Strategies</asp:ListItem>
+        </asp:DropDownList>
+        <input id="ProductIDToViewStrategies" type="text" name="productID" placeholder="Enter wanted product ID..." runat="server" visible="false" >
+        <asp:Button ID="ShowProductStrategiesButton" runat="server" Text="Show" OnClick="ShowProductStrategies" Height="29px" Width="195px" Visible="false" />
+        <asp:Label ID="NoProductIdErrorMessage" runat="server" Font-Size="Large" ForeColor="Red"></asp:Label>
+    </div>
+    <br>
+    <br>
+    <div style="text-align: left;">    
+        <asp:Button ID="AddNewStrategyButton" runat="server" Text="Add new Strategy" OnClick="AddNewStrategyClick" Height="29px" Width="195px"/>
+        <br />
+        <h1>Existing strategies</h1>
+        <asp:DataList ID="StrategiesList" runat="server">
             <ItemTemplate>
                 <asp:Label Text="<%# Container.DataItem %>" runat="server" />
             </ItemTemplate>

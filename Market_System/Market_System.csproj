@@ -138,6 +138,7 @@
     <Content Include="Presentaion_Layer\ProductPage.aspx" />
     <Content Include="Presentaion_Layer\ProductsPage.aspx" />
     <Content Include="Presentaion_Layer\product_in_basket_page.aspx" />
+    <Content Include="Presentaion_Layer\PurchaseStrategyManagePage.aspx" />
     <Content Include="Presentaion_Layer\register_page.aspx" />
     <Content Include="Presentaion_Layer\Search.aspx" />
     <Content Include="Presentaion_Layer\store_managing_page.aspx" />
@@ -281,6 +282,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\product_in_basket_page.aspx.designer.cs">
       <DependentUpon>product_in_basket_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\PurchaseStrategyManagePage.aspx.cs">
+      <DependentUpon>PurchaseStrategyManagePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\PurchaseStrategyManagePage.aspx.designer.cs">
+      <DependentUpon>PurchaseStrategyManagePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\register_page.aspx.cs">
       <DependentUpon>register_page.aspx</DependentUpon>

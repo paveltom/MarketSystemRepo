@@ -31,5 +31,10 @@ namespace Market_System.Presentaion_Layer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText ProductIDToViewStrategies;
+
+        protected global::System.Web.UI.WebControls.DataList StrategiesList;
+        
+        protected global::System.Web.UI.WebControls.Label NoProductIdErrorMessage;
+        protected global::System.Web.UI.WebControls.Button ShowProductStrategiesButton;
     }
 }

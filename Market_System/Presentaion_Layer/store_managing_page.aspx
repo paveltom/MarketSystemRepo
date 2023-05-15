@@ -118,4 +118,7 @@
         <asp:Label Text="<%#Container.DataItem %>" runat="server" />
     </ItemTemplate>
         </asp:DataList></div>
+    <div style="text-align: left">
+        <asp:Button ID="ManageStrategiesButton" runat="server" OnClick="ManageStrategiesClick" Text="Manage Strategies" Visible="true" />
+    </div>
 </asp:Content>
