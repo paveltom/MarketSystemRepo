@@ -20,7 +20,7 @@ namespace Market_System.Presentaion_Layer
             List<string> strategies = ((Service_Controller)Session["service_controller"]).GetStore(StoreID).Value.DefaultStrategies;
 
             StrategiesList.DataSource = strategies;
-            StrategiesList.DataBind();            
+            StrategiesList.DataBind();
 
         }
 
@@ -38,7 +38,7 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                ProductIDToViewStrategies.Visible = true; 
+                ProductIDToViewStrategies.Visible = true;
                 ShowProductStrategiesButton.Visible = true;
             }
         }
@@ -63,5 +63,6 @@ namespace Market_System.Presentaion_Layer
         {
 
         }
+
     }
 }
