@@ -49,15 +49,20 @@ namespace Market_System
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
                 notification_messages.Text = "you have a new message!";
+                //string message = "you have a new message!";
+                //string script = "showAlert('" + message + "');";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", script, true);
             }
-            // Perform any required actions, such as displaying a notification on the site master page
         }
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
-                Label3.Text = "YOU HAVE A NEW MESSAGE!";
+                //string message = "you have a new message!";
+                //string script = "showAlert('" + message + "');";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", script, true);
+                notification_messages.Text = "YOU HAVE NEW MESSAGES!!!";
             }
         }
 
