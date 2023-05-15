@@ -61,7 +61,7 @@ namespace Market_System.Presentaion_Layer
 
         protected void AddNewStrategyClick(object sender, EventArgs e)
         {
-
+            Response.Redirect(string.Format("/Presentaion_Layer/StrategyBuilderPage.aspx?store_id={0}", this.StoreID));
         }
 
     }

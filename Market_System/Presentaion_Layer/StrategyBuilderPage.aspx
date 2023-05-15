@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StrategyBuilderPage.aspx.cs" Inherits="Market_System.Presentaion_Layer.StrategyBuilderPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
-    <br />
-    <br />
+    <div>
+        <br />
+        <br />
+        <asp:TreeView ID="StatementTree" runat="server" ShowLines="True" >
+        </asp:TreeView>
+    </div>
 
 <%--// choose a struct
     // represent it to user:

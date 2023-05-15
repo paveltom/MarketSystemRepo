@@ -1,47 +1,106 @@
-﻿using System;
+﻿using Market_System.DomainLayer.StoreComponent;
+using Market_System.ServiceLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace Market_System.Presentaion_Layer
 {
     public partial class StrategyBuilderPage : System.Web.UI.Page
     {
+        public string StoreID;
         protected void Page_Load(object sender, EventArgs e)
         {
             // view some info as in drawio
-
+            this.StoreID = Request.QueryString["store_id"];
+            
         }
 
-        private void BindStatement(IEnumerable<WebStatement> list, TreeNode parentStatement)
+        private void BindStatement(WebStatement statement, TreeNode parentStatement)
         {
-            var nodes = list.Where(x => parentNode == null ? x.ParentId == 0 : x.ParentId == int.Parse(parentNode.Value));
-            foreach (var node in nodes)
+            
+            /*foreach (WebStatement node in statement.nested)
             {
-                TreeNode newNode = new TreeNode(node.Name, node.Id.ToString());
+                TreeNode newNode = new TreeNode(node.myType, WebStatement.typeMap[node.myType]);                
                 if (parentNode == null)
                 {
-                    treeView1.Nodes.Add(newNode);
+                    StatementTree.Nodes.Add(newNode);
                 }
                 else
                 {
                     parentNode.ChildNodes.Add(newNode);
                 }
-                BindTree(list, newNode);
-            }
+                BindStatement(list, newNode);
+            }*/
         }
+
+
+        protected void AddStatement(object sender, EventArgs e)
+        {
+            StatementTree = null;
+            TreeNode node = sender as TreeNode;
+
+            // get typeX from sender
+
+            switch (node.Text)
+            {
+                case "OR":
+                    node.ChildNodes.Add(new TreeNode());
+                    node.ChildNodes.Add(new TreeNode());
+                    return;
+
+                default:
+                    node.ChildNodes.Add(new TreeNode());
+                    return;
+
+            }
+
+
+            // considering type create a WebStatement
+            // send to BindStatement
+        }
+
+
+
+        public class DropDownNode : TreeNode
+        {
+            public DropDownList DDL;
+
+            public DropDownNode() : base()
+            {
+                this.SelectAction = TreeNodeSelectAction.None;
+                this.DDL = new DropDownList();
+                DDL.DataSource = WebStatement.typeMap.Keys;
+                DDL.DataBind();
+            }
+
+            public DropDownNode(string str) : base(str)
+            {
+                this.SelectAction = TreeNodeSelectAction.None;
+                this.DDL = new DropDownList();
+                DDL.DataSource = WebStatement.typeMap.Keys;
+                DDL.DataBind();
+            }
+
+        }
+
+
+
 
         public class WebStatement
         {
             public string myType;
-            private WebStatement[] nested;
+            public List<WebStatement> myStatements;
 
             public static Dictionary<string, string> typeMap = new Dictionary<string, string>()
             {
-                {"AnyStatement","[Any[<Statement>]]" },
+                {"Statement", "<Statement>"},
+                {"AnyStatement","[Any[<Statement>]]"},
                 {"ForAll","ForAll[<Statement>]"},
                 {"IfThen", "IfThen[[<Statement>][<Statement>]]"},
                 {"XOR", "XOR[[<Statement>][<Statement>]...]"},
@@ -53,7 +112,7 @@ namespace Market_System.Presentaion_Layer
                 {"SmallerThan", "SmallerThan[[<StringAttributeName>][<StringAttributeValue>]]"},
                 {"GreaterThan", "GreaterThan[[<StringAttributeName>][<StringAttributeValue>]]"},
                 {"UserChar", ""},
-                {"ProductAttribute", ""},
+                {"ProductAttribute", ""}
 
 
             };

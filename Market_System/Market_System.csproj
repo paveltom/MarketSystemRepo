@@ -143,6 +143,7 @@
     <Content Include="Presentaion_Layer\Search.aspx" />
     <Content Include="Presentaion_Layer\store_managing_page.aspx" />
     <Content Include="Presentaion_Layer\store_products_managing_page.aspx" />
+    <Content Include="Presentaion_Layer\StrategyBuilderPage.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -372,6 +373,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\store_products_managing_page.aspx.designer.cs">
       <DependentUpon>store_products_managing_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\StrategyBuilderPage.aspx.cs">
+      <DependentUpon>StrategyBuilderPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\StrategyBuilderPage.aspx.designer.cs">
+      <DependentUpon>StrategyBuilderPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLayer\Logger.cs" />
