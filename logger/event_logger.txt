@@ -3270,3 +3270,47 @@ Monday, 15 May 2023 : user with session ID : 404921277 got his Messages
 Monday, 15 May 2023 : user with session ID : 404921277 got his Messages
 Monday, 15 May 2023 : user with session ID : 404921277 got his Messages
 Monday, 15 May 2023 : assigning new owner with username : amihai to the store with id: 260996310
+Tuesday, 16 May 2023 : guest : guest169818647 has logged in
+Tuesday, 16 May 2023 : nekola has registered!
+Tuesday, 16 May 2023 : bayan has registered!
+Tuesday, 16 May 2023 : opening store with id: 1675078982 has failed
+Tuesday, 16 May 2023 : Added the product:1675078982_585430810to store: 1675078982 has been done successfully
+Tuesday, 16 May 2023 : assigning new manager with username : nekola to the store with id: 1675078982
+Tuesday, 16 May 2023 : 1675078982Logged-out succesfully
+Tuesday, 16 May 2023 : guest : guest434960819 has logged in
+Tuesday, 16 May 2023 : guest : guest144055635 has logged in
+Tuesday, 16 May 2023 : amihai has registered!
+Tuesday, 16 May 2023 : assigning new owner with username : amihai to the store with id: 169818647
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
+Tuesday, 16 May 2023 : 1432717158 added product with id: 169818647_144055635 to basket
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checkout completed by : amihai
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : checking deilvery for address: b succefully done.
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
+Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages

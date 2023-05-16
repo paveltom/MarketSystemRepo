@@ -48,7 +48,7 @@ namespace Market_System
             //TODO:: NEED TO SEND IT TO THE SPECIFIC USER!
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
-                notification_messages.Text = "you have a new message!";
+                //notification_messages.Text = "you have a new message!";
                 //string message = "you have a new message!";
                 //string script = "showAlert('" + message + "');";
                 //ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", script, true);
@@ -57,7 +57,7 @@ namespace Market_System
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            if (((Service_Controller)Session["service_controller"]).HasNewMessages())
+            if (((Service_Controller)Session["service_controller"]).HasNewMessages() && notification_messages.Text != "YOU HAVE NEW MESSAGES!!!")
             {
                 //string message = "you have a new message!";
                 //string script = "showAlert('" + message + "');";
@@ -91,7 +91,7 @@ namespace Market_System
             }
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
-                notification_messages.Text = "you have a new message!";
+                notification_messages.Text = "YOU HAVE NEW MESSAGES!!!";
             }
            
             if (((Service_Controller)Session["service_controller"]).check_if_current_user_is_admin().Value)
