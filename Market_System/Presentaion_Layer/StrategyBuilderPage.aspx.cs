@@ -1,6 +1,7 @@
 ﻿using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
 using Market_System.ServiceLayer;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,33 +20,89 @@ namespace Market_System.Presentaion_Layer
         public string StoreID;
         public string ProductID;
 
-        private DropDownNode statementTree;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            // view some info as in drawio
-            this.StoreID = Request.QueryString["store_id"];
-            MainPanel.Controls.Remove(StatementDLL);
+            if (!IsPostBack)
+            {
+                TreeNode init = new TreeNode("<Statement>");
+                WebStatement.typeMap.Keys.ForEach(x => init.ChildNodes.Add(new TreeNode(x)));
+                statementTree.Nodes.Add(init);
 
-            Panel newPanel = new Panel();
-            newPanel.Attributes.Add("runat", "server");
-            newPanel.Style.Add("padding-left", "50px");
 
-            this.statementTree = new DropDownNode();
-            statementTree.padding = 0;
-            statementTree.myInnerPanel = newPanel;
-            statementTree.AutoPostBack = true;
-            statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
-            statementTree.DataSource = WebStatement.typeMap.Keys;
-            statementTree.DataBind();
-            statementTree.Items.Insert(0, new ListItem("--SELECT--"));
-            
-            MainPanel.Controls.Add(statementTree);
-            MainPanel.Controls.Add(new LiteralControl("<br />"));
-            MainPanel.Controls.Add(statementTree.myInnerPanel);
-            MainPanel.Controls.Add(new LiteralControl("<br />"));
 
+                // view some info as in drawio
+               /* this.StoreID = Request.QueryString["store_id"];
+
+                Panel newPanel = new Panel();
+                newPanel.Attributes.Add("runat", "server");
+                newPanel.Style.Add("padding-left", "50px");
+
+                DropDownNode statementTree = new DropDownNode();
+                statementTree.myInnerPanel = newPanel;
+                statementTree.AutoPostBack = true;
+                statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
+                statementTree.DataSource = WebStatement.typeMap.Keys;
+                statementTree.DataBind();
+                statementTree.Items.Insert(0, new ListItem("--SELECT--"));
+
+                statementDDL = statementTree;
+                //MainPanel.Controls.Add(statementTree);
+                MainPanel.Controls.Add(new LiteralControl("<br />"));
+                MainPanel.Controls.Add(statementTree.myInnerPanel);
+                MainPanel.Controls.Add(new LiteralControl("<br />"));
+                return;*/
+            }
         }
+
+        /*private void RecreatePage(DropDownNode currDDN, Panel addInThis)
+        {
+            TreeNode currNode = currDDN.node;
+            string type = currNode.Text;
+            switch (type)
+            {
+                case "OR":
+                case "AND":
+                case "XOR":
+                case "IfThen":
+                    DropDownNode c1 = new DropDownNode();
+                    DropDownNode c2 = new DropDownNode();
+                    Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys, currDDN);
+                    currNode.node.ChildNodes.Add(c1.node);
+                    currNode.node.ChildNodes.Add(c2.node);
+                    return;
+
+                case "Any":
+                case "ForAll":
+                    DropDownNode c = new DropDownNode();
+                    Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys, currNode);
+                    currNode.node.ChildNodes.Add(c.node);
+                    return;
+
+                case "AtLeast":
+                case "AtMost":
+                    HtmlInputText input = new HtmlInputText();
+                    // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    DropDownNode c3 = new DropDownNode();
+                    c3.inputValue = input;
+                    Placement(new DropDownNode[] { c3 }, WebStatement.typeMap.Keys, currNode);
+                    currNode.node.ChildNodes.Add(c3.node);
+                    return;
+
+                case "Equal":
+                case "SmallerThan":
+                case "GreaterThan":
+                    HtmlInputText inputRelation = new HtmlInputText();
+                    // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    DropDownNode c4 = new DropDownNode();
+                    c4.inputValue = inputRelation;
+                    Placement(new DropDownNode[] { c4 }, WebStatement.attributes, currNode);
+                    currNode.node.ChildNodes.Add(c4.node);
+                    return;
+
+            }
+
+        }*/
 
         protected void StatementDLL_SelectedIndexChanged(object sender, EventArgs e)
         {            
@@ -99,7 +156,6 @@ namespace Market_System.Presentaion_Layer
                     currNode.node.ChildNodes.Add(c4.node);
                     return;
 
-
             }
 
         }
@@ -108,7 +164,6 @@ namespace Market_System.Presentaion_Layer
         private void Placement(DropDownNode[] placeUs, object data, DropDownNode parent)
         {
             // Stataement placement
-            int padding = parent.padding + 50;
             foreach (DropDownNode placeMe in placeUs)
             {
                 Panel newPanel = new Panel();
@@ -119,12 +174,13 @@ namespace Market_System.Presentaion_Layer
                 placeMe.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
                 placeMe.DataSource = data;
                 placeMe.DataBind();
-                statementTree.Items.Insert(0, new ListItem("--SELECT--"));
+                placeMe.Items.Insert(0, new ListItem("--SELECT--"));
 
                 parent.myInnerPanel.Controls.Add(placeMe);
                 parent.myInnerPanel.Controls.Add(new LiteralControl("<br />"));
                 parent.myInnerPanel.Controls.Add(placeMe.myInnerPanel);
                 parent.myInnerPanel.Controls.Add(new LiteralControl("<br />"));
+
             }
 
             // Attribute placement
@@ -135,7 +191,6 @@ namespace Market_System.Presentaion_Layer
         {
             public TreeNode node;
             public HtmlInputText inputValue;
-            public int padding;
             public Panel myInnerPanel;
 
             public DropDownNode() : base()

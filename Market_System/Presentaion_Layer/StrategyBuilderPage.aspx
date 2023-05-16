@@ -4,9 +4,8 @@
     
 
     <asp:Panel ID="MainPanel" runat="server" style="text-align: left;">
-        <asp:DropDownList ID="StatementDLL" runat="server" AutoPostBack="true" OnSelectedIndexChanged="StatementDLL_SelectedIndexChanged" Width="213px">
-                 <asp:ListItem Text = "--Select Statement or Relation--" Value = ""></asp:ListItem>
-            </asp:DropDownList>
+        <asp:TreeView ID="statementTree" runat="server">
+        </asp:TreeView>
     </asp:Panel>
 
 <%--// choose a struct
