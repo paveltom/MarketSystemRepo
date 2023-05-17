@@ -3314,3 +3314,57 @@ Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
 Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
 Tuesday, 16 May 2023 : user with session ID : 434960819 got his Messages
 Tuesday, 16 May 2023 : user with session ID : 1062069227 got his Messages
+יום רביעי 17 מאי 2023 : guest : guest704900624 has logged in
+יום רביעי 17 מאי 2023 : nekola has registered!
+יום רביעי 17 מאי 2023 : bayan has registered!
+יום רביעי 17 מאי 2023 : opening store with id: 1348897455 has failed
+יום רביעי 17 מאי 2023 : Added the product:1348897455_1793754760to store: 1348897455 has been done successfully
+יום רביעי 17 מאי 2023 : assigning new manager with username : nekola to the store with id: 1348897455
+יום רביעי 17 מאי 2023 : 1348897455Logged-out succesfully
+יום רביעי 17 מאי 2023 : guest : guest125514474 has logged in
+יום רביעי 17 מאי 2023 : guest : guest970696368 has logged in
+יום רביעי 17 מאי 2023 : nekola has registered!
+יום רביעי 17 מאי 2023 : bayan has registered!
+יום רביעי 17 מאי 2023 : opening store with id: 1781349391 has failed
+יום רביעי 17 מאי 2023 : Added the product:1781349391_541489768to store: 1781349391 has been done successfully
+יום רביעי 17 מאי 2023 : assigning new manager with username : nekola to the store with id: 1781349391
+יום רביעי 17 מאי 2023 : 1781349391Logged-out succesfully
+יום רביעי 17 מאי 2023 : guest : guest1206620855 has logged in
+יום רביעי 17 מאי 2023 : guest : guest634415871 has logged in
+יום רביעי 17 מאי 2023 : nekola has registered!
+יום רביעי 17 מאי 2023 : bayan has registered!
+יום רביעי 17 מאי 2023 : opening store with id: 536873392 has failed
+יום רביעי 17 מאי 2023 : Added the product:536873392_1789119447to store: 536873392 has been done successfully
+יום רביעי 17 מאי 2023 : assigning new manager with username : nekola to the store with id: 536873392
+יום רביעי 17 מאי 2023 : 536873392Logged-out succesfully
+יום רביעי 17 מאי 2023 : guest : guest982808091 has logged in
+יום רביעי 17 מאי 2023 :  search by name : beer was done successfully
+יום רביעי 17 מאי 2023 :  search by name : boots was done successfully
+יום רביעי 17 מאי 2023 : guest : guest529435556 has logged in
+יום רביעי 17 מאי 2023 : nekola has registered!
+יום רביעי 17 מאי 2023 : bayan has registered!
+יום רביעי 17 מאי 2023 : opening store with id: 1078745863 has failed
+יום רביעי 17 מאי 2023 : Added the product:1078745863_1466957732to store: 1078745863 has been done successfully
+יום רביעי 17 מאי 2023 : assigning new manager with username : nekola to the store with id: 1078745863
+יום רביעי 17 מאי 2023 : 645718759Logged-out succesfully
+יום רביעי 17 מאי 2023 : guest : guest454864723 has logged in
+יום רביעי 17 מאי 2023 :  search by name : boots was done successfully
+יום רביעי 17 מאי 2023 : guest : guest2067336041 has logged in
+יום רביעי 17 מאי 2023 : nekola has registered!
+יום רביעי 17 מאי 2023 : bayan has registered!
+יום רביעי 17 מאי 2023 : opening store with id: 148456376 has failed
+יום רביעי 17 מאי 2023 : Added the product:148456376_276897534to store: 148456376 has been done successfully
+יום רביעי 17 מאי 2023 : assigning new manager with username : nekola to the store with id: 148456376
+יום רביעי 17 מאי 2023 : 148456376Logged-out succesfully
+יום רביעי 17 מאי 2023 : guest : guest1511431048 has logged in
+יום רביעי 17 מאי 2023 :  search by name : boots was done successfully
+יום רביעי 17 מאי 2023 :  search by keyword : boo was done successfully
+יום רביעי 17 מאי 2023 : guest : guest423129725 has logged in
+יום רביעי 17 מאי 2023 : nekola has registered!
+יום רביעי 17 מאי 2023 : bayan has registered!
+יום רביעי 17 מאי 2023 : opening store with id: 216691983 has failed
+יום רביעי 17 מאי 2023 : Added the product:216691983_892234112to store: 216691983 has been done successfully
+יום רביעי 17 מאי 2023 : assigning new manager with username : nekola to the store with id: 216691983
+יום רביעי 17 מאי 2023 : 216691983Logged-out succesfully
+יום רביעי 17 מאי 2023 : guest : guest1999944236 has logged in
+יום רביעי 17 מאי 2023 :  search by category : swords was done successfully
