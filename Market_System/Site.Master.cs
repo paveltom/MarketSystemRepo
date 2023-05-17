@@ -15,8 +15,6 @@ namespace Market_System
         
         protected void Page_Load(object sender, EventArgs e)
         {
-          
-      
             if (Session["service_controller"] == null)
             {
                 Session["service_controller"] = new ServiceLayer.Service_Controller();
@@ -32,7 +30,7 @@ namespace Market_System
                 open_new_store_button.Visible = false;
                 manage_store_button.Visible = false;
                 admin_spec_ops_button.Visible = false;
-                message_popup_window.Visible = false;
+                //message_popup_window.Visible = false;
                 Label1.Text = "";
             }
             else
@@ -50,11 +48,22 @@ namespace Market_System
             //TODO:: NEED TO SEND IT TO THE SPECIFIC USER!
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
-                notification_messages.Text = "you have a new message!";
-                message_popup_window.Visible = true;
-
+                //notification_messages.Text = "you have a new message!";
+                //string message = "you have a new message!";
+                //string script = "showAlert('" + message + "');";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", script, true);
             }
-            // Perform any required actions, such as displaying a notification on the site master page
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (((Service_Controller)Session["service_controller"]).HasNewMessages() && notification_messages.Text != "YOU HAVE NEW MESSAGES!!!")
+            {
+                //string message = "you have a new message!";
+                //string script = "showAlert('" + message + "');";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowAlert", script, true);
+                notification_messages.Text = "YOU HAVE NEW MESSAGES!!!";
+            }
         }
 
         internal void set_username_message(string hello)
@@ -82,13 +91,7 @@ namespace Market_System
             }
             if (((Service_Controller)Session["service_controller"]).HasNewMessages())
             {
-                notification_messages.Text = "you have a new message!";
-
-                message_popup_window.Visible = true;
-            }
-            else
-            {
-                message_popup_window.Visible = false;
+                notification_messages.Text = "YOU HAVE NEW MESSAGES!!!";
             }
            
             if (((Service_Controller)Session["service_controller"]).check_if_current_user_is_admin().Value)
@@ -150,11 +153,6 @@ namespace Market_System
 
             Response.Redirect("/Presentaion_Layer/Admin_operations_page.aspx");
 
-        }
-
-        protected void close_popup_button_Click(object sender, EventArgs e)
-        {
-            message_popup_window.Visible = false;
         }
     }
 }

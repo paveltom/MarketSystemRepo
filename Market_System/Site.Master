@@ -4,6 +4,7 @@
 
 <html lang="en">
 <head runat="server">
+    <script src="js/jquery-3.5.1.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %>- My ASP.NET Application</title>
@@ -79,12 +80,26 @@
             </asp:ContentPlaceHolder>
 
              <div style="height: 221px"></div>
-                    <asp:Panel ID="message_popup_window" runat="server" style="text-align: center" BackColor="Blue" ForeColor="Black" Width="106px" Height="76px" >
-                <asp:Label ID="Label2" runat="server" Text="you have a new message!"></asp:Label>
-                
-                    <asp:Button ID="close_popup_button" runat="server" Text="close" OnClick="close_popup_button_Click" />
-                
-            </asp:Panel>
+
+            <asp:Timer ID="Timer1" runat="server" Interval="500" ontick="Timer1_Tick">
+            </asp:Timer>
+            <asp:UpdatePanel ID="UpdatePanel1"
+                runat="server">
+                <ContentTemplate>
+                  <div style="text-align: center">
+                    <asp:Label ID="notification_messages" runat="server" Font-Size="Large" ForeColor="#00CC00"></asp:Label>
+                  </div>
+                    <!-- <script>
+                        function showAlert(message) {
+                            alert(message);
+                        }
+                    </script>   --->
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
+                    </asp:AsyncPostBackTrigger>
+                </Triggers>
+            </asp:UpdatePanel>
                 
             &nbsp;<div>  
                 &nbsp;&nbsp;  
@@ -103,9 +118,6 @@
             </div>
              <div>
 
-            </div>
-              <div style="text-align: center">
-                  <asp:Label ID="notification_messages" runat="server" Font-Size="Large" ForeColor="#00CC00"></asp:Label>
             </div>
              <div>
                   <asp:Button ID="admin_spec_ops_button" runat="server" OnClick="spec_ops_click" Text="admin's spec OPS" Width="127px" />
