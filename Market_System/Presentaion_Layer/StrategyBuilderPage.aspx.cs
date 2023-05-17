@@ -4,6 +4,7 @@ using Market_System.ServiceLayer;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -19,41 +20,90 @@ namespace Market_System.Presentaion_Layer
     {
         public string StoreID;
         public string ProductID;
+        public DropDownNode statementTree;
+        public Panel MainPanel;
 
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                this.MainPanel = (Panel)Session["MainPanel"];
+                MainDiv.Controls.Clear();
+
+                MainDiv.Controls.Add(MainPanel);
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                TreeNode init = new TreeNode("<Statement>");
-                WebStatement.typeMap.Keys.ForEach(x => init.ChildNodes.Add(new TreeNode(x)));
-                statementTree.Nodes.Add(init);
-
-
 
                 // view some info as in drawio
-               /* this.StoreID = Request.QueryString["store_id"];
+                this.StoreID = Request.QueryString["store_id"];
+
+                this.MainPanel = new Panel();
+                this.MainPanel.Style.Add("padding-left", "0px");
+                MainPanel.EnableViewState = true;
+                this.MainDiv.Controls.Add(MainPanel);
+
 
                 Panel newPanel = new Panel();
                 newPanel.Attributes.Add("runat", "server");
                 newPanel.Style.Add("padding-left", "50px");
+                newPanel.EnableViewState = true;
+
+                int indexDDN = MainPanel.Controls.OfType<Panel>().ToList().Count + 1;
 
                 DropDownNode statementTree = new DropDownNode();
                 statementTree.myInnerPanel = newPanel;
+                statementTree.padding = 0;
+                statementTree.ID = "dynamicDDN" + indexDDN;
                 statementTree.AutoPostBack = true;
+                statementTree.Attributes.Add("AutoPostBack", "True");
                 statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
+                statementTree.EnableViewState = true;
                 statementTree.DataSource = WebStatement.typeMap.Keys;
                 statementTree.DataBind();
                 statementTree.Items.Insert(0, new ListItem("--SELECT--"));
+                newPanel.Controls.Add(statementTree);
+                //MainPanel.ContentTemplateContainer.Controls.Add(new LiteralControl("<br />"));
 
-                statementDDL = statementTree;
-                //MainPanel.Controls.Add(statementTree);
+                MainPanel.Controls.Add(newPanel);
                 MainPanel.Controls.Add(new LiteralControl("<br />"));
-                MainPanel.Controls.Add(statementTree.myInnerPanel);
-                MainPanel.Controls.Add(new LiteralControl("<br />"));
-                return;*/
+                Session.Add("MainPanel", MainPanel);
+                return;
+            }
+            //RestorePage();
+
+            
+        }
+
+        private void RestorePage()
+        {
+
+            List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicPanel")).ToList();
+            List<string> keys2 = Request.Form.AllKeys.Where(key => key.Contains("MainContent")).ToList();
+
+            string[] panel1 = Request.Form.GetValues(keys2[0]);
+
+            //int i = 1;
+            foreach (string key in keys)
+            {
+                string[] panel = Request.Form.GetValues(key);
+                //panel.ID = key;
+                //MainPanel.Controls.Add(panel);
+
+
+
+                //this.CreateDropDownList("ddlDynamic" + i);
+                //i++;
             }
         }
+
+
+
 
         /*private void RecreatePage(DropDownNode currDDN, Panel addInThis)
         {
@@ -105,7 +155,7 @@ namespace Market_System.Presentaion_Layer
         }*/
 
         protected void StatementDLL_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
             DropDownNode ddlSender = sender as DropDownNode;
             string selected = ddlSender.SelectedValue;
             UpdateStatementTree(ddlSender, selected);
@@ -123,7 +173,7 @@ namespace Market_System.Presentaion_Layer
                 case "IfThen":
                     DropDownNode c1 = new DropDownNode();
                     DropDownNode c2 = new DropDownNode();
-                    Placement(new DropDownNode[] { c1, c2}, WebStatement.typeMap.Keys, currNode);
+                    Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys, currNode);
                     currNode.node.ChildNodes.Add(c1.node);
                     currNode.node.ChildNodes.Add(c2.node);
                     return;
@@ -134,7 +184,7 @@ namespace Market_System.Presentaion_Layer
                     Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys, currNode);
                     currNode.node.ChildNodes.Add(c.node);
                     return;
-                
+
                 case "AtLeast":
                 case "AtMost":
                     HtmlInputText input = new HtmlInputText();
@@ -164,47 +214,46 @@ namespace Market_System.Presentaion_Layer
         private void Placement(DropDownNode[] placeUs, object data, DropDownNode parent)
         {
             // Stataement placement
+            //int indexPanel = MainPanel.ContentTemplateContainer.Controls.OfType<Panel>().ToList().Count + 1;
+            int indexDDN = MainPanel.Controls.OfType<Panel>().ToList().Count + 1;
+
+            Panel newPanel = new Panel();
+            newPanel.Attributes.Add("runat", "server");
+            newPanel.EnableViewState = true;
+            int newPad = parent.padding + 50;
+            newPanel.Style.Add("padding-left", newPad + "px");
+            int counter = 1;
             foreach (DropDownNode placeMe in placeUs)
             {
-                Panel newPanel = new Panel();
-                newPanel.Attributes.Add("runat", "server");
-                newPanel.Style.Add("padding-left", "50px");
                 placeMe.myInnerPanel = newPanel;
+                placeMe.ID = "dynamicDDN" + indexDDN + counter;
                 placeMe.AutoPostBack = true;
+                placeMe.EnableViewState = true;
+                placeMe.padding = newPad;
                 placeMe.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
                 placeMe.DataSource = data;
                 placeMe.DataBind();
                 placeMe.Items.Insert(0, new ListItem("--SELECT--"));
 
-                parent.myInnerPanel.Controls.Add(placeMe);
-                parent.myInnerPanel.Controls.Add(new LiteralControl("<br />"));
-                parent.myInnerPanel.Controls.Add(placeMe.myInnerPanel);
-                parent.myInnerPanel.Controls.Add(new LiteralControl("<br />"));
-
+                newPanel.Controls.Add(placeMe);
+                newPanel.Controls.Add(new LiteralControl("<br />"));
+                counter++;
             }
+
+            MainPanel.Controls.Add(newPanel);
+            Session.Remove("MainPanel");
+            Session.Add("MainPanel", this.MainPanel);
+            //MainPlaceHolder.Controls.Add(MainPanel);
+            MainDiv.Controls.Add(MainPanel);
+
+
+
 
             // Attribute placement
 
         }
 
-        public class DropDownNode : DropDownList
-        {
-            public TreeNode node;
-            public HtmlInputText inputValue;
-            public Panel myInnerPanel;
 
-            public DropDownNode() : base()
-            {
-                node = new TreeNode();
-            }
-
-
-            public DropDownNode(string type) : base()
-            {
-                node = new TreeNode(type);
-            }
-
-        }
 
 
 
@@ -233,7 +282,7 @@ namespace Market_System.Presentaion_Layer
                                                                                             "Sale", "Description", "Rating", "Weight",  "TimesBought", "Category",  "Attributes" };
 
 
-    public WebStatement(string stateType) 
+            public WebStatement(string stateType)
             {
                 myType = stateType;
             }
@@ -258,5 +307,26 @@ namespace Market_System.Presentaion_Layer
             // ===================================================
 
         }
+
+        public class DropDownNode : DropDownList
+        {
+            public TreeNode node;
+            public HtmlInputText inputValue;
+            public Panel myInnerPanel;
+            public int padding;
+
+            public DropDownNode() : base()
+            {
+                node = new TreeNode();
+            }
+
+
+            public DropDownNode(string type) : base()
+            {
+                node = new TreeNode(type);
+            }
+
+        }
     }
+
 }

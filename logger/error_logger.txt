@@ -1440,3 +1440,7 @@ Tuesday, 16 May 2023 : error!!: a user with same name exists, please change name
 Tuesday, 16 May 2023 : reading from configartion file failed due to: a user with same name exists, please change name! starting system without any configration
 Tuesday, 16 May 2023 : error!!: a user with same name exists, please change name!in register
 Tuesday, 16 May 2023 : reading from configartion file failed due to: a user with same name exists, please change name! starting system without any configration
+Wednesday, 17 May 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 17 May 2023 : reading from configartion file failed due to: a user with same name exists, please change name! starting system without any configration
+Wednesday, 17 May 2023 : error!!: a user with same name exists, please change name!in register
+Wednesday, 17 May 2023 : reading from configartion file failed due to: a user with same name exists, please change name! starting system without any configration
