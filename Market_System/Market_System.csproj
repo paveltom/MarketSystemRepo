@@ -140,6 +140,7 @@
     <Content Include="Presentaion_Layer\product_in_basket_page.aspx" />
     <Content Include="Presentaion_Layer\register_page.aspx" />
     <Content Include="Presentaion_Layer\Search.aspx" />
+    <Content Include="Presentaion_Layer\search_page.aspx" />
     <Content Include="Presentaion_Layer\store_managing_page.aspx" />
     <Content Include="Presentaion_Layer\store_products_managing_page.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -350,6 +351,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\search_page.aspx.cs">
+      <DependentUpon>search_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\search_page.aspx.designer.cs">
+      <DependentUpon>search_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\store_managing_page.aspx.cs">
       <DependentUpon>store_managing_page.aspx</DependentUpon>
