@@ -21,9 +21,6 @@ namespace Market_System.Presentaion_Layer
     {
         public string StoreID;
         public string ProductID;
-        //public DropDownNode statementTree;
-        public Panel MainPanel;
-
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -43,7 +40,7 @@ namespace Market_System.Presentaion_Layer
                     
                 }
 
-                GenereateChildren(0, allkeys, "");
+                GenereateChildren(-50, allkeys, "");
             }
         }
 
@@ -54,34 +51,53 @@ namespace Market_System.Presentaion_Layer
                 parentIDNumLen = LenOfIDNumber(parentID);
             List<string> keys = allkeys[parentIDNumLen + 1].Where(x => x.Contains(parentID)).ToList();
             for (int i = 0; i < keys.Count; i++)
-            {
+            {                
+
                 int indexOfDDNString = keys[i].IndexOf("dynamicDDN");
                 string currID = keys[i].Substring(indexOfDDNString);
                 indexOfDDNString += 10; // index of id
                 string currIDNumber = keys[i].Substring(indexOfDDNString);
 
                 DropDownNode statementTree = new DropDownNode();
-                //statementTree.myContainer = newPanel;
                 statementTree.padding = newPad + 50;
-                //statementTree.ID = "dynamicDDN" + i;
                 statementTree.ID = currID;
-                statementTree.AutoPostBack = true;
-                statementTree.Attributes.Add("AutoPostBack", "True");
-                statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
-                statementTree.EnableViewState = true;
-                statementTree.DataSource = WebStatement.typeMap.Keys;
-                statementTree.DataBind();
-                statementTree.Items.Insert(0, new ListItem("--SELECT--"));
-                //MainDiv.Controls.Add(statementTree);
-                //MainDiv.Controls.Add(new LiteralControl("<br />"));
 
                 HtmlGenericControl newdiv = new HtmlGenericControl();
                 newdiv.Style.Add("padding-left", statementTree.padding + "px");
 
+                if (keys[i].Contains("inputdynamicDDN"))
+                {
+                    statementTree.ID = "input" + currID;
+                    statementTree.Visible = false;
+                    HtmlInputText inputRelation = new HtmlInputText();
+                    statementTree.inputValue = inputRelation;
+
+                    inputRelation.Visible = true;
+                    inputRelation.ID = "actualInput" + statementTree.ID;
+                    inputRelation.Attributes.Add("placeholder", "Enter your value");
+                    inputRelation.Attributes.Add("type", "text");
+                    newdiv.Controls.Add(inputRelation);
+                }
+                else
+                {
+                    statementTree.AutoPostBack = true;
+                    statementTree.Attributes.Add("AutoPostBack", "True");
+                    statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
+                    statementTree.EnableViewState = true;
+                    if (keys[i].Contains("atrs" + currID))
+                    {
+                        statementTree.DataSource = WebStatement.attributes;
+                        statementTree.ID = "atrs" + currID;
+                    }
+                    else
+                        statementTree.DataSource = WebStatement.typeMap.Keys;
+                    statementTree.DataBind();
+                    statementTree.Items.Insert(0, new ListItem("--SELECT--"));
+                }               
+
                 newdiv.Controls.Add(statementTree);
                 statementTree.myContainer = newdiv;
-                //newdiv.Controls.Add(new LiteralControl("<br />"));
-                //MainDiv.Controls.Add(placeMe);
+
                 MainDiv.Controls.Add(newdiv);
                 MainDiv.Controls.Add(new LiteralControl("<br />"));
                 if(allkeys.ContainsKey(parentIDNumLen + 2) && allkeys[parentIDNumLen + 2].Any(x => x.Contains(currID)))
@@ -109,7 +125,6 @@ namespace Market_System.Presentaion_Layer
 
 
                 DropDownNode statementTree = new DropDownNode();
-                //statementTree.myContainer = newPanel;
                 statementTree.padding = 0;
                 statementTree.ID = "dynamicDDN1";
                 statementTree.AutoPostBack = true;
@@ -123,142 +138,17 @@ namespace Market_System.Presentaion_Layer
 
 
                 HtmlGenericControl newdiv = new HtmlGenericControl();
-                newdiv.Style.Add("padding-left", statementTree.padding + "px");
+                newdiv.Style.Add("padding-left", 0 + "px");
 
                 newdiv.Controls.Add(statementTree);
-                //newdiv.Controls.Add(new LiteralControl("<br />"));
-                //MainDiv.Controls.Add(placeMe);
                 MainDiv.Controls.Add(newdiv);
                 MainDiv.Controls.Add(new LiteralControl("<br />"));
-
-
-
-                //MainDiv.Controls.Add(new LiteralControl("<br />"));
-
-                //MainPanel.Controls.Add(newPanel);
-                //Session.Add("MainPanel", MainPanel);
                 return;
             }
         }
 
-            /*protected void Page_Load(object sender, EventArgs e)
-            {
-                if (!IsPostBack)
-                {
-
-                    // view some info as in drawio
-                    this.StoreID = Request.QueryString["store_id"];
-
-                    this.MainPanel = new Panel();
-                    this.MainPanel.Style.Add("padding-left", "0px");
-                    MainPanel.EnableViewState = true;
-                    this.MainDiv.Controls.Add(MainPanel);
 
 
-                    Panel newPanel = new Panel();
-                    newPanel.Attributes.Add("runat", "server");
-                    newPanel.Style.Add("padding-left", "50px");
-                    newPanel.EnableViewState = true;
-
-                    int indexDDN = MainPanel.Controls.OfType<Panel>().ToList().Count + 1;
-
-                    DropDownNode statementTree = new DropDownNode();
-                    statementTree.myContainer = newPanel;
-                    statementTree.padding = 0;
-                    statementTree.ID = "dynamicDDN" + indexDDN;
-                    statementTree.AutoPostBack = true;
-                    statementTree.Attributes.Add("AutoPostBack", "True");
-                    statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
-                    statementTree.EnableViewState = true;
-                    statementTree.DataSource = WebStatement.typeMap.Keys;
-                    statementTree.DataBind();
-                    statementTree.Items.Insert(0, new ListItem("--SELECT--"));
-                    newPanel.Controls.Add(statementTree);
-                    //MainPanel.ContentTemplateContainer.Controls.Add(new LiteralControl("<br />"));
-
-                    MainPanel.Controls.Add(newPanel);
-                    MainPanel.Controls.Add(new LiteralControl("<br />"));
-                    Session.Add("MainPanel", MainPanel);
-                    return;
-                }*/
-            //RestorePage();
-
-
-        
-
-        private void RestorePage()
-        {
-
-            List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicPanel")).ToList();
-            List<string> keys2 = Request.Form.AllKeys.Where(key => key.Contains("MainContent")).ToList();
-
-            string[] panel1 = Request.Form.GetValues(keys2[0]);
-
-            //int i = 1;
-            foreach (string key in keys)
-            {
-                string[] panel = Request.Form.GetValues(key);
-                //panel.ID = key;
-                //MainPanel.Controls.Add(panel);
-
-
-
-                //this.CreateDropDownList("ddlDynamic" + i);
-                //i++;
-            }
-        }
-
-
-
-
-        /*private void RecreatePage(DropDownNode currDDN, Panel addInThis)
-        {
-            TreeNode currNode = currDDN.node;
-            string type = currNode.Text;
-            switch (type)
-            {
-                case "OR":
-                case "AND":
-                case "XOR":
-                case "IfThen":
-                    DropDownNode c1 = new DropDownNode();
-                    DropDownNode c2 = new DropDownNode();
-                    Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys, currDDN);
-                    currNode.node.ChildNodes.Add(c1.node);
-                    currNode.node.ChildNodes.Add(c2.node);
-                    return;
-
-                case "Any":
-                case "ForAll":
-                    DropDownNode c = new DropDownNode();
-                    Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys, currNode);
-                    currNode.node.ChildNodes.Add(c.node);
-                    return;
-
-                case "AtLeast":
-                case "AtMost":
-                    HtmlInputText input = new HtmlInputText();
-                    // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    DropDownNode c3 = new DropDownNode();
-                    c3.inputValue = input;
-                    Placement(new DropDownNode[] { c3 }, WebStatement.typeMap.Keys, currNode);
-                    currNode.node.ChildNodes.Add(c3.node);
-                    return;
-
-                case "Equal":
-                case "SmallerThan":
-                case "GreaterThan":
-                    HtmlInputText inputRelation = new HtmlInputText();
-                    // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    DropDownNode c4 = new DropDownNode();
-                    c4.inputValue = inputRelation;
-                    Placement(new DropDownNode[] { c4 }, WebStatement.attributes, currNode);
-                    currNode.node.ChildNodes.Add(c4.node);
-                    return;
-
-            }
-
-        }*/
 
         protected void StatementDLL_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -279,7 +169,7 @@ namespace Market_System.Presentaion_Layer
                 case "IfThen":
                     DropDownNode c1 = new DropDownNode();
                     DropDownNode c2 = new DropDownNode();
-                    Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys, currNode);
+                    Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys.ToList(), currNode);
                     currNode.node.ChildNodes.Add(c1.node);
                     currNode.node.ChildNodes.Add(c2.node);
                     return;
@@ -287,17 +177,17 @@ namespace Market_System.Presentaion_Layer
                 case "Any":
                 case "ForAll":
                     DropDownNode c = new DropDownNode();
-                    Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys, currNode);
+                    Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys.ToList(), currNode);
                     currNode.node.ChildNodes.Add(c.node);
                     return;
 
                 case "AtLeast":
                 case "AtMost":
                     HtmlInputText input = new HtmlInputText();
-                    // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    DropDownNode inputDDN = new DropDownNode();
+                    inputDDN.inputValue = input;
                     DropDownNode c3 = new DropDownNode();
-                    c3.inputValue = input;
-                    Placement(new DropDownNode[] { c3 }, WebStatement.typeMap.Keys, currNode);
+                    Placement(new DropDownNode[] { inputDDN, c3 }, WebStatement.typeMap.Keys.ToList(), currNode);
                     currNode.node.ChildNodes.Add(c3.node);
                     return;
 
@@ -305,10 +195,10 @@ namespace Market_System.Presentaion_Layer
                 case "SmallerThan":
                 case "GreaterThan":
                     HtmlInputText inputRelation = new HtmlInputText();
-                    // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    DropDownNode inputDDNRelation = new DropDownNode();
+                    inputDDNRelation.inputValue = inputRelation;
                     DropDownNode c4 = new DropDownNode();
-                    c4.inputValue = inputRelation;
-                    Placement(new DropDownNode[] { c4 }, WebStatement.attributes, currNode);
+                    Placement(new DropDownNode[] { inputDDNRelation, c4 }, WebStatement.attributes, currNode);
                     currNode.node.ChildNodes.Add(c4.node);
                     return;
 
@@ -317,65 +207,55 @@ namespace Market_System.Presentaion_Layer
         }
 
 
-        private void Placement(DropDownNode[] placeUs, object data, DropDownNode parent)
+        private void Placement(DropDownNode[] placeUs, List<string> data, DropDownNode parent)
         {
-            // Stataement placement
-            //int indexPanel = MainPanel.ContentTemplateContainer.Controls.OfType<Panel>().ToList().Count + 1;
             string indexDDN = parent.ID;
-
-            //Panel newPanel = new Panel();
-            //newPanel.Attributes.Add("runat", "server");
-            //newPanel.EnableViewState = true;
             int newPad = parent.padding + 50;
-            //newPanel.Style.Add("padding-left", newPad + "px");
             int counter = 1;
             
             foreach (DropDownNode placeMe in placeUs)
             {
-                //placeMe.myContainer = newPanel;
-                placeMe.ID = indexDDN + counter;
-                placeMe.AutoPostBack = true;
-                placeMe.EnableViewState = true;
-                placeMe.padding = newPad;
-                placeMe.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
-                placeMe.DataSource = data;
-                placeMe.DataBind();
-                placeMe.Items.Insert(0, new ListItem("--SELECT--"));
 
                 HtmlGenericControl newdiv = new HtmlGenericControl();
                 newdiv.Style.Add("padding-left", newPad + "px");
 
+                placeMe.ID = indexDDN + counter;                
+                placeMe.padding = newPad;
+                if (placeMe.inputValue != null)
+                {
+                    placeMe.ID = "input" + placeMe.ID;
+                    placeMe.Visible = false;
+                    HtmlInputText inputRelation = new HtmlInputText();
+                    inputRelation.Visible = true;
+                    inputRelation.ID = "actualInput" + placeMe.ID;
+                    inputRelation.Attributes.Add("placeholder", "Enter your value");
+                    inputRelation.Attributes.Add("type", "text");
+                    placeMe.inputValue = inputRelation;
+                    newdiv.Controls.Add(inputRelation);
+                }
+                else
+                {
+                    placeMe.AutoPostBack = true;
+                    placeMe.EnableViewState = true;                    
+                    placeMe.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
+                    placeMe.DataSource = data;
+                    placeMe.DataBind();
+                    placeMe.Items.Insert(0, new ListItem("--SELECT--"));
+                    if (data.Contains("---Attributes---"))
+                        placeMe.ID = "atrs" + placeMe.ID;
+                }
                 newdiv.Controls.Add(placeMe);
                 placeMe.myContainer = newdiv;
-                //newdiv.Controls.Add(new LiteralControl("<br />"));
-                //MainDiv.Controls.Add(placeMe);
-                //MainDiv.Controls.Add(newdiv);
+
                 int parentDivIndex = MainDiv.Controls.IndexOf(parent.myContainer);
                 MainDiv.Controls.AddAt(parentDivIndex + 2*counter, newdiv);
                 MainDiv.Controls.AddAt(parentDivIndex + 2*counter + 1, new LiteralControl("<br />"));
 
 
                 counter++;
-
-                //newPanel.Controls.Add(placeMe);
-                //newPanel.Controls.Add(new LiteralControl("<br />"));
             }
 
-
-            //MainDiv.Controls.Add(newPanel);
-            //Session.Remove("MainPanel");
-            //Session.Add("MainPanel", this.MainPanel);
-            //MainPlaceHolder.Controls.Add(MainPanel);
-            //MainDiv.Controls.Add(MainPanel);
-
-
-
-
-            // Attribute placement
-
         }
-
-
 
 
 
@@ -401,7 +281,7 @@ namespace Market_System.Presentaion_Layer
             };
 
             public static List<string> attributes = new List<string>(){"User.Age", "User.Address", "User.Name", "StoreID", "ItemID", "Quantity", "ReservedQuantity", "Price", "Name",
-                                                                                            "Sale", "Description", "Rating", "Weight",  "TimesBought", "Category",  "Attributes" };
+                                                                                            "Sale", "Description", "Rating", "Weight",  "TimesBought", "Category",  "---Attributes---" };
 
 
             public WebStatement(string stateType)
@@ -433,7 +313,7 @@ namespace Market_System.Presentaion_Layer
         public class DropDownNode : DropDownList
         {
             public TreeNode node;
-            public HtmlInputText inputValue;
+            public HtmlInputText inputValue = null;
             public HtmlGenericControl myContainer;
             public int padding;
 
@@ -452,3 +332,120 @@ namespace Market_System.Presentaion_Layer
     }
 
 }
+
+
+
+
+/*        private void RestorePage()
+        {
+
+            List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicPanel")).ToList();
+            List<string> keys2 = Request.Form.AllKeys.Where(key => key.Contains("MainContent")).ToList();
+
+            string[] panel1 = Request.Form.GetValues(keys2[0]);
+
+            //int i = 1;
+            foreach (string key in keys)
+            {
+                string[] panel = Request.Form.GetValues(key);
+            }
+        }*/
+
+
+
+
+/*protected void Page_Load(object sender, EventArgs e)
+{
+    if (!IsPostBack)
+    {
+
+        // view some info as in drawio
+        this.StoreID = Request.QueryString["store_id"];
+
+        this.MainPanel = new Panel();
+        this.MainPanel.Style.Add("padding-left", "0px");
+        MainPanel.EnableViewState = true;
+        this.MainDiv.Controls.Add(MainPanel);
+
+
+        Panel newPanel = new Panel();
+        newPanel.Attributes.Add("runat", "server");
+        newPanel.Style.Add("padding-left", "50px");
+        newPanel.EnableViewState = true;
+
+        int indexDDN = MainPanel.Controls.OfType<Panel>().ToList().Count + 1;
+
+        DropDownNode statementTree = new DropDownNode();
+        statementTree.myContainer = newPanel;
+        statementTree.padding = 0;
+        statementTree.ID = "dynamicDDN" + indexDDN;
+        statementTree.AutoPostBack = true;
+        statementTree.Attributes.Add("AutoPostBack", "True");
+        statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
+        statementTree.EnableViewState = true;
+        statementTree.DataSource = WebStatement.typeMap.Keys;
+        statementTree.DataBind();
+        statementTree.Items.Insert(0, new ListItem("--SELECT--"));
+        newPanel.Controls.Add(statementTree);
+        //MainPanel.ContentTemplateContainer.Controls.Add(new LiteralControl("<br />"));
+
+        MainPanel.Controls.Add(newPanel);
+        MainPanel.Controls.Add(new LiteralControl("<br />"));
+        Session.Add("MainPanel", MainPanel);
+        return;
+    }*/
+//RestorePage();
+
+
+
+
+
+
+/*private void RecreatePage(DropDownNode currDDN, Panel addInThis)
+{
+    TreeNode currNode = currDDN.node;
+    string type = currNode.Text;
+    switch (type)
+    {
+        case "OR":
+        case "AND":
+        case "XOR":
+        case "IfThen":
+            DropDownNode c1 = new DropDownNode();
+            DropDownNode c2 = new DropDownNode();
+            Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys, currDDN);
+            currNode.node.ChildNodes.Add(c1.node);
+            currNode.node.ChildNodes.Add(c2.node);
+            return;
+
+        case "Any":
+        case "ForAll":
+            DropDownNode c = new DropDownNode();
+            Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys, currNode);
+            currNode.node.ChildNodes.Add(c.node);
+            return;
+
+        case "AtLeast":
+        case "AtMost":
+            HtmlInputText input = new HtmlInputText();
+            // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            DropDownNode c3 = new DropDownNode();
+            c3.inputValue = input;
+            Placement(new DropDownNode[] { c3 }, WebStatement.typeMap.Keys, currNode);
+            currNode.node.ChildNodes.Add(c3.node);
+            return;
+
+        case "Equal":
+        case "SmallerThan":
+        case "GreaterThan":
+            HtmlInputText inputRelation = new HtmlInputText();
+            // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            DropDownNode c4 = new DropDownNode();
+            c4.inputValue = inputRelation;
+            Placement(new DropDownNode[] { c4 }, WebStatement.attributes, currNode);
+            currNode.node.ChildNodes.Add(c4.node);
+            return;
+
+    }
+
+}*/
