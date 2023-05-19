@@ -18,6 +18,7 @@ namespace Market_System.DomainLayer
         private static NotificationFacade notificationFacade;
         private static EmployeeRepo employeeRepo;
         private Random guest_id_generator;
+        private bool first_time_running;
 
         internal List<string> get_user_wokring_stores(string session_id)
         {
@@ -103,7 +104,7 @@ namespace Market_System.DomainLayer
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
-                        
+                        Instance.first_time_running = true;
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
@@ -120,6 +121,16 @@ namespace Market_System.DomainLayer
 
             //Return the Singleton Instance
             return Instance;
+        }
+
+        internal void set_first_time_running_to_false()
+        {
+            this.first_time_running = false;
+        }
+
+        internal bool first_time_running_project()
+        {
+            return this.first_time_running;
         }
 
         internal bool check_if_user_bought_item(string product_id, string session_id)
@@ -879,7 +890,7 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                return storeFacade.GetProductsFromAllStores();
+                return storeFacade.GetProductsFromAllStores_not_zero_quantity();
             }
             catch (Exception e)
             {
@@ -989,7 +1000,8 @@ namespace Market_System.DomainLayer
                 var username = userFacade.get_username_from_user_id(userID);
 
                 //Send notification to store owners
-                var message = "New product comment has been added by: " + username + ", on product id: " + productID;
+                var message = "New product comment has been added by: " + username + ", on product id: " + productID + ". " +
+                    "The comment is: " + comment + ", and the rating is: " + rating + ".";
 
                 //get Store ID and store Owners:
                 var storeID = getStoreIDFromProductID(productID);
@@ -1028,12 +1040,20 @@ namespace Market_System.DomainLayer
             string user_id = get_userid_from_session_id(session_id);
             try
             {
-
                 Cart cart = get_cart_of_userID(user_id);
+                List<ItemDTO> purchased_Products = cart.convert_to_item_DTO();
                 userFacade.save_purhcase_in_user(user_id, cart);
                 userFacade.reset_cart(session_id);
 
-             
+                //Send a notification to the user, regarding his purchase:
+                var message = "New purhcase has been made by you: {";
+                var userID = userFacade.get_userID_from_session(session_id);
+                foreach(ItemDTO item in purchased_Products)
+                {
+                    message += "[ " + item.ToString() + " ] ";
+                }
+                message += "}";
+                sendMessageToUser(message, userID, "System");
             }
 
             catch (Exception e)

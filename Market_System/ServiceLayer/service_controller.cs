@@ -71,7 +71,21 @@ namespace Market_System.ServiceLayer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            read_from_config_file();
+            if (first_time_running_project())
+            {
+                read_from_config_file();
+                set_first_time_running_to_false();
+            }
+        }
+
+        private void set_first_time_running_to_false()
+        {
+            this.usc.set_first_time_running_to_false();
+        }
+
+        private bool first_time_running_project()
+        {
+            return this.usc.first_time_running_project();
         }
 
         private void read_from_config_file()
@@ -102,14 +116,15 @@ namespace Market_System.ServiceLayer
                 }
                 else//Meaning that we're running the tests.
                 {
+                    string combine_me_2 = "\\Market_System\\";
                     int slice_me = temp_path.LastIndexOf('\\');
-                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo\\Market_System"))
+                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo"))
                     {
                         temp_path = temp_path.Substring(0, slice_me);
                         slice_me = temp_path.LastIndexOf('\\');
                     }
 
-                    path = temp_path + combine_me;
+                    path = temp_path + combine_me_2 + combine_me;
                 }
               
             }
@@ -976,7 +991,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<List<ItemDTO>> get_products_from_all_shop()
+        public Response<List<ItemDTO>> get_not_zero_quantity_products_from_all_shop()
         {
             try
             {

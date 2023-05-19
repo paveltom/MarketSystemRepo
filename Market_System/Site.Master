@@ -4,6 +4,7 @@
 
 <html lang="en">
 <head runat="server">
+    <script src="js/jquery-3.5.1.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %>- My ASP.NET Application</title>
@@ -63,7 +64,7 @@
                         <li><a runat="server" href="~/Presentaion_Layer/productsPage">Products</a></li>
                         <li><a runat="server" id="login_href" href="~/Presentaion_Layer/Login">Login</a></li>
                         <li><a runat="server" id="cart_href" href="~/Presentaion_Layer/cart_page">Cart</a></li>
-                        <li><a runat="server" id="search" href="~/Presentaion_Layer/Search">Search</a></li>
+                        <li><a runat="server" id="search" href="~/Presentaion_Layer/search_page">Search</a></li>
                          <li><a runat="server" id="notfications_href" href="~/Presentaion_Layer/notifications">notifications</a></li>
                          <li><a runat="server" id="Logout_href" onserverclick="Logout_click" href="~/">Logout</a></li>
                         <li><asp:Label ID="username_hello_label" text="" runat="server" Font-Size="Small" ForeColor="White"></asp:Label></li>
@@ -78,10 +79,30 @@
                
             </asp:ContentPlaceHolder>
 
-             <div style="height: 221px">
-                   
-                </div>
-            <div>  
+             <div style="height: 221px"></div>
+
+            <asp:Timer ID="Timer1" runat="server" Interval="500" ontick="Timer1_Tick">
+            </asp:Timer>
+            <asp:UpdatePanel ID="UpdatePanel1"
+                runat="server">
+                <ContentTemplate>
+                  <div style="text-align: center">
+                    <asp:Label ID="notification_messages" runat="server" Font-Size="Large" ForeColor="#00CC00"></asp:Label>
+                  </div>
+                    <!-- <script>
+                        function showAlert(message) {
+                            alert(message);
+                        }
+                    </script>   --->
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
+                    </asp:AsyncPostBackTrigger>
+                </Triggers>
+            </asp:UpdatePanel>
+                
+            &nbsp;<div>  
+                &nbsp;&nbsp;  
             </div>
             <div>
 
@@ -97,9 +118,6 @@
             </div>
              <div>
 
-            </div>
-              <div style="text-align: center">
-                  <asp:Label ID="notification_messages" runat="server" Font-Size="Large" ForeColor="#00CC00"></asp:Label>
             </div>
              <div>
                   <asp:Button ID="admin_spec_ops_button" runat="server" OnClick="spec_ops_click" Text="admin's spec OPS" Width="127px" />
@@ -116,6 +134,8 @@
             </div>
           
 &nbsp;&nbsp;
+          
+            
           
             <hr />
             <footer>

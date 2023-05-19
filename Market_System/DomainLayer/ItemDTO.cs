@@ -140,6 +140,12 @@ namespace Market_System.DomainLayer
             return FieldValue;
         }
 
+        override
+        public string ToString()
+        {
+            return "Product ID: " + this._itemId + ", Quantity: " + this.quantity;
+        }
+
 
     }
 }

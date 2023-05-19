@@ -302,7 +302,7 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 lock (QuantityLock)
                 {
-                    if ((this.ReservedQuantity - quantity) > 0)
+                    if ((this.ReservedQuantity - quantity) >= 0)
                     {
                         this.ReservedQuantity -= quantity;
                         Save();

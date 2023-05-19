@@ -819,6 +819,27 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        internal List<ItemDTO> GetItems_not_zero_quantity()
+        {
+            try
+            {
+                List<ItemDTO> productList = new List<ItemDTO>();
+                ItemDTO current_item;
+                foreach (String s in allProducts.Values)
+                {
+                    current_item = AcquireProduct(s).GetProductDTO();
+                    if((current_item.GetQuantity() - current_item.GetReservedQuantity()) > 0)
+                    {
+                        productList.Add(current_item);
+                        ReleaseProduct(s);
+                    }
+                }
+                return productList;
+
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
         public void ChangeProductRating(string userID, string productID, double rating)
         {
             try

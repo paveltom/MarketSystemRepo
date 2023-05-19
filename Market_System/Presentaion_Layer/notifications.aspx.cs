@@ -26,6 +26,7 @@ namespace Market_System.Presentaion_Layer
                 messages_list.DataBind();
             }
 
+
         }
     }
 }
