@@ -17,11 +17,13 @@
         <asp:Button ID="AddNewStrategyButton" runat="server" Text="Add new Strategy" OnClick="AddNewStrategyClick" Height="29px" Width="195px"/>
         <br />
         <h1>Existing strategies</h1>
+        <br />
         <asp:DataList ID="StrategiesList" runat="server">
             <ItemTemplate>
-                <asp:Label Text="<%# Container.DataItem %>" runat="server" />
-            </ItemTemplate>
+                <asp:Label Text="<%#Container.DataItem %>" runat="server" />
+         </ItemTemplate>
         </asp:DataList>
+        <br />
         <asp:Button ID="ReturnToStoreButtonID" runat="server" Text="Return to store" OnClick="ReturnToStoreButtonClick" Height="29px" Width="195px"/>
     </div>
     <br />

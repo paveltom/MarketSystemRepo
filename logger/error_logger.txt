@@ -1444,3 +1444,12 @@ Wednesday, 17 May 2023 : error!!: a user with same name exists, please change na
 Wednesday, 17 May 2023 : reading from configartion file failed due to: a user with same name exists, please change name! starting system without any configration
 Wednesday, 17 May 2023 : error!!: a user with same name exists, please change name!in register
 Wednesday, 17 May 2023 : reading from configartion file failed due to: a user with same name exists, please change name! starting system without any configration
+Friday, 19 May 2023 : error!!: Bad formula. in AddStorePurchaseStrategy
+Friday, 19 May 2023 : error!!: Bad formula. in AddStorePurchaseStrategy
+Friday, 19 May 2023 : error!!: Value cannot be null.
+Parameter name: key in AddStorePurchaseStrategy
+Friday, 19 May 2023 : error!!: Input string was not in a correct format. in AddStorePurchasePolicy
+Friday, 19 May 2023 : error!!: Input string was not in a correct format. in AddStorePurchasePolicy
+Friday, 19 May 2023 : error!!: Input string was not in a correct format. in AddStorePurchasePolicy
+Friday, 19 May 2023 : error!!: Input string was not in a correct format. in AddStorePurchasePolicy
+Friday, 19 May 2023 : error!!: Input string was not in a correct format. in AddStorePurchasePolicy

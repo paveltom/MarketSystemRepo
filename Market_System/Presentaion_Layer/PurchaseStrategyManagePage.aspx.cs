@@ -19,7 +19,6 @@ namespace Market_System.Presentaion_Layer
         {
             this.StoreID = Request.QueryString["store_id"];
             List<string> strategies = ((Service_Controller)Session["service_controller"]).GetStore(StoreID).Value.DefaultStrategies;
-
             StrategiesList.DataSource = strategies;
             StrategiesList.DataBind();
 

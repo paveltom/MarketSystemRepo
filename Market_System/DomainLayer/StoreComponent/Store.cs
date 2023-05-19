@@ -484,14 +484,14 @@ namespace Market_System.DomainLayer.StoreComponent
                     Purchase_Policy newPolicy = null;
                     switch (newPolicyProps[0])
                     {
-                        case "Category":
-                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]));
+                        case "Category":  // type, string polName, double salePercentage, string description, string category, Statement formula
+                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
                             break;
-                        case "Product":
-                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], StatementBuilder.GenerateFormula(newPolicyProps[3]), newPolicyProps[4]);
+                        case "Product":  // type, string polName, double salePercentage, string description, Statement formula, string productID
+                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
                             break;
-                        case "Store":
-                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]));
+                        case "Store": // type, string polName, double salePercentage, string description, string storeID, String formula
+                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
                             break;
                     }
 
@@ -505,6 +505,27 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void AddStorePurchasePolicy(string userID, Purchase_Policy newPolicy) // for tests only
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
+                {
+
+                    if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
+                        Save();
+                    else
+                        throw new Exception("Policy already exists.");
+                }
+                else
+                    throw new Exception("You don't have permissions to add new policy.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
 
         public void RemoveStorePurchasePolicy(string userID, String policyID)
         {
@@ -887,7 +908,22 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddProductPurchasePolicy(string userID, string productID, Purchase_Policy newPolicy)
+
+        public void AddProductPurchasePolicy(string userID, string productID, List<string> newPolicyProps)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
+                {
+                    AcquireProduct(productID).AddPurchasePolicy(newPolicyProps);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddProductPurchasePolicy(string userID, string productID, Purchase_Policy newPolicy) // for tests only
         {
             try
             {

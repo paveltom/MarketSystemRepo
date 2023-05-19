@@ -18,11 +18,13 @@
         <asp:Button ID="AddNewPolicyButton" runat="server" Text="Add new Policy" OnClick="AddNewPolicyClick" Height="29px" Width="195px"/>
         <br />
         <h1>Existing Policies</h1>
+        <br />
         <asp:DataList ID="PoliciesList" runat="server">
             <ItemTemplate>
                 <asp:Label Text="<%# Container.DataItem %>" runat="server" />
             </ItemTemplate>
         </asp:DataList>
+        <br />
         <asp:Button ID="ReturnToStoreButtonID" runat="server" Text="Return to store" OnClick="ReturnToStoreButtonClick" Height="29px" Width="195px"/>
     </div>
     <br />

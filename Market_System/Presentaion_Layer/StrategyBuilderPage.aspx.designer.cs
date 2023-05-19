@@ -15,6 +15,15 @@ namespace Market_System.Presentaion_Layer
     {
 
         /// <summary>
+        /// HeaderDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HeaderDiv;
+
+        /// <summary>
         /// MainDiv control.
         /// </summary>
         /// <remarks>
@@ -24,13 +33,13 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MainDiv;
 
         /// <summary>
-        /// SaveDiv control.
+        /// StrategyNameDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SaveDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StrategyNameDiv;
 
         /// <summary>
         /// StrategyNameID control.

@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PurchasePolicyManagePage.aspx.cs" Inherits="Market_System.Presentaion_Layer.PurchasePolicyManagePage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <div ID="HeaderDiv" runat="server" align="left" enableviewstate="true" >
+    </div>
+    
     <div ID="MainDiv" runat="server" align="left" enableviewstate="true" >
 
     </div>

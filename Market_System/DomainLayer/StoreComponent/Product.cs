@@ -128,11 +128,11 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddPurchasePolicy(List<string> newPolicyProps) // for tests only
+        public void AddPurchasePolicy(List<string> newPolicyProps) // type, string polName, double salePercentage, string description, Statement formula, string productID
         {
             try
             {
-                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], StatementBuilder.GenerateFormula(newPolicyProps[3]), newPolicyProps[4]);
+                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
                 if (this.PurchasePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                     Save();
                 else

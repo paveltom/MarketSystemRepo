@@ -251,6 +251,7 @@ namespace Market_System.Presentaion_Layer
             {
                 manage_store_products.Visible = true;
                 ManageStrategiesButton.Visible = true;
+                ManagePoliciesButton.Visible = true;
             }
             else
             {
@@ -375,7 +376,7 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                Response.Redirect(string.Format("/Presentaion_Layer/PurchasePolicyManagePage.aspx?store_id={0}", selected_store_id));
+                Response.Redirect(string.Format("/Presentaion_Layer/PurchasePolicyViewPage.aspx?store_id={0}", selected_store_id));
             }
         }
         

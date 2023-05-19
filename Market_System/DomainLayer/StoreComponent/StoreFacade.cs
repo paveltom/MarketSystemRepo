@@ -457,6 +457,17 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
+        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy) // for tests only
+        {
+            try
+            {
+                AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicy);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
 
         public void RemoveStorePurchasePolicy(string userID, string storeID, String policyID)
         {
@@ -869,7 +880,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicy);
+                AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicyProps);
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }

@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -50,6 +51,7 @@ namespace Market_System.Presentaion_Layer
         {
             if (IsPostBack)
             {
+                this.attributes = GenerateAttributes();
                 List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicDDN")).ToList();
                 // create dictionary allkeys by length
                 Dictionary<int, List<string>> allkeys = new Dictionary<int, List<string>>();
@@ -149,12 +151,18 @@ namespace Market_System.Presentaion_Layer
             {
                 this.ProductID = Request.QueryString["product_id"];
                 this.StoreID = this.ProductID.Substring(0, this.ProductID.IndexOf("_"));
+                Label header = new Label();
+                header.Text = "New strategy for product " + ProductID;
+                HeaderDiv.Controls.Add(header);
 
             }
             else
-            {
+            {                
                 this.StoreID = Request.QueryString["store_id"];
                 this.ProductID = "";
+                Label header = new Label();
+                header.Text = "New strategy for store " + StoreID;
+                HeaderDiv.Controls.Add(header);
             }
 
             this.attributes = GenerateAttributes();
@@ -276,7 +284,7 @@ namespace Market_System.Presentaion_Layer
                     placeMe.DataSource = data;
                     placeMe.DataBind();
                     placeMe.Items.Insert(0, new ListItem("--SELECT--"));
-                    if (data.Contains("---Attributes---"))
+                    if (data.Contains("--Attributes--"))
                         placeMe.ID = "atrs" + placeMe.ID;
                 }
                 newdiv.Controls.Add(placeMe);
@@ -297,10 +305,11 @@ namespace Market_System.Presentaion_Layer
             string strategyDesc = StrategyDescriptionID.Text;
 
             if (strategyName == "") {
-                TextBox error = new TextBox();
+                Label error = new Label();
                 error.ForeColor = Color.Red;
                 error.Text = "Name is missing!";
                 StrategyNameDiv.Controls.Add(error);
+                return;
             }
 
             // navigate through TreeNode (via root) with recursive function that returns string while parent node responsible to create its Statement code-name and the parenthesis for its children
@@ -375,9 +384,15 @@ namespace Market_System.Presentaion_Layer
 
         private List<string> GenerateAttributes()
         {
-            List<string> attributes = new List<string>(){"User.Age", "User.Address", "User.Name", "StoreID", "ItemID", "Quantity", "ReservedQuantity", "Price", "Name",
+            string prodID = "";
+            if (Request.QueryString.AllKeys.Contains("product_id"))
+            {
+                prodID = Request.QueryString["product_id"];
+            }
+
+            List<string> attributes = new List<string>(){"--Attributes--" ,"User.Age", "User.Address", "User.Name", "StoreID", "ItemID", "Quantity", "ReservedQuantity", "Price", "Name",
                                                                                             "Sale", "Description", "Rating", "Weight",  "TimesBought", "Category" };
-            if (this.ProductID != "")
+            if (prodID != "")
             {
                 attributes.Add("--Product Attributes--");
                 ItemDTO item = ((Service_Controller)Session["service_controller"]).get_product_by_productID(this.ProductID).Value;
