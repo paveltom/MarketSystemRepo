@@ -22,7 +22,7 @@ namespace Market_System.Presentaion_Layer
 //      destruction on higher level selection
 //      difference for product page or store page
 {
-    public partial class StrategyBuilderPage : System.Web.UI.Page
+    public partial class PurchasePolicyManagePage : System.Web.UI.Page
     {
         public string StoreID = "";
         public string ProductID = "";
@@ -53,13 +53,13 @@ namespace Market_System.Presentaion_Layer
                 List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicDDN")).ToList();
                 // create dictionary allkeys by length
                 Dictionary<int, List<string>> allkeys = new Dictionary<int, List<string>>();
-                foreach(string k in keys)
+                foreach (string k in keys)
                 {
                     int index = LenOfIDNumber(k);
                     if (allkeys.ContainsKey(index))
                         allkeys[index].Add(k);
                     else
-                        allkeys.Add(index, new List<string>() { k }); 
+                        allkeys.Add(index, new List<string>() { k });
                 }
 
                 GenereateChildren(-50, allkeys, "", null);
@@ -73,7 +73,7 @@ namespace Market_System.Presentaion_Layer
                 parentIDNumLen = LenOfIDNumber(parentID);
             List<string> keys = allkeys[parentIDNumLen + 1].Where(x => x.Contains(parentID)).ToList();
             for (int i = 0; i < keys.Count; i++)
-            {                
+            {
 
                 int indexOfDDNString = keys[i].IndexOf("dynamicDDN");
                 string currID = keys[i].Substring(indexOfDDNString);
@@ -115,7 +115,7 @@ namespace Market_System.Presentaion_Layer
                         statementTree.DataSource = this.typeMap.Keys;
                     statementTree.DataBind();
                     statementTree.Items.Insert(0, new ListItem("--SELECT--"));
-                }               
+                }
 
                 newdiv.Controls.Add(statementTree);
                 statementTree.myContainer = newdiv;
@@ -126,7 +126,7 @@ namespace Market_System.Presentaion_Layer
 
                 MainDiv.Controls.Add(newdiv);
                 MainDiv.Controls.Add(new LiteralControl("<br />"));
-                if(allkeys.ContainsKey(parentIDNumLen + 2) && allkeys[parentIDNumLen + 2].Any(x => x.Contains(currID)))
+                if (allkeys.ContainsKey(parentIDNumLen + 2) && allkeys[parentIDNumLen + 2].Any(x => x.Contains(currID)))
                     GenereateChildren(statementTree.padding, allkeys, currID, statementTree);
 
             }
@@ -143,7 +143,7 @@ namespace Market_System.Presentaion_Layer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (Request.QueryString.AllKeys.Contains("product_id"))
             {
@@ -247,14 +247,14 @@ namespace Market_System.Presentaion_Layer
             string indexDDN = parent.ID;
             int newPad = parent.padding + 50;
             int counter = 1;
-            
+
             foreach (DropDownNode placeMe in placeUs)
             {
 
                 HtmlGenericControl newdiv = new HtmlGenericControl();
                 newdiv.Style.Add("padding-left", newPad + "px");
 
-                placeMe.ID = indexDDN + counter;                
+                placeMe.ID = indexDDN + counter;
                 placeMe.padding = newPad;
                 if (placeMe.inputValue != null)
                 {
@@ -271,7 +271,7 @@ namespace Market_System.Presentaion_Layer
                 else
                 {
                     placeMe.AutoPostBack = true;
-                    placeMe.EnableViewState = true;                    
+                    placeMe.EnableViewState = true;
                     placeMe.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
                     placeMe.DataSource = data;
                     placeMe.DataBind();
@@ -283,48 +283,89 @@ namespace Market_System.Presentaion_Layer
                 placeMe.myContainer = newdiv;
 
                 int parentDivIndex = MainDiv.Controls.IndexOf(parent.myContainer);
-                MainDiv.Controls.AddAt(parentDivIndex + 2*counter, newdiv);
-                MainDiv.Controls.AddAt(parentDivIndex + 2*counter + 1, new LiteralControl("<br />"));
+                MainDiv.Controls.AddAt(parentDivIndex + 2 * counter, newdiv);
+                MainDiv.Controls.AddAt(parentDivIndex + 2 * counter + 1, new LiteralControl("<br />"));
                 counter++;
             }
 
         }
 
         // compile the statement to string
-        protected void AddStrategyButtonClick(object sender, EventArgs e) 
+        protected void AddPolicyButtonCLick(object sender, EventArgs e)
         {
-            string strategyName = StrategyNameID.Value;
-            string strategyDesc = StrategyDescriptionID.Text;
-
-            if (strategyName == "") {
-                TextBox error = new TextBox();
-                error.ForeColor = Color.Red;
-                error.Text = "Name is missing!";
-                StrategyNameDiv.Controls.Add(error);
+            string policyName = PolicyNameID.Value;
+            string saleTarget = SelectPolicyTypeList.SelectedValue;
+            string targetAttribute = PolicyAttributeID.Value;
+            string salePercentage = PolicySaleValueID.Value;
+            TextBox error = new TextBox();
+            error.ForeColor = Color.Red;
+            if (saleTarget == "--SELECT SALE TARGET--") 
+            {
+                error.Text = "Choose a sale's target!";
+                SaleDiv.Controls.Add(error);
+                return;
             }
+            if (targetAttribute == "") 
+            {
+                error.Text = "Enter terget attribute!";
+                SaleDiv.Controls.Add(error);
+                return;
+            }
+            if (salePercentage == "" || Double.Parse(salePercentage) > 100 || Double.Parse(salePercentage) < 0) 
+            {
+                error.Text = "Bad percentage value!";
+                SaleDiv.Controls.Add(error);
+                return;
+            }
+            if(policyName == "")
+            {
+                error.Text = "Missing policy name";
+                SaleDiv.Controls.Add(error);
+                return;
+            }
+
 
             // navigate through TreeNode (via root) with recursive function that returns string while parent node responsible to create its Statement code-name and the parenthesis for its children
             string formula = "[" + GatherStatement(this.root) + "]";
+            List<string> policyProperties = new List<string>();
+            switch (saleTarget)
+            {
+                case "Product": // type, string polName, double salePercentage, string description, Statement formula, string productID
+                    policyProperties = new List<string>() { saleTarget, policyName, salePercentage, PolicyDescriptionID.Text, formula, targetAttribute };
+                    break;
+
+                case "Store": // type, string polName, double salePercentage, string description, string storeID, String formula
+                    policyProperties = new List<string>() { saleTarget, policyName, salePercentage, PolicyDescriptionID.Text, targetAttribute, formula };
+                    break;
+
+                case "Category": // type, string polName, double salePercentage, string description, string category, Statement formula
+                    policyProperties = new List<string>() { saleTarget, policyName, salePercentage, PolicyDescriptionID.Text, targetAttribute, formula };
+                    break;
+            }
 
             // send the statement to ServiceController
-            if(this.ProductID != "")
-                ((Service_Controller)Session["service_controller"]).AddProductPurchaseStrategy(this.StoreID, new List<string>() { strategyName, strategyDesc, formula });
+            if (this.ProductID != "")
+            {                               
+                ((Service_Controller)Session["service_controller"]).AddProductPurchasePolicy(this.ProductID, policyProperties);
+            }
             else
-                ((Service_Controller)Session["service_controller"]).AddStorePurchaseStrategy(this.StoreID, new List<string>() { strategyName, strategyDesc, formula });
+            {
+                ((Service_Controller)Session["service_controller"]).AddStorePurchasePolicy(this.StoreID, policyProperties);
+            }
 
             Session.Remove("StatementRoot");
 
-            // redirect back to STRATEGY managing page (with store id in URL)
-            Response.Redirect(string.Format("/Presentaion_Layer/PurchaseStrategyManagePage.aspx?store_id={0}", this.StoreID));
+            // redirect back to POLICY managing page (with store id in URL)
+            Response.Redirect(string.Format("/Presentaion_Layer/PurchasePolicyManagePage.aspx?store_id={0}", this.StoreID));
         }
 
 
         protected void CancelButtonClick(object sender, EventArgs e)
         {
-            Response.Redirect(string.Format("/Presentaion_Layer/PurchaseStrategyManagePage.aspx?store_id={0}", this.StoreID));
+            Response.Redirect(string.Format("/Presentaion_Layer/PurchasePolicyManagePage.aspx?store_id={0}", this.StoreID));
         }
 
-        
+
 
 
         private string GatherStatement(TreeNode me)
@@ -367,7 +408,7 @@ namespace Market_System.Presentaion_Layer
 
                 default:
                     ret = me.Text;
-                    break;                    
+                    break;
 
             }
             return ret;
@@ -434,118 +475,3 @@ namespace Market_System.Presentaion_Layer
 // User attribute: User.Age, User.Address...
 // ===================================================
 
-
-
-/*        private void RestorePage()
-        {
-
-            List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicPanel")).ToList();
-            List<string> keys2 = Request.Form.AllKeys.Where(key => key.Contains("MainContent")).ToList();
-
-            string[] panel1 = Request.Form.GetValues(keys2[0]);
-
-            //int i = 1;
-            foreach (string key in keys)
-            {
-                string[] panel = Request.Form.GetValues(key);
-            }
-        }*/
-
-
-
-
-/*protected void Page_Load(object sender, EventArgs e)
-{
-    if (!IsPostBack)
-    {
-
-        // view some info as in drawio
-        this.StoreID = Request.QueryString["store_id"];
-
-        this.MainPanel = new Panel();
-        this.MainPanel.Style.Add("padding-left", "0px");
-        MainPanel.EnableViewState = true;
-        this.MainDiv.Controls.Add(MainPanel);
-
-
-        Panel newPanel = new Panel();
-        newPanel.Attributes.Add("runat", "server");
-        newPanel.Style.Add("padding-left", "50px");
-        newPanel.EnableViewState = true;
-
-        int indexDDN = MainPanel.Controls.OfType<Panel>().ToList().Count + 1;
-
-        DropDownNode statementTree = new DropDownNode();
-        statementTree.myContainer = newPanel;
-        statementTree.padding = 0;
-        statementTree.ID = "dynamicDDN" + indexDDN;
-        statementTree.AutoPostBack = true;
-        statementTree.Attributes.Add("AutoPostBack", "True");
-        statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
-        statementTree.EnableViewState = true;
-        statementTree.DataSource = this.typeMap.Keys;
-        statementTree.DataBind();
-        statementTree.Items.Insert(0, new ListItem("--SELECT--"));
-        newPanel.Controls.Add(statementTree);
-        //MainPanel.ContentTemplateContainer.Controls.Add(new LiteralControl("<br />"));
-
-        MainPanel.Controls.Add(newPanel);
-        MainPanel.Controls.Add(new LiteralControl("<br />"));
-        Session.Add("MainPanel", MainPanel);
-        return;
-    }*/
-//RestorePage();
-
-
-
-
-
-
-/*private void RecreatePage(DropDownNode currDDN, Panel addInThis)
-{
-    TreeNode currNode = currDDN.node;
-    string type = currNode.Text;
-    switch (type)
-    {
-        case "OR":
-        case "AND":
-        case "XOR":
-        case "IfThen":
-            DropDownNode c1 = new DropDownNode();
-            DropDownNode c2 = new DropDownNode();
-            Placement(new DropDownNode[] { c1, c2 }, this.typeMap.Keys, currDDN);
-            currNode.node.ChildNodes.Add(c1.node);
-            currNode.node.ChildNodes.Add(c2.node);
-            return;
-
-        case "Any":
-        case "ForAll":
-            DropDownNode c = new DropDownNode();
-            Placement(new DropDownNode[] { c }, this.typeMap.Keys, currNode);
-            currNode.node.ChildNodes.Add(c.node);
-            return;
-
-        case "AtLeast":
-        case "AtMost":
-            HtmlInputText input = new HtmlInputText();
-            // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            DropDownNode c3 = new DropDownNode();
-            c3.inputValue = input;
-            Placement(new DropDownNode[] { c3 }, this.typeMap.Keys, currNode);
-            currNode.node.ChildNodes.Add(c3.node);
-            return;
-
-        case "Equal":
-        case "SmallerThan":
-        case "GreaterThan":
-            HtmlInputText inputRelation = new HtmlInputText();
-            // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            DropDownNode c4 = new DropDownNode();
-            c4.inputValue = inputRelation;
-            Placement(new DropDownNode[] { c4 }, this.attributes, currNode);
-            currNode.node.ChildNodes.Add(c4.node);
-            return;
-
-    }
-
-}*/

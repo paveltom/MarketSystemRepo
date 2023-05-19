@@ -41,10 +41,19 @@ namespace Market_System.ServiceLayer
         public Response<string> ChangeProductTimesBought(string productID, int times);
         public Response<string> ChangeProductCategory(string productID, string categoryID);
         public Response<string> ChangeProductDimenssions(string productID, double[] dims);
-        public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties);
+        public Response<string> AddProductPurchasePolicy(string productID, List<string> newPolicyProperties);
         public Response<string> RemoveProductPurchasePolicy(string productID, String policyID);
-        public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties);
+        public Response<string> AddProductPurchaseStrategy(string productID, List<string> newStrategyProperties);
         public Response<string> RemoveProductPurchaseStrategy(string productID, String strategyID);
+
+
+        public Response<string> AddStorePurchasePolicy(string storeID, List<string> newPolicyProperties);
+        public Response<string> RemoveStorePurchasePolicy(string storeID, String policyID);
+        public Response<string> AddStorePurchaseStrategy(string storeID, List<string> newStrategyProperties);
+        public Response<string> RemoveStorePurchaseStrategy(string storeID, String strategyID);
+
+
+
         public Response<string> assign_new_owner(string storeID, string newOwnerUsername); // 4.4
         public Response<string> Remove_Store_Owner(string storeID, string other_Owner_Username); //II: 4.5
         public Response<string> assign_new_manager(string storeID, string new_manager_ID); // 4.6

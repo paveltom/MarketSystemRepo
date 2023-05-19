@@ -475,12 +475,26 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void AddStorePurchasePolicy(string userID, Purchase_Policy newPolicy)
+        public void AddStorePurchasePolicy(string userID, List<string> newPolicyProps) // string polID, string polName, double salePercentage, string description, string category, Statement formula
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
+                    Purchase_Policy newPolicy = null;
+                    switch (newPolicyProps[0])
+                    {
+                        case "Category":
+                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]));
+                            break;
+                        case "Product":
+                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], StatementBuilder.GenerateFormula(newPolicyProps[3]), newPolicyProps[4]);
+                            break;
+                        case "Store":
+                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[0], newPolicyProps[0], Double.Parse(newPolicyProps[1]), newPolicyProps[2], newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]));
+                            break;
+                    }
+
                     if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                         Save();
                     else
@@ -513,8 +527,22 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
-                    int counter = this.storeStrategies.Count + 1;
-                    Purchase_Strategy newStrategy = new Purchase_Strategy(this.Store_ID+"StoreStrategyID" + counter, strategyPopsWithoutID[0], strategyPopsWithoutID[1], strategyPopsWithoutID[2]);
+                    Purchase_Strategy newStrategy = new Purchase_Strategy(this.Store_ID+"StoreStrategyID" + strategyPopsWithoutID[0], strategyPopsWithoutID[0], strategyPopsWithoutID[1], strategyPopsWithoutID[2]);
+                    if (this.storeStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
+                        Save();
+                    else throw new Exception("Strategy already exists.");
+                }
+                else throw new Exception("You have no permission to add strategy.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy) // for tests only
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
+                {
                     if (this.storeStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                         Save();
                     else throw new Exception("Strategy already exists.");

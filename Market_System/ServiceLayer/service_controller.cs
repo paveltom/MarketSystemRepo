@@ -565,51 +565,71 @@ namespace Market_System.ServiceLayer
 
 
 
-        public Response AddStorePurchasePolicy(string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties) 
+        public Response<string> AddStorePurchasePolicy(string storeID, List<string> newPolicyProperties) 
         {
             try
             {
-                return this.ssc.AddStorePurchasePolicy(storeID, newPolicy, newPolicyProperties); 
+                this.ssc.AddStorePurchasePolicy(storeID, newPolicyProperties);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("add a purchase policy for a store, for store id: " + storeID);
+                return ok;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw ex;
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddStorePurchasePolicy");
+                return Response<String>.FromError(e.Message);
             }
         }
 
-        public Response RemoveStorePurchasePolicy(string storeID, String policyID)
+        public Response<string> RemoveStorePurchasePolicy(string storeID, String policyID)
         {
             try
             {
-                return this.ssc.RemoveStorePurchasePolicy(storeID, policyID); 
+                this.ssc.RemoveStorePurchasePolicy(storeID, policyID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("removed a store purcahse policy, for product id: " + storeID);
+                return ok;
             }
-            catch (Exception ex)
+
+            catch (Exception e)
             {
-                throw ex;
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveStorePurchasePolicy");
+                return Response<String>.FromError(e.Message);
             }
         }
 
-        public Response AddStorePurchaseStrategy(string storeID, List<string> newStrategyProperties) 
+        public Response<string> AddStorePurchaseStrategy(string storeID, List<string> newStrategyProperties) 
         {
+
             try
             {
-                return this.ssc.AddStorePurchaseStrategy(storeID, newStrategyProperties);
+                this.ssc.AddStorePurchaseStrategy(storeID, newStrategyProperties);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("add a purchase strategy for a store, for store id: " + storeID);
+                return ok;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw ex;
+                Logger.get_instance().record_error("error!!: " + e.Message + " in AddStorePurchaseStrategy");
+                return Response<String>.FromError(e.Message);
             }
         }
 
-        public Response RemoveStorePurchaseStrategy(string storeID, String strategyID)
+        public Response<string> RemoveStorePurchaseStrategy(string storeID, String strategyID)
         {
+
             try
             {
-                return this.ssc.RemoveStorePurchaseStrategy(storeID, strategyID); 
+                this.ssc.RemoveStorePurchaseStrategy(storeID, strategyID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+                Logger.get_instance().record_event("removed a store purcahse strategy, for product id: " + storeID);
+                return ok;
             }
-            catch (Exception ex)
+
+            catch (Exception e)
             {
-                throw ex;
+                Logger.get_instance().record_error("error!!: " + e.Message + " in RemoveStorePurchaseStrategy");
+                return Response<String>.FromError(e.Message);
             }
         }
 
@@ -814,12 +834,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties)
+        public Response<string> AddProductPurchasePolicy(string productID, List<string> newPolicyProperties)
         {
 
             try
             {
-                this.ssc.AddProductPurchasePolicy(productID, newPolicy, newPolicyProperties);
+                this.ssc.AddProductPurchasePolicy(productID, newPolicyProperties);
                 Response<string> ok = Response<string>.FromValue("done successfully");
                 Logger.get_instance().record_event("add a purchase policy for a product, for product id: " + productID);
                 return ok;

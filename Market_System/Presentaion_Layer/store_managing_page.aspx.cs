@@ -250,6 +250,7 @@ namespace Market_System.Presentaion_Layer
             if (product_managing_checker.Value)
             {
                 manage_store_products.Visible = true;
+                ManageStrategiesButton.Visible = true;
             }
             else
             {
@@ -364,6 +365,20 @@ namespace Market_System.Presentaion_Layer
                 Response.Redirect(string.Format("/Presentaion_Layer/PurchaseStrategyManagePage.aspx?store_id={0}", selected_store_id));
             }
         }
+
+        protected void ManagePoliciesClick(object sender, EventArgs e)
+        {
+            string selected_store_id = ddl_store_id.SelectedValue;
+            if (selected_store_id.Equals("nothing_to_show"))
+            {
+                error_message.Text = "please enter store ID";
+            }
+            else
+            {
+                Response.Redirect(string.Format("/Presentaion_Layer/PurchasePolicyManagePage.aspx?store_id={0}", selected_store_id));
+            }
+        }
+        
 
 
 

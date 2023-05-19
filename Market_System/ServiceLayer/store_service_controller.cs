@@ -174,12 +174,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddStorePurchasePolicy(string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties) // newPolicy = null OR newPolicyProperties = null
+        public Response AddStorePurchasePolicy(string storeID, List<string> newPolicyProperties) // newPolicy = null OR newPolicyProperties = null
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.AddStorePurchasePolicy(SessionID, storeID, newPolicy, newPolicyProperties); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.AddStorePurchasePolicy(SessionID, storeID, newPolicyProperties); // add method to market system!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("Policy was added successfully.\"");
             }
             catch (Exception ex)
@@ -739,12 +739,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddProductPurchasePolicy(string productID, Purchase_Policy newPolicy, List<string> newPolicyProperties) // newPolicy = null OR newPolicyProperties = null
+        public Response AddProductPurchasePolicy(string productID, List<string> newPolicyProperties) // newPolicy = null OR newPolicyProperties = null
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.AddProductPurchasePolicy(SessionID, productID, newPolicy, newPolicyProperties);
+                this.Market.AddProductPurchasePolicy(SessionID, productID, newPolicyProperties);
                 return new Response("New product's purchase policy was added successfully.");
             }
             catch (Exception ex)

@@ -6,6 +6,8 @@ using System.Web;
 using System.Threading;
 using Market_System.DomainLayer;
 using Market_System.Domain_Layer.Store_Component;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -444,14 +446,15 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchasePolicy(string userID, string storeID, Purchase_Policy newPolicy)
+        public void AddStorePurchasePolicy(string userID, string storeID, List<string> newPolicyProperties)
         {
             try
             {
-                AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicy);
+                AcquireStore(storeID).AddStorePurchasePolicy(userID, newPolicyProperties);
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
+
         }
 
 
@@ -467,6 +470,16 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         public void AddStorePurchaseStrategy(string userID, string storeID, List<string> newStrategy)
+        {
+            try
+            {
+                AcquireStore(storeID).AddStorePurchaseStrategy(userID, newStrategy);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy) // for tests only
         {
             try
             {
@@ -851,7 +864,19 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddProductPurchasePolicy(string userID, string storeID, string productID, Purchase_Policy newPolicy)
+
+        public void AddProductPurchasePolicy(string userID, string storeID, string productID, List<string> newPolicyProps)
+        {
+            try
+            {
+                AcquireStore(storeID).AddProductPurchasePolicy(userID, productID, newPolicy);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddProductPurchasePolicy(string userID, string storeID, string productID, Purchase_Policy newPolicy) // for tests only
         {
             try
             {
