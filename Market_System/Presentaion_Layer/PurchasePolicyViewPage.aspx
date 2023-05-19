@@ -21,7 +21,8 @@
         <br />
         <asp:DataList ID="PoliciesList" runat="server">
             <ItemTemplate>
-                <asp:Label Text="<%# Container.DataItem %>" runat="server" />
+                <asp:Label ID ="ItemPolicyID" Text="<%# Container.DataItem %>" runat="server" />
+                <asp:Button ID="RemoveButton" runat="server" Text="Remove" OnClick="RemovePolicyClick" />
             </ItemTemplate>
         </asp:DataList>
         <br />

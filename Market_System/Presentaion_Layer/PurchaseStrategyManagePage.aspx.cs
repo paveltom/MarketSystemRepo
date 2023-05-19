@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Controls;
 
 namespace Market_System.Presentaion_Layer
 {
@@ -18,9 +17,12 @@ namespace Market_System.Presentaion_Layer
         protected void Page_Load(object sender, EventArgs e)
         {
             this.StoreID = Request.QueryString["store_id"];
-            List<string> strategies = ((Service_Controller)Session["service_controller"]).GetStore(StoreID).Value.DefaultStrategies;
-            StrategiesList.DataSource = strategies;
-            StrategiesList.DataBind();
+            if (!IsPostBack)            {
+                
+                List<string> strategies = ((Service_Controller)Session["service_controller"]).GetStore(StoreID).Value.DefaultStrategies;
+                StrategiesList.DataSource = strategies;
+                StrategiesList.DataBind();
+            }
 
         }
 
@@ -73,7 +75,32 @@ namespace Market_System.Presentaion_Layer
         {
             Response.Redirect(string.Format("/Presentaion_Layer/store_managing_page.aspx?store_id={0}", this.StoreID));
         }
-        
+
+        protected void RemoveStrategyClick(object sender, EventArgs e)
+        {
+            Button remove = sender as Button;
+            DataListItem item = remove.Parent as DataListItem;
+
+            Label strategyIDLabel = item.Controls[1] as Label;
+            string strategyID = strategyIDLabel.Text.Split(':')[0];   
+            if (ProductIDToViewStrategies.Visible == true)
+            {
+                string productID = ProductIDToViewStrategies.Value;
+                ((Service_Controller)Session["service_controller"]).RemoveProductPurchaseStrategy(productID, strategyID);
+            }
+            else
+            {
+                string storeID = this.StoreID;
+                ((Service_Controller)Session["service_controller"]).RemoveStorePurchaseStrategy(storeID, strategyID);
+            }
+
+            List<string> strategies = ((Service_Controller)Session["service_controller"]).GetStore(this.StoreID).Value.DefaultStrategies;
+            StrategiesList.DataSource = strategies;
+            StrategiesList.DataBind();
+
+        }
+
+
 
     }
 }

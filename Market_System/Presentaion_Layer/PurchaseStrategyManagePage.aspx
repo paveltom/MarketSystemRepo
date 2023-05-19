@@ -20,7 +20,8 @@
         <br />
         <asp:DataList ID="StrategiesList" runat="server">
             <ItemTemplate>
-                <asp:Label Text="<%#Container.DataItem %>" runat="server" />
+                <asp:Label ID="ItemStrategyID" Text="<%#Container.DataItem %>" runat="server" />
+                <asp:Button ID="RemoveButton" runat="server" Text="Remove" OnClick="RemoveStrategyClick" />
          </ItemTemplate>
         </asp:DataList>
         <br />

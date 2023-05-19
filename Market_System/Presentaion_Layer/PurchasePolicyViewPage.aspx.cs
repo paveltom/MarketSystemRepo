@@ -16,10 +16,12 @@ namespace Market_System.Presentaion_Layer
         protected void Page_Load(object sender, EventArgs e)
         {
             this.StoreID = Request.QueryString["store_id"];
-            List<string> policies = ((Service_Controller)Session["service_controller"]).GetStore(StoreID).Value.DefaultPolicies;
-
-            PoliciesList.DataSource = policies;
-            PoliciesList.DataBind();
+            if (!IsPostBack)
+            {
+                List<string> policies = ((Service_Controller)Session["service_controller"]).GetStore(StoreID).Value.DefaultPolicies;
+                PoliciesList.DataSource = policies;
+                PoliciesList.DataBind();
+            }
 
         }
 
@@ -72,5 +74,34 @@ namespace Market_System.Presentaion_Layer
         {
             Response.Redirect(string.Format("/Presentaion_Layer/store_managing_page.aspx?store_id={0}", this.StoreID));
         }
+
+        protected void RemovePolicyClick(object sender, EventArgs e)
+        {
+            Button remove = sender as Button;
+            DataListItem item = remove.Parent as DataListItem;
+
+            Label strategyIDLabel = item.Controls[1] as Label;
+            string strategyID = strategyIDLabel.Text.Split(':')[0];
+            if (ProductIDToViewPolicies.Visible == true)
+            {
+                string productID = ProductIDToViewPolicies.Value;
+                ((Service_Controller)Session["service_controller"]).RemoveProductPurchasePolicy(productID, strategyID);
+            }
+            else
+            {
+                string storeID = this.StoreID;
+                ((Service_Controller)Session["service_controller"]).RemoveStorePurchasePolicy(storeID, strategyID);
+            }
+
+            List<string> strategies = ((Service_Controller)Session["service_controller"]).GetStore(this.StoreID).Value.DefaultStrategies;
+            PoliciesList.DataSource = strategies;
+            PoliciesList.DataBind();
+        }
+
+        
     }
 }
+
+
+
+
