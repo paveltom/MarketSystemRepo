@@ -507,12 +507,14 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy)
+        public void AddStorePurchaseStrategy(string userID, List<string> strategyPopsWithoutID)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
+                    int counter = this.storeStrategies.Count + 1;
+                    Purchase_Strategy newStrategy = new Purchase_Strategy(this.Store_ID+"StoreStrategyID" + counter, strategyPopsWithoutID[0], strategyPopsWithoutID[1], strategyPopsWithoutID[2]);
                     if (this.storeStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                         Save();
                     else throw new Exception("Strategy already exists.");
@@ -883,13 +885,13 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Strategy newStrategy)
+        public void AddProductPurchaseStrategy(string userID, string productID, List<string> newStrategyProperties)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
                 {
-                    AcquireProduct(productID).AddPurchaseStrategy(newStrategy);
+                    AcquireProduct(productID).AddPurchaseStrategy(newStrategyProperties);
                     ReleaseProduct(productID);
                 }
                 else

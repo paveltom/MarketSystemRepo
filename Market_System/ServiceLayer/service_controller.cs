@@ -562,6 +562,63 @@ namespace Market_System.ServiceLayer
 
 
 
+
+
+
+        public Response AddStorePurchasePolicy(string storeID, Purchase_Policy newPolicy, List<string> newPolicyProperties) 
+        {
+            try
+            {
+                return this.ssc.AddStorePurchasePolicy(storeID, newPolicy, newPolicyProperties); 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Response RemoveStorePurchasePolicy(string storeID, String policyID)
+        {
+            try
+            {
+                return this.ssc.RemoveStorePurchasePolicy(storeID, policyID); 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Response AddStorePurchaseStrategy(string storeID, List<string> newStrategyProperties) 
+        {
+            try
+            {
+                return this.ssc.AddStorePurchaseStrategy(storeID, newStrategyProperties);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Response RemoveStorePurchaseStrategy(string storeID, String strategyID)
+        {
+            try
+            {
+                return this.ssc.RemoveStorePurchaseStrategy(storeID, strategyID); 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
+
+
         public Response<string> comment_on_product(string productID, string comment, double rating)
         {
             try
@@ -794,11 +851,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        public Response<string> AddProductPurchaseStrategy(string productID, List<string> newStrategyProperties)
         {
             try
             {
-                this.ssc.AddProductPurchaseStrategy(productID, newStrategy, newStrategyProperties);
+                this.ssc.AddProductPurchaseStrategy(productID, newStrategyProperties);
                 Response<string> ok = Response<string>.FromValue("done successfully");
                 Logger.get_instance().record_event("add a product purchase strategy, for product id: " + productID);
                 return ok;

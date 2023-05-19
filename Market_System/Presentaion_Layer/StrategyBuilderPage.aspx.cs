@@ -16,11 +16,34 @@ using System.Windows.Controls.Primitives;
 using System.Xml.Linq;
 
 namespace Market_System.Presentaion_Layer
+
+// TODO(on it):
+//      destruction on higher level selection
+//      difference for product page or store page
 {
     public partial class StrategyBuilderPage : System.Web.UI.Page
     {
-        public string StoreID;
-        public string ProductID;
+        public string StoreID = "";
+        public string ProductID = "";
+        public TreeNode root;
+
+        public Dictionary<string, string> typeMap = new Dictionary<string, string>()
+            {
+                {"Any","[Any[<Statement>]]"},
+                {"ForAll","ForAll[<Statement>]"},
+                {"IfThen", "IfThen[[<Statement>][<Statement>]]"},
+                {"XOR", "XOR[[<Statement>][<Statement>]]"},
+                {"OR", "OR[[<Statement>][<Statement>]]"},
+                {"AND", "AND[[<Statement>][<Statement>]]"},
+                {"AtLeast", "AtLeast[[<Quantity>][<Statement>]]"},
+                {"AtMost", "AtMost[[<Quantity>][<Statement>]]"},
+                {"Equal", "Equal[[<AttributeName>][<AttributeValue>]]"},
+                {"SmallerThan", "SmallerThan[[<AttributeName>][<AttributeValue>]]"},
+                {"GreaterThan", "GreaterThan[[<AttributeName>][<AttributeValue>]]"},
+            };
+
+        public List<string> attributes;
+
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -35,16 +58,14 @@ namespace Market_System.Presentaion_Layer
                     if (allkeys.ContainsKey(index))
                         allkeys[index].Add(k);
                     else
-                        allkeys.Add(index, new List<string>() { k });
-   
-                    
+                        allkeys.Add(index, new List<string>() { k }); 
                 }
 
-                GenereateChildren(-50, allkeys, "");
+                GenereateChildren(-50, allkeys, "", null);
             }
         }
 
-        private void GenereateChildren(int newPad, Dictionary<int, List<string>> allkeys, string parentID)
+        private void GenereateChildren(int newPad, Dictionary<int, List<string>> allkeys, string parentID, DropDownNode parent)
         {
             int parentIDNumLen = 0;
             if (parentID.Length > 0)
@@ -58,7 +79,7 @@ namespace Market_System.Presentaion_Layer
                 indexOfDDNString += 10; // index of id
                 string currIDNumber = keys[i].Substring(indexOfDDNString);
 
-                DropDownNode statementTree = new DropDownNode();
+                DropDownNode statementTree = new DropDownNode(Request.Form[keys[i]]);
                 statementTree.padding = newPad + 50;
                 statementTree.ID = currID;
 
@@ -86,22 +107,26 @@ namespace Market_System.Presentaion_Layer
                     statementTree.EnableViewState = true;
                     if (keys[i].Contains("atrs" + currID))
                     {
-                        statementTree.DataSource = WebStatement.attributes;
+                        statementTree.DataSource = this.attributes;
                         statementTree.ID = "atrs" + currID;
                     }
                     else
-                        statementTree.DataSource = WebStatement.typeMap.Keys;
+                        statementTree.DataSource = this.typeMap.Keys;
                     statementTree.DataBind();
                     statementTree.Items.Insert(0, new ListItem("--SELECT--"));
                 }               
 
                 newdiv.Controls.Add(statementTree);
                 statementTree.myContainer = newdiv;
+                if (parent != null)
+                    parent.node.ChildNodes.Add(statementTree.node);
+                else
+                    this.root = statementTree.node;
 
                 MainDiv.Controls.Add(newdiv);
                 MainDiv.Controls.Add(new LiteralControl("<br />"));
                 if(allkeys.ContainsKey(parentIDNumLen + 2) && allkeys[parentIDNumLen + 2].Any(x => x.Contains(currID)))
-                    GenereateChildren(statementTree.padding, allkeys, currID);
+                    GenereateChildren(statementTree.padding, allkeys, currID, statementTree);
 
             }
         }
@@ -117,13 +142,24 @@ namespace Market_System.Presentaion_Layer
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
+            if (Request.QueryString.AllKeys.Contains("product_id"))
+            {
+                this.ProductID = Request.QueryString["product_id"];
+                this.StoreID = this.ProductID.Substring(0, this.ProductID.IndexOf("_"));
+
+            }
+            else
+            {
+                this.StoreID = Request.QueryString["store_id"];
+                this.ProductID = "";
+            }
+
+            this.attributes = GenerateAttributes();
+
             if (!IsPostBack)
             {
-
-                // view some info as in drawio
-                this.StoreID = Request.QueryString["store_id"];
-
-
                 DropDownNode statementTree = new DropDownNode();
                 statementTree.padding = 0;
                 statementTree.ID = "dynamicDDN1";
@@ -131,10 +167,10 @@ namespace Market_System.Presentaion_Layer
                 statementTree.Attributes.Add("AutoPostBack", "True");
                 statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
                 statementTree.EnableViewState = true;
-                statementTree.DataSource = WebStatement.typeMap.Keys;
+                statementTree.DataSource = this.typeMap.Keys;
                 statementTree.DataBind();
                 statementTree.Items.Insert(0, new ListItem("--SELECT--"));
-
+                this.root = statementTree.node;
 
 
                 HtmlGenericControl newdiv = new HtmlGenericControl();
@@ -143,11 +179,12 @@ namespace Market_System.Presentaion_Layer
                 newdiv.Controls.Add(statementTree);
                 MainDiv.Controls.Add(newdiv);
                 MainDiv.Controls.Add(new LiteralControl("<br />"));
+
+                Session.Add("StatementRoot", new TreeNode());
+                Session["StatementRoot"] = statementTree.node;
                 return;
             }
         }
-
-
 
 
         protected void StatementDLL_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,7 +192,6 @@ namespace Market_System.Presentaion_Layer
             DropDownNode ddlSender = sender as DropDownNode;
             string selected = ddlSender.SelectedValue;
             UpdateStatementTree(ddlSender, selected);
-
         }
 
         private void UpdateStatementTree(DropDownNode currNode, string type)
@@ -169,7 +205,7 @@ namespace Market_System.Presentaion_Layer
                 case "IfThen":
                     DropDownNode c1 = new DropDownNode();
                     DropDownNode c2 = new DropDownNode();
-                    Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys.ToList(), currNode);
+                    Placement(new DropDownNode[] { c1, c2 }, this.typeMap.Keys.ToList(), currNode);
                     currNode.node.ChildNodes.Add(c1.node);
                     currNode.node.ChildNodes.Add(c2.node);
                     return;
@@ -177,7 +213,7 @@ namespace Market_System.Presentaion_Layer
                 case "Any":
                 case "ForAll":
                     DropDownNode c = new DropDownNode();
-                    Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys.ToList(), currNode);
+                    Placement(new DropDownNode[] { c }, this.typeMap.Keys.ToList(), currNode);
                     currNode.node.ChildNodes.Add(c.node);
                     return;
 
@@ -187,7 +223,7 @@ namespace Market_System.Presentaion_Layer
                     DropDownNode inputDDN = new DropDownNode();
                     inputDDN.inputValue = input;
                     DropDownNode c3 = new DropDownNode();
-                    Placement(new DropDownNode[] { inputDDN, c3 }, WebStatement.typeMap.Keys.ToList(), currNode);
+                    Placement(new DropDownNode[] { inputDDN, c3 }, this.typeMap.Keys.ToList(), currNode);
                     currNode.node.ChildNodes.Add(c3.node);
                     return;
 
@@ -198,12 +234,10 @@ namespace Market_System.Presentaion_Layer
                     DropDownNode inputDDNRelation = new DropDownNode();
                     inputDDNRelation.inputValue = inputRelation;
                     DropDownNode c4 = new DropDownNode();
-                    Placement(new DropDownNode[] { inputDDNRelation, c4 }, WebStatement.attributes, currNode);
+                    Placement(new DropDownNode[] { inputDDNRelation, c4 }, this.attributes, currNode);
                     currNode.node.ChildNodes.Add(c4.node);
                     return;
-
             }
-
         }
 
 
@@ -250,65 +284,98 @@ namespace Market_System.Presentaion_Layer
                 int parentDivIndex = MainDiv.Controls.IndexOf(parent.myContainer);
                 MainDiv.Controls.AddAt(parentDivIndex + 2*counter, newdiv);
                 MainDiv.Controls.AddAt(parentDivIndex + 2*counter + 1, new LiteralControl("<br />"));
-
-
                 counter++;
             }
 
         }
 
-
-
-
-        public class WebStatement
+        // compile the statement to string
+        protected void AddStrategyButtonClick(object sender, EventArgs e) 
         {
-            public string myType;
-            public List<WebStatement> myStatements;
+            // navigate through TreeNode (via root) with recursive function that returns string while parent node responsible to create its Statement code-name and the parenthesis for its children
+            string formula = "[" + GatherStatement(this.root) + "]";
 
-            public static Dictionary<string, string> typeMap = new Dictionary<string, string>()
-            {
-                {"Any","[Any[<Statement>]]"},
-                {"ForAll","ForAll[<Statement>]"},
-                {"IfThen", "IfThen[[<Statement>][<Statement>]]"},
-                {"XOR", "XOR[[<Statement>][<Statement>]...]"},
-                {"OR", "OR[[<Statement>][<Statement>]...]"},
-                {"AND", "AND[[<Statement>][<Statement>]...]"},
-                {"AtLeast", "AtLeast[[<Quantity>][<Statement>]]"},
-                {"AtMost", "AtMost[[<StringQuantity>][<Statement>]]"},
-                {"Equal", "Equal[[<StringAttributeName>][<StringAttributeValue>]]"},
-                {"SmallerThan", "SmallerThan[[<StringAttributeName>][<StringAttributeValue>]]"},
-                {"GreaterThan", "GreaterThan[[<StringAttributeName>][<StringAttributeValue>]]"},
-            };
+            // send the statement to ServiceController
+            if(this.ProductID != "")
+                ((Service_Controller)Session["service_controller"]).AddProductPurchaseStrategy(this.StoreID, new List<string>() { "name", "desc", formula });
+            else
+                ((Service_Controller)Session["service_controller"]).AddStorePurchaseStrategy(this.StoreID, new List<string>() { "name", "desc", formula });
 
-            public static List<string> attributes = new List<string>(){"User.Age", "User.Address", "User.Name", "StoreID", "ItemID", "Quantity", "ReservedQuantity", "Price", "Name",
-                                                                                            "Sale", "Description", "Rating", "Weight",  "TimesBought", "Category",  "---Attributes---" };
+            Session.Remove("StatementRoot");
 
-
-            public WebStatement(string stateType)
-            {
-                myType = stateType;
-            }
-
-            // ====================== Legend ======================
-            // * Statements: [<Statement>]
-            // ForAll: ForAll[<Statement>]
-            // Any: Any[<Statement>]]
-            // IfThen: IfThen[[<Statement>][<Statement>]]
-            // XOR: XOR[[<Statement>][<Statement>]...]
-            // OR: OR[[<Statement>][<Statement>]...]
-            // AND: AND[[<Statement>][<Statement>]...]
-            // AtLeast: AtLeast[[<Quantity>][<Statement>]]
-            // AtMost: AtMost[[<StringQuantity>][<Statement>]]
-            // Equal: Equal[[<StringAttributeName>][<StringAttributeValue>]]
-            // SmallerThan: SmallerThan[[<StringAttributeName>][<StringAttributeValue>]]
-            // GreaterThan: GreaterThan[[<StringAttributeName>][<StringAttributeValue>]]
-
-            // * StringAttributeName:
-            // Product attribute: Category, StoreID, Quantity...
-            // User attribute: User.Age, User.Address...
-            // ===================================================
-
+            // redirect back to STRATEGY managing page (with store id in URL)
+            Response.Redirect(string.Format("/Presentaion_Layer/PurchaseStrategyManagePage.aspx?store_id={0}", this.StoreID));
         }
+
+
+        protected void CancelButtonClick(object sender, EventArgs e)
+        {
+            Response.Redirect(string.Format("/Presentaion_Layer/PurchaseStrategyManagePage.aspx?store_id={0}", this.StoreID));
+        }
+
+        
+
+
+        private string GatherStatement(TreeNode me)
+        {
+            string type = me.Text;
+            string statement = "<Statement>";
+            string ret = "";
+            switch (type)
+            {
+                case "OR":
+                case "AND":
+                case "XOR":
+                case "IfThen":
+                    ret = this.typeMap[type];
+                    ret = ret.Insert(ret.IndexOf(statement), "1");
+                    ret = ret.Replace("1" + statement, GatherStatement(me.ChildNodes[0]));
+                    ret = ret.Replace(statement, GatherStatement(me.ChildNodes[1]));
+                    break;
+
+                case "Any":
+                case "ForAll":
+                    ret = this.typeMap[type];
+                    ret = ret.Replace(statement, GatherStatement(me.ChildNodes[0]));
+                    break;
+
+                case "AtLeast":
+                case "AtMost":
+                    ret = this.typeMap[type];
+                    ret = ret.Replace("<Quantity>", GatherStatement(me.ChildNodes[0]));
+                    ret = ret.Replace(statement, GatherStatement(me.ChildNodes[1]));
+                    break;
+
+                case "Equal":
+                case "SmallerThan":
+                case "GreaterThan":
+                    ret = this.typeMap[type];
+                    ret = ret.Replace("<AttributeName>", GatherStatement(me.ChildNodes[0]));
+                    ret = ret.Replace("<AttributeValue>", GatherStatement(me.ChildNodes[1]));
+                    break;
+
+                default:
+                    ret = me.Text;
+                    break;                    
+
+            }
+            return ret;
+        }
+
+        private List<string> GenerateAttributes()
+        {
+            List<string> attributes = new List<string>(){"User.Age", "User.Address", "User.Name", "StoreID", "ItemID", "Quantity", "ReservedQuantity", "Price", "Name",
+                                                                                            "Sale", "Description", "Rating", "Weight",  "TimesBought", "Category" };
+            if (this.ProductID != "")
+            {
+                attributes.Add("--Product Attributes--");
+                ItemDTO item = ((Service_Controller)Session["service_controller"]).get_product_by_productID(this.ProductID).Value;
+                attributes = attributes.Concat(item.PurchaseAttributes.Keys).ToList();
+            }
+            return attributes;
+        }
+
+
 
         public class DropDownNode : DropDownList
         {
@@ -333,6 +400,28 @@ namespace Market_System.Presentaion_Layer
 
 }
 
+
+
+
+
+// ====================== Legend ======================
+// * Statements: [<Statement>]
+// ForAll: ForAll[<Statement>]
+// Any: Any[<Statement>]]
+// IfThen: IfThen[[<Statement>][<Statement>]]
+// XOR: XOR[[<Statement>][<Statement>]...]
+// OR: OR[[<Statement>][<Statement>]...]
+// AND: AND[[<Statement>][<Statement>]...]
+// AtLeast: AtLeast[[<Quantity>][<Statement>]]
+// AtMost: AtMost[[<StringQuantity>][<Statement>]]
+// Equal: Equal[[<StringAttributeName>][<StringAttributeValue>]]
+// SmallerThan: SmallerThan[[<StringAttributeName>][<StringAttributeValue>]]
+// GreaterThan: GreaterThan[[<StringAttributeName>][<StringAttributeValue>]]
+
+// * StringAttributeName:
+// Product attribute: Category, StoreID, Quantity...
+// User attribute: User.Age, User.Address...
+// ===================================================
 
 
 
@@ -383,7 +472,7 @@ namespace Market_System.Presentaion_Layer
         statementTree.Attributes.Add("AutoPostBack", "True");
         statementTree.SelectedIndexChanged += new EventHandler(StatementDLL_SelectedIndexChanged);
         statementTree.EnableViewState = true;
-        statementTree.DataSource = WebStatement.typeMap.Keys;
+        statementTree.DataSource = this.typeMap.Keys;
         statementTree.DataBind();
         statementTree.Items.Insert(0, new ListItem("--SELECT--"));
         newPanel.Controls.Add(statementTree);
@@ -413,7 +502,7 @@ namespace Market_System.Presentaion_Layer
         case "IfThen":
             DropDownNode c1 = new DropDownNode();
             DropDownNode c2 = new DropDownNode();
-            Placement(new DropDownNode[] { c1, c2 }, WebStatement.typeMap.Keys, currDDN);
+            Placement(new DropDownNode[] { c1, c2 }, this.typeMap.Keys, currDDN);
             currNode.node.ChildNodes.Add(c1.node);
             currNode.node.ChildNodes.Add(c2.node);
             return;
@@ -421,7 +510,7 @@ namespace Market_System.Presentaion_Layer
         case "Any":
         case "ForAll":
             DropDownNode c = new DropDownNode();
-            Placement(new DropDownNode[] { c }, WebStatement.typeMap.Keys, currNode);
+            Placement(new DropDownNode[] { c }, this.typeMap.Keys, currNode);
             currNode.node.ChildNodes.Add(c.node);
             return;
 
@@ -431,7 +520,7 @@ namespace Market_System.Presentaion_Layer
             // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             DropDownNode c3 = new DropDownNode();
             c3.inputValue = input;
-            Placement(new DropDownNode[] { c3 }, WebStatement.typeMap.Keys, currNode);
+            Placement(new DropDownNode[] { c3 }, this.typeMap.Keys, currNode);
             currNode.node.ChildNodes.Add(c3.node);
             return;
 
@@ -442,7 +531,7 @@ namespace Market_System.Presentaion_Layer
             // place input accordingly!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             DropDownNode c4 = new DropDownNode();
             c4.inputValue = inputRelation;
-            Placement(new DropDownNode[] { c4 }, WebStatement.attributes, currNode);
+            Placement(new DropDownNode[] { c4 }, this.attributes, currNode);
             currNode.node.ChildNodes.Add(c4.node);
             return;
 

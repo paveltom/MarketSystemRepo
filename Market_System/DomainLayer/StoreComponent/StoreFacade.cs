@@ -466,7 +466,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddStorePurchaseStrategy(string userID, string storeID, Purchase_Strategy newStrategy)
+        public void AddStorePurchaseStrategy(string userID, string storeID, List<string> newStrategy)
         {
             try
             {
@@ -872,11 +872,11 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddProductPurchaseStrategy(string userID, string storeID, string productID, Purchase_Strategy newStrategy)
+        public void AddProductPurchaseStrategy(string userID, string storeID, string productID, List<string> newStrategyProperties)
         {
             try
             {
-                AcquireStore(storeID).AddProductPurchaseStrategy(userID, productID, newStrategy);
+                AcquireStore(storeID).AddProductPurchaseStrategy(userID, productID, newStrategyProperties);
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }

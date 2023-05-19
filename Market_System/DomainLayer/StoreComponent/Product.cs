@@ -138,10 +138,12 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddPurchaseStrategy(Purchase_Strategy newStrategy)
+        public void AddPurchaseStrategy(List<string> newStrategyProperties)
         {
             try
             {
+                int counter = this.PurchaseStrategies.Count + 1;
+                Purchase_Strategy newStrategy = new Purchase_Strategy( this.Product_ID + "ProductStrategyID" + counter, newStrategyProperties[0], newStrategyProperties[1], newStrategyProperties[2]);
                 if (this.PurchaseStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
                     Save();
                 else throw new Exception("Strategy already exist.");

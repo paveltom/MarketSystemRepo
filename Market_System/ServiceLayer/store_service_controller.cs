@@ -202,13 +202,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddStorePurchaseStrategy(string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties) // newPolicy = null OR newPolicyProperties = null)
+        public Response AddStorePurchaseStrategy(string storeID, List<string> newStrategyProperties) // newPolicy = null OR newPolicyProperties = null)
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.AddStorePurchaseStrategy(SessionID, storeID, newStrategy, newStrategyProperties);
-
+                this.Market.AddStorePurchaseStrategy(SessionID, storeID, newStrategyProperties);
                 return new Response("Strategy was added successfully.");
             }
             catch (Exception ex)
@@ -768,12 +767,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response AddProductPurchaseStrategy(string productID, Purchase_Strategy newStrategy, List<string> newStrategyProperties) // newStrategy = null OR newStrategyProperties = null
+        public Response AddProductPurchaseStrategy(string productID, List<string> newStrategyProperties) // newStrategy = null OR newStrategyProperties = null
         {
             try
             {
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
-                this.Market.AddProductPurchaseStrategy(SessionID, productID, newStrategy, newStrategyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
+                this.Market.AddProductPurchaseStrategy(SessionID, productID, newStrategyProperties); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New product's purchase strategy was added successfully.");
             }
             catch (Exception ex)

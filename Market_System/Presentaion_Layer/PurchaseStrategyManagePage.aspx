@@ -22,6 +22,7 @@
                 <asp:Label Text="<%# Container.DataItem %>" runat="server" />
             </ItemTemplate>
         </asp:DataList>
+        <asp:Button ID="ReturnToStoreButtonID" runat="server" Text="Return to store" OnClick="ReturnToStoreButtonClick" Height="29px" Width="195px"/>
     </div>
     <br />
 

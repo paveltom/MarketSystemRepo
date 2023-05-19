@@ -13,6 +13,7 @@ namespace Market_System.Presentaion_Layer
     public partial class PurchaseStrategyManagePage : System.Web.UI.Page
     {
         private string StoreID;
+        private string ProductID = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -61,8 +62,19 @@ namespace Market_System.Presentaion_Layer
 
         protected void AddNewStrategyClick(object sender, EventArgs e)
         {
-            Response.Redirect(string.Format("/Presentaion_Layer/StrategyBuilderPage.aspx?store_id={0}", this.StoreID));
+            string possibleProduct = ProductIDToViewStrategies.Value;
+            if(possibleProduct != "")
+                Response.Redirect(string.Format("/Presentaion_Layer/StrategyBuilderPage.aspx?product_id={0}", this.ProductID));
+            else
+                Response.Redirect(string.Format("/Presentaion_Layer/StrategyBuilderPage.aspx?store_id={0}", this.StoreID));           
         }
+
+
+        protected void ReturnToStoreButtonClick(object sender, EventArgs e)
+        {
+            Response.Redirect(string.Format("/Presentaion_Layer/store_managing_page.aspx?store_id={0}", this.StoreID));
+        }
+        
 
     }
 }

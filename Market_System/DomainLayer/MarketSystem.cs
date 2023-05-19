@@ -504,12 +504,12 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void AddStorePurchaseStrategy(string sessionID, string storeID, Purchase_Strategy newStrategy, List<string> newStrategyProperties)
+        public void AddStorePurchaseStrategy(string sessionID, string storeID, List<string> newStrategy)
         {
             try
             {
                 string userID = userFacade.get_userID_from_session(sessionID);
-                storeFacade.AddStorePurchaseStrategy(userID, storeID,newStrategy);
+                storeFacade.AddStorePurchaseStrategy(userID, storeID, newStrategy);
 
             }
 
@@ -1272,13 +1272,13 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public void AddProductPurchaseStrategy(string SessionID, string productID, Purchase_Strategy newStrategy, List<string>  newStrategyProperties)
+        public void AddProductPurchaseStrategy(string SessionID, string productID, List<string>  newStrategyProperties)
         {
             try
             {
                 string userID = userFacade.get_userID_from_session(SessionID);
                 //TODO:: WHY WE DO NOT USE NEWPOLICYPROPERTY ?
-                storeFacade.AddProductPurchaseStrategy(userID, GetStoreIdFromProductID(productID), productID, newStrategy);
+                storeFacade.AddProductPurchaseStrategy(userID, GetStoreIdFromProductID(productID), productID, newStrategyProperties);
             }
             catch (Exception e)
             {
