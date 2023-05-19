@@ -27,8 +27,7 @@ namespace Market_System.Presentaion_Layer
     {
         public string StoreID = "";
         public string ProductID = "";
-        public TreeNode root;
-
+        public TreeNode root;        
         public Dictionary<string, string> typeMap = new Dictionary<string, string>()
             {
                 {"Any","[Any[<Statement>]]"},
@@ -52,7 +51,7 @@ namespace Market_System.Presentaion_Layer
             if (IsPostBack)
             {
                 this.attributes = GenerateAttributes();
-                List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicDDN")).ToList();
+                List<string> keys = Request.Form.AllKeys.Where(k => { if (k != null) return k.Contains("dynamicDDN"); return false; }).ToList();
                 // create dictionary allkeys by length
                 Dictionary<int, List<string>> allkeys = new Dictionary<int, List<string>>();
                 foreach(string k in keys)

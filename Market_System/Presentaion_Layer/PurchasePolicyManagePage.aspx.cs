@@ -51,7 +51,7 @@ namespace Market_System.Presentaion_Layer
             if (IsPostBack)
             {
                 this.attributes = GenerateAttributes();
-                List<string> keys = Request.Form.AllKeys.Where(key => key.Contains("dynamicDDN")).ToList();
+                List<string> keys = Request.Form.AllKeys.Where(k => { if (k != null) return k.Contains("dynamicDDN"); return false; }).ToList();
                 // create dictionary allkeys by length
                 Dictionary<int, List<string>> allkeys = new Dictionary<int, List<string>>();
                 foreach (string k in keys)
@@ -318,12 +318,28 @@ namespace Market_System.Presentaion_Layer
                 SaleDiv.Controls.Add(error);
                 return;
             }
-            if (salePercentage == "" || Double.Parse(salePercentage) > 100 || Double.Parse(salePercentage) < 0) 
+            if (salePercentage == "" ) 
+            {
+                error.Text = "Missing percentage value!";
+                SaleDiv.Controls.Add(error);
+                return;
+            }
+
+            try
+            {
+                double value = Double.Parse(salePercentage);
+                if (value < 0 || value > 100) 
+                {
+                    throw new Exception();
+                }
+            }
+            catch(Exception ex)
             {
                 error.Text = "Bad percentage value!";
                 SaleDiv.Controls.Add(error);
                 return;
             }
+
             if(policyName == "")
             {
                 error.Text = "Missing policy name";
