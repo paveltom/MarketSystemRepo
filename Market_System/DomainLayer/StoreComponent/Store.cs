@@ -475,12 +475,26 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void AddStorePurchasePolicy(string userID, Purchase_Policy newPolicy)
+        public void AddStorePurchasePolicy(string userID, List<string> newPolicyProps) // string polID, string polName, double salePercentage, string description, string category, Statement formula
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
                 {
+                    Purchase_Policy newPolicy = null;
+                    switch (newPolicyProps[0])
+                    {
+                        case "Category":  // type, string polName, double salePercentage, string description, string category, Statement formula
+                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
+                            break;
+                        case "Product":  // type, string polName, double salePercentage, string description, Statement formula, string productID
+                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
+                            break;
+                        case "Store": // type, string polName, double salePercentage, string description, string storeID, String formula
+                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
+                            break;
+                    }
+
                     if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                         Save();
                     else
@@ -491,6 +505,27 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void AddStorePurchasePolicy(string userID, Purchase_Policy newPolicy) // for tests only
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
+                {
+
+                    if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
+                        Save();
+                    else
+                        throw new Exception("Policy already exists.");
+                }
+                else
+                    throw new Exception("You don't have permissions to add new policy.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
 
         public void RemoveStorePurchasePolicy(string userID, String policyID)
         {
@@ -507,7 +542,23 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy)
+        public void AddStorePurchaseStrategy(string userID, List<string> strategyPopsWithoutID)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.Policy))
+                {
+                    Purchase_Strategy newStrategy = new Purchase_Strategy(this.Store_ID+"StoreStrategyID" + strategyPopsWithoutID[0], strategyPopsWithoutID[0], strategyPopsWithoutID[1], strategyPopsWithoutID[2]);
+                    if (this.storeStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
+                        Save();
+                    else throw new Exception("Strategy already exists.");
+                }
+                else throw new Exception("You have no permission to add strategy.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void AddStorePurchaseStrategy(string userID, Purchase_Strategy newStrategy) // for tests only
         {
             try
             {
@@ -878,7 +929,22 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddProductPurchasePolicy(string userID, string productID, Purchase_Policy newPolicy)
+
+        public void AddProductPurchasePolicy(string userID, string productID, List<string> newPolicyProps)
+        {
+            try
+            {
+                if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
+                {
+                    AcquireProduct(productID).AddPurchasePolicy(newPolicyProps);
+                    ReleaseProduct(productID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddProductPurchasePolicy(string userID, string productID, Purchase_Policy newPolicy) // for tests only
         {
             try
             {
@@ -904,13 +970,13 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void AddProductPurchaseStrategy(string userID, string productID, Purchase_Strategy newStrategy)
+        public void AddProductPurchaseStrategy(string userID, string productID, List<string> newStrategyProperties)
         {
             try
             {
                 if (this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! validate Policy perm
                 {
-                    AcquireProduct(productID).AddPurchaseStrategy(newStrategy);
+                    AcquireProduct(productID).AddPurchaseStrategy(newStrategyProperties);
                     ReleaseProduct(productID);
                 }
                 else

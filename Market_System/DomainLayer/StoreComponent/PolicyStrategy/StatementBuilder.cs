@@ -140,7 +140,7 @@ namespace Market_System.DomainLayer.StoreComponent
         // OR: OR[[<Statement>][<Statement>]...]
         // AND: AND[[<Statement>][<Statement>]...]
         // AtLeast: AtLeast[[<Quantity>][<Statement>]]
-        // AtMost: AtMost[[<StringQuantity>][<Statement>]]
+        // AtMost: AtMost[[<Quantity>][<Statement>]]
         // Equal: Equal[[<StringAttributeName>][<StringAttributeValue>]]
         // SmallerThan: SmallerThan[[<StringAttributeName>][<StringAttributeValue>]]
         // GreaterThan: GreaterThan[[<StringAttributeName>][<StringAttributeValue>]]

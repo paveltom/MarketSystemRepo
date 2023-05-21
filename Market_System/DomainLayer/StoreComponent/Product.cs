@@ -1,4 +1,5 @@
-﻿using Microsoft.Ajax.Utilities;
+﻿using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -115,7 +116,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddPurchasePolicy(Purchase_Policy newPolicy)
+        public void AddPurchasePolicy(Purchase_Policy newPolicy) // for tests only
         {
             try
             {
@@ -127,6 +128,22 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        public void AddPurchasePolicy(List<string> newPolicyProps) // type, string polName, double salePercentage, string description, Statement formula, string productID
+        {
+            try
+            {
+                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
+                if (this.PurchasePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
+                    Save();
+                else
+                    throw new Exception("Policy already exists.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
         public void RemovePurchasePolicy(String policyID)
         {
             try
@@ -137,6 +154,21 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+        public void AddPurchaseStrategy(List<string> newStrategyProperties)
+        {
+            try
+            {
+
+                Purchase_Strategy newStrategy = new Purchase_Strategy(this.Product_ID + "ProductStrategyID" + newStrategyProperties[0], newStrategyProperties[0], newStrategyProperties[1], newStrategyProperties[2]);
+
+                if (this.PurchaseStrategies.TryAdd(newStrategy.StrategyID, newStrategy))
+                    Save();
+                else throw new Exception("Strategy already exist.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public void AddPurchaseStrategy(Purchase_Strategy newStrategy)
         {
