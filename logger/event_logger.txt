@@ -3712,3 +3712,33 @@ Friday, 19 May 2023 : getting store with id: 1680644778 was done successfully
 Friday, 19 May 2023 : getting store with id: 1680644778 was done successfully 
 Friday, 19 May 2023 : getting store with id: 1680644778 was done successfully 
 Friday, 19 May 2023 : getting store with id: 1680644778 was done successfully 
+Tuesday, 23 May 2023 : guest : guest429167572 has logged in
+Tuesday, 23 May 2023 : nekola has registered!
+Tuesday, 23 May 2023 : bayan has registered!
+Tuesday, 23 May 2023 : opening store with id: 1913759611 has failed
+Tuesday, 23 May 2023 : Added the product:1913759611_554226911to store: 1913759611 has been done successfully
+Tuesday, 23 May 2023 : assigning new manager with username : nekola to the store with id: 1913759611
+Tuesday, 23 May 2023 : 1913759611Logged-out succesfully
+Tuesday, 23 May 2023 : guest : guest111580023 has logged in
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : add a purchase strategy for a store, for store id: 429167572
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : removed a store purcahse strategy, for product id: 429167572
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : add a purchase strategy for a store, for store id: 429167572
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : removed a store purcahse strategy, for product id: 429167572
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
+Tuesday, 23 May 2023 : getting store with id: 429167572 was done successfully 
