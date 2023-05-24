@@ -1,0 +1,10 @@
+register nekola tesla falador
+register bayan pass varrock
+register ben abc varrock
+login bayan pass
+open_new_store sword_store
+assign_new_owner nekola
+logout
+login nekola tesla
+assign_new_owner ben
+logout
