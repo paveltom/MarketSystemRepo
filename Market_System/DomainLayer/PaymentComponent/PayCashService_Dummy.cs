@@ -4,13 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Net.Http;
+using System.Threading.Tasks;
+
 namespace Market_System.DomainLayer.PaymentComponent
 {
     class PayCashService_Dummy : PaymentService
     {
+
+        private static readonly HttpClient client = new HttpClient();
+        private string url = "https://php-server-try.000webhostapp.com/";
+
+
+
         // bayan changed to be singleton
         private static PayCashService_Dummy instance;
-        private PayCashService_Dummy()
+        public PayCashService_Dummy()
         {
         }
 
@@ -35,3 +44,30 @@ namespace Market_System.DomainLayer.PaymentComponent
         }
     }
 }
+
+/*
+
+
+
+
+
+    public static async Task Main()
+    {
+        try
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            response.EnsureSuccessStatusCode(); // Ensure a successful response
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responseBody);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+
+ * 
+ * /

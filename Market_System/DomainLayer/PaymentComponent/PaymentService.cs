@@ -8,6 +8,7 @@ namespace Market_System.DomainLayer.PaymentComponent
 {
     internal interface PaymentService
     {
+
         public Boolean pay(string credit_card,double amount);
     }
 }

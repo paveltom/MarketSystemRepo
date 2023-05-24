@@ -1073,7 +1073,7 @@ namespace Market_System.DomainLayer
                 Cart cart = userFacade.get_cart(username);
                 double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
-                PayCashService_Dummy.get_instance().pay(credit_card_details, price);
+                PaymentProxy.get_instance().pay(credit_card_details, price);
                 // userFacade.save_purhcase_in_user(username,cart);
                 return "Payment was successfull";
             }
