@@ -9,18 +9,34 @@ namespace Market_System.DomainLayer.DeliveryComponent
     internal class DeliveryProxy : DeliveryService
     {
 
-        private static DeliveryProxy instance;
-        private DeliveryProxy()
+        private static DeliveryService instance;
+
+        public DeliveryService DeliveryService
+        {
+            get { return instance; }
+            set { instance = value; }
+        }
+        private DeliveryProxy(DeliveryService deliveryService)
         {
         }
 
-        public static DeliveryProxy get_instance()
+        public static DeliveryService get_instance()
         {
             if (instance == null)
             {
-                instance = new DeliveryProxy();
+                instance = new DeliveryProxy(new HTTPDeliveryService());
             }
             return instance;
+        }
+
+        public string deliver(string name, string address, string city, string country, string zip)
+        {
+            return DeliveryService.deliver(name, address, city, country, zip);
+        }
+
+        public string cancel_deliver(string transactionId)
+        {
+            return DeliveryService.cancel_deliver(transactionId);
         }
 
 
@@ -44,19 +60,8 @@ namespace Market_System.DomainLayer.DeliveryComponent
             return DeliveryService.deliver(address, weight);
         }
         */
-        public bool deliver(string address, double weight)
-        {
-            if(address.Equals(""))
-            {
-                throw new Exception("cannot deliver due to address or weight");
-            }
-            if (weight > 0)
-            {
-                return true;
-            }
+ 
 
-            throw new Exception("cannot deliver due to address or weight");
-            
-        }
+      
     }
 }
