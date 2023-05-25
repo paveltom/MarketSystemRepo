@@ -38,30 +38,5 @@ namespace Market_System.DomainLayer.DeliveryComponent
         {
             return DeliveryService.cancel_deliver(transactionId);
         }
-
-
-
-        /*
-        private DeliveryService deliveryService;
-
-        public DeliveryService DeliveryService
-        {
-            get { return deliveryService; }
-            set { deliveryService = value; }
-        }
-
-        public DeliveryProxy(DeliveryService deliveryService)
-        {
-            this.DeliveryService = deliveryService;
-        }
-
-        public bool deliver(string address, double weight)
-        {
-            return DeliveryService.deliver(address, weight);
-        }
-        */
- 
-
-      
     }
 }
