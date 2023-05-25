@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,18 +24,24 @@ namespace Market_System.DomainLayer.PaymentComponent
             PaymentService = paymentService;
         }
 
+
         public static PaymentService get_instance()
         {
             if (instance == null)
             {
-                instance = new PaymentProxy(new PayCashService_Dummy());
+                instance = new PaymentProxy(new HTTPPayService());
             }
             return instance;
         }
 
-        public Boolean pay(string credit_card, double amount)
+        public string pay(string card_number, string month, string year, string holder, string ccv, string id)
         {
-            return PaymentService.pay(credit_card,amount);
+            return PaymentService.pay(card_number, month, year, holder, ccv, id);
+        }
+
+        public string cancel_pay(string transaction_id)
+        {
+            return PaymentService.cancel_pay(transaction_id);
         }
     }
 }

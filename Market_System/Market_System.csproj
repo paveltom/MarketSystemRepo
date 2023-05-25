@@ -229,6 +229,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DomainLayer\CommunicationComponent\NotificationRepo.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />
+    <Compile Include="DomainLayer\PaymentComponent\HTTPPayService.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AnyStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtLeastStatement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\AtMostStatement.cs" />
