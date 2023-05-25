@@ -332,7 +332,7 @@ namespace Market_System.Tests.unit_tests
             user_facade.Login("test1", "pass");
             try
             {
-               Assert.AreEqual("Delivery is available", Market_System.DomainLayer.MarketSystem.GetInstance().Check_Delivery("address"));
+               Assert.AreEqual("Delivery is available", Market_System.DomainLayer.MarketSystem.GetInstance().Check_Delivery("test1","address","city","country","zip"));
             }
 
             catch(Exception e)

@@ -9,54 +9,35 @@ namespace Market_System.DomainLayer.DeliveryComponent
     internal class DeliveryProxy : DeliveryService
     {
 
-        private static DeliveryProxy instance;
-        private DeliveryProxy()
+        private static DeliveryService instance;
+
+        public DeliveryService DeliveryService
         {
+            get { return instance; }
+            set { instance = value; }
+        }
+        private DeliveryProxy(DeliveryService deliveryService)
+        {
+            instance = deliveryService;
         }
 
-        public static DeliveryProxy get_instance()
+        public static DeliveryService get_instance()
         {
             if (instance == null)
             {
-                instance = new DeliveryProxy();
+                 new DeliveryProxy(new HTTPDeliveryService());
             }
             return instance;
         }
 
-
-
-        /*
-        private DeliveryService deliveryService;
-
-        public DeliveryService DeliveryService
+        public string deliver(string name, string address, string city, string country, string zip)
         {
-            get { return deliveryService; }
-            set { deliveryService = value; }
+            return instance.deliver(name, address, city, country, zip);
         }
 
-        public DeliveryProxy(DeliveryService deliveryService)
+        public string cancel_deliver(string transactionId)
         {
-            this.DeliveryService = deliveryService;
-        }
-
-        public bool deliver(string address, double weight)
-        {
-            return DeliveryService.deliver(address, weight);
-        }
-        */
-        public bool deliver(string address, double weight)
-        {
-            if(address.Equals(""))
-            {
-                throw new Exception("cannot deliver due to address or weight");
-            }
-            if (weight > 0)
-            {
-                return true;
-            }
-
-            throw new Exception("cannot deliver due to address or weight");
-            
+            return instance.cancel_deliver(transactionId);
         }
     }
 }

@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Market_System.DomainLayer.PaymentComponent
 {
     class PayCashService_Dummy : PaymentService
     {
+
         // bayan changed to be singleton
         private static PayCashService_Dummy instance;
-        private PayCashService_Dummy()
+        public PayCashService_Dummy()
         {
         }
 
@@ -23,15 +25,17 @@ namespace Market_System.DomainLayer.PaymentComponent
             return instance;
         }
 
-
-        public bool pay(string credit_card, double amount)
+        public string cancel_pay(string transaction_id)
         {
-            if (amount > 0)
-            {
-                return true;
-            }
-            else
-                throw new Exception("cannot pay invaild price or credit card details");
+            return "1";
+        }
+
+
+
+        /// <returns>1</returns>
+        public string pay(string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            return "1";
         }
     }
 }

@@ -10,6 +10,11 @@ namespace Market_System.DomainLayer.DeliveryComponent
     {
         public UpsDelivery() { }
 
+        public string cancel_deliver(string transactionId)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool deliver(string address, double weight)
         {
             if (weight > 0)
@@ -20,6 +25,11 @@ namespace Market_System.DomainLayer.DeliveryComponent
             {
                 return false;
             }
+        }
+
+        public string deliver(string name, string address, string city, string country, string zip)
+        {
+            throw new NotImplementedException();
         }
     }
 }
