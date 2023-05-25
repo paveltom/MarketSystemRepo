@@ -174,7 +174,7 @@ namespace Market_System.ServiceLayer
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "checkout":
-                        res=check_out(command[1]);
+                        res=check_out(command[1], command[2], command[3], command[4], command[5],command[6]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
@@ -432,12 +432,12 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> check_delivery(string address)
+        public Response<string> check_delivery(string name, string address, string city, string country, string zip)
         {
 
             try
             {
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(address));
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Delivery(name,address,city,country,zip));
                 Logger.get_instance().record_event("checking deilvery for address: " + address + " succefully done.");
                 return ok;
             }
@@ -465,13 +465,13 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<string> check_out(string credit_card)
+        public Response<string> check_out(string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
 
                 
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(this.session_id, credit_card));
+                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(this.session_id, card_number,month,year,holder,ccv,id));
                 //this.ssc.purchase(session_id, cart.convert_to_item_DTO());
                 this.ssc.purchase(session_id);
                 this.usc.save_purhcase_in_user(session_id);
@@ -1538,6 +1538,16 @@ namespace Market_System.ServiceLayer
             {
                 return Response<string>.FromError(e.Message);
             }
+        }
+
+        public Response<string> cancel_checkout(string transaction_id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Response<string> cancel_delivery(string transaction_id)
+        {
+            throw new NotImplementedException();
         }
         //yotam
     }

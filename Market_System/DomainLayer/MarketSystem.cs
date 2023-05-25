@@ -1015,11 +1015,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Check_Delivery(string adderss)
+        public string Check_Delivery(string name, string address, string city, string country, string zip)
         {
             try 
             {
-                DeliveryProxy.get_instance().deliver(adderss, 99);
+                DeliveryProxy.get_instance().deliver(name,address,city,country,zip);
                 
                    // userFacade.Check_Delivery(username);
                     return "Delivery is available";
@@ -1064,7 +1064,7 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string Check_Out(string session_id,string credit_card_details)
+        public string Check_Out(string session_id, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
@@ -1073,7 +1073,7 @@ namespace Market_System.DomainLayer
                 Cart cart = userFacade.get_cart(username);
                 double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
-                PaymentProxy.get_instance().pay(credit_card_details, price);
+                PaymentProxy.get_instance().pay(card_number,month,year,holder,ccv,id);
                 // userFacade.save_purhcase_in_user(username,cart);
                 return "Payment was successfull";
             }

@@ -13,7 +13,7 @@ namespace Market_System.DomainLayer.PaymentComponent
         public static PaymentService instance;
 
 
-        public PaymentService PaymentService
+        public PaymentService Instance
         {
             get { return instance; }
             set { instance = value; }
@@ -21,7 +21,7 @@ namespace Market_System.DomainLayer.PaymentComponent
 
         public PaymentProxy(PaymentService paymentService)
         {
-            PaymentService = paymentService;
+            instance = paymentService;
         }
 
 
@@ -29,19 +29,19 @@ namespace Market_System.DomainLayer.PaymentComponent
         {
             if (instance == null)
             {
-                instance = new PaymentProxy(new HTTPPayService());
+                 new PaymentProxy(new HTTPPayService());
             }
             return instance;
         }
 
         public string pay(string card_number, string month, string year, string holder, string ccv, string id)
         {
-            return PaymentService.pay(card_number, month, year, holder, ccv, id);
+            return instance.pay(card_number, month, year, holder, ccv, id);
         }
 
         public string cancel_pay(string transaction_id)
         {
-            return PaymentService.cancel_pay(transaction_id);
+            return instance.cancel_pay(transaction_id);
         }
     }
 }

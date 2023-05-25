@@ -25,7 +25,7 @@
          <asp:Label ID="Label6" runat="server" ForeColor="Green" Font-Size="Medium" Text="Holder:"></asp:Label>
          <asp:TextBox ID="TextOfHolder" runat="server"></asp:TextBox>
          <br />
-         <asp:Label ID="Label13" runat="server" ForeColor="Green" Font-Size="Medium" Text="CVV:"></asp:Label>
+         <asp:Label ID="Label13" runat="server" ForeColor="Green" Font-Size="Medium" Text="CCV:"></asp:Label>
 
          <asp:TextBox ID="CVVTextBox" runat="server"></asp:TextBox>
 

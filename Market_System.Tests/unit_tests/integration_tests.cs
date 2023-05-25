@@ -212,7 +212,7 @@ namespace Market_System.Tests.unit_tests
                 user_id = ms.get_userid_from_session_id(session_id);
                 ms.ReserveProduct(new ItemDTO(item_dto_1.GetID(), 10));
                 ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
-                ms.Check_Out(session_id, "5998-5858-7161-2561");
+                ms.Check_Out(session_id, "5998585871612561","4","2030","bayan","123","123456789");
                 Cart cart = ms.get_cart_of_userID(user_id);
                 ItemDTO bought_item_1 = cart.convert_to_item_DTO()[0];
                 ms.purchase(session_id);
@@ -228,7 +228,7 @@ namespace Market_System.Tests.unit_tests
                 user_id = ms.get_userid_from_session_id(session_id);
                 ms.ReserveProduct(new ItemDTO(item_dto_2.GetID(), 5));
                 ms.Add_Product_To_basket(item_dto_2.GetID(), session_id, "5");
-                ms.Check_Out(session_id, "5998-5858-7161-2561");
+                ms.Check_Out(session_id, "5998585871612561", "4", "2030", "bayan", "123", "123456789");
                 Cart cart_2 = ms.get_cart_of_userID(user_id);
                 ms.purchase(session_id);
                 ItemDTO bought_item_2 = cart_2.convert_to_item_DTO()[0];
@@ -276,8 +276,8 @@ namespace Market_System.Tests.unit_tests
                 ms.ReserveProduct(new ItemDTO(item_dto_2.GetID(), 5));
                 ms.Add_Product_To_basket(item_dto_2.GetID(), session_id, "5");
                 Cart cart = ms.get_cart_of_userID(user_id);
-                ms.Check_Out(session_id, "5998-5858-7161-2561");
-               
+                ms.Check_Out(session_id, "5998585871612561", "4", "2030", "bayan", "123", "123456789");
+
                 ms.purchase(session_id);
                 ms.save_purhcase_in_user(session_id);
                 List<PurchaseHistoryObj> history= ms.get_purchase_history_of_a_member(session_id);
@@ -328,7 +328,7 @@ namespace Market_System.Tests.unit_tests
                 ms.ReserveProduct(new ItemDTO(item_dto_1.GetID(), 10));
                 ms.Add_Product_To_basket(item_dto_1.GetID(), session_id, "10");
                 Cart cart = ms.get_cart_of_userID(user_id);
-                ms.Check_Out(session_id,"5998-5858-7161-2561");
+                ms.Check_Out(session_id, "5998585871612561", "4", "2030", "bayan", "123", "123456789");
 
                 ms.purchase(session_id);
                 ms.save_purhcase_in_user(session_id);

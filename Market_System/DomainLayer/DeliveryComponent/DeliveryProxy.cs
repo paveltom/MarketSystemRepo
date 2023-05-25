@@ -18,25 +18,26 @@ namespace Market_System.DomainLayer.DeliveryComponent
         }
         private DeliveryProxy(DeliveryService deliveryService)
         {
+            instance = deliveryService;
         }
 
         public static DeliveryService get_instance()
         {
             if (instance == null)
             {
-                instance = new DeliveryProxy(new HTTPDeliveryService());
+                 new DeliveryProxy(new HTTPDeliveryService());
             }
             return instance;
         }
 
         public string deliver(string name, string address, string city, string country, string zip)
         {
-            return DeliveryService.deliver(name, address, city, country, zip);
+            return instance.deliver(name, address, city, country, zip);
         }
 
         public string cancel_deliver(string transactionId)
         {
-            return DeliveryService.cancel_deliver(transactionId);
+            return instance.cancel_deliver(transactionId);
         }
     }
 }

@@ -248,11 +248,11 @@ namespace Market_System.ServiceLayer
 
         }
         
-        public string Check_Delivery(string address)
+        public string Check_Delivery(string name, string address, string city, string country, string zip)
         {
             try
             {
-                return market_System.Check_Delivery(address);
+                return market_System.Check_Delivery(name, address, city,country,zip);
             }
 
             catch(Exception e)
@@ -262,12 +262,12 @@ namespace Market_System.ServiceLayer
         }
         
         
-        public string Check_Out(string session_id,string credit_card)
+        public string Check_Out(string session_id, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
 
-                return market_System.Check_Out(session_id, credit_card);
+                return market_System.Check_Out(session_id, card_number,month,year,holder,ccv,id);
             }
 
             catch (Exception e)
