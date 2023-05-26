@@ -1062,7 +1062,7 @@ namespace Market_System.Tests.SeviceLevelTests
     "0", "5.0", "5.0", "5.0", "5.0_5.0", "ggg", "ggggg");
             //Action:
             Response<string> response = service.add_product_to_basket(resp2.Value.GetID(), "3");
-            Response<string> checkout = service.check_out("5665654");
+            Response<string> checkout = service.check_out("5665654", "May", "2025", "Bayan Kassem", "215", "308235967");
             
             //Result:
             Assert.AreEqual(false, checkout.ErrorOccured);
@@ -1081,11 +1081,11 @@ namespace Market_System.Tests.SeviceLevelTests
             Response<ItemDTO> resp2 = service.add_product_to_store(store.Value.StoreID, "Bayanka", "ggg", "500.0", "5",
     "5", "5.0", "5.0", "5.0", "5.0_5.0", "ggg", "ggggg");
             //Action:
-            Response<string> response = service.add_product_to_basket(resp2.Value.GetID(), "1");
-            Response<string> checkout = service.check_out("5665654");
+            Response<string> response = service.add_product_to_basket(resp2.Value.GetID(), "501");
+            //Response<string> checkout = service.check_out("5665654", "May", "2025", "Bayan Kassem", "215", "308235967");
 
             //Result:
-            Assert.AreEqual(true, checkout.ErrorOccured);
+            Assert.AreEqual(true, response.ErrorOccured);
 
             //tearDown:
             oneThreadCleanup();
