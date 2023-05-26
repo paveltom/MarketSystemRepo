@@ -114,12 +114,6 @@ namespace Market_System.DomainLayer
                         StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
-
-
-
-
-
-                        Market_System.DAL.StoreRepo.GetInstance().AddStore("admin", new Store("pashaDBFounderID", "pashaDBStoreID", null, null, null, false)); // for tests only!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section

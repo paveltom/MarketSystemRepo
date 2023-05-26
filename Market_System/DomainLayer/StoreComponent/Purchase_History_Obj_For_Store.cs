@@ -9,7 +9,7 @@ namespace Market_System.DomainLayer.StoreComponent
     {
         
         
-       private string product_id;
+        private string product_id;
         private int quantity;
 
         public Purchase_History_Obj_For_Store(ItemDTO item)

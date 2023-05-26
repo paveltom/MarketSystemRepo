@@ -1,5 +1,6 @@
 ﻿using Market_System.DAL.DBModels;
 using Market_System.DomainLayer.StoreComponent;
+using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -13,21 +14,6 @@ namespace Market_System.DAL
 {
     public class StoreRepo
     {
-        // private static Dictionary<Store, Dictionary<Product, int>> storeDatabase; //<Store, <Product, quantity>>
-        // private static Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>> purchase_history; // key in second dictionary is date  val
-
-
-
-        /*
-        public void UseProducts()
-        {
-            using (var context = new ProductContext())
-            {     
-                // Perform data access using the context
-            }
-        }
-         */
-
 
         // init those fields on Instance initialize via DBContext access
         private static List<string> opened_stores_ids; 
@@ -64,6 +50,13 @@ namespace Market_System.DAL
                 {
                     File.Delete(path);
                 }
+
+        }
+
+
+        public void destroy()
+        {
+            Instance = null;
 
         }
 
@@ -132,23 +125,62 @@ namespace Market_System.DAL
 
         public Store getStore(string store_id)
         {
-            try
+            using (StoreDataContext context = new StoreDataContext())
             {
-                foreach (Store S in storeDatabase.Keys)
+                StoreModel store;
+                if ((store = context.Stores.SingleOrDefault(x => x.StoreID == store_id)) != null)
                 {
-                    if (S.Store_ID.Equals(store_id))
-                    {
-                        return S;
-                    }
+                    return reBuildStore(store);
                 }
                 throw new Exception("store does not exists");
-            }
-            catch (Exception e)
-            {
-                throw e;
+
             }
         }
 
+        public Store GetStore(string storeID)
+        {
+            return getStore(storeID);
+        }
+
+
+        private Store reBuildStore(StoreModel store)
+        {
+            List<Purchase_Policy> policies = store.Policies.Select(x =>
+            {
+                switch (x.Target)
+                {
+                    case "Product":
+                        return (Purchase_Policy)new ProductPolicy(x.PolicyID, x.PolicyName, x.SalePercentage, x.Description, StatementBuilder.GenerateFormula(x.SalePolicyFormula), x.TargetValue);
+                    case "Store":
+                        return (Purchase_Policy)new StorePolicy(x.PolicyID, x.PolicyName, x.SalePercentage, x.Description, x.TargetValue, StatementBuilder.GenerateFormula(x.SalePolicyFormula));
+                    default:
+                        return (Purchase_Policy)new CategoryPolicy(x.PolicyID, x.PolicyName, x.SalePercentage, x.Description, x.TargetValue, StatementBuilder.GenerateFormula(x.SalePolicyFormula));
+                }
+            }).ToList();
+            List<Purchase_Strategy> strategies = store.Strategies.Select(x => new Purchase_Strategy(x.StrategyID, x.StrategyName, x.Description, x.StrategyFormula)).ToList();
+
+            Store ret = new Store(store.founderID, store.StoreID, policies, strategies, store.Products.Select(x => x.ProductID).ToList(), store.temporaryClosed);
+
+            List<Purchase_Policy> defaultPolicies = store.DefaultPolicies.Select(x =>
+            {
+                switch (x.Target)
+                {
+                    case "Product":
+                        return (Purchase_Policy)new ProductPolicy(x.PolicyID, x.PolicyName, x.SalePercentage, x.Description, StatementBuilder.GenerateFormula(x.SalePolicyFormula), x.TargetValue);
+                    case "Store":
+                        return (Purchase_Policy)new StorePolicy(x.PolicyID, x.PolicyName, x.SalePercentage, x.Description, x.TargetValue, StatementBuilder.GenerateFormula(x.SalePolicyFormula));
+                    default:
+                        return (Purchase_Policy)new CategoryPolicy(x.PolicyID, x.PolicyName, x.SalePercentage, x.Description, x.TargetValue, StatementBuilder.GenerateFormula(x.SalePolicyFormula));
+                }
+            }).ToList();
+            List<Purchase_Strategy> defaultStrategies = store.DefaultStrategies.Select(x => new Purchase_Strategy(x.StrategyID, x.StrategyName, x.Description, x.StrategyFormula)).ToList();
+
+            ret.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultPolicies.ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
+            ret.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStrategies.ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x)); ;
+
+            return ret;
+
+        }
 
 
         public string getNewStoreID()
@@ -168,6 +200,114 @@ namespace Market_System.DAL
         }
 
 
+
+        public List<Store> GetStores() // return ALL stores - also closed ones
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                return context.Stores.Select(x => reBuildStore(x)).ToList();
+            }
+        }
+
+
+        public void saveStore(Store storeToSave)
+        {
+
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                // ============================== HERE ==============================
+                //                                  |
+                //                                  |
+                //                                  |
+                //                                  |
+                //                                  |
+                //                                  V
+                //                                Continue
+                
+
+
+            }
+
+
+            Dictionary<Product, int> save_me = null;
+
+
+            foreach (Store s in storeDatabase.Keys)
+            {
+                if (s.Store_ID.Equals(storeToSave.Store_ID))
+                {
+
+                    save_me = storeDatabase[s];
+                    storeDatabase.Remove(s);
+
+                    break;
+                }
+            }
+            if (save_me != null)
+            {
+                storeDatabase.Add(storeToSave, save_me);
+                return;
+            }
+            throw new Exception("storetosave doesn't exists in storeRepo");
+        }
+
+
+
+
+        public string getPurchaseHistoryOfTheStore(string store_ID)
+        {
+            if (opened_stores_ids.Contains(store_ID))
+            {
+                string return_me = "";
+                Store s = getStore(store_ID);
+                foreach (KeyValuePair<string, List<Purchase_History_Obj_For_Store>> purchase__pair in purchase_history[s])
+                {
+                    return_me = return_me + purchase__pair.Key + ": \n";
+                    foreach (Purchase_History_Obj_For_Store obj in purchase__pair.Value)
+                    {
+                        return_me = return_me + obj.tostring();
+
+                    }
+
+                }
+                return return_me;
+            }
+            else
+            {
+                if (temporary_closed_stores_ids.Contains(store_ID))
+                {
+                    throw new Exception("can't show a closed store's purhase history!");
+                }
+                else
+                {
+                    throw new Exception("store does not exist");
+                }
+            }
+        }
+
+
+
+
+
+        private string GetStoreIdFromProductID(string productID)
+        {
+            try
+            {
+                return productID.Substring(0, productID.IndexOf("_"));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+
+        internal void close_store_temporary(string store_ID)
+        {
+            opened_stores_ids.Remove(store_ID);
+            temporary_closed_stores_ids.Add(store_ID);
+        }
 
 
 
@@ -480,26 +620,6 @@ namespace Market_System.DAL
         }
 
 
-
-
-
-        public Store GetStore(string storeID)
-        {
-            foreach (Store s in storeDatabase.Keys)
-            {
-                if (s.Store_ID.Equals(storeID))
-                {
-                    return s;
-                }
-            }
-
-            throw new Exception("No such store with the provided Store ID");
-        }
-
-
-
-
-
         public Product GetProduct(string productID)
         {
             var storeID = GetStoreIdFromProductID(productID);
@@ -512,35 +632,7 @@ namespace Market_System.DAL
                 }
             }
             throw new Exception("No such product in this store with the provided ID");
-        }
-
-
-
-        
-
-        public void saveStore(Store storeToSave)
-        {
-            Dictionary<Product, int> save_me = null;
-            
-
-            foreach (Store s in storeDatabase.Keys)
-            {
-                if (s.Store_ID.Equals(storeToSave.Store_ID))
-                {
-
-                    save_me = storeDatabase[s];
-                    storeDatabase.Remove(s);
-                    
-                    break;
-                }
-            }
-            if (save_me != null)
-            {
-                storeDatabase.Add(storeToSave, save_me);
-                return;
-            }
-            throw new Exception("storetosave doesn't exists in storeRepo");
-        }
+        }      
 
 
 
@@ -559,85 +651,12 @@ namespace Market_System.DAL
                 }
             }
             storeDatabase[store].Add(productToSave, productToSave.Quantity-productToSave.ReservedQuantity);
-        }
+        }    
 
 
 
 
-        public string getPurchaseHistoryOfTheStore(string store_ID)
-        {
-            if (opened_stores_ids.Contains(store_ID))
-            {
-                string return_me = "";
-                Store s = getStore(store_ID);
-                foreach (KeyValuePair<string, List<Purchase_History_Obj_For_Store>> purchase__pair in purchase_history[s])
-                {
-                    return_me = return_me + purchase__pair.Key + ": \n";
-                    foreach (Purchase_History_Obj_For_Store obj in purchase__pair.Value)
-                    {
-                        return_me = return_me + obj.tostring();
-
-                    }
-
-                }
-                return return_me;
-            }
-            else
-            {
-                if (temporary_closed_stores_ids.Contains(store_ID))
-                {
-                    throw new Exception("can't show a closed store's purhase history!");
-                }
-                else
-                {
-                    throw new Exception("store does not exist");
-                }
-            }
-        }
-
-
-
-
-
-        private string GetStoreIdFromProductID(string productID)
-        {
-            try
-            {
-                return productID.Substring(0, productID.IndexOf("_"));
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-
-
-        internal void close_store_temporary(string store_ID)
-        {
-            opened_stores_ids.Remove(store_ID);
-            temporary_closed_stores_ids.Add(store_ID);
-        }
-
-
-
-        public void destroy()
-        {
-            Instance = null;
-
-        }
-
-
-
-
-        public List<Store> GetStores()
-        {
-            List<Store> stores = new List<Store>();
-            foreach(KeyValuePair<Store, Dictionary<Product, int>> pair in storeDatabase){
-                stores.Add(pair.Key);
-            }
-            return stores;
-        }
+        
         */
 
 

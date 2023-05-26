@@ -22,17 +22,23 @@ namespace Market_System.DAL.DBModels
         public bool temporaryClosed { get; set; }
 
         public virtual ICollection<ProductModel> Products { get; set; }
+        public virtual ICollection<PurchaseStrategyModel> Strategies { get; set; }
+        public virtual ICollection<PurchasePolicyModel> Policies { get; set; }
+        public virtual ICollection<PurchaseStrategyModel> DefaultStrategies { get; set; }
+        public virtual ICollection<PurchasePolicyModel> DefaultPolicies { get; set; }
+        public virtual ICollection<EmployeeModel> Employees { get; set; }
 
 
 
-    // those fields will be separated models
-    /*
-    public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
-    public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
-    public ConcurrentDictionary<string, Purchase_Policy> storePolicies;
-    public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies;
-    private Employees employees;
-    private List<string> products;
-    */
-}
+
+
+
+        // those fields will be separated models
+        /*
+        public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> storePolicies;
+        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies;
+        */
+    }
 }
