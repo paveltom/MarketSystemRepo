@@ -22,6 +22,7 @@ namespace Market_System.Presentaion_Layer
             Response<ItemDTO> item = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id);
 
             id.Text = "Name: " + item.Value.get_name();
+            price.Text = "Price: " + item.Value.Price;
             quantity.Text = "Quantity in stock: " + item.Value.GetQuantity().ToString();
             description.Text = "Description: \n" + item.Value.getDescription();
 

@@ -62,7 +62,7 @@ namespace Market_System.Presentaion_Layer
             List<string> list = new List<string>();
             foreach (ItemDTO item in response.Value)
             {
-                list.Add("id:         " + item.GetID() + "        name:     " + item.get_name() + "             quantity:     " + (item.GetQuantity() - item.GetReservedQuantity()));
+                list.Add("ID:   " + item.GetID() + "            name:    " + item.get_name() + "             quantity:     " + (item.GetQuantity() - item.GetReservedQuantity())+ "  price:  "+item.Price);
             }
 
             string[] show_me = list.ToArray();
