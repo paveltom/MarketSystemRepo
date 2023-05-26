@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 
 namespace Market_System.Presentaion_Layer
@@ -272,6 +273,9 @@ namespace Market_System.Presentaion_Layer
                 assign_new_manager_button.Visible = true;
                 assign_new_owner_button.Visible = true;
                 owner_remove_button.Visible = true;
+                daily_sales_label.Visible = true;
+                store_sale_chart.Visible = true;
+                show_store_sale(storeID);
 
             }
             else
@@ -379,7 +383,23 @@ namespace Market_System.Presentaion_Layer
                 Response.Redirect(string.Format("/Presentaion_Layer/PurchasePolicyViewPage.aspx?store_id={0}", selected_store_id));
             }
         }
-        
+
+        protected void show_store_sale(string store_id)
+        {
+
+            string[] x = { "25/05/2023", DateTime.Now.ToShortDateString(), "22/05/2023" };
+            int[] y = { 8091, 10894, 1564 };
+            store_sale_chart.Series[0].Points.DataBindXY(x, y);
+            store_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            foreach (DataPoint point in store_sale_chart.Series[0].Points)
+            {
+                if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
+                {
+                    point.Color = System.Drawing.Color.Red;
+                }
+            }
+        }
+
 
 
 

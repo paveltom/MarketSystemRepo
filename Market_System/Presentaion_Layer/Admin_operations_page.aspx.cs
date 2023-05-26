@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 
 namespace Market_System.Presentaion_Layer
@@ -13,7 +14,7 @@ namespace Market_System.Presentaion_Layer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            show_market_sale();
         }
 
         protected void add_new_admin_click(object sender, EventArgs e)
@@ -61,7 +62,12 @@ namespace Market_System.Presentaion_Layer
             }
         }
 
-        protected void remove_user_click(object sender, EventArgs e)
+
+        protected void show_store_sale(object sender, EventArgs e)
+        {
+        }
+
+            protected void remove_user_click(object sender, EventArgs e)
         {
             if (member_to_delete_txt.Text.Equals("") || member_to_delete_txt.Text.Equals("type-in member's username"))
             {
@@ -82,6 +88,23 @@ namespace Market_System.Presentaion_Layer
                     remove_user_message.ForeColor = System.Drawing.Color.Green;
                 }
                 
+            }
+        }
+
+
+        protected void show_market_sale()
+        {
+
+            string[] x = { "25/05/2023", DateTime.Now.ToShortDateString(), "22/05/2023" };
+            int[] y = { 8091, 10894 ,1564};
+            market_sale_chart.Series[0].Points.DataBindXY(x, y);
+            market_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            foreach(DataPoint point in market_sale_chart.Series[0].Points)
+            {
+                if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
+                {
+                    point.Color = System.Drawing.Color.Red;
+                }
             }
         }
     }

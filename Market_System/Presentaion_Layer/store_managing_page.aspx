@@ -118,6 +118,31 @@
         <asp:Label Text="<%#Container.DataItem %>" runat="server" />
     </ItemTemplate>
         </asp:DataList></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div style="text-align: left">
+        <asp:Label ID="daily_sales_label" runat="server" Text="Daily sales of the store:"></asp:Label>
+        
+    </div>
+    <div></div>
+    <div style="text-align: center">
+        <asp:Chart ID="store_sale_chart" runat="server">
+            <Series>
+                <asp:Series Name="Series1" IsValueShownAsLabel="true"></asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
     <div style="text-align: left">
         <asp:Button ID="ManageStrategiesButton" runat="server" OnClick="ManageStrategiesClick" Text="Manage Strategies" Visible="false" />
     </div>

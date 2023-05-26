@@ -456,6 +456,24 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.DataList show_info_list;
 
         /// <summary>
+        /// daily_sales_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label daily_sales_label;
+
+        /// <summary>
+        /// store_sale_chart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart store_sale_chart;
+
+        /// <summary>
         /// ManageStrategiesButton control.
         /// </summary>
         /// <remarks>

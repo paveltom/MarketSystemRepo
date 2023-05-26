@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Behold Admin's Special Arsenal" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin_operations_page.aspx.cs" Inherits="Market_System.Presentaion_Layer.Admin_operations_page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div style="text-align: center; font-size: medium">
-        <asp:Label ID="Label4" runat="server" Text="Behold Admin's Special Arsenal"></asp:Label>
+        <asp:Label ID="Label4" runat="server" Text="Behold Admin's Arsenal"></asp:Label>
     </div>
 <div></div>
 
@@ -36,6 +36,47 @@
         <asp:Button ID="Button3" runat="server" OnClick="remove_user_click" Text="!Remove" CssClass="btn btn-primary"  />
         <asp:Label ID="remove_user_message" runat="server" Text=""></asp:Label>
     </div>
+    <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="sdasd" runat="server" Text="Daily sales of the market:"></asp:Label>
+        
+    </div>
+    <div style="text-align: center">
+        <asp:Chart ID="market_sale_chart" runat="server">
+            <Series>
+                <asp:Series Name="Series1" IsValueShownAsLabel="true"></asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div style="text-align: center">
+        <asp:Label ID="Label7" runat="server" Text="Daily sales of a store"></asp:Label>
+        <asp:DropDownList ID="ddl_store_id" runat="server" AutoPostBack="True" OnSelectedIndexChanged="show_store_sale">
+        <asp:ListItem Text="Please select a store" Value="nothing_to_show" />
+    </asp:DropDownList>
+        <asp:Button ID="Button4" runat="server" Text="Show" CssClass="btn btn-primary"  />
+    </div>
+    <div style="text-align: center">
+        <asp:Chart ID="Chart1" runat="server">
+            <series>
+                <asp:Series Name="Series1">
+                </asp:Series>
+            </series>
+            <chartareas>
+                <asp:ChartArea Name="ChartArea1">
+                </asp:ChartArea>
+            </chartareas>
+        </asp:Chart>
+    </div>
+    <div></div>
+    <div></div>
     <div></div>
     <div></div>
     <div></div>

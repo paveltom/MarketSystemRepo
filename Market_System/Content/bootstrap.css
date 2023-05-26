@@ -136,8 +136,7 @@ input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
     direction: rtl;
-    text-align: center;
-}
+    }
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -1119,6 +1118,7 @@ img {
   vertical-align: middle;
     margin-left: 0px;
     margin-bottom: 40px;
+    text-align: center;
 }
 .img-responsive,
 .thumbnail > img,
