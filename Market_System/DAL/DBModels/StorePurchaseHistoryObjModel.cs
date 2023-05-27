@@ -10,6 +10,15 @@ namespace Market_System.DAL.DBModels
         public string product_id;
         public int quantity;
 
-        public virtual ProductModel Product { get; set; }
+        public virtual StoreModel Store { get; set; }
+
+
+
+        public override string ToString()
+        {
+            string return_me = "";
+            return_me = return_me + "product " + product_id + " quantity: " + quantity + "\n";
+            return return_me;
+        }
     }
 }

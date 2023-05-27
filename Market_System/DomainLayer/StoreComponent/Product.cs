@@ -44,7 +44,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Product(String product_ID, String name, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight,
                         double[] dimenssions, List<String> comments, ConcurrentDictionary<string, Purchase_Policy> purchase_Policies,
-                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, int boughtTimes, Category category)
+                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, long boughtTimes, Category category, long timesRated)
         {
             this.Product_ID = product_ID;
             this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
@@ -64,6 +64,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Comments = new ConcurrentBag<string>(comments);
             this.storeRepo = StoreRepo.GetInstance();
             this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
+            this.timesRated = timesRated;
         }
 
 
@@ -92,6 +93,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Dimenssions = properties[8].Split('_').Select(s => Double.Parse(s)).ToArray(); // dim1_dim2_dim3
             this.PurchaseAttributes = RetreiveAttributres(properties[9]); // atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
             this.ProductCategory = new Category(properties[10]);
+            this.timesRated = 0;
         }
 
 

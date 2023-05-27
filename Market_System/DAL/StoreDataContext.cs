@@ -16,7 +16,6 @@ namespace Market_System.DAL
         public virtual DbSet<ProductModel> Products{ get; set; }
         public virtual DbSet<EmployeeModel> Employees { get; set; }
         public virtual DbSet<StorePurchaseHistoryObjModel> Purchases { get; set; }
-        public virtual DbSet<CategoryModel> Categories { get; set; }
         public virtual DbSet<PurchasePolicyModel> StorePolicies{ get; set; }
         public virtual DbSet<PurchaseStrategyModel> StoreStrategies{ get; set; }
         public virtual DbSet<PurchasePolicyModel> ProductsPolicies { get; set; }

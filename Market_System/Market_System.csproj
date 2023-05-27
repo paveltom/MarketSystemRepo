@@ -233,8 +233,9 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DAL\DALController.cs" />
-    <Compile Include="DAL\DBModels\CategoryModel.cs" />
+    <Compile Include="DAL\DBModels\CommentModel.cs" />
     <Compile Include="DAL\DBModels\EmployeeModel.cs" />
+    <Compile Include="DAL\DBModels\ProductAttributeModel.cs" />
     <Compile Include="DAL\DBModels\ProductModel.cs" />
     <Compile Include="DAL\DBModels\PurchasePolicyModel.cs" />
     <Compile Include="DAL\DBModels\PurchaseStrategyModel.cs" />

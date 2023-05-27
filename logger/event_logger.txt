@@ -3841,3 +3841,19 @@ Wednesday, May 24, 2023 :  search by category : baby was done successfully
 יום שישי 26 מאי 2023 : assigning new manager with username : nekola to the store with id: 1741748684
 יום שישי 26 מאי 2023 : 1741748684Logged-out succesfully
 יום שישי 26 מאי 2023 : guest : guest2131334214 has logged in
+Friday, 26 May 2023 : guest : guest892954258 has logged in
+Friday, 26 May 2023 : nekola has registered!
+Friday, 26 May 2023 : bayan has registered!
+Friday, 26 May 2023 : opening store with id: 1530618978 has failed
+Friday, 26 May 2023 : Added the product:1530618978_236786432to store: 1530618978 has been done successfully
+Friday, 26 May 2023 : assigning new manager with username : nekola to the store with id: 1530618978
+Friday, 26 May 2023 : 1530618978Logged-out succesfully
+Friday, 26 May 2023 : guest : guest280534769 has logged in
+Friday, 26 May 2023 : guest : guest2104561876 has logged in
+Friday, 26 May 2023 : nekola has registered!
+Friday, 26 May 2023 : bayan has registered!
+Friday, 26 May 2023 : opening store with id: 671864486 has failed
+Friday, 26 May 2023 : Added the product:671864486_1008705504to store: 671864486 has been done successfully
+Friday, 26 May 2023 : assigning new manager with username : nekola to the store with id: 671864486
+Friday, 26 May 2023 : 671864486Logged-out succesfully
+Friday, 26 May 2023 : guest : guest23565809 has logged in

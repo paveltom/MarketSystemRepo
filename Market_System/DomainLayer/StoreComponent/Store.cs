@@ -485,13 +485,13 @@ namespace Market_System.DomainLayer.StoreComponent
                     switch (newPolicyProps[0])
                     {
                         case "Category":  // type, string polName, double salePercentage, string description, string category, Statement formula
-                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
+                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
                         case "Product":  // type, string polName, double salePercentage, string description, Statement formula, string productID
-                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
+                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
                         case "Store": // type, string polName, double salePercentage, string description, string storeID, String formula
-                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
+                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
                     }
 
