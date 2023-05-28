@@ -28,11 +28,11 @@ namespace Market_System.DAL.DBModels
         public string ProductCategory { get;  set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
         public string Dimenssions { get;  set; } // string format: x_y_z
 
-        public DbSet<CommentModel> Comments { get;  set; } // comments format: 
-        public DbSet<ProductAttributeModel> ProductPurchaseAttributes { get; set; }
+        public ICollection<CommentModel> Comments { get;  set; } // comments format: 
+        public ICollection<ProductAttributeModel> ProductPurchaseAttributes { get; set; }
         public virtual StoreModel Store { get; set; }
-        public virtual DbSet<PurchaseStrategyModel> Strategies { get; set; }
-        public virtual DbSet<PurchasePolicyModel> Policies { get; set; }
+        public virtual ICollection<PurchaseStrategyModel> Strategies { get; set; }
+        public virtual ICollection<PurchasePolicyModel> Policies { get; set; }
 
 
 

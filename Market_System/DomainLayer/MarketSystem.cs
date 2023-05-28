@@ -118,8 +118,8 @@ namespace Market_System.DomainLayer
 
 
 
-
-                        Market_System.DAL.StoreRepo.GetInstance().AddStore("pashaDBStoreFounder", new Store("pashaDBStoreFounder", "pashaDBStoreID", null, null, null, false));
+                        // for tests only: delete!!!!!!!!!!!!!!!!!!!!!
+                        //Market_System.DAL.StoreRepo.GetInstance().AddStore("pashaDBStoreFounder", new Store("pashaDBStoreFounder", "pashaDBStoreID", null, null, null, false)); 
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section

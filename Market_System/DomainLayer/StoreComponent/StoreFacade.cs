@@ -7,6 +7,8 @@ using System.Threading;
 using Market_System.DomainLayer;
 using Market_System.Domain_Layer.Store_Component;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DAL;
+
 
 
 namespace Market_System.DomainLayer.StoreComponent

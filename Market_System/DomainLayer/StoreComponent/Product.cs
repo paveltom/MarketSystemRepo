@@ -9,6 +9,8 @@ using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using System.Xml.Linq;
+using Market_System.DAL;
+
 
 namespace Market_System.DomainLayer.StoreComponent
 {

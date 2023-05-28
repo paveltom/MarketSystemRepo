@@ -6,6 +6,8 @@ using System.Collections.Concurrent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DAL;
+
 
 
 namespace Market_System.Tests.unit_tests

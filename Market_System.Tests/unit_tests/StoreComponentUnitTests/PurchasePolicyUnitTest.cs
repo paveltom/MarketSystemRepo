@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Market_System.DAL;
+
+
 
 namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 {

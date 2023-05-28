@@ -3857,3 +3857,44 @@ Friday, 26 May 2023 : Added the product:671864486_1008705504to store: 671864486 
 Friday, 26 May 2023 : assigning new manager with username : nekola to the store with id: 671864486
 Friday, 26 May 2023 : 671864486Logged-out succesfully
 Friday, 26 May 2023 : guest : guest23565809 has logged in
+Sunday, 28 May 2023 : guest : guest1723364188 has logged in
+Sunday, 28 May 2023 : nekola has registered!
+Sunday, 28 May 2023 : bayan has registered!
+Sunday, 28 May 2023 : opening store with id: 1555616913 has failed
+Sunday, 28 May 2023 : Added the product:1555616913_1717742809to store: 1555616913 has been done successfully
+Sunday, 28 May 2023 : assigning new manager with username : nekola to the store with id: 1555616913
+Sunday, 28 May 2023 : 1122589809Logged-out succesfully
+Sunday, 28 May 2023 : guest : guest142500502 has logged in
+Sunday, 28 May 2023 : guest : guest40713739 has logged in
+Sunday, 28 May 2023 : nekola has registered!
+Sunday, 28 May 2023 : bayan has registered!
+Sunday, 28 May 2023 : opening store with id: 187535301 has failed
+Sunday, 28 May 2023 : Added the product:187535301_2060061124to store: 187535301 has been done successfully
+Sunday, 28 May 2023 : assigning new manager with username : nekola to the store with id: 187535301
+Sunday, 28 May 2023 : 187535301Logged-out succesfully
+Sunday, 28 May 2023 : guest : guest438909788 has logged in
+Sunday, 28 May 2023 : opening store with id: 962881835 has failed
+Sunday, 28 May 2023 : guest : guest1106467985 has logged in
+Sunday, 28 May 2023 : nekola has registered!
+Sunday, 28 May 2023 : bayan has registered!
+Sunday, 28 May 2023 : opening store with id: 1985142180 has failed
+Sunday, 28 May 2023 : Added the product:1985142180_983168304to store: 1985142180 has been done successfully
+Sunday, 28 May 2023 : assigning new manager with username : nekola to the store with id: 1985142180
+Sunday, 28 May 2023 : 1985142180Logged-out succesfully
+Sunday, 28 May 2023 : guest : guest842936036 has logged in
+Sunday, 28 May 2023 : guest : guest1959297649 has logged in
+Sunday, 28 May 2023 : nekola has registered!
+Sunday, 28 May 2023 : bayan has registered!
+Sunday, 28 May 2023 : opening store with id: 950927959 has failed
+Sunday, 28 May 2023 : Added the product:505262002to store: 950927959 has been done successfully
+Sunday, 28 May 2023 : assigning new manager with username : nekola to the store with id: 950927959
+Sunday, 28 May 2023 : 59535652Logged-out succesfully
+Sunday, 28 May 2023 : guest : guest873287341 has logged in
+Sunday, 28 May 2023 : guest : guest298831737 has logged in
+Sunday, 28 May 2023 : nekola has registered!
+Sunday, 28 May 2023 : bayan has registered!
+Sunday, 28 May 2023 : opening store with id: 1151332079 has failed
+Sunday, 28 May 2023 : Added the product:530875998to store: 1151332079 has been done successfully
+Sunday, 28 May 2023 : assigning new manager with username : nekola to the store with id: 1151332079
+Sunday, 28 May 2023 : 1151332079Logged-out succesfully
+Sunday, 28 May 2023 : guest : guest1489696923 has logged in

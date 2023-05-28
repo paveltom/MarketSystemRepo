@@ -20,9 +20,9 @@ namespace Market_System.DAL
         public virtual DbSet<PurchaseStrategyModel> Strategies{ get; set; }
 
 
-        public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketSystemDB;Integrated Security=True")
+        public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
         {
-             
+
         }
         
     }

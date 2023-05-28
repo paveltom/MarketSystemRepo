@@ -24,11 +24,11 @@ namespace Market_System.DAL.DBModels
 
         public bool temporaryClosed { get; set; }
 
-        public virtual DbSet<ProductModel> Products { get; set; }
-        public virtual DbSet<PurchaseStrategyModel> Strategies { get; set; }
-        public virtual DbSet<PurchasePolicyModel> Policies { get; set; }
-        public virtual DbSet<EmployeeModel> Employees { get; set; }
-        public virtual DbSet<StorePurchaseHistoryObjModel> PurchaseHistory { get; set; }
+        public virtual ICollection<ProductModel> Products { get; set; }
+        public virtual ICollection<PurchaseStrategyModel> Strategies { get; set; }
+        public virtual ICollection<PurchasePolicyModel> Policies { get; set; }
+        public virtual ICollection<EmployeeModel> Employees { get; set; }
+        public virtual ICollection<StorePurchaseHistoryObjModel> PurchaseHistory { get; set; }
 
 
 
@@ -58,8 +58,10 @@ namespace Market_System.DAL.DBModels
                 else 
                     strategies.Add(new Purchase_Strategy(x.StrategyID, x.StrategyName, x.Description, x.StrategyFormula));
             });
-
-            Store ret = new Store(this.founderID, this.StoreID, policies, strategies, this.Products.Select(x => x.ProductID).ToList(), this.temporaryClosed);            
+            List<string> productIds = new List<string>();
+            if (this.Products != null)
+                productIds = this.Products.Select(x => x.ProductID).ToList();
+            Store ret = new Store(this.founderID, this.StoreID, policies, strategies, productIds, this.temporaryClosed);            
 
             ret.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultPolicies.ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
             ret.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStrategies.ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x)); ;

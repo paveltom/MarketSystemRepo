@@ -36,9 +36,16 @@ namespace Market_System.DAL
                 {
                     if (Instance == null)
                     {
+
                         Instance = new Market_System.DAL.StoreRepo();
-                        opened_stores_ids = new List<string>(); // ---------------------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        temporary_closed_stores_ids = new List<string>(); // -----------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        store_id_generator = new Random();
+                        using (StoreDataContext context = new StoreDataContext())
+                        {
+                            opened_stores_ids = new List<string>(); // ---------------------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            temporary_closed_stores_ids = new List<string>(); // -----------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            opened_stores_ids = opened_stores_ids.Concat(context.Stores.Where(sm => sm.temporaryClosed == false).Select(x => x.StoreID)).ToList();
+                            temporary_closed_stores_ids = temporary_closed_stores_ids.Concat(context.Stores.Where(sm => sm.temporaryClosed == true).Select(x => x.StoreID)).ToList();
+                        }
                     }
                 }
             }
@@ -365,7 +372,9 @@ namespace Market_System.DAL
                     pm.ProductID = product.Product_ID;
                     pm.StoreID = store_ID;
                     pm.UpdateWholeModel(product);
-                    pm.Store = sm;
+                    pm.Store = sm;                    
+                    context.Products.Add(pm);
+                    context.SaveChanges();
                     sm.Products.Add(pm);
                     context.SaveChanges();
                 }

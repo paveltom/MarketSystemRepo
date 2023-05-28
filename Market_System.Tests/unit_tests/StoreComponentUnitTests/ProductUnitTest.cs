@@ -10,6 +10,8 @@ using System.Linq;
 using Market_System.DomainLayer.UserComponent;
 using System.Web.UI.WebControls;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
+using Market_System.DAL;
+
 
 namespace Market_System.Tests.unit_tests
 {

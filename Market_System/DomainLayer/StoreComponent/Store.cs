@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System.Web.WebSockets;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DomainLayer.UserComponent;
+using Market_System.DAL;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
