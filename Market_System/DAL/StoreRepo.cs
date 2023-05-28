@@ -251,8 +251,8 @@ namespace Market_System.DAL
                 if (model != null) 
                 {
                     StorePurchaseHistoryObjModel purchase = new StorePurchaseHistoryObjModel();
-                    purchase.quantity = item.GetQuantity();
-                    purchase.product_id = item.GetID();
+                    purchase.Quantity = item.GetQuantity();
+                    purchase.ProductId = item.GetID();
                     purchase.Store = model;
                     model.PurchaseHistory.Add(purchase);
                     context.SaveChanges();
