@@ -46,7 +46,11 @@ namespace Market_System.Tests.unit_tests
             this.testProduct0.RemovePurchasePolicy("policyTestsPolicyID1");
             Statement storeIDStatement = new EqualRelation("ProductID", this.testProduct0.Product_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
+
+            string samestatement = "[AtLeast[[1][Equal[[ProductID][" + this.testProduct0.Product_ID + "]]]]]";
+            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, this.testProduct0.Product_ID);
+
+            //Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
 
             // Act
             this.testProduct0.AddPurchasePolicy(purchase_Policy0);
@@ -61,8 +65,11 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             Statement storeIDStatement = new EqualRelation("ProductID", this.testProduct0.Product_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+            string samestatement = "[AtLeast[[1][Equal[[ProductID][" + this.testProduct0.Product_ID + "]]]]]";
+
             // Already added in initialization
-            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
+            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, this.testProduct0.Product_ID);
+            //Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
 
             bool error0 = false;
 
@@ -82,7 +89,10 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             Statement storeIDStatement = new EqualRelation("ProductID", this.testProduct0.Product_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
+            string samestatement = "[AtLeast[[1][Equal[[ProductID][" + this.testProduct0.Product_ID + "]]]]]";
+
+            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, this.testProduct0.Product_ID);
+            //Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
             // already added into Product in init
 
             // Act        
@@ -98,7 +108,10 @@ namespace Market_System.Tests.unit_tests
             // Arrange
             Statement storeIDStatement = new EqualRelation("ProductID", this.testProduct0.Product_ID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
+            string samestatement = "[AtLeast[[1][Equal[[ProductID][" + this.testProduct0.Product_ID + "]]]]]";
+            
+            Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, this.testProduct0.Product_ID);
+            //Purchase_Policy purchase_Policy0 = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, this.testProduct0.Product_ID);
 
             bool error0 = false;
             this.testProduct0.RemovePurchasePolicy(purchase_Policy0.PolicyID); // already was added in init
@@ -1034,7 +1047,10 @@ namespace Market_System.Tests.unit_tests
 
             Statement storeIDStatement = new EqualRelation("Name", "testProduct0Name", false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newP0.Product_ID);
+            string samestatement = "[AtLeast[[1][Equal[[Name][testProduct0Name]]]]]";
+
+            Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, newP0.Product_ID);
+            //Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newP0.Product_ID);
 
             string formula = "[   IfThen[ [Equal[ [Category] [WhateverCategory] ] ]  [GreaterThan[ [Quantity]  [1] ] ] ] ]";
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
@@ -1069,11 +1085,14 @@ namespace Market_System.Tests.unit_tests
             int boughtTimes = 11;
             Category category = new Category("testProduct1SomeCategory");
             Product newp1 = new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
-                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
+                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category, 11);
 
             Statement storeIDStatement = new EqualRelation("Name", newp1.Name, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newp1.Product_ID);
+            string samestatement = "[AtLeast[[1][Equal[[Name][" + newp1.Name + "]]]]]";
+
+            Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, newp1.Product_ID);
+            //Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newp1.Product_ID);
 
             string formula = "[   IfThen[ [Equal[ [Category] [WhateverCategory] ] ]  [GreaterThan[ [Quantity]  [1] ] ] ] ]";
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);

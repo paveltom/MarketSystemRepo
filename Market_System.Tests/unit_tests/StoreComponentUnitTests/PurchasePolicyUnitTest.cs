@@ -255,8 +255,10 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
 
             Statement storeIDStatement = new EqualRelation("StoreID", newStore.StoreID, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
+            string samestatement = "[AtLeast[[1][Equal[[StoreID][" + newStore.StoreID + "]]]]]";
+            Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, samestatement);
 
-            Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, statement);
+            //Purchase_Policy testStorePolicy = new StorePolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", newStore.StoreID, statement);
 
             this.facade.AddStorePurchasePolicy(newStore.FounderID, newStore.StoreID, testStorePolicy);
 
@@ -264,7 +266,10 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true, false);
             Statement[] usersFormula = new Statement[] { userIDStatement1, userIDStatement2};
             Statement logicOrFormula = new LogicOR(usersFormula);
-            Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", logicOrFormula);
+            string samestatement2 = "[OR[[Equal[[Username][" + legitTestUser1 + "]]][Equal[[Username][" + legitTestUser2 + "]]]]]";
+            Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", samestatement2);
+
+            //Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", logicOrFormula);
             this.facade.AddStorePurchaseStrategy(founderID, newStore.StoreID, testStoreStrategy);
 
             return StoreRepo.GetInstance().getStore(newStore.StoreID);

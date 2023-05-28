@@ -134,7 +134,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
+                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                 if (this.PurchasePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                     Save();
                 else
