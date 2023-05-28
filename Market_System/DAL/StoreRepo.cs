@@ -142,7 +142,9 @@ namespace Market_System.DAL
                 StoreModel store;
                 if ((store = context.Stores.SingleOrDefault(x => x.StoreID == store_id)) != null)
                 {
-                    return store.ModelTodStore();
+                    //return store.ModelToStore();
+                    return ModelToStore(store);
+
                 }
                 throw new Exception("store does not exists");
 
@@ -176,7 +178,10 @@ namespace Market_System.DAL
         {
             using (StoreDataContext context = new StoreDataContext())
             {
-                return context.Stores.Select(x => x.ModelTodStore()).ToList();
+                //return context.Stores.Select(x => x.ModelToStore()).ToList();
+                List<StoreModel> models = context.Stores.ToList();
+                return models.Select(x => ModelToStore(x)).ToList();
+
             }
         }
 
@@ -270,6 +275,42 @@ namespace Market_System.DAL
 
 
 
+        public Store ModelToStore(StoreModel model)
+        {
+            List<Purchase_Policy> policies = new List<Purchase_Policy>();
+            List<Purchase_Policy> defaultPolicies = new List<Purchase_Policy>();
+            model.Policies.ForEach(x =>
+            {
+                if (x.isDefault)
+                    defaultPolicies.Add(x.ModelToPolicy());
+                else
+                    policies.Add(x.ModelToPolicy());
+            });
+
+            List<Purchase_Strategy> strategies = new List<Purchase_Strategy>();
+            List<Purchase_Strategy> defaultStrategies = new List<Purchase_Strategy>();
+            model.Strategies.ForEach(x =>
+            {
+                if (x.isDefault)
+                    defaultStrategies.Add(new Purchase_Strategy(x.StrategyID, x.StrategyName, x.Description, x.StrategyFormula));
+                else
+                    strategies.Add(new Purchase_Strategy(x.StrategyID, x.StrategyName, x.Description, x.StrategyFormula));
+            });
+            List<string> productIds = new List<string>();
+            if (model.Products != null)
+                productIds = model.Products.Select(x => x.ProductID).ToList();
+            Store ret = new Store(model.founderID, model.StoreID, policies, strategies, productIds, model.temporaryClosed);
+
+            ret.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultPolicies.ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
+            ret.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStrategies.ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x)); ;
+
+            return ret;
+
+        }
+
+
+
+
 
         // =================== END of Store Methods =================== 
         // ============================================================
@@ -297,7 +338,7 @@ namespace Market_System.DAL
                     throw new Exception("store does not exists");
                 ProductModel pm;
                 if ((pm = context.Products.SingleOrDefault(p => p.ProductID == product_id)) != null)
-                    return pm.ModelTodProduct();
+                    return pm.ModelToProduct();
                 else
                     throw new Exception("product does not exists");
             }
@@ -311,7 +352,7 @@ namespace Market_System.DAL
             {
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    return context.Products.Where(x => x.ProductCategory == category.CategoryName).Select(pm => pm.ModelTodProduct()).Select(p => p.GetProductDTO()).ToList();
+                    return context.Products.Where(x => x.ProductCategory == category.CategoryName).Select(pm => pm.ModelToProduct()).Select(p => p.GetProductDTO()).ToList();
                 }
             }
         }
@@ -337,7 +378,7 @@ namespace Market_System.DAL
             {
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    return context.Products.Where(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) || x.ProductCategory.Contains(keyword)).Select(pm => pm.ModelTodProduct()).Select(p => p.GetProductDTO()).ToList();
+                    return context.Products.Where(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) || x.ProductCategory.Contains(keyword)).Select(pm => pm.ModelToProduct()).Select(p => p.GetProductDTO()).ToList();
                 }
             }
         }
@@ -351,7 +392,7 @@ namespace Market_System.DAL
             {
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    return context.Products.Where(x => x.Name.Contains(name)).Select(pm => pm.ModelTodProduct()).Select(p => p.GetProductDTO()).ToList();
+                    return context.Products.Where(x => x.Name.Contains(name)).Select(pm => pm.ModelToProduct()).Select(p => p.GetProductDTO()).ToList();
                 }
             }
         }
@@ -375,8 +416,8 @@ namespace Market_System.DAL
                     pm.Store = sm;                    
                     context.Products.Add(pm);
                     context.SaveChanges();
-                    sm.Products.Add(pm);
-                    context.SaveChanges();
+                    //sm.Products.Add(pm);
+                    //context.SaveChanges();
                 }
             }
             else if (temporary_closed_stores_ids.Contains(store_ID))
@@ -432,13 +473,14 @@ namespace Market_System.DAL
 
         public Product GetProduct(string productID)
         {
-            using (StoreDataContext context = new StoreDataContext())
+            return getProduct(productID);
+            /*using (StoreDataContext context = new StoreDataContext())
             {
                 ProductModel pm;
                 if ((pm = context.Products.SingleOrDefault(p => p.ProductID == productID)) != null)
-                    return pm.ModelTodProduct();
+                    return pm.ModelToProduct();
             }
-            throw new Exception("No such product in this store with the provided ID");
+            throw new Exception("No such product in this store with the provided ID");*/
         }
 
 

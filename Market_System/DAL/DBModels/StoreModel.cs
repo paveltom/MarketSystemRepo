@@ -32,12 +32,7 @@ namespace Market_System.DAL.DBModels
 
 
 
-
-
-
-
-
-        public Store ModelTodStore()
+        /*public Store ModelToStore()
         {
             List<Purchase_Policy> policies = new List<Purchase_Policy>();
             List<Purchase_Policy> defaultPolicies = new List<Purchase_Policy>();
@@ -68,7 +63,7 @@ namespace Market_System.DAL.DBModels
 
             return ret;
 
-        }
+        }*/
 
 
         public void UpdateWholeModel(Store updatedStore)

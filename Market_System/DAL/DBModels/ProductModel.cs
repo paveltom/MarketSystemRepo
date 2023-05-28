@@ -38,7 +38,7 @@ namespace Market_System.DAL.DBModels
 
 
 
-        public Product ModelTodProduct()
+        public Product ModelToProduct()
         {
             Double[] dimenssions = this.Dimenssions.Split('_').Select(s => Double.Parse(s)).ToArray();
             List<string> comments = this.Comments.Select(c => c.Comment).ToList();
