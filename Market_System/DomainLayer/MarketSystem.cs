@@ -7,6 +7,7 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
+using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer
 {
@@ -1068,12 +1069,24 @@ namespace Market_System.DomainLayer
         {
             try
             {
+                
                 string user_id = get_userid_from_session_id(session_id);
                 string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
                 double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
-                // price = 1000;
-                PaymentProxy.get_instance().pay(card_number,month,year,holder,ccv,id);
+                var task = Task.Run(() => PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id));
+                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(10)); 
+                var completedTask = Task.WhenAny(task, timeoutTask).Result;
+                if (completedTask == timeoutTask)
+                {
+                    // Timeout occurred
+                    throw new Exception("unexpected error occured with payment system, please try again later.");
+                }
+                if(completedTask.IsFaulted)
+                {
+                    //external system error
+                    throw task.Exception.InnerException;
+                }
                 // userFacade.save_purhcase_in_user(username,cart);
                 return "Payment was successfull";
             }
