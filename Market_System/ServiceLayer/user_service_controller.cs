@@ -279,6 +279,7 @@ namespace Market_System.ServiceLayer
         internal void destroy()
         {
             market_System.destroy_me();
+            
         }
 
         internal string change_password(string new_password, string session_id)

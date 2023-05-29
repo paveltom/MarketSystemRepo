@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Market_System.DomainLayer.DeliveryComponent
 {
-    internal interface DeliveryService
+    public interface DeliveryService
     {
         public string deliver(string name, string address, string city, string country, string zip);
 

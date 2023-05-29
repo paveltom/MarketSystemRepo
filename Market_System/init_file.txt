@@ -1,0 +1,12 @@
+register bayan pass varrock
+register nekola tesla falador
+register ben abc varrock
+register harold abc varrock
+register ben3 abc varrock
+login bayan pass
+open_new_store sword_store
+add_product_to_store Bamba good_snack 30 20 0 0 0 0 0.5_20.0_7.0 attribute food
+assign_new_manager nekola
+assign_new_owner ben
+assign_new_owner harold
+logout

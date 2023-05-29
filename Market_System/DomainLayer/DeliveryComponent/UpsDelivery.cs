@@ -6,30 +6,19 @@ using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer.DeliveryComponent
 {
-    internal class UpsDelivery : DeliveryService
+    public class UpsDelivery : DeliveryService
     {
         public UpsDelivery() { }
 
         public string cancel_deliver(string transactionId)
         {
-            throw new NotImplementedException();
+            return "1";
         }
 
-        public bool deliver(string address, double weight)
-        {
-            if (weight > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+        
         public string deliver(string name, string address, string city, string country, string zip)
         {
-            throw new NotImplementedException();
+            return "1";
         }
     }
 }

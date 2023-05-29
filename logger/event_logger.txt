@@ -3841,3 +3841,110 @@ Wednesday, May 24, 2023 :  search by category : baby was done successfully
 יום שישי 26 מאי 2023 : assigning new manager with username : nekola to the store with id: 1741748684
 יום שישי 26 מאי 2023 : 1741748684Logged-out succesfully
 יום שישי 26 מאי 2023 : guest : guest2131334214 has logged in
+יום שני 29 מאי 2023 : guest : guest2047618101 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 595585835 has failed
+יום שני 29 מאי 2023 : guest : guest1088646 has logged in
+יום שני 29 מאי 2023 : guest : guest119992153 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 242191443 has failed
+יום שני 29 מאי 2023 : guest : guest241882918 has logged in
+יום שני 29 מאי 2023 : guest : guest1630903997 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 352187146 has failed
+יום שני 29 מאי 2023 : guest : guest1136288780 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 196036182 has failed
+יום שני 29 מאי 2023 : Added the product:196036182_1193990264to store: 196036182 has been done successfully
+יום שני 29 מאי 2023 : assigning new manager with username : nekola to the store with id: 196036182
+יום שני 29 מאי 2023 : assigning new owner with username : ben to the store with id: 196036182
+יום שני 29 מאי 2023 : assigning new owner with username : harold to the store with id: 196036182
+יום שני 29 מאי 2023 : 2082162600Logged-out succesfully
+יום שני 29 מאי 2023 : guest : guest796706514 has logged in
+יום שני 29 מאי 2023 : guest : guest1790978011 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 420376521 has failed
+יום שני 29 מאי 2023 : Added the product:420376521_2034503606to store: 420376521 has been done successfully
+יום שני 29 מאי 2023 : assigning new manager with username : nekola to the store with id: 420376521
+יום שני 29 מאי 2023 : assigning new owner with username : ben to the store with id: 420376521
+יום שני 29 מאי 2023 : assigning new owner with username : harold to the store with id: 420376521
+יום שני 29 מאי 2023 : 1865791427Logged-out succesfully
+יום שני 29 מאי 2023 : guest : guest185708279 has logged in
+יום שני 29 מאי 2023 : guest : guest61192585 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 490445278 has failed
+יום שני 29 מאי 2023 : Added the product:490445278_748380502to store: 490445278 has been done successfully
+יום שני 29 מאי 2023 : assigning new manager with username : nekola to the store with id: 490445278
+יום שני 29 מאי 2023 : assigning new owner with username : ben to the store with id: 490445278
+יום שני 29 מאי 2023 : assigning new owner with username : harold to the store with id: 490445278
+יום שני 29 מאי 2023 : 782078344Logged-out succesfully
+יום שני 29 מאי 2023 : guest : guest134421487 has logged in
+יום שני 29 מאי 2023 : 685439064 added product with id: 61192585_782078344 to basket
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checkout completed by : guest134421487
+יום שני 29 מאי 2023 : guest : guest1879564220 has logged in
+יום שני 29 מאי 2023 : guest : guest1340920575 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 1325951567 has failed
+יום שני 29 מאי 2023 : Added the product:1325951567_1404347020to store: 1325951567 has been done successfully
+יום שני 29 מאי 2023 : assigning new manager with username : nekola to the store with id: 1325951567
+יום שני 29 מאי 2023 : assigning new owner with username : ben to the store with id: 1325951567
+יום שני 29 מאי 2023 : assigning new owner with username : harold to the store with id: 1325951567
+יום שני 29 מאי 2023 : 383680942Logged-out succesfully
+יום שני 29 מאי 2023 : guest : guest2130780416 has logged in
+יום שני 29 מאי 2023 : guest : guest287595892 has logged in
+יום שני 29 מאי 2023 : guest : guest2031469660 has logged in
+יום שני 29 מאי 2023 : guest : guest2075952852 has logged in
+יום שני 29 מאי 2023 : bayan has registered!
+יום שני 29 מאי 2023 : nekola has registered!
+יום שני 29 מאי 2023 : ben has registered!
+יום שני 29 מאי 2023 : harold has registered!
+יום שני 29 מאי 2023 : ben3 has registered!
+יום שני 29 מאי 2023 : opening store with id: 396581256 has failed
+יום שני 29 מאי 2023 : Added the product:396581256_2098932398to store: 396581256 has been done successfully
+יום שני 29 מאי 2023 : assigning new manager with username : nekola to the store with id: 396581256
+יום שני 29 מאי 2023 : assigning new owner with username : ben to the store with id: 396581256
+יום שני 29 מאי 2023 : assigning new owner with username : harold to the store with id: 396581256
+יום שני 29 מאי 2023 : 848134200Logged-out succesfully
+יום שני 29 מאי 2023 : guest : guest1872477685 has logged in
+יום שני 29 מאי 2023 : 1838538224 added product with id: 2075952852_1872477685 to basket
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checkout completed by : guest1872477685
+יום שני 29 מאי 2023 : 1838538224 added product with id: 2075952852_1872477685 to basket
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
+יום שני 29 מאי 2023 : checkout completed by : guest1872477685
