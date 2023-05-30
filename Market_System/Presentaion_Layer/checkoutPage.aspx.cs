@@ -11,14 +11,13 @@ namespace Market_System.Presentaion_Layer
 {
     public partial class checkoutPage : System.Web.UI.Page
     {
-        string username;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 adressTextBox.Focus();
-               // username = (string)Session["username"];
-                //filling adress textbox (if it is a member)
+
                 Response<String> response = ((Service_Controller)Session["service_controller"]).getAdressOrEmpty();
                 if (response.ErrorOccured)
                 {
@@ -27,8 +26,9 @@ namespace Market_System.Presentaion_Layer
                 else adressTextBox.Text = response.Value;
 
             }
-            availDelivery();
+           // availDelivery();
             Response<String> price = ((Service_Controller)Session["service_controller"]).calculataePrice();
+            
             if (price.ErrorOccured)
             {
                 priceLabel2.Text = price.ErrorMessage;
@@ -39,6 +39,22 @@ namespace Market_System.Presentaion_Layer
 
         protected void payClick(object sender, EventArgs e)
         {
+            
+            if(TextOfId.Text.Equals("") || creditTextBox.Text.Equals("") || TextOfMonth.Text.Equals("") || TextOfYear.Text.Equals("") || CVVTextBox.Text.Equals("") || TextOfHolder.Text.Equals("") || TextOfName.Text.Equals("") || adressTextBox.Text.Equals("") || CityTextBox.Text.Equals("") || CountryTextBox.Text.Equals("") || ZipTextBox.Text.Equals(""))
+            {
+                payButtonMsg.Text = "please fill in all fields.";
+                payButtonMsg.ForeColor = Color.Red;
+                return;
+            }
+          
+            Response<string> delivrey = ((Service_Controller)Session["service_controller"]).check_delivery(TextOfName.Text, adressTextBox.Text, CityTextBox.Text, CountryTextBox.Text, ZipTextBox.Text);
+            if (delivrey.ErrorOccured)
+            {
+                payButtonMsg.Text = delivrey.ErrorMessage;
+                payButtonMsg.ForeColor = Color.Red;
+                return;
+            }
+        
             Response<String> response = ((Service_Controller)Session["service_controller"]).check_out(creditTextBox.Text,TextOfMonth.Text,TextOfYear.Text,TextOfHolder.Text,CVVTextBox.Text, TextOfId.Text);
             if (response.ErrorOccured)
             {

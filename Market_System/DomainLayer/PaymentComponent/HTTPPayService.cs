@@ -35,7 +35,7 @@ namespace Market_System.DomainLayer.PaymentComponent
                     {"id",id },
                 };
                 string transactionId = PostRequest(payContent);
-                if (transactionId.Equals("-1")) { throw new Exception("pay request denied by the service"); }
+                if (transactionId.Equals("-1") || transactionId.Equals("unexpected-output")) { throw new Exception("pay request denied by the service"); }
                 return transactionId;
             }
             catch(Exception ex)
