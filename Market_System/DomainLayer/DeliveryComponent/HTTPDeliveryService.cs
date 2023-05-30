@@ -15,7 +15,7 @@ namespace Market_System.DomainLayer.DeliveryComponent
         private static readonly HttpClient client = new HttpClient();
         private static string url = "https://php-server-try.000webhostapp.com/";
 
-        public HTTPDeliveryService() { }
+        public HTTPDeliveryService(string URL) { url = URL; }
 
 
         public string deliver(string name, string address, string city, string country, string zip)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer.PaymentComponent
 {
-    internal interface PaymentService
+    public interface PaymentService
     {
 
         /// <returns>transaction_id</returns>

@@ -115,7 +115,7 @@
     <Compile Include="unit_tests\StoreComponentUnitTests\StoreUnitTest.cs" />
     <Compile Include="unit_tests\store_user_tests.cs" />
     <Compile Include="unit_tests\integration_tests.cs" />
-    <Compile Include="unit_tests\INIT_tests.cs" />
+    <Compile Include="unit_tests\INIT_config_tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -8,9 +8,10 @@ namespace Market_System.DomainLayer.PaymentComponent
     {
 
         private static readonly HttpClient client = new HttpClient();
-        private static string url = "https://php-server-try.000webhostapp.com/";
+        //private static string url = "https://php-server-try.000webhostapp.com/";
+        private static string url;
 
-        public HTTPPayService() { }
+        public HTTPPayService(string URL) { url = URL; }
 
         
         public  string pay(string card_number, string month, string year, string holder, string ccv, string id)
