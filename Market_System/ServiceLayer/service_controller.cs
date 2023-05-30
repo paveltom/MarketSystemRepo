@@ -18,7 +18,7 @@ namespace Market_System.ServiceLayer
         private Random session_id_generator;
         private string store_id_config;// this is used only for the config file
 
-        internal Response<List<string>> get_stores_that_user_works_in()
+        public Response<List<string>> get_stores_that_user_works_in()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
             if (first_time_running_project())
             {
-                read_from_config_file();
+                read_from_config_file("config_file.txt");
                 set_first_time_running_to_false();
             }
         }
@@ -88,10 +88,11 @@ namespace Market_System.ServiceLayer
             return this.usc.first_time_running_project();
         }
 
-        private void read_from_config_file()
+        public void read_from_config_file(string file_name)
         {
-            string combine_me = "config_file.txt";
-          
+            //string combine_me = "config_file.txt";
+            string combine_me = file_name;
+
             string path;
             var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
             if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
@@ -154,6 +155,8 @@ namespace Market_System.ServiceLayer
                 new_guest_entered_the_website(session_id);
             }
         }
+
+        
 
         private void execute_command(string current_command)
         {
