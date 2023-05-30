@@ -1,3 +1,21 @@
+         config_file instructions:
+         ** always do space after ':'
+         add your databse connection string after "database connection string:", example:
+         "database connection string: <your_connection_string>".
+         
+         add your URL for external payment system, after "external payment system URL:", example:
+         "external payment system URL: <your_URL>", if you dont want to add any URL, just leave it like this: "external payment system URL:" ,
+         and the dummy payment system will be used.
+         
+         
+         add your URL for external delivery system, after "external delivery system URL:", example:
+         "external delivery system URL: <your_URL>", if you dont want to add any URL, just leave it like this: "external delivery system URL:" ,
+         and the dummy delivery system will be used.         
+         
+         ---------------------------------------------------------------------------------------------------------------------------------------
+         init_file instructions:
+         
+         
          check_out(string credit_card_details);
          login_member(string username,string pass);
          log_out();
