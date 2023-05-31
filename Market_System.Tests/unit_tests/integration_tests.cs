@@ -22,7 +22,7 @@ namespace Market_System.Tests.unit_tests
         public void Setup()
         {
             Logger.get_instance().change_logger_path_to_tests();
-            User_component_context.GetInstance().ChangeToTestDatabase();
+            User_DAL_controller.GetInstance().change_to_test_database();
             
 
 
@@ -34,7 +34,7 @@ namespace Market_System.Tests.unit_tests
         public void TearDown()
         {
             Logger.get_instance().change_logger_path_to_regular();
-            User_component_context.GetInstance().ResetDatabase();
+            User_DAL_controller.GetInstance().get_context().ResetDatabase();
             ms.destroy_me();
 
         }

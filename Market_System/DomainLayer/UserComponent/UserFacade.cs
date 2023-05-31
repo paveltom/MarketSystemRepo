@@ -72,7 +72,7 @@ namespace Market_System.DomainLayer.UserComponent
                 }
 
                 
-                user_model um = User_component_context.GetInstance().GetUserByName(username);
+                user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
                 if (!um.user_state.Equals("Guest"))
                 {
                     throw new Exception(username + " is already logged in!");
@@ -135,7 +135,7 @@ namespace Market_System.DomainLayer.UserComponent
             */
             //if we reach here means nothing in cache
           
-           user_model um= User_component_context.GetInstance().GetUserByName(username);
+           user_model um= User_DAL_controller.GetInstance().get_context().GetUserByName(username);
             if(um!=null)
             {
                 if(PasswordHasher.VerifyPassword(password,um.hashed_password))
@@ -148,8 +148,8 @@ namespace Market_System.DomainLayer.UserComponent
                     {
                         um.user_state = "Member";
                     }
-                    User_component_context.GetInstance().Update(um);
-                    User_component_context.GetInstance().SaveChanges();
+                    User_DAL_controller.GetInstance().get_context().Update(um);
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
                     return;
                 }
             }
@@ -178,7 +178,7 @@ namespace Market_System.DomainLayer.UserComponent
 
 
           
-            user_model um = User_component_context.GetInstance().GetUserByUserID(user_id);
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByUserID(user_id);
             // return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
             return um.is_admin && um.user_state == "Administrator";
              
@@ -231,15 +231,15 @@ namespace Market_System.DomainLayer.UserComponent
             }
             */
             
-            user_model um = User_component_context.GetInstance().GetUserByName(username);
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
             if (um != null)
             {
                 
                if(!um.user_state.Equals("Guest"))
                 { 
                         um.user_state = "Guest";
-                    User_component_context.GetInstance().Update(um);
-                    User_component_context.GetInstance().SaveChanges();
+                    User_DAL_controller.GetInstance().get_context().Update(um);
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
                     return;
                 }
                     else
@@ -270,8 +270,8 @@ namespace Market_System.DomainLayer.UserComponent
                 users.Add(new User(username, address));
                
                 string hashed_Password = PasswordHasher.HashPassword(password);
-                User_component_context.GetInstance().Add(new user_model(username, address, false, userid,hashed_Password));
-                User_component_context.GetInstance().SaveChanges();
+                User_DAL_controller.GetInstance().get_context().Add(new user_model(username, address, false, userid,hashed_Password));
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
 
             }
 
@@ -395,7 +395,7 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 
-                user_model um = User_component_context.GetInstance().GetUserByName(username);
+                user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
                 //string user_id = userRepo.get_userID_from_username(username);
                 string user_id = um.user_ID;
                 userID_sessionID_linker.Add(session_id, user_id);
@@ -482,7 +482,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public bool check_if_user_is_logged_in(string username)
         {
-            
+            /*
             foreach(User u in users)
             {
                 if(u.GetUsername().Equals(username))
@@ -490,7 +490,10 @@ namespace Market_System.DomainLayer.UserComponent
                     return !u.GetUserState().Equals("Guest");
                 }
             }
-            return false;
+            */
+            return !User_DAL_controller.GetInstance().get_context().GetUserByName(username).user_state.Equals("Guest");
+
+            
         }
 
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
@@ -589,8 +592,8 @@ namespace Market_System.DomainLayer.UserComponent
                     userRepo.AddNewAdmin(null, "admin");
                     Admins.Add(admin_id);
 
-                    User_component_context.GetInstance().user_models.FirstOrDefault(u => u.username.Equals("admin")).is_admin = true;
-                    User_component_context.GetInstance().SaveChanges();
+                    User_DAL_controller.GetInstance().get_context().user_models.FirstOrDefault(u => u.username.Equals("admin")).is_admin = true;
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
                     
                 }
                 else { 

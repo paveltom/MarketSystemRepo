@@ -131,7 +131,7 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
             
-            user_model um = User_component_context.GetInstance().GetUserByUserID(userID);
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByUserID(userID);
             if(um!=null)
             {
                 return um.username;

@@ -4345,3 +4345,17 @@ Wednesday, May 24, 2023 :  search by category : baby was done successfully
 יום רביעי 31 מאי 2023 : guest : guest1465524936 has logged in
 יום רביעי 31 מאי 2023 : 801715057Logged-out succesfully
 יום רביעי 31 מאי 2023 : guest : guest2138804881 has logged in
+יום רביעי 31 מאי 2023 : guest : guest2094779426 has logged in
+יום רביעי 31 מאי 2023 : bayan has registered!
+יום רביעי 31 מאי 2023 : nekola has registered!
+יום רביעי 31 מאי 2023 : ben has registered!
+יום רביעי 31 מאי 2023 : harold has registered!
+יום רביעי 31 מאי 2023 : ben3 has registered!
+יום רביעי 31 מאי 2023 : opening store with id: 1657359963 has failed
+יום רביעי 31 מאי 2023 : Added the product:1657359963_923864589to store: 1657359963 has been done successfully
+יום רביעי 31 מאי 2023 : assigning new manager with username : nekola to the store with id: 1657359963
+יום רביעי 31 מאי 2023 : assigning new owner with username : ben to the store with id: 1657359963
+יום רביעי 31 מאי 2023 : assigning new owner with username : harold to the store with id: 1657359963
+יום רביעי 31 מאי 2023 : 1652693820Logged-out succesfully
+יום רביעי 31 מאי 2023 : guest : guest1954726112 has logged in
+יום רביעי 31 מאי 2023 : guest : guest1073092133 has logged in

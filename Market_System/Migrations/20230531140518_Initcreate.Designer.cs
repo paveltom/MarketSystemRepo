@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market_System.Migrations
 {
     [DbContext(typeof(User_component_context))]
-    [Migration("20230531130124_Initcreate")]
+    [Migration("20230531140518_Initcreate")]
     partial class Initcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
