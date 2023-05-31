@@ -10,6 +10,7 @@ using System.IO;
 using System.Web.Hosting;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
+using Market_System.user_component_DAL.Models;
 
 namespace Market_System.ServiceLayer
 {
@@ -75,13 +76,15 @@ namespace Market_System.ServiceLayer
 
         public Service_Controller()
         {
-
+            User_component_context oka = new User_component_context();
+            
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            if (first_time_running_project())
+            //if (first_time_running_project())
+            if (!oka.IsDatabaseExists())
             {
                 read_from_config_file("config_file.txt");
                 read_from_init_file("init_file.txt");

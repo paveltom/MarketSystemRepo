@@ -8,6 +8,7 @@ using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
 using System.Threading.Tasks;
+using Market_System.user_component_DAL.Models;
 
 namespace Market_System.DomainLayer
 {
@@ -109,11 +110,15 @@ namespace Market_System.DomainLayer
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
-                        Instance.register("admin", "admin", "address"); //registering an admin 
-                        Instance.AddNewAdmin(null, "admin");
-                        StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
-                        Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
-                        Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
+                        User_component_context oka = new User_component_context();
+                        if (!oka.IsDatabaseExists())
+                        {
+                            Instance.register("admin", "admin", "address"); //registering an admin 
+                            Instance.AddNewAdmin(null, "admin");
+                            StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
+                            Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                            Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
+                        }
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section

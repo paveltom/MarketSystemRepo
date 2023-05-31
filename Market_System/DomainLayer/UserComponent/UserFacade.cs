@@ -1,4 +1,5 @@
 ﻿using Market_System.Domain_Layer.Communication_Component;
+using Market_System.user_component_DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -212,6 +213,9 @@ namespace Market_System.DomainLayer.UserComponent
                 }
                 userRepo.register(username, password);
                 users.Add(new User(username, address));
+                User_component_context oka = new User_component_context();
+                oka.Add(new user_model(username, address));
+                oka.SaveChanges();
             }
 
             catch (Exception e)
