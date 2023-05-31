@@ -34,7 +34,7 @@ namespace Market_System.Migrations
 
                     b.HasIndex("Cart_modelID");
 
-                    b.ToTable("bucker_models");
+                    b.ToTable("bucket_models");
                 });
 
             modelBuilder.Entity("Market_System.user_component_DAL.Models.Cart_model", b =>

@@ -111,7 +111,7 @@ namespace Market_System.DomainLayer
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
                         User_component_context oka = new User_component_context();
-                        if (!oka.IsDatabaseExists())
+                        if (oka.first_time_running_project())
                         {
                             Instance.register("admin", "admin", "address"); //registering an admin 
                             Instance.AddNewAdmin(null, "admin");

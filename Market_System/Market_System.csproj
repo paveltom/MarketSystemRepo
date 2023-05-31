@@ -360,9 +360,9 @@
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\Statement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StatementBuilder.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StorePolicy.cs" />
-    <Compile Include="Migrations\20230531091550_Initcreate.cs" />
-    <Compile Include="Migrations\20230531091550_Initcreate.designer.cs">
-      <DependentUpon>20230531091550_Initcreate.cs</DependentUpon>
+    <Compile Include="Migrations\20230531094654_Initcreate.cs" />
+    <Compile Include="Migrations\20230531094654_Initcreate.designer.cs">
+      <DependentUpon>20230531094654_Initcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\User_component_contextModelSnapshot.cs" />
     <Compile Include="Presentaion_Layer\Admin_operations_page.aspx.cs">

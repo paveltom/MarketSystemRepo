@@ -83,8 +83,7 @@ namespace Market_System.ServiceLayer
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            //if (first_time_running_project())
-            if (!oka.IsDatabaseExists())
+            if (oka.first_time_running_project())
             {
                 read_from_config_file("config_file.txt");
                 read_from_init_file("init_file.txt");

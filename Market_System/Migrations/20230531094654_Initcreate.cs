@@ -20,7 +20,7 @@ namespace Market_System.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "bucker_models",
+                name: "bucket_models",
                 columns: table => new
                 {
                     basket_id = table.Column<string>(nullable: false),
@@ -29,9 +29,9 @@ namespace Market_System.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_bucker_models", x => x.basket_id);
+                    table.PrimaryKey("PK_bucket_models", x => x.basket_id);
                     table.ForeignKey(
-                        name: "FK_bucker_models_cart_models_Cart_modelID",
+                        name: "FK_bucket_models_cart_models_Cart_modelID",
                         column: x => x.Cart_modelID,
                         principalTable: "cart_models",
                         principalColumn: "ID",
@@ -69,16 +69,16 @@ namespace Market_System.Migrations
                 {
                     table.PrimaryKey("PK_Product_in_basket_model", x => x.product_id);
                     table.ForeignKey(
-                        name: "FK_Product_in_basket_model_bucker_models_Bucket_modelbasket_id",
+                        name: "FK_Product_in_basket_model_bucket_models_Bucket_modelbasket_id",
                         column: x => x.Bucket_modelbasket_id,
-                        principalTable: "bucker_models",
+                        principalTable: "bucket_models",
                         principalColumn: "basket_id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_bucker_models_Cart_modelID",
-                table: "bucker_models",
+                name: "IX_bucket_models_Cart_modelID",
+                table: "bucket_models",
                 column: "Cart_modelID");
 
             migrationBuilder.CreateIndex(
@@ -101,7 +101,7 @@ namespace Market_System.Migrations
                 name: "user_models");
 
             migrationBuilder.DropTable(
-                name: "bucker_models");
+                name: "bucket_models");
 
             migrationBuilder.DropTable(
                 name: "cart_models");

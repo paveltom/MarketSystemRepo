@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market_System.Migrations
 {
     [DbContext(typeof(User_component_context))]
-    [Migration("20230531091550_Initcreate")]
+    [Migration("20230531094654_Initcreate")]
     partial class Initcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Market_System.Migrations
 
                     b.HasIndex("Cart_modelID");
 
-                    b.ToTable("bucker_models");
+                    b.ToTable("bucket_models");
                 });
 
             modelBuilder.Entity("Market_System.user_component_DAL.Models.Cart_model", b =>
