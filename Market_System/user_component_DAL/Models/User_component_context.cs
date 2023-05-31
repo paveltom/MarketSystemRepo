@@ -12,6 +12,7 @@ namespace Market_System.user_component_DAL.Models
         public DbSet<user_model> user_models { get; set; }
         public DbSet<Cart_model> cart_models { get; set; }
         public DbSet<Bucket_model> bucket_models { get; set; }
+        public DbSet<Product_in_basket_model> products_in_baskets_models { get; set; }
         public DbSet<only_for_checking_if_first_time_running> first_time_flag { get; set; }
 
         
@@ -90,6 +91,24 @@ namespace Market_System.user_component_DAL.Models
         {
             var user = this.user_models.FirstOrDefault(u => u.user_ID == userID);
             return user;
+        }
+
+        internal Cart_model Getcart_model_by_id(int cart_id)
+        {
+            var cart = this.cart_models.FirstOrDefault(u => u.ID == cart_id);
+            return cart;
+        }
+
+        internal Product_in_basket_model get_Product_in_basket_model_by_product_id_and_basket_id(string basket_id, string product_id)
+        {
+            var pibm = this.products_in_baskets_models.FirstOrDefault(u => u.basket_id == basket_id && u.product_id== product_id);
+            return pibm;
+        }
+
+        internal Bucket_model get_basket_model_by_basket_id(string basket_id)
+        {
+            var basket = this.bucket_models.FirstOrDefault(u => u.basket_id == basket_id );
+            return basket;
         }
     }
     }

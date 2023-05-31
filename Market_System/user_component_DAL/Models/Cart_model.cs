@@ -18,5 +18,7 @@ namespace Market_System.user_component_DAL.Models
             this.baskets = new List<Bucket_model>();
             this.total_price = 0;
         }
+
+
     }
 }

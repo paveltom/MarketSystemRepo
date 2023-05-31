@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market_System.Migrations
 {
     [DbContext(typeof(User_component_context))]
-    [Migration("20230531140518_Initcreate")]
+    [Migration("20230531171537_Initcreate")]
     partial class Initcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,9 @@ namespace Market_System.Migrations
                     b.Property<string>("Bucket_modelbasket_id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("basket_id")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
@@ -69,7 +72,7 @@ namespace Market_System.Migrations
 
                     b.HasIndex("Bucket_modelbasket_id");
 
-                    b.ToTable("Product_in_basket_model");
+                    b.ToTable("products_in_baskets_models");
                 });
 
             modelBuilder.Entity("Market_System.user_component_DAL.Models.only_for_checking_if_first_time_running", b =>

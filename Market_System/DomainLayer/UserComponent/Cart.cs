@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market_System.user_component_DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,16 @@ namespace Market_System.DomainLayer.UserComponent
         {
             this.baskets = new List<Bucket>();
             this.total_price = 0;
+        }
+
+        public Cart(Cart_model cart_model)
+        {
+            this.baskets = new List<Bucket>();
+            foreach(Bucket_model bucket_model in cart_model.baskets)
+            {
+                baskets.Add(new Bucket(bucket_model));
+            }
+            this.total_price = cart_model.total_price;
         }
 
         public void add_product(string product_id,int quantity)

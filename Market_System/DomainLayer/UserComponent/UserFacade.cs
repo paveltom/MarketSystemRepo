@@ -289,7 +289,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void add_product_to_basket(string product_id, string username,int quantity)
         {
-           
+           /*
             foreach (User u in users)
             {
               if (u.GetUsername().Equals(username))
@@ -297,11 +297,71 @@ namespace Market_System.DomainLayer.UserComponent
                     u.add_product_to_basket(product_id,quantity);
                 }
             }
+           */
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if(um!=null)
+            {
+                Cart cart = new Cart(um.my_cart);
+                cart.add_product(product_id, quantity);
+                Cart_model cm = cart_to_cart_model(cart);
+                cm.ID = um.my_cart.ID;            
+                
+                User_DAL_controller.GetInstance().get_context().Update(um.my_cart);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+
+            }
+            else
+            {
+                foreach (User u in users)
+                {
+                    if (u.GetUsername().Equals(username))
+                    {
+                        u.add_product_to_basket(product_id, quantity);
+                    }
+                }
+            }
+
+
         }
 
+        private Cart_model cart_to_cart_model(Cart cart)
+        {
+            Cart_model cart_model = new Cart_model();
+            cart_model.total_price = cart.get_total_price();
+            foreach(Bucket bucket in cart.gett_all_baskets())
+            {
+                Bucket_model bucket_model = bucket_to_bucket_model(bucket);
+                cart_model.baskets.Add(new Bucket_model());
+            }
 
+            return cart_model;
+        }
 
-         public string get_username_from_user_id(string userid)
+        private Bucket_model bucket_to_bucket_model(Bucket bucket)
+        {
+            Bucket_model bucket_model = new Bucket_model();
+            bucket_model.basket_id = bucket.get_basket_id();
+            bucket_model.store_id = bucket.get_store_id();
+            bucket_model.products = bucket.convert_basket_to_Product_in_basket_model();
+            if (User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(bucket.get_basket_id()) == null)
+            {
+                User_DAL_controller.GetInstance().get_context().Add(bucket_model);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+            }
+            else
+            {
+                User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(bucket.get_basket_id()).products = bucket_model.products;
+                User_DAL_controller.GetInstance().get_context().Update(User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(bucket.get_basket_id()));
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+            }
+
+            return bucket_model;
+        }
+
+        public string get_username_from_user_id(string userid)
         {
             
             return userRepo.get_username_from_userID(userid);
@@ -315,12 +375,26 @@ namespace Market_System.DomainLayer.UserComponent
         }
         internal void update_cart_total_price(string username, double price)
         {
-            
-            foreach (User u in users)
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
             {
-                if(u.GetUsername().Equals(username))
+
+
+               Cart_model cart_model= User_DAL_controller.GetInstance().get_context().Getcart_model_by_id(um.my_cart.ID);
+                cart_model.total_price = price;
+                User_DAL_controller.GetInstance().get_context().Update(cart_model);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+
+            }
+            else
+            {
+                foreach (User u in users)
                 {
-                    u.update_total_price_of_cart(price);
+                    if (u.GetUsername().Equals(username))
+                    {
+                        u.update_total_price_of_cart(price);
+                    }
                 }
             }
         }

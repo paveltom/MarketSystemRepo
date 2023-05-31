@@ -74,18 +74,19 @@ namespace Market_System.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product_in_basket_model",
+                name: "products_in_baskets_models",
                 columns: table => new
                 {
                     product_id = table.Column<string>(nullable: false),
                     quantity = table.Column<int>(nullable: false),
+                    basket_id = table.Column<string>(nullable: true),
                     Bucket_modelbasket_id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product_in_basket_model", x => x.product_id);
+                    table.PrimaryKey("PK_products_in_baskets_models", x => x.product_id);
                     table.ForeignKey(
-                        name: "FK_Product_in_basket_model_bucket_models_Bucket_modelbasket_id",
+                        name: "FK_products_in_baskets_models_bucket_models_Bucket_modelbasket_id",
                         column: x => x.Bucket_modelbasket_id,
                         principalTable: "bucket_models",
                         principalColumn: "basket_id",
@@ -98,8 +99,8 @@ namespace Market_System.Migrations
                 column: "Cart_modelID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_in_basket_model_Bucket_modelbasket_id",
-                table: "Product_in_basket_model",
+                name: "IX_products_in_baskets_models_Bucket_modelbasket_id",
+                table: "products_in_baskets_models",
                 column: "Bucket_modelbasket_id");
 
             migrationBuilder.CreateIndex(
@@ -114,7 +115,7 @@ namespace Market_System.Migrations
                 name: "first_time_flag");
 
             migrationBuilder.DropTable(
-                name: "Product_in_basket_model");
+                name: "products_in_baskets_models");
 
             migrationBuilder.DropTable(
                 name: "user_models");

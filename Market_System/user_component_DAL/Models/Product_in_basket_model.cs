@@ -8,5 +8,11 @@ namespace Market_System.user_component_DAL.Models
         [Key]
         public string product_id { get; set; }
         public int quantity { get; set; }
+        public string basket_id { get; set; }
+
+        public Product_in_basket_model()
+        {
+
+        }
     }
 }

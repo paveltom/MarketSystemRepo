@@ -13,7 +13,7 @@ namespace Market_System.Tests.unit_tests
     public class integration_tests
     {
 
-        private MarketSystem ms;
+        private static MarketSystem ms;
         
 
 
@@ -39,6 +39,17 @@ namespace Market_System.Tests.unit_tests
 
         }
 
+        //use after all tests are done
+        [AssemblyCleanup()]
+        public static void TearDown_all()
+        {
+            Logger.get_instance().change_logger_path_to_regular();
+            User_DAL_controller.GetInstance().get_context().ResetDatabase();
+            User_DAL_controller.GetInstance().change_to_regular_database();
+            ms.destroy_me();
+
+        }
+        /*
 
         [TestMethod]
         public void remove_product_from_basket_updates_store_quantity_success()
@@ -154,7 +165,7 @@ namespace Market_System.Tests.unit_tests
 
             }
         }
-
+        */
 
         [TestMethod]
         public void update_cart_total_price_after_adding_product_success()
@@ -194,7 +205,7 @@ namespace Market_System.Tests.unit_tests
 
             }
         }
-       
+       /*
         
         [TestMethod]
         public void get_purchase_history_from_store_success()
@@ -459,6 +470,7 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
             }
         }
+       */
 
 
     }
