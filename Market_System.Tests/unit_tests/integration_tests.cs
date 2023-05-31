@@ -4,6 +4,8 @@ using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 using System.Collections.Generic;
 using Market_System.DomainLayer.UserComponent;
+using Microsoft.EntityFrameworkCore;
+using Market_System.user_component_DAL.Models;
 
 namespace Market_System.Tests.unit_tests
 {
@@ -12,7 +14,7 @@ namespace Market_System.Tests.unit_tests
     {
 
         private MarketSystem ms;
-
+        
 
 
         // Use TestInitialize to run code before running each test 
@@ -20,6 +22,10 @@ namespace Market_System.Tests.unit_tests
         public void Setup()
         {
             Logger.get_instance().change_logger_path_to_tests();
+            User_component_context.GetInstance().ChangeToTestDatabase();
+            
+
+
             ms = MarketSystem.GetInstance();
         }
 
@@ -28,6 +34,7 @@ namespace Market_System.Tests.unit_tests
         public void TearDown()
         {
             Logger.get_instance().change_logger_path_to_regular();
+            User_component_context.GetInstance().ResetDatabase();
             ms.destroy_me();
 
         }

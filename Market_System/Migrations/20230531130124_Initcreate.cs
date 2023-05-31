@@ -20,6 +20,18 @@ namespace Market_System.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "first_time_flag",
+                columns: table => new
+                {
+                    firsttimerunning = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_first_time_flag", x => x.firsttimerunning);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "bucket_models",
                 columns: table => new
                 {
@@ -44,7 +56,11 @@ namespace Market_System.Migrations
                 {
                     username = table.Column<string>(nullable: false),
                     my_cartID = table.Column<int>(nullable: true),
-                    address = table.Column<string>(nullable: true)
+                    address = table.Column<string>(nullable: true),
+                    is_admin = table.Column<bool>(nullable: false),
+                    hashed_password = table.Column<string>(nullable: true),
+                    user_ID = table.Column<string>(nullable: true),
+                    user_state = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,6 +110,9 @@ namespace Market_System.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "first_time_flag");
+
             migrationBuilder.DropTable(
                 name: "Product_in_basket_model");
 

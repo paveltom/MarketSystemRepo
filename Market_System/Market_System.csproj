@@ -360,9 +360,9 @@
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\Statement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StatementBuilder.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StorePolicy.cs" />
-    <Compile Include="Migrations\20230531094654_Initcreate.cs" />
-    <Compile Include="Migrations\20230531094654_Initcreate.designer.cs">
-      <DependentUpon>20230531094654_Initcreate.cs</DependentUpon>
+    <Compile Include="Migrations\20230531130124_Initcreate.cs" />
+    <Compile Include="Migrations\20230531130124_Initcreate.designer.cs">
+      <DependentUpon>20230531130124_Initcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\User_component_contextModelSnapshot.cs" />
     <Compile Include="Presentaion_Layer\Admin_operations_page.aspx.cs">
@@ -584,6 +584,7 @@
     </Compile>
     <Compile Include="user_component_DAL\Models\Bucket_model.cs" />
     <Compile Include="user_component_DAL\Models\Cart_model.cs" />
+    <Compile Include="user_component_DAL\Models\only_for_checking_if_first_time_running.cs" />
     <Compile Include="user_component_DAL\Models\Product_in_basket_model.cs" />
     <Compile Include="user_component_DAL\Models\User_component_context.cs" />
     <Compile Include="user_component_DAL\Models\user_model.cs" />

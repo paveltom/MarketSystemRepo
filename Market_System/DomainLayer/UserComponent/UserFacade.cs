@@ -70,7 +70,17 @@ namespace Market_System.DomainLayer.UserComponent
                         
                     }
                 }
-                        }
+
+                
+                user_model um = User_component_context.GetInstance().GetUserByName(username);
+                if (!um.user_state.Equals("Guest"))
+                {
+                    throw new Exception(username + " is already logged in!");
+                }
+
+                return;
+
+            }
             catch (Exception e)
             {
                 throw e;
@@ -98,7 +108,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void Login(string username, string password)
         {
-            foreach(User user in users)
+            /*foreach(User user in users)
             {
                 if(user.GetUsername().Equals(username) && userRepo.checkIfExists(username, password))
                 {
@@ -122,6 +132,28 @@ namespace Market_System.DomainLayer.UserComponent
                     return;
                 }
             }
+            */
+            //if we reach here means nothing in cache
+          
+           user_model um= User_component_context.GetInstance().GetUserByName(username);
+            if(um!=null)
+            {
+                if(PasswordHasher.VerifyPassword(password,um.hashed_password))
+                {
+                    if (um.is_admin)
+                    {
+                        um.user_state = "Administrator";
+                    }
+                    else
+                    {
+                        um.user_state = "Member";
+                    }
+                    User_component_context.GetInstance().Update(um);
+                    User_component_context.GetInstance().SaveChanges();
+                    return;
+                }
+            }
+
 
             throw new ArgumentException("Incorrect login information has been provided");
         }
@@ -145,12 +177,15 @@ namespace Market_System.DomainLayer.UserComponent
             //The admin exists and is logged-in -> State == Admin
 
 
-
-            return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
-            
+          
+            user_model um = User_component_context.GetInstance().GetUserByUserID(user_id);
+            // return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
+            return um.is_admin && um.user_state == "Administrator";
              
             
         }
+
+       
 
         internal string link_guest_with_user_id(string guest_name)
         {
@@ -176,7 +211,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void Logout(string username)
         {
-            
+            /*
             foreach(User user in users)
             {
                 if (user.GetUsername().Equals(username))
@@ -194,6 +229,26 @@ namespace Market_System.DomainLayer.UserComponent
                     
                 }
             }
+            */
+            
+            user_model um = User_component_context.GetInstance().GetUserByName(username);
+            if (um != null)
+            {
+                
+               if(!um.user_state.Equals("Guest"))
+                { 
+                        um.user_state = "Guest";
+                    User_component_context.GetInstance().Update(um);
+                    User_component_context.GetInstance().SaveChanges();
+                    return;
+                }
+                    else
+                    {
+                    throw new ArgumentException("You're already logged-out");
+                }
+                 
+                }
+            
 
             throw new ArgumentException("user does not exists");
 
@@ -211,11 +266,13 @@ namespace Market_System.DomainLayer.UserComponent
                         throw new Exception("a user with same name exists, please change name!");
                     }
                 }
-                userRepo.register(username, password);
+              string userid=  userRepo.register(username, password);
                 users.Add(new User(username, address));
-                User_component_context oka = new User_component_context();
-                oka.Add(new user_model(username, address));
-                oka.SaveChanges();
+               
+                string hashed_Password = PasswordHasher.HashPassword(password);
+                User_component_context.GetInstance().Add(new user_model(username, address, false, userid,hashed_Password));
+                User_component_context.GetInstance().SaveChanges();
+
             }
 
             catch (Exception e)
@@ -337,11 +394,15 @@ namespace Market_System.DomainLayer.UserComponent
         {
             try
             {
-                string user_id = userRepo.get_userID_from_username(username);
+                
+                user_model um = User_component_context.GetInstance().GetUserByName(username);
+                //string user_id = userRepo.get_userID_from_username(username);
+                string user_id = um.user_ID;
                 userID_sessionID_linker.Add(session_id, user_id);
                 try
                 {
-                    if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
+                   // if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
+                   if(um.is_admin)
                     {
                         Admins.Add(user_id);
                         return;
@@ -527,6 +588,10 @@ namespace Market_System.DomainLayer.UserComponent
                     string admin_id = get_user_id_from_username("admin");
                     userRepo.AddNewAdmin(null, "admin");
                     Admins.Add(admin_id);
+
+                    User_component_context.GetInstance().user_models.FirstOrDefault(u => u.username.Equals("admin")).is_admin = true;
+                    User_component_context.GetInstance().SaveChanges();
+                    
                 }
                 else { 
 

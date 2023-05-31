@@ -70,6 +70,18 @@ namespace Market_System.Migrations
                     b.ToTable("Product_in_basket_model");
                 });
 
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.only_for_checking_if_first_time_running", b =>
+                {
+                    b.Property<int>("firsttimerunning")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("firsttimerunning");
+
+                    b.ToTable("first_time_flag");
+                });
+
             modelBuilder.Entity("Market_System.user_component_DAL.Models.user_model", b =>
                 {
                     b.Property<string>("username")
@@ -78,8 +90,20 @@ namespace Market_System.Migrations
                     b.Property<string>("address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("hashed_password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("is_admin")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("my_cartID")
                         .HasColumnType("int");
+
+                    b.Property<string>("user_ID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("user_state")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("username");
 

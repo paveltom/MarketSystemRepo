@@ -76,14 +76,14 @@ namespace Market_System.ServiceLayer
 
         public Service_Controller()
         {
-            User_component_context oka = new User_component_context();
+            
             
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            if (oka.first_time_running_project())
+            if (User_component_context.GetInstance().first_time_running_project())
             {
                 read_from_config_file("config_file.txt");
                 read_from_init_file("init_file.txt");
@@ -94,6 +94,10 @@ namespace Market_System.ServiceLayer
         private void set_first_time_running_to_false()
         {
             this.usc.set_first_time_running_to_false();
+
+            User_component_context.GetInstance().set_second_time_running();
+            
+
         }
 
         private bool first_time_running_project()

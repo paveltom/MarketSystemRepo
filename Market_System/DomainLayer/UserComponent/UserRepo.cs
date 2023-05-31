@@ -1,4 +1,5 @@
 ﻿using Market_System.Domain_Layer.Communication_Component;
+using Market_System.user_component_DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,6 +130,12 @@ namespace Market_System.DomainLayer.UserComponent
                     return user_ID_username_linker[userID];
                 }
             }
+            
+            user_model um = User_component_context.GetInstance().GetUserByUserID(userID);
+            if(um!=null)
+            {
+                return um.username;
+            }
             throw new Exception("can't recive username because userID does not exists");
 
         }
@@ -155,6 +162,8 @@ namespace Market_System.DomainLayer.UserComponent
             }
             throw new Exception("can't recive userID because username does not exists");
         }
+
+
 
         public void AddNewAdmin(string curr_Admin_username, string other_username)
         {
