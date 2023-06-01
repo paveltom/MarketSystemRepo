@@ -1,4 +1,5 @@
 ﻿using Market_System.Domain_Layer.Communication_Component;
+using Market_System.user_component_DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,21 @@ namespace Market_System.DomainLayer.UserComponent
                         
                     }
                 }
-                        }
+
+                
+                user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+                if(um==null)
+                {
+                    return;
+                }
+                if (!um.user_state.Equals("Guest"))
+                {
+                    throw new Exception(username + " is already logged in!");
+                }
+
+                return;
+
+            }
             catch (Exception e)
             {
                 throw e;
@@ -97,7 +112,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void Login(string username, string password)
         {
-            foreach(User user in users)
+            /*foreach(User user in users)
             {
                 if(user.GetUsername().Equals(username) && userRepo.checkIfExists(username, password))
                 {
@@ -121,6 +136,28 @@ namespace Market_System.DomainLayer.UserComponent
                     return;
                 }
             }
+            */
+            //if we reach here means nothing in cache
+          
+           user_model um= User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if(um!=null)
+            {
+                if(PasswordHasher.VerifyPassword(password,um.hashed_password))
+                {
+                    if (um.is_admin)
+                    {
+                        um.user_state = "Administrator";
+                    }
+                    else
+                    {
+                        um.user_state = "Member";
+                    }
+                    User_DAL_controller.GetInstance().get_context().Update(um);
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
+                    return;
+                }
+            }
+
 
             throw new ArgumentException("Incorrect login information has been provided");
         }
@@ -144,12 +181,15 @@ namespace Market_System.DomainLayer.UserComponent
             //The admin exists and is logged-in -> State == Admin
 
 
-
-            return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
-            
+          
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByUserID(user_id);
+            // return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
+            return um.is_admin && um.user_state == "Administrator";
              
             
         }
+
+       
 
         internal string link_guest_with_user_id(string guest_name)
         {
@@ -175,7 +215,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void Logout(string username)
         {
-            
+            /*
             foreach(User user in users)
             {
                 if (user.GetUsername().Equals(username))
@@ -193,6 +233,26 @@ namespace Market_System.DomainLayer.UserComponent
                     
                 }
             }
+            */
+            
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
+            {
+                
+               if(!um.user_state.Equals("Guest"))
+                { 
+                        um.user_state = "Guest";
+                    User_DAL_controller.GetInstance().get_context().Update(um);
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
+                    return;
+                }
+                    else
+                    {
+                    throw new ArgumentException("You're already logged-out");
+                }
+                 
+                }
+            
 
             throw new ArgumentException("user does not exists");
 
@@ -210,8 +270,14 @@ namespace Market_System.DomainLayer.UserComponent
                         throw new Exception("a user with same name exists, please change name!");
                     }
                 }
-                userRepo.register(username, password);
+              string userid=  userRepo.register(username, password);
                 users.Add(new User(username, address));
+               
+                string hashed_Password = PasswordHasher.HashPassword(password);
+                    User_DAL_controller.GetInstance().get_context().Add(new user_model(username, address, false, userid, hashed_Password));
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
+              
+
             }
 
             catch (Exception e)
@@ -228,7 +294,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void add_product_to_basket(string product_id, string username,int quantity)
         {
-           
+           /*
             foreach (User u in users)
             {
               if (u.GetUsername().Equals(username))
@@ -236,11 +302,91 @@ namespace Market_System.DomainLayer.UserComponent
                     u.add_product_to_basket(product_id,quantity);
                 }
             }
+           */
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if(um!=null)
+            {
+                if (um.my_cart == null)
+                {
+                    um.my_cart = new Cart_model();
+                }
+                Cart cart = new Cart(um.my_cart);
+                cart.add_product(product_id, quantity);
+                // Cart_model cm = cart_to_cart_model(cart);
+                //cm.ID = um.my_cart.ID;
+                save_cart_in_database(cart, um);
+              //  um.my_cart.baskets = cart_to_cart_model(cart).baskets;
+                //um.my_cart.ID = cart_id;
+                
+               // User_DAL_controller.GetInstance().get_context().Update(um.my_cart);
+               // User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+
+            }
+            else
+            {
+                foreach (User u in users)
+                {
+                    if (u.GetUsername().Equals(username))
+                    {
+                        u.add_product_to_basket(product_id, quantity);
+                    }
+                }
+            }
+
+
         }
 
+        private void save_cart_in_database(Cart cart, user_model um)
+        {
+            foreach(Bucket basket in cart.gett_all_baskets())
+            {
+                if(um.my_cart.get_basket_model_by_id(basket.get_basket_id())==null)
+                {
+                    um.my_cart.baskets.Add(new Bucket_model(basket.get_basket_id(), basket.get_store_id()));
+                }             
+                    Bucket_model bm = um.my_cart.get_basket_model_by_id(basket.get_basket_id());
+                    foreach (KeyValuePair<string, int> entry in basket.get_products()) // each entry is < product_id , quantity > 
+                    {
+                        if (bm.get_product_in_bucket_model_by_productid(entry.Key) == null)
+                        {
+                           bm.products.Add(new Product_in_basket_model(entry.Key,basket.get_basket_id()));
+                        }
+                           Product_in_basket_model pimb= bm.get_product_in_bucket_model_by_productid(entry.Key);
+                            pimb.update_quantity_of_product_id(entry.Value);
+                        
 
+                    }
+                
+            }
+            User_DAL_controller.GetInstance().get_context().Update(um.my_cart);
+             User_DAL_controller.GetInstance().get_context().SaveChanges();
 
-         public string get_username_from_user_id(string userid)
+        }
+
+        private Cart_model cart_to_cart_model(Cart cart)
+        {
+            Cart_model cart_model = new Cart_model();
+            cart_model.total_price = cart.get_total_price();
+            foreach(Bucket bucket in cart.gett_all_baskets())
+            {
+                Bucket_model bucket_model = bucket_to_bucket_model(bucket);
+                cart_model.baskets.Add(bucket_model);
+            }
+
+            return cart_model;
+        }
+
+        private Bucket_model bucket_to_bucket_model(Bucket bucket)
+        {
+            Bucket_model bucket_model = new Bucket_model();
+            bucket_model.basket_id = bucket.get_basket_id();
+            bucket_model.store_id = bucket.get_store_id();
+            bucket_model.products = bucket.convert_basket_to_Product_in_basket_model();
+            return bucket_model;
+        }
+
+        public string get_username_from_user_id(string userid)
         {
             
             return userRepo.get_username_from_userID(userid);
@@ -254,12 +400,26 @@ namespace Market_System.DomainLayer.UserComponent
         }
         internal void update_cart_total_price(string username, double price)
         {
-            
-            foreach (User u in users)
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
             {
-                if(u.GetUsername().Equals(username))
+
+
+               Cart_model cart_model= User_DAL_controller.GetInstance().get_context().Getcart_model_by_id(um.my_cart.ID);
+                cart_model.total_price = price;
+                User_DAL_controller.GetInstance().get_context().Update(cart_model);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+
+            }
+            else
+            {
+                foreach (User u in users)
                 {
-                    u.update_total_price_of_cart(price);
+                    if (u.GetUsername().Equals(username))
+                    {
+                        u.update_total_price_of_cart(price);
+                    }
                 }
             }
         }
@@ -277,8 +437,16 @@ namespace Market_System.DomainLayer.UserComponent
         }
         public Cart get_cart(string username)
         {
-            
-            foreach (User u in users)
+
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
+            {
+
+
+                Cart_model cart_model = User_DAL_controller.GetInstance().get_context().Getcart_model_by_id(um.my_cart.ID);
+                return new Cart(cart_model);
+            }
+                foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
                 {
@@ -292,12 +460,43 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void remove_product_from_basket(string product_id, string username,int quantity)
         {
-            
-            foreach (User u in users)
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
             {
-                if (u.GetUsername().Equals(username))
+                
+                Cart cart = new Cart(um.my_cart);
+                string basket_id = cart.find_basket_id_that_contains_product_id(product_id);
+                Product_in_basket_model pibm = User_DAL_controller.GetInstance().get_context().get_Product_in_basket_model_by_product_id_and_basket_id(basket_id, product_id);
+                cart.remove_product(product_id, quantity);
+               
+                foreach (Bucket basket in cart.gett_all_baskets())
                 {
-                    u.remove_product_from_basket(product_id, quantity);
+                    if(basket.get_products().ContainsKey(product_id))
+                    {
+                        
+                        pibm.quantity = basket.get_products()[product_id];
+                        User_DAL_controller.GetInstance().get_context().Update(pibm);
+                        User_DAL_controller.GetInstance().get_context().SaveChanges();
+                        return;
+                    }
+                    
+                   
+                }
+                Bucket_model bm = User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(pibm.basket_id);
+                User_DAL_controller.GetInstance().get_context().Remove(pibm);
+                User_DAL_controller.GetInstance().get_context().Remove(bm);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+
+            }
+            else
+            {
+                foreach (User u in users)
+                {
+                    if (u.GetUsername().Equals(username))
+                    {
+                        u.remove_product_from_basket(product_id, quantity);
+                    }
                 }
             }
         }
@@ -333,11 +532,15 @@ namespace Market_System.DomainLayer.UserComponent
         {
             try
             {
-                string user_id = userRepo.get_userID_from_username(username);
+                
+                user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+                //string user_id = userRepo.get_userID_from_username(username);
+                string user_id = um.user_ID;
                 userID_sessionID_linker.Add(session_id, user_id);
                 try
                 {
-                    if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
+                   // if (userRepo.CheckIfAdmin(user_id, user_id)) //If the logged-in user is an admin - add it to the list
+                   if(um.is_admin)
                     {
                         Admins.Add(user_id);
                         return;
@@ -404,6 +607,21 @@ namespace Market_System.DomainLayer.UserComponent
         //[Throws Exception]
         public string Get_User_State(string username)
         {
+            user_model um= User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if(um==null)
+            {
+                //maybe it is guest
+                foreach (User user in users)
+                {
+                    if (user.GetUsername().Equals(username))
+                    {
+                        return user.GetUserState();
+                    }
+                }
+                throw new Exception("User doesn't exist!");
+            }
+            return um.user_state;
+            /*
             foreach (User user in users)
             {
                 if (user.GetUsername().Equals(username))
@@ -413,11 +631,12 @@ namespace Market_System.DomainLayer.UserComponent
             }
 
             throw new Exception("User doesn't exist!");
+            */
         }
 
         public bool check_if_user_is_logged_in(string username)
         {
-            
+            /*
             foreach(User u in users)
             {
                 if(u.GetUsername().Equals(username))
@@ -425,12 +644,15 @@ namespace Market_System.DomainLayer.UserComponent
                     return !u.GetUserState().Equals("Guest");
                 }
             }
-            return false;
+            */
+            return !User_DAL_controller.GetInstance().get_context().GetUserByName(username).user_state.Equals("Guest");
+
+            
         }
 
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
         {
-            
+           
             if (check_if_user_is_logged_in(username))
             {
                 return PurchaseRepo.GetInstance().get_history(username);
@@ -511,6 +733,7 @@ namespace Market_System.DomainLayer.UserComponent
         {
             
             string username = get_username_from_user_id(user_id);
+
             PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }
 
@@ -523,6 +746,10 @@ namespace Market_System.DomainLayer.UserComponent
                     string admin_id = get_user_id_from_username("admin");
                     userRepo.AddNewAdmin(null, "admin");
                     Admins.Add(admin_id);
+
+                    User_DAL_controller.GetInstance().get_context().user_models.FirstOrDefault(u => u.username.Equals("admin")).is_admin = true;
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
+                    
                 }
                 else { 
 
@@ -619,11 +846,27 @@ namespace Market_System.DomainLayer.UserComponent
         {
             string userid = get_userID_from_session(session_id);
             string username = get_username_from_user_id(userid);
-            foreach (User user in users)
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
             {
-                if(user.GetUsername().Equals(username))
+
+
+                var recordsToDelete = um.my_cart.baskets;
+                User_DAL_controller.GetInstance().get_context().bucket_models.RemoveRange(recordsToDelete);
+                um.my_cart.total_price = 0;
+                User_DAL_controller.GetInstance().get_context().Update(um);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+                //  return new Cart(cart_model);
+            }
+            else
+            {
+                foreach (User user in users)
                 {
-                    user.reset_cart();
+                    if (user.GetUsername().Equals(username))
+                    {
+                        user.reset_cart();
+                    }
                 }
             }
         }

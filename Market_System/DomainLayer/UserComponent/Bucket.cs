@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market_System.user_component_DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,13 +13,44 @@ namespace Market_System.DomainLayer.UserComponent
         private string basket_id;
         private string store_id;
         private Dictionary<string, int> products;
-        private Random id_generator;
+        
+
         public Bucket(string store_id)
         {
-            this.id_generator = new Random();
+            Random id_generator = new Random();
             this.basket_id = id_generator.Next().ToString();
             this.store_id = store_id;
             this.products = new Dictionary<string, int>();
+        }
+
+        public Bucket(Bucket_model bucket_model)
+        {
+            this.basket_id = bucket_model.basket_id;
+            this.store_id = bucket_model.store_id;
+            this.products = new Dictionary<string, int>();
+            foreach (Product_in_basket_model pibm in bucket_model.products)
+            {
+                products.Add(pibm.product_id, pibm.quantity);
+            }
+            
+        }
+
+        public Bucket(Bucket_model_history bmh)
+        {
+            this.basket_id = bmh.basket_id;
+            this.store_id = bmh.store_id;
+            this.products = convert_list_of_Product_in_basket_history_model_to_dict(bmh.products);
+
+        }
+
+        private Dictionary<string, int> convert_list_of_Product_in_basket_history_model_to_dict(List<Product_in_basket_history_model> products)
+        {
+            Dictionary<string, int> reutrn_me = new Dictionary<string, int>();
+            foreach(Product_in_basket_history_model pibhm in products)
+            {
+                reutrn_me.Add(pibhm.product_id, pibhm.quantity);
+            }
+            return reutrn_me;
         }
 
         public void add_product(string product_id, int quantity)
@@ -64,6 +96,11 @@ namespace Market_System.DomainLayer.UserComponent
             return 0;
         }
 
+        public string get_basket_id()
+        {
+            return this.basket_id;
+        }
+
         public List<ItemDTO> convert_basket_to_dtos_list()
         {
             
@@ -78,6 +115,20 @@ namespace Market_System.DomainLayer.UserComponent
         internal ItemDTO extract_item(string product_id)
         {
             return new ItemDTO(product_id, products[product_id]);
+        }
+
+        internal List<Product_in_basket_model> convert_basket_to_Product_in_basket_model()
+        {
+            List<Product_in_basket_model> list_of_dtos = new List<Product_in_basket_model>();
+            foreach (KeyValuePair<string, int> entry in this.products) // each entry is < product_id , quantity > 
+            {
+                Product_in_basket_model add_me = new Product_in_basket_model();
+                add_me.product_id = entry.Key;
+                add_me.quantity = entry.Value;
+                add_me.basket_id = this.basket_id;
+                list_of_dtos.Add(add_me);
+            }
+            return list_of_dtos;
         }
     }
 }

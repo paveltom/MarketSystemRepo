@@ -4,6 +4,8 @@ using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 using System.Collections.Generic;
 using Market_System.DomainLayer.UserComponent;
+using Microsoft.EntityFrameworkCore;
+using Market_System.user_component_DAL.Models;
 
 namespace Market_System.Tests.unit_tests
 {
@@ -11,8 +13,8 @@ namespace Market_System.Tests.unit_tests
     public class integration_tests
     {
 
-        private MarketSystem ms;
-
+        private static MarketSystem ms;
+        
 
 
         // Use TestInitialize to run code before running each test 
@@ -20,6 +22,10 @@ namespace Market_System.Tests.unit_tests
         public void Setup()
         {
             Logger.get_instance().change_logger_path_to_tests();
+            User_DAL_controller.GetInstance().change_to_test_database();
+            
+
+
             ms = MarketSystem.GetInstance();
         }
 
@@ -28,11 +34,23 @@ namespace Market_System.Tests.unit_tests
         public void TearDown()
         {
             Logger.get_instance().change_logger_path_to_regular();
+            User_DAL_controller.GetInstance().reset_database();
             ms.destroy_me();
 
         }
 
+        //use after all tests are done
+        [AssemblyCleanup()]
+        public static void TearDown_all()
+        {
+            Logger.get_instance().change_logger_path_to_regular();
+            User_DAL_controller.GetInstance().reset_database();
+            User_DAL_controller.GetInstance().change_to_regular_database();
+            ms.destroy_me();
 
+        }
+        
+        
         [TestMethod]
         public void remove_product_from_basket_updates_store_quantity_success()
         {
@@ -55,10 +73,14 @@ namespace Market_System.Tests.unit_tests
                 user_id = ms.get_userid_from_session_id(session_id);
                 ms.ReserveProduct(new ItemDTO(item_dto.GetID(), 10));
                 ms.Add_Product_To_basket(item_dto.GetID(), session_id, "10");
-                ms.remove_product_from_basket(item_dto.GetID(), session_id,10);
+                ms.remove_product_from_basket(item_dto.GetID(), session_id,9);
+                Cart cart=ms.get_cart_of_userID(user_id);
+                Assert.IsTrue(cart.get_basket(store_dto.StoreID).get_products()[item_dto.GetID()] == 1);
+                ms.remove_product_from_basket(item_dto.GetID(), session_id, 1);
+                cart = ms.get_cart_of_userID(user_id);
                 
-                
-                
+                Assert.IsTrue(cart.check_if_basket_of_store_exists(store_dto.StoreID)==false);
+
                 StoreDTO store = ms.GetStore(store_dto.StoreID);
                 List<ItemDTO> AllProducts = store.AllProducts;
                 Assert.IsTrue(AllProducts[0].GetQuantity() == 80);
@@ -71,8 +93,8 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
             }
         }
-
-
+        
+        
         [TestMethod]
         public void add_product_to_basket_integration_test_success()
         {
@@ -147,7 +169,7 @@ namespace Market_System.Tests.unit_tests
 
             }
         }
-
+        
 
         [TestMethod]
         public void update_cart_total_price_after_adding_product_success()
@@ -248,8 +270,8 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
             }
         }
-
-
+        
+        
         [TestMethod]
         public void get_purchase_history_from_user_success()
         {
@@ -303,8 +325,8 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
             }
         }
-
-
+        
+        
         [TestMethod]
         public void cart_resets_after_successful_purchase()
         {
@@ -343,7 +365,7 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
             }
         }
-
+        
         [TestMethod]
         public void searching_by_category_after_opening_store_and_adding_items()
         {
@@ -452,8 +474,8 @@ namespace Market_System.Tests.unit_tests
                 Assert.Fail("this test shouldn't have failed!, but failed due to:  " + e.Message);
             }
         }
-
-
+       
+         
     }
 
 

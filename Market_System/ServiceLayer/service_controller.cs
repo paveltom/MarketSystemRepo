@@ -10,6 +10,7 @@ using System.IO;
 using System.Web.Hosting;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
+using Market_System.user_component_DAL.Models;
 
 namespace Market_System.ServiceLayer
 {
@@ -75,13 +76,14 @@ namespace Market_System.ServiceLayer
 
         public Service_Controller()
         {
-
+            
+            
             this.session_id_generator = new Random();
             this.session_id = session_id_generator.Next().ToString();
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-            if (first_time_running_project())
+            if (User_DAL_controller.GetInstance().get_context().first_time_running_project())
             {
                 read_from_config_file("config_file.txt");
                 read_from_init_file("init_file.txt");
@@ -92,6 +94,10 @@ namespace Market_System.ServiceLayer
         private void set_first_time_running_to_false()
         {
             this.usc.set_first_time_running_to_false();
+
+            User_DAL_controller.GetInstance().get_context().set_second_time_running();
+            
+
         }
 
         private bool first_time_running_project()
@@ -1418,6 +1424,8 @@ namespace Market_System.ServiceLayer
         {
             usc.destroy();
             ssc.destroy();
+            User_DAL_controller.GetInstance().reset_database();
+          
         }
 
         public Response<string> ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms)
