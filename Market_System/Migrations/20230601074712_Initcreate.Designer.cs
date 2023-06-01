@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market_System.Migrations
 {
     [DbContext(typeof(User_component_context))]
-    [Migration("20230531171537_Initcreate")]
+    [Migration("20230601074712_Initcreate")]
     partial class Initcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,24 @@ namespace Market_System.Migrations
                     b.ToTable("bucket_models");
                 });
 
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.Bucket_model_history", b =>
+                {
+                    b.Property<string>("basket_id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("purchase_history_modelID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("store_id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("basket_id");
+
+                    b.HasIndex("purchase_history_modelID");
+
+                    b.ToTable("bucket_history_models");
+                });
+
             modelBuilder.Entity("Market_System.user_component_DAL.Models.Cart_model", b =>
                 {
                     b.Property<int>("ID")
@@ -54,15 +72,15 @@ namespace Market_System.Migrations
                     b.ToTable("cart_models");
                 });
 
-            modelBuilder.Entity("Market_System.user_component_DAL.Models.Product_in_basket_model", b =>
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.Product_in_basket_history_model", b =>
                 {
                     b.Property<string>("product_id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Bucket_modelbasket_id")
+                    b.Property<string>("Bucket_model_historybasket_id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("basket_id")
+                    b.Property<string>("basket_history_id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("quantity")
@@ -70,7 +88,25 @@ namespace Market_System.Migrations
 
                     b.HasKey("product_id");
 
-                    b.HasIndex("Bucket_modelbasket_id");
+                    b.HasIndex("Bucket_model_historybasket_id");
+
+                    b.ToTable("Product_in_basket_history_models");
+                });
+
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.Product_in_basket_model", b =>
+                {
+                    b.Property<string>("product_id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("basket_id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("product_id", "basket_id");
+
+                    b.HasIndex("basket_id");
 
                     b.ToTable("products_in_baskets_models");
                 });
@@ -85,6 +121,27 @@ namespace Market_System.Migrations
                     b.HasKey("firsttimerunning");
 
                     b.ToTable("first_time_flag");
+                });
+
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.purchase_history_model", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("purchase_date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("total_price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("purchase_history_models");
                 });
 
             modelBuilder.Entity("Market_System.user_component_DAL.Models.user_model", b =>
@@ -124,11 +181,27 @@ namespace Market_System.Migrations
                         .HasForeignKey("Cart_modelID");
                 });
 
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.Bucket_model_history", b =>
+                {
+                    b.HasOne("Market_System.user_component_DAL.Models.purchase_history_model", null)
+                        .WithMany("baskets")
+                        .HasForeignKey("purchase_history_modelID");
+                });
+
+            modelBuilder.Entity("Market_System.user_component_DAL.Models.Product_in_basket_history_model", b =>
+                {
+                    b.HasOne("Market_System.user_component_DAL.Models.Bucket_model_history", null)
+                        .WithMany("products")
+                        .HasForeignKey("Bucket_model_historybasket_id");
+                });
+
             modelBuilder.Entity("Market_System.user_component_DAL.Models.Product_in_basket_model", b =>
                 {
                     b.HasOne("Market_System.user_component_DAL.Models.Bucket_model", null)
                         .WithMany("products")
-                        .HasForeignKey("Bucket_modelbasket_id");
+                        .HasForeignKey("basket_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Market_System.user_component_DAL.Models.user_model", b =>

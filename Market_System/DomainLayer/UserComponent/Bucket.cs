@@ -35,6 +35,24 @@ namespace Market_System.DomainLayer.UserComponent
             
         }
 
+        public Bucket(Bucket_model_history bmh)
+        {
+            this.basket_id = bmh.basket_id;
+            this.store_id = bmh.store_id;
+            this.products = convert_list_of_Product_in_basket_history_model_to_dict(bmh.products);
+
+        }
+
+        private Dictionary<string, int> convert_list_of_Product_in_basket_history_model_to_dict(List<Product_in_basket_history_model> products)
+        {
+            Dictionary<string, int> reutrn_me = new Dictionary<string, int>();
+            foreach(Product_in_basket_history_model pibhm in products)
+            {
+                reutrn_me.Add(pibhm.product_id, pibhm.quantity);
+            }
+            return reutrn_me;
+        }
+
         public void add_product(string product_id, int quantity)
         {
 
@@ -107,21 +125,7 @@ namespace Market_System.DomainLayer.UserComponent
                 Product_in_basket_model add_me = new Product_in_basket_model();
                 add_me.product_id = entry.Key;
                 add_me.quantity = entry.Value;
-                if (User_DAL_controller.GetInstance().get_context().get_Product_in_basket_model_by_product_id_and_basket_id(this.basket_id, entry.Key)==null)
-                {
-                    User_DAL_controller.GetInstance().get_context().Add(add_me);
-                    User_DAL_controller.GetInstance().get_context().SaveChanges();
-
-                }
-                else
-                {
-                    User_DAL_controller.GetInstance().get_context().get_Product_in_basket_model_by_product_id_and_basket_id(this.basket_id, entry.Key).quantity = entry.Value;
-                    User_DAL_controller.GetInstance().get_context().Update(User_DAL_controller.GetInstance().get_context().get_Product_in_basket_model_by_product_id_and_basket_id(this.basket_id, entry.Key));
-                    User_DAL_controller.GetInstance().get_context().SaveChanges();
-
-                }
-               // User_DAL_controller.GetInstance().get_context().Add(add_me);
-              //  User_DAL_controller.GetInstance().get_context().SaveChanges();
+                add_me.basket_id = this.basket_id;
                 list_of_dtos.Add(add_me);
             }
             return list_of_dtos;

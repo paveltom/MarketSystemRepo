@@ -32,6 +32,21 @@ namespace Market_System.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "purchase_history_models",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    username = table.Column<string>(nullable: true),
+                    purchase_date = table.Column<string>(nullable: true),
+                    total_price = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_purchase_history_models", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "bucket_models",
                 columns: table => new
                 {
@@ -74,24 +89,67 @@ namespace Market_System.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "bucket_history_models",
+                columns: table => new
+                {
+                    basket_id = table.Column<string>(nullable: false),
+                    store_id = table.Column<string>(nullable: true),
+                    purchase_history_modelID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_bucket_history_models", x => x.basket_id);
+                    table.ForeignKey(
+                        name: "FK_bucket_history_models_purchase_history_models_purchase_history_modelID",
+                        column: x => x.purchase_history_modelID,
+                        principalTable: "purchase_history_models",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "products_in_baskets_models",
                 columns: table => new
                 {
                     product_id = table.Column<string>(nullable: false),
-                    quantity = table.Column<int>(nullable: false),
-                    basket_id = table.Column<string>(nullable: true),
-                    Bucket_modelbasket_id = table.Column<string>(nullable: true)
+                    basket_id = table.Column<string>(nullable: false),
+                    quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_products_in_baskets_models", x => x.product_id);
+                    table.PrimaryKey("PK_products_in_baskets_models", x => new { x.product_id, x.basket_id });
                     table.ForeignKey(
-                        name: "FK_products_in_baskets_models_bucket_models_Bucket_modelbasket_id",
-                        column: x => x.Bucket_modelbasket_id,
+                        name: "FK_products_in_baskets_models_bucket_models_basket_id",
+                        column: x => x.basket_id,
                         principalTable: "bucket_models",
+                        principalColumn: "basket_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product_in_basket_history_models",
+                columns: table => new
+                {
+                    product_id = table.Column<string>(nullable: false),
+                    quantity = table.Column<int>(nullable: false),
+                    basket_history_id = table.Column<string>(nullable: true),
+                    Bucket_model_historybasket_id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product_in_basket_history_models", x => x.product_id);
+                    table.ForeignKey(
+                        name: "FK_Product_in_basket_history_models_bucket_history_models_Bucket_model_historybasket_id",
+                        column: x => x.Bucket_model_historybasket_id,
+                        principalTable: "bucket_history_models",
                         principalColumn: "basket_id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_bucket_history_models_purchase_history_modelID",
+                table: "bucket_history_models",
+                column: "purchase_history_modelID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_bucket_models_Cart_modelID",
@@ -99,9 +157,14 @@ namespace Market_System.Migrations
                 column: "Cart_modelID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_products_in_baskets_models_Bucket_modelbasket_id",
+                name: "IX_Product_in_basket_history_models_Bucket_model_historybasket_id",
+                table: "Product_in_basket_history_models",
+                column: "Bucket_model_historybasket_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_products_in_baskets_models_basket_id",
                 table: "products_in_baskets_models",
-                column: "Bucket_modelbasket_id");
+                column: "basket_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_models_my_cartID",
@@ -115,13 +178,22 @@ namespace Market_System.Migrations
                 name: "first_time_flag");
 
             migrationBuilder.DropTable(
+                name: "Product_in_basket_history_models");
+
+            migrationBuilder.DropTable(
                 name: "products_in_baskets_models");
 
             migrationBuilder.DropTable(
                 name: "user_models");
 
             migrationBuilder.DropTable(
+                name: "bucket_history_models");
+
+            migrationBuilder.DropTable(
                 name: "bucket_models");
+
+            migrationBuilder.DropTable(
+                name: "purchase_history_models");
 
             migrationBuilder.DropTable(
                 name: "cart_models");

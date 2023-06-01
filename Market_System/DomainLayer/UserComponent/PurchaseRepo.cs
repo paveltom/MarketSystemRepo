@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Market_System.user_component_DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -49,7 +50,16 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void save_purchase(string username, PurchaseHistoryObj new_purchase)
         {
-            if(purchases_database.ContainsKey(username))
+          //  List<purchase_history_model> histores = User_DAL_controller.GetInstance().get_context().get_purhcase_histories_by_username(username);
+           // if (histores == null)
+           // {
+                List<Bucket_model_history> list_of_bucket_model_histroy = new_purchase.convert_buckets_to_Bucket_model_history();
+
+                User_DAL_controller.GetInstance().get_context().Add(new purchase_history_model(username, list_of_bucket_model_histroy, new_purchase.get_total_price()));
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+          //  }
+   /*
+            if (purchases_database.ContainsKey(username))
             {
                 purchases_database[username].Add(new_purchase);
             }
@@ -58,15 +68,47 @@ namespace Market_System.DomainLayer.UserComponent
                 purchases_database.Add(username, new List<PurchaseHistoryObj>());
                 purchases_database[username].Add(new_purchase);
             }
+   */
         }
 
         internal List<PurchaseHistoryObj> get_history(string username)
         {
-           if(purchases_database.ContainsKey(username))
+           List< purchase_history_model> histroies = User_DAL_controller.GetInstance().get_context().get_purhcase_histories_by_username(username);
+            if (histroies != null)
+            {
+                return convert_purchase_history_model_to_PurchaseHistoryObj(histroies);
+            }
+            /*
+            if (purchases_database.ContainsKey(username))
             {
                 return purchases_database[username];
             }
+            */
             throw new Exception("user never bought anything!");
+        }
+
+        private List<PurchaseHistoryObj> convert_purchase_history_model_to_PurchaseHistoryObj(List<purchase_history_model> histroies)
+        {
+            List<PurchaseHistoryObj> phol = new List<PurchaseHistoryObj>();
+            List<Bucket> buckets = new List<Bucket>();
+            foreach(purchase_history_model phm in histroies)
+            {
+
+
+                phol.Add(new PurchaseHistoryObj(phm.username, convert_list_of_bucket_history_model_to_list_of_buckets(phm.baskets), phm.total_price));
+
+            }
+            return phol;
+        }
+
+        private List<Bucket> convert_list_of_bucket_history_model_to_list_of_buckets(List<Bucket_model_history> baskets)
+        {
+            List<Bucket> reutn_me = new List<Bucket>();
+            foreach (Bucket_model_history bmh in baskets)
+            {
+                reutn_me.Add(new Bucket(bmh));
+            }
+            return reutn_me;
         }
 
         internal bool check_if_user_bought_item(string username, string product_id)

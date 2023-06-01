@@ -19,9 +19,12 @@ namespace Market_System.DomainLayer.UserComponent
         public Cart(Cart_model cart_model)
         {
             this.baskets = new List<Bucket>();
-            foreach(Bucket_model bucket_model in cart_model.baskets)
+            if (cart_model.baskets != null)
             {
-                baskets.Add(new Bucket(bucket_model));
+                foreach (Bucket_model bucket_model in cart_model.baskets)
+                {
+                    baskets.Add(new Bucket(bucket_model));
+                }
             }
             this.total_price = cart_model.total_price;
         }
@@ -142,5 +145,16 @@ namespace Market_System.DomainLayer.UserComponent
 
         }
 
+        internal string find_basket_id_that_contains_product_id(string product_id)
+        {
+            foreach(Bucket basket in this.baskets)
+            {
+                if(basket.get_products().ContainsKey(product_id))
+                {
+                    return basket.get_basket_id();
+                }
+            }
+            return null;
+        }
     }
 }

@@ -301,13 +301,20 @@ namespace Market_System.DomainLayer.UserComponent
             user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
             if(um!=null)
             {
+                if (um.my_cart == null)
+                {
+                    um.my_cart = new Cart_model();
+                }
                 Cart cart = new Cart(um.my_cart);
                 cart.add_product(product_id, quantity);
-                Cart_model cm = cart_to_cart_model(cart);
-                cm.ID = um.my_cart.ID;            
+                // Cart_model cm = cart_to_cart_model(cart);
+                //cm.ID = um.my_cart.ID;
+                save_cart_in_database(cart, um);
+              //  um.my_cart.baskets = cart_to_cart_model(cart).baskets;
+                //um.my_cart.ID = cart_id;
                 
-                User_DAL_controller.GetInstance().get_context().Update(um.my_cart);
-                User_DAL_controller.GetInstance().get_context().SaveChanges();
+               // User_DAL_controller.GetInstance().get_context().Update(um.my_cart);
+               // User_DAL_controller.GetInstance().get_context().SaveChanges();
 
 
             }
@@ -325,6 +332,33 @@ namespace Market_System.DomainLayer.UserComponent
 
         }
 
+        private void save_cart_in_database(Cart cart, user_model um)
+        {
+            foreach(Bucket basket in cart.gett_all_baskets())
+            {
+                if(um.my_cart.get_basket_model_by_id(basket.get_basket_id())==null)
+                {
+                    um.my_cart.baskets.Add(new Bucket_model(basket.get_basket_id(), basket.get_store_id()));
+                }             
+                    Bucket_model bm = um.my_cart.get_basket_model_by_id(basket.get_basket_id());
+                    foreach (KeyValuePair<string, int> entry in basket.get_products()) // each entry is < product_id , quantity > 
+                    {
+                        if (bm.get_product_in_bucket_model_by_productid(entry.Key) == null)
+                        {
+                           bm.products.Add(new Product_in_basket_model(entry.Key,basket.get_basket_id()));
+                        }
+                           Product_in_basket_model pimb= bm.get_product_in_bucket_model_by_productid(entry.Key);
+                            pimb.update_quantity_of_product_id(entry.Value);
+                        
+
+                    }
+                
+            }
+            User_DAL_controller.GetInstance().get_context().Update(um.my_cart);
+             User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+        }
+
         private Cart_model cart_to_cart_model(Cart cart)
         {
             Cart_model cart_model = new Cart_model();
@@ -332,7 +366,7 @@ namespace Market_System.DomainLayer.UserComponent
             foreach(Bucket bucket in cart.gett_all_baskets())
             {
                 Bucket_model bucket_model = bucket_to_bucket_model(bucket);
-                cart_model.baskets.Add(new Bucket_model());
+                cart_model.baskets.Add(bucket_model);
             }
 
             return cart_model;
@@ -344,20 +378,6 @@ namespace Market_System.DomainLayer.UserComponent
             bucket_model.basket_id = bucket.get_basket_id();
             bucket_model.store_id = bucket.get_store_id();
             bucket_model.products = bucket.convert_basket_to_Product_in_basket_model();
-            if (User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(bucket.get_basket_id()) == null)
-            {
-                User_DAL_controller.GetInstance().get_context().Add(bucket_model);
-                User_DAL_controller.GetInstance().get_context().SaveChanges();
-
-            }
-            else
-            {
-                User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(bucket.get_basket_id()).products = bucket_model.products;
-                User_DAL_controller.GetInstance().get_context().Update(User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(bucket.get_basket_id()));
-                User_DAL_controller.GetInstance().get_context().SaveChanges();
-
-            }
-
             return bucket_model;
         }
 
@@ -412,8 +432,16 @@ namespace Market_System.DomainLayer.UserComponent
         }
         public Cart get_cart(string username)
         {
-            
-            foreach (User u in users)
+
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
+            {
+
+
+                Cart_model cart_model = User_DAL_controller.GetInstance().get_context().Getcart_model_by_id(um.my_cart.ID);
+                return new Cart(cart_model);
+            }
+                foreach (User u in users)
             {
                 if (u.GetUsername().Equals(username))
                 {
@@ -427,12 +455,41 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void remove_product_from_basket(string product_id, string username,int quantity)
         {
-            
-            foreach (User u in users)
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
             {
-                if (u.GetUsername().Equals(username))
+                
+                Cart cart = new Cart(um.my_cart);
+                string basket_id = cart.find_basket_id_that_contains_product_id(product_id);
+                Product_in_basket_model pibm = User_DAL_controller.GetInstance().get_context().get_Product_in_basket_model_by_product_id_and_basket_id(basket_id, product_id);
+                cart.remove_product(product_id, quantity);
+               
+                foreach (Bucket basket in cart.gett_all_baskets())
                 {
-                    u.remove_product_from_basket(product_id, quantity);
+                    if(basket.get_products().ContainsKey(product_id))
+                    {
+                        
+                        pibm.quantity = basket.get_products()[product_id];
+                        User_DAL_controller.GetInstance().get_context().Update(pibm);
+                        User_DAL_controller.GetInstance().get_context().SaveChanges();
+                        return;
+                    }
+                    
+                   
+                }
+                User_DAL_controller.GetInstance().get_context().Remove(pibm);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+
+            }
+            else
+            {
+                foreach (User u in users)
+                {
+                    if (u.GetUsername().Equals(username))
+                    {
+                        u.remove_product_from_basket(product_id, quantity);
+                    }
                 }
             }
         }
@@ -572,7 +629,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public List<PurchaseHistoryObj> get_purchase_history_of_a_member(string username)
         {
-            
+           
             if (check_if_user_is_logged_in(username))
             {
                 return PurchaseRepo.GetInstance().get_history(username);
@@ -653,6 +710,7 @@ namespace Market_System.DomainLayer.UserComponent
         {
             
             string username = get_username_from_user_id(user_id);
+
             PurchaseRepo.GetInstance().save_purchase(username, new PurchaseHistoryObj(username, cart.gett_all_baskets(), cart.get_total_price()));
         }
 
@@ -765,11 +823,27 @@ namespace Market_System.DomainLayer.UserComponent
         {
             string userid = get_userID_from_session(session_id);
             string username = get_username_from_user_id(userid);
-            foreach (User user in users)
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (um != null)
             {
-                if(user.GetUsername().Equals(username))
+
+
+                var recordsToDelete = um.my_cart.baskets;
+                User_DAL_controller.GetInstance().get_context().bucket_models.RemoveRange(recordsToDelete);
+                um.my_cart.total_price = 0;
+                User_DAL_controller.GetInstance().get_context().Update(um);
+                User_DAL_controller.GetInstance().get_context().SaveChanges();
+
+                //  return new Cart(cart_model);
+            }
+            else
+            {
+                foreach (User user in users)
                 {
-                    user.reset_cart();
+                    if (user.GetUsername().Equals(username))
+                    {
+                        user.reset_cart();
+                    }
                 }
             }
         }

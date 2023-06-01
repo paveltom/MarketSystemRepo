@@ -33,5 +33,7 @@ namespace Market_System.user_component_DAL.Models
             this.user_ID = user_id;
             this.user_state = "Guest";
         }
+
+      
     }
 }

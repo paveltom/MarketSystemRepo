@@ -14,8 +14,11 @@ namespace Market_System.user_component_DAL.Models
         public DbSet<Bucket_model> bucket_models { get; set; }
         public DbSet<Product_in_basket_model> products_in_baskets_models { get; set; }
         public DbSet<only_for_checking_if_first_time_running> first_time_flag { get; set; }
+        public DbSet<Bucket_model_history> bucket_history_models { get; set; }
+        public DbSet<Product_in_basket_history_model> Product_in_basket_history_models { get; set; }
+        public DbSet<purchase_history_model> purchase_history_models { get; set; }
 
-        
+
 
 
         /*
@@ -25,7 +28,15 @@ namespace Market_System.user_component_DAL.Models
 
         }
         */
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) // this is used to define multiple keys for Product_in_basket_model
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Product_in_basket_model>()
+                .HasKey(p => new { p.product_id, p.basket_id });
+        }
+
         public User_component_context() : base(new DbContextOptionsBuilder<User_component_context>()
                 .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
                 .Options)
@@ -42,6 +53,13 @@ namespace Market_System.user_component_DAL.Models
         {
             
             return Database.CanConnect();
+        }
+
+        internal List<purchase_history_model> get_purhcase_histories_by_username(string username)
+        {
+            var histories = this.purchase_history_models.Where(e => e.username == username).ToList();
+            
+            return histories;
         }
 
         public void ResetDatabase()

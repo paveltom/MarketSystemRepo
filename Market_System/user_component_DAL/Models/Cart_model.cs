@@ -19,6 +19,17 @@ namespace Market_System.user_component_DAL.Models
             this.total_price = 0;
         }
 
-
+   
+        internal Bucket_model get_basket_model_by_id(string basket_id)
+        {
+            foreach (Bucket_model bm in baskets)
+            {
+                if (bm.basket_id.Equals(basket_id))
+                {
+                    return bm;
+                }
+            }
+            return null;
+        }
     }
 }

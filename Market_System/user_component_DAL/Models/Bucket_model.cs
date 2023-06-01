@@ -25,5 +25,17 @@ namespace Market_System.user_component_DAL.Models
             this.store_id = store_id;
             this.products = new List<Product_in_basket_model>();
         }
+
+        internal Product_in_basket_model get_product_in_bucket_model_by_productid(string product_id)
+        {
+            foreach (Product_in_basket_model pibm in products)
+            {
+                if (pibm.product_id.Equals(product_id))
+                {
+                    return pibm;
+                }
+            }
+            return null;
+        }
     }
 }
