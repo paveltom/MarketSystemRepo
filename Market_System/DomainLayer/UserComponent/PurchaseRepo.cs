@@ -74,7 +74,7 @@ namespace Market_System.DomainLayer.UserComponent
         internal List<PurchaseHistoryObj> get_history(string username)
         {
            List< purchase_history_model> histroies = User_DAL_controller.GetInstance().get_context().get_purhcase_histories_by_username(username);
-            if (histroies != null)
+            if (histroies != null && histroies.Count>0)
             {
                 return convert_purchase_history_model_to_PurchaseHistoryObj(histroies);
             }

@@ -18,6 +18,7 @@ namespace Market_System.user_component_DAL.Models
         public DbSet<Product_in_basket_history_model> Product_in_basket_history_models { get; set; }
         public DbSet<purchase_history_model> purchase_history_models { get; set; }
 
+        public DbContextOptions Options { get; }
 
 
 
@@ -42,11 +43,14 @@ namespace Market_System.user_component_DAL.Models
                 .Options)
         {
 
-
+            this.Options = new DbContextOptionsBuilder<User_component_context>()
+                .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
+                .Options;
         }
         
         public User_component_context(DbContextOptions options) : base(options)
         {
+            this.Options = options;
         }
 
         public bool IsDatabaseExists()
@@ -64,9 +68,20 @@ namespace Market_System.user_component_DAL.Models
 
         public void ResetDatabase()
         {
+
             Database.EnsureDeleted(); // Drop the existing database
             Database.EnsureCreated(); // Recreate the database structure
             
+            try
+            {
+                Database.Migrate();
+                Database.EnsureCreated();
+            }
+            catch (Exception e)
+            {
+                //shove it up your ass
+            }
+
         }
 
         public user_model GetUserByName(string name)

@@ -73,6 +73,10 @@ namespace Market_System.DomainLayer.UserComponent
 
                 
                 user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+                if(um==null)
+                {
+                    return;
+                }
                 if (!um.user_state.Equals("Guest"))
                 {
                     throw new Exception(username + " is already logged in!");
@@ -270,8 +274,9 @@ namespace Market_System.DomainLayer.UserComponent
                 users.Add(new User(username, address));
                
                 string hashed_Password = PasswordHasher.HashPassword(password);
-                User_DAL_controller.GetInstance().get_context().Add(new user_model(username, address, false, userid,hashed_Password));
-                User_DAL_controller.GetInstance().get_context().SaveChanges();
+                    User_DAL_controller.GetInstance().get_context().Add(new user_model(username, address, false, userid, hashed_Password));
+                    User_DAL_controller.GetInstance().get_context().SaveChanges();
+              
 
             }
 
@@ -477,7 +482,9 @@ namespace Market_System.DomainLayer.UserComponent
                     
                    
                 }
+                Bucket_model bm = User_DAL_controller.GetInstance().get_context().get_basket_model_by_basket_id(pibm.basket_id);
                 User_DAL_controller.GetInstance().get_context().Remove(pibm);
+                User_DAL_controller.GetInstance().get_context().Remove(bm);
                 User_DAL_controller.GetInstance().get_context().SaveChanges();
 
 
@@ -600,6 +607,21 @@ namespace Market_System.DomainLayer.UserComponent
         //[Throws Exception]
         public string Get_User_State(string username)
         {
+            user_model um= User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if(um==null)
+            {
+                //maybe it is guest
+                foreach (User user in users)
+                {
+                    if (user.GetUsername().Equals(username))
+                    {
+                        return user.GetUserState();
+                    }
+                }
+                throw new Exception("User doesn't exist!");
+            }
+            return um.user_state;
+            /*
             foreach (User user in users)
             {
                 if (user.GetUsername().Equals(username))
@@ -609,6 +631,7 @@ namespace Market_System.DomainLayer.UserComponent
             }
 
             throw new Exception("User doesn't exist!");
+            */
         }
 
         public bool check_if_user_is_logged_in(string username)

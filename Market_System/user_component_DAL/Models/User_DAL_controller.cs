@@ -55,5 +55,15 @@ namespace Market_System.user_component_DAL.Models
         {
             return ucc;
         }
+
+
+        public void reset_database()
+        {
+            ucc.ResetDatabase();
+            DbContextOptions options=ucc.Options;
+            ucc = null;
+            ucc = new User_component_context(options);
+        }
+
     }
 }

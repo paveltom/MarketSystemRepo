@@ -142,13 +142,16 @@ namespace Market_System.DomainLayer.UserComponent
 
         internal void change_password(string username, string new_password)
         {
-            if(PasswordHasher.VerifyPassword(new_password, userDatabase[username]))
+            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
+            if (PasswordHasher.VerifyPassword(new_password, um.hashed_password))
             {
                 throw new Exception("You can't change a password to the same one, you need to provide an other new password");
             }
 
             string new_hashed_Password = PasswordHasher.HashPassword(new_password);
-            userDatabase[username] = new_hashed_Password;
+           um.hashed_password= new_hashed_Password;
+            User_DAL_controller.GetInstance().get_context().Update(um);
+            User_DAL_controller.GetInstance().get_context().SaveChanges();
         }
 
         internal string get_userID_from_username(string username)

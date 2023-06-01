@@ -1424,6 +1424,8 @@ namespace Market_System.ServiceLayer
         {
             usc.destroy();
             ssc.destroy();
+            User_DAL_controller.GetInstance().reset_database();
+          
         }
 
         public Response<string> ManageEmployeePermissions(string storeID, string employee_username, List<string> additionalPerms)

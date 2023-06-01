@@ -34,7 +34,7 @@ namespace Market_System.Tests.unit_tests
         public void TearDown()
         {
             Logger.get_instance().change_logger_path_to_regular();
-            User_DAL_controller.GetInstance().get_context().ResetDatabase();
+            User_DAL_controller.GetInstance().reset_database();
             ms.destroy_me();
 
         }
@@ -44,7 +44,7 @@ namespace Market_System.Tests.unit_tests
         public static void TearDown_all()
         {
             Logger.get_instance().change_logger_path_to_regular();
-            User_DAL_controller.GetInstance().get_context().ResetDatabase();
+            User_DAL_controller.GetInstance().reset_database();
             User_DAL_controller.GetInstance().change_to_regular_database();
             ms.destroy_me();
 
@@ -78,7 +78,8 @@ namespace Market_System.Tests.unit_tests
                 Assert.IsTrue(cart.get_basket(store_dto.StoreID).get_products()[item_dto.GetID()] == 1);
                 ms.remove_product_from_basket(item_dto.GetID(), session_id, 1);
                 cart = ms.get_cart_of_userID(user_id);
-                Assert.IsTrue(cart.get_basket(store_dto.StoreID).get_products().ContainsKey(item_dto.GetID())==false);
+                
+                Assert.IsTrue(cart.check_if_basket_of_store_exists(store_dto.StoreID)==false);
 
                 StoreDTO store = ms.GetStore(store_dto.StoreID);
                 List<ItemDTO> AllProducts = store.AllProducts;
@@ -93,7 +94,7 @@ namespace Market_System.Tests.unit_tests
             }
         }
         
-
+        
         [TestMethod]
         public void add_product_to_basket_integration_test_success()
         {
@@ -474,8 +475,7 @@ namespace Market_System.Tests.unit_tests
             }
         }
        
-        
-        
+         
     }
 
 
