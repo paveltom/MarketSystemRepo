@@ -27,7 +27,7 @@ namespace Market_System.DAL.DBModels
         public virtual ICollection<ProductModel> Products { get; set; }
         public virtual ICollection<PurchaseStrategyModel> Strategies { get; set; }
         public virtual ICollection<PurchasePolicyModel> Policies { get; set; }
-        public virtual ICollection<EmployeeModel> Employees { get; set; }
+        //public virtual ICollection<EmployeeModel> Employees { get; set; }
         public virtual ICollection<StorePurchaseHistoryObjModel> PurchaseHistory { get; set; }
 
 
@@ -89,6 +89,7 @@ namespace Market_System.DAL.DBModels
                     {
                         PurchaseStrategyModel model = new PurchaseStrategyModel();
                         model.DefineNewMe(x.Value, false, this, null);
+                        this.Strategies.Add(model);
                     }
                 });
 
@@ -98,6 +99,7 @@ namespace Market_System.DAL.DBModels
                     {
                         PurchaseStrategyModel model = new PurchaseStrategyModel();
                         model.DefineNewMe(x.Value, true, this, null);
+                        this.Strategies.Add(model);
                     }
                 });
 

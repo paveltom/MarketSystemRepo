@@ -462,7 +462,7 @@ namespace Market_System.DAL
             {
                 while (true)
                 {
-                    newProductID = store_id_generator.Next().ToString();
+                    newProductID = storeID + "_" + store_id_generator.Next().ToString();
                     if (context.Products.Any(x => x.ProductID == newProductID))
                         continue;
                     return newProductID;

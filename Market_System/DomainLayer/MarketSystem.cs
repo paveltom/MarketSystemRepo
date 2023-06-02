@@ -116,8 +116,6 @@ namespace Market_System.DomainLayer
                         Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
 
 
-
-
                         // for tests only: delete!!!!!!!!!!!!!!!!!!!!!
                         //Market_System.DAL.StoreRepo.GetInstance().AddStore("pashaDBStoreFounder", new Store("pashaDBStoreFounder", "pashaDBStoreID", null, null, null, false)); 
                     }
