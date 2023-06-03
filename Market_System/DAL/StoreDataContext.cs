@@ -21,7 +21,14 @@ namespace Market_System.DAL
 
 
         //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;AttachDbFilename=C:\\MarketDB.dbo;Initial Catalog=MarketDB;Integrated Security=True")
-        public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
+
+        //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
+
+        // 192.168.1.65/24
+
+
+        // Data Source=192.168.1.65/24, 1433;Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=True";
+        public StoreDataContext() : base("Data Source=192.168.1.65, 1433; Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=False")
 
         {
 
