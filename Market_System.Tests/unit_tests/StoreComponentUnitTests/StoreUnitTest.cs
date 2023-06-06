@@ -541,7 +541,7 @@ namespace Market_System.Tests.unit_tests
             // Act
             try
             {
-                result = this.testStore.CalculatePrice(items);
+                result = this.testStore.CalculatePrice(this.testStore.Store_ID, items);
             }
             catch (Exception ex) { error = true; }
 
@@ -562,7 +562,7 @@ namespace Market_System.Tests.unit_tests
             // Act
             try
             {
-                this.testStore.CalculatePrice(items);
+                this.testStore.CalculatePrice(this.testStore.Store_ID, items);
             }
             catch (Exception ex) { errorCatchedNoSuchProductInThisStore = true; }
 

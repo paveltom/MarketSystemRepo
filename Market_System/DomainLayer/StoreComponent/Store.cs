@@ -668,7 +668,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                if (this.employees.isOwner(userID, this.Store_ID) || bidID.Contains(userID))
                     return this.storeRepo.ApproveBid(this.Store_ID, userID, bidID);
                 throw new Exception("You cannot view this info.");
             }

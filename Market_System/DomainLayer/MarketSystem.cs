@@ -10,6 +10,9 @@ using Market_System.Domain_Layer.Communication_Component;
 using Market_System.DAL.DBModels;
 using Market_System.DAL;
 using static Microsoft.VisualStudio.Shell.ThreadedWaitDialogHelper;
+using Microsoft.VisualStudio.Utilities.Internal;
+using Microsoft.Ajax.Utilities;
+using System.EnterpriseServices;
 
 namespace Market_System.DomainLayer
 {
@@ -1536,7 +1539,14 @@ namespace Market_System.DomainLayer
             {
                 string userID = get_userid_from_session_id(session);
                 string storeID = GetStoreIdFromProductID(productID);
-                return storeFacade.PlaceBid(storeID, userID, productID, newPrice, quantity);
+                BidDTO bid = storeFacade.PlaceBid(storeID, userID, productID, newPrice, quantity);              
+                string msg = "New bid " + bid.BidID + " was placed. Approvement required.";
+                notificationFacade.AddNewMessage(userID, "Market", msg);
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                Employees emps = new Employees();
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).Where(m => emps.confirmPermission(m, storeID, StoreComponent.Permission.STOCK)).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                return bid;
             }
             catch (Exception e) { throw e; }
         }
@@ -1545,10 +1555,12 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                string userID = get_userid_from_session_id(session);
+                string userID = get_userid_from_session_id(session);             
                 if (storeFacade.ApproveBid(userID, bidID))
                 {
-                    throw new NotImplementedException("Acknowledge everyone that bid approved: user and employees");
+                    string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                    string msg = "The bid " + bidID + " was approved by store side. The price is valid only for proposed quantity.";
+                    notificationFacade.AddNewMessage(bidderID, "Market", msg);
                 }
             }
             catch (Exception e) { throw e; }
@@ -1573,6 +1585,10 @@ namespace Market_System.DomainLayer
             try
             {
                 storeFacade.CounterBid(userID, bidID, counterPrice);
+                string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                string productID = bidID.Substring(bidID.IndexOf('_') + 1);
+                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. User Approvement required.";
+                notificationFacade.AddNewMessage(bidderID, "Market", msg);
             }
             catch (Exception e) { throw e; }
         }
@@ -1584,6 +1600,11 @@ namespace Market_System.DomainLayer
             try
             {
                 storeFacade.RemoveBid(userID, bidID);
+                string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                string productID = bidID.Substring(bidID.IndexOf('_') + 1);
+                productID = bidID.Substring(0, bidID.IndexOf('_'));
+                string msg = "The bid for product " + productID + " was declined and removed by store side.";
+                notificationFacade.AddNewMessage(bidderID, "Market", msg);
             }
             catch (Exception e) { throw e; }
         }

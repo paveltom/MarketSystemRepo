@@ -70,7 +70,6 @@ namespace Market_System.DAL.DBModels
         public void UpdateWholeModel(Store updatedStore)
         {
             this.Name = updatedStore.Name;
-            
             this.founderID = updatedStore.founderID;
             this.temporaryClosed = updatedStore.is_closed_temporary();
             List<PurchaseStrategyModel> remove = new List<PurchaseStrategyModel>();
