@@ -8,6 +8,7 @@ using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
 using Market_System.DAL.DBModels;
+using Market_System.DAL;
 
 namespace Market_System.DomainLayer
 {
@@ -549,6 +550,29 @@ namespace Market_System.DomainLayer
                 throw e;
             }
         }
+
+        public string GetStoreProfitForDate(string sessionID, string storeID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                string userID = userFacade.get_userID_from_session(sessionID);
+                return storeFacade.GetStoreProfitForDate(userID, storeID, date_as_dd_MM_yyyy).ToString();
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public string GetMarketProfitForDate(string sessionID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                string userID = userFacade.get_userID_from_session(sessionID);
+                return storeFacade.GetMarketProfitForDate(userID, date_as_dd_MM_yyyy).ToString();
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
 
         public MemberDTO Get_Member_Info(string session_id, string member_Username)
         {

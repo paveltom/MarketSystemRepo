@@ -513,6 +513,38 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+
+        public double GetStoreProfitForDate(string userID, string storeID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                double profit = AcquireStore(storeID).GetStoreProfitForDate(userID, date_as_dd_MM_yyyy);
+                ReleaseStore(storeID);
+                return profit;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public double GetMarketProfitForDate(string userID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                double profit = 0.0;
+                List<string> allOpenStoresIds = storeRepo.GetStores().Where(s => !s.is_closed_temporary()).Select(s => s.Store_ID).ToList();
+                foreach(string sid in allOpenStoresIds)
+                {
+                    profit += AcquireStore(sid).GetStoreProfitForDate(userID, date_as_dd_MM_yyyy);
+                    ReleaseStore(sid);
+                }                
+                return profit;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
         // ====================== END of Store methods ===============================
         // ===========================================================================
 

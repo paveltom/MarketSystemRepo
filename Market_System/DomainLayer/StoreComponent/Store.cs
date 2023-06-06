@@ -21,13 +21,11 @@ namespace Market_System.DomainLayer.StoreComponent
         private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
         private Employees employees;
-        public String founderID { get; private set; } //founder's userID
+        public string founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
-        // public ConcurrentDictionary<string, Purchase_Policy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
-        // public ConcurrentDictionary<string, Purchase_Policy> storeStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
         private bool temporaryClosed = false;
 
@@ -57,6 +55,7 @@ namespace Market_System.DomainLayer.StoreComponent
             if (allProductsIDS != null)                
                 foreach(string s in allProductsIDS)
                     this.allProducts.TryAdd(s, s);
+
             this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 
@@ -591,6 +590,22 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+
+        public double GetStoreProfitForDate(string userID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || EmployeeRepo.GetInstance().isMarketManager(userID))
+                    this.storeRepo.GetStoreProfitForDate(this.Store_ID, date_as_dd_MM_yyyy);
+                else
+                    throw new Exception("You don't have a permission to view profit.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
 
 
         // call me every time data changes

@@ -266,9 +266,25 @@ namespace Market_System.DAL
                     purchase.Quantity = item.GetQuantity();
                     purchase.ProductId = item.GetID();
                     purchase.Store = model;
+                    purchase.TotalPrice = item.Price * item.GetQuantity();
+                    purchase.Day_Month_Year = DateTime.Now.Day.ToString("dd") + "_" + DateTime.Now.Month.ToString("MM") + "_" + DateTime.Now.Year.ToString("yyyy");
                     model.PurchaseHistory.Add(purchase);
                     context.SaveChanges();
                 }
+            }
+        }
+
+
+        public double GetStoreProfitForDate(string storeID, string date_as_dd_MM_yyyy)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                StoreModel model = context.Stores.SingleOrDefault(x => x.StoreID == storeID);
+                if (model != null)
+                {
+                    return model.PurchaseHistory.Where(h => h.Day_Month_Year == date_as_dd_MM_yyyy).ToList().Aggregate(0.0, (acc, x) => acc += x.TotalPrice, acc => acc);
+                }
+                throw new Exception("No such store.");
             }
         }
 

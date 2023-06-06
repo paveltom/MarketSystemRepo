@@ -12,6 +12,8 @@ namespace Market_System.DAL.DBModels
         public string HistoryId { get; set; } // productID_datetime.now
         public string ProductId { get; set; }
         public int Quantity { get; set; }
+        public double TotalPrice { get; set; }
+        public string Day_Month_Year { get; set; }
 
         public virtual StoreModel Store { get; set; }
 

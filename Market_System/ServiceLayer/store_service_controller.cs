@@ -230,6 +230,31 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+        public Response<string> GetStoreProfitForDate(string storeID, DateTime dateTime)
+        {
+            try
+            {
+                string date_as_dd_MM_yyyy = dateTime.Day.ToString("dd") + "_" + dateTime.Month.ToString("MM") + "_" + dateTime.Year.ToString("yyyy");
+                return Response<string>.FromValue(this.Market.GetStoreProfitForDate(this.SessionID, storeID, date_as_dd_MM_yyyy).ToString());
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<string> GetMarketProfitForDate(DateTime dateTime)
+        {
+            try
+            {
+                string date_as_dd_MM_yyyy = dateTime.Day.ToString("dd") + "_" + dateTime.Month.ToString("MM") + "_" + dateTime.Year.ToString("yyyy");
+                return Response<string>.FromValue(this.Market.GetMarketProfitForDate(this.SessionID, date_as_dd_MM_yyyy).ToString());
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
         // ====================== END of Store methods ===============================
         // ===========================================================================
 

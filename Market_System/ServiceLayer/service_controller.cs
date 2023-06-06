@@ -1550,5 +1550,42 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
         //yotam
+
+
+
+
+
+
+        public Response<string> GetStoreProfitForDate(string storeID, DateTime dateTime)
+        {
+            try
+            {
+                Response<string> ret =  this.ssc.GetStoreProfitForDate(storeID, dateTime);
+                Logger.get_instance().record_event("user with session ID : " + session_id + " requested profit for a store " + storeID + "on date " + dateTime);
+                return ret;
+            }
+            catch (Exception e) 
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetStoreProfitForDate");
+                return null;
+            }
+        }
+
+
+        public Response<string> GetMarketProfitForDate(DateTime dateTime)
+        {
+            try
+            {
+                Response<string>  ret =  this.ssc.GetMarketProfitForDate(dateTime);
+                Logger.get_instance().record_event("ADMIN with session ID : " + session_id + " requested profit for a market on date " + dateTime);
+                return ret;
+
+            }
+            catch (Exception e) 
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetMarketProfitForDate");
+                return null;
+            }
+        }
     }
 }
