@@ -327,6 +327,122 @@ namespace Market_System.DAL
 
 
 
+        public BidDTO PlaceBid(string storeID, string userID, string productID, double newPrice, int quantity)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                // validate enough quantity to reserve
+                StoreModel store;
+                if (((store = context.Stores.SingleOrDefault(s => s.StoreID == storeID)) == null) || (context.Products.SingleOrDefault(p => p.ProductID == productID && (p.Quantity - p.ReservedQuantity >= quantity)) == null))
+                    throw new Exception("Cannot add bid.");
+                string currBID = userID + "_" + productID + "_bid";
+                BidModel bid;
+                if((bid = context.Bids.SingleOrDefault(b => b.BidID == currBID)) == null)
+                {
+                    bid = new BidModel();
+                    bid.ProductID = productID;
+                    bid.NewPrice = newPrice;
+                    bid.UserID = userID;
+                    bid.BidID = currBID;
+                    bid.ApprovedByUser = false;
+                    bid.ApprovedByStore = false;
+                    bid.CounterOffer = false;
+                    bid.DeclinedByStore = false;
+                    bid.DeclinedByUser = false;
+                    bid.NumOfApproves = 0;
+                    bid.Quantity = quantity;
+                    store.Bids.Add(bid);
+
+                    context.Bids.Add(bid);
+                    context.SaveChanges();
+                }
+
+                return bid.ModelToBid();
+            }
+        }
+
+        public bool ApproveBid(string storeID, string userID, string bidID)
+        {
+            bool ret = false;
+            using (StoreDataContext context = new StoreDataContext())
+            {                
+                BidModel bid;
+                if((bid = context.Bids.SingleOrDefault(b => b.BidID == bidID)) != null)
+                {
+                    if (bid.UserID == userID)
+                    {
+                        bid.ApprovedByUser = true;
+                        ret = true;
+                    }
+                    else
+                        bid.NumOfApproves++;
+                    int neededApproves = context.Employees.Where(e => e.StoreID == storeID).ToList().Where(e => e.Role == "Owner" || e.Permissions.Contains("STOCK")).Count();
+                    if (bid.NumOfApproves == neededApproves)
+                    {
+                        bid.ApprovedByStore = true;
+                        ret = true;
+                    }
+                    context.SaveChanges();
+                }
+            }
+            return ret;
+        }
+
+
+        public BidDTO GetBid(string bidID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                BidModel bid;
+                if ((bid = context.Bids.SingleOrDefault(b => b.BidID == bidID)) != null)
+                    return bid.ModelToBid();
+                throw new Exception("No such bid.");
+            }
+        }
+
+
+
+        public void CounterBid(string bidID, double counterPrice)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                BidModel bid;
+                if ((bid = context.Bids.SingleOrDefault(b => b.BidID == bidID)) != null)
+                {
+                    bid.NewPrice = counterPrice;
+                    bid.ApprovedByStore = true;
+                    bid.CounterOffer = true;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+        public void RemoveBid(string bidID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                BidModel bid;
+                if ((bid = context.Bids.SingleOrDefault(b => b.BidID == bidID)) != null)
+                {
+                    context.Bids.Remove(bid);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+        public List<BidDTO> GetStoreBids(string storeID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                return context.Bids.Where(b => b.Store.StoreID == storeID).ToList().Select(b => b.ModelToBid()).ToList();
+            }
+        }
+
+
+
+
 
         // =================== END of Store Methods =================== 
         // ============================================================

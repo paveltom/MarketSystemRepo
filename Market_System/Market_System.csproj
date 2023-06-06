@@ -396,6 +396,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DAL\DALController.cs" />
+    <Compile Include="DAL\DBModels\BidModel.cs" />
     <Compile Include="DAL\DBModels\CommentModel.cs" />
     <Compile Include="DAL\DBModels\EmployeeModel.cs" />
     <Compile Include="DAL\DBModels\ProductAttributeModel.cs" />
@@ -406,6 +407,7 @@
     <Compile Include="DAL\DBModels\StorePurchaseHistoryObjModel.cs" />
     <Compile Include="DAL\StoreDataContext.cs" />
     <Compile Include="DAL\StoreRepo.cs" />
+    <Compile Include="DomainLayer\BidDTO.cs" />
     <Compile Include="DomainLayer\CommunicationComponent\NotificationRepo.cs" />
     <Compile Include="DomainLayer\DeliveryComponent\HTTPDeliveryService.cs" />
     <Compile Include="DomainLayer\MemberDTO.cs" />

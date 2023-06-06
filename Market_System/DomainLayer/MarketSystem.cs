@@ -9,6 +9,7 @@ using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
 using Market_System.DAL.DBModels;
 using Market_System.DAL;
+using static Microsoft.VisualStudio.Shell.ThreadedWaitDialogHelper;
 
 namespace Market_System.DomainLayer
 {
@@ -1524,6 +1525,79 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
+        }
+
+
+
+        // ======= Bid =========
+        public BidDTO PlaceBid(string session, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                string storeID = GetStoreIdFromProductID(productID);
+                return storeFacade.PlaceBid(storeID, userID, productID, newPrice, quantity);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ApproveBid(string session, string bidID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                if (storeFacade.ApproveBid(userID, bidID))
+                {
+                    throw new NotImplementedException("Acknowledge everyone that bid approved: user and employees");
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string session, string bidID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                return storeFacade.GetBid(userID, bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string session, string bidID, double counterPrice)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                storeFacade.CounterBid(userID, bidID, counterPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string session, string bidID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                storeFacade.RemoveBid(userID, bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public List<BidDTO> GetStoreBids(string session, string storeID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                return storeFacade.GetStoreBids(userID, storeID);
+            }
+            catch (Exception e) { throw e; }
         }
     }
 }

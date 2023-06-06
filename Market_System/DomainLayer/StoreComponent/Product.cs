@@ -281,6 +281,27 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+
+        public void BidPurchase(string userID, BidDTO bid)
+        {
+            lock (PurchaseLock)
+            {
+                try
+                {
+                    lock (QuantityLock)
+                    {
+                        if (this.Quantity < bid.Quantity)
+                            throw new Exception("Not enough product in Store.");
+                        this.Quantity -= bid.Quantity;
+                        this.ReservedQuantity -= bid.Quantity;
+                        this.timesBought += bid.Quantity;
+                    }
+                    Save();
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
         public void Reserve(int quantity)
         {
             try

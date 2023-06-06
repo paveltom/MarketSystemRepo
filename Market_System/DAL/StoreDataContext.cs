@@ -18,6 +18,8 @@ namespace Market_System.DAL
         public virtual DbSet<StorePurchaseHistoryObjModel> Purchases { get; set; }
         public virtual DbSet<PurchasePolicyModel> Policies{ get; set; }
         public virtual DbSet<PurchaseStrategyModel> Strategies{ get; set; }
+        public virtual DbSet<BidModel> Bids { get; set; }
+
 
 
         //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;AttachDbFilename=C:\\MarketDB.dbo;Initial Catalog=MarketDB;Integrated Security=True")

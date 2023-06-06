@@ -8,6 +8,7 @@ using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
 using System.IO;
 using System.Web.Hosting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Market_System.ServiceLayer
 {
@@ -1587,5 +1588,67 @@ namespace Market_System.ServiceLayer
                 return null;
             }
         }
+
+
+        // ======= Bid =========
+        public Response<BidDTO> PlaceBid(string session, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                return ssc.PlaceBid(session, productID, newPrice, quantity);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response ApproveBid(string session, string bidID)
+        {
+            try
+            {
+                return ssc.ApproveBid(session, bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<BidDTO> GetBid(string session, string bidID)
+        {
+            try
+            {
+                return ssc.GetBid(session, bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response CounterBid(string session, string bidID, double counterPrice)
+        {
+            try
+            {
+                return ssc.CounterBid(session, bidID, counterPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response RemoveBid(string session, string bidID)
+        {
+            try
+            {
+                return ssc.RemoveBid(session, bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<List<BidDTO>> GetStoreBids(string session, string storeID)
+        {
+            try
+            {
+                return ssc.GetStoreBids(session, storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
     }
 }

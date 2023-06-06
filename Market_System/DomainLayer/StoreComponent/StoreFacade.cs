@@ -544,6 +544,84 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
+        //  BID 
+
+        public BidDTO PlaceBid(string storeID, string session, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                BidDTO ret = AcquireStore(storeID).PlaceBid(session, productID, newPrice, quantity);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public bool ApproveBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                bool ret = AcquireStore(storeID).ApproveBid(userID, bidID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                BidDTO ret = AcquireStore(storeID).GetBid(userID, bidID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string userID, string bidID, double counterPrice)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                AcquireStore(storeID).CounterBid(userID, bidID, counterPrice);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                AcquireStore(storeID).RemoveBid(userID, bidID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public List<BidDTO> GetStoreBids(string userID, string storeID)
+        {
+            try
+            {
+                List<BidDTO> ret = AcquireStore(storeID).GetStoreBids(userID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
 
         // ====================== END of Store methods ===============================
         // ===========================================================================

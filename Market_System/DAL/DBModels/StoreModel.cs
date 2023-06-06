@@ -27,8 +27,9 @@ namespace Market_System.DAL.DBModels
         public virtual ICollection<ProductModel> Products { get; set; }
         public virtual ICollection<PurchaseStrategyModel> Strategies { get; set; }
         public virtual ICollection<PurchasePolicyModel> Policies { get; set; }
-        //public virtual ICollection<EmployeeModel> Employees { get; set; }
         public virtual ICollection<StorePurchaseHistoryObjModel> PurchaseHistory { get; set; }
+        public virtual ICollection<BidModel> Bids { get; set; } // init !!!!!!!!!!!!!!!!!
+
 
 
 

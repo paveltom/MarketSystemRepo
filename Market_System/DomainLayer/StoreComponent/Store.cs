@@ -9,6 +9,7 @@ using System.Web.WebSockets;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DAL;
+using System.EnterpriseServices;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -380,12 +381,27 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object CalculatePriceLock = new object();
-        public double CalculatePrice(List<ItemDTO> productsToCalculate)
+        public double CalculatePrice(string userID, List<ItemDTO> calculateUS)
         {
             lock (CalculatePriceLock)
             {
                 try
                 {
+                    // bidding prices if approved
+                    double bidsTotalPrice = 0.0;
+                    List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
+                    List<ItemDTO> productsToCalculate = new List<ItemDTO>();
+                    foreach (ItemDTO item in calculateUS)
+                    {
+                        BidDTO currBid;
+                        if (( currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore || b.ApprovedByUser))) != null)
+                            bidsTotalPrice += currBid.NewPrice * currBid.Quantity;
+                        else
+                            productsToCalculate.Add(item);
+                    }
+
+
+                    // no-bidded products
                     double productSalePrice = 0;
                     int quantity = 0;
                     List<ItemDTO> saledProducts = new List<ItemDTO>();
@@ -416,25 +432,45 @@ namespace Market_System.DomainLayer.StoreComponent
                             saledProducts = p.ApplyPolicy(saledProducts);
                     }
 
-                    return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
+                    return bidsTotalPrice + saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
                 }
                 catch (Exception ex) { throw ex; }
             }
         }
+
+
+
+
 
         private static object PurchaseLock = new object();
         public void Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
         {
             lock (PurchaseLock)
             {
-                List<ItemDTO> productsToPurchase = productsToPurchaseFewInfo.Select(i => {
+                List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
+                List<ItemDTO> productsIncludingBids = productsToPurchaseFewInfo.Select(i => {
                                                                                             ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
                                                                                             ReleaseProduct(i.GetID());
                                                                                             newItem.SetQuantity(i.GetQuantity());
                                                                                             return newItem;                                                                                          
                                                                                         }).ToList();
+
+                List<ItemDTO> productsToPurchase = new List<ItemDTO>();                                            
                 string initErrorMSG = "Cannot purchase: ";
                 String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
+
+                // purchasing bid products
+                foreach (ItemDTO item in productsIncludingBids)
+                {
+                    BidDTO currBid;
+                    if ((currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore == true || b.ApprovedByUser == true))) != null)
+                        this.BidPurchase(userID, currBid);
+                    else
+                        productsToPurchase.Add(item);
+                }
+
+
+                // purchasing no-bidded products
                 try
                 {
                     foreach (Purchase_Strategy ps in this.storeStrategies.Values)
@@ -597,12 +633,121 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if (this.employees.isOwner(userID, this.Store_ID) || EmployeeRepo.GetInstance().isMarketManager(userID))
-                    this.storeRepo.GetStoreProfitForDate(this.Store_ID, date_as_dd_MM_yyyy);
+                    return this.storeRepo.GetStoreProfitForDate(this.Store_ID, date_as_dd_MM_yyyy);
                 else
                     throw new Exception("You don't have a permission to view profit.");
             }
             catch (Exception e) { throw e; }
         }
+
+
+
+
+
+
+
+        // =========================================================================================
+        // ========================================== BID ==========================================
+
+
+
+        public BidDTO PlaceBid(string userID, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                BidDTO ret;
+                ret = this.storeRepo.PlaceBid(this.Store_ID, userID, productID, newPrice, quantity);                
+                AcquireProduct(productID).Reserve(quantity);                
+                ReleaseProduct(productID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public bool ApproveBid(string userID, string bidID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    return this.storeRepo.ApproveBid(this.Store_ID, userID, bidID);
+                throw new Exception("You cannot view this info.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string userID, string bidID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    return this.storeRepo.GetBid(bidID);
+                throw new Exception("You cannot view this information.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string userID, string bidID, double counterPrice)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    this.storeRepo.CounterBid(bidID, counterPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string userID, string bidID)
+        {
+            try
+            {
+                BidDTO bid = GetBid(userID, bidID);
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                {
+                    this.storeRepo.RemoveBid(bidID);
+                    AcquireProduct(bid.ProductID).LetGoProduct(bid.Quantity); 
+                    ReleaseProduct(bid.ProductID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void BidPurchase(string userID, BidDTO bid)
+        {
+            try
+            {
+                AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
+                ReleaseProduct(bid.ProductID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public List<BidDTO> GetStoreBids(string userID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    return this.storeRepo.GetStoreBids(this.Store_ID);
+                throw new Exception("You cannot view this information.");
+            }
+            catch (Exception e) { throw e; }   
+                          
+        }
+
+
+
+
+
+        // ==============================================================================================================================
+        // ==============================================================================================================================
+
+
+
 
 
 

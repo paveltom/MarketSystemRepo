@@ -73,8 +73,17 @@ namespace Market_System.ServiceLayer
         public Response<string> Remove_A_Member(string member_Username); // II: 6.2
         public Response<MemberDTO> GetMemberInfo(string member_Username); //II: 6.6
 
+        // Daily profit
         public Response<string> GetStoreProfitForDate(string storeID, DateTime dateTime);
         public Response<string> GetMarketProfitForDate(DateTime dateTime);
+
+        // Bid
+        public Response<BidDTO> PlaceBid(string session, string productID, double newPrice, int quantity);
+        public Response ApproveBid(string session, string bidID);
+        public Response<BidDTO> GetBid(string session, string bidID);
+        public Response CounterBid(string session, string bidID, double counterPrice);
+        public Response RemoveBid(string session, string bidID);
+        public Response<List<BidDTO>> GetStoreBids(string session, string storeID);
     }
 
 }

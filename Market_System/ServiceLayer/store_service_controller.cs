@@ -254,6 +254,71 @@ namespace Market_System.ServiceLayer
 
 
 
+        // ======= Bid =========
+        public Response<BidDTO> PlaceBid(string session, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                return Response<BidDTO>.FromValue(Market.PlaceBid(session, productID, newPrice, quantity));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response ApproveBid(string session, string bidID)
+        {
+            try
+            {
+                Market.ApproveBid(session, bidID);
+                return new Response("Your approvement was accepted.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<BidDTO> GetBid(string session, string bidID)
+        {
+            try
+            {
+                return Response<BidDTO>.FromValue(Market.GetBid(session, bidID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response CounterBid(string session, string bidID, double counterPrice)
+        {
+            try
+            {
+                Market.CounterBid(session, bidID, counterPrice);
+                return new Response("Counter offer was placed.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response RemoveBid(string session, string bidID)
+        {
+            try
+            {
+                Market.RemoveBid(session, bidID);
+                return new Response("Bid was removed.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<List<BidDTO>> GetStoreBids(string session, string storeID)
+        {
+            try
+            {
+                return Response<List<BidDTO>>.FromValue( Market.GetStoreBids(session, storeID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
 
         // ====================== END of Store methods ===============================
         // ===========================================================================
