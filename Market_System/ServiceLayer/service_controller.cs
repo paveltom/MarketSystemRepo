@@ -1591,64 +1591,94 @@ namespace Market_System.ServiceLayer
 
 
         // ======= Bid =========
-        public Response<BidDTO> PlaceBid(string session, string productID, double newPrice, int quantity)
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity)
         {
             try
             {
-                return ssc.PlaceBid(session, productID, newPrice, quantity);
+                return ssc.PlaceBid(productID, newPrice, quantity);
             }
             catch (Exception e) { throw e; }
         }
 
-        public Response ApproveBid(string session, string bidID)
+        public Response ApproveBid(string bidID)
         {
             try
             {
-                return ssc.ApproveBid(session, bidID);
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-        public Response<BidDTO> GetBid(string session, string bidID)
-        {
-            try
-            {
-                return ssc.GetBid(session, bidID);
+                return ssc.ApproveBid(bidID);
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response CounterBid(string session, string bidID, double counterPrice)
+        public Response<BidDTO> GetBid(string bidID)
         {
             try
             {
-                return ssc.CounterBid(session, bidID, counterPrice);
+                return ssc.GetBid(bidID);
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response RemoveBid(string session, string bidID)
+        public Response CounterBid(string bidID, double counterPrice)
         {
             try
             {
-                return ssc.RemoveBid(session, bidID);
+                return ssc.CounterBid(bidID, counterPrice);
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response<List<BidDTO>> GetStoreBids(string session, string storeID)
+        public Response RemoveBid(string bidID)
         {
             try
             {
-                return ssc.GetStoreBids(session, storeID);
+                return ssc.RemoveBid(bidID);
             }
             catch (Exception e) { throw e; }
         }
 
+
+        public Response<List<BidDTO>> GetStoreBids(string storeID)
+        {
+            try
+            {
+                return ssc.GetStoreBids(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= AUCTION =========
+
+        public void SetAuction(string productID, double newPrice)
+        {
+            try
+            {
+                ssc.SetAuction(productID, newPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void UpdateAuction(string productID, double newPrice)
+        {
+            try
+            {
+                ssc.UpdateAuction(productID, newPrice);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void RemoveAuction(string productID)
+        {
+            try
+            {
+                ssc.RemoveAuction(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
 
     }
 }

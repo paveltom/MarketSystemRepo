@@ -18,6 +18,7 @@ namespace Market_System.DAL.DBModels
         public string Name { get; set; }
         public string Description { get; set; }
         public Double Price { get; set; }
+        public string Auction { get; set; }
         public int ReservedQuantity { get; set; }
         public Double Rating { get; set; } // between 1-10
         public int Quantity { get; set; }
@@ -46,7 +47,8 @@ namespace Market_System.DAL.DBModels
             ConcurrentDictionary<string, Purchase_Strategy> strategies = new ConcurrentDictionary<string, Purchase_Strategy>(this.Strategies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x));
             Dictionary<string, List<string>> attributes = new Dictionary<string, List<string>>(this.ProductPurchaseAttributes.ToDictionary(keySelector: a => a.AttributeName, elementSelector: a => a.AttributeOptions.Split('_').ToList()));
             Category category = new Category(this.ProductCategory);
-            Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, strategies, attributes, this.timesBought, category, this.timesRated);
+            KeyValuePair<string, double> auction = new KeyValuePair<string, double>(this.Auction.Substring(0, this.Auction.IndexOf('_')), Double.Parse(this.Auction.Substring(this.Auction.IndexOf('_') + 1)));
+            Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, strategies, attributes, this.timesBought, category, this.timesRated, auction);
             return ret;
 
         }
@@ -57,6 +59,7 @@ namespace Market_System.DAL.DBModels
             this.Name = updatedProduct.Name;
             this.Description = updatedProduct.Description;
             this.Price = updatedProduct.Price;
+            this.Auction = updatedProduct.Auction.Key + "_" + updatedProduct.Auction.Value;
             this.ReservedQuantity = updatedProduct.ReservedQuantity;
             this.Rating = updatedProduct.Rating; // between 1-10
             this.Quantity = updatedProduct.Quantity;

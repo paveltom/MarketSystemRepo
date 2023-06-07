@@ -622,6 +622,38 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
+        public void SetAuction(string userID, string productID, double newPrice)
+        {
+            try
+            {
+                AcquireStore(GetStoreIdFromProductID(productID)).SetAuction(userID, productID, newPrice);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void UpdateAuction(string userID, string productID, double newPrice)
+        {
+            try
+            {
+                AcquireStore(GetStoreIdFromProductID(productID)).UpdateAuction(userID, productID, newPrice);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void RemoveAuction(string userID, string productID)
+        {
+            try
+            {
+                AcquireStore(GetStoreIdFromProductID(productID)).RemoveAuction(userID, productID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
 
         // ====================== END of Store methods ===============================
         // ===========================================================================

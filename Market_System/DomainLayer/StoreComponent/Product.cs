@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Xml.Linq;
 using Market_System.DAL;
+using System.EnterpriseServices;
 
 
 namespace Market_System.DomainLayer.StoreComponent
@@ -23,6 +24,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public String Name { get; private set; }
         public String Description { get; private set; }
         public Double Price { get; private set; }
+        public KeyValuePair<string, double> Auction;
         public int ReservedQuantity { get; private set; }
         public Double Rating { get; private set; } // between 1-10
         public int Quantity { get; private set; }
@@ -46,7 +48,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Product(String product_ID, String name, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight,
                         double[] dimenssions, List<String> comments, ConcurrentDictionary<string, Purchase_Policy> purchase_Policies,
-                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, long boughtTimes, Category category, long timesRated)
+                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, 
+                        long boughtTimes, Category category, long timesRated, KeyValuePair<string, double> auction)
         {
             this.Product_ID = product_ID;
             this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
@@ -67,6 +70,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.storeRepo = StoreRepo.GetInstance();
             this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
             this.timesRated = timesRated;
+            Auction = auction;
         }
 
 
@@ -81,6 +85,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
             this.timesBought = 0;
+            this.Auction = new KeyValuePair<string, double>(this.Product_ID, -1.0);
 
             String[] properties = productProperties.ToArray();
 
@@ -300,6 +305,48 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
                 catch (Exception e) { throw e; }
             }
+        }
+
+
+        public void AuctionPurchase(string userID, int quantity)
+        {           
+            lock (PurchaseLock)
+            {
+                try
+                {
+                    if (this.Auction.Key != userID || this.Auction.Value == -1.0)
+                        throw new Exception("Auction purchase for this product is not available for you.");
+                    lock (QuantityLock)
+                    {
+                        if (this.Quantity < quantity)
+                            throw new Exception("Not enough product in Store.");
+                        this.Quantity -= quantity;
+                        this.ReservedQuantity -= quantity;
+                        this.timesBought += quantity;
+                    }
+                    Save();
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        
+        public void SetAuction(string userID, double newPrice)
+        {
+            try
+            {
+                if (newPrice != -1 && newPrice < this.Auction.Value)
+                    throw new Exception("Cannot offer smaller price than current price.");
+                this.Auction = new KeyValuePair<string, double>(userID, newPrice);
+                Save();
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveAuction(string userID)
+        {
+            this.Auction = new KeyValuePair<string, double>(this.Product_ID, -1.0);
+            Save();
         }
 
         public void Reserve(int quantity)

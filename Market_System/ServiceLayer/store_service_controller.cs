@@ -255,63 +255,94 @@ namespace Market_System.ServiceLayer
 
 
         // ======= Bid =========
-        public Response<BidDTO> PlaceBid(string session, string productID, double newPrice, int quantity)
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity)
         {
             try
             {
-                return Response<BidDTO>.FromValue(Market.PlaceBid(session, productID, newPrice, quantity));
+                return Response<BidDTO>.FromValue(Market.PlaceBid(this.SessionID, productID, newPrice, quantity));
             }
             catch (Exception e) { throw e; }
         }
 
-        public Response ApproveBid(string session, string bidID)
+        public Response ApproveBid(string bidID)
         {
             try
             {
-                Market.ApproveBid(session, bidID);
+                Market.ApproveBid(this.SessionID, bidID);
                 return new Response("Your approvement was accepted.");
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response<BidDTO> GetBid(string session, string bidID)
+        public Response<BidDTO> GetBid(string bidID)
         {
             try
             {
-                return Response<BidDTO>.FromValue(Market.GetBid(session, bidID));
+                return Response<BidDTO>.FromValue(Market.GetBid(this.SessionID, bidID));
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response CounterBid(string session, string bidID, double counterPrice)
+        public Response CounterBid(string bidID, double counterPrice)
         {
             try
             {
-                Market.CounterBid(session, bidID, counterPrice);
+                Market.CounterBid(this.SessionID, bidID, counterPrice);
                 return new Response("Counter offer was placed.");
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response RemoveBid(string session, string bidID)
+        public Response RemoveBid(string bidID)
         {
             try
             {
-                Market.RemoveBid(session, bidID);
+                Market.RemoveBid(this.SessionID, bidID);
                 return new Response("Bid was removed.");
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response<List<BidDTO>> GetStoreBids(string session, string storeID)
+        public Response<List<BidDTO>> GetStoreBids(string storeID)
         {
             try
             {
-                return Response<List<BidDTO>>.FromValue( Market.GetStoreBids(session, storeID));
+                return Response<List<BidDTO>>.FromValue( Market.GetStoreBids(this.SessionID, storeID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= AUCTION =========
+
+        public void SetAuction(string productID, double newPrice)
+        {
+            try
+            {
+                Market.SetAuction(this.SessionID, productID, newPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void UpdateAuction(string productID, double newPrice)
+        {
+            try
+            {
+                Market.UpdateAuction(this.SessionID, productID, newPrice);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void RemoveAuction(string productID)
+        {
+            try
+            {
+                Market.RemoveAuction(this.SessionID, productID);
             }
             catch (Exception e) { throw e; }
         }

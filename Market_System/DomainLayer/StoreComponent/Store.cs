@@ -447,32 +447,46 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             lock (PurchaseLock)
             {
-                List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
-                List<ItemDTO> productsIncludingBids = productsToPurchaseFewInfo.Select(i => {
-                                                                                            ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
-                                                                                            ReleaseProduct(i.GetID());
-                                                                                            newItem.SetQuantity(i.GetQuantity());
-                                                                                            return newItem;                                                                                          
-                                                                                        }).ToList();
-
-                List<ItemDTO> productsToPurchase = new List<ItemDTO>();                                            
                 string initErrorMSG = "Cannot purchase: ";
                 String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
-
-                // purchasing bid products
-                foreach (ItemDTO item in productsIncludingBids)
-                {
-                    BidDTO currBid;
-                    if ((currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore == true || b.ApprovedByUser == true))) != null)
-                        this.BidPurchase(userID, currBid);
-                    else
-                        productsToPurchase.Add(item);
-                }
-
-
-                // purchasing no-bidded products
                 try
                 {
+                    List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
+                    List<ItemDTO> productsIncludingBids = productsToPurchaseFewInfo.Select(i =>
+                    {
+                        ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
+                        ReleaseProduct(i.GetID());
+                        newItem.SetQuantity(i.GetQuantity());
+                        return newItem;
+                    }).ToList();
+
+                    List<ItemDTO> productsToPurchase = new List<ItemDTO>();                    
+
+                    // purchasing bid products
+                    foreach (ItemDTO item in productsIncludingBids)
+                    {
+                        BidDTO currBid;
+                        if ((currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore == true || b.ApprovedByUser == true))) != null)
+                            this.BidPurchase(userID, currBid);
+                        else
+                            productsToPurchase.Add(item);
+                    }
+
+
+                    // purchasing auction products
+                    List<ItemDTO> copyOfProducts = new List<ItemDTO>(productsToPurchase);
+                    foreach (ItemDTO item in copyOfProducts)
+                    {
+                        if(item.Auction.Key == userID)
+                        {
+                            this.AuctionPurchase(userID, item);
+                            productsToPurchase.RemoveAll(i => i.GetID() == item.GetID());
+                        }
+                    }
+
+
+                    // purchasing no-bidded products
+
                     foreach (Purchase_Strategy ps in this.storeStrategies.Values)
                     {
                         if (!ps.Validate(productsToPurchase, userID))
@@ -642,10 +656,6 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-
-
-
-
         // =========================================================================================
         // ========================================== BID ==========================================
 
@@ -739,16 +749,73 @@ namespace Market_System.DomainLayer.StoreComponent
                           
         }
 
+        // =============================================================================================
+        // =============================================================================================
 
 
 
+        // =============================================================================================
+        // ========================================== AUCTION ==========================================
+
+        public void AuctionPurchase(string userID, ItemDTO item)
+        {
+            try
+            {
+                AcquireProduct(item.GetID()).AuctionPurchase(userID, item.GetQuantity());
+                ReleaseProduct(item.GetID());
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        private static object auctionLock = new object();
+        public void SetAuction(string userID, string productID, double newPrice)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetAuction(productID, newPrice);
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public void UpdateAuction(string userID, string productID, double newPrice)
+        {
+            lock (auctionLock) 
+            {
+                try
+                {
+                    AcquireProduct(productID).SetAuction(userID, newPrice);
+                    ReleaseProduct(productID);
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
+        public void RemoveAuction(string userID, string productID)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetAuction(productID, -1);
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
 
         // ==============================================================================================================================
         // ==============================================================================================================================
-
-
-
-
 
 
 
@@ -764,8 +831,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        // ===================== END of Store operations =========================
-        // =======================================================================
+            // ===================== END of Store operations =========================
+            // =======================================================================
 
 
 
@@ -773,10 +840,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-        // ==================================================================
-        // ===================== Product operations =========================
+            // ==================================================================
+            // ===================== Product operations =========================
 
-        private Product AcquireProduct(string productID)
+            private Product AcquireProduct(string productID)
         {
             try
             {                

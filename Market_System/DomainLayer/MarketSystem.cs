@@ -1620,5 +1620,36 @@ namespace Market_System.DomainLayer
             }
             catch (Exception e) { throw e; }
         }
+
+
+
+        // ======= AUCTION =========
+
+        public void SetAuction(string session, string productID, double newPrice)
+        {
+            try
+            {
+                storeFacade.SetAuction(get_userid_from_session_id(session), productID, newPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void UpdateAuction(string session, string productID, double newPrice)
+        {
+            try
+            {
+                storeFacade.UpdateAuction(get_userid_from_session_id(session), productID, newPrice);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void RemoveAuction(string session, string productID)
+        {
+            try
+            {
+                storeFacade.RemoveAuction(get_userid_from_session_id(session), productID);
+            }
+            catch (Exception e) { throw e; }
+        }
     }
 }
