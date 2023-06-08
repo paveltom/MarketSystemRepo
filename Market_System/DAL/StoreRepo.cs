@@ -73,6 +73,54 @@ namespace Market_System.DAL
         }
 
 
+        public ConcurrentDictionary<string, System.Timers.Timer> RestoreTimers()
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {                
+                ConcurrentDictionary<string, System.Timers.Timer> ret = new ConcurrentDictionary<string, System.Timers.Timer>();
+                context.TimersDB.ToList().ForEach(t =>
+                {
+
+                    DateTime currDate = DateTime.Now;
+                    DateTime creationDate = DateTime.Parse(t.CreationTimeStamp);
+                    TimeSpan ts = currDate - creationDate;
+                    double remainedTime = TimeSpan.FromMinutes(Double.Parse(t.MinutesToCount)).TotalMilliseconds - ts.TotalMilliseconds;
+                    if (remainedTime < 0)
+                        remainedTime = 0;
+                    System.Timers.Timer newT = new System.Timers.Timer(remainedTime);
+
+                    Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded;
+                    if (t.TimerID.Contains("lottery"))
+                    {
+                        methodWithTimerNeeded = StoreFacade.GetInstance().LotteryTimerHandler;
+                        newT.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, t.FounderID, t.ProductID);
+                    }
+                    else if (t.TimerID.Contains("auction"))
+                    {
+                        methodWithTimerNeeded = StoreFacade.GetInstance().AuctionTimerHandler;
+                        newT.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, t.FounderID, t.ProductID);
+                    }                  
+                    
+                });
+                return ret;
+            }
+        }
+
+
+        public void AddTimer(System.Timers.Timer newTimer, string timerID, string founderID, string productID, DateTime creationTime, long minutesToCount)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                TimerModel model = new TimerModel();
+                model.FounderID = founderID;
+                model.ProductID = productID;
+                model.TimerID = timerID;
+                model.CreationTimeStamp = creationTime.ToString();
+                model.MinutesToCount = minutesToCount.ToString();
+                context.TimersDB.Add(model);
+                context.SaveChanges();
+            }
+        }
 
 
 

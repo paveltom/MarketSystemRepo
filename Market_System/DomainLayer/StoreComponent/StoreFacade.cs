@@ -10,6 +10,7 @@ using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DAL;
 using Microsoft.Ajax.Utilities;
 using Market_System.DomainLayer.UserComponent;
+using EnvDTE;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -20,7 +21,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
-        private static List<System.Timers.Timer> Timers;
+        private static ConcurrentDictionary<string, System.Timers.Timer> Timers;
 
         public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
         public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
@@ -47,7 +48,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         Instance = new StoreFacade();
                         marketPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
                         marketStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
-                        Timers = new List<System.Timers.Timer>();
+                        ContinueTimers();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -57,6 +58,7 @@ namespace Market_System.DomainLayer.StoreComponent
             //Return the Singleton Instance
             return Instance;
         }
+
 
         internal List<string> get_user_wokring_stores_id(string user_id)
         {
@@ -100,6 +102,21 @@ namespace Market_System.DomainLayer.StoreComponent
         // ====================================================================
         // ====================== General class methods ===============================
 
+        
+        private static void ContinueTimers()
+        {
+            try
+            {
+                Timers = StoreRepo.GetInstance().RestoreTimers();
+                Timers.Values.ForEach(t => t.Start());
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        
         private static object PrivateCalculatePriceLock = new object();
         public double CalculatePrice(List<ItemDTO> products)
         {
@@ -635,7 +652,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     store.SetAuction(userID, productID, newPrice);
                     string founderID = store.founderID;
                     ReleaseStore(GetStoreIdFromProductID(productID));
-                    AddTimer(AuctionTimerHandler, founderID, productID, auctionMinutesDuration);
+                    AddTimer(AuctionTimerHandler, founderID, productID, auctionMinutesDuration, "auction");
                     
                 }
                 catch (Exception e) { throw e; }
@@ -643,12 +660,12 @@ namespace Market_System.DomainLayer.StoreComponent
         }     
 
 
-        private void AuctionTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
+        public void AuctionTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
         {
             try
             {
                 System.Timers.Timer doneTimer = sender as System.Timers.Timer;
-                Timers.Remove(doneTimer);
+                Timers.TryRemove(productID + "_auction_timer", out _);
                 doneTimer.Dispose();
                 RemoveAuction(userID, productID);
             }
@@ -687,7 +704,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 store.SetNewLottery(userID, productID);
                 ReleaseStore(storeID);
                 string founderID = store.founderID;
-                AddTimer(LotteryTimerHandler, founderID, productID, durationInMinutes);
+                AddTimer(LotteryTimerHandler, founderID, productID, durationInMinutes, "lottery");
             }
             catch (Exception e) { throw e; }
 
@@ -748,12 +765,12 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        private void LotteryTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
+        public void LotteryTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
         {
             try
             {
                 System.Timers.Timer doneTimer = sender as System.Timers.Timer;
-                Timers.Remove(doneTimer);
+                Timers.TryRemove(productID + "_lottery_timer", out _);
                 doneTimer.Dispose();
 
                 string storeID = GetStoreIdFromProductID(productID);
@@ -786,12 +803,15 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-        private void AddTimer(Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded, string founderID, string productID, long minutesDuration)
+        private void AddTimer(Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded, string founderID, string productID, long minutesDuration, string type)
         {
             System.Timers.Timer newTimer = new System.Timers.Timer(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds);
             newTimer.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, founderID, productID);
+            DateTime creationTime = DateTime.Now;
             newTimer.Start();
-            Timers.Add(newTimer);
+            string timerID = productID + "_" + type + "_timer";
+            storeRepo.AddTimer(newTimer, timerID, founderID, productID, creationTime, minutesDuration);
+            Timers.AddOrUpdate(timerID, newTimer, (k, val) => newTimer);            
         }
 
 

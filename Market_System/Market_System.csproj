@@ -406,6 +406,7 @@
     <Compile Include="DAL\DBModels\PurchaseStrategyModel.cs" />
     <Compile Include="DAL\DBModels\StoreModel.cs" />
     <Compile Include="DAL\DBModels\StorePurchaseHistoryObjModel.cs" />
+    <Compile Include="DAL\DBModels\TimerModel.cs" />
     <Compile Include="DAL\StoreDataContext.cs" />
     <Compile Include="DAL\StoreRepo.cs" />
     <Compile Include="DomainLayer\BidDTO.cs" />

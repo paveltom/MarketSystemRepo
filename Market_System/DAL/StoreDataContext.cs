@@ -19,6 +19,7 @@ namespace Market_System.DAL
         public virtual DbSet<PurchasePolicyModel> Policies{ get; set; }
         public virtual DbSet<PurchaseStrategyModel> Strategies{ get; set; }
         public virtual DbSet<BidModel> Bids { get; set; }
+        public virtual DbSet<TimerModel> TimersDB { get; set; }
 
 
 
