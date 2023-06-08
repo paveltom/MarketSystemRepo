@@ -1677,6 +1677,16 @@ namespace Market_System.DomainLayer
             catch (Exception e) { throw e; }
         }
 
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string session, string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                return storeFacade.ReturnUsersLotteryTickets(userID, productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public void AddLotteryTicket(string session, string productID, int percentage)
         {

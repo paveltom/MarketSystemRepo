@@ -724,10 +724,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
-        public Dictionary<string, int> ReturnUsersLotteryTickets(string storeID, string userID, string productID)
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string userID, string productID)
         {
             try
             {
+                string storeID = GetStoreIdFromProductID(productID);
                 Dictionary<string, int> ret = AcquireStore(storeID).ReturnUsersLotteryTickets(userID, productID);
                 ReleaseStore(storeID);
                 return ret;

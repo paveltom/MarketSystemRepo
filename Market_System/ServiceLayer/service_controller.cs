@@ -1714,6 +1714,16 @@ namespace Market_System.ServiceLayer
         }
 
 
+        public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID)
+        {
+            try
+            {
+                return ssc.ReturnUsersLotteryTickets(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
         public Response<int> RemainingLotteryPercantage(string productID)
         {
             try

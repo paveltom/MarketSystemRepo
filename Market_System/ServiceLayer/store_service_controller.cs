@@ -386,6 +386,15 @@ namespace Market_System.ServiceLayer
 
         }
 
+        public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID)
+        {
+            try
+            {
+                return Response<Dictionary<string, int>>.FromValue(Market.ReturnUsersLotteryTickets(this.SessionID, productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public Response<int> RemainingLotteryPercantage(string productID)
         {
