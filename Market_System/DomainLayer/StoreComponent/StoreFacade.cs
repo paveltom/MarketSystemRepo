@@ -20,7 +20,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
-        private static List<System.Timers.Timer> AuctionTimers;
+        private static List<System.Timers.Timer> Timers;
 
         public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
         public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
@@ -623,6 +623,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        // Auction:
         private static object auctionTimerLock = new object();  
         public void SetAuction(string userID, string productID, double newPrice, long auctionMinutesDuration)
         {
@@ -634,15 +635,12 @@ namespace Market_System.DomainLayer.StoreComponent
                     store.SetAuction(userID, productID, newPrice);
                     string founderID = store.founderID;
                     ReleaseStore(GetStoreIdFromProductID(productID));
-
-                    System.Timers.Timer newTimer = new System.Timers.Timer(TimeSpan.FromMinutes(auctionMinutesDuration).TotalMilliseconds); 
-                    newTimer.Elapsed += (sender, e) => AuctionTimerHandler(sender, e, founderID, productID);
-                    newTimer.Start();
-                    AuctionTimers.Add(newTimer);
+                    AddTimer(AuctionTimerHandler, founderID, productID, auctionMinutesDuration);
+                    
                 }
                 catch (Exception e) { throw e; }
             }
-        }
+        }     
 
 
         private void AuctionTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
@@ -650,7 +648,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 System.Timers.Timer doneTimer = sender as System.Timers.Timer;
-                AuctionTimers.Remove(doneTimer);
+                Timers.Remove(doneTimer);
                 doneTimer.Dispose();
                 RemoveAuction(userID, productID);
             }
@@ -675,6 +673,109 @@ namespace Market_System.DomainLayer.StoreComponent
                 ReleaseStore(GetStoreIdFromProductID(productID));
             }
             catch (Exception e) { throw e; }
+        }
+
+
+
+        // Lottery:
+        public void SetNewLottery(string storeID, string userID, string productID, long durationInMinutes)
+        {
+
+            try
+            {
+                Store store = AcquireStore(storeID);
+                store.SetNewLottery(userID, productID);
+                ReleaseStore(storeID);
+                string founderID = store.founderID;
+                AddTimer(LotteryTimerHandler, founderID, productID, durationInMinutes);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        public void RemoveLottery(string storeID, string userID, string productID)
+        {
+
+            try
+            {
+                AcquireStore(storeID).RemoveLottery(userID, productID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public void AddLotteryTicket(string storeID, string userID, string productID, int percentage)
+        {
+
+            try
+            {
+                AcquireStore(storeID).AddLotteryTicket(userID, productID, percentage);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        public Dictionary<string, double> ReturnUsersLotteryTickets(string storeID, string userID, string productID)
+        {
+            try
+            {
+                Dictionary<string, double> ret = AcquireStore(storeID).ReturnUsersLotteryTickets(userID, productID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public int RemainingLotteryPercantage(string storeID, string userID, string productID)
+        {
+            try
+            {
+                int ret = AcquireStore(storeID).RemainingLotteryPercantage(userID, productID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        private void LotteryTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
+        {
+            try
+            {
+                System.Timers.Timer doneTimer = sender as System.Timers.Timer;
+                Timers.Remove(doneTimer);
+                doneTimer.Dispose();
+                perform lottery considering chances
+                RemoveLottery(GetStoreIdFromProductID(productID), userID, productID);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+
+
+        public void Refund(string userID, string storeID, string userToRefundID, double amount)
+        {
+            try
+            {
+                AcquireStore(storeID).Refund(userID, userToRefundID, amount);
+                ReleaseStore(storeID);
+            }
+            catch(Exception ex) { throw ex; } 
+        }
+
+
+
+
+
+        private void AddTimer(Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded, string founderID, string productID, long minutesDuration)
+        {
+            System.Timers.Timer newTimer = new System.Timers.Timer(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds);
+            newTimer.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, founderID, productID);
+            newTimer.Start();
+            Timers.Add(newTimer);
         }
 
 

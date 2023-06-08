@@ -1,5 +1,4 @@
 ﻿using Market_System.DomainLayer.StoreComponent;
-using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using WebGrease.Css.Extensions;
 
 namespace Market_System.DAL.DBModels
 {
@@ -34,6 +34,8 @@ namespace Market_System.DAL.DBModels
         public virtual StoreModel Store { get; set; }
         public virtual ICollection<PurchaseStrategyModel> Strategies { get; set; }
         public virtual ICollection<PurchasePolicyModel> Policies { get; set; }
+        public virtual ICollection<LotteryModel> Lottery { get; set; }
+
 
 
 
@@ -48,7 +50,9 @@ namespace Market_System.DAL.DBModels
             Dictionary<string, List<string>> attributes = new Dictionary<string, List<string>>(this.ProductPurchaseAttributes.ToDictionary(keySelector: a => a.AttributeName, elementSelector: a => a.AttributeOptions.Split('_').ToList()));
             Category category = new Category(this.ProductCategory);
             KeyValuePair<string, double> auction = new KeyValuePair<string, double>(this.Auction.Substring(0, this.Auction.IndexOf('_')), Double.Parse(this.Auction.Substring(this.Auction.IndexOf('_') + 1)));
-            Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, strategies, attributes, this.timesBought, category, this.timesRated, auction);
+            ConcurrentDictionary<string, int> lottery = new ConcurrentDictionary<string, int>(this.Lottery.ToDictionary(l => l.UserID, l => l.Percantage));
+            Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, 
+                                                                                                                        strategies, attributes, this.timesBought, category, this.timesRated, auction, lottery);
             return ret;
 
         }
@@ -69,6 +73,14 @@ namespace Market_System.DAL.DBModels
             this.timesRated = updatedProduct.timesRated;
             this.ProductCategory = updatedProduct.ProductCategory.CategoryName;    // (mabye will be implementing by composition design pattern to support a sub catagoring.)
             this.Dimenssions = updatedProduct.Dimenssions.Aggregate("", (acc, d) => (acc += "_" + d), str => str.Substring(1));// string format: x_y_z
+
+            updatedProduct.Lottery.ForEach(l => {
+                LotteryModel model = new LotteryModel();
+                model.LotteryID = updatedProduct.Product_ID + "_" + l.Key + "_lottery";
+                model.UserID = l.Key;
+                model.Percantage = l.Value;
+                this.Lottery.Add(model);
+            });
 
             updatedProduct.Comments.ForEach(c =>
             {

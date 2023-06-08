@@ -399,6 +399,7 @@
     <Compile Include="DAL\DBModels\BidModel.cs" />
     <Compile Include="DAL\DBModels\CommentModel.cs" />
     <Compile Include="DAL\DBModels\EmployeeModel.cs" />
+    <Compile Include="DAL\DBModels\LotteryModel.cs" />
     <Compile Include="DAL\DBModels\ProductAttributeModel.cs" />
     <Compile Include="DAL\DBModels\ProductModel.cs" />
     <Compile Include="DAL\DBModels\PurchasePolicyModel.cs" />

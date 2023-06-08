@@ -1651,5 +1651,67 @@ namespace Market_System.DomainLayer
             }
             catch (Exception e) { throw e; }
         }
+
+
+
+
+
+        // ======= Lottery =========
+        public void SetNewLottery(string session, string productID, long durationInMinutes)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.SetNewLottery(GetStoreIdFromProductID(productID), userID, productID, durationInMinutes);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveLottery( string session, string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.RemoveLottery(GetStoreIdFromProductID(productID), userID, productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddLotteryTicket(string session, string productID, int percentage)
+        {
+
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        public void ReturnUsersLotteryTickets(string session,  string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.ReturnUsersLotteryTickets(GetStoreIdFromProductID(productID), userID, productID).ForEach()
+                double amount = 0.0;
+                string userToRefundID = "";
+                storeFacade.Refund(userID, GetStoreIdFromProductID(productID), amount);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public int RemainingLotteryPercantage(string session, string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                return storeFacade.RemainingLotteryPercantage(GetStoreIdFromProductID(productID), userID, productID);
+            }
+            catch (Exception e) { throw e; }
+        }
     }
 }

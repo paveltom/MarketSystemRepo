@@ -10,6 +10,7 @@ using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DAL;
 using System.EnterpriseServices;
+using Market_System.DomainLayer.PaymentComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -26,12 +27,13 @@ namespace Market_System.DomainLayer.StoreComponent
         private StoreRepo storeRepo;
         public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> storePolicies; 
+        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies;
+        public List<string> StoreCreditCard; // card_number, month, year, holder, ccv, id
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed)
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed, List<string> creditCard)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -44,6 +46,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.temporaryClosed = temporaryClosed;
+            this.StoreCreditCard = creditCard;
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
@@ -652,171 +655,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     throw new Exception("You don't have a permission to view profit.");
             }
             catch (Exception e) { throw e; }
-        }
-
-
-
-        // =========================================================================================
-        // ========================================== BID ==========================================
-
-
-
-        public BidDTO PlaceBid(string userID, string productID, double newPrice, int quantity)
-        {
-            try
-            {
-                BidDTO ret;
-                ret = this.storeRepo.PlaceBid(this.Store_ID, userID, productID, newPrice, quantity);                
-                AcquireProduct(productID).Reserve(quantity);                
-                ReleaseProduct(productID);
-                return ret;
-            }
-            catch (Exception e) { throw e; }
-        }
-
-        public bool ApproveBid(string userID, string bidID)
-        {
-            try
-            {
-                if (this.employees.isOwner(userID, this.Store_ID) || bidID.Contains(userID))
-                    return this.storeRepo.ApproveBid(this.Store_ID, userID, bidID);
-                throw new Exception("You cannot view this info.");
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-        public BidDTO GetBid(string userID, string bidID)
-        {
-            try
-            {
-                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
-                    return this.storeRepo.GetBid(bidID);
-                throw new Exception("You cannot view this information.");
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-
-        public void CounterBid(string userID, string bidID, double counterPrice)
-        {
-            try
-            {
-                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
-                    this.storeRepo.CounterBid(bidID, counterPrice);
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-        public void RemoveBid(string userID, string bidID)
-        {
-            try
-            {
-                BidDTO bid = GetBid(userID, bidID);
-                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
-                {
-                    this.storeRepo.RemoveBid(bidID);
-                    AcquireProduct(bid.ProductID).LetGoProduct(bid.Quantity); 
-                    ReleaseProduct(bid.ProductID);
-                }
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-        public void BidPurchase(string userID, BidDTO bid)
-        {
-            try
-            {
-                AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
-                ReleaseProduct(bid.ProductID);
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-        public List<BidDTO> GetStoreBids(string userID)
-        {
-            try
-            {
-                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                    return this.storeRepo.GetStoreBids(this.Store_ID);
-                throw new Exception("You cannot view this information.");
-            }
-            catch (Exception e) { throw e; }   
-                          
-        }
-
-        // =============================================================================================
-        // =============================================================================================
-
-
-
-        // =============================================================================================
-        // ========================================== AUCTION ==========================================
-
-        public void AuctionPurchase(string userID, ItemDTO item)
-        {
-            try
-            {
-                AcquireProduct(item.GetID()).AuctionPurchase(userID, item.GetQuantity());
-                ReleaseProduct(item.GetID());
-            }
-            catch (Exception e) { throw e; }
-        }
-
-
-        private static object auctionLock = new object();
-        public void SetAuction(string userID, string productID, double newPrice)
-        {
-            lock (auctionLock)
-            {
-                try
-                {
-                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                    {
-                        AcquireProduct(productID).SetAuction(productID, newPrice);
-                        ReleaseProduct(productID);
-                    }
-                }
-                catch (Exception e) { throw e; }
-            }
-        }
-
-        public void UpdateAuction(string userID, string productID, double newPrice)
-        {
-            lock (auctionLock) 
-            {
-                try
-                {
-                    AcquireProduct(productID).SetAuction(userID, newPrice);
-                    ReleaseProduct(productID);
-                }
-                catch (Exception ex) { throw ex; }
-            }
-        }
-
-        public void RemoveAuction(string userID, string productID)
-        {
-            lock (auctionLock)
-            {
-                try
-                {
-                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                    {
-                        AcquireProduct(productID).SetAuction(productID, -1);
-                        ReleaseProduct(productID);
-                    }
-                }
-                catch (Exception e) { throw e; }
-            }
-        }
-
-        // ==============================================================================================================================
-        // ==============================================================================================================================
-
+        }      
 
 
 
@@ -1243,6 +1082,264 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             return products;
         }
+
+
+
+        // =========================================================================================
+        // ========================================== BID ==========================================
+
+
+
+        public BidDTO PlaceBid(string userID, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                BidDTO ret;
+                ret = this.storeRepo.PlaceBid(this.Store_ID, userID, productID, newPrice, quantity);
+                AcquireProduct(productID).Reserve(quantity);
+                ReleaseProduct(productID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public bool ApproveBid(string userID, string bidID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || bidID.Contains(userID))
+                    return this.storeRepo.ApproveBid(this.Store_ID, userID, bidID);
+                throw new Exception("You cannot view this info.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string userID, string bidID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    return this.storeRepo.GetBid(bidID);
+                throw new Exception("You cannot view this information.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string userID, string bidID, double counterPrice)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    this.storeRepo.CounterBid(bidID, counterPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string userID, string bidID)
+        {
+            try
+            {
+                BidDTO bid = GetBid(userID, bidID);
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                {
+                    this.storeRepo.RemoveBid(bidID);
+                    AcquireProduct(bid.ProductID).LetGoProduct(bid.Quantity);
+                    ReleaseProduct(bid.ProductID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void BidPurchase(string userID, BidDTO bid)
+        {
+            try
+            {
+                AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
+                ReleaseProduct(bid.ProductID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public List<BidDTO> GetStoreBids(string userID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    return this.storeRepo.GetStoreBids(this.Store_ID);
+                throw new Exception("You cannot view this information.");
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        // ===========================================================================
+
+
+
+        // =============================================================================================
+        // ========================================== AUCTION ==========================================
+
+        public void AuctionPurchase(string userID, ItemDTO item)
+        {
+            try
+            {
+                AcquireProduct(item.GetID()).AuctionPurchase(userID, item.GetQuantity());
+                ReleaseProduct(item.GetID());
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        private static object auctionLock = new object();
+        public void SetAuction(string userID, string productID, double newPrice)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetAuction(productID, newPrice);
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public void UpdateAuction(string userID, string productID, double newPrice)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    AcquireProduct(productID).SetAuction(userID, newPrice);
+                    ReleaseProduct(productID);
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
+        public void RemoveAuction(string userID, string productID)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetAuction(productID, -1);
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        // =========================================================================
+
+
+
+        // =============================================================================================
+        // ========================================== LOTTERY ==========================================
+
+        private static object lotteryLock = new object();
+        public void SetNewLottery(string userID, string productID)
+        {
+            lock (lotteryLock)
+            {
+                try
+                {
+                    if(this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetNewLottery();
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public void RemoveLottery(string userID, string productID)
+        {
+            lock (lotteryLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).RemoveLottery();
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+
+        public void AddLotteryTicket(string userID, string productID, int percentage)
+        {
+            lock (lotteryLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).AddLotteryTicket(userID, percentage);
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public Dictionary<string, double> ReturnUsersLotteryTickets(string userID, string productID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    Dictionary<string, double> ret = AcquireProduct(productID).ReturnUsersLotteryTicketMoney();
+                    ReleaseProduct(productID);
+                    return ret;
+                }
+                throw new Exception("You cannot return users money for lottery.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public int RemainingLotteryPercantage(string userID, string productID)
+        {
+            try
+            {
+                int remains = AcquireProduct(productID).RemainingLotteryPercantage();
+                ReleaseProduct(productID);
+                return remains;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        // =========================================================================
+
+        public void Refund(string userID, string userToRefundID, double amount)
+        {
+            try
+            {
+                PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
+
+            }
+            catch (Exception ex){ throw ex; }
+        }
+
+
+
 
 
 
