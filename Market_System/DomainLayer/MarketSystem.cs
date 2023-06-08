@@ -1690,19 +1690,6 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void ReturnUsersLotteryTickets(string session,  string productID)
-        {
-            try
-            {
-                string userID = get_userid_from_session_id(session);
-                storeFacade.ReturnUsersLotteryTickets(GetStoreIdFromProductID(productID), userID, productID).ForEach()
-                double amount = 0.0;
-                string userToRefundID = "";
-                storeFacade.Refund(userID, GetStoreIdFromProductID(productID), amount);
-            }
-            catch (Exception e) { throw e; }
-        }
-
 
         public int RemainingLotteryPercantage(string session, string productID)
         {

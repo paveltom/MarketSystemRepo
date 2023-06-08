@@ -8,8 +8,7 @@ using Market_System.DomainLayer;
 using Market_System.Domain_Layer.Store_Component;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DAL;
-
-
+using Microsoft.Ajax.Utilities;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -718,13 +717,13 @@ namespace Market_System.DomainLayer.StoreComponent
 
         }
 
-        public Dictionary<string, double> ReturnUsersLotteryTickets(string storeID, string userID, string productID)
+        public void ReturnUsersLotteryTickets(string storeID, string userID, string productID)
         {
             try
             {
                 Dictionary<string, double> ret = AcquireStore(storeID).ReturnUsersLotteryTickets(userID, productID);
                 ReleaseStore(storeID);
-                return ret;
+                ret.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
             }
             catch (Exception e) { throw e; }
         }
@@ -748,8 +747,41 @@ namespace Market_System.DomainLayer.StoreComponent
                 System.Timers.Timer doneTimer = sender as System.Timers.Timer;
                 Timers.Remove(doneTimer);
                 doneTimer.Dispose();
-                perform lottery considering chances
-                RemoveLottery(GetStoreIdFromProductID(productID), userID, productID);
+
+                string storeID = GetStoreIdFromProductID(productID);
+                Store store = AcquireStore(storeID);
+                Dictionary<string, double> refundme = store.ReturnUsersLotteryTicketsMoney(userID, productID);                      
+
+
+                if (store.RemainingLotteryPercantage(userID, productID) < 0)
+                    refundme.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
+                else
+                {
+                    Dictionary<string, int> refundPercantage = store.ReturnUsersLotteryTickets(userID, productID);
+                    List<KeyValuePair<string, double>> relativeChances = new List<KeyValuePair<string, double>>();
+                    double curr = 0.0;
+                    refundPercantage.ForEach(p =>
+                    {
+                        curr += p.Value / 100;
+                        relativeChances.Add(new KeyValuePair<string, double>(p.Key, curr));
+                    });
+                    Random rand = new Random();
+                    double r = rand.NextDouble();
+                    string winner;
+                    foreach(KeyValuePair<string, double> p in relativeChances)
+                    {
+                        if(p.Value > r)
+                        {
+                            winner = p.Key;
+                            break;
+                        }
+                    }
+                    throw new NotImplementedException("perform a purchase for a winner");
+                    // perform a purchase for a winner!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                }
+                
+                RemoveLottery(storeID, userID, productID);
             }
             catch (Exception ex) { throw ex; }
         }

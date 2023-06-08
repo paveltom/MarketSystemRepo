@@ -1653,29 +1653,72 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
 
-        public void SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration)
         {
             try
             {
-                ssc.SetAuction(productID, newPrice, auctionMinutesDuration);
+                return ssc.SetAuction(productID, newPrice, auctionMinutesDuration);
             }
             catch (Exception e) { throw e; }
         }
 
-        public void UpdateAuction(string productID, double newPrice)
+        public Response UpdateAuction(string productID, double newPrice)
         {
             try
             {
-                ssc.UpdateAuction(productID, newPrice);
+                return ssc.UpdateAuction(productID, newPrice);
             }
             catch (Exception ex) { throw ex; }
         }
 
-        public void RemoveAuction(string productID)
+        public Response RemoveAuction(string productID)
         {
             try
             {
-                ssc.RemoveAuction(productID);
+                return ssc.RemoveAuction(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= LOTTERY ========
+        public Response SetNewLottery(string productID, long durationInMinutes)
+        {
+            try
+            {
+                return ssc.SetNewLottery(productID, durationInMinutes);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response RemoveLottery(string productID)
+        {
+            try
+            {
+                return ssc.RemoveLottery(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response AddLotteryTicket(string productID, int percentage)
+        {
+
+            try
+            {
+                return ssc.AddLotteryTicket(productID, percentage);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public Response<int> RemainingLotteryPercantage(string productID)
+        {
+            try
+            {
+                return ssc.RemainingLotteryPercantage(productID);
             }
             catch (Exception e) { throw e; }
         }

@@ -1299,13 +1299,29 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public Dictionary<string, double> ReturnUsersLotteryTickets(string userID, string productID)
+        public Dictionary<string, double> ReturnUsersLotteryTicketsMoney(string userID, string productID)
         {
             try
             {
                 if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                 {
                     Dictionary<string, double> ret = AcquireProduct(productID).ReturnUsersLotteryTicketMoney();
+                    ReleaseProduct(productID);
+                    return ret;
+                }
+                throw new Exception("You cannot return users money for lottery.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string userID, string productID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    Dictionary<string, int> ret = AcquireProduct(productID).ReturnUsersLotteryTickets();
                     ReleaseProduct(productID);
                     return ret;
                 }
@@ -1332,7 +1348,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
+                PaymentProxy.get_instance().cancel_pay("INSERT_TRANSACTION_ID_HERE"); // retreive transaction id from somewhere!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             }
             catch (Exception ex){ throw ex; }

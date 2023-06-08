@@ -320,32 +320,82 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
 
-        public void SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration)
         {
             try
             {
                 Market.SetAuction(this.SessionID, productID, newPrice, auctionMinutesDuration);
+                return new Response("Auction was created successfully.");
             }
             catch (Exception e) { throw e; }
         }
 
-        public void UpdateAuction(string productID, double newPrice)
+        public Response UpdateAuction(string productID, double newPrice)
         {
             try
             {
                 Market.UpdateAuction(this.SessionID, productID, newPrice);
+                return new Response("Auction product price was updated successfully.");
             }
             catch (Exception ex) { throw ex; }
         }
 
-        public void RemoveAuction(string productID)
+        public Response RemoveAuction(string productID)
         {
             try
             {
                 Market.RemoveAuction(this.SessionID, productID);
+                return new Response("Auction was removed successfully.");
             }
             catch (Exception e) { throw e; }
         }
+
+
+
+        // ======= LOTTERY ========
+        public Response SetNewLottery(string productID, long durationInMinutes)
+        {
+            try
+            {
+                Market.SetNewLottery(this.SessionID, productID, durationInMinutes);
+                return new Response("Lottery was created successfully.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response RemoveLottery(string productID)
+        {
+            try
+            {
+                Market.RemoveLottery(this.SessionID, productID);
+                return new Response("Lottery was removed successfully.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response AddLotteryTicket(string productID, int percentage)
+        {
+
+            try
+            {
+                Market.AddLotteryTicket(this.SessionID, productID, percentage);
+                return new Response("Lottery ticket was added successfully.");
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public Response<int> RemainingLotteryPercantage(string productID)
+        {
+            try
+            {
+                return Response<int>.FromValue(Market.RemainingLotteryPercantage(this.SessionID, productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
 
 

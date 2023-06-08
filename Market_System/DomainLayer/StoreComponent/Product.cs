@@ -531,6 +531,17 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
+        public Dictionary<string, int> ReturnUsersLotteryTickets()
+        {
+            try
+            {
+                if (this.Lottery != null)
+                    return this.Lottery.ToDictionary(p => p.Key, p => p.Value);
+                throw new Exception("There is no lottery on this product currently.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
 
 
