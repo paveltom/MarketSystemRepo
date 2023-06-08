@@ -1653,11 +1653,11 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
 
-        public void SetAuction(string productID, double newPrice)
+        public void SetAuction(string productID, double newPrice, long auctionMinutesDuration)
         {
             try
             {
-                ssc.SetAuction(productID, newPrice);
+                ssc.SetAuction(productID, newPrice, auctionMinutesDuration);
             }
             catch (Exception e) { throw e; }
         }

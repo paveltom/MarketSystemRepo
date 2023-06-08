@@ -1625,11 +1625,11 @@ namespace Market_System.DomainLayer
 
         // ======= AUCTION =========
 
-        public void SetAuction(string session, string productID, double newPrice)
+        public void SetAuction(string session, string productID, double newPrice, long auctionMinutesDuration)
         {
             try
             {
-                storeFacade.SetAuction(get_userid_from_session_id(session), productID, newPrice);
+                storeFacade.SetAuction(get_userid_from_session_id(session), productID, newPrice, auctionMinutesDuration);
             }
             catch (Exception e) { throw e; }
         }

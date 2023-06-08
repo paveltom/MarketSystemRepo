@@ -320,11 +320,11 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
 
-        public void SetAuction(string productID, double newPrice)
+        public void SetAuction(string productID, double newPrice, long auctionMinutesDuration)
         {
             try
             {
-                Market.SetAuction(this.SessionID, productID, newPrice);
+                Market.SetAuction(this.SessionID, productID, newPrice, auctionMinutesDuration);
             }
             catch (Exception e) { throw e; }
         }

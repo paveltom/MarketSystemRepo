@@ -20,6 +20,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
+        private static List<System.Timers.Timer> AuctionTimers;
 
         public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
         public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
@@ -46,6 +47,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         Instance = new StoreFacade();
                         marketPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
                         marketStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+                        AuctionTimers = new List<System.Timers.Timer>();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -621,15 +623,38 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        private static object auctionTimerLock = new object();  
+        public void SetAuction(string userID, string productID, double newPrice, long auctionMinutesDuration)
+        {
+            lock (auctionTimerLock)
+            {
+                try
+                {
+                    Store store = AcquireStore(GetStoreIdFromProductID(productID));
+                    store.SetAuction(userID, productID, newPrice);
+                    string founderID = store.founderID;
+                    ReleaseStore(GetStoreIdFromProductID(productID));
 
-        public void SetAuction(string userID, string productID, double newPrice)
+                    System.Timers.Timer newTimer = new System.Timers.Timer(TimeSpan.FromMinutes(auctionMinutesDuration).TotalMilliseconds); 
+                    newTimer.Elapsed += (sender, e) => AuctionTimerHandler(sender, e, founderID, productID);
+                    newTimer.Start();
+                    AuctionTimers.Add(newTimer);
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+
+        private void AuctionTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
         {
             try
             {
-                AcquireStore(GetStoreIdFromProductID(productID)).SetAuction(userID, productID, newPrice);
-                ReleaseStore(GetStoreIdFromProductID(productID));
+                System.Timers.Timer doneTimer = sender as System.Timers.Timer;
+                AuctionTimers.Remove(doneTimer);
+                doneTimer.Dispose();
+                RemoveAuction(userID, productID);
             }
-            catch (Exception e) { throw e; }
+            catch (Exception ex) { throw ex; }
         }
 
         public void UpdateAuction(string userID, string productID, double newPrice)

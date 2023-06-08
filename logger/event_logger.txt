@@ -4170,3 +4170,11 @@ Tuesday, 6 June 2023 : Added the product:361083984_1157463034to store: 361083984
 Tuesday, 6 June 2023 : assigning new manager with username : nekola to the store with id: 361083984
 Tuesday, 6 June 2023 : 361083984Logged-out succesfully
 Tuesday, 6 June 2023 : guest : guest1471518420 has logged in
+Thursday, 8 June 2023 : guest : guest1428728540 has logged in
+Thursday, 8 June 2023 : nekola has registered!
+Thursday, 8 June 2023 : bayan has registered!
+Thursday, 8 June 2023 : opening store with id: 1460621491 has failed
+Thursday, 8 June 2023 : Added the product:1460621491_1987357087to store: 1460621491 has been done successfully
+Thursday, 8 June 2023 : assigning new manager with username : nekola to the store with id: 1460621491
+Thursday, 8 June 2023 : 569229184Logged-out succesfully
+Thursday, 8 June 2023 : guest : guest507304219 has logged in

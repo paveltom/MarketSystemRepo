@@ -22,15 +22,15 @@ namespace Market_System.DAL
 
 
 
-        //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;AttachDbFilename=C:\\MarketDB.dbo;Initial Catalog=MarketDB;Integrated Security=True")
+        //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;AttachDbFilename=C:\\MarketDB.dbo;Initial Catalog=MarketDB;Integrated Security=True")   ==== localDB connection string with file in C:\ directory - dont have permissions
 
-        //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
+        //public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")  ==== connection string to localDB
 
-        // 192.168.1.65/24
+        // 192.168.1.65/24 ==== linux sql server ip
 
 
-        // Data Source=192.168.1.65/24, 1433;Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=True";
-        public StoreDataContext() : base("Data Source=192.168.1.65, 1433; Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=False")
+        // public StoreDataContext() : base("Data Source=192.168.1.65, 1433; Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=False")   ======= connection strng to linux sql server
+        public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
 
         {
 

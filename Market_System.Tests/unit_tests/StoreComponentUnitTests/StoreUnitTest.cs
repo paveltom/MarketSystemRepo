@@ -992,7 +992,7 @@ namespace Market_System.Tests.unit_tests
             int boughtTimes = 11;
             Category category = new Category("testProduct1SomeCategory");
             return new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
-                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category, 11);
+                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category, 11, new KeyValuePair<string, double>(product_ID, -1.0));
         }
         
 

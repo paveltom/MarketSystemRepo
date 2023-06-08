@@ -87,7 +87,7 @@ namespace Market_System.ServiceLayer
 
 
         // ======= AUCTION =========
-        public void SetAuction(string productID, double newPrice);
+        public void SetAuction(string productID, double newPrice, long auctionMinutesDuration);
         public void UpdateAuction(string productID, double newPrice);
         public void RemoveAuction(string productID);
     }
