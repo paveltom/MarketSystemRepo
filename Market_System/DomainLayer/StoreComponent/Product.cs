@@ -472,7 +472,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
             try
             {
-                this.Lottery = new ConcurrentDictionary<string, int>();
+                this.Reserve(1);
+                this.Lottery = new ConcurrentDictionary<string, int>();                
                 Save();
             }
             catch (Exception e) { throw e; }

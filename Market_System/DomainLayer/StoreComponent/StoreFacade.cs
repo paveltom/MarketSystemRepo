@@ -9,6 +9,7 @@ using Market_System.Domain_Layer.Store_Component;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DAL;
 using Microsoft.Ajax.Utilities;
+using Market_System.DomainLayer.UserComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -46,7 +47,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         Instance = new StoreFacade();
                         marketPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
                         marketStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
-                        AuctionTimers = new List<System.Timers.Timer>();
+                        Timers = new List<System.Timers.Timer>();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -697,8 +698,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
             try
             {
-                AcquireStore(storeID).RemoveLottery(userID, productID);
+                Store store = AcquireStore(storeID);
+                store.RemoveLottery(userID, productID);
+                Dictionary<string, double> refund = store.ReturnUsersLotteryTicketsMoney(userID, productID);
                 ReleaseStore(storeID);
+                refund.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
             }
             catch (Exception e) { throw e; }
 
@@ -710,20 +714,23 @@ namespace Market_System.DomainLayer.StoreComponent
 
             try
             {
-                AcquireStore(storeID).AddLotteryTicket(userID, productID, percentage);
+                Store store = AcquireStore(storeID);
+                store.AddLotteryTicket(userID, productID, percentage);
+                if (store.RemainingLotteryPercantage(userID, productID) == 0)
+                    store.LotteryWinner(productID);
                 ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
 
         }
 
-        public void ReturnUsersLotteryTickets(string storeID, string userID, string productID)
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string storeID, string userID, string productID)
         {
             try
             {
-                Dictionary<string, double> ret = AcquireStore(storeID).ReturnUsersLotteryTickets(userID, productID);
+                Dictionary<string, int> ret = AcquireStore(storeID).ReturnUsersLotteryTickets(userID, productID);
                 ReleaseStore(storeID);
-                ret.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
+                return ret;
             }
             catch (Exception e) { throw e; }
         }
@@ -749,43 +756,19 @@ namespace Market_System.DomainLayer.StoreComponent
                 doneTimer.Dispose();
 
                 string storeID = GetStoreIdFromProductID(productID);
-                Store store = AcquireStore(storeID);
-                Dictionary<string, double> refundme = store.ReturnUsersLotteryTicketsMoney(userID, productID);                      
+                Store store = AcquireStore(storeID);                
+                Dictionary<string, double> refundme = store.ReturnUsersLotteryTicketsMoney(userID, productID);
 
 
                 if (store.RemainingLotteryPercantage(userID, productID) < 0)
                     refundme.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
                 else
-                {
-                    Dictionary<string, int> refundPercantage = store.ReturnUsersLotteryTickets(userID, productID);
-                    List<KeyValuePair<string, double>> relativeChances = new List<KeyValuePair<string, double>>();
-                    double curr = 0.0;
-                    refundPercantage.ForEach(p =>
-                    {
-                        curr += p.Value / 100;
-                        relativeChances.Add(new KeyValuePair<string, double>(p.Key, curr));
-                    });
-                    Random rand = new Random();
-                    double r = rand.NextDouble();
-                    string winner;
-                    foreach(KeyValuePair<string, double> p in relativeChances)
-                    {
-                        if(p.Value > r)
-                        {
-                            winner = p.Key;
-                            break;
-                        }
-                    }
-                    throw new NotImplementedException("perform a purchase for a winner");
-                    // perform a purchase for a winner!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                }
-                
-                RemoveLottery(storeID, userID, productID);
+                    store.LotteryWinner(productID);
+                store.RemoveLottery(userID, productID);
+                ReleaseStore(storeID);
             }
             catch (Exception ex) { throw ex; }
-        }
-
+        }      
 
 
         public void Refund(string userID, string storeID, string userToRefundID, double amount)

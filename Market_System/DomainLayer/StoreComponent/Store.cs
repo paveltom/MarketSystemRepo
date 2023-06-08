@@ -29,11 +29,10 @@ namespace Market_System.DomainLayer.StoreComponent
         public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Policy> storePolicies; 
         public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies;
-        public List<string> StoreCreditCard; // card_number, month, year, holder, ccv, id
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
-        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed, List<string> creditCard)
+        public Store(string founderID, string storeID, List<Purchase_Policy> policies, List<Purchase_Strategy> strategies, List<string> allProductsIDS, bool temporaryClosed)
         {
             this.Store_ID = storeID;
             this.founderID = founderID;
@@ -46,7 +45,6 @@ namespace Market_System.DomainLayer.StoreComponent
             this.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
             this.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
             this.temporaryClosed = temporaryClosed;
-            this.StoreCreditCard = creditCard;
 
             if (policies != null)
                 foreach (Purchase_Policy p in policies)
@@ -1276,7 +1274,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                     {
                         AcquireProduct(productID).RemoveLottery();
-                        ReleaseProduct(productID);
+                        ReleaseProduct(productID);                        
                     }
                 }
                 catch (Exception e) { throw e; }
@@ -1342,6 +1340,40 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+
+
+        public void LotteryWinner(string productID)
+        {
+            try
+            {
+                Dictionary<string, int> refundPercantage = ReturnUsersLotteryTickets(this.founderID, productID);
+                List<KeyValuePair<string, double>> relativeChances = new List<KeyValuePair<string, double>>();
+                double curr = 0.0;
+                refundPercantage.ForEach(p =>
+                {
+                    curr += p.Value / 100;
+                    relativeChances.Add(new KeyValuePair<string, double>(p.Key, curr));
+                });
+                Random rand = new Random();
+                double r = rand.NextDouble();
+                string winner;
+                foreach (KeyValuePair<string, double> p in relativeChances)
+                {
+                    if (p.Value > r)
+                    {
+                        winner = p.Key;
+                        break;
+                    }
+                }
+                throw new NotImplementedException("perform a purchase for a winner");
+                // perform a purchase for a winner!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+
+
 
         // =========================================================================
 

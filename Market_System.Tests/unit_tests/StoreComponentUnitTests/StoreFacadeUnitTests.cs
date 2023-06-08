@@ -331,7 +331,7 @@ namespace Market_System.Tests.unit_tests
             int boughtTimes = 11;
             Category category = new Category("testProduct1SomeCategory");
             Product newp1 = new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
-                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category, 11, new KeyValuePair<string, double>(product_ID, -1.0));
+                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category, 11, new KeyValuePair<string, double>(product_ID, -1.0), null);
 
             Statement storeIDStatement = new EqualRelation("Name", newp1.Name, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
