@@ -1,5 +1,4 @@
-﻿using Market_System.user_component_DAL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -68,27 +67,5 @@ namespace Market_System.DomainLayer.UserComponent
             return new_list;
         }
 
-        internal List<Bucket_model_history> convert_buckets_to_Bucket_model_history()
-        {
-            List<Bucket_model_history> return_me = new List<Bucket_model_history>();
-            foreach (Bucket basket in this.baskets)
-            {
-                Bucket_model_history new_bmh = new Bucket_model_history(basket.get_basket_id(), basket.get_store_id());
-                foreach(KeyValuePair<string, int> product__pair in basket.get_products())
-                {
-                    Product_in_basket_history_model pibhm = new Product_in_basket_history_model(product__pair.Key, product__pair.Value, basket.get_basket_id());
-                    new_bmh.products.Add(pibhm);
-                }
-                
-                   return_me.Add(new_bmh);
-
-            }
-            return return_me;
-        }
-
-        internal double get_total_price()
-        {
-            return this.total_price;
-        }
     }
 }
