@@ -8,7 +8,6 @@ using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
 using System.Threading.Tasks;
-using Market_System.user_component_DAL.Models;
 
 namespace Market_System.DomainLayer
 {
@@ -110,17 +109,11 @@ namespace Market_System.DomainLayer
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
-                        
-                        if (User_DAL_controller.GetInstance().get_context().first_time_running_project_market())
-                        {
-                            Instance.register("admin", "admin", "address"); //registering an admin 
-                            Instance.AddNewAdmin(null, "admin");
-                            StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
-                            Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
-                            Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
-                            User_DAL_controller.GetInstance().get_context().set_first_time_running();
-                        }
-                     
+                        Instance.register("admin", "admin", "address"); //registering an admin 
+                        Instance.AddNewAdmin(null, "admin");
+                        StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
+                        Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                        Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -130,8 +123,6 @@ namespace Market_System.DomainLayer
             //Return the Singleton Instance
             return Instance;
         }
-
-        
 
         internal void set_first_time_running_to_false()
         {
@@ -1052,7 +1043,6 @@ namespace Market_System.DomainLayer
             {
                 Cart cart = get_cart_of_userID(user_id);
                 List<ItemDTO> purchased_Products = cart.convert_to_item_DTO();
-
                 userFacade.save_purhcase_in_user(user_id, cart);
                 userFacade.reset_cart(session_id);
 

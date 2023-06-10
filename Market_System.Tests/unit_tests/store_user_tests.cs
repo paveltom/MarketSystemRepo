@@ -7,14 +7,13 @@ using Market_System.DomainLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer.StoreComponent;
 using System.Collections.Generic;
-using Market_System.user_component_DAL.Models;
 
 namespace Market_System.Tests.unit_tests
 {
     [TestClass]
     public class store_user_tests
     {
-        private static Market_System.DomainLayer.MarketSystem  ms;
+        private Market_System.DomainLayer.MarketSystem ms;
         private UserFacade user_facade;
         private StoreFacade store_facade;
 
@@ -23,36 +22,24 @@ namespace Market_System.Tests.unit_tests
         // Use TestInitialize to run code before running each test 
          [TestInitialize()]
         public void Setup() {
-            User_DAL_controller.GetInstance().reset_database();
             ms = Market_System.DomainLayer.MarketSystem.GetInstance();
             user_facade = UserFacade.GetInstance();
             store_facade = StoreFacade.GetInstance();
         }
-
-        // Use TestCleanup to run code after each test has run
-        [TestCleanup()]
+        
+       // Use TestCleanup to run code after each test has run
+         [TestCleanup()]
         public void TearDown()
         {
-            User_DAL_controller.GetInstance().reset_database();
             ms.destroy_me();
             store_facade.Destroy_me();
             user_facade.Destroy_me();
             UserRepo.GetInstance().destroy_me();
             PurchaseRepo.GetInstance().destroy_me();
-
         }
-        /*
-        [AssemblyCleanup()]
-        public static void TearDown_all()
-        {
-          
-            User_DAL_controller.GetInstance().get_context().ResetDatabase();
-            User_DAL_controller.GetInstance().change_to_regular_database();
-            ms.destroy_me();
 
-        }
-        */
-        
+
+ 
         [TestMethod]
         public void register_user_test_success()
         {
@@ -195,7 +182,7 @@ namespace Market_System.Tests.unit_tests
             }
 
         }
-        
+
         [TestMethod]
         public void Login_guest_test_success()
         {
@@ -213,7 +200,7 @@ namespace Market_System.Tests.unit_tests
         }
 
         
-        
+
 
         [TestMethod]
         public void user_changes_password_success()
@@ -237,7 +224,7 @@ namespace Market_System.Tests.unit_tests
 
         }
 
-        
+
         [TestMethod]
         public void user_changes_password_fail()
         {
@@ -264,7 +251,7 @@ namespace Market_System.Tests.unit_tests
         }
 
 
-        
+
         [TestMethod]
         public void add_product_to_basket_success()
         {
@@ -284,7 +271,7 @@ namespace Market_System.Tests.unit_tests
             user_facade.remove_product_from_basket("123_456", "test1",1);
             Assert.AreEqual(true, user_facade.get_cart("test1").get_basket("123").check_if_product_exists("123_456"));
         }
-        
+
         [TestMethod]
         public void remove_product_from_basket_and_nothing_remains_in_it()
         {
@@ -304,7 +291,7 @@ namespace Market_System.Tests.unit_tests
 
 
         }
-        
+
         [TestMethod]
         public void remove_product_from_not_existing_basket()
         {
@@ -333,10 +320,10 @@ namespace Market_System.Tests.unit_tests
         expext user2 to sccuess and user 1 to fail
 
         }
-        */
-       
 
-        
+       */
+
+
 
         [TestMethod]
         public void Check_Delivery_Success()
@@ -421,7 +408,7 @@ namespace Market_System.Tests.unit_tests
             }
         }
 
-        
+
         [TestMethod]
         public void user_purchase_history_fail()
         {
@@ -440,6 +427,5 @@ namespace Market_System.Tests.unit_tests
                 Assert.AreEqual("user never bought anything!", e.Message);
             }
         }
-        
     }
 }

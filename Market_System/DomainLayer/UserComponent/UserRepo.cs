@@ -1,5 +1,4 @@
 ﻿using Market_System.Domain_Layer.Communication_Component;
-using Market_System.user_component_DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,28 +129,19 @@ namespace Market_System.DomainLayer.UserComponent
                     return user_ID_username_linker[userID];
                 }
             }
-            
-            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByUserID(userID);
-            if(um!=null)
-            {
-                return um.username;
-            }
             throw new Exception("can't recive username because userID does not exists");
 
         }
 
         internal void change_password(string username, string new_password)
         {
-            user_model um = User_DAL_controller.GetInstance().get_context().GetUserByName(username);
-            if (PasswordHasher.VerifyPassword(new_password, um.hashed_password))
+            if(PasswordHasher.VerifyPassword(new_password, userDatabase[username]))
             {
                 throw new Exception("You can't change a password to the same one, you need to provide an other new password");
             }
 
             string new_hashed_Password = PasswordHasher.HashPassword(new_password);
-           um.hashed_password= new_hashed_Password;
-            User_DAL_controller.GetInstance().get_context().Update(um);
-            User_DAL_controller.GetInstance().get_context().SaveChanges();
+            userDatabase[username] = new_hashed_Password;
         }
 
         internal string get_userID_from_username(string username)
@@ -165,8 +155,6 @@ namespace Market_System.DomainLayer.UserComponent
             }
             throw new Exception("can't recive userID because username does not exists");
         }
-
-
 
         public void AddNewAdmin(string curr_Admin_username, string other_username)
         {

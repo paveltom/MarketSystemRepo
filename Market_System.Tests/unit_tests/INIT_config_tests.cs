@@ -2,7 +2,6 @@
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.ServiceLayer;
-using Market_System.user_component_DAL.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -13,13 +12,12 @@ namespace Market_System.Tests.unit_tests
     {
 
 
-        private static MarketSystem ms;
+        private MarketSystem ms;
         // Use TestInitialize to run code before running each test 
         [TestInitialize()]
         public void Setup()
         {
             Logger.get_instance().change_logger_path_to_tests();
-            User_DAL_controller.GetInstance().change_to_test_database();
             ms = MarketSystem.GetInstance();
         }
 
@@ -28,23 +26,10 @@ namespace Market_System.Tests.unit_tests
         public void TearDown()
         {
             Logger.get_instance().change_logger_path_to_regular();
-            User_DAL_controller.GetInstance().reset_database();
             ms.destroy_me();
 
         }
 
-        /*
-        //use after all tests are done
-        [AssemblyCleanup()]
-        public static void TearDown_all()
-        {
-            Logger.get_instance().change_logger_path_to_regular();
-            User_DAL_controller.GetInstance().get_context().ResetDatabase();
-            User_DAL_controller.GetInstance().change_to_regular_database();
-            ms.destroy_me();
-        }
-        */
-        
         [TestMethod]
         public void read_from_init_success()
         {
@@ -55,7 +40,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(sv.get_stores_that_user_works_in().Value[0].Contains("sword_store"));
             Assert.IsTrue(sv.get_not_zero_quantity_products_from_all_shop().Value.FindIndex(item => item.Name.Equals("rune_scimitar"))>=0); // here the list that returns has 3 items , first 2 are the defualt items , and the third one is rune scimitar
         }
-        
+
         [TestMethod]
         public void read_from_init_fail()
         {
@@ -64,7 +49,7 @@ namespace Market_System.Tests.unit_tests
             Assert.IsTrue(sv.login_member("bayan", "pass").ErrorMessage.Equals("Incorrect login information has been provided")); // this checks that all action are undone
             Assert.IsTrue(Logger.get_instance().Read_Errors_Record().Contains(DateTime.Now.ToLongDateString() + " : " + "reading from init file failed due to: Incorrect login information has been provided starting system without any initialization")); // this checks that we record this in eror log
         }
-        
+
         [TestMethod]
         public void read_from_config_success()
         {
@@ -77,7 +62,7 @@ namespace Market_System.Tests.unit_tests
 
 
         }
-        
+
      
 
     }
