@@ -6,29 +6,35 @@ using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer.DeliveryComponent
 {
-    internal class DeliveryProxy : DeliveryService
+    public class DeliveryProxy : DeliveryService
     {
 
         private static DeliveryService instance;
 
-        public DeliveryService DeliveryService
+   
+        private DeliveryProxy()
         {
-            get { return instance; }
-            set { instance = value; }
-        }
-        private DeliveryProxy(DeliveryService deliveryService)
-        {
-            instance = deliveryService;
+          
         }
 
         public static DeliveryService get_instance()
         {
             if (instance == null)
             {
-                 new DeliveryProxy(new HTTPDeliveryService());
+                instance = new UpsDelivery();
             }
             return instance;
         }
+
+        public static DeliveryService get_instance(string URL)
+        {
+            if (instance == null)
+            {
+                instance = new HTTPDeliveryService(URL);
+            }
+            return instance;
+        }
+
 
         public string deliver(string name, string address, string city, string country, string zip)
         {

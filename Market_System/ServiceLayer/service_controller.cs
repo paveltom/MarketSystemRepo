@@ -8,7 +8,8 @@ using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
 using System.IO;
 using System.Web.Hosting;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using Market_System.DomainLayer.PaymentComponent;
+using Market_System.DomainLayer.DeliveryComponent;
 
 namespace Market_System.ServiceLayer
 {
@@ -19,7 +20,7 @@ namespace Market_System.ServiceLayer
         private Random session_id_generator;
         private string store_id_config;// this is used only for the config file
 
-        internal Response<List<string>> get_stores_that_user_works_in()
+        public Response<List<string>> get_stores_that_user_works_in()
         {
             try
             {
@@ -62,7 +63,15 @@ namespace Market_System.ServiceLayer
 
 
 
+        public Service_Controller(int for_test) // this is for test
+        {
 
+            this.session_id_generator = new Random();
+            this.session_id = session_id_generator.Next().ToString();
+            this.usc = new User_Service_Controller();
+            this.ssc = new Store_Service_Controller(session_id);
+            new_guest_entered_the_website(session_id);
+        }
 
         public Service_Controller()
         {
@@ -74,7 +83,8 @@ namespace Market_System.ServiceLayer
             new_guest_entered_the_website(session_id);
             if (first_time_running_project())
             {
-                read_from_config_file();
+                read_from_config_file("config_file.txt");
+                read_from_init_file("init_file.txt");
                 set_first_time_running_to_false();
             }
         }
@@ -89,10 +99,111 @@ namespace Market_System.ServiceLayer
             return this.usc.first_time_running_project();
         }
 
-        private void read_from_config_file()
+
+        public void read_from_config_file(string file_name)
         {
-            string combine_me = "config_file.txt";
-          
+
+            string combine_me = file_name;
+
+            string path;
+            var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
+            if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
+            {
+
+                string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+
+
+
+                path = hosting_path + combine_me;
+
+            }
+
+            else
+            {
+                if (temp_path.Equals("c:\\windows\\system32"))//Meaning that we're running a server
+                {
+
+                    string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
+                    path = hosting_path + combine_me;
+                    path = hosting_path + combine_me;
+                }
+                else//Meaning that we're running the tests.
+                {
+                    string combine_me_2 = "\\Market_System\\";
+                    int slice_me = temp_path.LastIndexOf('\\');
+                    while (!temp_path.Substring(slice_me).Equals("\\MarketSystemRepo"))
+                    {
+                        temp_path = temp_path.Substring(0, slice_me);
+                        slice_me = temp_path.LastIndexOf('\\');
+                    }
+
+                    path = temp_path + combine_me_2 + combine_me;
+                }
+
+            }
+
+            StreamReader reader = new StreamReader(path);
+
+            string current_command;
+            try
+            {
+                while (!reader.EndOfStream)
+                {
+                    current_command = reader.ReadLine();
+                    if (current_command[0] == '/')
+                        continue;
+                    string[] command = current_command.Split(' ');
+                    if(command[1].Equals("payment"))
+                    {
+                        if (command.Length>=5)
+                        {
+                            PaymentProxy.get_instance(command[4]);
+                        }
+                        else
+                        {
+                            PaymentProxy.get_instance();
+                        }
+                    }
+                    if (command[1].Equals("delivery"))
+                    {
+                        if (command.Length >= 5)
+                        {
+                            DeliveryProxy.get_instance(command[4]);
+                        }
+                        else
+                        {
+                            DeliveryProxy.get_instance();
+                        }
+                        
+                    }
+
+                    if(command[0].Equals("database"))
+                    {
+                        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                    }
+
+                }
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                //save somewhere the error
+                Logger.get_instance().record_error("reading from configartion file failed due to: " + e.Message + " starting system without any configration");
+                this.destroy();
+                this.usc = new User_Service_Controller();
+                this.ssc = new Store_Service_Controller(session_id);
+                new_guest_entered_the_website(session_id);
+            }
+        }
+
+
+
+        public void read_from_init_file(string file_name)
+        {
+            //string combine_me = "config_file.txt";
+            string combine_me = file_name;
+
             string path;
             var temp_path = Directory.GetParent(Environment.CurrentDirectory).FullName;
             if (temp_path.Equals("C:\\Program Files (x86)") || temp_path.Equals("C:\\Program Files")) //Meaning that we're running the project.
@@ -148,13 +259,15 @@ namespace Market_System.ServiceLayer
             catch(Exception e)
             {
                 //save somewhere the error
-                Logger.get_instance().record_error("reading from configartion file failed due to: " + e.Message + " starting system without any configration");
+                Logger.get_instance().record_error("reading from init file failed due to: " + e.Message + " starting system without any initialization");
                 this.destroy();
                 this.usc = new User_Service_Controller();
                 this.ssc = new Store_Service_Controller(session_id);
                 new_guest_entered_the_website(session_id);
             }
         }
+
+        
 
         private void execute_command(string current_command)
         {

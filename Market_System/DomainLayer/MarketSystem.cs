@@ -1101,12 +1101,13 @@ namespace Market_System.DomainLayer
         {
             try
             {
+                
                 string user_id = get_userid_from_session_id(session_id);
                 string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
                 double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
-                string transactionID = PaymentProxy.get_instance().pay(card_number,month,year,holder,ccv,id);                
+                PaymentProxy.get_instance().pay(card_number,month,year,holder,ccv,id);
                 // userFacade.save_purhcase_in_user(username,cart);
                 return transactionID;
             }

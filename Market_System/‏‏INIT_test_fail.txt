@@ -1,0 +1,3 @@
+register bayan pass varrock
+login bayan fail
+

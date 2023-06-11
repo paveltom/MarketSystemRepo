@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer.PaymentComponent
 {
-    internal class PaymentProxy : PaymentService
+    public class PaymentProxy : PaymentService
     {
 
-        public static PaymentService instance;
+        private static PaymentService instance;
 
 
-        public PaymentService Instance
+    
+        private PaymentProxy()
         {
-            get { return instance; }
-            set { instance = value; }
-        }
-
-        public PaymentProxy(PaymentService paymentService)
-        {
-            instance = paymentService;
+            
         }
 
 
@@ -29,10 +24,21 @@ namespace Market_System.DomainLayer.PaymentComponent
         {
             if (instance == null)
             {
-                 new PaymentProxy(new HTTPPayService());
+                instance = new PayCashService_Dummy();
             }
             return instance;
         }
+
+        public static PaymentService get_instance(string URL)
+        {
+            if (instance == null)
+            {
+                instance = new HTTPPayService(URL);
+            }
+            return instance;
+        }
+
+
 
         public string pay(string card_number, string month, string year, string holder, string ccv, string id)
         {
