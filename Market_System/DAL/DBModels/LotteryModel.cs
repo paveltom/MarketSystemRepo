@@ -13,6 +13,7 @@ namespace Market_System.DAL.DBModels
         public string LotteryID { get; set; } // productID_userID_lottery
         public int Percantage { get; set; }
         public string UserID { get; set; }
+        public string TransactionID { get; set; }
         public virtual ProductModel Product{ get; set; }
     }
 }

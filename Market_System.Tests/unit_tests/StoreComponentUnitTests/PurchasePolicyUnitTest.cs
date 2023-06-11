@@ -88,7 +88,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                this.facade.Purchase(this.legitTestUser1, itemsToCalculate);
+                this.facade.Purchase(this.legitTestUser1, itemsToCalculate, "testTransID123");
             }
             catch (Exception ex) { error = true; }
             this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
@@ -111,7 +111,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                this.facade.Purchase("someUser", itemsToCalculate);
+                this.facade.Purchase("someUser", itemsToCalculate, "testTransID789");
             }
             catch (Exception ex) { error = true; exc = ex; }
             this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
@@ -140,7 +140,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                this.facade.Purchase("someUser", itemsToCalculate);
+                this.facade.Purchase("someUser", itemsToCalculate, "testTransID234");
             }
             catch (Exception ex) { error = true; exc = ex; }
             this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
@@ -170,7 +170,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                this.facade.Purchase("legitTestUser1", itemsToPurchase);
+                this.facade.Purchase("legitTestUser1", itemsToPurchase, "testTransID345");
             }
             catch (Exception ex) { error = true;}
             this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);
@@ -194,7 +194,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                this.facade.Purchase("legitTestUser1", itemsToPurchase);
+                this.facade.Purchase("legitTestUser1", itemsToPurchase, "testTransID456");
             }
             catch (Exception ex) { error = true; }
             this.testProduct0 = StoreRepo.GetInstance().getProduct(this.testProduct0.Product_ID);

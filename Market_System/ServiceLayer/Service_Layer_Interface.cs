@@ -88,7 +88,7 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
         public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration);
-        public Response UpdateAuction(string productID, double newPrice);
+        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id);
         public Response RemoveAuction(string productID);
 
 
@@ -96,7 +96,7 @@ namespace Market_System.ServiceLayer
         // ======= LOTTERY ========
         public Response SetNewLottery(string productID, long durationInMinutes);
         public Response RemoveLottery(string productID);
-        public Response AddLotteryTicket(string productID, int percentage);
+        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id);
         public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID);
         public Response<int> RemainingLotteryPercantage(string productID);
     }

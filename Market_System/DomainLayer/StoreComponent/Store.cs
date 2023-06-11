@@ -11,6 +11,7 @@ using Market_System.DomainLayer.UserComponent;
 using Market_System.DAL;
 using System.EnterpriseServices;
 using Market_System.DomainLayer.PaymentComponent;
+using Market_System.Domain_Layer.Communication_Component;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -166,6 +167,9 @@ namespace Market_System.DomainLayer.StoreComponent
                     {
                         employees.getStoreEmployees(this.Store_ID).Where(e => e.OwnerAssignner != null && e.OwnerAssignner.Equals(emp.UserID)).ForEach(e => this.employees.removeEmployee(e.UserID, this.Store_ID));
                         this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
+                        string message = "You have been removed from store ownership in store id: " + this.Store_ID;
+                        NotificationFacade.GetInstance().AddNewMessage(other_Owner_ID, userID, message);
+
                     }
                     else
                         throw new Exception("Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store");
@@ -445,12 +449,14 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         private static object PurchaseLock = new object();
-        public void Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
+        public double Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
         {
             lock (PurchaseLock)
             {
                 string initErrorMSG = "Cannot purchase: ";
                 String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
+                double price = 0.0;
+                List<ItemDTO> purchased = new List<ItemDTO>(); // backup for an error so quantitie will be restored
                 try
                 {
                     List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
@@ -461,7 +467,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         newItem.SetQuantity(i.GetQuantity());
                         return newItem;
                     }).ToList();
-
+                    
                     List<ItemDTO> productsToPurchase = new List<ItemDTO>();                    
 
                     // purchasing bid products
@@ -469,21 +475,12 @@ namespace Market_System.DomainLayer.StoreComponent
                     {
                         BidDTO currBid;
                         if ((currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore == true || b.ApprovedByUser == true))) != null)
-                            this.BidPurchase(userID, currBid);
+                        {
+                            price += this.BidPurchase(userID, currBid);
+                            purchased.Add(item);
+                        }
                         else
                             productsToPurchase.Add(item);
-                    }
-
-
-                    // purchasing auction products
-                    List<ItemDTO> copyOfProducts = new List<ItemDTO>(productsToPurchase);
-                    foreach (ItemDTO item in copyOfProducts)
-                    {
-                        if(item.Auction.Key == userID)
-                        {
-                            this.AuctionPurchase(userID, item);
-                            productsToPurchase.RemoveAll(i => i.GetID() == item.GetID());
-                        }
                     }
 
 
@@ -509,9 +506,21 @@ namespace Market_System.DomainLayer.StoreComponent
                             AcquireProduct(item.GetID()).Purchase(item.GetQuantity());
                             ReleaseProduct(item.GetID());
                             this.storeRepo.record_purchase(this, item); // for purchase history
+                            price += item.GetQuantity() * item.Price;
+                            purchased.Add(item);
                         }
+                    return price;
                 }
-                catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
+                catch (Exception ex) 
+                {
+                    // restoring quantities before purchase
+                    // the product still will be reserved for user
+                    purchased.ForEach(i => {
+                        AcquireProduct(i.GetID()).Restore(i.GetQuantity());
+                        ReleaseProduct(i.GetID());
+                        });                    
+                    throw new Exception(cannotPurchase, ex); 
+                }
             }
         }
 
@@ -1154,12 +1163,14 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void BidPurchase(string userID, BidDTO bid)
+        public double BidPurchase(string userID, BidDTO bid)
         {
             try
             {
-                AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
+                double price = 0.0;
+                price = AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
                 ReleaseProduct(bid.ProductID);
+                return price;
             }
             catch (Exception e) { throw e; }
         }
@@ -1184,12 +1195,14 @@ namespace Market_System.DomainLayer.StoreComponent
         // =============================================================================================
         // ========================================== AUCTION ==========================================
 
-        public void AuctionPurchase(string userID, ItemDTO item)
+        public double  AuctionPurchase(string userID, ItemDTO item)
         {
             try
             {
-                AcquireProduct(item.GetID()).AuctionPurchase(userID, item.GetQuantity());
+                double price = 0.0;
+                price = AcquireProduct(item.GetID()).AuctionPurchase(userID, item.GetQuantity());
                 ReleaseProduct(item.GetID());
+                return price;
             }
             catch (Exception e) { throw e; }
         }
@@ -1204,7 +1217,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                     {
-                        AcquireProduct(productID).SetAuction(productID, newPrice);
+                        AcquireProduct(productID).SetAuction(productID, newPrice, "");
                         ReleaseProduct(productID);
                     }
                 }
@@ -1212,14 +1225,15 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public void UpdateAuction(string userID, string productID, double newPrice)
+        public string UpdateAuction(string userID, string productID, double newPrice, string newTransID)
         {
             lock (auctionLock)
             {
                 try
                 {
-                    AcquireProduct(productID).SetAuction(userID, newPrice);
+                    string previousTransID = AcquireProduct(productID).SetAuction(userID, newPrice, newTransID);
                     ReleaseProduct(productID);
+                    return previousTransID;
                 }
                 catch (Exception ex) { throw ex; }
             }
@@ -1233,7 +1247,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                     {
-                        AcquireProduct(productID).SetAuction(productID, -1);
+                        AcquireProduct(productID).SetAuction(productID, -1, "");
                         ReleaseProduct(productID);
                     }
                 }
@@ -1282,17 +1296,19 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddLotteryTicket(string userID, string productID, int percentage)
+        public double AddLotteryTicket(string userID, string productID, int percentage, string transID)
         {
             lock (lotteryLock)
             {
                 try
                 {
+                    double price = 0.0;
                     if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                    {
-                        AcquireProduct(productID).AddLotteryTicket(userID, percentage);
-                        ReleaseProduct(productID);
+                    {                        
+                        price = AcquireProduct(productID).AddLotteryTicket(userID, percentage, transID);
+                        ReleaseProduct(productID);                        
                     }
+                    return price;
                 }
                 catch (Exception e) { throw e; }
             }
@@ -1321,6 +1337,22 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                 {
                     Dictionary<string, int> ret = AcquireProduct(productID).ReturnUsersLotteryTickets();
+                    ReleaseProduct(productID);
+                    return ret;
+                }
+                throw new Exception("You cannot return users money for lottery.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, string> ReturnUsersLotteryTransactions(string userID, string productID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    Dictionary<string, string> ret = AcquireProduct(productID).ReturnUsersLotteryTransactions();
                     ReleaseProduct(productID);
                     return ret;
                 }
@@ -1366,8 +1398,8 @@ namespace Market_System.DomainLayer.StoreComponent
                         break;
                     }
                 }
-                throw new NotImplementedException("perform a purchase for a winner");
-                // perform a purchase for a winner!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                AcquireProduct(productID).Purchase(1);
+                ReleaseProduct(productID);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -1377,11 +1409,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
         // =========================================================================
 
-        public void Refund(string userID, string userToRefundID, double amount)
+        public void Refund(string transactionID)
         {
             try
             {
-                PaymentProxy.get_instance().cancel_pay("INSERT_TRANSACTION_ID_HERE"); // retreive transaction id from somewhere!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                PaymentProxy.get_instance().cancel_pay(transactionID); // retreive transaction id from somewhere!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             }
             catch (Exception ex){ throw ex; }

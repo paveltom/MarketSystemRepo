@@ -330,11 +330,11 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
-        public Response UpdateAuction(string productID, double newPrice)
+        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
-                Market.UpdateAuction(this.SessionID, productID, newPrice);
+                Market.UpdateAuction(this.SessionID, productID, newPrice, card_number, month, year, holder, ccv, id);
                 return new Response("Auction product price was updated successfully.");
             }
             catch (Exception ex) { throw ex; }
@@ -374,12 +374,12 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public Response AddLotteryTicket(string productID, int percentage)
+        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
-                Market.AddLotteryTicket(this.SessionID, productID, percentage);
+                Market.AddLotteryTicket(this.SessionID, productID, percentage, card_number, month, year, holder, ccv, id);
                 return new Response("Lottery ticket was added successfully.");
             }
             catch (Exception e) { throw e; }
@@ -435,11 +435,11 @@ namespace Market_System.ServiceLayer
 
         }
 
-        internal void purchase(string session_id)
+        internal void purchase(string transactionID)
         {
             try
             {
-                this.Market.purchase(session_id);
+                this.Market.purchase(this.SessionID, transactionID);
 
                 
             }

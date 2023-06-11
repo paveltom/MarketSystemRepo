@@ -18,7 +18,7 @@ namespace Market_System.DAL.DBModels
         public string Name { get; set; }
         public string Description { get; set; }
         public Double Price { get; set; }
-        public string Auction { get; set; }
+        public string Auction { get; set; } // userID_price_transactionID
         public int ReservedQuantity { get; set; }
         public Double Rating { get; set; } // between 1-10
         public int Quantity { get; set; }
@@ -49,12 +49,14 @@ namespace Market_System.DAL.DBModels
             ConcurrentDictionary<string, Purchase_Strategy> strategies = new ConcurrentDictionary<string, Purchase_Strategy>(this.Strategies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x));
             Dictionary<string, List<string>> attributes = new Dictionary<string, List<string>>(this.ProductPurchaseAttributes.ToDictionary(keySelector: a => a.AttributeName, elementSelector: a => a.AttributeOptions.Split('_').ToList()));
             Category category = new Category(this.ProductCategory);
-            
-            int lastIndex = this.Auction.LastIndexOf('_');
-            string auctionKey = this.Auction.Substring(0, lastIndex);
-            double auctionValue = Double.Parse(this.Auction.Substring(lastIndex + 1));
-            KeyValuePair<string, double> auction = new KeyValuePair<string, double>(auctionKey, auctionValue);
-            ConcurrentDictionary<string, int> lottery = new ConcurrentDictionary<string, int>(this.Lottery.ToDictionary(l => l.UserID, l => l.Percantage));
+
+
+            List<string> auctionDetails = this.Auction.Split('_').ToList();
+            string auctionKey = auctionDetails[0];
+            string auctionValue = auctionDetails[1];
+            string transID = auctionDetails[2];
+            KeyValuePair<string, List<string>> auction = new KeyValuePair<string, List<string>>(auctionKey, new List<string> { auctionValue, transID});
+            ConcurrentDictionary<string, List<string>> lottery = new ConcurrentDictionary<string, List<string>>(this.Lottery.ToDictionary(l => l.UserID, l => new List<string> {l.Percantage.ToString(), l.TransactionID}));
             Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, 
                                                                                                                         strategies, attributes, this.timesBought, category, this.timesRated, auction, lottery);
             return ret;
@@ -67,7 +69,7 @@ namespace Market_System.DAL.DBModels
             this.Name = updatedProduct.Name;
             this.Description = updatedProduct.Description;
             this.Price = updatedProduct.Price;
-            this.Auction = updatedProduct.Auction.Key + "_" + updatedProduct.Auction.Value;
+            this.Auction = updatedProduct.Auction.Key + "_" + updatedProduct.Auction.Value[0] + updatedProduct.Auction.Value[1];
             this.ReservedQuantity = updatedProduct.ReservedQuantity;
             this.Rating = updatedProduct.Rating; // between 1-10
             this.Quantity = updatedProduct.Quantity;
@@ -82,7 +84,8 @@ namespace Market_System.DAL.DBModels
                 LotteryModel model = new LotteryModel();
                 model.LotteryID = updatedProduct.Product_ID + "_" + l.Key + "_lottery";
                 model.UserID = l.Key;
-                model.Percantage = l.Value;
+                model.Percantage = int.Parse(l.Value[0]);
+                model.TransactionID = l.Value[1];
                 this.Lottery.Add(model);
             });
 

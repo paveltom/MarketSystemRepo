@@ -24,8 +24,8 @@ namespace Market_System.DomainLayer.StoreComponent
         public String Name { get; private set; }
         public String Description { get; private set; }
         public Double Price { get; private set; }
-        public KeyValuePair<string, double> Auction;
-        public ConcurrentDictionary<string, int> Lottery;
+        public KeyValuePair<string, List<string>> Auction;
+        public ConcurrentDictionary<string, List<string>> Lottery;
         public int ReservedQuantity { get; private set; }
         public Double Rating { get; private set; } // between 1-10
         public int Quantity { get; private set; }
@@ -50,7 +50,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public Product(String product_ID, String name, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight,
                         double[] dimenssions, List<String> comments, ConcurrentDictionary<string, Purchase_Policy> purchase_Policies,
                         ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, 
-                        long boughtTimes, Category category, long timesRated, KeyValuePair<string, double> auction, ConcurrentDictionary<string, int> lottery)
+                        long boughtTimes, Category category, long timesRated, KeyValuePair<string, List<string>> auction, ConcurrentDictionary<string, List<string>> lottery)
         {
             this.Product_ID = product_ID;
             this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
@@ -87,7 +87,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
             this.timesBought = 0;
-            this.Auction = new KeyValuePair<string, double>(this.Product_ID, -1.0);
+            this.Auction = new KeyValuePair<string, List<string>>(this.Product_ID, new List<string>{ "-1.0", "" });
             this.Lottery = null;
 
             String[] properties = productProperties.ToArray();
@@ -290,7 +290,7 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void BidPurchase(string userID, BidDTO bid)
+        public double BidPurchase(string userID, BidDTO bid)
         {
             lock (PurchaseLock)
             {
@@ -305,19 +305,20 @@ namespace Market_System.DomainLayer.StoreComponent
                         this.timesBought += bid.Quantity;
                     }
                     Save();
+                    return bid.NewPrice * bid.Quantity;
                 }
                 catch (Exception e) { throw e; }
             }
         }
 
 
-        public void AuctionPurchase(string userID, int quantity)
+        public double AuctionPurchase(string userID, int quantity)
         {           
             lock (PurchaseLock)
             {
                 try
                 {
-                    if (this.Auction.Key != userID || this.Auction.Value == -1.0)
+                    if (this.Auction.Key != userID || Double.Parse(this.Auction.Value[0]) == -1.0)
                         throw new Exception("Auction purchase for this product is not available for you.");
                     lock (QuantityLock)
                     {
@@ -328,27 +329,47 @@ namespace Market_System.DomainLayer.StoreComponent
                         this.timesBought += quantity;
                     }
                     Save();
+                    return quantity * Double.Parse(this.Auction.Value[0]);
                 }
                 catch (Exception e) { throw e; }
             }
         }
 
+        public void Restore(int quantity)
+        {
+            lock (QuantityLock)
+            {
+                try
+                {
+                    this.Quantity += quantity;
+                    this.ReservedQuantity += quantity;
+                    this.timesBought -= quantity;
+                    Save();
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
         
-        public void SetAuction(string userID, double newPrice)
+
+
+        public string SetAuction(string userID, double newPrice, string newTransID)
         {
             try
             {
-                if (newPrice != -1 && newPrice < this.Auction.Value)
+                if (newPrice != -1 && newPrice < Double.Parse(this.Auction.Value[0]))
                     throw new Exception("Cannot offer smaller price than current price.");
-                this.Auction = new KeyValuePair<string, double>(userID, newPrice);
+                string previousTransID = this.Auction.Value[1]; // transactionID
+                this.Auction = new KeyValuePair<string, List<string>>(userID, new List<string>{ newPrice.ToString(), newTransID });
                 Save();
+                return previousTransID;
             }
             catch (Exception e) { throw e; }
         }
 
         public void RemoveAuction(string userID)
         {
-            this.Auction = new KeyValuePair<string, double>(this.Product_ID, -1.0);
+            this.Auction = new KeyValuePair<string, List<string>>(this.Product_ID, new List<string>{ "-1.0", "" });
             Save();
         }
 
@@ -473,7 +494,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 this.Reserve(1);
-                this.Lottery = new ConcurrentDictionary<string, int>();                
+                this.Lottery = new ConcurrentDictionary<string, List<string>>();                
                 Save();
             }
             catch (Exception e) { throw e; }
@@ -494,14 +515,15 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void AddLotteryTicket(string userID, int percentage)
+        public double AddLotteryTicket(string userID, int percentage, string transID)
         {
             try
             {
-                if (this.Lottery.Values.Aggregate(0, (acc, v) => acc += v, acc => acc) >= 100)
+                if (this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc) >= 100)
                     throw new Exception("Lottery is full.");
-                this.Lottery.TryAdd(userID, percentage);
+                this.Lottery.TryAdd(userID, new List<string> { percentage.ToString(), transID});
                 Save();
+                return this.Price / 100 * percentage;
             }
             catch (Exception e) { throw e; }
 
@@ -513,7 +535,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if (this.Lottery != null)
-                    return 100 - this.Lottery.Values.Aggregate(0, (acc, v) => acc += v, acc => acc);
+                    return 100 - this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc);
                 throw new Exception("There is no lottery on this product currently.");
 
             }
@@ -526,7 +548,7 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if(this.Lottery != null)
-                    return this.Lottery.ToDictionary(p => p.Key, p => this.Price / 100 * p.Value);
+                    return this.Lottery.ToDictionary(p => p.Key, p => this.Price / 100 * int.Parse(p.Value[0]));
                 throw new Exception("There is no lottery on this product currently.");
             }
             catch (Exception e) { throw e; }
@@ -537,7 +559,19 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 if (this.Lottery != null)
-                    return this.Lottery.ToDictionary(p => p.Key, p => p.Value);
+                    return this.Lottery.ToDictionary(p => p.Key, p => int.Parse(p.Value[0]));
+                throw new Exception("There is no lottery on this product currently.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, string> ReturnUsersLotteryTransactions()
+        {
+            try
+            {
+                if (this.Lottery != null)
+                    return this.Lottery.ToDictionary(p => p.Key, p => p.Value[1]);
                 throw new Exception("There is no lottery on this product currently.");
             }
             catch (Exception e) { throw e; }

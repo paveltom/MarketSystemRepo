@@ -11,6 +11,8 @@ using Market_System.DAL;
 using Microsoft.Ajax.Utilities;
 using Market_System.DomainLayer.UserComponent;
 using EnvDTE;
+using Market_System.DomainLayer.PaymentComponent;
+using Microsoft.NET.StringTools;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -143,21 +145,25 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         private static object PurchaseLock = new object();
-        public void Purchase(string userID, List<ItemDTO> products)
+        public void Purchase(string userID, List<ItemDTO> products, string transactionID)
         {
-            // maybe add here thread functionality instead - every one who access the method receives a thread to purchase items
             lock (PurchaseLock)
             {
+                double price = 0.0;
                 try
                 {
+                    AddPayment(userID, transactionID, price, false);
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
-                        AcquireStore(entry.Key).Purchase(userID, entry.Value);
+                        price += AcquireStore(entry.Key).Purchase(userID, entry.Value);
                         ReleaseStore(entry.Key);
                     }
                 }
                 catch (Exception e)
                 {
+                    PaymentComponent.PaymentProxy.get_instance().cancel_pay(transactionID);
+
+                    AddPayment(userID, transactionID, price, true);
                     throw e;
                 }
             }
@@ -216,6 +222,19 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e)
             {
                 throw new Exception("invalid product ID, please type in valid product ID");
+            }
+        }
+
+
+        public void AddPayment(string userID, string transactionID, double price, bool canceled)
+        {
+            try
+            {
+                storeRepo.AddPayment(userID, transactionID, price, canceled);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -672,14 +691,21 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception ex) { throw ex; }
         }
 
-        public void UpdateAuction(string userID, string productID, double newPrice)
+        public void UpdateAuction(string userID, string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
         {
+            string newTransID = "";
             try
             {
-                AcquireStore(GetStoreIdFromProductID(productID)).UpdateAuction(userID, productID, newPrice);
+                newTransID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
+                string previousTransactionID = AcquireStore(GetStoreIdFromProductID(productID)).UpdateAuction(userID, productID, newPrice, newTransID);
                 ReleaseStore(GetStoreIdFromProductID(productID));
+                PaymentProxy.get_instance().cancel_pay(previousTransactionID);
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                PaymentProxy.get_instance().cancel_pay(newTransID);
+                throw ex; 
+            }
         }
 
         public void RemoveAuction(string userID, string productID)
@@ -717,29 +743,42 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 Store store = AcquireStore(storeID);
                 store.RemoveLottery(userID, productID);
-                Dictionary<string, double> refund = store.ReturnUsersLotteryTicketsMoney(userID, productID);
-                ReleaseStore(storeID);
-                refund.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
+                Dictionary<string, string> refund = store.ReturnUsersLotteryTransactions(userID, productID);
+                ReleaseStore(storeID);                
+                refund.ForEach(p => Refund(p.Key, p.Value));
             }
             catch (Exception e) { throw e; }
-
         }
 
 
-        public void AddLotteryTicket(string storeID, string userID, string productID, int percentage)
+        public bool AddLotteryTicket(string storeID, string userID, string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
-
+            string transactionID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
             try
-            {
+            {              
                 Store store = AcquireStore(storeID);
-                store.AddLotteryTicket(userID, productID, percentage);
+                double price = store.AddLotteryTicket(userID, productID, percentage, transactionID);
+                AddPayment(userID, transactionID, price, false);
+                if (price == 0)
+                {
+                    ReleaseStore(storeID);
+                    return false;
+                }                
                 if (store.RemainingLotteryPercantage(userID, productID) == 0)
+                {
                     store.LotteryWinner(productID);
+                    return true;
+                }
                 ReleaseStore(storeID);
+                return false;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) {
+                PaymentProxy.get_instance().cancel_pay(transactionID);
+                throw e; 
+            }
 
         }
+
 
         public Dictionary<string, int> ReturnUsersLotteryTickets(string userID, string productID)
         {
@@ -775,11 +814,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
                 string storeID = GetStoreIdFromProductID(productID);
                 Store store = AcquireStore(storeID);                
-                Dictionary<string, double> refundme = store.ReturnUsersLotteryTicketsMoney(userID, productID);
+                Dictionary<string, string> refundme = store.ReturnUsersLotteryTransactions(userID, productID);
 
 
                 if (store.RemainingLotteryPercantage(userID, productID) < 0)
-                    refundme.ForEach(p => Refund(userID, storeID, p.Key, p.Value));
+                    refundme.ForEach(p => Refund(p.Key, p.Value));
                 else
                     store.LotteryWinner(productID);
                 store.RemoveLottery(userID, productID);
@@ -789,12 +828,11 @@ namespace Market_System.DomainLayer.StoreComponent
         }      
 
 
-        public void Refund(string userID, string storeID, string userToRefundID, double amount)
+        public void Refund(string userID, string transID)
         {
             try
             {
-                AcquireStore(storeID).Refund(userID, userToRefundID, amount);
-                ReleaseStore(storeID);
+                PaymentProxy.get_instance().cancel_pay(transID);
             }
             catch(Exception ex) { throw ex; } 
         }

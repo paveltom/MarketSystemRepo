@@ -19,7 +19,7 @@ namespace Market_System.DomainLayer
 
 
         public double Price { get; private set; }
-        public KeyValuePair<string, double> Auction { get; private set; }
+        public KeyValuePair<string, List<string>> Auction { get; private set; }
         public string StoreID { get; private set; }
         public String Name { get; private set; }
         public String Description { get; private set; }

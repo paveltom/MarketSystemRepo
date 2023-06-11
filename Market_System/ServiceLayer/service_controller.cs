@@ -471,12 +471,11 @@ namespace Market_System.ServiceLayer
             try
             {
 
-                
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(this.session_id, card_number,month,year,holder,ccv,id));
+                string transactionID = this.usc.Check_Out(this.session_id, card_number, month, year, holder, ccv, id);
+                Response<string> ok = Response<string>.FromValue("Payment was successfull");
                 //this.ssc.purchase(session_id, cart.convert_to_item_DTO());
-                this.ssc.purchase(session_id);
                 this.usc.save_purhcase_in_user(session_id);
-               
+                this.ssc.purchase(transactionID);
                 Logger.get_instance().record_event("checkout completed by : " + this.usc.getusername(session_id) );
                 
                 return ok;
@@ -1662,11 +1661,11 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
-        public Response UpdateAuction(string productID, double newPrice)
+        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
-                return ssc.UpdateAuction(productID, newPrice);
+                return ssc.UpdateAuction(productID, newPrice, card_number, month, year, holder, ccv, id);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -1702,12 +1701,12 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public Response AddLotteryTicket(string productID, int percentage)
+        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
-                return ssc.AddLotteryTicket(productID, percentage);
+                return ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id);
             }
             catch (Exception e) { throw e; }
 

@@ -637,7 +637,7 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void purchase(string session_id)
+        public void purchase(string session_id, string transactionID)
         {
             try
             {
@@ -645,7 +645,7 @@ namespace Market_System.DomainLayer
                 Cart cart = get_cart_of_userID(userID);
                 string username = userFacade.get_username_from_user_id(userID);
                 List<ItemDTO> cartItems = cart.convert_to_item_DTO();
-                storeFacade.Purchase(userID, cart.convert_to_item_DTO());
+                storeFacade.Purchase(userID, cart.convert_to_item_DTO(), transactionID);
 
                 //Check if the product's quantity is 0
                 foreach (ItemDTO product in cartItems)
@@ -1106,9 +1106,9 @@ namespace Market_System.DomainLayer
                 Cart cart = userFacade.get_cart(username);
                 double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
                 // price = 1000;
-                PaymentProxy.get_instance().pay(card_number,month,year,holder,ccv,id);
+                string transactionID = PaymentProxy.get_instance().pay(card_number,month,year,holder,ccv,id);                
                 // userFacade.save_purhcase_in_user(username,cart);
-                return "Payment was successfull";
+                return transactionID;
             }
 
             catch(Exception e)
@@ -1634,11 +1634,11 @@ namespace Market_System.DomainLayer
             catch (Exception e) { throw e; }
         }
 
-        public void UpdateAuction(string session, string productID, double newPrice)
+        public void UpdateAuction(string session, string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
-                storeFacade.UpdateAuction(get_userid_from_session_id(session), productID, newPrice);
+                storeFacade.UpdateAuction(get_userid_from_session_id(session), productID, newPrice, card_number, month, year, holder, ccv, id);
             }
             catch (Exception ex) { throw ex; }
         }
@@ -1688,13 +1688,16 @@ namespace Market_System.DomainLayer
         }
 
 
-        public void AddLotteryTicket(string session, string productID, int percentage)
+        public void AddLotteryTicket(string session, string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
                 string userID = get_userid_from_session_id(session);
-                storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage);
+                if (storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id))
+                {
+                    throw new NotImplementedException("send user its product");
+                }
             }
             catch (Exception e) { throw e; }
 

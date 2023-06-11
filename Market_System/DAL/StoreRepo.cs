@@ -124,6 +124,30 @@ namespace Market_System.DAL
 
 
 
+
+        public void AddPayment(string userID, string transactionID, double price, bool canceled)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {                
+                TransactionModel model = new TransactionModel();
+                if (canceled && (model = context.Transactions.SingleOrDefault(t => t.TransactioID == transactionID)) != null)
+                {
+                    model.Cancelled = true;
+                }
+                else
+                {
+                    model.TransactioID = transactionID;
+                    model.Price = price;
+                    model.UserID = userID;
+                    model.Cancelled = false;
+                }
+                context.SaveChanges();
+            }
+        }
+
+
+
+
         // =====================================================
         // =================== Store Methods =================== 
 
