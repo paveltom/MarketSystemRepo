@@ -12,6 +12,7 @@ using Market_System.DAL;
 using System.EnterpriseServices;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.Domain_Layer.Communication_Component;
+using Market_System.DomainLayer.DeliveryComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -1195,14 +1196,13 @@ namespace Market_System.DomainLayer.StoreComponent
         // =============================================================================================
         // ========================================== AUCTION ==========================================
 
-        public double  AuctionPurchase(string userID, ItemDTO item)
+        public void  AuctionPurchase(string userID, string productID)
         {
             try
             {
-                double price = 0.0;
-                price = AcquireProduct(item.GetID()).AuctionPurchase(userID, item.GetQuantity());
-                ReleaseProduct(item.GetID());
-                return price;
+                string winner = AcquireProduct(productID).AuctionPurchase(1);
+                ReleaseProduct(productID);
+                DeliveryComponent.DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
             }
             catch (Exception e) { throw e; }
         }
@@ -1389,7 +1389,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 });
                 Random rand = new Random();
                 double r = rand.NextDouble();
-                string winner;
+                string winner = "";
                 foreach (KeyValuePair<string, double> p in relativeChances)
                 {
                     if (p.Value > r)
@@ -1400,6 +1400,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
                 AcquireProduct(productID).Purchase(1);
                 ReleaseProduct(productID);
+                DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
             }
             catch (Exception ex) { throw ex; }
         }

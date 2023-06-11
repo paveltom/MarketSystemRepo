@@ -686,6 +686,8 @@ namespace Market_System.DomainLayer.StoreComponent
                 System.Timers.Timer doneTimer = sender as System.Timers.Timer;
                 Timers.TryRemove(productID + "_auction_timer", out _);
                 doneTimer.Dispose();
+                AcquireStore(GetStoreIdFromProductID(productID)).AuctionPurchase(userID, productID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
                 RemoveAuction(userID, productID);
             }
             catch (Exception ex) { throw ex; }

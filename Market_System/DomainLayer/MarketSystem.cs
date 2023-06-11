@@ -1694,10 +1694,7 @@ namespace Market_System.DomainLayer
             try
             {
                 string userID = get_userid_from_session_id(session);
-                if (storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id))
-                {
-                    throw new NotImplementedException("send user its product");
-                }
+                storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id);
             }
             catch (Exception e) { throw e; }
 

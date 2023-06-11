@@ -312,13 +312,13 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public double AuctionPurchase(string userID, int quantity)
+        public string AuctionPurchase(int quantity)
         {           
             lock (PurchaseLock)
             {
                 try
                 {
-                    if (this.Auction.Key != userID || Double.Parse(this.Auction.Value[0]) == -1.0)
+                    if (Double.Parse(this.Auction.Value[0]) == -1.0)
                         throw new Exception("Auction purchase for this product is not available for you.");
                     lock (QuantityLock)
                     {
@@ -328,8 +328,9 @@ namespace Market_System.DomainLayer.StoreComponent
                         this.ReservedQuantity -= quantity;
                         this.timesBought += quantity;
                     }
-                    Save();
-                    return quantity * Double.Parse(this.Auction.Value[0]);
+                    Save();                    
+                    //return quantity * Double.Parse(this.Auction.Value[0]);
+                    return this.Auction.Value[0];
                 }
                 catch (Exception e) { throw e; }
             }
