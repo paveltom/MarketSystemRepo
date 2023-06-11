@@ -19,6 +19,7 @@ namespace Market_System.DomainLayer
 
 
         public double Price { get; private set; }
+        public KeyValuePair<string, List<string>> Auction { get; private set; }
         public string StoreID { get; private set; }
         public String Name { get; private set; }
         public String Description { get; private set; }
@@ -50,6 +51,7 @@ namespace Market_System.DomainLayer
             this.quantity = product.Quantity;
             this.reserved_quantity = product.ReservedQuantity;
             this.Price = product.Price;
+            this.Auction = product.Auction;
 
             this.StoreID = product.StoreID;
             this.Name = product.Name;

@@ -5,44 +5,30 @@ using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
 using Market_System.DomainLayer.UserComponent;
+using Market_System.DAL;
+using Market_System.DAL.DBModels;
 
 namespace Market_System.DomainLayer.StoreComponent
 
 {
     public class EmployeeRepo
     {
-        private static List<Employee> employeesDatabase;
-        private static List<Employee> closedStoresDatabase;
-
-
         private static EmployeeRepo Instance = null;
 
-        //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
-        //The following Static Method is going to return the Singleton Instance
         public static EmployeeRepo GetInstance()
         {
-            //This is thread-Safe - Performing a double-lock check.
             if (Instance == null)
             {
-                //As long as one thread locks the resource, no other thread can access the resource
-                //As long as one thread enters into the Critical Section, 
-                //no other threads are allowed to enter the critical section
                 lock (Instancelock)
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        employeesDatabase = new List<Employee>();
-                        closedStoresDatabase = new List<Employee>();
                         Instance = new EmployeeRepo();
                     }
                 } //Critical Section End
-                //Once the thread releases the lock, the other thread allows entering into the critical section
-                //But only one thread is allowed to enter the critical section
             }
-
-            //Return the Singleton Instance
             return Instance;
         }
 
@@ -54,23 +40,34 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void addNewAdmin(string userID)
         {
-            foreach(Employee emp in employeesDatabase)
+            string adminRole = Role.Admin.ToString();
+            using (StoreDataContext context = new StoreDataContext())
             {
-                if (emp.UserID.Equals(userID) && emp.Role.Equals(Role.Admin))
-                {
+                if(context.Employees.Any(e => e.UserID == userID && e.Role == adminRole))
                     throw new Exception("This user is already an admin!");
-                }
+                EmployeeModel emp = new EmployeeModel();
+                emp.UserID = userID;
+                emp.Role = Role.Admin.ToString();
+                emp.EmployeeID = userID + "_ADMIN"; // key for TABLE
+                emp.StoreID = "";     
+                emp.StoreClosed = true;
+                context.Employees.Add(emp);
+                context.SaveChanges();
             }
-            employeesDatabase.Add(new Employee(userID, "", Role.Admin)); //No store specified because it is an admin...
         }
 
         public void Save_Employee(Employee emp)
         {
             lock (this)
             {
-                if (!employeesDatabase.Contains(emp))
+                using (StoreDataContext context = new StoreDataContext())
                 {
-                    employeesDatabase.Add(emp);
+                    string eRole = emp.Role.ToString();
+                    EmployeeModel toSave;
+                    if ((toSave = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) == null)
+                        toSave = new EmployeeModel();
+                    toSave.UpdateWholeModel(emp);
+                    context.SaveChanges();
                 }
             }
         }
@@ -79,23 +76,27 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             lock (this)
             {
-                if (!employeesDatabase.Contains(emp))
+                using (StoreDataContext context = new StoreDataContext())
                 {
-                    employeesDatabase.Remove(emp);
+                    string eRole = emp.Role.ToString();
+                    EmployeeModel remove;
+                    if ((remove = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) != null)
+                    {
+                        context.Employees.Remove(remove);
+                        context.SaveChanges();
+                    }
                 }
             }
         }
 
         internal bool isMarketManager(string userID)
         {
-            foreach (Employee emp in employeesDatabase)
+            using (StoreDataContext context = new StoreDataContext())
             {
-                if (emp.UserID.Equals(userID) && emp.Role.Equals(Role.Admin))
-                {
+                string eRole = Role.Admin.ToString();
+                if (context.Employees.SingleOrDefault(e => e.UserID == userID && e.Role == eRole) != null)
                     return true;
-                }
             }
-
             return false;
         }
 
@@ -103,36 +104,37 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             lock (this)
             {
-                if (!closedStoresDatabase.Contains(emp))
+                using (StoreDataContext context = new StoreDataContext())
                 {
-                    closedStoresDatabase.Add(emp);
+                    string eRole = emp.Role.ToString();
+                    EmployeeModel model;
+                    if((model = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) != null)
+                    {
+                        model.StoreClosed = true;
+                        context.SaveChanges();
+                    }
+                    
                 }
+
             }
         }
 
-        internal List<Employee> getClosedStoreEmployees(object storeID)
+        internal List<Employee> getClosedStoreEmployees(string storeID)
         {
             List<Employee> emps = new List<Employee>();
-            foreach(Employee emp in closedStoresDatabase)
+            using (StoreDataContext context = new StoreDataContext())
             {
-                if (emp.StoreID.Equals(storeID))
-                {
-                    emps.Add(emp);
-                }
+                emps = context.Employees.Select(e => e).ToList().Where(e => e.StoreID == storeID).Select(e => e.ModelToEmployee()).ToList();
             }
-
             return emps;
         }
 
         internal void ReopenStore(string store_ID)
         {
-            foreach (Employee emp in closedStoresDatabase.ToList())
+            using (StoreDataContext context = new StoreDataContext())
             {
-                if (emp.StoreID.Equals(store_ID))
-                {
-                    closedStoresDatabase.Remove(emp);
-                    employeesDatabase.Add(emp);
-                }
+                context.Employees.Select(e => e).ToList().Where(e => e.StoreID == store_ID).ForEach(e => e.StoreClosed = false);                
+                context.SaveChanges();               
             }
         }
     }

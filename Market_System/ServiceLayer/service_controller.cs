@@ -584,12 +584,11 @@ namespace Market_System.ServiceLayer
             try
             {
 
-                
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(this.session_id, card_number,month,year,holder,ccv,id));
+                string transactionID = this.usc.Check_Out(this.session_id, card_number, month, year, holder, ccv, id);
+                Response<string> ok = Response<string>.FromValue("Payment was successfull");
                 //this.ssc.purchase(session_id, cart.convert_to_item_DTO());
-                this.ssc.purchase(session_id);
                 this.usc.save_purhcase_in_user(session_id);
-               
+                this.ssc.purchase(transactionID);
                 Logger.get_instance().record_event("checkout completed by : " + this.usc.getusername(session_id) );
                 
                 return ok;
@@ -1664,5 +1663,187 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
         //yotam
+
+
+
+
+
+
+        public Response<string> GetStoreProfitForDate(string storeID, DateTime dateTime)
+        {
+            try
+            {
+                Response<string> ret =  this.ssc.GetStoreProfitForDate(storeID, dateTime);
+                Logger.get_instance().record_event("user with session ID : " + session_id + " requested profit for a store " + storeID + "on date " + dateTime);
+                return ret;
+            }
+            catch (Exception e) 
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetStoreProfitForDate");
+                return null;
+            }
+        }
+
+
+        public Response<string> GetMarketProfitForDate(DateTime dateTime)
+        {
+            try
+            {
+                Response<string>  ret =  this.ssc.GetMarketProfitForDate(dateTime);
+                Logger.get_instance().record_event("ADMIN with session ID : " + session_id + " requested profit for a market on date " + dateTime);
+                return ret;
+
+            }
+            catch (Exception e) 
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetMarketProfitForDate");
+                return null;
+            }
+        }
+
+
+        // ======= Bid =========
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                return ssc.PlaceBid(productID, newPrice, quantity);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response ApproveBid(string bidID)
+        {
+            try
+            {
+                return ssc.ApproveBid(bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<BidDTO> GetBid(string bidID)
+        {
+            try
+            {
+                return ssc.GetBid(bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response CounterBid(string bidID, double counterPrice)
+        {
+            try
+            {
+                return ssc.CounterBid(bidID, counterPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response RemoveBid(string bidID)
+        {
+            try
+            {
+                return ssc.RemoveBid(bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<List<BidDTO>> GetStoreBids(string storeID)
+        {
+            try
+            {
+                return ssc.GetStoreBids(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= AUCTION =========
+
+        public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        {
+            try
+            {
+                return ssc.SetAuction(productID, newPrice, auctionMinutesDuration);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            try
+            {
+                return ssc.UpdateAuction(productID, newPrice, card_number, month, year, holder, ccv, id);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public Response RemoveAuction(string productID)
+        {
+            try
+            {
+                return ssc.RemoveAuction(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= LOTTERY ========
+        public Response SetNewLottery(string productID, long durationInMinutes)
+        {
+            try
+            {
+                return ssc.SetNewLottery(productID, durationInMinutes);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response RemoveLottery(string productID)
+        {
+            try
+            {
+                return ssc.RemoveLottery(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+
+            try
+            {
+                return ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID)
+        {
+            try
+            {
+                return ssc.ReturnUsersLotteryTickets(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<int> RemainingLotteryPercantage(string productID)
+        {
+            try
+            {
+                return ssc.RemainingLotteryPercantage(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
     }
 }
