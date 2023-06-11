@@ -105,6 +105,39 @@ namespace Market_System.DAL.DBModels
 
             }
 
+            List<PurchasePolicyModel> removePolicies = new List<PurchasePolicyModel>();
+            this.Policies.ForEach(x =>
+            {
+                if (!updatedStore.storePolicies.Any(s => s.Key == x.PolicyID) && !updatedStore.productDefaultPolicies.Any(s => s.Key == x.PolicyID))
+                    removePolicies.Add(x);
+            });
+
+            if (removePolicies.Count > 0)
+                removePolicies.ForEach(x => this.Policies.Remove(x));
+            else
+            {
+                updatedStore.storePolicies.ForEach(x =>
+                {
+                    if (!this.Policies.Any(s => s.PolicyID == x.Key))
+                    {
+                        PurchasePolicyModel model = new PurchasePolicyModel();
+                        model.DefineNewMe(x.Value, false, this, null);
+                        this.Policies.Add(model);
+                    }
+                });
+
+                updatedStore.productDefaultPolicies.ForEach(x =>
+                {
+                    if (!this.Policies.Any(s => s.PolicyID == x.Key))
+                    {
+                        PurchasePolicyModel model = new PurchasePolicyModel();
+                        model.DefineNewMe(x.Value, true, this, null);
+                        this.Policies.Add(model);
+                    }
+                });
+
+            }
+
         }
     }
 }

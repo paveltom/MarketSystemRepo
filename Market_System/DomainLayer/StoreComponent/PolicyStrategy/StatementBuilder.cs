@@ -47,12 +47,12 @@ namespace Market_System.DomainLayer.StoreComponent
                 case "AtLeast":
                     int nextIndex = GetIndexOfNextStatement(continueString.Substring(1, continueString.Length - 2));
                     int quantity = Int32.Parse(continueString.Substring(2, nextIndex - 2)); // [[<Quantity>][<Statement>]] --- substr ---> <Quantity>
-                    return new AtLeastStatement(quantity, new Statement[] { GenerateFormula(continueString.Substring(nextIndex + 1)) });
+                    return new AtLeastStatement(quantity, new Statement[] { GenerateFormula(continueString.Substring(nextIndex + 1, continueString.Length - 2 - nextIndex)) });
 
                 case "AtMost":
-                    int nextIndexAtMost = GetIndexOfNextStatement(continueString.Substring(1, continueString.Length - 2));
-                    int quantityAtMost = Int32.Parse(continueString.Substring(1, nextIndexAtMost - 1)); // [<Quantity>][<Statement>] --- substr ---> <Quantity>
-                    return new AtMostStatement(quantityAtMost, new Statement[] { GenerateFormula(continueString.Substring(nextIndexAtMost)) });
+                    int nextIndexAtMost = GetIndexOfNextStatement(continueString.Substring(1, continueString.Length - 2)); // return index of a opening bracket [
+                    int quantityAtMost = Int32.Parse(continueString.Substring(2, nextIndexAtMost - 2)); // [<Quantity>][<Statement>] --- substr ---> <Quantity>
+                    return new AtMostStatement(quantityAtMost, new Statement[] { GenerateFormula(continueString.Substring(nextIndexAtMost+1, continueString.Length - 2 - nextIndexAtMost)) });
 
                 case "Equal":
                     List<string> listEqual = GetRelationParams(continueString);

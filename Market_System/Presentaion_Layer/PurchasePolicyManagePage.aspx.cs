@@ -30,7 +30,7 @@ namespace Market_System.Presentaion_Layer
 
         public Dictionary<string, string> typeMap = new Dictionary<string, string>()
             {
-                {"Any","[Any[<Statement>]]"},
+                {"Any","Any[<Statement>]"},
                 {"ForAll","ForAll[<Statement>]"},
                 {"IfThen", "IfThen[[<Statement>][<Statement>]]"},
                 {"XOR", "XOR[[<Statement>][<Statement>]]"},
@@ -425,8 +425,8 @@ namespace Market_System.Presentaion_Layer
                 case "SmallerThan":
                 case "GreaterThan":
                     ret = this.typeMap[type];
-                    ret = ret.Replace("<AttributeName>", GatherStatement(me.ChildNodes[0]));
-                    ret = ret.Replace("<AttributeValue>", GatherStatement(me.ChildNodes[1]));
+                    ret = ret.Replace("<AttributeValue>", GatherStatement(me.ChildNodes[0])); // switched places of <AttributeName> and <AttributeValue>
+                    ret = ret.Replace("<AttributeName>", GatherStatement(me.ChildNodes[1]));
                     break;
 
                 default:

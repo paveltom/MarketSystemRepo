@@ -49,7 +49,11 @@ namespace Market_System.DAL.DBModels
             ConcurrentDictionary<string, Purchase_Strategy> strategies = new ConcurrentDictionary<string, Purchase_Strategy>(this.Strategies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x));
             Dictionary<string, List<string>> attributes = new Dictionary<string, List<string>>(this.ProductPurchaseAttributes.ToDictionary(keySelector: a => a.AttributeName, elementSelector: a => a.AttributeOptions.Split('_').ToList()));
             Category category = new Category(this.ProductCategory);
-            KeyValuePair<string, double> auction = new KeyValuePair<string, double>(this.Auction.Substring(0, this.Auction.IndexOf('_')), Double.Parse(this.Auction.Substring(this.Auction.IndexOf('_') + 1)));
+            
+            int lastIndex = this.Auction.LastIndexOf('_');
+            string auctionKey = this.Auction.Substring(0, lastIndex);
+            double auctionValue = Double.Parse(this.Auction.Substring(lastIndex + 1));
+            KeyValuePair<string, double> auction = new KeyValuePair<string, double>(auctionKey, auctionValue);
             ConcurrentDictionary<string, int> lottery = new ConcurrentDictionary<string, int>(this.Lottery.ToDictionary(l => l.UserID, l => l.Percantage));
             Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, 
                                                                                                                         strategies, attributes, this.timesBought, category, this.timesRated, auction, lottery);
