@@ -16,7 +16,10 @@ namespace Market_System.DomainLayer.StoreComponent
         public string StrategyName { get; private set; }
         public string Description { get; private set; }
         public Statement StrategyFormula { get; private set; }
+        public string strFormula { get; private set; }
 
+
+        /*
         public Purchase_Strategy(string stratID, string stratName, string description, Statement formula)
         {
             this.StrategyID = stratID;
@@ -24,12 +27,14 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Description = description;
             this.StrategyFormula = formula;
         }
+        */
 
         public Purchase_Strategy(string stratID, string stratName, string description, String formula)
         {
             this.StrategyID = stratID;
             this.StrategyName = stratName;
             this.Description = description;
+            this.strFormula = formula;
             this.StrategyFormula = StatementBuilder.GenerateFormula(formula) ;
         }
 

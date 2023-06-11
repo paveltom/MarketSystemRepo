@@ -3948,3 +3948,16 @@ Wednesday, May 24, 2023 :  search by category : baby was done successfully
 יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
 יום שני 29 מאי 2023 : checking deilvery for address: 1 succefully done.
 יום שני 29 מאי 2023 : checkout completed by : guest1872477685
+Sunday, 11 June 2023 : guest : guest1800348752 has logged in
+Sunday, 11 June 2023 : bayan has registered!
+Sunday, 11 June 2023 : nekola has registered!
+Sunday, 11 June 2023 : ben has registered!
+Sunday, 11 June 2023 : harold has registered!
+Sunday, 11 June 2023 : ben3 has registered!
+Sunday, 11 June 2023 : opening store with id: 1772989359 has failed
+Sunday, 11 June 2023 : Added the product:1772989359_1184138922to store: 1772989359 has been done successfully
+Sunday, 11 June 2023 : assigning new manager with username : nekola to the store with id: 1772989359
+Sunday, 11 June 2023 : assigning new owner with username : ben to the store with id: 1772989359
+Sunday, 11 June 2023 : assigning new owner with username : harold to the store with id: 1772989359
+Sunday, 11 June 2023 : 122338932Logged-out succesfully
+Sunday, 11 June 2023 : guest : guest324121451 has logged in

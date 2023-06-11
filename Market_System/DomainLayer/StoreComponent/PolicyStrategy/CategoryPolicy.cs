@@ -10,7 +10,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
     public class CategoryPolicy : Purchase_Policy
     {
         public String SaledCategoryName { get; private set; }
-        public CategoryPolicy(string polID, string polName, double salePercentage, string description, string category, Statement formula) :
+        public CategoryPolicy(string polID, string polName, double salePercentage, string description, string category, String formula) :
             base(polID, polName, salePercentage, description, formula)
         { this.SaledCategoryName = category; }
 

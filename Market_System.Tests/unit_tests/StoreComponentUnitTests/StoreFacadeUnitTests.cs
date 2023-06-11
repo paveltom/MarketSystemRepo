@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Market_System.DAL;
+
 
 namespace Market_System.Tests.unit_tests
 {
@@ -96,7 +98,7 @@ namespace Market_System.Tests.unit_tests
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO(), this.testProduct1.GetProductDTO() };
 
             // Act
-            this.facade.Purchase("PurchaseStoreFacadeTestUserID0", itemsToCalculate);
+            this.facade.Purchase("PurchaseStoreFacadeTestUserID0", itemsToCalculate, "testTransID");
 
             // Assert
             List<ItemDTO> updatedProducts = this.testStore.GetItems();
@@ -118,7 +120,7 @@ namespace Market_System.Tests.unit_tests
             // Act
             try
             {
-                this.facade.Purchase("PurchaseStoreFacadeTestUserID0", itemsToCalculate);
+                this.facade.Purchase("PurchaseStoreFacadeTestUserID0", itemsToCalculate, "testTransID");
             }catch (Exception ex) { errorCannotPurchase = true; }
 
             // Assert
@@ -291,7 +293,10 @@ namespace Market_System.Tests.unit_tests
 
             Statement storeIDStatement = new EqualRelation("Name", "testProduct0Name", false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newP0.Product_ID);
+            string samestatement = "[AtLeast[[1][Equal[[Name][testProduct0Name]]]]]";
+            Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, newP0.Product_ID);
+
+            //Purchase_Policy testProduct0Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newP0.Product_ID);
 
             string formula = "[   IfThen[ [Equal[ [Category] [WhateverCategory] ] ]  [GreaterThan[ [Quantity]  [1] ] ] ] ]";
             Purchase_Strategy testProduct0Strategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
@@ -326,11 +331,14 @@ namespace Market_System.Tests.unit_tests
             int boughtTimes = 11;
             Category category = new Category("testProduct1SomeCategory");
             Product newp1 = new Product(product_ID, name, description, price, initQuantity, reservedQuantity, rating, sale, weight,
-                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category);
+                                dimenssions, comments, defaultStorePolicies, defaultStoreStrategies, product_Attributes, boughtTimes, category, 11, new KeyValuePair<string, List<string>>(product_ID, new List<string> { "-1.0", "" }), null);
 
             Statement storeIDStatement = new EqualRelation("Name", newp1.Name, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
-            Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newp1.Product_ID);
+            string samestatement = "[AtLeast[[1][Equal[[Name][" + newp1.Name  + "]]]]]";
+            Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, newp1.Product_ID);
+
+            //Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newp1.Product_ID);
 
             string formula = "[   IfThen[ [Equal[ [Category] [WhateverCategory] ] ]  [GreaterThan[ [Quantity]  [1] ] ] ] ]";
             Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);

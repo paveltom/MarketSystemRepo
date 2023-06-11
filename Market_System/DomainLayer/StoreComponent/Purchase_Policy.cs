@@ -16,8 +16,10 @@ namespace Market_System.DomainLayer.StoreComponent
         public double SalePercentage { get; private set; }
         public string Description { get; private set; }
         public Statement SalePolicyFormula { get; private set; }
+        public string strFormula { get; private set; }
 
 
+        /*
         public Purchase_Policy(string polID, string polName, double salePercentage, string description, Statement formula)
         {
             this.PolicyID = polID;
@@ -26,6 +28,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Description = description;
             this.SalePolicyFormula = formula;
         }
+        */
 
         public Purchase_Policy(string polID, string polName, double salePercentage, string description, String formula)
         {
@@ -33,6 +36,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.PolicyName = polName;
             this.SalePercentage = salePercentage;
             this.Description = description;
+            this.strFormula = formula;  
             this.SalePolicyFormula = StatementBuilder.GenerateFormula(formula);
         }
 
