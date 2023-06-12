@@ -129,6 +129,36 @@
     </ItemTemplate>
         </asp:DataList></div>
     <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="approve_bid_label" runat="server" Text="approve bid:"></asp:Label>
+    &nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label24" runat="server" Text="bid ID:"></asp:Label>
+&nbsp;<asp:TextBox ID="approve_bid_text" runat="server"></asp:TextBox>
+        <asp:Button ID="approve_bid_button" runat="server" Text="approve"  CssClass="btn btn-primary" OnClick="approve_bid_click"  />
+        <asp:Label ID="approve_bid_message" runat="server" ForeColor="Black"></asp:Label>
+        
+    </div>
+    <div style="text-align: left">
+        <asp:Label ID="remove_bid_label" runat="server" Text="remove bid:"></asp:Label>
+    &nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label25" runat="server" Text="bid ID:"></asp:Label>
+&nbsp;<asp:TextBox ID="remove_bid_text" runat="server"></asp:TextBox>
+        <asp:Button ID="remove_bid_button" runat="server" Text="remove"  CssClass="btn btn-primary" OnClick="remove_bid_click"  />
+        <asp:Label ID="remove_bid_message" runat="server" ForeColor="Black"></asp:Label>
+        
+    </div>
+    <div style="text-align: left">
+        <asp:Label ID="counter_bid_label" runat="server" Text="counter bid:"></asp:Label>
+    &nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label26" runat="server" Text="bid ID:"></asp:Label>
+&nbsp;<asp:TextBox ID="counter_bid_text" runat="server"></asp:TextBox>
+        <asp:Label ID="Label27" runat="server" Text="counter price"></asp:Label>
+        <asp:TextBox ID="counter_price_text" runat="server"></asp:TextBox>
+        <asp:Button ID="counter_bid_button" runat="server" Text="counter"  CssClass="btn btn-primary" OnClick="counter_bid_click"  />
+        <asp:Label ID="counter_bid_message" runat="server" ForeColor="Black"></asp:Label>
+        
+    </div>
+    <div></div>
     <div></div>
 
     <div style="text-align: left">
