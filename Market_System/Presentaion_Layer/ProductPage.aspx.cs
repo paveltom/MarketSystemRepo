@@ -145,7 +145,7 @@ namespace Market_System.Presentaion_Layer
 
         protected void auction_button_Click(object sender, EventArgs e)
         {
-            Response.Redirect(string.Format("~/Presentaion_Layer/ProductPage.aspx?product_id={0}", product_id));
+            Response.Redirect(string.Format("~/Presentaion_Layer/auction_page.aspx?product_id={0}", product_id));
         }
     }
 }
