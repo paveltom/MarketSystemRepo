@@ -45,6 +45,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        internal string get_username_by_user_id(string userid)
+        {
+            return market_System.get_username_by_user_id(userid);
+        }
+
         internal Dictionary<string, string> extract_item_from_basket(string product_id,string session_id)
         {
             return market_System.extract_item_from_basket(product_id, session_id);

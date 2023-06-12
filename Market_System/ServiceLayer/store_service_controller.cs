@@ -230,6 +230,186 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+        public Response<string> GetStoreProfitForDate(string storeID, DateTime dateTime)
+        {
+            try
+            {
+                string date_as_dd_MM_yyyy = dateTime.Day.ToString("dd") + "_" + dateTime.Month.ToString("MM") + "_" + dateTime.Year.ToString("yyyy");
+                return Response<string>.FromValue(this.Market.GetStoreProfitForDate(this.SessionID, storeID, date_as_dd_MM_yyyy).ToString());
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<string> GetMarketProfitForDate(DateTime dateTime)
+        {
+            try
+            {
+                string date_as_dd_MM_yyyy = dateTime.Day.ToString("dd") + "_" + dateTime.Month.ToString("MM") + "_" + dateTime.Year.ToString("yyyy");
+                return Response<string>.FromValue(this.Market.GetMarketProfitForDate(this.SessionID, date_as_dd_MM_yyyy).ToString());
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= Bid =========
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                return Response<BidDTO>.FromValue(Market.PlaceBid(this.SessionID, productID, newPrice, quantity));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public string ApproveBid(string bidID)
+        {
+            try
+            {
+                Market.ApproveBid(this.SessionID, bidID);
+                return "Your approvement was accepted.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<BidDTO> GetBid(string bidID)
+        {
+            try
+            {
+                return Response<BidDTO>.FromValue(Market.GetBid(this.SessionID, bidID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public string CounterBid(string bidID, double counterPrice)
+        {
+            try
+            {
+                Market.CounterBid(this.SessionID, bidID, counterPrice);
+                return "Counter offer was placed.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public string RemoveBid(string bidID)
+        {
+            try
+            {
+                Market.RemoveBid(this.SessionID, bidID);
+                return "Bid was removed.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<List<BidDTO>> GetStoreBids(string storeID)
+        {
+            try
+            {
+                return Response<List<BidDTO>>.FromValue( Market.GetStoreBids(this.SessionID, storeID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= AUCTION =========
+
+        public string SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        {
+            try
+            {
+                Market.SetAuction(this.SessionID, productID, newPrice, auctionMinutesDuration);
+                return "Auction was created successfully.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public string UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            try
+            {
+                Market.UpdateAuction(this.SessionID, productID, newPrice, card_number, month, year, holder, ccv, id);
+                return "Auction product price was updated successfully.";
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public string RemoveAuction(string productID)
+        {
+            try
+            {
+                Market.RemoveAuction(this.SessionID, productID);
+                return "Auction was removed successfully.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= LOTTERY ========
+        public Response SetNewLottery(string productID, long durationInMinutes)
+        {
+            try
+            {
+                Market.SetNewLottery(this.SessionID, productID, durationInMinutes);
+                return new Response("Lottery was created successfully.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response RemoveLottery(string productID)
+        {
+            try
+            {
+                Market.RemoveLottery(this.SessionID, productID);
+                return new Response("Lottery was removed successfully.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+
+            try
+            {
+                Market.AddLotteryTicket(this.SessionID, productID, percentage, card_number, month, year, holder, ccv, id);
+                return new Response("Lottery ticket was added successfully.");
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID)
+        {
+            try
+            {
+                return Response<Dictionary<string, int>>.FromValue(Market.ReturnUsersLotteryTickets(this.SessionID, productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<int> RemainingLotteryPercantage(string productID)
+        {
+            try
+            {
+                return Response<int>.FromValue(Market.RemainingLotteryPercantage(this.SessionID, productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
+
+
         // ====================== END of Store methods ===============================
         // ===========================================================================
 
@@ -255,11 +435,11 @@ namespace Market_System.ServiceLayer
 
         }
 
-        internal void purchase(string session_id)
+        internal void purchase(string transactionID)
         {
             try
             {
-                this.Market.purchase(session_id);
+                this.Market.purchase(this.SessionID, transactionID);
 
                 
             }

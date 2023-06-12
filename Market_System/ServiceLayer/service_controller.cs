@@ -33,6 +33,20 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+        public Response<string> get_username_by_user_id(string userid)
+        {
+            try
+            {
+                Response<string> okay = Response<string>.FromValue(this.usc.get_username_by_user_id(userid));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
         internal Response<bool> check_if_user_can_manage_stock(string store_id)
         {
             try
@@ -584,12 +598,11 @@ namespace Market_System.ServiceLayer
             try
             {
 
-                
-                Response<string> ok = Response<string>.FromValue(this.usc.Check_Out(this.session_id, card_number,month,year,holder,ccv,id));
+                string transactionID = this.usc.Check_Out(this.session_id, card_number, month, year, holder, ccv, id);
+                Response<string> ok = Response<string>.FromValue("Payment was successfull");
                 //this.ssc.purchase(session_id, cart.convert_to_item_DTO());
-                this.ssc.purchase(session_id);
                 this.usc.save_purhcase_in_user(session_id);
-               
+                this.ssc.purchase(transactionID);
                 Logger.get_instance().record_event("checkout completed by : " + this.usc.getusername(session_id) );
                 
                 return ok;
@@ -1664,5 +1677,202 @@ namespace Market_System.ServiceLayer
             throw new NotImplementedException();
         }
         //yotam
+
+
+
+
+
+
+        public Response<string> GetStoreProfitForDate(string storeID, DateTime dateTime)
+        {
+            try
+            {
+                Response<string> ret =  this.ssc.GetStoreProfitForDate(storeID, dateTime);
+                Logger.get_instance().record_event("user with session ID : " + session_id + " requested profit for a store " + storeID + "on date " + dateTime);
+                return ret;
+            }
+            catch (Exception e) 
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetStoreProfitForDate");
+                return null;
+            }
+        }
+
+
+        public Response<string> GetMarketProfitForDate(DateTime dateTime)
+        {
+            try
+            {
+                Response<string>  ret =  this.ssc.GetMarketProfitForDate(dateTime);
+                Logger.get_instance().record_event("ADMIN with session ID : " + session_id + " requested profit for a market on date " + dateTime);
+                return ret;
+
+            }
+            catch (Exception e) 
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in GetMarketProfitForDate");
+                return null;
+            }
+        }
+
+
+        // ======= Bid =========
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                return ssc.PlaceBid(productID, newPrice, quantity);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response<string> ApproveBid(string bidID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.ApproveBid(bidID));
+                return ret;
+            }
+            catch (Exception e) {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+
+        public Response<BidDTO> GetBid(string bidID)
+        {
+            try
+            {
+                return ssc.GetBid(bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<string> CounterBid(string bidID, double counterPrice)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.CounterBid(bidID, counterPrice));
+                return ret;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+
+        public Response<string> RemoveBid(string bidID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.RemoveBid(bidID));
+                return ret;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+
+        public Response<List<BidDTO>> GetStoreBids(string storeID)
+        {
+            try
+            {
+                return ssc.GetStoreBids(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= AUCTION =========
+
+        public Response<string> SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        {
+
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.SetAuction(productID, newPrice, auctionMinutesDuration));
+                return ret;
+            }
+            catch (Exception e) {return Response<string>.FromError(e.Message); }
+        }
+
+        public Response<string> UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(ssc.UpdateAuction(productID, newPrice, card_number, month, year, holder, ccv, id));
+                return ret;
+            }
+            catch (Exception ex) { return Response<string>.FromError(ex.Message); }
+        }
+
+        public Response<string> RemoveAuction(string productID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(ssc.RemoveAuction(productID));
+                return ret;
+            }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
+        }
+
+
+
+        // ======= LOTTERY ========
+        public Response SetNewLottery(string productID, long durationInMinutes)
+        {
+            try
+            {
+                return ssc.SetNewLottery(productID, durationInMinutes);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Response RemoveLottery(string productID)
+        {
+            try
+            {
+                return ssc.RemoveLottery(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+
+            try
+            {
+                return ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID)
+        {
+            try
+            {
+                return ssc.ReturnUsersLotteryTickets(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Response<int> RemainingLotteryPercantage(string productID)
+        {
+            try
+            {
+                return ssc.RemainingLotteryPercantage(productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
     }
 }

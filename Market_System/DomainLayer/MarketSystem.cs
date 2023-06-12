@@ -7,6 +7,7 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
+using Microsoft.Ajax.Utilities;
 using System.Threading.Tasks;
 
 namespace Market_System.DomainLayer
@@ -114,6 +115,10 @@ namespace Market_System.DomainLayer
                         StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
+
+
+                        // for tests only: delete!!!!!!!!!!!!!!!!!!!!!
+                        //Market_System.DAL.StoreRepo.GetInstance().AddStore("pashaDBStoreFounder", new Store("pashaDBStoreFounder", "pashaDBStoreID", null, null, null, false)); 
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -341,6 +346,11 @@ namespace Market_System.DomainLayer
             }
         }
 
+        public string get_username_by_user_id(string userid)
+        {
+            return userFacade.get_username_from_user_id(userid);
+        }
+
         internal string getusername(string session_id)
         {
             return userFacade.get_username_from_user_id(get_userid_from_session_id(session_id));
@@ -546,6 +556,29 @@ namespace Market_System.DomainLayer
             }
         }
 
+        public string GetStoreProfitForDate(string sessionID, string storeID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                string userID = userFacade.get_userID_from_session(sessionID);
+                return storeFacade.GetStoreProfitForDate(userID, storeID, date_as_dd_MM_yyyy).ToString();
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public string GetMarketProfitForDate(string sessionID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                string userID = userFacade.get_userID_from_session(sessionID);
+                return storeFacade.GetMarketProfitForDate(userID, date_as_dd_MM_yyyy).ToString();
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
         public MemberDTO Get_Member_Info(string session_id, string member_Username)
         {
             try
@@ -605,7 +638,7 @@ namespace Market_System.DomainLayer
 
         }
 
-        public void purchase(string session_id)
+        public void purchase(string session_id, string transactionID)
         {
             try
             {
@@ -613,7 +646,7 @@ namespace Market_System.DomainLayer
                 Cart cart = get_cart_of_userID(userID);
                 string username = userFacade.get_username_from_user_id(userID);
                 List<ItemDTO> cartItems = cart.convert_to_item_DTO();
-                storeFacade.Purchase(userID, cart.convert_to_item_DTO());
+                storeFacade.Purchase(userID, cart.convert_to_item_DTO(), transactionID);
 
                 //Check if the product's quantity is 0
                 foreach (ItemDTO product in cartItems)
@@ -1068,13 +1101,13 @@ namespace Market_System.DomainLayer
         public string Check_Out(string session_id, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
-            {
-                
+            {               
                 string user_id = get_userid_from_session_id(session_id);
                 string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
                 double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
-                var task = Task.Run(() => PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id));
+                string transID = "";
+                var task = Task.Run(() => { transID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id); });
                 var timeoutTask = Task.Delay(TimeSpan.FromSeconds(10)); 
                 var completedTask = Task.WhenAny(task, timeoutTask).Result;
                 if (completedTask == timeoutTask)
@@ -1088,7 +1121,7 @@ namespace Market_System.DomainLayer
                     throw task.Exception.InnerException;
                 }
                 // userFacade.save_purhcase_in_user(username,cart);
-                return "Payment was successfull";
+                return transID;
             }
 
             catch(Exception e)
@@ -1508,6 +1541,187 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
+        }
+
+
+
+        // ======= Bid =========
+        public BidDTO PlaceBid(string session, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                string storeID = GetStoreIdFromProductID(productID);
+                BidDTO bid = storeFacade.PlaceBid(storeID, userID, productID, newPrice, quantity);              
+                string msg = "New bid " + bid.BidID + " was placed. Approvement required.";
+                notificationFacade.AddNewMessage(userID, "Market", msg);
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                Employees emps = new Employees();
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).Where(m => emps.confirmPermission(m, storeID, StoreComponent.Permission.STOCK)).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                return bid;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ApproveBid(string session, string bidID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);             
+                if (storeFacade.ApproveBid(userID, bidID))
+                {
+                    string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                    string msg = "The bid " + bidID + " was approved by store side. The price is valid only for proposed quantity.";
+                    notificationFacade.AddNewMessage(bidderID, "Market", msg);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string session, string bidID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                return storeFacade.GetBid(userID, bidID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string session, string bidID, double counterPrice)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                storeFacade.CounterBid(userID, bidID, counterPrice);
+                string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                string productID = bidID.Substring(bidID.IndexOf('_') + 1);
+                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. User Approvement required.";
+                notificationFacade.AddNewMessage(bidderID, "Market", msg);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string session, string bidID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                storeFacade.RemoveBid(userID, bidID);
+                string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                string productID = bidID.Substring(bidID.IndexOf('_') + 1);
+                productID = bidID.Substring(0, bidID.IndexOf('_'));
+                string msg = "The bid for product " + productID + " was declined and removed by store side.";
+                notificationFacade.AddNewMessage(bidderID, "Market", msg);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public List<BidDTO> GetStoreBids(string session, string storeID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                return storeFacade.GetStoreBids(userID, storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // ======= AUCTION =========
+
+        public void SetAuction(string session, string productID, double newPrice, long auctionMinutesDuration)
+        {
+            try
+            {
+                storeFacade.SetAuction(get_userid_from_session_id(session), productID, newPrice, auctionMinutesDuration);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void UpdateAuction(string session, string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            try
+            {
+                storeFacade.UpdateAuction(get_userid_from_session_id(session), productID, newPrice, card_number, month, year, holder, ccv, id);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void RemoveAuction(string session, string productID)
+        {
+            try
+            {
+                storeFacade.RemoveAuction(get_userid_from_session_id(session), productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
+
+        // ======= Lottery =========
+        public void SetNewLottery(string session, string productID, long durationInMinutes)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.SetNewLottery(GetStoreIdFromProductID(productID), userID, productID, durationInMinutes);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveLottery( string session, string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.RemoveLottery(GetStoreIdFromProductID(productID), userID, productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string session, string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                return storeFacade.ReturnUsersLotteryTickets(userID, productID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void AddLotteryTicket(string session, string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id);
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public int RemainingLotteryPercantage(string session, string productID)
+        {
+            try
+            {
+                string userID = get_userid_from_session_id(session);
+                return storeFacade.RemainingLotteryPercantage(GetStoreIdFromProductID(productID), userID, productID);
+            }
+            catch (Exception e) { throw e; }
         }
     }
 }

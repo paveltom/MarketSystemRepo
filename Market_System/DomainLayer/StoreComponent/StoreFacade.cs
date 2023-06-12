@@ -7,7 +7,12 @@ using System.Threading;
 using Market_System.DomainLayer;
 using Market_System.Domain_Layer.Store_Component;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
-
+using Market_System.DAL;
+using Microsoft.Ajax.Utilities;
+using Market_System.DomainLayer.UserComponent;
+using EnvDTE;
+using Market_System.DomainLayer.PaymentComponent;
+using Microsoft.NET.StringTools;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -18,6 +23,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
+        private static ConcurrentDictionary<string, System.Timers.Timer> Timers;
 
         public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
         public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
@@ -44,6 +50,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         Instance = new StoreFacade();
                         marketPolicies = new ConcurrentDictionary<string, Purchase_Policy>();
                         marketStrategies = new ConcurrentDictionary<string, Purchase_Strategy>();
+                        ContinueTimers();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section
@@ -53,6 +60,7 @@ namespace Market_System.DomainLayer.StoreComponent
             //Return the Singleton Instance
             return Instance;
         }
+
 
         internal List<string> get_user_wokring_stores_id(string user_id)
         {
@@ -96,6 +104,21 @@ namespace Market_System.DomainLayer.StoreComponent
         // ====================================================================
         // ====================== General class methods ===============================
 
+        
+        private static void ContinueTimers()
+        {
+            try
+            {
+                Timers = StoreRepo.GetInstance().RestoreTimers();
+                Timers.Values.ForEach(t => t.Start());
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        
         private static object PrivateCalculatePriceLock = new object();
         public double CalculatePrice(List<ItemDTO> products)
         {
@@ -106,7 +129,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     double totalPrice = 0;
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
-                        totalPrice += AcquireStore(entry.Key).CalculatePrice(entry.Value);
+                        totalPrice += AcquireStore(entry.Key).CalculatePrice(entry.Key, entry.Value);
                         ReleaseStore(entry.Key);
                     }
                     return totalPrice;
@@ -122,21 +145,25 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
         private static object PurchaseLock = new object();
-        public void Purchase(string userID, List<ItemDTO> products)
+        public void Purchase(string userID, List<ItemDTO> products, string transactionID)
         {
-            // maybe add here thread functionality instead - every one who access the method receives a thread to purchase items
             lock (PurchaseLock)
             {
+                double price = 0.0;
                 try
                 {
+                    AddPayment(userID, transactionID, price, false);
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
-                        AcquireStore(entry.Key).Purchase(userID, entry.Value);
+                        price += AcquireStore(entry.Key).Purchase(userID, entry.Value);
                         ReleaseStore(entry.Key);
                     }
                 }
                 catch (Exception e)
                 {
+                    PaymentComponent.PaymentProxy.get_instance().cancel_pay(transactionID);
+
+                    AddPayment(userID, transactionID, price, true);
                     throw e;
                 }
             }
@@ -195,6 +222,19 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e)
             {
                 throw new Exception("invalid product ID, please type in valid product ID");
+            }
+        }
+
+
+        public void AddPayment(string userID, string transactionID, double price, bool canceled)
+        {
+            try
+            {
+                storeRepo.AddPayment(userID, transactionID, price, canceled);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -510,6 +550,312 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+
+        public double GetStoreProfitForDate(string userID, string storeID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                double profit = AcquireStore(storeID).GetStoreProfitForDate(userID, date_as_dd_MM_yyyy);
+                ReleaseStore(storeID);
+                return profit;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public double GetMarketProfitForDate(string userID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                double profit = 0.0;
+                List<string> allOpenStoresIds = storeRepo.GetStores().Where(s => !s.is_closed_temporary()).Select(s => s.Store_ID).ToList();
+                foreach(string sid in allOpenStoresIds)
+                {
+                    profit += AcquireStore(sid).GetStoreProfitForDate(userID, date_as_dd_MM_yyyy);
+                    ReleaseStore(sid);
+                }                
+                return profit;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        //  BID 
+
+        public BidDTO PlaceBid(string storeID, string session, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                BidDTO ret = AcquireStore(storeID).PlaceBid(session, productID, newPrice, quantity);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public bool ApproveBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                bool ret = AcquireStore(storeID).ApproveBid(userID, bidID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                BidDTO ret = AcquireStore(storeID).GetBid(userID, bidID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string userID, string bidID, double counterPrice)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                AcquireStore(storeID).CounterBid(userID, bidID, counterPrice);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                AcquireStore(storeID).RemoveBid(userID, bidID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public List<BidDTO> GetStoreBids(string userID, string storeID)
+        {
+            try
+            {
+                List<BidDTO> ret = AcquireStore(storeID).GetStoreBids(userID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        // Auction:
+        private static object auctionTimerLock = new object();  
+        public void SetAuction(string userID, string productID, double newPrice, long auctionMinutesDuration)
+        {
+            lock (auctionTimerLock)
+            {
+                try
+                {
+                    Store store = AcquireStore(GetStoreIdFromProductID(productID));
+                    store.SetAuction(userID, productID, newPrice);
+                    string founderID = store.founderID;
+                    ReleaseStore(GetStoreIdFromProductID(productID));
+                    AddTimer(AuctionTimerHandler, founderID, productID, auctionMinutesDuration, "auction");
+                    
+                }
+                catch (Exception e) { throw e; }
+            }
+        }     
+
+
+        public void AuctionTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
+        {
+            try
+            {
+                System.Timers.Timer doneTimer = sender as System.Timers.Timer;
+                Timers.TryRemove(productID + "_auction_timer", out _);
+                doneTimer.Dispose();
+                AcquireStore(GetStoreIdFromProductID(productID)).AuctionPurchase(userID, productID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+                RemoveAuction(userID, productID);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public void UpdateAuction(string userID, string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            string newTransID = "";
+            try
+            {
+                newTransID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
+                string previousTransactionID = AcquireStore(GetStoreIdFromProductID(productID)).UpdateAuction(userID, productID, newPrice, newTransID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+                PaymentProxy.get_instance().cancel_pay(previousTransactionID);
+            }
+            catch (Exception ex) 
+            {
+                PaymentProxy.get_instance().cancel_pay(newTransID);
+                throw ex; 
+            }
+        }
+
+        public void RemoveAuction(string userID, string productID)
+        {
+            try
+            {
+                AcquireStore(GetStoreIdFromProductID(productID)).RemoveAuction(userID, productID);
+                ReleaseStore(GetStoreIdFromProductID(productID));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        // Lottery:
+        public void SetNewLottery(string storeID, string userID, string productID, long durationInMinutes)
+        {
+
+            try
+            {
+                Store store = AcquireStore(storeID);
+                store.SetNewLottery(userID, productID);
+                ReleaseStore(storeID);
+                string founderID = store.founderID;
+                AddTimer(LotteryTimerHandler, founderID, productID, durationInMinutes, "lottery");
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        public void RemoveLottery(string storeID, string userID, string productID)
+        {
+
+            try
+            {
+                Store store = AcquireStore(storeID);
+                store.RemoveLottery(userID, productID);
+                Dictionary<string, string> refund = store.ReturnUsersLotteryTransactions(userID, productID);
+                ReleaseStore(storeID);                
+                refund.ForEach(p => Refund(p.Key, p.Value));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public bool AddLotteryTicket(string storeID, string userID, string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        {
+            string transactionID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
+            try
+            {              
+                Store store = AcquireStore(storeID);
+                double price = store.AddLotteryTicket(userID, productID, percentage, transactionID);
+                AddPayment(userID, transactionID, price, false);
+                if (price == 0)
+                {
+                    ReleaseStore(storeID);
+                    return false;
+                }                
+                if (store.RemainingLotteryPercantage(userID, productID) == 0)
+                {
+                    store.LotteryWinner(productID);
+                    return true;
+                }
+                ReleaseStore(storeID);
+                return false;
+            }
+            catch (Exception e) {
+                PaymentProxy.get_instance().cancel_pay(transactionID);
+                throw e; 
+            }
+
+        }
+
+
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string userID, string productID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(productID);
+                Dictionary<string, int> ret = AcquireStore(storeID).ReturnUsersLotteryTickets(userID, productID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public int RemainingLotteryPercantage(string storeID, string userID, string productID)
+        {
+            try
+            {
+                int ret = AcquireStore(storeID).RemainingLotteryPercantage(userID, productID);
+                ReleaseStore(storeID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void LotteryTimerHandler(object sender, System.Timers.ElapsedEventArgs e, string userID, string productID)
+        {
+            try
+            {
+                System.Timers.Timer doneTimer = sender as System.Timers.Timer;
+                Timers.TryRemove(productID + "_lottery_timer", out _);
+                doneTimer.Dispose();
+
+                string storeID = GetStoreIdFromProductID(productID);
+                Store store = AcquireStore(storeID);                
+                Dictionary<string, string> refundme = store.ReturnUsersLotteryTransactions(userID, productID);
+
+
+                if (store.RemainingLotteryPercantage(userID, productID) < 0)
+                    refundme.ForEach(p => Refund(p.Key, p.Value));
+                else
+                    store.LotteryWinner(productID);
+                store.RemoveLottery(userID, productID);
+                ReleaseStore(storeID);
+            }
+            catch (Exception ex) { throw ex; }
+        }      
+
+
+        public void Refund(string userID, string transID)
+        {
+            try
+            {
+                PaymentProxy.get_instance().cancel_pay(transID);
+            }
+            catch(Exception ex) { throw ex; } 
+        }
+
+
+
+
+
+        private void AddTimer(Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded, string founderID, string productID, long minutesDuration, string type)
+        {
+            System.Timers.Timer newTimer = new System.Timers.Timer(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds);
+            newTimer.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, founderID, productID);
+            DateTime creationTime = DateTime.Now;
+            newTimer.Start();
+            string timerID = productID + "_" + type + "_timer";
+            storeRepo.AddTimer(newTimer, timerID, founderID, productID, creationTime, minutesDuration);
+            Timers.AddOrUpdate(timerID, newTimer, (k, val) => newTimer);            
+        }
+
+
+
 
         // ====================== END of Store methods ===============================
         // ===========================================================================

@@ -8,7 +8,6 @@
             padding: 0;
             background-color: #f2f2f2;
             background-size: contain;
-
             background-repeat:no-repeat;
             background-image:url(images/LogInCover.jpg);
         }

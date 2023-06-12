@@ -8,6 +8,11 @@ using Newtonsoft.Json.Linq;
 using System.Web.WebSockets;
 using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
 using Market_System.DomainLayer.UserComponent;
+using Market_System.DAL;
+using System.EnterpriseServices;
+using Market_System.DomainLayer.PaymentComponent;
+using Market_System.Domain_Layer.Communication_Component;
+using Market_System.DomainLayer.DeliveryComponent;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -20,14 +25,12 @@ namespace Market_System.DomainLayer.StoreComponent
         private ConcurrentDictionary<string, Product> products;
         private ConcurrentDictionary<string, int> productUsage;
         private Employees employees;
-        public String founderID { get; private set; } //founder's userID
+        public string founderID { get; private set; } //founder's userID
         private StoreRepo storeRepo;
         public ConcurrentDictionary<string, Purchase_Policy> productDefaultPolicies; // passed to every new added product
-        // public ConcurrentDictionary<string, Purchase_Policy> productDefaultStrategies; // passed to every new added product
         public ConcurrentDictionary<string, Purchase_Strategy> productDefaultStrategies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Policy> storePolicies; // passed to every new added product
-        // public ConcurrentDictionary<string, Purchase_Policy> storeStrategies; // passed to every new added product
-        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies; // passed to every new added product
+        public ConcurrentDictionary<string, Purchase_Policy> storePolicies; 
+        public ConcurrentDictionary<string, Purchase_Strategy> storeStrategies;
         private bool temporaryClosed = false;
 
         // builder for a new store - initialize all fields later
@@ -56,6 +59,7 @@ namespace Market_System.DomainLayer.StoreComponent
             if (allProductsIDS != null)                
                 foreach(string s in allProductsIDS)
                     this.allProducts.TryAdd(s, s);
+
             this.employees.AddNewFounderEmpPermissions(this.founderID, this.Store_ID);
         }
 
@@ -162,7 +166,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
                     if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner != null) && (emp.OwnerAssignner.Equals(userID)))
                     {
+                        employees.getStoreEmployees(this.Store_ID).Where(e => e.OwnerAssignner != null && e.OwnerAssignner.Equals(emp.UserID)).ForEach(e => this.employees.removeEmployee(e.UserID, this.Store_ID));
                         this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
+                        string message = "You have been removed from store ownership in store id: " + this.Store_ID;
+                        NotificationFacade.GetInstance().AddNewMessage(other_Owner_ID, userID, message);
+
                     }
                     else
                         throw new Exception("Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store");
@@ -380,12 +388,27 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         private static object CalculatePriceLock = new object();
-        public double CalculatePrice(List<ItemDTO> productsToCalculate)
+        public double CalculatePrice(string userID, List<ItemDTO> calculateUS)
         {
             lock (CalculatePriceLock)
             {
                 try
                 {
+                    // bidding prices if approved
+                    double bidsTotalPrice = 0.0;
+                    List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
+                    List<ItemDTO> productsToCalculate = new List<ItemDTO>();
+                    foreach (ItemDTO item in calculateUS)
+                    {
+                        BidDTO currBid;
+                        if (( currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore || b.ApprovedByUser))) != null)
+                            bidsTotalPrice += currBid.NewPrice * currBid.Quantity;
+                        else
+                            productsToCalculate.Add(item);
+                    }
+
+
+                    // no-bidded products
                     double productSalePrice = 0;
                     int quantity = 0;
                     List<ItemDTO> saledProducts = new List<ItemDTO>();
@@ -416,27 +439,54 @@ namespace Market_System.DomainLayer.StoreComponent
                             saledProducts = p.ApplyPolicy(saledProducts);
                     }
 
-                    return saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
+                    return bidsTotalPrice + saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
                 }
                 catch (Exception ex) { throw ex; }
             }
         }
 
+
+
+
+
         private static object PurchaseLock = new object();
-        public void Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
+        public double Purchase(string userID, List<ItemDTO> productsToPurchaseFewInfo)
         {
             lock (PurchaseLock)
             {
-                List<ItemDTO> productsToPurchase = productsToPurchaseFewInfo.Select(i => {
-                                                                                            ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
-                                                                                            ReleaseProduct(i.GetID());
-                                                                                            newItem.SetQuantity(i.GetQuantity());
-                                                                                            return newItem;                                                                                          
-                                                                                        }).ToList();
                 string initErrorMSG = "Cannot purchase: ";
                 String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
+                double price = 0.0;
+                List<ItemDTO> purchased = new List<ItemDTO>(); // backup for an error so quantitie will be restored
                 try
                 {
+                    List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
+                    List<ItemDTO> productsIncludingBids = productsToPurchaseFewInfo.Select(i =>
+                    {
+                        ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
+                        ReleaseProduct(i.GetID());
+                        newItem.SetQuantity(i.GetQuantity());
+                        return newItem;
+                    }).ToList();
+                    
+                    List<ItemDTO> productsToPurchase = new List<ItemDTO>();                    
+
+                    // purchasing bid products
+                    foreach (ItemDTO item in productsIncludingBids)
+                    {
+                        BidDTO currBid;
+                        if ((currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore == true || b.ApprovedByUser == true))) != null)
+                        {
+                            price += this.BidPurchase(userID, currBid);
+                            purchased.Add(item);
+                        }
+                        else
+                            productsToPurchase.Add(item);
+                    }
+
+
+                    // purchasing no-bidded products
+
                     foreach (Purchase_Strategy ps in this.storeStrategies.Values)
                     {
                         if (!ps.Validate(productsToPurchase, userID))
@@ -457,9 +507,21 @@ namespace Market_System.DomainLayer.StoreComponent
                             AcquireProduct(item.GetID()).Purchase(item.GetQuantity());
                             ReleaseProduct(item.GetID());
                             this.storeRepo.record_purchase(this, item); // for purchase history
+                            price += item.GetQuantity() * item.Price;
+                            purchased.Add(item);
                         }
+                    return price;
                 }
-                catch (Exception ex) { throw new Exception(cannotPurchase, ex); }
+                catch (Exception ex) 
+                {
+                    // restoring quantities before purchase
+                    // the product still will be reserved for user
+                    purchased.ForEach(i => {
+                        AcquireProduct(i.GetID()).Restore(i.GetQuantity());
+                        ReleaseProduct(i.GetID());
+                        });                    
+                    throw new Exception(cannotPurchase, ex); 
+                }
             }
         }
 
@@ -485,13 +547,13 @@ namespace Market_System.DomainLayer.StoreComponent
                     switch (newPolicyProps[0])
                     {
                         case "Category":  // type, string polName, double salePercentage, string description, string category, Statement formula
-                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
+                            newPolicy = new CategoryPolicy(this.Store_ID + "CategoryPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
                         case "Product":  // type, string polName, double salePercentage, string description, Statement formula, string productID
-                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
+                            newPolicy = new ProductPolicy(this.Store_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
                         case "Store": // type, string polName, double salePercentage, string description, string storeID, String formula
-                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], StatementBuilder.GenerateFormula(newPolicyProps[5]));
+                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
                     }
 
@@ -592,6 +654,20 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
+        public double GetStoreProfitForDate(string userID, string date_as_dd_MM_yyyy)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || EmployeeRepo.GetInstance().isMarketManager(userID))
+                    return this.storeRepo.GetStoreProfitForDate(this.Store_ID, date_as_dd_MM_yyyy);
+                else
+                    throw new Exception("You don't have a permission to view profit.");
+            }
+            catch (Exception e) { throw e; }
+        }      
+
+
+
         // call me every time data changes
         private void Save()
         {
@@ -603,8 +679,8 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        // ===================== END of Store operations =========================
-        // =======================================================================
+            // ===================== END of Store operations =========================
+            // =======================================================================
 
 
 
@@ -612,10 +688,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-        // ==================================================================
-        // ===================== Product operations =========================
+            // ==================================================================
+            // ===================== Product operations =========================
 
-        private Product AcquireProduct(string productID)
+            private Product AcquireProduct(string productID)
         {
             try
             {                
@@ -1015,6 +1091,337 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             return products;
         }
+
+
+
+        // =========================================================================================
+        // ========================================== BID ==========================================
+
+
+
+        public BidDTO PlaceBid(string userID, string productID, double newPrice, int quantity)
+        {
+            try
+            {
+                BidDTO ret;
+                ret = this.storeRepo.PlaceBid(this.Store_ID, userID, productID, newPrice, quantity);
+                AcquireProduct(productID).Reserve(quantity);
+                ReleaseProduct(productID);
+                return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public bool ApproveBid(string userID, string bidID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || bidID.Contains(userID))
+                    return this.storeRepo.ApproveBid(this.Store_ID, userID, bidID);
+                throw new Exception("You cannot view this info.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public BidDTO GetBid(string userID, string bidID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    return this.storeRepo.GetBid(bidID);
+                throw new Exception("You cannot view this information.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void CounterBid(string userID, string bidID, double counterPrice)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                    this.storeRepo.CounterBid(bidID, counterPrice);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void RemoveBid(string userID, string bidID)
+        {
+            try
+            {
+                BidDTO bid = GetBid(userID, bidID);
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK) || bidID.Contains(userID))
+                {
+                    this.storeRepo.RemoveBid(bidID);
+                    AcquireProduct(bid.ProductID).LetGoProduct(bid.Quantity);
+                    ReleaseProduct(bid.ProductID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public double BidPurchase(string userID, BidDTO bid)
+        {
+            try
+            {
+                double price = 0.0;
+                price = AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
+                ReleaseProduct(bid.ProductID);
+                return price;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public List<BidDTO> GetStoreBids(string userID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    return this.storeRepo.GetStoreBids(this.Store_ID);
+                throw new Exception("You cannot view this information.");
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+        // ===========================================================================
+
+
+
+        // =============================================================================================
+        // ========================================== AUCTION ==========================================
+
+        public void  AuctionPurchase(string userID, string productID)
+        {
+            try
+            {
+                string winner = AcquireProduct(productID).AuctionPurchase(1);
+                ReleaseProduct(productID);
+                DeliveryComponent.DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        private static object auctionLock = new object();
+        public void SetAuction(string userID, string productID, double newPrice)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetAuction(productID, newPrice, "");
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public string UpdateAuction(string userID, string productID, double newPrice, string newTransID)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    string previousTransID = AcquireProduct(productID).SetAuction(userID, newPrice, newTransID);
+                    ReleaseProduct(productID);
+                    return previousTransID;
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
+        public void RemoveAuction(string userID, string productID)
+        {
+            lock (auctionLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetAuction(productID, -1, "");
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        // =========================================================================
+
+
+
+        // =============================================================================================
+        // ========================================== LOTTERY ==========================================
+
+        private static object lotteryLock = new object();
+        public void SetNewLottery(string userID, string productID)
+        {
+            lock (lotteryLock)
+            {
+                try
+                {
+                    if(this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).SetNewLottery();
+                        ReleaseProduct(productID);
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public void RemoveLottery(string userID, string productID)
+        {
+            lock (lotteryLock)
+            {
+                try
+                {
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {
+                        AcquireProduct(productID).RemoveLottery();
+                        ReleaseProduct(productID);                        
+                    }
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+
+        public double AddLotteryTicket(string userID, string productID, int percentage, string transID)
+        {
+            lock (lotteryLock)
+            {
+                try
+                {
+                    double price = 0.0;
+                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                    {                        
+                        price = AcquireProduct(productID).AddLotteryTicket(userID, percentage, transID);
+                        ReleaseProduct(productID);                        
+                    }
+                    return price;
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public Dictionary<string, double> ReturnUsersLotteryTicketsMoney(string userID, string productID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    Dictionary<string, double> ret = AcquireProduct(productID).ReturnUsersLotteryTicketMoney();
+                    ReleaseProduct(productID);
+                    return ret;
+                }
+                throw new Exception("You cannot return users money for lottery.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, int> ReturnUsersLotteryTickets(string userID, string productID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    Dictionary<string, int> ret = AcquireProduct(productID).ReturnUsersLotteryTickets();
+                    ReleaseProduct(productID);
+                    return ret;
+                }
+                throw new Exception("You cannot return users money for lottery.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, string> ReturnUsersLotteryTransactions(string userID, string productID)
+        {
+            try
+            {
+                if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
+                {
+                    Dictionary<string, string> ret = AcquireProduct(productID).ReturnUsersLotteryTransactions();
+                    ReleaseProduct(productID);
+                    return ret;
+                }
+                throw new Exception("You cannot return users money for lottery.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public int RemainingLotteryPercantage(string userID, string productID)
+        {
+            try
+            {
+                int remains = AcquireProduct(productID).RemainingLotteryPercantage();
+                ReleaseProduct(productID);
+                return remains;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+        public void LotteryWinner(string productID)
+        {
+            try
+            {
+                Dictionary<string, int> refundPercantage = ReturnUsersLotteryTickets(this.founderID, productID);
+                List<KeyValuePair<string, double>> relativeChances = new List<KeyValuePair<string, double>>();
+                double curr = 0.0;
+                refundPercantage.ForEach(p =>
+                {
+                    curr += p.Value / 100;
+                    relativeChances.Add(new KeyValuePair<string, double>(p.Key, curr));
+                });
+                Random rand = new Random();
+                double r = rand.NextDouble();
+                string winner = "";
+                foreach (KeyValuePair<string, double> p in relativeChances)
+                {
+                    if (p.Value > r)
+                    {
+                        winner = p.Key;
+                        break;
+                    }
+                }
+                AcquireProduct(productID).Purchase(1);
+                ReleaseProduct(productID);
+                DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+
+
+
+        // =========================================================================
+
+        public void Refund(string transactionID)
+        {
+            try
+            {
+                PaymentProxy.get_instance().cancel_pay(transactionID); // retreive transaction id from somewhere!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            }
+            catch (Exception ex){ throw ex; }
+        }
+
+
+
 
 
 

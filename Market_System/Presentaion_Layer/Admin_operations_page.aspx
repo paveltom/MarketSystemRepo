@@ -37,10 +37,17 @@
         <asp:Label ID="remove_user_message" runat="server" Text=""></asp:Label>
     </div>
     <div></div>
-    <div style="text-align: left">
-        <asp:Label ID="sdasd" runat="server" Text="Daily sales of the market:"></asp:Label>
+    <div style="text-align: center">
+        <asp:Label ID="sdasd" runat="server" Text="enter date to show the profit of the market:"></asp:Label>
+        
+        <asp:TextBox ID="market_profit_txt" runat="server"></asp:TextBox>
+        <asp:Button ID="market_profit" runat="server" Text="Show"  CssClass="btn btn-primary" OnClick="show_market_sale"  />
+        <asp:Label ID="daily_profit_of_market_message" runat="server" ForeColor="#FF3300"></asp:Label>
         
     </div>
+    <div style="text-align: center">
+        <asp:Label ID="Label8" runat="server" Text="please enter in this format, dd/mm/yyyy"></asp:Label>
+        </div>
     <div style="text-align: center">
         <asp:Chart ID="market_sale_chart" runat="server">
             <Series>
@@ -57,23 +64,8 @@
     <div></div>
     <div></div>
     <div style="text-align: center">
-        <asp:Label ID="Label7" runat="server" Text="Daily sales of a store"></asp:Label>
-        <asp:DropDownList ID="ddl_store_id" runat="server" AutoPostBack="True" OnSelectedIndexChanged="show_store_sale">
-        <asp:ListItem Text="Please select a store" Value="nothing_to_show" />
-    </asp:DropDownList>
-        <asp:Button ID="Button4" runat="server" Text="Show" CssClass="btn btn-primary"  />
     </div>
     <div style="text-align: center">
-        <asp:Chart ID="Chart1" runat="server">
-            <series>
-                <asp:Series Name="Series1">
-                </asp:Series>
-            </series>
-            <chartareas>
-                <asp:ChartArea Name="ChartArea1">
-                </asp:ChartArea>
-            </chartareas>
-        </asp:Chart>
     </div>
     <div></div>
     <div></div>

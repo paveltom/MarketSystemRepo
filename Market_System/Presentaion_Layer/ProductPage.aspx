@@ -9,7 +9,21 @@
         <asp:Button ID="addToCart" runat="server" Text="add To Cart" OnClick="addToCart_Click" CssClass="btn btn-primary" />
         <asp:Label ID="clickmsg" runat="server" Text=""></asp:Label>
     </div>
+    <div style="text-align: left">
+        <asp:Button ID="auction_button" runat="server" Text="go to auction" />
+    </div>
     <div>&nbsp;</div>
+    <div style="text-align: left">
+        <asp:Label ID="Bid" runat="server" Text="Bidding:"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label3" runat="server" Text="new price:"></asp:Label>
+        <asp:TextBox ID="new_price_text" runat="server"></asp:TextBox>
+        <asp:Label ID="Label4" runat="server" Text="quantity"></asp:Label>
+        <asp:TextBox ID="bid_quantity_text" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Bid"  CssClass="btn btn-primary" OnClick="bid_click"/>
+        <asp:Label ID="bid_error_message" runat="server" ForeColor="Red" ></asp:Label>
+    </div>
+    <div></div>
 
     <div style="text-align: left">
         <asp:Label ID="id" runat="server" Text=""></asp:Label>

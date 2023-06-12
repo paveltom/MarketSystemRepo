@@ -9,6 +9,9 @@ using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using System.Xml.Linq;
+using Market_System.DAL;
+using System.EnterpriseServices;
+using System.Windows.Forms;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -21,6 +24,8 @@ namespace Market_System.DomainLayer.StoreComponent
         public String Name { get; private set; }
         public String Description { get; private set; }
         public Double Price { get; private set; }
+        public KeyValuePair<string, List<string>> Auction;
+        public ConcurrentDictionary<string, List<string>> Lottery;
         public int ReservedQuantity { get; private set; }
         public Double Rating { get; private set; } // between 1-10
         public int Quantity { get; private set; }
@@ -44,7 +49,8 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Product(String product_ID, String name, String description, double price, int initQuantity, int reservedQuantity, double rating, double sale, double weight,
                         double[] dimenssions, List<String> comments, ConcurrentDictionary<string, Purchase_Policy> purchase_Policies,
-                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, int boughtTimes, Category category)
+                        ConcurrentDictionary<string, Purchase_Strategy> purchase_Strategies, Dictionary<string, List<string>> product_Attributes, 
+                        long boughtTimes, Category category, long timesRated, KeyValuePair<string, List<string>> auction, ConcurrentDictionary<string, List<string>> lottery)
         {
             this.Product_ID = product_ID;
             this.StoreID = this.Product_ID.Substring(0, this.Product_ID.IndexOf("_"));
@@ -64,6 +70,9 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Comments = new ConcurrentBag<string>(comments);
             this.storeRepo = StoreRepo.GetInstance();
             this.PurchaseAttributes = new ConcurrentDictionary<string, List<string>>(product_Attributes);
+            this.timesRated = timesRated;
+            this.Auction = auction;
+            this.Lottery = lottery;
         }
 
 
@@ -78,6 +87,8 @@ namespace Market_System.DomainLayer.StoreComponent
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
             this.timesBought = 0;
+            this.Auction = new KeyValuePair<string, List<string>>(this.Product_ID, new List<string>{ "-1.0", "" });
+            this.Lottery = null;
 
             String[] properties = productProperties.ToArray();
 
@@ -92,6 +103,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.Dimenssions = properties[8].Split('_').Select(s => Double.Parse(s)).ToArray(); // dim1_dim2_dim3
             this.PurchaseAttributes = RetreiveAttributres(properties[9]); // atr1Name:atr1opt1_atr1opt2...atr1opti;atr2name:atr2opt1...
             this.ProductCategory = new Category(properties[10]);
+            this.timesRated = 0;
         }
 
 
@@ -132,7 +144,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], StatementBuilder.GenerateFormula(newPolicyProps[4]), newPolicyProps[5]);
+                Purchase_Policy newPolicy = new ProductPolicy(this.Product_ID + "ProductPolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                 if (this.PurchasePolicies.TryAdd(newPolicy.PolicyID, newPolicy))
                     Save();
                 else
@@ -277,6 +289,91 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+
+        public double BidPurchase(string userID, BidDTO bid)
+        {
+            lock (PurchaseLock)
+            {
+                try
+                {
+                    lock (QuantityLock)
+                    {
+                        if (this.Quantity < bid.Quantity)
+                            throw new Exception("Not enough product in Store.");
+                        this.Quantity -= bid.Quantity;
+                        this.ReservedQuantity -= bid.Quantity;
+                        this.timesBought += bid.Quantity;
+                    }
+                    Save();
+                    return bid.NewPrice * bid.Quantity;
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+
+        public string AuctionPurchase(int quantity)
+        {           
+            lock (PurchaseLock)
+            {
+                try
+                {
+                    if (Double.Parse(this.Auction.Value[0]) == -1.0)
+                        throw new Exception("Auction purchase for this product is not available for you.");
+                    lock (QuantityLock)
+                    {
+                        if (this.Quantity < quantity)
+                            throw new Exception("Not enough product in Store.");
+                        this.Quantity -= quantity;
+                        this.ReservedQuantity -= quantity;
+                        this.timesBought += quantity;
+                    }
+                    Save();                    
+                    //return quantity * Double.Parse(this.Auction.Value[0]);
+                    return this.Auction.Value[0];
+                }
+                catch (Exception e) { throw e; }
+            }
+        }
+
+        public void Restore(int quantity)
+        {
+            lock (QuantityLock)
+            {
+                try
+                {
+                    this.Quantity += quantity;
+                    this.ReservedQuantity += quantity;
+                    this.timesBought -= quantity;
+                    Save();
+                }
+                catch (Exception ex) { throw ex; }
+            }
+        }
+
+        
+
+
+        public string SetAuction(string userID, double newPrice, string newTransID)
+        {
+            try
+            {
+                if (newPrice != -1 && newPrice < Double.Parse(this.Auction.Value[0]))
+                    throw new Exception("Cannot offer smaller price than current price.");
+                string previousTransID = this.Auction.Value[1]; // transactionID
+                this.Auction = new KeyValuePair<string, List<string>>(userID, new List<string>{ newPrice.ToString(), newTransID });
+                Save();
+                return previousTransID;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveAuction(string userID)
+        {
+            this.Auction = new KeyValuePair<string, List<string>>(this.Product_ID, new List<string>{ "-1.0", "" });
+            Save();
+        }
+
         public void Reserve(int quantity)
         {
             try
@@ -390,15 +487,101 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        /*
-        public void RemoveProduct(string founderID)
+
+        // Lottery:
+        public void SetNewLottery()
+        {
+
+            try
+            {
+                this.Reserve(1);
+                this.Lottery = new ConcurrentDictionary<string, List<string>>();                
+                Save();
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public void RemoveLottery()
+        {
+
+            try
+            {
+                this.Lottery = null;
+                Save();
+            }
+            catch (Exception e) { throw e; }
+
+        }
+
+
+        public double AddLotteryTicket(string userID, int percentage, string transID)
         {
             try
             {
-                this.storeRepo.RemoveProduct(this.StoreID, founderID, this);
-            } catch (Exception e) { throw e; } 
+                if (this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc) >= 100)
+                    throw new Exception("Lottery is full.");
+                this.Lottery.TryAdd(userID, new List<string> { percentage.ToString(), transID});
+                Save();
+                return this.Price / 100 * percentage;
+            }
+            catch (Exception e) { throw e; }
+
         }
-        */
+
+
+        public int RemainingLotteryPercantage()
+        {
+            try
+            {
+                if (this.Lottery != null)
+                    return 100 - this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc);
+                throw new Exception("There is no lottery on this product currently.");
+
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, double> ReturnUsersLotteryTicketMoney()
+        {
+            try
+            {
+                if(this.Lottery != null)
+                    return this.Lottery.ToDictionary(p => p.Key, p => this.Price / 100 * int.Parse(p.Value[0]));
+                throw new Exception("There is no lottery on this product currently.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public Dictionary<string, int> ReturnUsersLotteryTickets()
+        {
+            try
+            {
+                if (this.Lottery != null)
+                    return this.Lottery.ToDictionary(p => p.Key, p => int.Parse(p.Value[0]));
+                throw new Exception("There is no lottery on this product currently.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public Dictionary<string, string> ReturnUsersLotteryTransactions()
+        {
+            try
+            {
+                if (this.Lottery != null)
+                    return this.Lottery.ToDictionary(p => p.Key, p => p.Value[1]);
+                throw new Exception("There is no lottery on this product currently.");
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+
+
+
 
 
         // call me every time data changes

@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
-    public class StoreRepo
+    public class oldStoreRepo
     {
         private static List<string> opened_stores_ids;
         private static List<string> temporary_closed_stores_ids;
@@ -16,13 +16,13 @@ namespace Market_System.DomainLayer.StoreComponent
         private static Random store_id_generator;
         private static Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>> purchase_history; // key in second dictionary is date  val
         //This variable is going to store the Singleton Instance
-        private static StoreRepo Instance = null;
+        private static oldStoreRepo Instance = null;
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
         //The following Static Method is going to return the Singleton Instance
-        public static StoreRepo GetInstance()
+        public static oldStoreRepo GetInstance()
         {
             //This is thread-Safe - Performing a double-lock check.
             if (Instance == null)
@@ -39,7 +39,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         purchase_history = new Dictionary<Store, Dictionary<string, List<Purchase_History_Obj_For_Store>>>();
                         opened_stores_ids = new List<string>();
                         temporary_closed_stores_ids = new List<string>();
-                        Instance = new StoreRepo();
+                        Instance = new oldStoreRepo();
                     }
                 } //Critical Section End
                 //Once the thread releases the lock, the other thread allows entering into the critical section

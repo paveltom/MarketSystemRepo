@@ -1,4 +1,5 @@
-﻿using Market_System.ServiceLayer;
+﻿using Market_System.DomainLayer;
+using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,10 +44,10 @@ namespace Market_System.Presentaion_Layer
 
             manage_store_products.Visible = false;
 
-          
+
         }
 
-            
+
 
 
         protected void manage_store_products_Click(object sender, EventArgs e)
@@ -67,8 +68,8 @@ namespace Market_System.Presentaion_Layer
         {
             string username = new_manager_username.Text;
             string store_id = ddl_store_id.SelectedValue;
-            Response<string> ok= ((Service_Controller)Session["service_controller"]).assign_new_manager(store_id, username);
-            if(ok.ErrorOccured)
+            Response<string> ok = ((Service_Controller)Session["service_controller"]).assign_new_manager(store_id, username);
+            if (ok.ErrorOccured)
             {
                 new_manager_message.ForeColor = System.Drawing.Color.Red;
                 new_manager_message.Text = ok.ErrorMessage;
@@ -119,7 +120,7 @@ namespace Market_System.Presentaion_Layer
 
         protected void show_managers_click(object sender, EventArgs e)
         {
-            
+
             string store_id = ddl_store_id.SelectedValue;
             Response<List<string>> ok = ((Service_Controller)Session["service_controller"]).get_managers_of_store(store_id);
             if (ok.ErrorOccured)
@@ -162,7 +163,7 @@ namespace Market_System.Presentaion_Layer
         protected void show_purchase_history_click(object sender, EventArgs e)
         {
             string username = new_manager_username.Text;
-            string store_id = ddl_store_id.SelectedValue; 
+            string store_id = ddl_store_id.SelectedValue;
             Response<string> ok = ((Service_Controller)Session["service_controller"]).get_purchase_history_from_store(store_id);
             if (ok.ErrorOccured)
             {
@@ -193,7 +194,7 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                closeStoreMsg.Text = "store "+store_id+" closed ";
+                closeStoreMsg.Text = "store " + store_id + " closed ";
             }
 
             //yotam
@@ -203,20 +204,20 @@ namespace Market_System.Presentaion_Layer
             }
             //yotam
         }
-            
-            
+
+
         protected void add_employee_permission_Click(object sender, EventArgs e)
         {
             string username = add_employee_permissionT.Text;
 
             string store_id = ddl_store_id.SelectedValue;
             string permission = add_permission.Text;
-            Response<string> ok = ((Service_Controller)Session["service_controller"]).AddEmployeePermission(store_id,username, permission);
+            Response<string> ok = ((Service_Controller)Session["service_controller"]).AddEmployeePermission(store_id, username, permission);
             if (ok.ErrorOccured)
             {
                 Add_Permission_Message.ForeColor = System.Drawing.Color.Red;
                 Add_Permission_Message.Text = ok.ErrorMessage;
-                }
+            }
             else
             {
                 Add_Permission_Message.ForeColor = System.Drawing.Color.Green;
@@ -227,19 +228,19 @@ namespace Market_System.Presentaion_Layer
 
         protected void remove_permission_Click(object sender, EventArgs e)
         {
-            string username=remove_username.Text;
+            string username = remove_username.Text;
             string storeID = ddl_store_id.SelectedValue;
-            string permission =remove_employee_permission.Text;
-            Response<string> ok = ((Service_Controller)Session["service_controller"]).RemoveEmployeePermission(storeID,username,permission);
+            string permission = remove_employee_permission.Text;
+            Response<string> ok = ((Service_Controller)Session["service_controller"]).RemoveEmployeePermission(storeID, username, permission);
             if (ok.ErrorOccured)
             {
-                Remove_Permission_Message.ForeColor=System.Drawing.Color.Red;
-                Remove_Permission_Message.Text=ok.ErrorMessage;
+                Remove_Permission_Message.ForeColor = System.Drawing.Color.Red;
+                Remove_Permission_Message.Text = ok.ErrorMessage;
             }
             else
             {
-                Remove_Permission_Message.ForeColor= System.Drawing.Color.Green;
-                Remove_Permission_Message.Text= ok.Value;
+                Remove_Permission_Message.ForeColor = System.Drawing.Color.Green;
+                Remove_Permission_Message.Text = ok.Value;
 
             }
         }
@@ -276,6 +277,46 @@ namespace Market_System.Presentaion_Layer
                 daily_sales_label.Visible = true;
                 store_sale_chart.Visible = true;
                 show_store_sale(storeID);
+                //user is owner so i put bids here
+                show_bid_data(storeID);
+                approve_bid_label.Visible = true;
+                Label24.Visible = true;
+                approve_bid_text.Visible = true;
+                approve_bid_button.Visible = true;
+
+                remove_bid_label.Visible = true;
+                Label25.Visible = true;
+                remove_bid_text.Visible = true;
+                remove_bid_button.Visible = true;
+
+                 counter_bid_label.Visible = true;
+                Label26.Visible = true;
+                counter_bid_text.Visible = true;
+                counter_bid_button.Visible = true;
+                Label27.Visible = true;
+                counter_price_text.Visible = true;
+
+
+                //auction setup also here
+                
+                products_in_store_label.Visible = true;
+                products_in_store_list.Visible = true;
+                auction_setup.Visible = true;
+                show_products_in_store(storeID);
+                auction_setup.Visible = true;
+                auction_product_id.Visible = true;
+                auction_product_id_text.Visible = true;
+                auction_price.Visible = true;
+                auction_price_text.Visible = true;
+                auction_duration.Visible = true;
+                auction_duration_text.Visible = true;
+                auction_button.Visible = true;
+                auction_message.Visible = true;
+
+
+
+
+
 
             }
             else
@@ -292,6 +333,41 @@ namespace Market_System.Presentaion_Layer
                 assign_new_manager_button.Visible = false;
                 assign_new_owner_button.Visible = false;
                 owner_remove_button.Visible = false;
+                Label23.Visible = false;
+
+                approve_bid_label.Visible = false;
+                Label24.Visible = false;
+                approve_bid_text.Visible = false;
+                approve_bid_button.Visible = false;
+
+                remove_bid_label.Visible = false;
+                Label25.Visible = false;
+                remove_bid_text.Visible = false;
+                remove_bid_button.Visible = false;
+
+                counter_bid_label.Visible = false;
+                Label26.Visible = false;
+                counter_bid_text.Visible = false;
+                counter_bid_button.Visible = false;
+                Label27.Visible = false;
+                counter_price_text.Visible = false;
+
+
+
+
+                products_in_store_label.Visible = false;
+                products_in_store_list.Visible = false;
+                auction_setup.Visible = false;
+                
+                auction_setup.Visible = false;
+                auction_product_id.Visible = false;
+                auction_product_id_text.Visible = false;
+                auction_price.Visible = false;
+                auction_price_text.Visible = false;
+                auction_duration.Visible = false;
+                auction_duration_text.Visible = false;
+                auction_button.Visible = false;
+                auction_message.Visible = false;
             }
 
             Response<bool> add_remove_permession_checker = ((Service_Controller)Session["service_controller"]).check_if_can_remove_or_add_permessions(storeID);
@@ -325,7 +401,7 @@ namespace Market_System.Presentaion_Layer
                 add_employee_permission.Visible = false;
                 remove_permission_button5.Visible = false;
             }
-                Response<bool> close_store_checker = ((Service_Controller)Session["service_controller"]).check_if_can_close_store(storeID);
+            Response<bool> close_store_checker = ((Service_Controller)Session["service_controller"]).check_if_can_close_store(storeID);
             if (close_store_checker.Value)
             {
                 Label11.Visible = true;
@@ -336,7 +412,7 @@ namespace Market_System.Presentaion_Layer
                 Label11.Visible = false;
                 closeStoreButton.Visible = false;
             }
-                Response<bool> show_info_checker = ((Service_Controller)Session["service_controller"]).check_if_can_show_infos(storeID);
+            Response<bool> show_info_checker = ((Service_Controller)Session["service_controller"]).check_if_can_show_infos(storeID);
             if (show_info_checker.Value)
             {
                 add_product_button7.Visible = true;
@@ -345,6 +421,7 @@ namespace Market_System.Presentaion_Layer
                 Label12.Visible = true;
                 Label13.Visible = true;
                 Label14.Visible = true;
+
             }
             else
             {
@@ -354,9 +431,80 @@ namespace Market_System.Presentaion_Layer
                 Label12.Visible = false;
                 Label13.Visible = false;
                 Label14.Visible = false;
+                daily_sales_label.Visible = false;
+                store_sale_chart.Visible = false;
+                sdasd.Visible = false;
+                store_profit_txt.Visible = false;
+                store_profit.Visible = false;
+                Label22.Visible = false;
+
+
+            }
+
+
+
+        }
+
+        private void show_products_in_store(string storeID)
+        {
+            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).get_products_from_shop_as_list_of_string(storeID);
+            string[] show_me = response.Value.ToArray();
+
+            products_in_store_list.DataSource = show_me;
+            products_in_store_list.DataBind();
+        }
+
+        private void show_bid_data(string storeID)
+        {
+            Response<List<BidDTO>> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
+            if (!okay.ErrorOccured)
+            {
+                if (okay.Value.Count > 0)
+                {
+                    List<string> turn_me_to_array = new List<string>();
+                    foreach (BidDTO bid in okay.Value)
+                    {
+                        turn_me_to_array.Add("bid id: " + bid.BidID + "  suggested price: " + bid.NewPrice + "quantity: " + bid.Quantity + "product id:  " + bid.ProductID + "username: " + ((Service_Controller)Session["service_controller"]).get_username_by_user_id(bid.UserID));
+                    }
+                    string[] show_me = turn_me_to_array.ToArray();
+
+                    bid_data.DataSource = show_me;
+                    bid_data.DataBind();
+                }
             }
         }
 
+
+        protected void start_auction_click(object sender, EventArgs e)
+        {
+
+            if (auction_product_id_text.Text.Equals("") || auction_price_text.Text.Equals("") || auction_duration_text.Text.Equals(""))
+            {
+                auction_message.Text = "please enter valid values";
+                auction_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).SetAuction(auction_product_id_text.Text, double.Parse(auction_price_text.Text),long.Parse(auction_duration_text.Text));
+                if (okay.ErrorOccured)
+                {
+                    auction_message.Text = okay.ErrorMessage;
+                    auction_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    auction_message.Text = okay.Value;
+                    auction_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            catch (Exception exe)
+            {
+                auction_message.Text = exe.Message;
+                auction_message.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
 
         protected void ManageStrategiesClick(object sender, EventArgs e)
         {
@@ -369,6 +517,82 @@ namespace Market_System.Presentaion_Layer
             {
                 Response.Redirect(string.Format("/Presentaion_Layer/PurchaseStrategyManagePage.aspx?store_id={0}", selected_store_id));
             }
+        }
+
+        protected void approve_bid_click(object sender, EventArgs e)
+        {
+            if(approve_bid_text.Text.Equals(""))
+            {
+                approve_bid_message.Text = "please enter valid bid ID";
+                approve_bid_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).ApproveBid(approve_bid_text.Text);
+            if(okay.ErrorOccured)
+            {
+                approve_bid_message.Text = okay.ErrorMessage;
+                approve_bid_message.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                approve_bid_message.Text = okay.Value;
+                approve_bid_message.ForeColor = System.Drawing.Color.Green;
+            }
+
+        }
+
+        protected void counter_bid_click(object sender, EventArgs e)
+        {
+            if (counter_bid_text.Text.Equals("") || counter_price_text.Text.Equals(""))
+            {
+                counter_bid_message.Text = "please enter valid values";
+                counter_bid_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).CounterBid(counter_bid_text.Text,double.Parse(counter_price_text.Text));
+                if (okay.ErrorOccured)
+                {
+                    counter_bid_message.Text = okay.ErrorMessage;
+                    counter_bid_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    counter_bid_message.Text = okay.Value;
+                    counter_bid_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            catch(Exception exe)
+            {
+                counter_bid_message.Text = exe.Message;
+                counter_bid_message.ForeColor = System.Drawing.Color.Red;
+            }
+
+
+
+
+        }
+        protected void remove_bid_click(object sender, EventArgs e)
+        {
+            if (remove_bid_text.Text.Equals(""))
+            {
+                remove_bid_message.Text = "please enter valid bid ID";
+                remove_bid_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).RemoveBid(remove_bid_text.Text);
+            if (okay.ErrorOccured)
+            {
+                remove_bid_message.Text = okay.ErrorMessage;
+                remove_bid_message.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                remove_bid_message.Text = okay.Value;
+                remove_bid_message.ForeColor = System.Drawing.Color.Green;
+            }
+
         }
 
         protected void ManagePoliciesClick(object sender, EventArgs e)
@@ -387,17 +611,37 @@ namespace Market_System.Presentaion_Layer
         protected void show_store_sale(string store_id)
         {
 
-            string[] x = { "25/05/2023", DateTime.Now.ToShortDateString(), "22/05/2023" };
-            int[] y = { 8091, 10894, 1564 };
-            store_sale_chart.Series[0].Points.DataBindXY(x, y);
-            store_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            foreach (DataPoint point in store_sale_chart.Series[0].Points)
+            if (store_profit_txt.Text.Equals(""))
             {
-                if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
-                {
-                    point.Color = System.Drawing.Color.Red;
-                }
+                daily_profit_of_store_message.Text = "please enter a date";
+                return;
             }
+
+            try
+            {
+                DateTime date = DateTime.Parse(store_profit_txt.Text);
+                DateTime day_before = DateTime.Parse(store_profit_txt.Text).AddDays(-1);
+                DateTime day_after = DateTime.Parse(store_profit_txt.Text).AddDays(1);
+                // 
+                string[] x = { day_before.ToShortDateString(), date.ToShortDateString(), day_after.ToShortDateString() };
+                int[] y = { Int32.Parse(((Service_Controller)Session["service_controller"]).GetStoreProfitForDate(store_id,day_before).Value), Int32.Parse(((Service_Controller)Session["service_controller"]).GetStoreProfitForDate(store_id,date).Value), Int32.Parse(((Service_Controller)Session["service_controller"]).GetStoreProfitForDate(store_id,day_after).Value) };
+                store_sale_chart.Series[0].Points.DataBindXY(x, y);
+                store_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
+                foreach (DataPoint point in store_sale_chart.Series[0].Points)
+                {
+                    if (point.AxisLabel.Equals(date.ToShortDateString()))
+                    {
+                        point.Color = System.Drawing.Color.Red;
+                    }
+                }
+
+            }
+            catch (Exception expe)
+            {
+                daily_profit_of_store_message.Text = expe.Message;
+
+            }
+
         }
 
 

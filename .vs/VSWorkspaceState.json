@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Market_System",
-    "\\Market_System\\DomainLayer",
-    "\\Market_System\\DomainLayer\\StoreComponent",
-    "\\Market_System\\ServiceLayer"
+    "\\Market_System"
   ],
-  "SelectedNode": "\\Market_System\\ServiceLayer\\store_service_controller.cs",
+  "SelectedNode": "\\Market_System",
   "PreviewInSolutionExplorer": false
 }
