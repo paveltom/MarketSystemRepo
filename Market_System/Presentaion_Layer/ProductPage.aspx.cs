@@ -50,7 +50,17 @@ namespace Market_System.Presentaion_Layer
                 comment_button.Visible = false;
             }
 
-            
+            //check auction 
+            Response<ItemDTO> auction_checker = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id);
+            if(auction_checker.Value.Auction.Value[0].Equals("-1.0"))
+            {
+                auction_button.Visible = false;
+            }
+            else
+            {
+                auction_button.Visible = true;
+            }
+
 
 
         }
@@ -131,6 +141,11 @@ namespace Market_System.Presentaion_Layer
             }
 
 
+        }
+
+        protected void auction_button_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(string.Format("~/Presentaion_Layer/ProductPage.aspx?product_id={0}", product_id));
         }
     }
 }
