@@ -4948,30 +4948,4 @@ Sunday, 11 June 2023 : assigning new owner with username : ben to the store with
 Sunday, 11 June 2023 : assigning new owner with username : harold to the store with id: 1772989359
 Sunday, 11 June 2023 : 122338932Logged-out succesfully
 Sunday, 11 June 2023 : guest : guest324121451 has logged in
-Sunday, 11 June 2023 : guest : guest416120427 has logged in
-Sunday, 11 June 2023 : bayan has registered!
-Sunday, 11 June 2023 : nekola has registered!
-Sunday, 11 June 2023 : ben has registered!
-Sunday, 11 June 2023 : harold has registered!
-Sunday, 11 June 2023 : ben3 has registered!
-Sunday, 11 June 2023 : opening store with id: 596243459 has failed
-Sunday, 11 June 2023 : Added the product:596243459_1587682092to store: 596243459 has been done successfully
-Sunday, 11 June 2023 : assigning new manager with username : nekola to the store with id: 596243459
-Sunday, 11 June 2023 : assigning new owner with username : ben to the store with id: 596243459
-Sunday, 11 June 2023 : assigning new owner with username : harold to the store with id: 596243459
-Sunday, 11 June 2023 : 839286713Logged-out succesfully
-Sunday, 11 June 2023 : guest : guest1991673782 has logged in
-Sunday, 11 June 2023 : guest : guest783857443 has logged in
-Sunday, 11 June 2023 : bayan has registered!
-Sunday, 11 June 2023 : nekola has registered!
-Sunday, 11 June 2023 : ben has registered!
-Sunday, 11 June 2023 : harold has registered!
-Sunday, 11 June 2023 : ben3 has registered!
-Sunday, 11 June 2023 : opening store with id: 1923202162 has failed
-Sunday, 11 June 2023 : Added the product:1923202162_301633992to store: 1923202162 has been done successfully
-Sunday, 11 June 2023 : assigning new manager with username : nekola to the store with id: 1923202162
-Sunday, 11 June 2023 : assigning new owner with username : ben to the store with id: 1923202162
-Sunday, 11 June 2023 : assigning new owner with username : harold to the store with id: 1923202162
-Sunday, 11 June 2023 : 1667333052Logged-out succesfully
-Sunday, 11 June 2023 : guest : guest1761002337 has logged in
-Sunday, 11 June 2023 : 608375044 added product with id: 1772989359_1184138922 to basket
+

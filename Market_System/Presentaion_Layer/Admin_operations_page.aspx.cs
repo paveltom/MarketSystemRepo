@@ -14,12 +14,12 @@ namespace Market_System.Presentaion_Layer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            show_market_sale();
+
         }
 
         protected void add_new_admin_click(object sender, EventArgs e)
         {
-            if(new_admin_name.Text.Equals("") || new_admin_name.Text.Equals("type-in new admin's name"))
+            if (new_admin_name.Text.Equals("") || new_admin_name.Text.Equals("type-in new admin's name"))
             {
                 add_new_admin_message.ForeColor = System.Drawing.Color.Red;
                 add_new_admin_message.Text = "please type-in new Admin username";
@@ -49,7 +49,7 @@ namespace Market_System.Presentaion_Layer
             else
             {
                 Response<MemberDTO> okay = ((Service_Controller)Session["service_controller"]).GetMemberInfo(member_to_show_txt.Text);
-                if(okay.ErrorOccured)
+                if (okay.ErrorOccured)
                 {
                     show_user_message.Text = okay.ErrorMessage;
                     show_user_message.ForeColor = System.Drawing.Color.Red;
@@ -58,7 +58,7 @@ namespace Market_System.Presentaion_Layer
                 {
                     member_info.Text = okay.Value.tostring();
                 }
-                
+
             }
         }
 
@@ -67,7 +67,7 @@ namespace Market_System.Presentaion_Layer
         {
         }
 
-            protected void remove_user_click(object sender, EventArgs e)
+        protected void remove_user_click(object sender, EventArgs e)
         {
             if (member_to_delete_txt.Text.Equals("") || member_to_delete_txt.Text.Equals("type-in member's username"))
             {
@@ -87,25 +87,48 @@ namespace Market_System.Presentaion_Layer
                     remove_user_message.Text = okay.Value;
                     remove_user_message.ForeColor = System.Drawing.Color.Green;
                 }
-                
+
             }
         }
 
 
-        protected void show_market_sale()
-        {
 
-            string[] x = { "25/05/2023", DateTime.Now.ToShortDateString(), "22/05/2023" };
-            int[] y = { 8091, 10894 ,1564};
-            market_sale_chart.Series[0].Points.DataBindXY(x, y);
-            market_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            foreach(DataPoint point in market_sale_chart.Series[0].Points)
+
+        protected void show_market_sale(object sender, EventArgs e)
+        {
+            if(market_profit_txt.Text.Equals(""))
             {
-                if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
-                {
-                    point.Color = System.Drawing.Color.Red;
-                }
+                daily_profit_of_market_message.Text = "please enter a date";
+                return;
             }
+
+            try
+            {
+                DateTime date = DateTime.Parse(market_profit_txt.Text);
+                DateTime day_before = DateTime.Parse(market_profit_txt.Text).AddDays(-1);
+                DateTime day_after = DateTime.Parse(market_profit_txt.Text).AddDays(1);
+                // 
+                string[] x = { day_before.ToShortDateString(), date.ToShortDateString(), day_after.ToShortDateString() };
+                int[] y = { Int32.Parse(((Service_Controller)Session["service_controller"]).GetMarketProfitForDate(day_before).Value), Int32.Parse(((Service_Controller)Session["service_controller"]).GetMarketProfitForDate(date).Value), Int32.Parse(((Service_Controller)Session["service_controller"]).GetMarketProfitForDate(day_after).Value) };
+                market_sale_chart.Series[0].Points.DataBindXY(x, y);
+                market_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
+                foreach (DataPoint point in market_sale_chart.Series[0].Points)
+                {
+                    if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
+                    {
+                        point.Color = System.Drawing.Color.Red;
+                    }
+                }
+
+            }
+            catch (Exception expe)
+            {
+                daily_profit_of_market_message.Text = expe.Message;
+
+            }
+
+
+
         }
     }
 }
