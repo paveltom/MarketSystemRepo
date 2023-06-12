@@ -79,7 +79,7 @@
                
             </asp:ContentPlaceHolder>
 
-             <div style="height: 221px"></div>
+             <div style="height: 536px"></div>
 
             <asp:Timer ID="Timer1" runat="server" Interval="500" ontick="Timer1_Tick">
             </asp:Timer>

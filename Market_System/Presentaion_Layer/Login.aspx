@@ -6,8 +6,9 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-size: cover;
             background-color: #f2f2f2;
+            background-size: contain;
+            background-repeat:no-repeat;
             background-image:url(images/LogInCover.jpg);
         }
         .form-group  {
