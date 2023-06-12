@@ -47,7 +47,7 @@ namespace Market_System.Presentaion_Layer
 
 
 
-            put_me_time.Text = "will add it later"
+            put_me_time.Text = "will add it later";
             
         }
     }
