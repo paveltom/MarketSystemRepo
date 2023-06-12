@@ -79,10 +79,10 @@ namespace Market_System.ServiceLayer
 
         // Bid
         public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity);
-        public Response ApproveBid(string bidID);
+        public Response<string> ApproveBid(string bidID);
         public Response<BidDTO> GetBid(string bidID);
-        public Response CounterBid(string bidID, double counterPrice);
-        public Response RemoveBid(string bidID);
+        public Response<string> CounterBid(string bidID, double counterPrice);
+        public Response<string> RemoveBid(string bidID);
         public Response<List<BidDTO>> GetStoreBids(string storeID);
 
 

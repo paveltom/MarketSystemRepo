@@ -346,6 +346,11 @@ namespace Market_System.DomainLayer
             }
         }
 
+        public string get_username_by_user_id(string userid)
+        {
+            return userFacade.get_username_from_user_id(userid);
+        }
+
         internal string getusername(string session_id)
         {
             return userFacade.get_username_from_user_id(get_userid_from_session_id(session_id));

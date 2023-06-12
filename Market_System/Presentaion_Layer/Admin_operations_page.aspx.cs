@@ -114,7 +114,7 @@ namespace Market_System.Presentaion_Layer
                 market_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
                 foreach (DataPoint point in market_sale_chart.Series[0].Points)
                 {
-                    if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
+                    if (point.AxisLabel.Equals(date.ToShortDateString()))
                     {
                         point.Color = System.Drawing.Color.Red;
                     }
