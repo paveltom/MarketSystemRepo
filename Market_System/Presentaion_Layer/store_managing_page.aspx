@@ -119,6 +119,32 @@
     </ItemTemplate>
         </asp:DataList></div>
     <div></div>
+     <div style="text-align: left">
+        <asp:Label ID="products_in_store_label" runat="server" Text="products in store:"></asp:Label>
+    </div>
+    <div> <asp:DataList ID="products_in_store_list" runat="server">
+            <ItemTemplate>
+        <asp:Label Text="<%#Container.DataItem %>" runat="server" />
+    </ItemTemplate>
+        </asp:DataList></div>
+    <div></div>
+    <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="auction_setup" runat="server" Text="setup auction: "></asp:Label>
+        <asp:Label ID="auction_product_id" runat="server" Text="product id:"></asp:Label>
+        <asp:TextBox ID="auction_product_id_text" runat="server"></asp:TextBox>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="auction_price" runat="server" Text="starting price:"></asp:Label>
+        <asp:TextBox ID="auction_price_text" runat="server"></asp:TextBox>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="auction_duration" runat="server" Text="duration (in minutes)"></asp:Label>
+&nbsp;
+        <asp:TextBox ID="auction_duration_text" runat="server"></asp:TextBox>
+        <asp:Button ID="auction_button" runat="server" Text="start" CssClass="btn btn-primary" OnClick="start_auction_click" />
+        <asp:Label ID="auction_message" runat="server" ForeColor="Black"></asp:Label>
+        
+    </div>
+    <div></div>
     <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label23" runat="server" Text="bids:"></asp:Label>

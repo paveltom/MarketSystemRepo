@@ -277,6 +277,7 @@ namespace Market_System.Presentaion_Layer
                 daily_sales_label.Visible = true;
                 store_sale_chart.Visible = true;
                 show_store_sale(storeID);
+                //user is owner so i put bids here
                 show_bid_data(storeID);
                 approve_bid_label.Visible = true;
                 Label24.Visible = true;
@@ -296,7 +297,26 @@ namespace Market_System.Presentaion_Layer
                 counter_price_text.Visible = true;
 
 
-                //user is owner so i put bids here
+                //auction setup also here
+                
+                products_in_store_label.Visible = true;
+                products_in_store_list.Visible = true;
+                auction_setup.Visible = true;
+                show_products_in_store(storeID);
+                auction_setup.Visible = true;
+                auction_product_id.Visible = true;
+                auction_product_id_text.Visible = true;
+                auction_price.Visible = true;
+                auction_price_text.Visible = true;
+                auction_duration.Visible = true;
+                auction_duration_text.Visible = true;
+                auction_button.Visible = true;
+                auction_message.Visible = true;
+
+
+
+
+
 
             }
             else
@@ -331,6 +351,23 @@ namespace Market_System.Presentaion_Layer
                 counter_bid_button.Visible = false;
                 Label27.Visible = false;
                 counter_price_text.Visible = false;
+
+
+
+
+                products_in_store_label.Visible = false;
+                products_in_store_list.Visible = false;
+                auction_setup.Visible = false;
+                
+                auction_setup.Visible = false;
+                auction_product_id.Visible = false;
+                auction_product_id_text.Visible = false;
+                auction_price.Visible = false;
+                auction_price_text.Visible = false;
+                auction_duration.Visible = false;
+                auction_duration_text.Visible = false;
+                auction_button.Visible = false;
+                auction_message.Visible = false;
             }
 
             Response<bool> add_remove_permession_checker = ((Service_Controller)Session["service_controller"]).check_if_can_remove_or_add_permessions(storeID);
@@ -408,6 +445,15 @@ namespace Market_System.Presentaion_Layer
 
         }
 
+        private void show_products_in_store(string storeID)
+        {
+            Response<List<String>> response = ((Service_Controller)Session["service_controller"]).get_products_from_shop_as_list_of_string(storeID);
+            string[] show_me = response.Value.ToArray();
+
+            products_in_store_list.DataSource = show_me;
+            products_in_store_list.DataBind();
+        }
+
         private void show_bid_data(string storeID)
         {
             Response<List<BidDTO>> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
@@ -426,6 +472,38 @@ namespace Market_System.Presentaion_Layer
                     bid_data.DataBind();
                 }
             }
+        }
+
+
+        protected void start_auction_click(object sender, EventArgs e)
+        {
+
+            if (auction_product_id_text.Text.Equals("") || auction_price_text.Text.Equals("") || auction_duration_text.Text.Equals(""))
+            {
+                auction_message.Text = "please enter valid values";
+                auction_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).SetAuction(auction_product_id_text.Text, double.Parse(auction_price_text.Text),long.Parse(auction_duration_text.Text));
+                if (okay.ErrorOccured)
+                {
+                    auction_message.Text = okay.ErrorMessage;
+                    auction_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    auction_message.Text = okay.Value;
+                    auction_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            catch (Exception exe)
+            {
+                auction_message.Text = exe.Message;
+                auction_message.ForeColor = System.Drawing.Color.Red;
+            }
+
         }
 
         protected void ManageStrategiesClick(object sender, EventArgs e)

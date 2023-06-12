@@ -320,32 +320,32 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
 
-        public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        public string SetAuction(string productID, double newPrice, long auctionMinutesDuration)
         {
             try
             {
                 Market.SetAuction(this.SessionID, productID, newPrice, auctionMinutesDuration);
-                return new Response("Auction was created successfully.");
+                return "Auction was created successfully.";
             }
             catch (Exception e) { throw e; }
         }
 
-        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        public string UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
                 Market.UpdateAuction(this.SessionID, productID, newPrice, card_number, month, year, holder, ccv, id);
-                return new Response("Auction product price was updated successfully.");
+                return "Auction product price was updated successfully.";
             }
             catch (Exception ex) { throw ex; }
         }
 
-        public Response RemoveAuction(string productID)
+        public string RemoveAuction(string productID)
         {
             try
             {
                 Market.RemoveAuction(this.SessionID, productID);
-                return new Response("Auction was removed successfully.");
+                return "Auction was removed successfully.";
             }
             catch (Exception e) { throw e; }
         }

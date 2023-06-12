@@ -87,9 +87,9 @@ namespace Market_System.ServiceLayer
 
 
         // ======= AUCTION =========
-        public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration);
-        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id);
-        public Response RemoveAuction(string productID);
+        public Response<string> SetAuction(string productID, double newPrice, long auctionMinutesDuration);
+        public Response<string> UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id);
+        public Response<string> RemoveAuction(string productID);
 
 
 
