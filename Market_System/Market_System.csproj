@@ -332,6 +332,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Presentaion_Layer\Admin_operations_page.aspx" />
+    <Content Include="Presentaion_Layer\auction_page.aspx" />
     <Content Include="Presentaion_Layer\cart_page.aspx" />
     <Content Include="Presentaion_Layer\change_password_page.aspx" />
     <Content Include="Presentaion_Layer\checkoutPage.aspx" />
@@ -438,6 +439,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\Admin_operations_page.aspx.designer.cs">
       <DependentUpon>Admin_operations_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\auction_page.aspx.cs">
+      <DependentUpon>auction_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\auction_page.aspx.designer.cs">
+      <DependentUpon>auction_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\cart_page.aspx.cs">
       <DependentUpon>cart_page.aspx</DependentUpon>

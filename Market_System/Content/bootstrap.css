@@ -136,7 +136,8 @@ input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
     direction: rtl;
-    }
+    text-align: left;
+}
 button[disabled],
 html input[disabled] {
   cursor: default;
