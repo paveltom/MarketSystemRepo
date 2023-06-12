@@ -73,6 +73,39 @@ namespace Market_System.Presentaion_Layer
 
         }
 
+
+        protected void bid_click(object sender, EventArgs e)
+        {
+            if(bid_quantity_text.Text.Equals("") || new_price_text.Text.Equals(""))
+            {
+                bid_error_message.Text = "please enter valid values";
+                return;
+            }
+            try
+            {
+                int quantity = Int32.Parse(bid_quantity_text.Text);
+                double price = double.Parse(new_price_text.Text);
+                Response<BidDTO> okay = ((Service_Controller)Session["service_controller"]).PlaceBid(product_id, price,quantity);
+                if(okay.ErrorOccured)
+                {
+                    bid_error_message.ForeColor = System.Drawing.Color.Red;
+                    bid_error_message.Text = okay.ErrorMessage;
+                }
+                else
+                {
+                    bid_error_message.ForeColor = System.Drawing.Color.Green;
+                    bid_error_message.Text = "bid was sent succefully , waiting for store owners response";
+                }
+
+            }
+            catch(Exception exe)
+            {
+                bid_error_message.ForeColor = System.Drawing.Color.Red;
+                bid_error_message.Text = exe.Message;
+            }
+        }
+
+
         protected void add_commnet_click(object sender, EventArgs e)
         {
             if (ddl_rating.SelectedValue.Equals("nothing_to_show") || commnet_txtbox.Equals(""))

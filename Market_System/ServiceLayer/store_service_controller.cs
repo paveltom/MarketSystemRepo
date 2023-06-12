@@ -264,12 +264,12 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
-        public Response ApproveBid(string bidID)
+        public string ApproveBid(string bidID)
         {
             try
             {
                 Market.ApproveBid(this.SessionID, bidID);
-                return new Response("Your approvement was accepted.");
+                return "Your approvement was accepted.";
             }
             catch (Exception e) { throw e; }
         }
@@ -285,23 +285,23 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public Response CounterBid(string bidID, double counterPrice)
+        public string CounterBid(string bidID, double counterPrice)
         {
             try
             {
                 Market.CounterBid(this.SessionID, bidID, counterPrice);
-                return new Response("Counter offer was placed.");
+                return "Counter offer was placed.";
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response RemoveBid(string bidID)
+        public string RemoveBid(string bidID)
         {
             try
             {
                 Market.RemoveBid(this.SessionID, bidID);
-                return new Response("Bid was removed.");
+                return "Bid was removed.";
             }
             catch (Exception e) { throw e; }
         }

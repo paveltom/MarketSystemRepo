@@ -33,6 +33,20 @@ namespace Market_System.ServiceLayer
             }
         }
 
+
+        public Response<string> get_username_by_user_id(string userid)
+        {
+            try
+            {
+                Response<string> okay = Response<string>.FromValue(this.usc.get_username_by_user_id(userid));
+                return okay;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
         internal Response<bool> check_if_user_can_manage_stock(string store_id)
         {
             try
@@ -1712,13 +1726,16 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
-        public Response ApproveBid(string bidID)
+        public Response<string> ApproveBid(string bidID)
         {
             try
             {
-                return ssc.ApproveBid(bidID);
+                Response<string> ret = Response<string>.FromValue(this.ssc.ApproveBid(bidID));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) {
+                return Response<string>.FromError(e.Message);
+            }
         }
 
 
@@ -1732,23 +1749,31 @@ namespace Market_System.ServiceLayer
         }
 
 
-        public Response CounterBid(string bidID, double counterPrice)
+        public Response<string> CounterBid(string bidID, double counterPrice)
         {
             try
             {
-                return ssc.CounterBid(bidID, counterPrice);
+                Response<string> ret = Response<string>.FromValue(this.ssc.CounterBid(bidID, counterPrice));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
         }
 
 
-        public Response RemoveBid(string bidID)
+        public Response<string> RemoveBid(string bidID)
         {
             try
             {
-                return ssc.RemoveBid(bidID);
+                Response<string> ret = Response<string>.FromValue(this.ssc.RemoveBid(bidID));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
         }
 
 

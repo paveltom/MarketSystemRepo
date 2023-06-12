@@ -120,8 +120,14 @@
         </asp:DataList></div>
     <div></div>
     <div></div>
-    <div></div>
-    <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="Label23" runat="server" Text="bids:"></asp:Label>
+    </div>
+      <div> <asp:DataList ID="bid_data" runat="server">
+            <ItemTemplate>
+        <asp:Label Text="<%#Container.DataItem %>" runat="server" />
+    </ItemTemplate>
+        </asp:DataList></div>
     <div></div>
     <div></div>
 

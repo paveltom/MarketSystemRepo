@@ -1,4 +1,5 @@
-﻿using Market_System.ServiceLayer;
+﻿using Market_System.DomainLayer;
+using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -345,8 +346,7 @@ namespace Market_System.Presentaion_Layer
                 Label12.Visible = true;
                 Label13.Visible = true;
                 Label14.Visible = true;
-                
-
+                show_bid_data(storeID);
             }
             else
             {
@@ -362,6 +362,7 @@ namespace Market_System.Presentaion_Layer
                 store_profit_txt.Visible = false;
                 store_profit.Visible = false;
                 Label22.Visible = false;
+                Label23.Visible = false;
 
             }
 
@@ -369,6 +370,25 @@ namespace Market_System.Presentaion_Layer
 
         }
 
+        private void show_bid_data(string storeID)
+        {
+            Response<List<BidDTO>> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
+            if (!okay.ErrorOccured)
+            {
+                if (okay.Value.Count > 0)
+                {
+                    List<string> turn_me_to_array = new List<string>();
+                    foreach (BidDTO bid in okay.Value)
+                    {
+                        turn_me_to_array.Add("bid id: " + bid.BidID + "  suggested price: " + bid.NewPrice + "quantity: " + bid.Quantity + "product id:  " + bid.ProductID + "username: " + ((Service_Controller)Session["service_controller"]).get_username_by_user_id(bid.UserID));
+                    }
+                    string[] show_me = turn_me_to_array.ToArray();
+
+                    bid_data.DataSource = show_me;
+                    bid_data.DataBind();
+                }
+            }
+        }
 
         protected void ManageStrategiesClick(object sender, EventArgs e)
         {
