@@ -345,6 +345,8 @@ namespace Market_System.Presentaion_Layer
                 Label12.Visible = true;
                 Label13.Visible = true;
                 Label14.Visible = true;
+                
+
             }
             else
             {
@@ -354,7 +356,17 @@ namespace Market_System.Presentaion_Layer
                 Label12.Visible = false;
                 Label13.Visible = false;
                 Label14.Visible = false;
+                daily_sales_label.Visible = false;
+                store_sale_chart.Visible = false;
+                sdasd.Visible = false;
+                store_profit_txt.Visible = false;
+                store_profit.Visible = false;
+                Label22.Visible = false;
+
             }
+
+
+
         }
 
 
@@ -387,17 +399,37 @@ namespace Market_System.Presentaion_Layer
         protected void show_store_sale(string store_id)
         {
 
-            string[] x = { "25/05/2023", DateTime.Now.ToShortDateString(), "22/05/2023" };
-            int[] y = { 8091, 10894, 1564 };
-            store_sale_chart.Series[0].Points.DataBindXY(x, y);
-            store_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            foreach (DataPoint point in store_sale_chart.Series[0].Points)
+            if (store_profit_txt.Text.Equals(""))
             {
-                if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
-                {
-                    point.Color = System.Drawing.Color.Red;
-                }
+                daily_profit_of_store_message.Text = "please enter a date";
+                return;
             }
+
+            try
+            {
+                DateTime date = DateTime.Parse(store_profit_txt.Text);
+                DateTime day_before = DateTime.Parse(store_profit_txt.Text).AddDays(-1);
+                DateTime day_after = DateTime.Parse(store_profit_txt.Text).AddDays(1);
+                // 
+                string[] x = { day_before.ToShortDateString(), date.ToShortDateString(), day_after.ToShortDateString() };
+                int[] y = { Int32.Parse(((Service_Controller)Session["service_controller"]).GetStoreProfitForDate(store_id,day_before).Value), Int32.Parse(((Service_Controller)Session["service_controller"]).GetStoreProfitForDate(store_id,date).Value), Int32.Parse(((Service_Controller)Session["service_controller"]).GetStoreProfitForDate(store_id,day_after).Value) };
+                store_sale_chart.Series[0].Points.DataBindXY(x, y);
+                store_sale_chart.Series[0].ChartType = System.Web.UI.DataVisualization.Charting.SeriesChartType.StackedColumn;
+                foreach (DataPoint point in store_sale_chart.Series[0].Points)
+                {
+                    if (point.AxisLabel.Equals(DateTime.Now.ToShortDateString()))
+                    {
+                        point.Color = System.Drawing.Color.Red;
+                    }
+                }
+
+            }
+            catch (Exception expe)
+            {
+                daily_profit_of_store_message.Text = expe.Message;
+
+            }
+
         }
 
 

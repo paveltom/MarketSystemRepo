@@ -4000,3 +4000,19 @@ Sunday, 11 June 2023 : guest : guest324121451 has logged in
 יום ראשון 11 יוני 2023 : assigning new owner with username : harold to the store with id: 778141258
 יום ראשון 11 יוני 2023 : 1586613193Logged-out succesfully
 יום ראשון 11 יוני 2023 : guest : guest423403595 has logged in
+יום שני 12 יוני 2023 : guest : guest1795065982 has logged in
+יום שני 12 יוני 2023 : bayan has registered!
+יום שני 12 יוני 2023 : nekola has registered!
+יום שני 12 יוני 2023 : ben has registered!
+יום שני 12 יוני 2023 : harold has registered!
+יום שני 12 יוני 2023 : ben3 has registered!
+יום שני 12 יוני 2023 : opening store with id: 1353829238 has failed
+יום שני 12 יוני 2023 : Added the product:1353829238_946861411to store: 1353829238 has been done successfully
+יום שני 12 יוני 2023 : assigning new manager with username : nekola to the store with id: 1353829238
+יום שני 12 יוני 2023 : assigning new owner with username : ben to the store with id: 1353829238
+יום שני 12 יוני 2023 : assigning new owner with username : harold to the store with id: 1353829238
+יום שני 12 יוני 2023 : 210615333Logged-out succesfully
+יום שני 12 יוני 2023 : guest : guest1126666168 has logged in
+יום שני 12 יוני 2023 : ADMIN with session ID : 839113662 requested profit for a market on date 14/06/2022 00:00:00
+יום שני 12 יוני 2023 : ADMIN with session ID : 839113662 requested profit for a market on date 15/06/2022 00:00:00
+יום שני 12 יוני 2023 : ADMIN with session ID : 839113662 requested profit for a market on date 16/06/2022 00:00:00

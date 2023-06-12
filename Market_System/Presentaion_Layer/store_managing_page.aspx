@@ -129,7 +129,19 @@
         <asp:Label ID="daily_sales_label" runat="server" Text="Daily sales of the store:"></asp:Label>
         
     </div>
-    <div></div>
+    <div>
+    <div style="text-align: center">
+        <asp:Label ID="sdasd" runat="server" Text="enter date to show the profit of the store:"></asp:Label>
+        
+        <asp:TextBox ID="store_profit_txt" runat="server"></asp:TextBox>
+        <asp:Button ID="store_profit" runat="server" Text="Show"  CssClass="btn btn-primary" OnClick="show_store_sale"  />
+        <asp:Label ID="daily_profit_of_store_message" runat="server" ForeColor="#FF3300"></asp:Label>
+        
+    </div>
+    <div style="text-align: center">
+        <asp:Label ID="Label22" runat="server" Text="please enter in this format, dd/mm/yyyy"></asp:Label>
+        </div>
+    </div>
     <div style="text-align: center">
         <asp:Chart ID="store_sale_chart" runat="server">
             <Series>
