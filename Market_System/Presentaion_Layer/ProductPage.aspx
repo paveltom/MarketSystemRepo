@@ -10,7 +10,7 @@
         <asp:Label ID="clickmsg" runat="server" Text=""></asp:Label>
     </div>
     <div style="text-align: left">
-        <asp:Button ID="auction_button" runat="server" Text="go to auction" />
+        <asp:Button ID="auction_button" runat="server" Text="go to auction" OnClick="auction_button_Click" />
     </div>
     <div>&nbsp;</div>
     <div style="text-align: left">
