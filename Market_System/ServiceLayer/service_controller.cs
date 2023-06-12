@@ -1790,31 +1790,35 @@ namespace Market_System.ServiceLayer
 
         // ======= AUCTION =========
 
-        public Response SetAuction(string productID, double newPrice, long auctionMinutesDuration)
+        public Response<string> SetAuction(string productID, double newPrice, long auctionMinutesDuration)
         {
+
             try
             {
-                return ssc.SetAuction(productID, newPrice, auctionMinutesDuration);
+                Response<string> ret = Response<string>.FromValue(this.ssc.SetAuction(productID, newPrice, auctionMinutesDuration));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) {return Response<string>.FromError(e.Message); }
         }
 
-        public Response UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
+        public Response<string> UpdateAuction(string productID, double newPrice, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
-                return ssc.UpdateAuction(productID, newPrice, card_number, month, year, holder, ccv, id);
+                Response<string> ret = Response<string>.FromValue(ssc.UpdateAuction(productID, newPrice, card_number, month, year, holder, ccv, id));
+                return ret;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { return Response<string>.FromError(ex.Message); }
         }
 
-        public Response RemoveAuction(string productID)
+        public Response<string> RemoveAuction(string productID)
         {
             try
             {
-                return ssc.RemoveAuction(productID);
+                Response<string> ret = Response<string>.FromValue(ssc.RemoveAuction(productID));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
         }
 
 
