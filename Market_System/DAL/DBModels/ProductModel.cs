@@ -69,7 +69,7 @@ namespace Market_System.DAL.DBModels
             this.Name = updatedProduct.Name;
             this.Description = updatedProduct.Description;
             this.Price = updatedProduct.Price;
-            this.Auction = updatedProduct.Auction.Key + "_" + updatedProduct.Auction.Value[0] + updatedProduct.Auction.Value[1];
+            this.Auction = updatedProduct.Auction.Key + "_" + updatedProduct.Auction.Value[0] + "_" + updatedProduct.Auction.Value[1];
             this.ReservedQuantity = updatedProduct.ReservedQuantity;
             this.Rating = updatedProduct.Rating; // between 1-10
             this.Quantity = updatedProduct.Quantity;
