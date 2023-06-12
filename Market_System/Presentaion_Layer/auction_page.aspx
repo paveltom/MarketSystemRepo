@@ -8,8 +8,33 @@
         <asp:Label ID="product_id_label" runat="server" Text=""></asp:Label>
     </div>
     <div></div>
+    <div style="text-align: left">
+    </div>
+
+     <asp:Timer ID="Timer1" runat="server" Interval="500" ontick="Timer1_Tick">
+            </asp:Timer>
+            <asp:UpdatePanel ID="UpdatePanel1"
+                runat="server">
+                <ContentTemplate>
+                  <div style="text-align: left">
+                    <asp:Label ID="time_left" runat="server" Text="time left:"></asp:Label>
+                      <asp:Label ID="put_me_time" runat="server" Text=""></asp:Label>
+                  </div>
+
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
+                    </asp:AsyncPostBackTrigger>
+                </Triggers>
+            </asp:UpdatePanel>
     <div style="text-align: left"></div>
-    <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="price_label" runat="server" Text="current highest price:"></asp:Label>
+        <asp:Label ID="price" runat="server" Text=""></asp:Label>
+    </div>
+
+
+
     <div></div>
     
 

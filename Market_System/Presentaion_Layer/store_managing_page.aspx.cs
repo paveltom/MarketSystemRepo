@@ -276,7 +276,7 @@ namespace Market_System.Presentaion_Layer
                 owner_remove_button.Visible = true;
                 daily_sales_label.Visible = true;
                 store_sale_chart.Visible = true;
-                show_store_sale(storeID);
+                
                 //user is owner so i put bids here
                 show_bid_data(storeID);
                 approve_bid_label.Visible = true;
@@ -608,9 +608,9 @@ namespace Market_System.Presentaion_Layer
             }
         }
 
-        protected void show_store_sale(string store_id)
+        protected void show_store_sale(object sender, EventArgs e)
         {
-
+            string store_id = ddl_store_id.SelectedValue;
             if (store_profit_txt.Text.Equals(""))
             {
                 daily_profit_of_store_message.Text = "please enter a date";
