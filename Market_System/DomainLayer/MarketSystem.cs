@@ -9,6 +9,8 @@ using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
 using Microsoft.Ajax.Utilities;
 using System.Threading.Tasks;
+using Market_System.ServiceLayer;
+using System.Timers;
 
 namespace Market_System.DomainLayer
 {
@@ -1047,6 +1049,19 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
+        }
+
+        internal System.Timers.Timer get_timer_of_auciton(string key)
+        {
+            try
+            {
+                return storeFacade.get_timer(key);
+            }
+            catch(Exception ok)
+            {
+                throw ok;
+            }
+           
         }
 
         public string Check_Delivery(string name, string address, string city, string country, string zip)

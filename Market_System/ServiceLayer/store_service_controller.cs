@@ -6,6 +6,7 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 using System.Xml.Linq;
+using System.Timers;
 
 namespace Market_System.ServiceLayer
 {
@@ -1029,7 +1030,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
-     
+        internal Timer get_timer_of_auciton(string key)
+        {
+            try
+            {
+                return Market.get_timer_of_auciton(key);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
         // ======================== END of TODO ========================
         // =============================================================
