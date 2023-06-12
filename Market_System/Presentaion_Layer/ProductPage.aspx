@@ -9,6 +9,9 @@
         <asp:Button ID="addToCart" runat="server" Text="add To Cart" OnClick="addToCart_Click" CssClass="btn btn-primary" />
         <asp:Label ID="clickmsg" runat="server" Text=""></asp:Label>
     </div>
+    <div style="text-align: left">
+        <asp:Button ID="auction_button" runat="server" Text="go to auction" />
+    </div>
     <div>&nbsp;</div>
     <div style="text-align: left">
         <asp:Label ID="Bid" runat="server" Text="Bidding:"></asp:Label>
