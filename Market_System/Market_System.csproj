@@ -434,6 +434,9 @@
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\Statement.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StatementBuilder.cs" />
     <Compile Include="DomainLayer\StoreComponent\PolicyStrategy\StorePolicy.cs" />
+    <Compile Include="DomainLayer\StoreComponent\TimerPlus.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Presentaion_Layer\Admin_operations_page.aspx.cs">
       <DependentUpon>Admin_operations_page.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

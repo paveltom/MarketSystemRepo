@@ -87,11 +87,11 @@ namespace Market_System.DAL
         }
 
 
-        public ConcurrentDictionary<string, System.Timers.Timer> RestoreTimers()
+        public ConcurrentDictionary<string, TimerPlus> RestoreTimers()
         {
             using (StoreDataContext context = new StoreDataContext())
             {                
-                ConcurrentDictionary<string, System.Timers.Timer> ret = new ConcurrentDictionary<string, System.Timers.Timer>();
+                ConcurrentDictionary<string, TimerPlus> ret = new ConcurrentDictionary<string, TimerPlus>();
                 context.TimersDB.ToList().ForEach(t =>
                 {
 
@@ -101,7 +101,7 @@ namespace Market_System.DAL
                     double remainedTime = TimeSpan.FromMinutes(Double.Parse(t.MinutesToCount)).TotalMilliseconds - ts.TotalMilliseconds;
                     if (remainedTime < 0)
                         remainedTime = 0;
-                    System.Timers.Timer newT = new System.Timers.Timer(remainedTime);
+                    TimerPlus newT = new TimerPlus(remainedTime, creationDate);
 
                     Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded;
                     if (t.TimerID.Contains("lottery"))

@@ -5937,3 +5937,14 @@ Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
+Tuesday, 13 June 2023 : guest : guest1802904527 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 292191606 has failed
+Tuesday, 13 June 2023 : Added the product:292191606_28673612to store: 292191606 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 292191606
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 292191606
+Tuesday, 13 June 2023 : guest : guest1130759521 has logged in
