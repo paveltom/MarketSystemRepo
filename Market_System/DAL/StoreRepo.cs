@@ -354,7 +354,12 @@ namespace Market_System.DAL
                     purchase.ProductId = item.GetID();
                     purchase.Store = model;
                     purchase.TotalPrice = item.Price * item.GetQuantity();
-                    purchase.Day_Month_Year = DateTime.Now.Day.ToString("dd") + "_" + DateTime.Now.Month.ToString("MM") + "_" + DateTime.Now.Year.ToString("yyyy");
+                    DateTime dateTime = DateTime.Now;
+                    string month = dateTime.Month.ToString();
+                    if (month.Length == 1)
+                        month = "0" + month;
+                    string date_as_dd_MM_yyyy = dateTime.Day.ToString() + "_" + month + "_" + dateTime.Year.ToString();
+                    purchase.Day_Month_Year = date_as_dd_MM_yyyy;
                     purchase.HistoryId = item.GetID() + "_" + DateTime.Now.Ticks;
                     model.PurchaseHistory.Add(purchase);
                     context.SaveChanges();

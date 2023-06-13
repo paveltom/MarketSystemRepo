@@ -6072,3 +6072,125 @@ Tuesday, 13 June 2023 : user with session ID : 1110153628 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 1110153628 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 1110153628 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 1110153628 got his Messages
+Tuesday, 13 June 2023 : guest : guest706703646 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 1497659835 has failed
+Tuesday, 13 June 2023 : Added the product:1497659835_1981177314to store: 1497659835 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 1497659835
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 1497659835
+Tuesday, 13 June 2023 : guest : guest805086568 has logged in
+Tuesday, 13 June 2023 : pasha has registered!
+Tuesday, 13 June 2023 : 508290421 added product with id: 2069358961_35369717 to basket
+Tuesday, 13 June 2023 : checking deilvery for address: b7 succefully done.
+Tuesday, 13 June 2023 : checkout completed by : pasha
+Tuesday, 13 June 2023 : 508290421Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest1702934277 has logged in
+Tuesday, 13 June 2023 : ADMIN with session ID : 35369717 requested profit for a market on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 35369717 requested profit for a market on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 35369717 requested profit for a market on date 14/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 35369717 requested profit for a market on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 35369717 requested profit for a market on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : guest : guest517144812 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 773972943 has failed
+Tuesday, 13 June 2023 : Added the product:773972943_1449848483to store: 773972943 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 773972943
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 773972943
+Tuesday, 13 June 2023 : guest : guest428255980 has logged in
+Tuesday, 13 June 2023 : guest : guest459634947 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 1325391243 has failed
+Tuesday, 13 June 2023 : Added the product:1325391243_631101943to store: 1325391243 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 1325391243
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 1325391243
+Tuesday, 13 June 2023 : guest : guest1792314363 has logged in
+Tuesday, 13 June 2023 : guest : guest721027356 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 2047954776 has failed
+Tuesday, 13 June 2023 : Added the product:2047954776_636098638to store: 2047954776 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 2047954776
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 2047954776
+Tuesday, 13 June 2023 : guest : guest1589938206 has logged in
+Tuesday, 13 June 2023 : ADMIN with session ID : 1313154743 requested profit for a market on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 1313154743 requested profit for a market on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 1313154743 requested profit for a market on date 14/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 1313154743 requested profit for a store 1589938206on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 1313154743 requested profit for a store 1589938206on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 1313154743 requested profit for a store 1589938206on date 14/06/2023 0:00:00
+Tuesday, 13 June 2023 : 1589938206Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest1235568189 has logged in
+Tuesday, 13 June 2023 : pasha has registered!
+Tuesday, 13 June 2023 : 95598813 added product with id: 1589938206_1235568189 to basket
+Tuesday, 13 June 2023 : 95598813 added product with id: 961782852_1741006900 to basket
+Tuesday, 13 June 2023 : checking deilvery for address: b7 succefully done.
+Tuesday, 13 June 2023 : checkout completed by : pasha
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 879266243 got his Messages
+Tuesday, 13 June 2023 : 95598813Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest1211405560 has logged in
+Tuesday, 13 June 2023 : ADMIN with session ID : 479284525 requested profit for a market on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 479284525 requested profit for a market on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 479284525 requested profit for a market on date 14/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 479284525 requested profit for a store 1589938206on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 479284525 requested profit for a store 1589938206on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 479284525 requested profit for a store 1589938206on date 14/06/2023 0:00:00
+Tuesday, 13 June 2023 : guest : guest2099202811 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 1647501734 has failed
+Tuesday, 13 June 2023 : Added the product:1647501734_1116288761to store: 1647501734 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 1647501734
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 1647501734
+Tuesday, 13 June 2023 : guest : guest431904640 has logged in
+Tuesday, 13 June 2023 : pasha has registered!
+Tuesday, 13 June 2023 : 1769656787 added product with id: 1082322083_1964968780 to basket
+Tuesday, 13 June 2023 : 1769656787 added product with id: 1808860359_1316104630 to basket
+Tuesday, 13 June 2023 : checking deilvery for address: b7 succefully done.
+Tuesday, 13 June 2023 : checkout completed by : pasha
+Tuesday, 13 June 2023 : 1769656787Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest660473323 has logged in
+Tuesday, 13 June 2023 : ADMIN with session ID : 1103228123 requested profit for a market on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 1103228123 requested profit for a market on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : ADMIN with session ID : 1103228123 requested profit for a market on date 14/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 1103228123 requested profit for a store 1808860359on date 12/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 1103228123 requested profit for a store 1808860359on date 13/06/2023 0:00:00
+Tuesday, 13 June 2023 : user with session ID : 1103228123 requested profit for a store 1808860359on date 14/06/2023 0:00:00

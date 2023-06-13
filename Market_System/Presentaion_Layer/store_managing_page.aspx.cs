@@ -477,6 +477,12 @@ namespace Market_System.Presentaion_Layer
                 Label12.Visible = true;
                 Label13.Visible = true;
                 Label14.Visible = true;
+                daily_sales_label.Visible = true;
+                store_sale_chart.Visible = true;
+                sdasd.Visible = true;
+                store_profit_txt.Visible = true;
+                store_profit.Visible = true;
+                Label22.Visible = true;
 
             }
             else
