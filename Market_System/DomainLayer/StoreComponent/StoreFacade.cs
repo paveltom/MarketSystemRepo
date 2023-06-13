@@ -856,6 +856,12 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
+        private void RemainingTime(string timerID) // <productID>_<type>_timer
+        {
+
+        }
+
+
 
         // ====================== END of Store methods ===============================
         // ===========================================================================

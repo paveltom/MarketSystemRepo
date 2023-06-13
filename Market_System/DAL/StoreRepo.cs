@@ -7,6 +7,7 @@ using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -68,8 +69,8 @@ namespace Market_System.DAL
 
         public void destroy()
         {
+            Database.Delete("MarketDB");
             Instance = null;
-
         }
 
 

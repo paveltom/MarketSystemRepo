@@ -5008,3 +5008,16 @@ Sunday, 11 June 2023 : assigning new owner with username : ben to the store with
 Sunday, 11 June 2023 : assigning new owner with username : harold to the store with id: 1772989359
 Sunday, 11 June 2023 : 122338932Logged-out succesfully
 Sunday, 11 June 2023 : guest : guest324121451 has logged in
+Tuesday, 13 June 2023 : guest : guest2064146901 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 1834938395 has failed
+Tuesday, 13 June 2023 : Added the product:1834938395_1657354067to store: 1834938395 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 1834938395
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 1834938395
+Tuesday, 13 June 2023 : assigning new owner with username : harold to the store with id: 1834938395
+Tuesday, 13 June 2023 : 730495385Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest343546762 has logged in
