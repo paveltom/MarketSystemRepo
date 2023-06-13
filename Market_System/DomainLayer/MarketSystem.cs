@@ -640,6 +640,59 @@ namespace Market_System.DomainLayer
 
         }
 
+        public void SuggestNewOwner(string sessionID, string newOwnerUsername, string storeID)
+        {
+            try
+            {
+                string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
+                string userID = userFacade.get_userID_from_session(sessionID);
+                List<string> owners = storeFacade.GetOwnersOfTheStore(userID, storeID);
+                userFacade.SuggestNewOwner(userID, newOwner_ID, owners, storeID);
+
+                //Notify the new owner
+                var message = "You've to accept or reject new owner suggestion in store: " + storeID;
+                var curr_username = userFacade.get_username_from_user_id(userID);
+                sendMessageToStoreOwners(message, curr_username, storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void AcceptSuggestion(string session_id, string suggestionUsername, string storeID)
+        {
+            try
+            {
+                string newOwner_ID = userFacade.get_user_id_from_username(suggestionUsername);
+                string userID = userFacade.get_userID_from_session(session_id);
+
+                userFacade.AcceptSuggestion(userID, newOwner_ID, storeID);
+
+                var AssigningUserID = userFacade.checkIfEmptyContract(userID, newOwner_ID, storeID);
+                if(AssigningUserID != null)
+                {
+                    Assign_New_Owner(AssigningUserID, suggestionUsername, storeID);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public string CheckAreThereSuggestions(string storeID)
+        {
+            try
+            {
+                return userFacade.CheckAreThereSuggestions(storeID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void purchase(string session_id, string transactionID)
         {
             try
@@ -669,6 +722,24 @@ namespace Market_System.DomainLayer
                 }
             }
 
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void DeclineSuggestion(string session_id, string suggestionUsername, string storeID)
+        {
+            try
+            {
+                string newOwner_ID = userFacade.get_user_id_from_username(suggestionUsername);
+                string userID = userFacade.get_userID_from_session(session_id);
+
+                userFacade.DeclineSuggestion(userID, newOwner_ID, storeID);
+                var message = "This owner suggestion was declined by one or more owners, for this user: " + suggestionUsername;
+                var currUsername = userFacade.get_username_from_user_id(userID);
+                sendMessageToStoreOwners(message, currUsername, storeID);
+            }
             catch (Exception e)
             {
                 throw e;

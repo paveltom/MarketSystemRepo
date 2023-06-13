@@ -15,6 +15,7 @@ namespace Market_System.DomainLayer.UserComponent
         //*  Admin - 6.1, 6.2, 6.3, 6.4, 6.5 הרשאות מנהל מערכת=מנהל שוק
         //This variable is going to store the Singleton Instance
         private static UserFacade Instance = null;
+        private static Dictionary<string, KeyValuePair<List<string>, string>> contracts;
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
@@ -37,6 +38,7 @@ namespace Market_System.DomainLayer.UserComponent
                         Instance = new UserFacade();
                         userID_sessionID_linker = new Dictionary<string, string>();
                         Admins = new List<string>();
+                        contracts = new Dictionary<string, KeyValuePair<List<string>, string>>();
 
                         //Register an admin:
                         userRepo.AddFirstAdmin("admin");
@@ -692,34 +694,118 @@ namespace Market_System.DomainLayer.UserComponent
             }
             throw new Exception(userid + "does not exist");
         }
+
+        public void SuggestNewOwner(string userID, string newOwnerID, List<string> owners, string storeID)
+        {
+            try
+            {
+                var key = newOwnerID + "_" + storeID;
+                contracts.Add(key, new KeyValuePair<List<string>, string>(owners, userID));
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Someone has already suggested this employee");
+            }
+        }
+
+        public void AcceptSuggestion(string userID, string newOwner_ID, string storeID)
+        {
+            try
+            {
+                var key = newOwner_ID + "_" + storeID;
+                contracts[key].Key.Remove(userID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void DeclineSuggestion(string userID, string newOwner_ID, string storeID)
+        {
+            try
+            {
+                var key = newOwner_ID + "_" + storeID;
+                contracts.Remove(key);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public string checkIfEmptyContract(string userID, string newOwnerID, string storeID)
+        {
+            try
+            {
+                var key = userID + "_" + storeID;
+                if(contracts[key].Key.Count == 0)
+                {
+                    return contracts[key].Value;
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No such contract");
+            }
+        }
+
+        public string CheckAreThereSuggestions(string storeID)
+        {
+            try
+            {
+                string return_me = "";
+                foreach(string key in contracts.Keys)
+                {
+                    if (key.Contains(storeID))
+                    {
+                        string userID = key.Substring(0, key.IndexOf('_'));
+                        string username = get_username_from_user_id(userID);
+                        return_me = return_me + username + " is suggested as a new owner\n";
+                    }
+                }
+                if (return_me.Equals(""))
+                {
+                    throw new Exception("nothing to show");
+                }
+
+                return return_me;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         /*
 public void AddNewMessage(string userID, Message message)
 {
-   try
-   {
-       userRepo.addNewMessage(userID, message);
-   }
-   catch (Exception e)
-   {
-       throw e;
-   }
+try
+{
+userRepo.addNewMessage(userID, message);
+}
+catch (Exception e)
+{
+throw e;
+}
 }
 
 public List<string> GetMessages(string userID)
 {
-   try
-   {
-       List<string> messages = new List<string>();
-       foreach(Message message in userRepo.GetMessages(userID))
-       {
-           messages.Add(message.GetAndReadMessage());
-       }
-       return messages;
-   }
-   catch(Exception e)
-   {
-       throw e;
-   }
+try
+{
+List<string> messages = new List<string>();
+foreach(Message message in userRepo.GetMessages(userID))
+{
+messages.Add(message.GetAndReadMessage());
+}
+return messages;
+}
+catch(Exception e)
+{
+throw e;
+}
 }*/
     }
 }
