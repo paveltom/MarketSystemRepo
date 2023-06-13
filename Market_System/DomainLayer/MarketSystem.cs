@@ -720,6 +720,7 @@ namespace Market_System.DomainLayer
                         }
                     }
                 }
+                userFacade.reset_cart(session_id);
             }
 
             catch (Exception e)
@@ -1163,7 +1164,6 @@ namespace Market_System.DomainLayer
                 Cart cart = get_cart_of_userID(user_id);
                 List<ItemDTO> purchased_Products = cart.convert_to_item_DTO();
                 userFacade.save_purhcase_in_user(user_id, cart);
-                userFacade.reset_cart(session_id);
 
                 //Send a notification to the user, regarding his purchase:
                 var message = "New purhcase has been made by you: {";
