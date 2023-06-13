@@ -5812,7 +5812,6 @@ Wednesday, May 24, 2023 : error!!: The given key was not present in the dictiona
 יום שני 12 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שני 12 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שני 12 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-=======
 שבת 10 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 10 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 10 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -9138,36 +9137,10 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+<<<<<<< HEAD
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9210,35 +9183,6 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9265,6 +9209,12 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Tuesday, 13 June 2023 : error!!: can't recive userID because username does not exists in declineSuggestion
+Tuesday, 13 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Tuesday, 13 June 2023 : error!!: can't recive userID because username does not exists in declineSuggestion
+Tuesday, 13 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9286,11 +9236,14 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9312,6 +9265,10 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: No such contract in acceptSuggestion
+Tuesday, 13 June 2023 : error!!: No such contract in acceptSuggestion
+Tuesday, 13 June 2023 : error!!: No such contract in acceptSuggestion
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9334,6 +9291,7 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9357,6 +9315,8 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9364,10 +9324,6 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: unexpected error occured with payment system, please try again later.in check_out
-Tuesday, 13 June 2023 : error!!: unexpected error occured with payment system, please try again later.in check_out
-Tuesday, 13 June 2023 : error!!: pay request denied by the servicein check_out
-Tuesday, 13 June 2023 : error!!: pay request denied by the servicein check_out
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9379,86 +9335,8 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: can't recive userID because username does not exists in assign_new_owner
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9548,6 +9426,7 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9584,6 +9463,159 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9634,57 +9666,8 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Tuesday, 13 June 2023 : error!!: The property 'EmployeeID' is part of the object's key information and cannot be modified.  in assign_new_owner
-Tuesday, 13 June 2023 : reading from init file failed due to: The property 'EmployeeID' is part of the object's key information and cannot be modified.  starting system without any initialization
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Tuesday, 13 June 2023 : error!!: The property 'EmployeeID' is part of the object's key information and cannot be modified.  in assign_new_owner
-Tuesday, 13 June 2023 : reading from init file failed due to: The property 'EmployeeID' is part of the object's key information and cannot be modified.  starting system without any initialization
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
-Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
@@ -9733,4 +9716,276 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Tuesday, 13 June 2023 : error!!: Employee already works in this store. in assign_new_manager
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in GetMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: Requested value 'all' was not found. in AddEmployeePermission
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions

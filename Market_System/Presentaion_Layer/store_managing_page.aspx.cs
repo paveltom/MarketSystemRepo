@@ -86,7 +86,7 @@ namespace Market_System.Presentaion_Layer
         {
             string username = new_owner_username.Text;
             string store_id = ddl_store_id.SelectedValue;
-            Response<string> ok = ((Service_Controller)Session["service_controller"]).assign_new_owner(store_id, username);
+            Response<string> ok = ((Service_Controller)Session["service_controller"]).suggest_new_owner(store_id, username);
             if (ok.ErrorOccured)
             {
                 new_owner_message.ForeColor = System.Drawing.Color.Red;

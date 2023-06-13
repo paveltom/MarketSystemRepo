@@ -669,10 +669,10 @@ namespace Market_System.DomainLayer
 
                 userFacade.AcceptSuggestion(userID, newOwner_ID, storeID);
 
-                var AssigningUserID = userFacade.checkIfEmptyContract(userID, newOwner_ID, storeID);
+                var AssigningUserID = userFacade.checkIfEmptyContract(newOwner_ID, storeID);
                 if(AssigningUserID != null)
                 {
-                    Assign_New_Owner(AssigningUserID, suggestionUsername, storeID);
+                    Assign_New_Owner_2(AssigningUserID, suggestionUsername, storeID);
                 }
             }
             catch (Exception e)
@@ -681,11 +681,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string CheckAreThereSuggestions(string storeID)
+        public string CheckAreThereSuggestions(string session_id, string storeID)
         {
             try
             {
-                return userFacade.CheckAreThereSuggestions(storeID);
+                return userFacade.CheckAreThereSuggestions(session_id, storeID);
             }
             catch (Exception e)
             {
@@ -720,6 +720,7 @@ namespace Market_System.DomainLayer
                         }
                     }
                 }
+                userFacade.reset_cart(session_id);
             }
 
             catch (Exception e)
@@ -1023,6 +1024,27 @@ namespace Market_System.DomainLayer
             }
         }
 
+        private void Assign_New_Owner_2(string userID, string newOwnerUsername, string store_ID)
+        {
+            try
+            {
+                string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
+                storeFacade.AssignNewOwner(userID, store_ID, newOwner_ID);
+
+                //Notify the new owner
+                var message = "You've been promoted to a store owner in store id: " + store_ID;
+                notificationFacade.AddNewMessage(newOwner_ID, userFacade.get_username_from_user_id(userID), message);
+
+                var message_2 = newOwnerUsername + " has been promoted to owner is the store: " + store_ID;
+                var username = userFacade.get_username_from_user_id(userID);
+                sendMessageToStoreOwners(message_2, username, store_ID);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         internal List<string> GetProductsFromStore_as_string(string sessionID, string storeID)
         {
             List<string> return_me = new List<string>();
@@ -1163,7 +1185,6 @@ namespace Market_System.DomainLayer
                 Cart cart = get_cart_of_userID(user_id);
                 List<ItemDTO> purchased_Products = cart.convert_to_item_DTO();
                 userFacade.save_purhcase_in_user(user_id, cart);
-                userFacade.reset_cart(session_id);
 
                 //Send a notification to the user, regarding his purchase:
                 var message = "New purhcase has been made by you: {";

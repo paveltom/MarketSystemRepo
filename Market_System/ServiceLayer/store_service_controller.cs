@@ -702,11 +702,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public string CheckAreThereSuggestions(string storeID)
+        public string CheckAreThereSuggestions(string session_id, string storeID)
         {
             try
             {
-                return this.Market.CheckAreThereSuggestions(storeID);
+                return this.Market.CheckAreThereSuggestions(session_id, storeID);
             }
             catch (Exception ex)
             {
