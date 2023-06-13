@@ -5021,3 +5021,16 @@ Tuesday, 13 June 2023 : assigning new owner with username : ben to the store wit
 Tuesday, 13 June 2023 : assigning new owner with username : harold to the store with id: 1834938395
 Tuesday, 13 June 2023 : 730495385Logged-out succesfully
 Tuesday, 13 June 2023 : guest : guest343546762 has logged in
+Tuesday, 13 June 2023 : guest : guest1503408778 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 1341895705 has failed
+Tuesday, 13 June 2023 : Added the product:1341895705_1609192483to store: 1341895705 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 1341895705
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 1341895705
+Tuesday, 13 June 2023 : assigning new owner with username : harold to the store with id: 1341895705
+Tuesday, 13 June 2023 : 710101357Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest1810743736 has logged in

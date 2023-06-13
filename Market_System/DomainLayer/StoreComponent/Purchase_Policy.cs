@@ -50,14 +50,14 @@ namespace Market_System.DomainLayer.StoreComponent
             if (currUser != null)
                 rellevantUserPolicyData = new Dictionary<string, string>
                 {
-                    { "Username", currUser.GetUsername() },
+                    { "Name", currUser.GetUsername() }, // actually username
                     { "Address", currUser.get_Address() },
                     { "Age" , "17" }
                 };
             else
                 rellevantUserPolicyData = new Dictionary<string, string>
                 {
-                    { "Username", userID },
+                    { "Name", userID }, // actually username
                     { "Address", "" },
                     { "Age" , "19" }
                 };
