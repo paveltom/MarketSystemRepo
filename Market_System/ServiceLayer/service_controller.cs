@@ -27,7 +27,7 @@ namespace Market_System.ServiceLayer
                 Response<List<string>> okay = Response<List<string>>.FromValue(this.ssc.get_stores_that_user_works_in(session_id));
                 return okay;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Response<List<string>>.FromError(e.Message);
             }
@@ -51,7 +51,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_user_can_manage_stock(session_id,store_id));
+                Response<bool> okay = Response<bool>.FromValue(this.ssc.check_if_user_can_manage_stock(session_id, store_id));
                 return okay;
             }
             catch (Exception e)
@@ -167,9 +167,9 @@ namespace Market_System.ServiceLayer
                     if (current_command[0] == '/')
                         continue;
                     string[] command = current_command.Split(' ');
-                    if(command[1].Equals("payment"))
+                    if (command[1].Equals("payment"))
                     {
-                        if (command.Length>=5)
+                        if (command.Length >= 5)
                         {
                             PaymentProxy.get_instance(command[4]);
                         }
@@ -188,10 +188,10 @@ namespace Market_System.ServiceLayer
                         {
                             DeliveryProxy.get_instance();
                         }
-                        
+
                     }
 
-                    if(command[0].Equals("database"))
+                    if (command[0].Equals("database"))
                     {
                         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                     }
@@ -224,14 +224,14 @@ namespace Market_System.ServiceLayer
             {
 
                 string hosting_path = HostingEnvironment.ApplicationPhysicalPath;
-                
-             
-                
-               path = hosting_path + combine_me;
-         
+
+
+
+                path = hosting_path + combine_me;
+
             }
 
-            else 
+            else
             {
                 if (temp_path.Equals("c:\\windows\\system32"))//Meaning that we're running a server
                 {
@@ -252,11 +252,11 @@ namespace Market_System.ServiceLayer
 
                     path = temp_path + combine_me_2 + combine_me;
                 }
-              
+
             }
 
             StreamReader reader = new StreamReader(path);
-            
+
             string current_command;
             try
             {
@@ -270,7 +270,7 @@ namespace Market_System.ServiceLayer
 
                 reader.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 //save somewhere the error
                 Logger.get_instance().record_error("reading from init file failed due to: " + e.Message + " starting system without any initialization");
@@ -281,7 +281,7 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        
+
 
         private void execute_command(string current_command)
         {
@@ -292,7 +292,7 @@ namespace Market_System.ServiceLayer
                 switch (command[0])
                 {
                     case "register":
-                        res= register(command[1], command[2], command[3]);
+                        res = register(command[1], command[2], command[3]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
@@ -302,22 +302,22 @@ namespace Market_System.ServiceLayer
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "checkout":
-                        res=check_out(command[1], command[2], command[3], command[4], command[5],command[6]);
+                        res = check_out(command[1], command[2], command[3], command[4], command[5], command[6]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "logout":
-                       res= log_out();
+                        res = log_out();
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "add_product_to_basket":
-                        res=add_product_to_basket(command[1], command[2]);
+                        res = add_product_to_basket(command[1], command[2]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "remove_product_from_basket":
-                       res= remove_product_from_basket(command[1], command[2]);
+                        res = remove_product_from_basket(command[1], command[2]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
@@ -328,59 +328,59 @@ namespace Market_System.ServiceLayer
                         store_id_config = ((Response<StoreDTO>)res).Value.StoreID;
                         return;
                     case "comment_on_product":
-                        res=comment_on_product(command[1], command[2], double.Parse(command[3]));
+                        res = comment_on_product(command[1], command[2], double.Parse(command[3]));
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "add_product_to_store":
-                        res=add_product_to_store(store_id_config, command[1], command[2], command[3], command[4], command[5], command[6], command[7], command[8], command[9], command[10], command[11]);
+                        res = add_product_to_store(store_id_config, command[1], command[2], command[3], command[4], command[5], command[6], command[7], command[8], command[9], command[10], command[11]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "remove_product_from_store":
-                       res= remove_product_from_store(store_id_config, command[1]);
+                        res = remove_product_from_store(store_id_config, command[1]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "assign_new_owner":
-                       res= assign_new_owner(store_id_config, command[1]);
+                        res = assign_new_owner(store_id_config, command[1]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "remove_store_owner":
-                      res=  Remove_Store_Owner(store_id_config, command[1]);
+                        res = Remove_Store_Owner(store_id_config, command[1]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "assign_new_manager":
-                        res=assign_new_manager(store_id_config, command[1]);
+                        res = assign_new_manager(store_id_config, command[1]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "addemployeepermission":
-                       res= AddEmployeePermission(store_id_config, command[1], command[2]);
+                        res = AddEmployeePermission(store_id_config, command[1], command[2]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "removeemployeepermission":
-                       res= RemoveEmployeePermission(store_id_config, command[1], command[2]);
+                        res = RemoveEmployeePermission(store_id_config, command[1], command[2]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
-                         return;
+                        return;
                     case "close_store_temporary":
-                        res=close_store_temporary(store_id_config);
+                        res = close_store_temporary(store_id_config);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
                     case "remove_a_member":
-                        res=Remove_A_Member(command[1]);
+                        res = Remove_A_Member(command[1]);
                         if (res.ErrorOccured)
                             throw new Exception(res.ErrorMessage);
                         return;
 
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -400,18 +400,18 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        internal Response< Dictionary<string, string>> extract_item_from_basket(string product_id)
+        internal Response<Dictionary<string, string>> extract_item_from_basket(string product_id)
         {
             try
             {
-                Response<Dictionary<string,string>> result= Response < Dictionary<string, string> > .FromValue(this.usc.extract_item_from_basket(product_id, this.session_id));
+                Response<Dictionary<string, string>> result = Response<Dictionary<string, string>>.FromValue(this.usc.extract_item_from_basket(product_id, this.session_id));
                 return result;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Response<Dictionary<string, string>>.FromError(e.Message);
             }
-           
+
         }
 
         private void new_guest_entered_the_website(string session_id)
@@ -420,7 +420,7 @@ namespace Market_System.ServiceLayer
             {
                 string guest_name = this.usc.login_guest(session_id);
 
-               Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
+                Logger.get_instance().record_event("guest : " + guest_name + " has logged in");
 
             }
             catch (Exception e)
@@ -434,9 +434,9 @@ namespace Market_System.ServiceLayer
         internal Response<List<string>> show_basket_in_cart(string selected_store_id)
         {
 
-            return this.usc.show_basket_in_cart(selected_store_id,this.session_id);
+            return this.usc.show_basket_in_cart(selected_store_id, this.session_id);
 
-            
+
         }
 
         public Response<string> add_product_to_basket(string product_id, string quantity)
@@ -463,17 +463,17 @@ namespace Market_System.ServiceLayer
             return Response<bool>.FromValue(this.usc.check_if_current_user_is_admin(session_id));
         }
 
-        
+
 
         public Response<List<string>> get_store_ids_from_cart()
         {
             try
             {
-                Response < List<string> > ok= Response < List<string> >.FromValue(this.usc.get_store_ids_from_cart(session_id));
-               
+                Response<List<string>> ok = Response<List<string>>.FromValue(this.usc.get_store_ids_from_cart(session_id));
+
                 return ok;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Response<List<string>>.FromError(e.Message);
             }
@@ -483,7 +483,7 @@ namespace Market_System.ServiceLayer
 
         public Response<bool> check_if_working_in_a_store()
         {
-             Response<bool> result = Response<bool>.FromValue(this.ssc.check_if_working_in_a_store());
+            Response<bool> result = Response<bool>.FromValue(this.ssc.check_if_working_in_a_store());
             return result;
         }
 
@@ -522,13 +522,13 @@ namespace Market_System.ServiceLayer
             {
                 return Response<ItemDTO>.FromError(e.Message);
             }
-        } 
+        }
 
         public Response<string> assign_new_manager(string storeID, string newManagerUsername)
         {
             try
             {
-                this.ssc.AssignNewManager( storeID, newManagerUsername);
+                this.ssc.AssignNewManager(storeID, newManagerUsername);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
                 Logger.get_instance().record_event("assigning new manager with username : " + newManagerUsername + " to the store with id: " + storeID);
@@ -546,7 +546,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                this.ssc.AssignNewOwner( storeID, newOwnerUsername);
+                this.ssc.AssignNewOwner(storeID, newOwnerUsername);
                 Response<string> ok = Response<string>.FromValue("done successfully");
 
                 Logger.get_instance().record_event("assigning new owner with username : " + newOwnerUsername + " to the store with id: " + storeID);
@@ -556,6 +556,80 @@ namespace Market_System.ServiceLayer
             catch (Exception e)
             {
                 Logger.get_instance().record_error("error!!: " + e.Message + " in assign_new_owner");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> suggest_new_owner(string storeID, string newOwnerUsername)
+        {
+            try
+            {
+                this.ssc.SuggestNewOwner(storeID, newOwnerUsername);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+
+                Logger.get_instance().record_event("suggesting new owner with username : " + newOwnerUsername + " to the store with id: " + storeID);
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in assign_new_owner");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> AcceptSuggestion(string suggestionUsername, string storeID)
+        {
+            try
+            {
+                this.ssc.AcceptSuggestion(session_id, suggestionUsername, storeID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+
+                Logger.get_instance().record_event("accepted suggestion for new owner with username : " + suggestionUsername + " to the store with id: " + storeID);
+
+                return ok;
+            }
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in acceptSuggestion");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> DeclineSuggestion(string suggestionUsername, string storeID)
+        {
+            try
+            {
+                this.ssc.DeclineSuggestion(session_id, suggestionUsername, storeID);
+                Response<string> ok = Response<string>.FromValue("done successfully");
+
+                Logger.get_instance().record_event("declined suggestion for new owner with username : " + suggestionUsername + " to the store with id: " + storeID);
+
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in declineSuggestion");
+                return Response<String>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> CheckAreThereSuggestions(string storeID)
+        {
+            try
+            {
+                string userName = this.ssc.CheckAreThereSuggestions(storeID);
+                Response<string> ok = Response<string>.FromValue(userName);
+
+                Logger.get_instance().record_event("check are there suggestions done succesfully");
+
+                return ok;
+            }
+
+            catch (Exception e)
+            {
+                Logger.get_instance().record_error("error!!: " + e.Message + " in CheckAreThereSuggestions");
                 return Response<String>.FromError(e.Message);
             }
         }
@@ -1078,6 +1152,21 @@ namespace Market_System.ServiceLayer
 
                 Logger.get_instance().record_error("error!!: " + e.Message + "in get_owners_of_store");
                 return Response<List<string>>.FromError(e.Message);
+            }
+        }
+
+        public Response<System.Timers.Timer> get_timer_of_auciton(string key)
+        {
+            try
+            {
+                Response<System.Timers.Timer> ok = Response<System.Timers.Timer>.FromValue( this.ssc.get_timer_of_auciton(key));
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                return null;
             }
         }
 
@@ -1824,33 +1913,37 @@ namespace Market_System.ServiceLayer
 
 
         // ======= LOTTERY ========
-        public Response SetNewLottery(string productID, long durationInMinutes)
+        public Response<string> SetNewLottery(string productID, long durationInMinutes)
         {
             try
             {
-                return ssc.SetNewLottery(productID, durationInMinutes);
+                Response<string> ret = Response<string>.FromValue(ssc.SetNewLottery(productID, durationInMinutes));
+                return ret;
+                
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
         }
 
-        public Response RemoveLottery(string productID)
+        public Response<string> RemoveLottery(string productID)
         {
             try
             {
-                return ssc.RemoveLottery(productID);
+                Response<string> ret = Response<string>.FromValue(ssc.RemoveLottery(productID));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
         }
 
 
-        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        public Response<string> AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
-                return ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id);
+                Response<string> ret = Response<string>.FromValue(ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
 
         }
 

@@ -6,6 +6,7 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 using System.Xml.Linq;
+using System.Timers;
 
 namespace Market_System.ServiceLayer
 {
@@ -353,34 +354,34 @@ namespace Market_System.ServiceLayer
 
 
         // ======= LOTTERY ========
-        public Response SetNewLottery(string productID, long durationInMinutes)
+        public string SetNewLottery(string productID, long durationInMinutes)
         {
             try
             {
                 Market.SetNewLottery(this.SessionID, productID, durationInMinutes);
-                return new Response("Lottery was created successfully.");
+                return "Lottery was created successfully.";
             }
             catch (Exception e) { throw e; }
         }
 
-        public Response RemoveLottery(string productID)
+        public string RemoveLottery(string productID)
         {
             try
             {
                 Market.RemoveLottery(this.SessionID, productID);
-                return new Response("Lottery was removed successfully.");
+                return "Lottery was removed successfully.";
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        public string AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
                 Market.AddLotteryTicket(this.SessionID, productID, percentage, card_number, month, year, holder, ccv, id);
-                return new Response("Lottery ticket was added successfully.");
+                return "Lottery ticket was added successfully.";
             }
             catch (Exception e) { throw e; }
 
@@ -636,6 +637,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public void SuggestNewOwner(string storeID, string newOwnerUsername)
+        {
+            try
+            {
+                //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
+                this.Market.SuggestNewOwner(SessionID, newOwnerUsername, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response RemoveProductFromStore(string storeID, string productID)
         {
             try
@@ -650,6 +664,18 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public void AcceptSuggestion(string session_id, string suggestionUsername, string storeID)
+        {
+            try
+            {
+                this.Market.AcceptSuggestion(session_id, suggestionUsername, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response AddProductComment(string productID, string comment, double rating)
         {
             try
@@ -657,6 +683,30 @@ namespace Market_System.ServiceLayer
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
                 this.Market.AddProductComment(SessionID, productID, comment, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New comment was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DeclineSuggestion(string session_id, string suggestionUsername, string storeID)
+        {
+            try
+            {
+                this.Market.DeclineSuggestion(session_id, suggestionUsername, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string CheckAreThereSuggestions(string storeID)
+        {
+            try
+            {
+                return this.Market.CheckAreThereSuggestions(storeID);
             }
             catch (Exception ex)
             {
@@ -1029,7 +1079,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
-     
+        internal Timer get_timer_of_auciton(string key)
+        {
+            try
+            {
+                return Market.get_timer_of_auciton(key);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
         // ======================== END of TODO ========================
         // =============================================================

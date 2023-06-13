@@ -23,7 +23,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
-        private static ConcurrentDictionary<string, System.Timers.Timer> Timers;
+        public static ConcurrentDictionary<string, System.Timers.Timer> Timers;
 
         public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
         public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
@@ -1337,6 +1337,14 @@ namespace Market_System.DomainLayer.StoreComponent
                 return true;
             }
             catch (Exception e) { throw e; }
+        }
+
+
+
+        public System.Timers.Timer get_timer(string key)
+        {
+            
+            return Timers[key];
         }
 
 

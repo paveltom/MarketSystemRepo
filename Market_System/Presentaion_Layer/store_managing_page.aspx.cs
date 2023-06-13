@@ -276,7 +276,7 @@ namespace Market_System.Presentaion_Layer
                 owner_remove_button.Visible = true;
                 daily_sales_label.Visible = true;
                 store_sale_chart.Visible = true;
-                show_store_sale(storeID);
+                
                 //user is owner so i put bids here
                 show_bid_data(storeID);
                 approve_bid_label.Visible = true;
@@ -314,7 +314,54 @@ namespace Market_System.Presentaion_Layer
                 auction_message.Visible = true;
 
 
+                //lottery setup
+                lottery_setup.Visible = true;
+                lottery_setup.Visible = true;
+                lottery_product_id.Visible = true;
+                lottery_product_id_text.Visible = true;
+                lottery_duration.Visible = true;
+                lottery_duration_text.Visible = true;
+                lottery_button.Visible = true;
+                lottery_message.Visible = true;
 
+                //suggestions of new owners:
+
+                Response<string> suggestions = ((Service_Controller)Session["service_controller"]).CheckAreThereSuggestions(storeID);
+                
+                if(!suggestions.ErrorOccured)
+                {
+                    new_sugeestions.Visible = true;
+                    suggestions_label.Text = suggestions.Value;
+                    suggestions_label.Visible = true;
+
+                        suggested_owner_name_text.Visible = true;
+                        Button1.Visible = true;
+                        Button2.Visible = true;
+                    
+                }
+                else
+                {
+                    if (suggestions.ErrorMessage.Equals("nothing to show"))
+                    {
+                        new_sugeestions.Visible = true;
+                        suggestions_label.Text = suggestions.ErrorMessage;
+                        suggestions_label.Visible = true;
+
+                        suggested_owner_name_text.Visible = false;
+                        Button1.Visible = false;
+                        Button2.Visible = false;
+                    }
+                    else
+                    {
+                        new_sugeestions.Visible = false;
+
+                        suggestions_label.Visible = false;
+
+                        suggested_owner_name_text.Visible = false;
+                        Button1.Visible = false;
+                        Button2.Visible = false;
+                    }
+                    }
 
 
 
@@ -368,6 +415,15 @@ namespace Market_System.Presentaion_Layer
                 auction_duration_text.Visible = false;
                 auction_button.Visible = false;
                 auction_message.Visible = false;
+
+                lottery_setup.Visible = false;
+                lottery_product_id.Visible = false;
+                lottery_product_id_text.Visible = false;
+                lottery_duration.Visible = false;
+                lottery_duration_text.Visible = false;
+                lottery_button.Visible = false;
+                lottery_message.Visible = false;
+                
             }
 
             Response<bool> add_remove_permession_checker = ((Service_Controller)Session["service_controller"]).check_if_can_remove_or_add_permessions(storeID);
@@ -474,6 +530,47 @@ namespace Market_System.Presentaion_Layer
             }
         }
 
+        protected void accept_suggestion_click(object sender, EventArgs e)
+        {
+            if(suggested_owner_name_text.Text.Equals(""))
+            {
+                accept_or_decline_message.Text = "please enter valid name";
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).AcceptSuggestion(suggested_owner_name_text.Text,ddl_store_id.SelectedValue);
+            
+            if(okay.ErrorOccured)
+            {
+                accept_or_decline_message.Text = okay.ErrorMessage;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                accept_or_decline_message.Text = okay.Value;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Green;
+            }
+        }
+        protected void decline_suggestion_click(object sender, EventArgs e)
+        {
+            if (suggested_owner_name_text.Text.Equals(""))
+            {
+                accept_or_decline_message.Text = "please enter valid name";
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).DeclineSuggestion(suggested_owner_name_text.Text, ddl_store_id.SelectedValue);
+
+            if (okay.ErrorOccured)
+            {
+                accept_or_decline_message.Text = okay.ErrorMessage;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                accept_or_decline_message.Text = okay.Value;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Green;
+            }
+        }
+
 
         protected void start_auction_click(object sender, EventArgs e)
         {
@@ -502,6 +599,38 @@ namespace Market_System.Presentaion_Layer
             {
                 auction_message.Text = exe.Message;
                 auction_message.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
+
+
+        protected void start_lottery_click(object sender, EventArgs e)
+        {
+
+            if (lottery_product_id_text.Text.Equals("")  || lottery_duration_text.Text.Equals(""))
+            {
+                lottery_message.Text = "please enter valid values";
+                lottery_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).SetNewLottery(lottery_product_id_text.Text,  long.Parse(lottery_duration_text.Text));
+                if (okay.ErrorOccured)
+                {
+                    lottery_message.Text = okay.ErrorMessage;
+                    lottery_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lottery_message.Text = okay.Value;
+                    lottery_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            catch (Exception exe)
+            {
+                lottery_message.Text = exe.Message;
+                lottery_message.ForeColor = System.Drawing.Color.Red;
             }
 
         }
@@ -608,9 +737,9 @@ namespace Market_System.Presentaion_Layer
             }
         }
 
-        protected void show_store_sale(string store_id)
+        protected void show_store_sale(object sender, EventArgs e)
         {
-
+            string store_id = ddl_store_id.SelectedValue;
             if (store_profit_txt.Text.Equals(""))
             {
                 daily_profit_of_store_message.Text = "please enter a date";

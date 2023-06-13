@@ -24,7 +24,15 @@
     </div>
     <div style="text-align: left">
         </div>
-       <div></div>
+       <div style="text-align: left">
+           <asp:Label ID="new_sugeestions" runat="server" Text="new suggestions:    " Visible="false"></asp:Label>
+           <asp:Label ID="suggestions_label" runat="server" Text="" Visible="false"></asp:Label>
+           <asp:TextBox ID="suggested_owner_name_text" runat="server" Visible="false"></asp:TextBox>
+           <asp:Button ID="Button1" runat="server" Text="accept" Visible="false" OnClick="accept_suggestion_click" />
+&nbsp;<asp:Button ID="Button2" runat="server" Text="decline" Visible="false" OnClick="decline_suggestion_click" />
+           <asp:Label ID="accept_or_decline_message" runat="server" Text="" Visible="false"></asp:Label>
+    </div>
+    <div></div>
     <div style="text-align: left">
         </div>
        <div></div>
@@ -38,11 +46,11 @@
     </div>
        <div></div>
     <div style="text-align: left">
-        <asp:Label ID="Label7" runat="server" Text="assign new owner:" Visible="false"></asp:Label>
-    &nbsp;&nbsp;&nbsp;<asp:Label ID="Label16" runat="server" Text="type new owner name" Visible="false"></asp:Label>
+        <asp:Label ID="Label7" runat="server" Text="suggest new owner:" Visible="false"></asp:Label>
+    &nbsp;&nbsp;&nbsp;<asp:Label ID="Label16" runat="server" Text="type new suggested owner name" Visible="false"></asp:Label>
         &nbsp;<asp:TextBox ID="new_owner_username" runat="server" Visible="false"></asp:TextBox>
         &nbsp;&nbsp;
-        <asp:Button ID="assign_new_owner_button" onclick="assign_new_owner_click" runat="server" Text="Assign" Visible="false" />
+        <asp:Button ID="assign_new_owner_button" onclick="assign_new_owner_click" runat="server" Text="Suggest" Visible="false" />
 &nbsp;<asp:Label ID="new_owner_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
     </div>
        <div></div>
@@ -120,7 +128,7 @@
         </asp:DataList></div>
     <div></div>
      <div style="text-align: left">
-        <asp:Label ID="products_in_store_label" runat="server" Text="products in store:"></asp:Label>
+        <asp:Label ID="products_in_store_label" runat="server" Text="products in store:" Visible="false"></asp:Label>
     </div>
     <div> <asp:DataList ID="products_in_store_list" runat="server">
             <ItemTemplate>
@@ -130,24 +138,36 @@
     <div></div>
     <div></div>
     <div style="text-align: left">
-        <asp:Label ID="auction_setup" runat="server" Text="setup auction: "></asp:Label>
-        <asp:Label ID="auction_product_id" runat="server" Text="product id:"></asp:Label>
-        <asp:TextBox ID="auction_product_id_text" runat="server"></asp:TextBox>
+        <asp:Label ID="auction_setup" runat="server" Text="setup auction: " Visible="false"></asp:Label>
+        <asp:Label ID="auction_product_id" runat="server" Text="product id:" Visible="false"></asp:Label>
+        <asp:TextBox ID="auction_product_id_text" runat="server" Visible="false"></asp:TextBox>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="auction_price" runat="server" Text="starting price:"></asp:Label>
-        <asp:TextBox ID="auction_price_text" runat="server"></asp:TextBox>
+        <asp:Label ID="auction_price" runat="server" Text="starting price:" Visible="false"></asp:Label>
+        <asp:TextBox ID="auction_price_text" runat="server" Visible="false"></asp:TextBox>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="auction_duration" runat="server" Text="duration (in minutes)"></asp:Label>
+        <asp:Label ID="auction_duration" runat="server" Text="duration (in minutes)" Visible="false"></asp:Label>
 &nbsp;
-        <asp:TextBox ID="auction_duration_text" runat="server"></asp:TextBox>
-        <asp:Button ID="auction_button" runat="server" Text="start" CssClass="btn btn-primary" OnClick="start_auction_click" />
-        <asp:Label ID="auction_message" runat="server" ForeColor="Black"></asp:Label>
+        <asp:TextBox ID="auction_duration_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="auction_button" runat="server" Text="start" CssClass="btn btn-primary" OnClick="start_auction_click" Visible="false"/>
+        <asp:Label ID="auction_message" runat="server" ForeColor="Black" Visible="false"></asp:Label>
         
     </div>
     <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="lottery_setup" runat="server" Text="setup lottery: " Visible="false"></asp:Label>
+        <asp:Label ID="lottery_product_id" runat="server" Text="product id:" Visible="false"></asp:Label>
+        <asp:TextBox ID="lottery_product_id_text" runat="server" Visible="false"></asp:TextBox>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="lottery_duration" runat="server" Text="duration (in minutes)" Visible="false"></asp:Label>
+&nbsp;
+        <asp:TextBox ID="lottery_duration_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="lottery_button" runat="server" Text="start" CssClass="btn btn-primary" OnClick="start_lottery_click" Visible="false"/>
+        <asp:Label ID="lottery_message" runat="server" ForeColor="Black" Visible="false"></asp:Label>
+        
+    </div>
     <div></div>
     <div style="text-align: left">
-        <asp:Label ID="Label23" runat="server" Text="bids:"></asp:Label>
+        <asp:Label ID="Label23" runat="server" Text="bids:" Visible="false"></asp:Label>
     </div>
       <div> <asp:DataList ID="bid_data" runat="server">
             <ItemTemplate>
@@ -156,52 +176,52 @@
         </asp:DataList></div>
     <div></div>
     <div style="text-align: left">
-        <asp:Label ID="approve_bid_label" runat="server" Text="approve bid:"></asp:Label>
+        <asp:Label ID="approve_bid_label" runat="server" Text="approve bid:" Visible="false"></asp:Label>
     &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label24" runat="server" Text="bid ID:"></asp:Label>
-&nbsp;<asp:TextBox ID="approve_bid_text" runat="server"></asp:TextBox>
-        <asp:Button ID="approve_bid_button" runat="server" Text="approve"  CssClass="btn btn-primary" OnClick="approve_bid_click"  />
-        <asp:Label ID="approve_bid_message" runat="server" ForeColor="Black"></asp:Label>
+        <asp:Label ID="Label24" runat="server" Text="bid ID:" Visible="false"></asp:Label>
+&nbsp;<asp:TextBox ID="approve_bid_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="approve_bid_button" runat="server" Text="approve"  CssClass="btn btn-primary" OnClick="approve_bid_click" Visible="false"  />
+        <asp:Label ID="approve_bid_message" runat="server" ForeColor="Black" Visible="false"></asp:Label>
         
     </div>
     <div style="text-align: left">
-        <asp:Label ID="remove_bid_label" runat="server" Text="remove bid:"></asp:Label>
+        <asp:Label ID="remove_bid_label" runat="server" Text="remove bid:" Visible="false"></asp:Label>
     &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label25" runat="server" Text="bid ID:"></asp:Label>
-&nbsp;<asp:TextBox ID="remove_bid_text" runat="server"></asp:TextBox>
-        <asp:Button ID="remove_bid_button" runat="server" Text="remove"  CssClass="btn btn-primary" OnClick="remove_bid_click"  />
-        <asp:Label ID="remove_bid_message" runat="server" ForeColor="Black"></asp:Label>
+        <asp:Label ID="Label25" runat="server" Text="bid ID:" Visible="false"></asp:Label>
+&nbsp;<asp:TextBox ID="remove_bid_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="remove_bid_button" runat="server" Text="remove"  CssClass="btn btn-primary" OnClick="remove_bid_click" Visible="false"  />
+        <asp:Label ID="remove_bid_message" runat="server" ForeColor="Black" Visible="false"></asp:Label>
         
     </div>
     <div style="text-align: left">
-        <asp:Label ID="counter_bid_label" runat="server" Text="counter bid:"></asp:Label>
+        <asp:Label ID="counter_bid_label" runat="server" Text="counter bid:" Visible="false"></asp:Label>
     &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label26" runat="server" Text="bid ID:"></asp:Label>
-&nbsp;<asp:TextBox ID="counter_bid_text" runat="server"></asp:TextBox>
-        <asp:Label ID="Label27" runat="server" Text="counter price"></asp:Label>
-        <asp:TextBox ID="counter_price_text" runat="server"></asp:TextBox>
-        <asp:Button ID="counter_bid_button" runat="server" Text="counter"  CssClass="btn btn-primary" OnClick="counter_bid_click"  />
-        <asp:Label ID="counter_bid_message" runat="server" ForeColor="Black"></asp:Label>
+        <asp:Label ID="Label26" runat="server" Text="bid ID:" Visible="false"></asp:Label>
+&nbsp;<asp:TextBox ID="counter_bid_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Label ID="Label27" runat="server" Text="counter price" Visible="false"></asp:Label>
+        <asp:TextBox ID="counter_price_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="counter_bid_button" runat="server" Text="counter"  CssClass="btn btn-primary" OnClick="counter_bid_click" Visible="false"  />
+        <asp:Label ID="counter_bid_message" runat="server" ForeColor="Black" Visible="false"></asp:Label>
         
     </div>
     <div></div>
     <div></div>
 
     <div style="text-align: left">
-        <asp:Label ID="daily_sales_label" runat="server" Text="Daily sales of the store:"></asp:Label>
+        <asp:Label ID="daily_sales_label" runat="server" Text="Daily sales of the store:" Visible="false"></asp:Label>
         
     </div>
     <div>
     <div style="text-align: center">
-        <asp:Label ID="sdasd" runat="server" Text="enter date to show the profit of the store:"></asp:Label>
+        <asp:Label ID="sdasd" runat="server" Text="enter date to show the profit of the store:" Visible="false"></asp:Label>
         
-        <asp:TextBox ID="store_profit_txt" runat="server"></asp:TextBox>
-        <asp:Button ID="store_profit" runat="server" Text="Show"  CssClass="btn btn-primary" OnClick="show_store_sale"  />
+        <asp:TextBox ID="store_profit_txt" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="store_profit" runat="server" Text="Show"  CssClass="btn btn-primary" OnClick="show_store_sale" Visible="false" />
         <asp:Label ID="daily_profit_of_store_message" runat="server" ForeColor="#FF3300"></asp:Label>
         
     </div>
     <div style="text-align: center">
-        <asp:Label ID="Label22" runat="server" Text="please enter in this format, dd/mm/yyyy"></asp:Label>
+        <asp:Label ID="Label22" runat="server" Text="please enter in this format, dd/mm/yyyy" Visible="false"></asp:Label>
         </div>
     </div>
     <div style="text-align: center">

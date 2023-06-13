@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="auction_page.aspx.cs" Inherits="Market_System.Presentaion_Layer.auction_page" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="lottery_page.aspx.cs" Inherits="Market_System.Presentaion_Layer.lottery_page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div></div>
+    <div>    <div></div>
     <div></div>
     <div></div>
     <div style="text-align: left">
@@ -29,8 +30,6 @@
             </asp:UpdatePanel>
     <div style="text-align: left"></div>
     <div style="text-align: left">
-        <asp:Label ID="price_label" runat="server" Text="current highest price:"></asp:Label>
-        <asp:Label ID="price" runat="server" Text=""></asp:Label>
     </div>
 
 
@@ -40,11 +39,11 @@
 
     <div></div>
     <div style="text-align: left">
-        <asp:Label ID="Label3" runat="server" Text="add your auction:"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="buy your ticket:"></asp:Label>
     &nbsp;</div>
     <div style="text-align: left">
-        <asp:Label ID="Label4" runat="server" Text="new price:" Font-Size="Medium" ForeColor="Green"></asp:Label>
-        <asp:TextBox ID="new_price_text" runat="server"></asp:TextBox>
+        <asp:Label ID="Label4" runat="server" Text="desired percentage:" Font-Size="Medium" ForeColor="Green"></asp:Label>
+        <asp:TextBox ID="percentage_text" runat="server"></asp:TextBox>
     </div>
     <div style="text-align: left">
          <asp:Label ID="Label14" runat="server" ForeColor="Green" Font-Size="Medium" Text="Id: "></asp:Label>
@@ -68,8 +67,8 @@
 
     </div>
     <div style="text-align: center">
-        <asp:Button ID="Button1" runat="server" Text="set your auction" CssClass="btn btn-primary" OnClick="auction_Click" />
-        <asp:Label ID="auction_message" runat="server"  ></asp:Label>
+        <asp:Button ID="Button1" runat="server" Text="buy your ticket" CssClass="btn btn-primary" OnClick="lottery_Click" />
+        <asp:Label ID="lottery_message" runat="server"  ></asp:Label>
     </div>
-    <div></div>
+    </div>
 </asp:Content>
