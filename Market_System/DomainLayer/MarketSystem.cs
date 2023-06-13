@@ -1572,11 +1572,12 @@ namespace Market_System.DomainLayer
             //Send Notification to the store Owners
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
             {
-                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message); //this includes the owner now as well - 
+                // was changed on 13/06/2023 by amihai
             }
             //Send to founder as well - he is sort of owner too...
             var founderID = storeFacade.GetStore(storeID).FounderID;
-            notificationFacade.AddNewMessage(founderID, senderUsername, message);
+            //notificationFacade.AddNewMessage(founderID, senderUsername, message);
         }
 
         private void sendMessageToStoreManagers(string message, string senderUsername, string storeID)

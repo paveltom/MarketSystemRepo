@@ -5937,3 +5937,119 @@ Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
 Tuesday, 13 June 2023 : user with session ID : 219940473 got his Messages
+Tuesday, 13 June 2023 : guest : guest849735541 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 767194932 has failed
+Tuesday, 13 June 2023 : Added the product:767194932_1853221457to store: 767194932 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 767194932
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 767194932
+Tuesday, 13 June 2023 : assigning new owner with username : harold to the store with id: 767194932
+Tuesday, 13 June 2023 : 862190646Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest1459130176 has logged in
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : 933649946 added product with id: 933649946_403828137 to basket
+Tuesday, 13 June 2023 : checking deilvery for address: 111 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 111 succefully done.
+Tuesday, 13 June 2023 : checkout completed by : admin
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : 933649946 added product with id: 933649946_862190646 to basket
+Tuesday, 13 June 2023 : checking deilvery for address: 1 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 111 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 111 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 111 succefully done.
+Tuesday, 13 June 2023 : checkout completed by : admin
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 403828137 got his Messages
+Tuesday, 13 June 2023 : guest : guest1317803872 has logged in
+Tuesday, 13 June 2023 : bayan has registered!
+Tuesday, 13 June 2023 : nekola has registered!
+Tuesday, 13 June 2023 : ben has registered!
+Tuesday, 13 June 2023 : harold has registered!
+Tuesday, 13 June 2023 : ben3 has registered!
+Tuesday, 13 June 2023 : opening store with id: 124246590 has failed
+Tuesday, 13 June 2023 : Added the product:124246590_1408661234to store: 124246590 has been done successfully
+Tuesday, 13 June 2023 : assigning new manager with username : nekola to the store with id: 124246590
+Tuesday, 13 June 2023 : assigning new owner with username : ben to the store with id: 124246590
+Tuesday, 13 June 2023 : assigning new owner with username : harold to the store with id: 124246590
+Tuesday, 13 June 2023 : 1611543295Logged-out succesfully
+Tuesday, 13 June 2023 : guest : guest1309547684 has logged in
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : 1753090168 added product with id: 1753090168_1539988635 to basket
+Tuesday, 13 June 2023 : checking deilvery for address: 1 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 11 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 11 succefully done.
+Tuesday, 13 June 2023 : checking deilvery for address: 11 succefully done.
+Tuesday, 13 June 2023 : checkout completed by : admin
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
+Tuesday, 13 June 2023 : user with session ID : 48136295 got his Messages
