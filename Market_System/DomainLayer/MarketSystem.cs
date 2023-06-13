@@ -669,10 +669,10 @@ namespace Market_System.DomainLayer
 
                 userFacade.AcceptSuggestion(userID, newOwner_ID, storeID);
 
-                var AssigningUserID = userFacade.checkIfEmptyContract(userID, newOwner_ID, storeID);
+                var AssigningUserID = userFacade.checkIfEmptyContract(newOwner_ID, storeID);
                 if(AssigningUserID != null)
                 {
-                    Assign_New_Owner(AssigningUserID, suggestionUsername, storeID);
+                    Assign_New_Owner_2(AssigningUserID, suggestionUsername, storeID);
                 }
             }
             catch (Exception e)
@@ -1010,6 +1010,23 @@ namespace Market_System.DomainLayer
             try
             {
                 string userID = userFacade.get_userID_from_session(owner_SessionID);
+                string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
+                storeFacade.AssignNewOwner(userID, store_ID, newOwner_ID);
+
+                //Notify the new owner
+                var message = "You've been promoted to a store owner in store id: " + store_ID;
+                notificationFacade.AddNewMessage(newOwner_ID, userFacade.get_username_from_user_id(userID), message);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private void Assign_New_Owner_2(string userID, string newOwnerUsername, string store_ID)
+        {
+            try
+            {
                 string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
                 storeFacade.AssignNewOwner(userID, store_ID, newOwner_ID);
 

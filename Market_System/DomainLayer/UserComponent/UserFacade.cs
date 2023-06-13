@@ -734,14 +734,16 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public string checkIfEmptyContract(string userID, string newOwnerID, string storeID)
+        public string checkIfEmptyContract(string newOwnerID, string storeID)
         {
             try
             {
-                var key = userID + "_" + storeID;
+                var key = newOwnerID + "_" + storeID;
                 if(contracts[key].Key.Count == 0)
                 {
-                    return contracts[key].Value;
+                    var temp = contracts[key].Value;
+                    contracts.Remove(key);
+                    return temp;
                 }
 
                 return null;
