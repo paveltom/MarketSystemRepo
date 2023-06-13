@@ -60,6 +60,15 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Button auction_button;
 
         /// <summary>
+        /// lottery_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lottery_button;
+
+        /// <summary>
         /// Bid control.
         /// </summary>
         /// <remarks>
