@@ -145,6 +145,18 @@
         
     </div>
     <div></div>
+    <div style="text-align: left">
+        <asp:Label ID="lottery_setup" runat="server" Text="setup lottery: " Visible="false"></asp:Label>
+        <asp:Label ID="lottery_product_id" runat="server" Text="product id:" Visible="false"></asp:Label>
+        <asp:TextBox ID="lottery_product_id_text" runat="server" Visible="false"></asp:TextBox>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="lottery_duration" runat="server" Text="duration (in minutes)" Visible="false"></asp:Label>
+&nbsp;
+        <asp:TextBox ID="lottery_duration_text" runat="server" Visible="false"></asp:TextBox>
+        <asp:Button ID="lottery_button" runat="server" Text="start" CssClass="btn btn-primary" OnClick="start_lottery_click" Visible="false"/>
+        <asp:Label ID="lottery_message" runat="server" ForeColor="Black" Visible="false"></asp:Label>
+        
+    </div>
     <div></div>
     <div style="text-align: left">
         <asp:Label ID="Label23" runat="server" Text="bids:" Visible="false"></asp:Label>

@@ -18,7 +18,7 @@ namespace Market_System.Presentaion_Layer
             this.product_id = Request.QueryString["product_id"];
             Response<ItemDTO> price_retriever = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id);
 
-            price.Text = price_retriever.Value.Auction.Value[0];
+            price.Text = price_retriever.Value.Auction.Value[1];
 
             Response<System.Timers.Timer> timer = ((Service_Controller)Session["service_controller"]).get_timer_of_auciton(product_id + "_" + "auction" + "_timer");
             this.timer = timer.Value;
