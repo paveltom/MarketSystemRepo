@@ -637,6 +637,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public void SuggestNewOwner(string storeID, string newOwnerUsername)
+        {
+            try
+            {
+                //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
+                this.Market.SuggestNewOwner(SessionID, newOwnerUsername, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response RemoveProductFromStore(string storeID, string productID)
         {
             try
@@ -651,6 +664,18 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public void AcceptSuggestion(string session_id, string suggestionUsername, string storeID)
+        {
+            try
+            {
+                this.Market.AcceptSuggestion(session_id, suggestionUsername, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Response AddProductComment(string productID, string comment, double rating)
         {
             try
@@ -658,6 +683,30 @@ namespace Market_System.ServiceLayer
                 //string user_ID = this.Market.get_userid_from_session_id(this.SessionID);
                 this.Market.AddProductComment(SessionID, productID, comment, rating); // add method in MarketSystem!!!!!!!!!!!!!!!!!!!!!!!
                 return new Response("New comment was added successfully.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DeclineSuggestion(string session_id, string suggestionUsername, string storeID)
+        {
+            try
+            {
+                this.Market.DeclineSuggestion(session_id, suggestionUsername, storeID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string CheckAreThereSuggestions(string storeID)
+        {
+            try
+            {
+                return this.Market.CheckAreThereSuggestions(storeID);
             }
             catch (Exception ex)
             {
