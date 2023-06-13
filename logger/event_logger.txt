@@ -5008,3 +5008,29 @@ Sunday, 11 June 2023 : assigning new owner with username : ben to the store with
 Sunday, 11 June 2023 : assigning new owner with username : harold to the store with id: 1772989359
 Sunday, 11 June 2023 : 122338932Logged-out succesfully
 Sunday, 11 June 2023 : guest : guest324121451 has logged in
+יום שלישי 13 יוני 2023 : guest : guest2010790988 has logged in
+יום שלישי 13 יוני 2023 : bayan has registered!
+יום שלישי 13 יוני 2023 : nekola has registered!
+יום שלישי 13 יוני 2023 : ben has registered!
+יום שלישי 13 יוני 2023 : harold has registered!
+יום שלישי 13 יוני 2023 : ben3 has registered!
+יום שלישי 13 יוני 2023 : opening store with id: 171281329 has failed
+יום שלישי 13 יוני 2023 : Added the product:171281329_439707732to store: 171281329 has been done successfully
+יום שלישי 13 יוני 2023 : assigning new manager with username : nekola to the store with id: 171281329
+יום שלישי 13 יוני 2023 : assigning new owner with username : ben to the store with id: 171281329
+יום שלישי 13 יוני 2023 : assigning new owner with username : harold to the store with id: 171281329
+יום שלישי 13 יוני 2023 : 770109020Logged-out succesfully
+יום שלישי 13 יוני 2023 : guest : guest1067998965 has logged in
+יום שלישי 13 יוני 2023 : guest : guest201159019 has logged in
+יום שלישי 13 יוני 2023 : bayan has registered!
+יום שלישי 13 יוני 2023 : nekola has registered!
+יום שלישי 13 יוני 2023 : ben has registered!
+יום שלישי 13 יוני 2023 : harold has registered!
+יום שלישי 13 יוני 2023 : ben3 has registered!
+יום שלישי 13 יוני 2023 : opening store with id: 2123234128 has failed
+יום שלישי 13 יוני 2023 : Added the product:2123234128_817619796to store: 2123234128 has been done successfully
+יום שלישי 13 יוני 2023 : assigning new manager with username : nekola to the store with id: 2123234128
+יום שלישי 13 יוני 2023 : assigning new owner with username : ben to the store with id: 2123234128
+יום שלישי 13 יוני 2023 : assigning new owner with username : harold to the store with id: 2123234128
+יום שלישי 13 יוני 2023 : 1850943613Logged-out succesfully
+יום שלישי 13 יוני 2023 : guest : guest1301461661 has logged in
