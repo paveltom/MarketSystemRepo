@@ -9,7 +9,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
     public class MaximumPolicy : Purchase_Policy
     {
-        private Dictionary<string, double> productsSale;
+        public Dictionary<string, double> productsSale;
         public MaximumPolicy(string polID, string polName, string description, Dictionary<string, double> productsIDsAndSale) :
             base(polID, polName, 0, description, "")
         { this.productsSale = productsIDsAndSale; }

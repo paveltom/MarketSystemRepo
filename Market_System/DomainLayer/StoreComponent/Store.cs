@@ -555,6 +555,9 @@ namespace Market_System.DomainLayer.StoreComponent
                         case "Store": // type, string polName, double salePercentage, string description, string storeID, String formula
                             newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
                             break;
+                        case "Maximum": // type, string polName, string description, { productID_sale; productID_sale...}
+                            newPolicy = new StorePolicy(this.Store_ID + "StorePolicyID" + newPolicyProps[1], newPolicyProps[1], Double.Parse(newPolicyProps[2]), newPolicyProps[3], newPolicyProps[4], newPolicyProps[5]);
+                            break;
                     }
 
                     if (this.storePolicies.TryAdd(newPolicy.PolicyID, newPolicy))

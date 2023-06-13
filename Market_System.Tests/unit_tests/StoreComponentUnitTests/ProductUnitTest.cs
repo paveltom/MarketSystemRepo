@@ -38,6 +38,7 @@ namespace Market_System.Tests.unit_tests
         public void TearDown()
         {
             StoreFacade.GetInstance().Destroy_me();
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
             StoreRepo.GetInstance().destroy();
         }   
 

@@ -5812,7 +5812,6 @@ Wednesday, May 24, 2023 : error!!: The given key was not present in the dictiona
 יום שני 12 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שני 12 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 יום שני 12 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
-=======
 שבת 10 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 10 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
 שבת 10 יוני 2023 : error!!: המפתח הנתון לא נמצא במילון. in HasNewMessages
@@ -9138,6 +9137,7 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+<<<<<<< HEAD
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
@@ -9985,3 +9985,7 @@ Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Tuesday, 13 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Tuesday, 13 June 2023 : error!!: nothing to show in CheckAreThereSuggestions

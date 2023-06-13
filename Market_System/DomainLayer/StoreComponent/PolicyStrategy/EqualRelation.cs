@@ -12,9 +12,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
 {
     public class EqualRelation : Statement
     {
-
         public String FocusAttributeName { get; private set; }
-
         public String FocusAttributeValue { get; private set; }
         private bool userIndicator;
         private bool productIndicator;
