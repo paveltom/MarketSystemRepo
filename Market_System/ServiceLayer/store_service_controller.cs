@@ -236,7 +236,10 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string date_as_dd_MM_yyyy = dateTime.Day.ToString("dd") + "_" + dateTime.Month.ToString("MM") + "_" + dateTime.Year.ToString("yyyy");
+                string month = dateTime.Month.ToString();
+                if (month.Length == 1)
+                    month = "0" + month;
+                string date_as_dd_MM_yyyy = dateTime.Day.ToString() + "_" + month + "_" + dateTime.Year.ToString();
                 return Response<string>.FromValue(this.Market.GetStoreProfitForDate(this.SessionID, storeID, date_as_dd_MM_yyyy).ToString());
             }
             catch (Exception e) { throw e; }
@@ -247,7 +250,10 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string date_as_dd_MM_yyyy = dateTime.Day.ToString("dd") + "_" + dateTime.Month.ToString("MM") + "_" + dateTime.Year.ToString("yyyy");
+                string month = dateTime.Month.ToString();
+                if (month.Length == 1)
+                    month = "0" + month;
+                string date_as_dd_MM_yyyy = dateTime.Day.ToString() + "_" + month + "_" + dateTime.Year.ToString();
                 return Response<string>.FromValue(this.Market.GetMarketProfitForDate(this.SessionID, date_as_dd_MM_yyyy).ToString());
             }
             catch (Exception e) { throw e; }

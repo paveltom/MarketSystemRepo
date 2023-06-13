@@ -241,7 +241,7 @@ namespace Market_System.DomainLayer.StoreComponent
             newEmp.OwnerAssignner = assignnerID;
             newEmp.Permissions = OwnerPermissions;
             AddEmp(newEmp);
-            EmployeeRepo.GetInstance().Save_Employee(newEmp);
+            EmployeeRepo.GetInstance().AddEmployee(newEmp);
         }
 
         /**add new  founder employee  with 'permissions' of an founder.

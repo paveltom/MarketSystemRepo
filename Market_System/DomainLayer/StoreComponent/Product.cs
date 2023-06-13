@@ -520,8 +520,13 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                if (this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc) >= 100)
+                if (percentage == 0)
+                    throw new Exception("Cannot purchase 0 percents.");
+                int currPercentage = this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc);
+                if (currPercentage >= 100)
                     throw new Exception("Lottery is full.");
+                if(currPercentage + percentage >= 100)
+                    throw new Exception("Cannot exceed 100%.");
                 this.Lottery.TryAdd(userID, new List<string> { percentage.ToString(), transID});
                 Save();
                 return this.Price / 100 * percentage;

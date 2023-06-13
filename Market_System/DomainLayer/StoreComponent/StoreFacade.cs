@@ -23,7 +23,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private static StoreRepo storeRepo = null;
         private static ConcurrentDictionary<string, Store> stores; // locks the collection of current Stores that are in use. Remove store from collection when done.
         private static ConcurrentDictionary<string, int> storeUsage;
-        public static ConcurrentDictionary<string, System.Timers.Timer> Timers;
+        public static ConcurrentDictionary<string, TimerPlus> Timers;
 
         public static ConcurrentDictionary<string, Purchase_Policy> marketPolicies { get; private set; }
         public static ConcurrentDictionary<string, Purchase_Strategy> marketStrategies { get; private set; }
@@ -845,9 +845,9 @@ namespace Market_System.DomainLayer.StoreComponent
 
         private void AddTimer(Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded, string founderID, string productID, long minutesDuration, string type)
         {
-            System.Timers.Timer newTimer = new System.Timers.Timer(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds);
-            newTimer.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, founderID, productID);
             DateTime creationTime = DateTime.Now;
+            TimerPlus newTimer = new TimerPlus(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds, creationTime);
+            newTimer.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, founderID, productID);            
             newTimer.Start();
             string timerID = productID + "_" + type + "_timer";
             storeRepo.AddTimer(newTimer, timerID, founderID, productID, creationTime, minutesDuration);
@@ -856,9 +856,18 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-        private void RemainingTime(string timerID) // <productID>_<type>_timer
+        private double RemainingTime(string timerID) // <productID>_<type>_timer
         {
+            try
+            {
+                TimerPlus timer;
+                Timers.TryGetValue(timerID, out timer);
+                if (timer == null)
+                    throw new Exception("No timer with such ID");
 
+                return timer.MinutesRemains();
+            }
+            catch (Exception ex) { throw ex; }
         }
 
 
