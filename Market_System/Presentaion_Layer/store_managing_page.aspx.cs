@@ -333,23 +333,34 @@ namespace Market_System.Presentaion_Layer
                     new_sugeestions.Visible = true;
                     suggestions_label.Text = suggestions.Value;
                     suggestions_label.Visible = true;
-                    if (!suggestions.Value.Equals("nothing to show"))
-                    {
-                        
+
                         suggested_owner_name_text.Visible = true;
                         Button1.Visible = true;
                         Button2.Visible = true;
-                    }
+                    
                 }
                 else
                 {
-                    new_sugeestions.Visible = false;
-                 
-                    suggestions_label.Visible = false;
-                        
+                    if (suggestions.ErrorMessage.Equals("nothing to show"))
+                    {
+                        new_sugeestions.Visible = true;
+                        suggestions_label.Text = suggestions.ErrorMessage;
+                        suggestions_label.Visible = true;
+
                         suggested_owner_name_text.Visible = false;
                         Button1.Visible = false;
                         Button2.Visible = false;
+                    }
+                    else
+                    {
+                        new_sugeestions.Visible = false;
+
+                        suggestions_label.Visible = false;
+
+                        suggested_owner_name_text.Visible = false;
+                        Button1.Visible = false;
+                        Button2.Visible = false;
+                    }
                     }
 
 
