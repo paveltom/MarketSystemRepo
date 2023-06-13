@@ -681,11 +681,11 @@ namespace Market_System.DomainLayer
             }
         }
 
-        public string CheckAreThereSuggestions(string storeID)
+        public string CheckAreThereSuggestions(string session_id, string storeID)
         {
             try
             {
-                return userFacade.CheckAreThereSuggestions(storeID);
+                return userFacade.CheckAreThereSuggestions(session_id, storeID);
             }
             catch (Exception e)
             {

@@ -754,14 +754,15 @@ namespace Market_System.DomainLayer.UserComponent
             }
         }
 
-        public string CheckAreThereSuggestions(string storeID)
+        public string CheckAreThereSuggestions(string session_id, string storeID)
         {
             try
             {
                 string return_me = "";
+                string currUserID = get_user_id_from_session_id(session_id);
                 foreach(string key in contracts.Keys)
                 {
-                    if (key.Contains(storeID))
+                    if (key.Contains(storeID) && contracts[key].Key.Contains(currUserID))
                     {
                         string userID = key.Substring(0, key.IndexOf('_'));
                         string username = get_username_from_user_id(userID);
