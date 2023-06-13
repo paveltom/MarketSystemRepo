@@ -32,13 +32,14 @@ namespace Market_System.Tests.unit_tests
             testStore = GetStore("testStoreFounderID326");
             testProduct0 = GetNewProduct(testStore); // storeID
             testProduct1 = GetExistingProduct(testStore); // productID    
-            //StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct0, testProduct0.Quantity);
-            //StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
+            StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct0, testProduct0.Quantity);
+            StoreRepo.GetInstance().AddProduct(testStore.Store_ID, testStore.founderID, testProduct1, testProduct1.Quantity);
 
             ConcurrentDictionary<string, string> products = new ConcurrentDictionary<string, string>();
             products.TryAdd(this.testProduct0.Product_ID, this.testProduct0.Product_ID);
             products.TryAdd(this.testProduct1.Product_ID, this.testProduct1.Product_ID);
             testStore.allProducts = products;
+            testStore.ChangeName(testStore.founderID, testStore.Name);
 
             testEmployees = new Employees();
             testEmployees.AddNewManagerEmpPermissions(testStore.founderID, "testStockManagerID0", testStore.Store_ID, new List<Permission>() { Permission.STOCK });
@@ -46,12 +47,15 @@ namespace Market_System.Tests.unit_tests
             testEmployees.AddNewOwnerEmpPermissions(testStore.founderID, "testOwnerID0", testStore.Store_ID);
             testEmployees.AddNewManagerEmpPermissions("testOwnerID0", "testAllManagerID0", testStore.Store_ID, new List<Permission>() { Permission.INFO, Permission.STOCK });
             testStore.SetTestEmployees(testEmployees);
+            testStore.ChangeName(testStore.founderID, testStore.Name);
+
         }
 
         // after each test
         [TestCleanup()]
         public void TearDown()
         {
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
             StoreRepo.GetInstance().destroy();
             EmployeeRepo.GetInstance().destroy_me();
             facade.Destroy_me();
@@ -336,12 +340,12 @@ namespace Market_System.Tests.unit_tests
             Statement storeIDStatement = new EqualRelation("Name", newp1.Name, false, false);
             Statement statement = new AtLeastStatement(1, new Statement[] { storeIDStatement });
             string samestatement = "[AtLeast[[1][Equal[[Name][" + newp1.Name  + "]]]]]";
-            Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, newp1.Product_ID);
+            Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID2", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", samestatement, newp1.Product_ID);
 
             //Purchase_Policy testProduct1Policy = new ProductPolicy("policyTestsPolicyID1", "productStoreIDEqualsStoreID", 50, "Test sale policy description.", statement, newp1.Product_ID);
 
             string formula = "[   IfThen[ [Equal[ [Category] [WhateverCategory] ] ]  [GreaterThan[ [Quantity]  [1] ] ] ] ]";
-            Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID1", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
+            Purchase_Strategy testProduct1Strategy = new Purchase_Strategy("AddStoreStrategySuccessStrategyID2", "AddStoreStrategySuccessStrategyName1", "AddStoreStrategySuccessStrategyDescription1", formula);
 
             newp1.AddPurchasePolicy(testProduct1Policy);
             newp1.AddPurchaseStrategy(testProduct1Strategy);

@@ -49,6 +49,7 @@ namespace Market_System.Tests.unit_tests
         [TestCleanup()]
         public void TearDown()
         {
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
             StoreRepo.GetInstance().destroy();
             EmployeeRepo.GetInstance().destroy_me();            
         }

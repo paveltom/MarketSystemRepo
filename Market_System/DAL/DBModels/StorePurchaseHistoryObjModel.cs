@@ -9,7 +9,7 @@ namespace Market_System.DAL.DBModels
     public class StorePurchaseHistoryObjModel
     {
         [Key]
-        public string HistoryId { get; set; } // productID_datetime.now
+        public string HistoryId { get; set; } // productID_DateTime.Now.Ticks
         public string ProductId { get; set; }
         public int Quantity { get; set; }
         public double TotalPrice { get; set; }

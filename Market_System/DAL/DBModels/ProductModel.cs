@@ -1,12 +1,10 @@
 ﻿using Market_System.DomainLayer.StoreComponent;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using WebGrease.Css.Extensions;
+using Microsoft.Ajax.Utilities;
+
 
 namespace Market_System.DAL.DBModels
 {
@@ -17,13 +15,13 @@ namespace Market_System.DAL.DBModels
         public string StoreID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Double Price { get; set; }
+        public double Price { get; set; }
         public string Auction { get; set; } // userID_price_transactionID
         public int ReservedQuantity { get; set; }
-        public Double Rating { get; set; } // between 1-10
+        public double Rating { get; set; } // between 1-10
         public int Quantity { get; set; }
-        public Double Weight { get; set; }
-        public Double Sale { get; set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
+        public double Weight { get; set; }
+        public double Sale { get; set; } // 1-100 percentage  - temporary variant before PurchasePolicy implmnt
         public long timesBought { get;  set; }
         public long timesRated { get;  set; }
         public string ProductCategory { get;  set; }   // (mabye will be implementing by composition design pattern to support a sub catagoring.)
@@ -43,7 +41,7 @@ namespace Market_System.DAL.DBModels
 
         public Product ModelToProduct()
         {
-            Double[] dimenssions = this.Dimenssions.Split('_').Select(s => Double.Parse(s)).ToArray();
+            double[] dimenssions = this.Dimenssions.Split('_').Select(s => double.Parse(s)).ToArray();
             List<string> comments = this.Comments.Select(c => c.Comment).ToList();
             ConcurrentDictionary<string, Purchase_Policy> policies = new ConcurrentDictionary<string, Purchase_Policy>(this.Policies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
             ConcurrentDictionary<string, Purchase_Strategy> strategies = new ConcurrentDictionary<string, Purchase_Strategy>(this.Strategies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x));
@@ -80,7 +78,15 @@ namespace Market_System.DAL.DBModels
             this.ProductCategory = updatedProduct.ProductCategory.CategoryName;    // (mabye will be implementing by composition design pattern to support a sub catagoring.)
             this.Dimenssions = updatedProduct.Dimenssions.Aggregate("", (acc, d) => (acc += "_" + d), str => str.Substring(1));// string format: x_y_z
 
-            updatedProduct.Lottery.ForEach(l => {
+            // collection init
+            this.ProductPurchaseAttributes = new HashSet<ProductAttributeModel>();
+            this.Comments = new HashSet<CommentModel>();
+            this.Strategies = new HashSet<PurchaseStrategyModel>();
+            this.Policies = new HashSet<PurchasePolicyModel>();
+            this.Lottery= new HashSet<LotteryModel>();
+
+
+        updatedProduct.Lottery.ForEach(l => {
                 LotteryModel model = new LotteryModel();
                 model.LotteryID = updatedProduct.Product_ID + "_" + l.Key + "_lottery";
                 model.UserID = l.Key;
@@ -92,7 +98,7 @@ namespace Market_System.DAL.DBModels
             updatedProduct.Comments.ForEach(c =>
             {
                 string commentID = this.ProductID + c.Split(':')[0];
-                if (!this.Comments.Any(x => x.CommentID == commentID))
+                if (this.Comments.Select(x => x.CommentID == commentID).Count() == 0)
                 {
                     CommentModel cm = new CommentModel();
                     cm.Product = this;
@@ -116,7 +122,7 @@ namespace Market_System.DAL.DBModels
             updatedProduct.PurchaseAttributes.ForEach(p =>
             {
                 string attrID = this.ProductID + p.Key;
-                if (!this.ProductPurchaseAttributes.Any(x => x.AttributeID == attrID))
+                if (this.ProductPurchaseAttributes.Select(x => x.AttributeID == attrID).Count() == 0)
                 {
                     ProductAttributeModel pm = new ProductAttributeModel();
                     pm.Product = this;
@@ -142,7 +148,7 @@ namespace Market_System.DAL.DBModels
 
             updatedProduct.PurchaseStrategies.ForEach(p =>
             {
-                if (!this.Strategies.Any(x => x.StrategyID == p.Key))
+                if (this.Strategies.Select(x => x.StrategyID == p.Key).Count() == 0)
                 {
                     PurchaseStrategyModel pm = new PurchaseStrategyModel();
                     pm.DefineNewMe(p.Value, false, null, this);
@@ -164,7 +170,7 @@ namespace Market_System.DAL.DBModels
 
             updatedProduct.PurchasePolicies.ForEach(p =>
             {
-                if (!this.Policies.Any(x => x.PolicyID == p.Key))
+                if (this.Policies.Select(x => x.PolicyID == p.Key).Count() == 0)
                 {
                     PurchasePolicyModel pm = new PurchasePolicyModel();
                     pm.DefineNewMe(p.Value, false, null, this);

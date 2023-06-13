@@ -43,6 +43,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
         [TestCleanup()]
         public void TearDown()
         {
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
             StoreRepo.GetInstance().destroy();
             EmployeeRepo.GetInstance().destroy_me();
             facade.Destroy_me();
@@ -128,10 +129,6 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
         {
             // Arrange            
             this.testProduct0.SetSale(50);
-
-
-
-
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { this.testProduct0.GetProductDTO() };
             double price = this.testProduct0.Price / 2 * this.testProduct0.Quantity;
             bool error = false;
@@ -269,7 +266,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             Statement userIDStatement2 = new EqualRelation("Username", this.legitTestUser2, true, false);
             Statement[] usersFormula = new Statement[] { userIDStatement1, userIDStatement2};
             Statement logicOrFormula = new LogicOR(usersFormula);
-            string samestatement2 = "[OR[[Equal[[Username][" + legitTestUser1 + "]]][Equal[[Username][" + legitTestUser2 + "]]]]]";
+            string samestatement2 = "[OR[[Equal[[User.Name][" + legitTestUser1 + "]]][Equal[[User.Name][" + legitTestUser2 + "]]]]]";
             Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", samestatement2);
 
             //Purchase_Strategy testStoreStrategy = new Purchase_Strategy("policyTestsStrategyID1", "userIDEqualslegitUsersIDs", "Test strategy policy description.", logicOrFormula);

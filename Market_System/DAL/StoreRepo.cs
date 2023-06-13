@@ -7,6 +7,9 @@ using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -41,8 +44,8 @@ namespace Market_System.DAL
                         store_id_generator = new Random();
                         using (StoreDataContext context = new StoreDataContext())
                         {
-                            opened_stores_ids = new List<string>(); // ---------------------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            temporary_closed_stores_ids = new List<string>(); // -----------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            opened_stores_ids = context.Stores.Where(s => s.temporaryClosed == false).Select(s => s.StoreID).ToList(); // ---------------------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            temporary_closed_stores_ids = context.Stores.Where(s => s.temporaryClosed == true).Select(s => s.StoreID).ToList();  // -----------------------------> initiate from DB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             opened_stores_ids = opened_stores_ids.Concat(context.Stores.Where(sm => sm.temporaryClosed == false).Select(x => x.StoreID)).ToList();
                             temporary_closed_stores_ids = temporary_closed_stores_ids.Concat(context.Stores.Where(sm => sm.temporaryClosed == true).Select(x => x.StoreID)).ToList();
                         }
@@ -56,11 +59,23 @@ namespace Market_System.DAL
 
         public void RemoveDataBase(string password)
         {
-            string path = System.Environment.CurrentDirectory + "\\MarketSystemDB.db";
-            if (password == "qwe123" && File.Exists(path))
+            //string path = System.Environment.CurrentDirectory + "\\MarketDB.db";
+            if (password == "qwe123")
                 lock (this)
                 {
-                    File.Delete(path);
+                    //File.Delete(path);
+                    //DbConnection conn = Database.DefaultConnectionFactory.CreateConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True");
+                    //conn.Open();
+                    //conn.Database.Remove(0);
+                    //conn.Close();
+                    using (StoreDataContext context = new StoreDataContext())
+                    {
+                        context.Database.Delete();
+                    }
+                    // Database.Delete("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True");
+                    //var sc = new Microsoft.SqlServer.Management.Common.ServerConnection(your localDB SqlConnection here);
+                    //var server = new Microsoft.SqlServer.Management.Smo.Server(sc);
+                    //server.KillDatabase(dbName here);
                 }
 
         }
@@ -69,7 +84,6 @@ namespace Market_System.DAL
         public void destroy()
         {
             Instance = null;
-
         }
 
 
@@ -128,14 +142,15 @@ namespace Market_System.DAL
         public void AddPayment(string userID, string transactionID, double price, bool canceled)
         {
             using (StoreDataContext context = new StoreDataContext())
-            {                
-                TransactionModel model = new TransactionModel();
+            {
+                TransactionModel model;
                 if (canceled && (model = context.Transactions.SingleOrDefault(t => t.TransactioID == transactionID)) != null)
                 {
                     model.Cancelled = true;
                 }
                 else
                 {
+                    model = new TransactionModel();
                     model.TransactioID = transactionID;
                     model.Price = price;
                     model.UserID = userID;
@@ -340,6 +355,7 @@ namespace Market_System.DAL
                     purchase.Store = model;
                     purchase.TotalPrice = item.Price * item.GetQuantity();
                     purchase.Day_Month_Year = DateTime.Now.Day.ToString("dd") + "_" + DateTime.Now.Month.ToString("MM") + "_" + DateTime.Now.Year.ToString("yyyy");
+                    purchase.HistoryId = item.GetID() + "_" + DateTime.Now.Ticks;
                     model.PurchaseHistory.Add(purchase);
                     context.SaveChanges();
                 }
@@ -388,6 +404,7 @@ namespace Market_System.DAL
             if (model.Products != null)
                 productIds = model.Products.Select(x => x.ProductID).ToList();
             Store ret = new Store(model.founderID, model.StoreID, policies, strategies, productIds, model.temporaryClosed);
+            ret.ChangeName(ret.founderID, model.Name);
 
             ret.productDefaultPolicies = new ConcurrentDictionary<string, Purchase_Policy>(defaultPolicies.ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
             ret.productDefaultStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStrategies.ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x)); ;
@@ -615,10 +632,10 @@ namespace Market_System.DAL
                         throw new Exception("Invalid data has been provided, either this product already exists in this store.");
                     pm = new ProductModel();
                     pm.ProductID = product.Product_ID;
-                    pm.StoreID = store_ID;
-                    pm.UpdateWholeModel(product);
+                    pm.StoreID = store_ID;                    
                     pm.Store = sm;                    
                     context.Products.Add(pm);
+                    pm.UpdateWholeModel(product);
                     context.SaveChanges();
                     //sm.Products.Add(pm);
                     //context.SaveChanges();
