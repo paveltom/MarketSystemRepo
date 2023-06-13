@@ -65,12 +65,44 @@ namespace Market_System.DomainLayer.StoreComponent
                     string eRole = emp.Role.ToString();
                     EmployeeModel toSave;
                     if ((toSave = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) == null)
+                    {
                         toSave = new EmployeeModel();
-                    toSave.UpdateWholeModel(emp);
+                        toSave.UpdateWholeModel(emp);
+                        context.Employees.Add(toSave);
+                    }
+                    else
+                        toSave.UpdateWholeModel(emp);
+
+                    // StoreModel sm = context.Stores.SingleOrDefault(s => s.StoreID == emp.StoreID);
                     context.SaveChanges();
                 }
             }
         }
+
+
+        public void AddEmployee(Employee emp)
+        {
+            lock (this)
+            {
+                using (StoreDataContext context = new StoreDataContext())
+                {
+                    string eRole = emp.Role.ToString();
+                    EmployeeModel toSave;
+                    if ((toSave = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) == null)
+                    {
+                        toSave = new EmployeeModel();
+                        toSave.UpdateWholeModel(emp);
+                        context.Employees.Add(toSave);
+                    }
+                    else
+                        throw new Exception("Employee already works in this store.");
+
+                    // StoreModel sm = context.Stores.SingleOrDefault(s => s.StoreID == emp.StoreID);
+                    context.SaveChanges();
+                }
+            }
+        }
+        
 
         public void Remove_Employee(Employee emp)
         {
