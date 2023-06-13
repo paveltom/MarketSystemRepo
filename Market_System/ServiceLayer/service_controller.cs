@@ -619,7 +619,7 @@ namespace Market_System.ServiceLayer
         {
             try
             {
-                string userName = this.ssc.CheckAreThereSuggestions(storeID);
+                string userName = this.ssc.CheckAreThereSuggestions(session_id, storeID);
                 Response<string> ok = Response<string>.FromValue(userName);
 
                 Logger.get_instance().record_event("check are there suggestions done succesfully");
