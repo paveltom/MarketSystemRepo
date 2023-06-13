@@ -87,7 +87,7 @@ namespace Market_System.DomainLayer.StoreComponent
             this.PurchaseStrategies = new ConcurrentDictionary<string, Purchase_Strategy>(defaultStoreStrategies);
             this.Comments = new ConcurrentBag<string>();
             this.timesBought = 0;
-            this.Auction = new KeyValuePair<string, List<string>>(this.Product_ID, new List<string>{ "-1.0", "" });
+            this.Auction = new KeyValuePair<string, List<string>>(this.StoreID, new List<string>{ "-1.0", "" });
             this.Lottery = null;
 
             String[] properties = productProperties.ToArray();
