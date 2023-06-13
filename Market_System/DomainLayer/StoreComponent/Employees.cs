@@ -149,12 +149,12 @@ namespace Market_System.DomainLayer.StoreComponent
 
         /**add new 'userID' employee with 'permissions' in a store
          */
-        public void AddNewEmpPermissions(string userID, string storeID, List<Permission> permissions, Role role)
+        public void AddNewEmpPermissions(Employee emp, List<Permission> permissions)
         {
-            Employee newEmp = new Employee(userID, storeID, role);
+            Employee newEmp = emp;
             newEmp.Permissions = permissions;
             AddEmp(newEmp);
-            EmployeeRepo.GetInstance().Save_Employee(newEmp);
+            EmployeeRepo.GetInstance().AddEmployee(newEmp);
         }
 
         /**remove 'userID' employee
@@ -258,7 +258,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             Employee newEmp = new Employee(newManagerID, storeID, Role.Manager);
             newEmp.ManagerAssigner = assignnerID;
-            AddNewEmpPermissions(newManagerID, storeID, managingPermissions, Role.Manager);
+            AddNewEmpPermissions(newEmp, managingPermissions);
         }
 
         public void removeStore(string storeID)

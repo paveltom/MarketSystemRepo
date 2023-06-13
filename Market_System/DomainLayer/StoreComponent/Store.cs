@@ -1220,7 +1220,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
                     {
-                        AcquireProduct(productID).SetAuction(productID, newPrice, "");
+                        AcquireProduct(productID).SetAuction(founderID, newPrice, "");
                         ReleaseProduct(productID);
                     }
                 }
