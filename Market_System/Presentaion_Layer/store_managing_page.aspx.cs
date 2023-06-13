@@ -326,8 +326,8 @@ namespace Market_System.Presentaion_Layer
 
                 //suggestions of new owners:
 
-                //Response<string> suggestions = ((Service_Controller)Session["service_controller"]).check_if_can_assign_manager_or_owner(storeID);
-                Response<string> suggestions = null;
+                Response<string> suggestions = ((Service_Controller)Session["service_controller"]).CheckAreThereSuggestions(storeID);
+                
                 if(!suggestions.ErrorOccured)
                 {
                     new_sugeestions.Visible = true;
@@ -335,7 +335,7 @@ namespace Market_System.Presentaion_Layer
                     suggestions_label.Visible = true;
                     if (!suggestions.Value.Equals("nothing to show"))
                     {
-                        suggestions_label.Visible = true;
+                        
                         suggested_owner_name_text.Visible = true;
                         Button1.Visible = true;
                         Button2.Visible = true;
@@ -343,8 +343,14 @@ namespace Market_System.Presentaion_Layer
                 }
                 else
                 {
-
-                }
+                    new_sugeestions.Visible = false;
+                 
+                    suggestions_label.Visible = false;
+                        
+                        suggested_owner_name_text.Visible = false;
+                        Button1.Visible = false;
+                        Button2.Visible = false;
+                    }
 
 
 
@@ -520,8 +526,8 @@ namespace Market_System.Presentaion_Layer
                 accept_or_decline_message.Text = "please enter valid name";
                 accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
             }
-            //Response<string> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
-            Response<string> okay = null;
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).AcceptSuggestion(suggested_owner_name_text.Text,ddl_store_id.SelectedValue);
+            
             if(okay.ErrorOccured)
             {
                 accept_or_decline_message.Text = okay.ErrorMessage;
@@ -540,8 +546,8 @@ namespace Market_System.Presentaion_Layer
                 accept_or_decline_message.Text = "please enter valid name";
                 accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
             }
-            //Response<string> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
-            Response<string> okay = null;
+            Response<string> okay = ((Service_Controller)Session["service_controller"]).DeclineSuggestion(suggested_owner_name_text.Text, ddl_store_id.SelectedValue);
+
             if (okay.ErrorOccured)
             {
                 accept_or_decline_message.Text = okay.ErrorMessage;
