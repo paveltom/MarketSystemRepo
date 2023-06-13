@@ -328,7 +328,7 @@ namespace Market_System.Presentaion_Layer
 
                 Response<string> suggestions = ((Service_Controller)Session["service_controller"]).CheckAreThereSuggestions(storeID);
                 
-                if(!suggestions.ErrorOccured && !suggestions.Value.Equals("nothing to show"))
+                if(!suggestions.ErrorOccured)
                 {
                     new_sugeestions.Visible = true;
                     suggestions_label.Text = suggestions.Value;
