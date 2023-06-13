@@ -24,7 +24,15 @@
     </div>
     <div style="text-align: left">
         </div>
-       <div></div>
+       <div style="text-align: left">
+           <asp:Label ID="new_sugeestions" runat="server" Text="new suggestions:    " Visible="false"></asp:Label>
+           <asp:Label ID="suggestions_label" runat="server" Text="" Visible="false"></asp:Label>
+           <asp:TextBox ID="suggested_owner_name_text" runat="server" Visible="false"></asp:TextBox>
+           <asp:Button ID="Button1" runat="server" Text="accept" Visible="false" OnClick="accept_suggestion_click" />
+&nbsp;<asp:Button ID="Button2" runat="server" Text="decline" Visible="false" OnClick="decline_suggestion_click" />
+           <asp:Label ID="accept_or_decline_message" runat="server" Text="" Visible="false"></asp:Label>
+    </div>
+    <div></div>
     <div style="text-align: left">
         </div>
        <div></div>
@@ -38,11 +46,11 @@
     </div>
        <div></div>
     <div style="text-align: left">
-        <asp:Label ID="Label7" runat="server" Text="assign new owner:" Visible="false"></asp:Label>
-    &nbsp;&nbsp;&nbsp;<asp:Label ID="Label16" runat="server" Text="type new owner name" Visible="false"></asp:Label>
+        <asp:Label ID="Label7" runat="server" Text="suggest new owner:" Visible="false"></asp:Label>
+    &nbsp;&nbsp;&nbsp;<asp:Label ID="Label16" runat="server" Text="type new suggested owner name" Visible="false"></asp:Label>
         &nbsp;<asp:TextBox ID="new_owner_username" runat="server" Visible="false"></asp:TextBox>
         &nbsp;&nbsp;
-        <asp:Button ID="assign_new_owner_button" onclick="assign_new_owner_click" runat="server" Text="Assign" Visible="false" />
+        <asp:Button ID="assign_new_owner_button" onclick="assign_new_owner_click" runat="server" Text="Suggest" Visible="false" />
 &nbsp;<asp:Label ID="new_owner_message" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label>
     </div>
        <div></div>
