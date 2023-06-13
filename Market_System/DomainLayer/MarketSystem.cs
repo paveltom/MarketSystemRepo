@@ -1049,9 +1049,12 @@ namespace Market_System.DomainLayer
         {
             List<string> return_me = new List<string>();
             List<ItemDTO> items = this.GetProductsFromStore(sessionID, storeID);
-            foreach(ItemDTO item in items)
+            foreach (ItemDTO item in items)
             {
-                return_me.Add("product name:  " + storeFacade.get_product_name_from_prodcut_id(item.GetID()) + "   ID:   " + item.GetID() + "   quantity:  " + item.GetQuantity());
+                if (item.GetQuantity() > 0)
+                {
+                    return_me.Add("product name:  " + storeFacade.get_product_name_from_prodcut_id(item.GetID()) + "   ID:   " + item.GetID() + "   quantity:  " + item.GetQuantity());
+                }
             }
             return return_me;
         }
