@@ -324,8 +324,27 @@ namespace Market_System.Presentaion_Layer
                 lottery_button.Visible = true;
                 lottery_message.Visible = true;
 
+                //suggestions of new owners:
 
+                //Response<string> suggestions = ((Service_Controller)Session["service_controller"]).check_if_can_assign_manager_or_owner(storeID);
+                Response<string> suggestions = null;
+                if(!suggestions.ErrorOccured)
+                {
+                    new_sugeestions.Visible = true;
+                    suggestions_label.Text = suggestions.Value;
+                    suggestions_label.Visible = true;
+                    if (!suggestions.Value.Equals("nothing to show"))
+                    {
+                        suggestions_label.Visible = true;
+                        suggested_owner_name_text.Visible = true;
+                        Button1.Visible = true;
+                        Button2.Visible = true;
+                    }
+                }
+                else
+                {
 
+                }
 
 
 
@@ -491,6 +510,47 @@ namespace Market_System.Presentaion_Layer
                     bid_data.DataSource = show_me;
                     bid_data.DataBind();
                 }
+            }
+        }
+
+        protected void accept_suggestion_click(object sender, EventArgs e)
+        {
+            if(suggested_owner_name_text.Text.Equals(""))
+            {
+                accept_or_decline_message.Text = "please enter valid name";
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            //Response<string> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
+            Response<string> okay = null;
+            if(okay.ErrorOccured)
+            {
+                accept_or_decline_message.Text = okay.ErrorMessage;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                accept_or_decline_message.Text = okay.Value;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Green;
+            }
+        }
+        protected void decline_suggestion_click(object sender, EventArgs e)
+        {
+            if (suggested_owner_name_text.Text.Equals(""))
+            {
+                accept_or_decline_message.Text = "please enter valid name";
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            //Response<string> okay = ((Service_Controller)Session["service_controller"]).GetStoreBids(storeID);
+            Response<string> okay = null;
+            if (okay.ErrorOccured)
+            {
+                accept_or_decline_message.Text = okay.ErrorMessage;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                accept_or_decline_message.Text = okay.Value;
+                accept_or_decline_message.ForeColor = System.Drawing.Color.Green;
             }
         }
 
