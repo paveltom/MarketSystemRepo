@@ -555,6 +555,69 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label auction_message;
 
         /// <summary>
+        /// lottery_setup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lottery_setup;
+
+        /// <summary>
+        /// lottery_product_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lottery_product_id;
+
+        /// <summary>
+        /// lottery_product_id_text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lottery_product_id_text;
+
+        /// <summary>
+        /// lottery_duration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lottery_duration;
+
+        /// <summary>
+        /// lottery_duration_text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lottery_duration_text;
+
+        /// <summary>
+        /// lottery_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lottery_button;
+
+        /// <summary>
+        /// lottery_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lottery_message;
+
+        /// <summary>
         /// Label23 control.
         /// </summary>
         /// <remarks>

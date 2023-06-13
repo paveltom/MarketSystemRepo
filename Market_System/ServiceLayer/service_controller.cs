@@ -1839,33 +1839,37 @@ namespace Market_System.ServiceLayer
 
 
         // ======= LOTTERY ========
-        public Response SetNewLottery(string productID, long durationInMinutes)
+        public Response<string> SetNewLottery(string productID, long durationInMinutes)
         {
             try
             {
-                return ssc.SetNewLottery(productID, durationInMinutes);
+                Response<string> ret = Response<string>.FromValue(ssc.SetNewLottery(productID, durationInMinutes));
+                return ret;
+                
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
         }
 
-        public Response RemoveLottery(string productID)
+        public Response<string> RemoveLottery(string productID)
         {
             try
             {
-                return ssc.RemoveLottery(productID);
+                Response<string> ret = Response<string>.FromValue(ssc.RemoveLottery(productID));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
         }
 
 
-        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        public Response<string> AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
-                return ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id);
+                Response<string> ret = Response<string>.FromValue(ssc.AddLotteryTicket(productID, percentage, card_number, month, year, holder, ccv, id));
+                return ret;
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { return Response<string>.FromError(e.Message); }
 
         }
 

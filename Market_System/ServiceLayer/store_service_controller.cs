@@ -354,34 +354,34 @@ namespace Market_System.ServiceLayer
 
 
         // ======= LOTTERY ========
-        public Response SetNewLottery(string productID, long durationInMinutes)
+        public string SetNewLottery(string productID, long durationInMinutes)
         {
             try
             {
                 Market.SetNewLottery(this.SessionID, productID, durationInMinutes);
-                return new Response("Lottery was created successfully.");
+                return "Lottery was created successfully.";
             }
             catch (Exception e) { throw e; }
         }
 
-        public Response RemoveLottery(string productID)
+        public string RemoveLottery(string productID)
         {
             try
             {
                 Market.RemoveLottery(this.SessionID, productID);
-                return new Response("Lottery was removed successfully.");
+                return "Lottery was removed successfully.";
             }
             catch (Exception e) { throw e; }
         }
 
 
-        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
+        public string AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id)
         {
 
             try
             {
                 Market.AddLotteryTicket(this.SessionID, productID, percentage, card_number, month, year, holder, ccv, id);
-                return new Response("Lottery ticket was added successfully.");
+                return "Lottery ticket was added successfully.";
             }
             catch (Exception e) { throw e; }
 

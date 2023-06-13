@@ -338,6 +338,7 @@
     <Content Include="Presentaion_Layer\checkoutPage.aspx" />
     <Content Include="Presentaion_Layer\Home_page.aspx" />
     <Content Include="Presentaion_Layer\Login.aspx" />
+    <Content Include="Presentaion_Layer\lottery_page.aspx" />
     <Content Include="Presentaion_Layer\notifications.aspx" />
     <Content Include="Presentaion_Layer\open_new_store_page.aspx" />
     <Content Include="Presentaion_Layer\ProductPage.aspx" />
@@ -481,6 +482,13 @@
     </Compile>
     <Compile Include="Presentaion_Layer\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentaion_Layer\lottery_page.aspx.cs">
+      <DependentUpon>lottery_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentaion_Layer\lottery_page.aspx.designer.cs">
+      <DependentUpon>lottery_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentaion_Layer\notifications.aspx.cs">
       <DependentUpon>notifications.aspx</DependentUpon>

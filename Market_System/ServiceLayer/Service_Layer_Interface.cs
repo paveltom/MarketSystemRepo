@@ -94,9 +94,9 @@ namespace Market_System.ServiceLayer
 
 
         // ======= LOTTERY ========
-        public Response SetNewLottery(string productID, long durationInMinutes);
-        public Response RemoveLottery(string productID);
-        public Response AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id);
+        public Response<string> SetNewLottery(string productID, long durationInMinutes);
+        public Response<string> RemoveLottery(string productID);
+        public Response<string> AddLotteryTicket(string productID, int percentage, string card_number, string month, string year, string holder, string ccv, string id);
         public Response<Dictionary<string, int>> ReturnUsersLotteryTickets(string productID);
         public Response<int> RemainingLotteryPercantage(string productID);
     }

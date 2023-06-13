@@ -314,6 +314,17 @@ namespace Market_System.Presentaion_Layer
                 auction_message.Visible = true;
 
 
+                //lottery setup
+                lottery_setup.Visible = true;
+                lottery_setup.Visible = true;
+                lottery_product_id.Visible = true;
+                lottery_product_id_text.Visible = true;
+                lottery_duration.Visible = true;
+                lottery_duration_text.Visible = true;
+                lottery_button.Visible = true;
+                lottery_message.Visible = true;
+
+
 
 
 
@@ -368,6 +379,15 @@ namespace Market_System.Presentaion_Layer
                 auction_duration_text.Visible = false;
                 auction_button.Visible = false;
                 auction_message.Visible = false;
+
+                lottery_setup.Visible = false;
+                lottery_product_id.Visible = false;
+                lottery_product_id_text.Visible = false;
+                lottery_duration.Visible = false;
+                lottery_duration_text.Visible = false;
+                lottery_button.Visible = false;
+                lottery_message.Visible = false;
+                
             }
 
             Response<bool> add_remove_permession_checker = ((Service_Controller)Session["service_controller"]).check_if_can_remove_or_add_permessions(storeID);
@@ -502,6 +522,38 @@ namespace Market_System.Presentaion_Layer
             {
                 auction_message.Text = exe.Message;
                 auction_message.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
+
+
+        protected void start_lottery_click(object sender, EventArgs e)
+        {
+
+            if (lottery_product_id_text.Text.Equals("")  || lottery_duration_text.Text.Equals(""))
+            {
+                lottery_message.Text = "please enter valid values";
+                lottery_message.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).SetNewLottery(lottery_product_id_text.Text,  long.Parse(lottery_duration_text.Text));
+                if (okay.ErrorOccured)
+                {
+                    lottery_message.Text = okay.ErrorMessage;
+                    lottery_message.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lottery_message.Text = okay.Value;
+                    lottery_message.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            catch (Exception exe)
+            {
+                lottery_message.Text = exe.Message;
+                lottery_message.ForeColor = System.Drawing.Color.Red;
             }
 
         }
