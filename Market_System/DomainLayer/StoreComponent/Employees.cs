@@ -93,7 +93,7 @@ namespace Market_System.DomainLayer.StoreComponent
             List<Employee> employees = getStoreEmployees(storeID);
             foreach (Employee emp in employees)
             {
-                if (emp.isOwner())
+                if (emp.isOwner() || emp.isFounder())
                 {
                     ownersIDs.Add(emp.UserID);
                 }
