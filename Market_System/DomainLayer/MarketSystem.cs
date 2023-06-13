@@ -1049,9 +1049,12 @@ namespace Market_System.DomainLayer
         {
             List<string> return_me = new List<string>();
             List<ItemDTO> items = this.GetProductsFromStore(sessionID, storeID);
-            foreach(ItemDTO item in items)
+            foreach (ItemDTO item in items)
             {
-                return_me.Add("product name:  " + storeFacade.get_product_name_from_prodcut_id(item.GetID()) + "   ID:   " + item.GetID() + "   quantity:  " + item.GetQuantity());
+                if (item.GetQuantity() > 0)
+                {
+                    return_me.Add("product name:  " + storeFacade.get_product_name_from_prodcut_id(item.GetID()) + "   ID:   " + item.GetID() + "   quantity:  " + item.GetQuantity());
+                }
             }
             return return_me;
         }
@@ -1572,11 +1575,12 @@ namespace Market_System.DomainLayer
             //Send Notification to the store Owners
             foreach (EmployeeDTO emp in storeFacade.GetStore(storeID).owners)
             {
-                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message);
+                notificationFacade.AddNewMessage(emp.UserID, senderUsername, message); //this includes the owner now as well - 
+                // was changed on 13/06/2023 by amihai
             }
             //Send to founder as well - he is sort of owner too...
             var founderID = storeFacade.GetStore(storeID).FounderID;
-            notificationFacade.AddNewMessage(founderID, senderUsername, message);
+            //notificationFacade.AddNewMessage(founderID, senderUsername, message);
         }
 
         private void sendMessageToStoreManagers(string message, string senderUsername, string storeID)
