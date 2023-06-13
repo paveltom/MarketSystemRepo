@@ -1305,12 +1305,10 @@ namespace Market_System.DomainLayer.StoreComponent
             {
                 try
                 {
-                    double price = 0.0;
-                    if (this.employees.isOwner(userID, this.Store_ID) || this.employees.confirmPermission(userID, this.Store_ID, Permission.STOCK))
-                    {                        
-                        price = AcquireProduct(productID).AddLotteryTicket(userID, percentage, transID);
-                        ReleaseProduct(productID);                        
-                    }
+                    double price = 0.0;                      
+                    price = AcquireProduct(productID).AddLotteryTicket(userID, percentage, transID);
+                    ReleaseProduct(productID);                     
+                 
                     return price;
                 }
                 catch (Exception e) { throw e; }
