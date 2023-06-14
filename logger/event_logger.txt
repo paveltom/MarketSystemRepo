@@ -6194,3 +6194,91 @@ Tuesday, 13 June 2023 : ADMIN with session ID : 1103228123 requested profit for 
 Tuesday, 13 June 2023 : user with session ID : 1103228123 requested profit for a store 1808860359on date 12/06/2023 0:00:00
 Tuesday, 13 June 2023 : user with session ID : 1103228123 requested profit for a store 1808860359on date 13/06/2023 0:00:00
 Tuesday, 13 June 2023 : user with session ID : 1103228123 requested profit for a store 1808860359on date 14/06/2023 0:00:00
+Wednesday, 14 June 2023 : guest : guest1472132837 has logged in
+Wednesday, 14 June 2023 : bayan has registered!
+Wednesday, 14 June 2023 : nekola has registered!
+Wednesday, 14 June 2023 : ben has registered!
+Wednesday, 14 June 2023 : harold has registered!
+Wednesday, 14 June 2023 : ben3 has registered!
+Wednesday, 14 June 2023 : opening store with id: 944123024 has failed
+Wednesday, 14 June 2023 : Added the product:944123024_1467246043to store: 944123024 has been done successfully
+Wednesday, 14 June 2023 : assigning new manager with username : nekola to the store with id: 944123024
+Wednesday, 14 June 2023 : assigning new owner with username : ben to the store with id: 944123024
+Wednesday, 14 June 2023 : guest : guest956997035 has logged in
+Wednesday, 14 June 2023 : pasha has registered!
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 186469107
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : accepted suggestion for new owner with username : pasha to the store with id: 186469107
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 186469107
+Wednesday, 14 June 2023 : guest : guest905071465 has logged in
+Wednesday, 14 June 2023 : bayan has registered!
+Wednesday, 14 June 2023 : nekola has registered!
+Wednesday, 14 June 2023 : ben has registered!
+Wednesday, 14 June 2023 : harold has registered!
+Wednesday, 14 June 2023 : ben3 has registered!
+Wednesday, 14 June 2023 : opening store with id: 715269208 has failed
+Wednesday, 14 June 2023 : Added the product:715269208_787263895to store: 715269208 has been done successfully
+Wednesday, 14 June 2023 : assigning new manager with username : nekola to the store with id: 715269208
+Wednesday, 14 June 2023 : assigning new owner with username : ben to the store with id: 715269208
+Wednesday, 14 June 2023 : guest : guest1057561006 has logged in
+Wednesday, 14 June 2023 : pasha has registered!
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 1057561006
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : accepted suggestion for new owner with username : pasha to the store with id: 1057561006
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 1057561006
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 1057561006
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 1057561006
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : guest : guest554397040 has logged in
+Wednesday, 14 June 2023 : bayan has registered!
+Wednesday, 14 June 2023 : nekola has registered!
+Wednesday, 14 June 2023 : ben has registered!
+Wednesday, 14 June 2023 : harold has registered!
+Wednesday, 14 June 2023 : ben3 has registered!
+Wednesday, 14 June 2023 : guest : guest1754769064 has logged in
+Wednesday, 14 June 2023 : bayan has registered!
+Wednesday, 14 June 2023 : nekola has registered!
+Wednesday, 14 June 2023 : ben has registered!
+Wednesday, 14 June 2023 : harold has registered!
+Wednesday, 14 June 2023 : ben3 has registered!
+Wednesday, 14 June 2023 : opening store with id: 1613665713 has failed
+Wednesday, 14 June 2023 : Added the product:1613665713_962896972to store: 1613665713 has been done successfully
+Wednesday, 14 June 2023 : assigning new manager with username : nekola to the store with id: 1613665713
+Wednesday, 14 June 2023 : assigning new owner with username : ben to the store with id: 1613665713
+Wednesday, 14 June 2023 : guest : guest303679681 has logged in
+Wednesday, 14 June 2023 : pasha has registered!
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 303679681
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : accepted suggestion for new owner with username : pasha to the store with id: 303679681
+Wednesday, 14 June 2023 : 303679681Logged-out succesfully
+Wednesday, 14 June 2023 : guest : guest715833140 has logged in
+Wednesday, 14 June 2023 : guest : guest540031842 has logged in
+Wednesday, 14 June 2023 : bayan has registered!
+Wednesday, 14 June 2023 : nekola has registered!
+Wednesday, 14 June 2023 : ben has registered!
+Wednesday, 14 June 2023 : harold has registered!
+Wednesday, 14 June 2023 : ben3 has registered!
+Wednesday, 14 June 2023 : opening store with id: 10950761 has failed
+Wednesday, 14 June 2023 : Added the product:10950761_1784821075to store: 10950761 has been done successfully
+Wednesday, 14 June 2023 : assigning new manager with username : nekola to the store with id: 10950761
+Wednesday, 14 June 2023 : assigning new owner with username : ben to the store with id: 10950761
+Wednesday, 14 June 2023 : guest : guest1408942692 has logged in
+Wednesday, 14 June 2023 : pasha has registered!
+Wednesday, 14 June 2023 : guest : guest886922846 has logged in
+Wednesday, 14 June 2023 : bayan has registered!
+Wednesday, 14 June 2023 : nekola has registered!
+Wednesday, 14 June 2023 : ben has registered!
+Wednesday, 14 June 2023 : harold has registered!
+Wednesday, 14 June 2023 : ben3 has registered!
+Wednesday, 14 June 2023 : opening store with id: 325573745 has failed
+Wednesday, 14 June 2023 : Added the product:325573745_325267922to store: 325573745 has been done successfully
+Wednesday, 14 June 2023 : assigning new manager with username : nekola to the store with id: 325573745
+Wednesday, 14 June 2023 : assigning new owner with username : ben to the store with id: 325573745
+Wednesday, 14 June 2023 : guest : guest1217190051 has logged in
+Wednesday, 14 June 2023 : pasha has registered!
+Wednesday, 14 June 2023 : suggesting new owner with username : pasha to the store with id: 1217190051
+Wednesday, 14 June 2023 : check are there suggestions done succesfully
+Wednesday, 14 June 2023 : accepted suggestion for new owner with username : pasha to the store with id: 1217190051

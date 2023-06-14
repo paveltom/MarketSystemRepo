@@ -56,6 +56,16 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+        public List<Employee> GetStoreEmployees(string storeID) 
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                return context.Employees.Where(e => e.StoreID == storeID).ToList().Select(e => ModelToEmployee(e)).ToList();
+            }
+        }
+
+
+
         public void Save_Employee(Employee emp)
         {
             lock (this)
@@ -121,6 +131,19 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
+
+        public Employee ModelToEmployee(EmployeeModel model)
+        {
+            Role eRole;
+            Enum.TryParse<Role>(model.Role, out eRole);
+            Employee emp = new Employee(model.UserID, model.StoreID, eRole);
+            emp.OwnerAssignner = model.OwnerAssignner;
+            emp.ManagerAssigner = model.ManagerAssigner;
+            emp.Permissions = model.Permissions.Split('_').Select(p => { Permission perm; Enum.TryParse<Permission>(p, out perm); return perm; }).ToList();
+            return emp;
+        }
+
+
         internal bool isMarketManager(string userID)
         {
             using (StoreDataContext context = new StoreDataContext())
@@ -156,7 +179,7 @@ namespace Market_System.DomainLayer.StoreComponent
             List<Employee> emps = new List<Employee>();
             using (StoreDataContext context = new StoreDataContext())
             {
-                emps = context.Employees.Select(e => e).ToList().Where(e => e.StoreID == storeID).Select(e => e.ModelToEmployee()).ToList();
+                emps = context.Employees.Select(e => e).ToList().Where(e => e.StoreID == storeID).Select(e => ModelToEmployee(e)).ToList();
             }
             return emps;
         }

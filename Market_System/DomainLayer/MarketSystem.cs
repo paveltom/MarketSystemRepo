@@ -647,6 +647,8 @@ namespace Market_System.DomainLayer
                 string newOwner_ID = userFacade.get_user_id_from_username(newOwnerUsername);
                 string userID = userFacade.get_userID_from_session(sessionID);
                 List<string> owners = storeFacade.GetOwnersOfTheStore(userID, storeID);
+                if (owners.Any(o => o == newOwner_ID))
+                    throw new Exception("Already owner.");
                 userFacade.SuggestNewOwner(userID, newOwner_ID, owners, storeID);
 
                 //Notify the new owner
