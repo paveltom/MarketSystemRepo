@@ -1,12 +1,7 @@
 ﻿using Market_System.DAL.DBModels;
-using Market_System.DomainLayer.StoreComponent;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
+using Market_System.Presentaion_Layer;
 using System.Data.Entity;
-using System.IO;
-using System.Linq;
-using System.Web;
+
 
 namespace Market_System.DAL
 {
@@ -25,6 +20,17 @@ namespace Market_System.DAL
         public virtual DbSet<CommentModel> Comments { get; set; } 
         public virtual DbSet<ProductAttributeModel> ProductPurchaseAttributes { get; set; }
         public virtual DbSet<LotteryModel> Lottery { get; set; }
+
+
+        // Notification
+        public virtual DbSet<MessageModel> Messages { get; set; }
+
+
+
+        // User
+        public virtual DbSet<UserModel> Users { get; set; }
+
+
 
 
 

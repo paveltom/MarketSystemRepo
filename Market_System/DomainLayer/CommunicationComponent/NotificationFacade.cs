@@ -55,6 +55,7 @@ namespace Market_System.Domain_Layer.Communication_Component
                 try
                 {
                     Message message = new Message(mesg, from);
+                    message.to = userID;
                     notificationRepo.addNewMessage(userID, message);
 
                     // Raise the event

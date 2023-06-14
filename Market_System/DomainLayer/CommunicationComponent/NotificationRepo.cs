@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Market_System.DAL;
+using Market_System.DAL.DBModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +9,7 @@ namespace Market_System.Domain_Layer.Communication_Component
 {
     public class NotificationRepo
     {
-        private static Dictionary<string, List<Message>> messages; //key = userID
+        //private static Dictionary<string, List<Message>> messages; //key = userID
 
         private static NotificationRepo Instance = null;
 
@@ -27,7 +29,7 @@ namespace Market_System.Domain_Layer.Communication_Component
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        messages = new Dictionary<string, List<Message>>();
+                        //messages = new Dictionary<string, List<Message>>();
                         Instance = new NotificationRepo();
                     }
                 } //Critical Section End
@@ -43,13 +45,12 @@ namespace Market_System.Domain_Layer.Communication_Component
         {
             try
             {
-                if (messages.ContainsKey(userID))
+                using (StoreDataContext context = new StoreDataContext())
                 {
-                    messages[userID].Add(message);
-                }
-                else
-                {
-                    messages.Add(userID, new List<Message> { message });
+                    MessageModel model = new MessageModel();
+                    model.UpdateWholeModel(message);
+                    context.Messages.Add(model);
+                    context.SaveChanges();
                 }
             }
             catch (Exception e)
@@ -58,9 +59,46 @@ namespace Market_System.Domain_Layer.Communication_Component
             }
         }
 
+
+        public void ReadMessage(Message message)
+        {
+            try
+            {
+                using (StoreDataContext context = new StoreDataContext())
+                {
+                    MessageModel model;
+                    if ((model = context.Messages.SingleOrDefault(m => m.NotificationID == message.to + message.from + message.dateTime.Ticks)) != null)
+                    {
+                        model.IsNewMessage = false;
+                        context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+
         public List<Message> GetMessages(string userID)
         {
-            return messages[userID];
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                List<Message> ret = context.Messages.Where(m => m.To == userID).ToList().Select(m => ModelToMessage(m)).ToList();
+                return ret;
+            }
+        }
+
+
+        public Message ModelToMessage(MessageModel model)
+        {
+            Message msg = new Message(model.Message, model.From);
+            msg.to = model.To;
+            DateTime.TryParse(model.DateAndTime, out msg.dateTime);
+            msg.isNewMessage = model.IsNewMessage;
+            return msg;
         }
 
         public void destroy_me()
