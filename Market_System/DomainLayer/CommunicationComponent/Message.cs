@@ -7,10 +7,11 @@ namespace Market_System.Domain_Layer.Communication_Component
 {
     public class Message : Notification
     {
-        private string message;
-        private string from; //username or storename or Market System 
-        private bool isNewMessage;
-        private DateTime dateTime;
+        public string message;
+        public string from; //username or storename or Market System 
+        public bool isNewMessage;
+        public string to;
+        public DateTime dateTime;
 
         public Message(string message, string from_Username)
         {
@@ -23,6 +24,7 @@ namespace Market_System.Domain_Layer.Communication_Component
         public string GetAndReadMessage()
         {
             isNewMessage = false;
+            NotificationRepo.GetInstance().ReadMessage(this);
             return dateTime.ToString() + " New message received from: " + from + ".\n" + "The message is: \n" + message;
         }
 

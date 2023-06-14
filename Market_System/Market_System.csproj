@@ -402,6 +402,7 @@
     <Compile Include="DAL\DBModels\CommentModel.cs" />
     <Compile Include="DAL\DBModels\EmployeeModel.cs" />
     <Compile Include="DAL\DBModels\LotteryModel.cs" />
+    <Compile Include="DAL\DBModels\MessageModel.cs" />
     <Compile Include="DAL\DBModels\ProductAttributeModel.cs" />
     <Compile Include="DAL\DBModels\ProductModel.cs" />
     <Compile Include="DAL\DBModels\PurchasePolicyModel.cs" />
@@ -410,6 +411,7 @@
     <Compile Include="DAL\DBModels\StorePurchaseHistoryObjModel.cs" />
     <Compile Include="DAL\DBModels\TimerModel.cs" />
     <Compile Include="DAL\DBModels\TransactionModel.cs" />
+    <Compile Include="DAL\DBModels\UserModel.cs" />
     <Compile Include="DAL\StoreDataContext.cs" />
     <Compile Include="DAL\StoreRepo.cs" />
     <Compile Include="DomainLayer\BidDTO.cs" />
