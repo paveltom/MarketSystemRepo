@@ -1,4 +1,5 @@
 ﻿using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Market_System.Presentaion_Layer
     public partial class auction_page : System.Web.UI.Page
     {
         private string product_id;
-        private System.Timers.Timer timer;
+        private TimerPlus timer;
         protected void Page_Load(object sender, EventArgs e)
         {
             this.product_id = Request.QueryString["product_id"];
@@ -20,7 +21,7 @@ namespace Market_System.Presentaion_Layer
 
             price.Text = price_retriever.Value.Auction.Value[1];
 
-            Response<System.Timers.Timer> timer = ((Service_Controller)Session["service_controller"]).get_timer_of_auciton(product_id + "_" + "auction" + "_timer");
+            Response<TimerPlus> timer = ((Service_Controller)Session["service_controller"]).get_timer_of_auciton(product_id + "_" + "auction" + "_timer");
             this.timer = timer.Value;
 
 
@@ -47,7 +48,7 @@ namespace Market_System.Presentaion_Layer
 
 
 
-            put_me_time.Text = "will add it later";
+            put_me_time.Text = timer.MinutesRemains().ToString();
             
         }
     }
