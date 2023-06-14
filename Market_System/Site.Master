@@ -140,7 +140,7 @@
             <hr />
             <footer>
                 <p>&copy; <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>- My ASP.NET Application </p>
-                <p class="auto-style2">  how's my coding? dial 052-EAT SHIT!</p>
+             
             </footer>
         </div>
 
