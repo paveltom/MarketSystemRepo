@@ -1155,11 +1155,11 @@ namespace Market_System.ServiceLayer
             }
         }
 
-        public Response<System.Timers.Timer> get_timer_of_auciton(string key)
+        public Response<TimerPlus> get_timer_of_auciton(string key)
         {
             try
             {
-                Response<System.Timers.Timer> ok = Response<System.Timers.Timer>.FromValue( this.ssc.get_timer_of_auciton(key));
+                Response<TimerPlus> ok = Response<TimerPlus>.FromValue( (TimerPlus)this.ssc.get_timer_of_auciton(key));
                 return ok;
             }
             catch (Exception e)
