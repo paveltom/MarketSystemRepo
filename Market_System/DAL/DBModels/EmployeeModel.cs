@@ -35,15 +35,6 @@ namespace Market_System.DAL.DBModels
             this.ManagerAssigner = updatedEmp.ManagerAssigner;
             this.OwnerAssignner = updatedEmp.OwnerAssignner;
             this.StoreClosed = false;
-        }
-
-
-        public Employee ModelToEmployee()
-        {
-            Role eRole;
-            Enum.TryParse<Role>(this.Role, out eRole);
-            Employee emp = new Employee(this.UserID, this.StoreID, eRole);
-            return emp;
-        }
+        }                
     }
 }

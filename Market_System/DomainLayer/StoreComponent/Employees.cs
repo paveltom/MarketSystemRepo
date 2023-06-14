@@ -30,16 +30,18 @@ namespace Market_System.DomainLayer.StoreComponent
      */
     public class Employees
     {
-        private List<Employee> empPermissions; 
+        //private List<Employee> empPermissions; 
         private List<Permission> ownerPermissions;  //these permissions are given to store owner.
         private List<Permission> founderPermissions;  //these permissions are given to store founder.
 
         //move database actions(and fields) to the repo class
+       /*
         public List<Employee> EmpPermissions
         {
             get { return this.empPermissions; }
             set { this.empPermissions = value; }
         }
+       */
 
         public List<Permission> OwnerPermissions
         {
@@ -62,7 +64,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public Employees()
         {
-            EmpPermissions = new List<Employee>();
+            //EmpPermissions = new List<Employee>();
             OwnerPermissions = new List<Permission>();
             FounderPermissions = new List<Permission>();
             OwnerPermissions.Add(Permission.INFO); OwnerPermissions.Add(Permission.STOCK);
@@ -76,15 +78,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public List<Employee> getStoreEmployees(string storeID)
         {
-            List<Employee> emps = new List<Employee>();
-            foreach (Employee emp in empPermissions)
-            {
-                if (emp.StoreID == storeID)
-                {
-                    emps.Add(emp);
-                }
-            }
-            return emps;
+           return EmployeeRepo.GetInstance().GetStoreEmployees(storeID);
         }
 
         public List<string> GetOwnersOfTheStore(string storeID)
@@ -153,7 +147,6 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             Employee newEmp = emp;
             newEmp.Permissions = permissions;
-            AddEmp(newEmp);
             EmployeeRepo.GetInstance().AddEmployee(newEmp);
         }
 
@@ -162,7 +155,6 @@ namespace Market_System.DomainLayer.StoreComponent
         public void removeEmployee(string userID, string storeID)
         {
             Employee emp = getemployee(userID, storeID);
-            removeEmp(emp);
             EmployeeRepo.GetInstance().Remove_Employee(emp);
         }
 
@@ -240,7 +232,6 @@ namespace Market_System.DomainLayer.StoreComponent
             Employee newEmp = new Employee(newOwnerID, storeID, Role.Owner);
             newEmp.OwnerAssignner = assignnerID;
             newEmp.Permissions = OwnerPermissions;
-            AddEmp(newEmp);
             EmployeeRepo.GetInstance().AddEmployee(newEmp);
         }
 
@@ -250,7 +241,6 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             Employee newEmp = new Employee(userID, storeID, Role.Founder);
             newEmp.Permissions = FounderPermissions;
-            AddEmp(newEmp);
             EmployeeRepo.GetInstance().Save_Employee(newEmp);
         }
 
@@ -273,24 +263,10 @@ namespace Market_System.DomainLayer.StoreComponent
 
         private Employee getemployee(string userID, string storeID)
         {
-            foreach (Employee emp in EmpPermissions)
-            {
-                if (emp.UserID == userID && emp.StoreID == storeID)
-                {
-                    return emp;
-                }
-            }
-             throw new Exception("employee wih such id does not exist"); ;//not found
-        }
-        
-        private void AddEmp(Employee emp)
-        {
-            EmpPermissions.Add(emp);
-        }
-
-        private void removeEmp(Employee emp)
-        {
-            EmpPermissions.Remove(emp);
+            Employee ret = EmployeeRepo.GetInstance().GetStoreEmployees(storeID).SingleOrDefault(e => e.UserID == userID);
+            if(ret != null)
+                return ret;
+            throw new Exception("employee wih such id does not exist"); ;//not found
         }
 
         internal bool isMarketManager(string userID)
@@ -300,12 +276,6 @@ namespace Market_System.DomainLayer.StoreComponent
 
         internal void ReopenStore(string store_ID)
         {
-            List<Employee> emps = EmployeeRepo.GetInstance().getClosedStoreEmployees(store_ID);
-            foreach (Employee emp in emps)
-            {
-                this.AddEmp(emp);
-            }
-
             EmployeeRepo.GetInstance().ReopenStore(store_ID);
         }
 
