@@ -66,8 +66,9 @@ namespace Market_System.Domain_Layer.Communication_Component
             {
                 using (StoreDataContext context = new StoreDataContext())
                 {
+                    string notifID = message.to + message.from + message.dateTime.ToString();
                     MessageModel model;
-                    if ((model = context.Messages.SingleOrDefault(m => m.NotificationID == message.to + message.from + message.dateTime.Ticks)) != null)
+                    if ((model = context.Messages.SingleOrDefault(m => m.NotificationID == notifID)) != null)
                     {
                         model.IsNewMessage = false;
                         context.SaveChanges();

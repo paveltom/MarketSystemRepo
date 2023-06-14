@@ -23,7 +23,7 @@ namespace Market_System.DAL.DBModels
 
         public void UpdateWholeModel(Message msg)
         {
-            this.NotificationID = msg.to + msg.from + msg.dateTime.Ticks;
+            this.NotificationID = msg.to + msg.from + msg.dateTime.ToString();
             this.Message = msg.message;
             this.From = msg.from; 
             this.To = msg.to;
