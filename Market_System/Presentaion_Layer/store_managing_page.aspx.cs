@@ -350,6 +350,7 @@ namespace Market_System.Presentaion_Layer
                         suggested_owner_name_text.Visible = false;
                         Button1.Visible = false;
                         Button2.Visible = false;
+                        accept_or_decline_message.Text = "";
                     }
                     else
                     {

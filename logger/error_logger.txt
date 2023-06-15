@@ -13160,3 +13160,99 @@ Wednesday, 14 June 2023 : error!!: Employee already works in this store. in assi
 Wednesday, 14 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
 Wednesday, 14 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Wednesday, 14 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in declineSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in declineSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: The given key was not present in the dictionary. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: Employee already works in this store. in assign_new_owner
+Thursday, 15 June 2023 : reading from init file failed due to: Employee already works in this store. starting system without any initialization
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Already owner. in assign_new_owner
+Thursday, 15 June 2023 : error!!: Already owner. in assign_new_owner
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: Already owner. in assign_new_owner
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details. in acceptSuggestion
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions

@@ -66,7 +66,7 @@ namespace Market_System.Domain_Layer.Communication_Component
             {
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    string notifID = message.to + message.from + message.dateTime.ToString();
+                    string notifID = message.to + message.from + message.dateTime.Ticks;
                     MessageModel model;
                     if ((model = context.Messages.SingleOrDefault(m => m.NotificationID == notifID)) != null)
                     {
@@ -97,7 +97,7 @@ namespace Market_System.Domain_Layer.Communication_Component
         {
             Message msg = new Message(model.Message, model.From);
             msg.to = model.To;
-            DateTime.TryParse(model.DateAndTime, out msg.dateTime);
+            msg.dateTime = new DateTime(long.Parse(model.DateAndTime));
             msg.isNewMessage = model.IsNewMessage;
             return msg;
         }
