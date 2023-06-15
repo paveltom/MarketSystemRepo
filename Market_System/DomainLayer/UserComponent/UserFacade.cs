@@ -797,7 +797,8 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 //shouldn't happen if this function is being used properly
                 throw e;
-            } 
+            }
+        }
         /*
 public void AddNewMessage(string userID, Message message)
 {
