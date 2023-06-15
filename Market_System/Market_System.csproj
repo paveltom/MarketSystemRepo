@@ -399,6 +399,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="DAL\DALController.cs" />
     <Compile Include="DAL\DBModels\BidModel.cs" />
+    <Compile Include="DAL\DBModels\BucketModel.cs" />
+    <Compile Include="DAL\DBModels\CartModel.cs" />
     <Compile Include="DAL\DBModels\CommentModel.cs" />
     <Compile Include="DAL\DBModels\EmployeeModel.cs" />
     <Compile Include="DAL\DBModels\LotteryModel.cs" />

@@ -11,6 +11,7 @@ using Microsoft.Ajax.Utilities;
 using System.Threading.Tasks;
 using Market_System.ServiceLayer;
 using System.Timers;
+using Market_System.DAL;
 
 namespace Market_System.DomainLayer
 {
@@ -112,8 +113,14 @@ namespace Market_System.DomainLayer
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
-                        Instance.register("admin", "admin", "address"); //registering an admin 
-                        Instance.AddNewAdmin(null, "admin");
+                        using (StoreDataContext context = new StoreDataContext())
+                        {
+                            if (context.Users.Count() == 1)
+                            {
+                                Instance.register("admin", "admin", "address"); //registering an admin 
+                                Instance.AddNewAdmin(null, "admin");
+                            }
+                        }
                         StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
                         Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });

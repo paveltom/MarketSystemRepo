@@ -1,17 +1,20 @@
-﻿using Market_System.Domain_Layer.Communication_Component;
+﻿using Market_System.DAL;
+using Market_System.DAL.DBModels;
+using Market_System.Domain_Layer.Communication_Component;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Market_System.DomainLayer.UserComponent
 {
     public class UserRepo
     {
 
-        private static Dictionary<string, string> userDatabase;
+        //private static Dictionary<string, string> userDatabase;
         //private static Dictionary<string, List<Message>> messages; //key = userID
-        private static List<string> Admins; //saved by username
+        //private static List<string> Admins; //saved by username
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
 
@@ -34,9 +37,12 @@ namespace Market_System.DomainLayer.UserComponent
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        userDatabase = new Dictionary<string, string>();
-                        Admins = new List<string>();
-                        user_ID_username_linker = new Dictionary<string, string>();
+                        //userDatabase = new Dictionary<string, string>();
+                        //Admins = new List<string>();
+                        using (StoreDataContext context = new StoreDataContext())
+                        {
+                            user_ID_username_linker = context.Users.ToList().ToDictionary(u => u.UserID, u => u.Username);
+                        }
                         userID_generator = new Random();
                         Instance = new UserRepo();    
                         //messages = new Dictionary<string, List<Message>>();
@@ -58,12 +64,15 @@ namespace Market_System.DomainLayer.UserComponent
 
         public bool checkIfExists(string username, string password)
         {
-            var pass = "";
-            if(userDatabase.TryGetValue(username, out pass) && PasswordHasher.VerifyPassword(password, pass))
+            using (StoreDataContext context = new StoreDataContext())
             {
-                return true;
+                UserModel model;
+                if ((model = context.Users.SingleOrDefault(u => u.Username == username)) != null && PasswordHasher.VerifyPassword(password, model.HashedPassword))
+                {
+                    return true; 
+                }
+                return false;
             }
-            return false;
         }
 
         internal void remove_guest_id_from_userRepo(string guest_id)
@@ -73,27 +82,91 @@ namespace Market_System.DomainLayer.UserComponent
 
         internal void AddFirstAdmin(string username)
         {
-            Admins.Add(username);
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                UserModel admin;
+                if((admin = context.Users.SingleOrDefault(u => u.Username == username)) != null)
+                {
+                    admin.State = "Administrator";
+                    context.SaveChanges();
+                    return;
+                }
+                admin = new UserModel();
+                admin.Username = username;
+                admin.UserID = username;
+                admin.HashedPassword = PasswordHasher.HashPassword("admin");
+                admin.Address = "address";
+                admin.State = "Administrator";
+                context.Users.Add(admin);
+                context.SaveChanges();
+            }
+
         }
 
-        public string register(string username, string password)
+        public string register(string username, string password, string address)
         {
-            string hashed_Password = PasswordHasher.HashPassword(password);
-            userDatabase.Add(username, hashed_Password);
-            
+            string hashed_Password = PasswordHasher.HashPassword(password);            
             string new_user_id = userID_generator.Next().ToString();
             while (!unique_user_ID(new_user_id))
             {
                 new_user_id = userID_generator.Next().ToString();
             }
             user_ID_username_linker.Add(new_user_id, username);
+
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                UserModel model;
+                if ((model = context.Users.SingleOrDefault(u => u.Username == username)) != null)
+                {
+                    if (username == "admin")
+                    {
+                        model.UserID = new_user_id;
+                        model.State = "Administrator";
+                        context.SaveChanges();
+                    }
+                    else
+                        throw new Exception("User already exists.");
+                }
+                else
+                {
+                    model = new UserModel();
+                    model.Username = username;
+                    model.UserID = new_user_id;
+                    model.HashedPassword = hashed_Password;
+                    model.Address = address;
+                    model.State = "Member";
+                    context.Users.Add(model);
+                    context.SaveChanges();
+                }
+            }
             return new_user_id;
 
         }
 
+
+        public User GetUser(string username)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                UserModel model;
+                if ((model = context.Users.SingleOrDefault(u => u.Username == username)) != null)
+                    return model.ModelToUser();
+                else
+                    throw new Exception("No such user");
+            }
+        }
+
+
         public void Remove_A_User(string username, string userID)
         {
-            userDatabase.Remove(username);
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                UserModel toRemove;
+                if ((toRemove = context.Users.SingleOrDefault(u => u.Username == username)) != null)
+                    context.Users.Remove(toRemove);
+                else
+                    throw new Exception("No such user");
+            }
             user_ID_username_linker.Remove(userID);
         }
 
@@ -135,13 +208,15 @@ namespace Market_System.DomainLayer.UserComponent
 
         internal void change_password(string username, string new_password)
         {
-            if(PasswordHasher.VerifyPassword(new_password, userDatabase[username]))
+            using (StoreDataContext context = new StoreDataContext())
             {
-                throw new Exception("You can't change a password to the same one, you need to provide an other new password");
+                UserModel toRemove;
+                if ((toRemove = context.Users.SingleOrDefault(u => u.Username == username)) != null && PasswordHasher.VerifyPassword(new_password, toRemove.HashedPassword))
+                    throw new Exception("You can't change a password to the same one, you need to provide an other new password");               
+                string new_hashed_Password = PasswordHasher.HashPassword(new_password);
+                toRemove.HashedPassword = new_hashed_Password;
+                context.SaveChanges();
             }
-
-            string new_hashed_Password = PasswordHasher.HashPassword(new_password);
-            userDatabase[username] = new_hashed_Password;
         }
 
         internal string get_userID_from_username(string username)
@@ -158,39 +233,48 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void AddNewAdmin(string curr_Admin_username, string other_username)
         {
-            if (curr_Admin_username == null)//it means it is the inizilating of the system
+            using (StoreDataContext context = new StoreDataContext())
             {
-                Admins.Add(other_username);
-            }
-            else
-            {
-                if (Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
+                UserModel newAdmin;
+                if (curr_Admin_username == null)
                 {
-                    Admins.Add(other_username);
+                    if ((newAdmin = context.Users.SingleOrDefault(u => u.Username == other_username)) != null)
+                        newAdmin.State = "Administrator";
+                    else
+                    {
+                        newAdmin = new UserModel();
+                        newAdmin.Username = other_username;
+                        newAdmin.UserID = other_username;
+                        newAdmin.Address = "address";
+                        newAdmin.State = "Administrator";
+                        context.SaveChanges();
+                    }
                 }
-
                 else
                 {
-                    throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin)");
+                    if (context.Users.SingleOrDefault(u => u.Username == curr_Admin_username && u.State == "Administrator") != null &&
+                            (newAdmin = context.Users.SingleOrDefault(u => u.Username == other_username && u.State != "Administrator")) != null)
+                    {
+                        newAdmin.State = "Administrator";
+                        context.SaveChanges();
+                    }
+                    else
+                        throw new Exception("Admin cannot be added (already exists, or the performing user isn't an admin)");
                 }
             }
         }
 
         public bool CheckIfAdmin(string curr_Admin_username, string other_username)
         {
-            if (Admins.Contains(curr_Admin_username) && Admins.Contains(other_username))
+            using (StoreDataContext context = new StoreDataContext())
             {
-                return true;
-            }
-
-            else if (Admins.Contains(curr_Admin_username) && !Admins.Contains(other_username))
-            {
-                return false; //userID isn't an admin
-            }
-
-            else
-            {
-                throw new Exception("The checking user isn't an Admin");
+                if (context.Users.SingleOrDefault(u => u.Username == curr_Admin_username && u.State == "Administrator") != null)
+                    if (context.Users.SingleOrDefault(u => u.Username == other_username && u.State == "Administrator") != null)
+                        return true;
+                    else
+                        return false;
+                else
+                    throw new Exception("The checking user isn't an Admin");
             }
         }
 
