@@ -98,7 +98,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     string eRole = emp.Role.ToString();
                     EmployeeModel toSave;
-                    if ((toSave = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) == null)
+                    if ((toSave = context.Employees.SingleOrDefault(e => e.UserID == emp.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) == null)
                     {
                         toSave = new EmployeeModel();
                         toSave.UpdateWholeModel(emp);
