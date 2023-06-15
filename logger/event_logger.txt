@@ -6958,3 +6958,9 @@ Wednesday, 14 June 2023 : user with session ID : 1959522873 got his Messages
 Wednesday, 14 June 2023 : user with session ID : 1959522873 got his Messages
 Wednesday, 14 June 2023 : 1878761463Logged-out succesfully
 Wednesday, 14 June 2023 : guest : guest1878761463 has logged in
+Thursday, 15 June 2023 : guest : guest56514550 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!

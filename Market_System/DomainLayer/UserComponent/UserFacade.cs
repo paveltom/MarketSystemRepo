@@ -212,7 +212,7 @@ namespace Market_System.DomainLayer.UserComponent
                         throw new Exception("a user with same name exists, please change name!");
                     }
                 }
-                userRepo.register(username, password);
+                userRepo.register(username, password, address);
                 users.Add(new User(username, address));
             }
 
