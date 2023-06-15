@@ -718,7 +718,16 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwner_ID + "_" + storeID;
-                contracts[key].Key.Remove(userID);
+                if (contracts[key].Key.Contains(userID))
+                {
+                    contracts[key].Key.Remove(userID);
+                }
+
+                else
+                {
+                    throw new Exception("You've already accepted or rejected this user!");
+                }
+
             }
             catch (Exception e)
             {
@@ -731,7 +740,16 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwner_ID + "_" + storeID;
-                contracts.Remove(key);
+                if (contracts[key].Key.Contains(userID))
+                {
+                    contracts.Remove(key);
+                }
+
+                else
+                {
+                    throw new Exception("You've already accepted or rejected this user!");
+                }
+
             }
             catch (Exception e)
             {
@@ -792,7 +810,7 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwnerID + "_" + storeID;
-                if (contracts[key].Key.Contains(userID))
+                if (contracts.ContainsKey(key) && contracts[key].Key.Contains(userID))
                 {
                     return true;
                 }
