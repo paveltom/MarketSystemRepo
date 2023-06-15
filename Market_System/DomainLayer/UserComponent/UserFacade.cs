@@ -781,6 +781,23 @@ namespace Market_System.DomainLayer.UserComponent
                 throw e;
             }
         }
+
+        public bool canAcceptOrReject(string userID, string newOwnerID, string storeID)
+        {
+            try
+            {
+                var key = newOwnerID + "_" + storeID;
+                if (contracts[key].Key.Contains(userID))
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                //shouldn't happen if this function is being used properly
+                throw e;
+            } 
         /*
 public void AddNewMessage(string userID, Message message)
 {
