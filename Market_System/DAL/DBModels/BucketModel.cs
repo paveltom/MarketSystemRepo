@@ -10,5 +10,6 @@ namespace Market_System.DAL.DBModels
     {
         [Key]
         public string BucketID { get; set; }
+        public bool Purchased { get; set; }
     }
 }

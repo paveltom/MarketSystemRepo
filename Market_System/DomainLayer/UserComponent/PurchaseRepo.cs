@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Market_System.DAL;
+using Market_System.DAL.DBModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +10,7 @@ namespace Market_System.DomainLayer.UserComponent
     public class PurchaseRepo
     {
 
-        private static Dictionary<string, List<PurchaseHistoryObj>> purchases_database; // key username , value list of purchasehistoryobj
+        //private static Dictionary<string, List<PurchaseHistoryObj>> purchases_database; // key username , value list of purchasehistoryobj
 
         private static PurchaseRepo Instance = null;
 
@@ -27,9 +29,8 @@ namespace Market_System.DomainLayer.UserComponent
                 lock (Instancelock)
                 { //Critical Section Start
                     if (Instance == null)
-                    {
-                        
-                        purchases_database = new Dictionary<string,List<PurchaseHistoryObj>>();
+                    {                       
+                        //purchases_database = new Dictionary<string,List<PurchaseHistoryObj>>();
                         Instance = new PurchaseRepo();
                     }
                 } //Critical Section End
@@ -49,7 +50,17 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void save_purchase(string username, PurchaseHistoryObj new_purchase)
         {
-            if(purchases_database.ContainsKey(username))
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                UserPurchaseHistoryObjModel model = new UserPurchaseHistoryObjModel();
+                model.Username = username;
+                model.TotalPrice = new_purchase.GetTotalPrice();
+                model.PurchaseDateTicks = new_purchase.PurchaseDateTime.Ticks.ToString();
+                model.HisstoryID = username + model.PurchaseDateTicks;
+                model.Buckets = context.Buckets.Where()
+                
+            }
+                if (purchases_database.ContainsKey(username))
             {
                 purchases_database[username].Add(new_purchase);
             }

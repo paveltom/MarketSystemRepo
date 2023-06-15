@@ -414,6 +414,7 @@
     <Compile Include="DAL\DBModels\TimerModel.cs" />
     <Compile Include="DAL\DBModels\TransactionModel.cs" />
     <Compile Include="DAL\DBModels\UserModel.cs" />
+    <Compile Include="DAL\DBModels\UserPurchaseHistoryObjModel.cs" />
     <Compile Include="DAL\StoreDataContext.cs" />
     <Compile Include="DAL\StoreRepo.cs" />
     <Compile Include="DomainLayer\BidDTO.cs" />

@@ -11,14 +11,32 @@ namespace Market_System.DomainLayer.UserComponent
         private List<Bucket> baskets;
         private string purchase_date;
         private double total_price;
+        public DateTime PurchaseDateTime { get; set; }
 
-        public PurchaseHistoryObj(string username,List<Bucket> list_of_baskets,double price)
+        public PurchaseHistoryObj(string username, List<Bucket> list_of_baskets, double price)
         {
             this.username = username;
-
             this.baskets = copy_list(list_of_baskets);
             this.total_price = price;
-            this.purchase_date = DateTime.Now.ToShortDateString(); 
+            this.PurchaseDateTime = DateTime.Now;
+            this.purchase_date = PurchaseDateTime.ToShortDateString(); 
+             
+        }
+
+
+        public string GetUsername()
+        {
+            return this.username;
+        }
+
+        public double GetTotalPrice()
+        {
+            return this.total_price;
+        }
+
+        public List<Bucket> GetBuckets()
+        {
+            return this.baskets;
         }
 
         public bool check_if_contains_product(string product_id)
