@@ -1,4 +1,6 @@
-﻿using Market_System.Domain_Layer.Communication_Component;
+﻿using Market_System.DAL;
+using Market_System.DAL.DBModels;
+using Market_System.Domain_Layer.Communication_Component;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,9 @@ namespace Market_System.DomainLayer.UserComponent
     public class UserRepo
     {
 
-        private static Dictionary<string, string> userDatabase;
+        //private static Dictionary<string, string> userDatabase;
         //private static Dictionary<string, List<Message>> messages; //key = userID
-        private static List<string> Admins; //saved by username
+        //private static List<string> Admins; //saved by username
         private static Dictionary<string, string> user_ID_username_linker; // key is user ID , val is username
         private static Random userID_generator;
 
@@ -34,9 +36,12 @@ namespace Market_System.DomainLayer.UserComponent
                 { //Critical Section Start
                     if (Instance == null)
                     {
-                        userDatabase = new Dictionary<string, string>();
-                        Admins = new List<string>();
-                        user_ID_username_linker = new Dictionary<string, string>();
+                        //userDatabase = new Dictionary<string, string>();
+                        //Admins = new List<string>();
+                        using (StoreDataContext context = new StoreDataContext())
+                        {
+                            user_ID_username_linker = context.Users.ToList().ToDictionary(u => u.UserID, u => u.Username);
+                        }
                         userID_generator = new Random();
                         Instance = new UserRepo();    
                         //messages = new Dictionary<string, List<Message>>();
@@ -58,12 +63,15 @@ namespace Market_System.DomainLayer.UserComponent
 
         public bool checkIfExists(string username, string password)
         {
-            var pass = "";
-            if(userDatabase.TryGetValue(username, out pass) && PasswordHasher.VerifyPassword(password, pass))
+            using (StoreDataContext context = new StoreDataContext())
             {
-                return true;
+                UserModel model;
+                if ((model = context.Users.SingleOrDefault(u => u.Username == username)) != null && PasswordHasher.VerifyPassword(password, model.HashedPassword))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         internal void remove_guest_id_from_userRepo(string guest_id)
