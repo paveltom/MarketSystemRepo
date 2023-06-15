@@ -676,6 +676,11 @@ namespace Market_System.DomainLayer
                 string newOwner_ID = userFacade.get_user_id_from_username(suggestionUsername);
                 string userID = userFacade.get_userID_from_session(session_id);
 
+                if (!userFacade.canAcceptOrReject(userID, newOwner_ID, storeID))
+                {
+                    throw new Exception("You have already accepted or rejected this user");
+                }
+
                 userFacade.AcceptSuggestion(userID, newOwner_ID, storeID);
 
                 var AssigningUserID = userFacade.checkIfEmptyContract(newOwner_ID, storeID);
@@ -744,6 +749,11 @@ namespace Market_System.DomainLayer
             {
                 string newOwner_ID = userFacade.get_user_id_from_username(suggestionUsername);
                 string userID = userFacade.get_userID_from_session(session_id);
+
+                if (!userFacade.canAcceptOrReject(userID, newOwner_ID, storeID))
+                {
+                    throw new Exception("You have already accepted or rejected this user");
+                }
 
                 userFacade.DeclineSuggestion(userID, newOwner_ID, storeID);
                 var message = "This owner suggestion was declined by one or more owners, for this user: " + suggestionUsername;

@@ -696,11 +696,16 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwnerID + "_" + storeID;
+                if (contracts.ContainsKey(key))
+                {
+                    throw new Exception("Someone has already suggested this employee");
+                }
+
                 contracts.Add(key, new KeyValuePair<List<string>, string>(owners, userID));
             }
             catch(Exception e)
             {
-                throw new Exception("Someone has already suggested this employee");
+                throw e;
             }
         }
 
@@ -709,7 +714,16 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwner_ID + "_" + storeID;
-                contracts[key].Key.Remove(userID);
+                if (contracts[key].Key.Contains(userID))
+                {
+                    contracts[key].Key.Remove(userID);
+                }
+
+                else
+                {
+                    throw new Exception("You've already accepted or rejected this user!");
+                }
+
             }
             catch (Exception e)
             {
@@ -722,7 +736,16 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwner_ID + "_" + storeID;
-                contracts.Remove(key);
+                if (contracts[key].Key.Contains(userID))
+                {
+                    contracts.Remove(key);
+                }
+
+                else
+                {
+                    throw new Exception("You've already accepted or rejected this user!");
+                }
+
             }
             catch (Exception e)
             {
@@ -774,6 +797,24 @@ namespace Market_System.DomainLayer.UserComponent
             }
             catch (Exception e)
             {
+                throw e;
+            }
+        }
+
+        public bool canAcceptOrReject(string userID, string newOwnerID, string storeID)
+        {
+            try
+            {
+                var key = newOwnerID + "_" + storeID;
+                if (contracts.ContainsKey(key) && contracts[key].Key.Contains(userID))
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                //shouldn't happen if this function is being used properly
                 throw e;
             }
         }

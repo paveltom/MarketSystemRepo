@@ -30,7 +30,7 @@
            <asp:TextBox ID="suggested_owner_name_text" runat="server" Visible="false"></asp:TextBox>
            <asp:Button ID="Button1" runat="server" Text="accept" Visible="false" OnClick="accept_suggestion_click" />
 &nbsp;<asp:Button ID="Button2" runat="server" Text="decline" Visible="false" OnClick="decline_suggestion_click" />
-           <asp:Label ID="accept_or_decline_message" runat="server" Text="" Visible="false"></asp:Label>
+           <asp:Label ID="accept_or_decline_message" runat="server" Text="" Visible="true"></asp:Label>
     </div>
     <div></div>
     <div style="text-align: left">
