@@ -24,6 +24,13 @@ namespace Market_System.DomainLayer.UserComponent
         }
 
 
+        public void SetPurchaseDates(DateTime date)
+        {
+            this.purchase_date = date.ToShortDateString();
+            this.PurchaseDateTime = date;
+        }
+
+
         public string GetUsername()
         {
             return this.username;

@@ -7587,3 +7587,27 @@ Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
 Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
 Thursday, 15 June 2023 : 1840753702Logged-out succesfully
 Thursday, 15 June 2023 : guest : guest963384 has logged in
+Thursday, 15 June 2023 : guest : guest157530928 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 1514333267 has failed
+Thursday, 15 June 2023 : Added the product:1514333267_145694503to store: 1514333267 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 1514333267
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 1514333267
+Thursday, 15 June 2023 : assigning new owner with username : harold to the store with id: 1514333267
+Thursday, 15 June 2023 : 1847415003Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest1386335337 has logged in
+Thursday, 15 June 2023 : pasha has registered!
+Thursday, 15 June 2023 : 1601150344 added product with id: 1885858538_1180225987 to basket
+Thursday, 15 June 2023 : checking deilvery for address: b7 succefully done.
+Thursday, 15 June 2023 : checkout completed by : pasha
+Thursday, 15 June 2023 : user with session ID : 2141043729 got his Messages
+Thursday, 15 June 2023 : user with session ID : 2141043729 got his Messages
+Thursday, 15 June 2023 : user with session ID : 2141043729 got his Messages
+Thursday, 15 June 2023 : user with session ID : 2141043729 got his Messages
+Thursday, 15 June 2023 : 1601150344 added product with id: 1885858538_1180225987 to basket
+Thursday, 15 June 2023 : checking deilvery for address: b7 succefully done.
+Thursday, 15 June 2023 : checkout completed by : pasha

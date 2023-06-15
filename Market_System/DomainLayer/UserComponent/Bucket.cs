@@ -21,6 +21,23 @@ namespace Market_System.DomainLayer.UserComponent
             this.products = new Dictionary<string, int>();
         }
 
+
+        public void SetID(string newOldID)
+        {
+            this.basket_id = newOldID;
+        }
+
+        public void SetProducts(Dictionary<string, int> products)
+        {
+            this.products = products;
+        }
+
+
+        public string GetID()
+        {
+            return this.basket_id;
+        }
+
         public void add_product(string product_id, int quantity)
         {
 

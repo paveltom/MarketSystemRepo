@@ -16,5 +16,13 @@ namespace Market_System.DAL.DBModels
         public double TotalPrice;
 
         public virtual ICollection<BucketModel> Buckets { get; set; }
+
+
+        public PurchaseHistoryObj ModelToHistory()
+        {
+            PurchaseHistoryObj history = new PurchaseHistoryObj(this.Username, this.Buckets.ToList().Select(b => b.ModelToBucket()).ToList(), this.TotalPrice);
+            history.SetPurchaseDates(new DateTime(long.Parse(this.PurchaseDateTicks)));
+            return history;
+        }
     }
 }

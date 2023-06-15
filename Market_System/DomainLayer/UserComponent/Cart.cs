@@ -22,7 +22,10 @@ namespace Market_System.DomainLayer.UserComponent
 
             if (!check_if_basket_of_store_exists(store_id))
             {
-                this.baskets.Add(new Bucket(store_id));
+                Bucket newBucket = new Bucket(store_id);
+                this.baskets.Add(newBucket);
+                PurchaseRepo.GetInstance().SaveBucket(newBucket);
+
             }
 
             foreach (Bucket basket in this.baskets)
@@ -30,6 +33,7 @@ namespace Market_System.DomainLayer.UserComponent
                 if (basket.get_store_id().Equals(store_id))
                 {
                     basket.add_product(product_id,quantity);
+                    PurchaseRepo.GetInstance().SaveBucket(basket);
                     return;
                 }
 

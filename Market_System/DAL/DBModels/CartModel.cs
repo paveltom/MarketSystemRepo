@@ -9,7 +9,7 @@ namespace Market_System.DAL.DBModels
     public class CartModel
     {
         [Key]
-        public string CartID { get; set; }
+        public string CartID { get; set; } // username+Cart
 
         public virtual ICollection<BucketModel> Buckets { get; set; }
 
