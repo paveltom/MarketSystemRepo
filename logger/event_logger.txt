@@ -7542,3 +7542,48 @@ Thursday, 15 June 2023 : user with session ID : 1326496448 got his Messages
 Thursday, 15 June 2023 : user with session ID : 1326496448 got his Messages
 Thursday, 15 June 2023 : 1160348662Logged-out succesfully
 Thursday, 15 June 2023 : guest : guest839982825 has logged in
+Thursday, 15 June 2023 : guest : guest999314005 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 1799309463 has failed
+Thursday, 15 June 2023 : Added the product:1799309463_1667900672to store: 1799309463 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 1799309463
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 1799309463
+Thursday, 15 June 2023 : assigning new owner with username : harold to the store with id: 1799309463
+Thursday, 15 June 2023 : 957798143Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest398657548 has logged in
+Thursday, 15 June 2023 : pasha1 has registered!
+Thursday, 15 June 2023 : pasha2 has registered!
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : suggesting new owner with username : pasha1 to the store with id: 228786077
+Thursday, 15 June 2023 : suggesting new owner with username : pasha2 to the store with id: 228786077
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : accepted suggestion for new owner with username : pasha1 to the store with id: 228786077
+Thursday, 15 June 2023 : accepted suggestion for new owner with username : pasha2 to the store with id: 228786077
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1909053900 got his Messages
+Thursday, 15 June 2023 : 610420518Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest1689118710 has logged in
+Thursday, 15 June 2023 : user with session ID : 1823756015 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1823756015 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1823756015 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1823756015 got his Messages
+Thursday, 15 June 2023 : user with session ID : 1823756015 got his Messages
+Thursday, 15 June 2023 : 1688397104Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest543218123 has logged in
+Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
+Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
+Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
+Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
+Thursday, 15 June 2023 : user with session ID : 817852747 got his Messages
+Thursday, 15 June 2023 : 1840753702Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest963384 has logged in
