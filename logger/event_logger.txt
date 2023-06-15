@@ -7152,3 +7152,96 @@ Thursday, 15 June 2023 : user with session ID : 506347615 got his Messages
 Thursday, 15 June 2023 : user with session ID : 506347615 got his Messages
 Thursday, 15 June 2023 : 547746698Logged-out succesfully
 Thursday, 15 June 2023 : guest : guest547746698 has logged in
+Thursday, 15 June 2023 : guest : guest1368227359 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 566313053 has failed
+Thursday, 15 June 2023 : Added the product:566313053_2031585426to store: 566313053 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 566313053
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 566313053
+Thursday, 15 June 2023 : guest : guest1974823263 has logged in
+Thursday, 15 June 2023 : amihai has registered!
+Thursday, 15 June 2023 : amihaii has registered!
+Thursday, 15 June 2023 : amihaiii has registered!
+Thursday, 15 June 2023 : suggesting new owner with username : amihai to the store with id: 1204295335
+Thursday, 15 June 2023 : suggesting new owner with username : amihaii to the store with id: 1204295335
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : accepted suggestion for new owner with username : amihai to the store with id: 1204295335
+Thursday, 15 June 2023 : guest : guest1497157272 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 973413966 has failed
+Thursday, 15 June 2023 : Added the product:973413966_167958029to store: 973413966 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 973413966
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 973413966
+Thursday, 15 June 2023 : guest : guest1333225248 has logged in
+Thursday, 15 June 2023 : amihai has registered!
+Thursday, 15 June 2023 : amihaii has registered!
+Thursday, 15 June 2023 : suggesting new owner with username : amihai to the store with id: 1684597139
+Thursday, 15 June 2023 : suggesting new owner with username : amihaii to the store with id: 1684597139
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : guest : guest645779749 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 622042854 has failed
+Thursday, 15 June 2023 : Added the product:622042854_738133819to store: 622042854 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 622042854
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 622042854
+Thursday, 15 June 2023 : guest : guest481847725 has logged in
+Thursday, 15 June 2023 : amihai has registered!
+Thursday, 15 June 2023 : amihaii has registered!
+Thursday, 15 June 2023 : suggesting new owner with username : amihai to the store with id: 833219616
+Thursday, 15 June 2023 : suggesting new owner with username : amihaii to the store with id: 833219616
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : accepted suggestion for new owner with username : amihai to the store with id: 833219616
+Thursday, 15 June 2023 : guest : guest870689427 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 438735823 has failed
+Thursday, 15 June 2023 : Added the product:438735823_1274478514to store: 438735823 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 438735823
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 438735823
+Thursday, 15 June 2023 : guest : guest287601366 has logged in
+Thursday, 15 June 2023 : amihai has registered!
+Thursday, 15 June 2023 : amihaii has registered!
+Thursday, 15 June 2023 : suggesting new owner with username : amihai to the store with id: 287601366
+Thursday, 15 June 2023 : suggesting new owner with username : amihaii to the store with id: 287601366
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : accepted suggestion for new owner with username : amihai to the store with id: 287601366
+Thursday, 15 June 2023 : guest : guest294327845 has logged in
+Thursday, 15 June 2023 : bayan has registered!
+Thursday, 15 June 2023 : nekola has registered!
+Thursday, 15 June 2023 : ben has registered!
+Thursday, 15 June 2023 : harold has registered!
+Thursday, 15 June 2023 : ben3 has registered!
+Thursday, 15 June 2023 : opening store with id: 1621313386 has failed
+Thursday, 15 June 2023 : Added the product:1621313386_1977229659to store: 1621313386 has been done successfully
+Thursday, 15 June 2023 : assigning new manager with username : nekola to the store with id: 1621313386
+Thursday, 15 June 2023 : assigning new owner with username : ben to the store with id: 1621313386
+Thursday, 15 June 2023 : guest : guest1926507577 has logged in
+Thursday, 15 June 2023 : amihai has registered!
+Thursday, 15 June 2023 : amihaii has registered!
+Thursday, 15 June 2023 : suggesting new owner with username : amihai to the store with id: 1926507577
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : suggesting new owner with username : amihaii to the store with id: 1926507577
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : accepted suggestion for new owner with username : amihai to the store with id: 1926507577
+Thursday, 15 June 2023 : check are there suggestions done succesfully
+Thursday, 15 June 2023 : 1926507577Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest138361959 has logged in
+Thursday, 15 June 2023 : 367027090Logged-out succesfully
+Thursday, 15 June 2023 : guest : guest171113587 has logged in
