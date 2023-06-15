@@ -10,8 +10,8 @@ namespace Market_System.DAL.DBModels
     public class UserModel
     {
         [Key]
-        public string UserID { get; set; }
         public string Username { get; set; }
+        public string UserID { get; set; }        
         public string HashedPassword { get; set; }
         public string State { get; set; }
         public string Address { get; set; }

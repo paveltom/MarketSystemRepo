@@ -89,6 +89,7 @@ namespace Market_System.DomainLayer.UserComponent
                 {
                     admin.State = "Administrator";
                     context.SaveChanges();
+                    return;
                 }
                 admin = new UserModel();
                 admin.Username = username;
@@ -141,6 +142,20 @@ namespace Market_System.DomainLayer.UserComponent
             return new_user_id;
 
         }
+
+
+        public User GetUser(string username)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                UserModel model;
+                if ((model = context.Users.SingleOrDefault(u => u.Username == username)) != null)
+                    return model.ModelToUser();
+                else
+                    throw new Exception("No such user");
+            }
+        }
+
 
         public void Remove_A_User(string username, string userID)
         {

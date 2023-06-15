@@ -99,30 +99,32 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void Login(string username, string password)
         {
-            foreach(User user in users)
-            {
-                if(user.GetUsername().Equals(username) && userRepo.checkIfExists(username, password))
-                {
-                    try
-                    {
-                        string user_id = userRepo.get_userID_from_username(username);
-                        if (userRepo.CheckIfAdmin(username, username)) //Check if admin - login as admin if so
-                        {
-                            if (!Admins.Contains(user_id))
-                            {
-                                Admins.Add(user_id);
-                            }
-                            user.AdminLogin();
-                        }
-                    }
 
-                    catch(Exception e)
+            if (userRepo.checkIfExists(username, password))
+            {
+                User user = userRepo.GetUser(username);
+                try
+                {
+                    string user_id = userRepo.get_userID_from_username(username);
+                    if (userRepo.CheckIfAdmin(username, username)) //Check if admin - login as admin if so
                     {
-                        user.Login();
+                        if (!Admins.Contains(user_id))
+                        {
+                            Admins.Add(user_id);
+                        }
+                        user.AdminLogin();
+                        users.Add(user);
                     }
-                    return;
                 }
+
+                catch (Exception e)
+                {
+                    user.Login();
+                    users.Add(user);
+                }
+                return;
             }
+
 
             throw new ArgumentException("Incorrect login information has been provided");
         }
@@ -144,13 +146,7 @@ namespace Market_System.DomainLayer.UserComponent
         internal bool check_if_current_user_is_admin(string user_id)
         {
             //The admin exists and is logged-in -> State == Admin
-
-
-
             return (Admins.Contains(user_id) && getUserfromUsersByUsername(get_username_from_user_id(user_id)).GetUserState().Equals("Administrator"));
-            
-             
-            
         }
 
         internal string link_guest_with_user_id(string guest_name)
@@ -185,6 +181,7 @@ namespace Market_System.DomainLayer.UserComponent
                     if (!user.GetUserState().Equals("Guest"))
                     {
                         user.Logout();
+                        users.Remove(user);
                         return;
                     }
                     else
@@ -213,7 +210,6 @@ namespace Market_System.DomainLayer.UserComponent
                     }
                 }
                 userRepo.register(username, password, address);
-                users.Add(new User(username, address));
             }
 
             catch (Exception e)

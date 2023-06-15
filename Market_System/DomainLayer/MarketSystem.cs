@@ -115,7 +115,7 @@ namespace Market_System.DomainLayer
                         notificationFacade = NotificationFacade.GetInstance();
                         using (StoreDataContext context = new StoreDataContext())
                         {
-                            if (context.Users.Count() == 0)
+                            if (context.Users.Count() == 1)
                             {
                                 Instance.register("admin", "admin", "address"); //registering an admin 
                                 Instance.AddNewAdmin(null, "admin");
