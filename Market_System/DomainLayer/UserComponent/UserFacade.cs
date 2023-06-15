@@ -700,11 +700,16 @@ namespace Market_System.DomainLayer.UserComponent
             try
             {
                 var key = newOwnerID + "_" + storeID;
+                if (contracts.ContainsKey(key))
+                {
+                    throw new Exception("Someone has already suggested this employee");
+                }
+
                 contracts.Add(key, new KeyValuePair<List<string>, string>(owners, userID));
             }
             catch(Exception e)
             {
-                throw new Exception("Someone has already suggested this employee");
+                throw e;
             }
         }
 
