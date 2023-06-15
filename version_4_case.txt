@@ -1,0 +1,8 @@
+register u2 u2 lumbridge
+register u3 u3 camelot
+register u4 u4 edgeville
+register u5 u5 buthrope
+login u2 u2
+open_new_store s
+add_product_to_store apple fruite 20 10 0 0 0 0 0.5_20.0_7.0 attribute food
+logout
