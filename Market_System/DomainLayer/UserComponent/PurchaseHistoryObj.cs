@@ -11,14 +11,39 @@ namespace Market_System.DomainLayer.UserComponent
         private List<Bucket> baskets;
         private string purchase_date;
         private double total_price;
+        public DateTime PurchaseDateTime { get; set; }
 
-        public PurchaseHistoryObj(string username,List<Bucket> list_of_baskets,double price)
+        public PurchaseHistoryObj(string username, List<Bucket> list_of_baskets, double price)
         {
             this.username = username;
-
             this.baskets = copy_list(list_of_baskets);
             this.total_price = price;
-            this.purchase_date = DateTime.Now.ToShortDateString(); 
+            this.PurchaseDateTime = DateTime.Now;
+            this.purchase_date = PurchaseDateTime.ToShortDateString(); 
+             
+        }
+
+
+        public void SetPurchaseDates(DateTime date)
+        {
+            this.purchase_date = date.ToShortDateString();
+            this.PurchaseDateTime = date;
+        }
+
+
+        public string GetUsername()
+        {
+            return this.username;
+        }
+
+        public double GetTotalPrice()
+        {
+            return this.total_price;
+        }
+
+        public List<Bucket> GetBuckets()
+        {
+            return this.baskets;
         }
 
         public bool check_if_contains_product(string product_id)
@@ -56,6 +81,7 @@ namespace Market_System.DomainLayer.UserComponent
             foreach(Bucket basket in list)//copies basktes
             {
                 Bucket basket_copy = new Bucket(basket.get_store_id());
+                basket_copy.SetID(basket.GetID());
 
                 foreach(KeyValuePair<string, int> product__pair in basket.get_products())//copies products in basket
                     {

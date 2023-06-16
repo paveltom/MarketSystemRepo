@@ -29,6 +29,13 @@ namespace Market_System.DAL
 
         // User
         public virtual DbSet<UserModel> Users { get; set; }
+        public virtual DbSet<CartModel> Carts { get; set; }
+        public virtual DbSet<UserPurchaseHistoryObjModel> UserPurchases{ get; set; }
+        public virtual DbSet<BucketModel> Buckets { get; set; }
+
+        
+
+
 
 
 

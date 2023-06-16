@@ -1,43 +1,31 @@
-﻿using System;
+﻿using Market_System.DAL;
+using Market_System.DAL.DBModels;
+using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Market_System.DomainLayer.UserComponent
 {
     public class PurchaseRepo
     {
-
-        private static Dictionary<string, List<PurchaseHistoryObj>> purchases_database; // key username , value list of purchasehistoryobj
-
         private static PurchaseRepo Instance = null;
 
         //To use the lock, we need to create one variable
         private static readonly object Instancelock = new object();
 
-        //The following Static Method is going to return the Singleton Instance
         public static PurchaseRepo GetInstance()
         {
-            //This is thread-Safe - Performing a double-lock check.
             if (Instance == null)
             {
-                //As long as one thread locks the resource, no other thread can access the resource
-                //As long as one thread enters into the Critical Section, 
-                //no other threads are allowed to enter the critical section
                 lock (Instancelock)
                 { //Critical Section Start
                     if (Instance == null)
-                    {
-                        
-                        purchases_database = new Dictionary<string,List<PurchaseHistoryObj>>();
+                    {                       
                         Instance = new PurchaseRepo();
                     }
                 } //Critical Section End
-                //Once the thread releases the lock, the other thread allows entering into the critical section
-                //But only one thread is allowed to enter the critical section
             }
-
-            //Return the Singleton Instance
             return Instance;
         }
 
@@ -47,39 +35,118 @@ namespace Market_System.DomainLayer.UserComponent
         }
 
 
+        public void RemoveBucket(string bucketID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                BucketModel toRemove;
+                if((toRemove = context.Buckets.SingleOrDefault(b => b.BucketID == bucketID)) != null)
+                {
+                    context.Buckets.Remove(toRemove);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+                
+        public string NewBucketID()
+        {
+            Random id_generator = new Random();
+            string bucketID = id_generator.Next().ToString();
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                while(context.Buckets.Any(b => b.BucketID == bucketID))
+                    bucketID = id_generator.Next().ToString();
+            }
+            return bucketID;
+
+        }
+
+
+        public void UpdateCartPrice(string username, double price)
+        {
+            using (StoreDataContext context = new StoreDataContext()) 
+            {
+                CartModel model;
+                if ((model = context.Carts.SingleOrDefault(c => c.CartID == username + "Cart")) != null)
+                {
+                    model.TotalPrice = price;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+                
+
+
         public void save_purchase(string username, PurchaseHistoryObj new_purchase)
         {
-            if(purchases_database.ContainsKey(username))
+            using (StoreDataContext context = new StoreDataContext())
             {
-                purchases_database[username].Add(new_purchase);
+                CartModel cart = context.Carts.SingleOrDefault(c => c.CartID == username + "Cart");
+                if (cart == null)
+                    throw new Exception("404 - your cart wasn't found.");                
+                UserPurchaseHistoryObjModel model = new UserPurchaseHistoryObjModel();
+                model.Username = username;
+                model.TotalPrice = new_purchase.GetTotalPrice();
+                model.PurchaseDateTicks = new_purchase.PurchaseDateTime.Ticks.ToString();
+                model.HisstoryID = username + model.PurchaseDateTicks;
+                model.Buckets = new HashSet<BucketModel>();
+                List<string> bucketsIDs = new_purchase.GetBuckets().Select(b => b.GetID()).ToList();
+                context.Buckets.Where(b => bucketsIDs.Contains(b.BucketID)).ToList().ForEach(b => {
+                    cart.Buckets.Remove(b);
+                    b.Purchased = true;
+                    model.Buckets.Add(b);
+                    });
+                cart.TotalPrice = 0;
+                context.UserPurchases.Add(model);
+                context.SaveChanges();
             }
-            else
+        }
+
+        public void SaveBucket(Bucket saveMe, string username)
+        {
+            using (StoreDataContext context = new StoreDataContext())
             {
-                purchases_database.Add(username, new List<PurchaseHistoryObj>());
-                purchases_database[username].Add(new_purchase);
+                BucketModel model;
+                string bucketID = saveMe.GetID();
+                if ((model = context.Buckets.SingleOrDefault(b => b.BucketID == bucketID)) == null)
+                {
+                    model = new BucketModel();
+                    model.BucketID = saveMe.GetID();
+                    model.Purchased = false;
+                    model.StoreID = saveMe.get_store_id();
+                    model.Cart = context.Carts.SingleOrDefault(c => c.CartID == username + "Cart");
+                    context.Buckets.Add(model);
+
+                }
+                // only update added product
+                model.Products = saveMe.get_products().Aggregate("", (acc, p) => acc += p.Key + "+" + p.Value, acc => acc);
+                context.SaveChanges();
             }
         }
 
         internal List<PurchaseHistoryObj> get_history(string username)
         {
-           if(purchases_database.ContainsKey(username))
+            using (StoreDataContext context = new StoreDataContext())
             {
-                return purchases_database[username];
+                List<PurchaseHistoryObj> ret = context.UserPurchases.Where(p => p.Username == username).ToList().Select(p => p.ModelToHistory()).ToList();
+                if(ret.Count == 0)
+                    throw new Exception("user never bought anything!");
+                return ret;
             }
-            throw new Exception("user never bought anything!");
+            
         }
 
         internal bool check_if_user_bought_item(string username, string product_id)
         {
-            List<PurchaseHistoryObj> history = purchases_database[username];
-            foreach(PurchaseHistoryObj history_obj in history)
-            {
-                if(history_obj.check_if_contains_product(product_id))
-                {
-                    return true;
-                }
-            }
-            return false;
+            using (StoreDataContext context = new StoreDataContext())
+            {                
+                foreach (UserPurchaseHistoryObjModel model in context.UserPurchases.Where(u => u.Username == username).ToList())
+                    if(model.Buckets.Any(b => b.ModelToBucket().check_if_product_exists(product_id)))
+                        return true;
+                return false;
+            }            
         }
     }
 }

@@ -12,13 +12,29 @@ namespace Market_System.DomainLayer.UserComponent
         private string basket_id;
         private string store_id;
         private Dictionary<string, int> products;
-        private Random id_generator;
+        
         public Bucket(string store_id)
         {
-            this.id_generator = new Random();
-            this.basket_id = id_generator.Next().ToString();
+            this.basket_id = PurchaseRepo.GetInstance().NewBucketID();
             this.store_id = store_id;
             this.products = new Dictionary<string, int>();
+        }
+
+
+        public void SetID(string newOldID)
+        {
+            this.basket_id = newOldID;
+        }
+
+        public void SetProducts(Dictionary<string, int> products)
+        {
+            this.products = products;
+        }
+
+
+        public string GetID()
+        {
+            return this.basket_id;
         }
 
         public void add_product(string product_id, int quantity)

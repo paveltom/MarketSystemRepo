@@ -118,11 +118,10 @@ namespace Market_System.DomainLayer.UserComponent
                 UserModel model;
                 if ((model = context.Users.SingleOrDefault(u => u.Username == username)) != null)
                 {
-                    if (username == "admin")
+                    if (username == "admin") // market system initialize
                     {
                         model.UserID = new_user_id;
                         model.State = "Administrator";
-                        context.SaveChanges();
                     }
                     else
                         throw new Exception("User already exists.");
@@ -136,9 +135,15 @@ namespace Market_System.DomainLayer.UserComponent
                     model.Address = address;
                     model.State = "Member";
                     context.Users.Add(model);
-                    context.SaveChanges();
                 }
+
+                CartModel cartModel = new CartModel();
+                cartModel.CartID = username + "Cart";
+                cartModel.TotalPrice = 0.0;
+                model.Cart = cartModel;
+                context.SaveChanges();
             }
+
             return new_user_id;
 
         }

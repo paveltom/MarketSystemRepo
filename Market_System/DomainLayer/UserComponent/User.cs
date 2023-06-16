@@ -22,6 +22,13 @@ namespace Market_System.DomainLayer.UserComponent
             this.address = address;
         }
 
+        
+        public void SetCart(Cart savedCart)
+        {
+            this.my_cart = savedCart;
+        }
+
+
         public string GetUsername()
         {
             return this.username;
@@ -52,7 +59,7 @@ namespace Market_System.DomainLayer.UserComponent
 
         public void add_product_to_basket(string product_id,int quantity)
         {
-            this.my_cart.add_product(product_id,quantity);
+            this.my_cart.add_product(product_id,quantity, this.username);
         }
 
         internal Cart getcart()

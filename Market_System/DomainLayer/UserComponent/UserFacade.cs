@@ -232,6 +232,7 @@ namespace Market_System.DomainLayer.UserComponent
               if (u.GetUsername().Equals(username))
                 {
                     u.add_product_to_basket(product_id,quantity);
+
                 }
             }
         }
@@ -258,6 +259,8 @@ namespace Market_System.DomainLayer.UserComponent
                 if(u.GetUsername().Equals(username))
                 {
                     u.update_total_price_of_cart(price);
+                    if(u.GetUserState() != "Guest")
+                        PurchaseRepo.GetInstance().UpdateCartPrice(u.GetUsername(), price);
                 }
             }
         }
@@ -288,7 +291,8 @@ namespace Market_System.DomainLayer.UserComponent
             
         }
 
-        public void remove_product_from_basket(string product_id, string username,int quantity)
+        public void 
+            remove_product_from_basket(string product_id, string username,int quantity)
         {
             
             foreach (User u in users)
