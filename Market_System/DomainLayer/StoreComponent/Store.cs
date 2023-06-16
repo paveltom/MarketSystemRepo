@@ -1402,6 +1402,9 @@ namespace Market_System.DomainLayer.StoreComponent
                 AcquireProduct(productID).Purchase(1);
                 ReleaseProduct(productID);
                 DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
+
+                string msg = "You are the winner in lottery for product " + productID + ". Automatic purchase was performed.";
+                NotificationFacade.GetInstance().AddNewMessage(winner, "Market", msg);
             }
             catch (Exception ex) { throw ex; }
         }
