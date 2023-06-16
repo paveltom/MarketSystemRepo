@@ -8363,3 +8363,38 @@ Friday, 16 June 2023 : user with session ID : 1910870590 got his Messages
 Friday, 16 June 2023 : user with session ID : 1910870590 got his Messages
 Friday, 16 June 2023 : 681203386Logged-out succesfully
 Friday, 16 June 2023 : guest : guest123893931 has logged in
+Friday, 16 June 2023 : guest : guest1933244102 has logged in
+Friday, 16 June 2023 : bayan has registered!
+Friday, 16 June 2023 : nekola has registered!
+Friday, 16 June 2023 : ben has registered!
+Friday, 16 June 2023 : harold has registered!
+Friday, 16 June 2023 : ben3 has registered!
+Friday, 16 June 2023 : opening store with id: 1038828816 has failed
+Friday, 16 June 2023 : Added the product:1038828816_1661966751to store: 1038828816 has been done successfully
+Friday, 16 June 2023 : assigning new manager with username : nekola to the store with id: 1038828816
+Friday, 16 June 2023 : assigning new owner with username : ben to the store with id: 1038828816
+Friday, 16 June 2023 : assigning new owner with username : harold to the store with id: 1038828816
+Friday, 16 June 2023 : 991863117Logged-out succesfully
+Friday, 16 June 2023 : guest : guest1546596648 has logged in
+Friday, 16 June 2023 : amihai has registered!
+Friday, 16 June 2023 : 1940335035Logged-out succesfully
+Friday, 16 June 2023 : guest : guest1172795119 has logged in
+Friday, 16 June 2023 : amihaii has registered!
+Friday, 16 June 2023 : 1338601598Logged-out succesfully
+Friday, 16 June 2023 : guest : guest1471855920 has logged in
+Friday, 16 June 2023 : 2104117846Logged-out succesfully
+Friday, 16 June 2023 : guest : guest1172954867 has logged in
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
