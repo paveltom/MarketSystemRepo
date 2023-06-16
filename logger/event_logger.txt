@@ -8398,3 +8398,36 @@ Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
 Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
 Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
 Friday, 16 June 2023 : user with session ID : 2101086560 got his Messages
+Friday, 16 June 2023 : guest : guest1749062925 has logged in
+Friday, 16 June 2023 : bayan has registered!
+Friday, 16 June 2023 : nekola has registered!
+Friday, 16 June 2023 : ben has registered!
+Friday, 16 June 2023 : harold has registered!
+Friday, 16 June 2023 : ben3 has registered!
+Friday, 16 June 2023 : opening store with id: 1341818938 has failed
+Friday, 16 June 2023 : Added the product:1341818938_249898861to store: 1341818938 has been done successfully
+Friday, 16 June 2023 : assigning new manager with username : nekola to the store with id: 1341818938
+Friday, 16 June 2023 : assigning new owner with username : ben to the store with id: 1341818938
+Friday, 16 June 2023 : assigning new owner with username : harold to the store with id: 1341818938
+Friday, 16 June 2023 : 417354230Logged-out succesfully
+Friday, 16 June 2023 : guest : guest2102905115 has logged in
+Friday, 16 June 2023 : amihai has registered!
+Friday, 16 June 2023 : amihaii has registered!
+Friday, 16 June 2023 : 1404781967Logged-out succesfully
+Friday, 16 June 2023 : guest : guest1704627164 has logged in
+Friday, 16 June 2023 : 1552280969Logged-out succesfully
+Friday, 16 June 2023 : guest : guest1341818938 has logged in
+Friday, 16 June 2023 : user with session ID : 371759327 got his Messages
+Friday, 16 June 2023 : user with session ID : 371759327 got his Messages
+Friday, 16 June 2023 : user with session ID : 371759327 got his Messages
+Friday, 16 June 2023 : user with session ID : 371759327 got his Messages
+Friday, 16 June 2023 : 680219694Logged-out succesfully
+Friday, 16 June 2023 : guest : guest249898861 has logged in
+Friday, 16 June 2023 : ADMIN with session ID : 689018670 requested profit for a market on date 15/06/2023 0:00:00
+Friday, 16 June 2023 : ADMIN with session ID : 689018670 requested profit for a market on date 16/06/2023 0:00:00
+Friday, 16 June 2023 : ADMIN with session ID : 689018670 requested profit for a market on date 17/06/2023 0:00:00
+Friday, 16 June 2023 : user with session ID : 689018670 requested profit for a store 1749062925on date 15/06/2023 0:00:00
+Friday, 16 June 2023 : user with session ID : 689018670 requested profit for a store 1749062925on date 16/06/2023 0:00:00
+Friday, 16 June 2023 : user with session ID : 689018670 requested profit for a store 1749062925on date 17/06/2023 0:00:00
+Friday, 16 June 2023 : 1404781967Logged-out succesfully
+Friday, 16 June 2023 : guest : guest864468150 has logged in
