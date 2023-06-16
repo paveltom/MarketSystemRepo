@@ -16,7 +16,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public double MinutesRemains()
         {
-            return (this.DueDate - DateTime.Now).TotalMinutes;
+            return (this.DueDate - DateTime.Now).TotalSeconds;
         }
     }
 }

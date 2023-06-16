@@ -1166,7 +1166,7 @@ namespace Market_System.ServiceLayer
             {
 
 
-                return null;
+                return Response<TimerPlus>.FromError(e.Message);
             }
         }
 

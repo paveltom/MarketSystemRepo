@@ -1,4 +1,5 @@
 ﻿using Market_System.DomainLayer;
+using Market_System.DomainLayer.StoreComponent;
 using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
@@ -58,9 +59,27 @@ namespace Market_System.Presentaion_Layer
             }
             else
             {
-                auction_button.Visible = true;
+                Response<TimerPlus> timer = ((Service_Controller)Session["service_controller"]).get_timer_of_auciton(product_id + "_" + "auction" + "_timer");
+                if (timer.ErrorOccured)
+                {
+                    auction_button.Visible = false;
+                }
+                else
+                {
+                    auction_button.Visible = true;
+                }
             }
 
+            Response<TimerPlus> lottery_timer = ((Service_Controller)Session["service_controller"]).get_timer_of_auciton(product_id + "_" + "lottery" + "_timer");
+
+            if (lottery_timer.ErrorOccured)
+            {
+                lottery_button.Visible = false;
+            }
+            else
+            {
+                lottery_button.Visible = true;
+            }
 
 
         }

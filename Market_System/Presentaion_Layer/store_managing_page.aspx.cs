@@ -283,7 +283,9 @@ namespace Market_System.Presentaion_Layer
                 Label24.Visible = true;
                 approve_bid_text.Visible = true;
                 approve_bid_button.Visible = true;
-
+                counter_bid_message.Visible = true;
+                approve_bid_message.Visible = true;
+                remove_bid_message.Visible = true;
                 remove_bid_label.Visible = true;
                 Label25.Visible = true;
                 remove_bid_text.Visible = true;
