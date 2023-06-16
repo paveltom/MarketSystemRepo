@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
-using Market_System.DomainLayer.UserComponent;
 using Market_System.DAL;
 using Market_System.DAL.DBModels;
 

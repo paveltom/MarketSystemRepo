@@ -81,6 +81,7 @@ namespace Market_System.DomainLayer.UserComponent
             foreach(Bucket basket in list)//copies basktes
             {
                 Bucket basket_copy = new Bucket(basket.get_store_id());
+                basket_copy.SetID(basket.GetID());
 
                 foreach(KeyValuePair<string, int> product__pair in basket.get_products())//copies products in basket
                     {

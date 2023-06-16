@@ -1,9 +1,6 @@
 ﻿using Market_System.DomainLayer.UserComponent;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+
 
 namespace Market_System.DAL.DBModels
 {
@@ -22,6 +19,8 @@ namespace Market_System.DAL.DBModels
         public User ModelToUser()
         {
             User user = new User(this.Username, this.Address);
+            if (this.Cart != null)
+                user.SetCart(this.Cart.ModelToCart());            
             return user;
         }
 

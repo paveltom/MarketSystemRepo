@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using Microsoft.Ajax.Utilities;
+
+
+
 
 namespace Market_System.DAL.DBModels
 {
@@ -11,9 +14,9 @@ namespace Market_System.DAL.DBModels
     {
         [Key]
         public string HisstoryID { get; set; } // username + PurchaseDateTicks
-        public string Username;        
-        public string PurchaseDateTicks;
-        public double TotalPrice;
+        public string Username { get; set; }
+        public string PurchaseDateTicks { get; set; }
+        public double TotalPrice { get; set; }
 
         public virtual ICollection<BucketModel> Buckets { get; set; }
 

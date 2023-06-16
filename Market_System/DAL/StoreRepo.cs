@@ -1,20 +1,11 @@
 ﻿using Market_System.DAL.DBModels;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
-using Market_System.DomainLayer.StoreComponent.PolicyStrategy;
-using Market_System.DomainLayer.UserComponent;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Xml.Linq;
 
 namespace Market_System.DAL
 {

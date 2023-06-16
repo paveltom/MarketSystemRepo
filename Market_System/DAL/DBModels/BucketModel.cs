@@ -16,6 +16,8 @@ namespace Market_System.DAL.DBModels
         public string Products { get; set; } // <id1>+<quantity1>;<id2>+<quantity2>;...
 
         public virtual CartModel Cart { get; set; }
+        public virtual UserPurchaseHistoryObjModel USerPurchase{ get; set; }
+
 
 
         public Bucket ModelToBucket()

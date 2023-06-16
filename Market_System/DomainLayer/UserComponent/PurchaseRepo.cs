@@ -4,7 +4,6 @@ using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Market_System.DomainLayer.UserComponent
 {
@@ -36,42 +35,88 @@ namespace Market_System.DomainLayer.UserComponent
         }
 
 
+        public void RemoveBucket(string bucketID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                BucketModel toRemove;
+                if((toRemove = context.Buckets.SingleOrDefault(b => b.BucketID == bucketID)) != null)
+                {
+                    context.Buckets.Remove(toRemove);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+                
+        public string NewBucketID()
+        {
+            Random id_generator = new Random();
+            string bucketID = id_generator.Next().ToString();
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                while(context.Buckets.Any(b => b.BucketID == bucketID))
+                    bucketID = id_generator.Next().ToString();
+            }
+            return bucketID;
+
+        }
+
+
+        public void UpdateCartPrice(string username, double price)
+        {
+            using (StoreDataContext context = new StoreDataContext()) 
+            {
+                CartModel model;
+                if ((model = context.Carts.SingleOrDefault(c => c.CartID == username + "Cart")) != null)
+                {
+                    model.TotalPrice = price;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+                
+
+
         public void save_purchase(string username, PurchaseHistoryObj new_purchase)
         {
             using (StoreDataContext context = new StoreDataContext())
             {
                 CartModel cart = context.Carts.SingleOrDefault(c => c.CartID == username + "Cart");
                 if (cart == null)
-                    throw new Exception("404 - your cart wasn't found.");
-
+                    throw new Exception("404 - your cart wasn't found.");                
                 UserPurchaseHistoryObjModel model = new UserPurchaseHistoryObjModel();
                 model.Username = username;
                 model.TotalPrice = new_purchase.GetTotalPrice();
                 model.PurchaseDateTicks = new_purchase.PurchaseDateTime.Ticks.ToString();
                 model.HisstoryID = username + model.PurchaseDateTicks;
+                model.Buckets = new HashSet<BucketModel>();
                 List<string> bucketsIDs = new_purchase.GetBuckets().Select(b => b.GetID()).ToList();
-                context.Buckets.Where(b => bucketsIDs.Contains(b.BucketID)).ForEach(b => {
+                context.Buckets.Where(b => bucketsIDs.Contains(b.BucketID)).ToList().ForEach(b => {
                     cart.Buckets.Remove(b);
                     b.Purchased = true;
                     model.Buckets.Add(b);
                     });
+                cart.TotalPrice = 0;
                 context.UserPurchases.Add(model);
                 context.SaveChanges();
             }
         }
 
-        public void SaveBucket(Bucket saveMe)
+        public void SaveBucket(Bucket saveMe, string username)
         {
             using (StoreDataContext context = new StoreDataContext())
             {
                 BucketModel model;
-                if ((model = context.Buckets.SingleOrDefault(b => b.BucketID == saveMe.GetID())) == null)
+                string bucketID = saveMe.GetID();
+                if ((model = context.Buckets.SingleOrDefault(b => b.BucketID == bucketID)) == null)
                 {
                     model = new BucketModel();
                     model.BucketID = saveMe.GetID();
                     model.Purchased = false;
                     model.StoreID = saveMe.get_store_id();
-                    model.Products = saveMe.get_products().Aggregate("", (acc, p) => acc += p.Key + "+" + p.Value, acc => acc);
+                    model.Cart = context.Carts.SingleOrDefault(c => c.CartID == username + "Cart");
                     context.Buckets.Add(model);
 
                 }

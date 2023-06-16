@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Web;
 
@@ -15,7 +16,13 @@ namespace Market_System.DomainLayer.UserComponent
             this.total_price = 0;
         }
 
-        public void add_product(string product_id,int quantity)
+
+        public void SetBuckets(List<Bucket> buckets)
+        {
+            this.baskets = buckets;
+        }
+
+        public void add_product(string product_id,int quantity, string username)
         {
             string store_id = product_id.Substring(0, product_id.IndexOf('_'));// 3 first digist are store id
 
@@ -24,7 +31,7 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 Bucket newBucket = new Bucket(store_id);
                 this.baskets.Add(newBucket);
-                PurchaseRepo.GetInstance().SaveBucket(newBucket);
+                PurchaseRepo.GetInstance().SaveBucket(newBucket, username);
 
             }
 
@@ -33,7 +40,7 @@ namespace Market_System.DomainLayer.UserComponent
                 if (basket.get_store_id().Equals(store_id))
                 {
                     basket.add_product(product_id,quantity);
-                    PurchaseRepo.GetInstance().SaveBucket(basket);
+                    PurchaseRepo.GetInstance().SaveBucket(basket, username);
                     return;
                 }
 
@@ -101,12 +108,13 @@ namespace Market_System.DomainLayer.UserComponent
         private void remove_basket(string store_id)
         {
             //because we are running from end to begging no worry about modifying the collection and running at it at the same time
-            for(int i=this.baskets.Count()-1;i>=0;i--)
+            for (int i = this.baskets.Count() - 1; i >= 0; i--)
             {
-                if(this.baskets[i].get_store_id()==store_id)
+                if (this.baskets[i].get_store_id() == store_id)
                 {
-                        this.baskets.RemoveAt(i);
-                        return;
+                    PurchaseRepo.GetInstance().RemoveBucket(this.baskets[i].GetID());
+                    this.baskets.RemoveAt(i);
+                    return;
                 }
             }
         }
