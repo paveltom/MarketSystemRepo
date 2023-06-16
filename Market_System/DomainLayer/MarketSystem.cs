@@ -1811,8 +1811,9 @@ namespace Market_System.DomainLayer
 
                 string storeID = GetStoreIdFromProductID(productID);
                 string msg = "Auction for product " + productID + " was updated. The new price is: " + newPrice + ".";
-                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
-                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception ex) { throw ex; }
         }
