@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using Market_System.DAL;
 using System.EnterpriseServices;
 using System.Windows.Forms;
+using Market_System.Domain_Layer.Communication_Component;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -357,12 +358,25 @@ namespace Market_System.DomainLayer.StoreComponent
         public string SetAuction(string userID, double newPrice, string newTransID)
         {
             try
-            {
+            {                
                 if (newPrice != -1 && newPrice < Double.Parse(this.Auction.Value[0]))
                     throw new Exception("Cannot offer smaller price than current price.");
                 string previousTransID = this.Auction.Value[1]; // transactionID
+                string previousUserID = this.Auction.Key;
                 this.Auction = new KeyValuePair<string, List<string>>(userID, new List<string>{ newPrice.ToString(), newTransID });
                 Save();
+
+                if (userID == this.Product_ID)
+                {
+                    string msg = "Auction for product " + this.Product_ID + " was removed by the store.";
+                    NotificationFacade.GetInstance().AddNewMessage(previousUserID, "Market", msg);
+                }
+                if (newPrice != -1)
+                {
+                    string msg = "Auction for product " + this.Product_ID + " was updated by other user.";
+                    NotificationFacade.GetInstance().AddNewMessage(previousUserID, "Market", msg);
+                }
+
                 return previousTransID;
             }
             catch (Exception e) { throw e; }

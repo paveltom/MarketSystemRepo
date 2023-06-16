@@ -13,6 +13,7 @@ using Market_System.DomainLayer.UserComponent;
 using EnvDTE;
 using Market_System.DomainLayer.PaymentComponent;
 using Microsoft.NET.StringTools;
+using Market_System.Domain_Layer.Communication_Component;
 
 namespace Market_System.DomainLayer.StoreComponent
 {
@@ -748,6 +749,9 @@ namespace Market_System.DomainLayer.StoreComponent
                 Dictionary<string, string> refund = store.ReturnUsersLotteryTransactions(userID, productID);
                 ReleaseStore(storeID);                
                 refund.ForEach(p => Refund(p.Key, p.Value));
+
+                string msg = "Lottery for product " + productID + " was removed by the store. Your lottery transaction will be canceled.";
+                refund.Keys.ForEach(u => NotificationFacade.GetInstance().AddNewMessage(u, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }
