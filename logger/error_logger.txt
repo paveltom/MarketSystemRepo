@@ -13261,30 +13261,23 @@ Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: User already exists.in register
 Friday, 16 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
 Friday, 16 June 2023 : error!!: LINQ to Entities does not recognize the method 'System.String GetID()' method, and this method cannot be translated into a store expression. in add_product_to_basket
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: User already exists.in register
-Friday, 16 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: User already exists.in register
-Friday, 16 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: Sequence contains more than one element in Remove_Store_Owner
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions

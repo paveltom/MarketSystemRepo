@@ -33,6 +33,24 @@ namespace Market_System.Presentaion_Layer
         protected global::System.Web.UI.WebControls.Label product_id_label;
 
         /// <summary>
+        /// Label16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label16;
+
+        /// <summary>
+        /// product_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label product_name;
+
+        /// <summary>
         /// Timer1 control.
         /// </summary>
         /// <remarks>
