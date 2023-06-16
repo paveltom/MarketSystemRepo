@@ -166,9 +166,13 @@ namespace Market_System.DomainLayer.StoreComponent
 
                     if ((this.employees.isFounder(userID, this.Store_ID) || this.employees.isOwner(userID, this.Store_ID)) && (emp != null) && (emp.OwnerAssignner != null) && (emp.OwnerAssignner.Equals(userID)))
                     {
-                        employees.getStoreEmployees(this.Store_ID).Where(e => e.OwnerAssignner != null && e.OwnerAssignner.Equals(emp.UserID)).ForEach(e => this.employees.removeEmployee(e.UserID, this.Store_ID));
-                        this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
                         string message = "You have been removed from store ownership in store id: " + this.Store_ID;
+                        employees.getStoreEmployees(this.Store_ID).Where(e => e.OwnerAssignner != null && e.OwnerAssignner.Equals(emp.UserID)).ForEach(e => {
+                            this.employees.removeEmployee(e.UserID, this.Store_ID);
+                            NotificationFacade.GetInstance().AddNewMessage(e.UserID, userID, message);
+                        });
+                        this.employees.removeEmployee(other_Owner_ID, this.Store_ID);
+                        
                         NotificationFacade.GetInstance().AddNewMessage(other_Owner_ID, userID, message);
 
                     }
