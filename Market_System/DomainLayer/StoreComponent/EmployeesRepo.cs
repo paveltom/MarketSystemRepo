@@ -120,7 +120,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 {
                     string eRole = emp.Role.ToString();
                     EmployeeModel remove;
-                    if ((remove = context.Employees.SingleOrDefault(e => e.UserID == e.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) != null)
+                    if ((remove = context.Employees.SingleOrDefault(e => e.UserID == emp.UserID && e.StoreID == emp.StoreID && e.Role == eRole)) != null)
                     {
                         context.Employees.Remove(remove);
                         context.SaveChanges();

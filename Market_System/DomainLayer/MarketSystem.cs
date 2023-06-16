@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Market_System.ServiceLayer;
 using System.Timers;
 using Market_System.DAL;
+using System.EnterpriseServices;
 
 namespace Market_System.DomainLayer
 {
@@ -1704,6 +1705,13 @@ namespace Market_System.DomainLayer
                     string bidderID = bidID.Substring(bidID.IndexOf('_'));
                     string msg = "The bid " + bidID + " was approved by store side. The price is valid only for proposed quantity.";
                     notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+
+                    string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                    msg = "The bid " + bidID + " was approved by store employee " + userID + ". The price is valid only for proposed quantity.";
+                    storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                    storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+
                 }
             }
             catch (Exception e) { throw e; }
@@ -1728,10 +1736,16 @@ namespace Market_System.DomainLayer
             try
             {
                 storeFacade.CounterBid(userID, bidID, counterPrice);
-                string bidderID = bidID.Substring(bidID.IndexOf('_'));
-                string productID = bidID.Substring(bidID.IndexOf('_') + 1);
+                string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
+                string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
+                string productID = trimmedBidID.Substring(bidderID.Length);
                 string msg = "The bid for product " + productID + " was updated by store side - counter offer received. User Approvement required.";
                 notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+                string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                msg = "The bid " + bidID + " was countered by store employee " + userID + ", with new price of " + counterPrice + ". User approvement required.";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }
@@ -1743,11 +1757,16 @@ namespace Market_System.DomainLayer
             try
             {
                 storeFacade.RemoveBid(userID, bidID);
-                string bidderID = bidID.Substring(bidID.IndexOf('_'));
-                string productID = bidID.Substring(bidID.IndexOf('_') + 1);
-                productID = bidID.Substring(0, bidID.IndexOf('_'));
+                string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
+                string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
+                string productID = trimmedBidID.Substring(bidderID.Length + 1);
                 string msg = "The bid for product " + productID + " was declined and removed by store side.";
                 notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+                string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                msg = "The bid " + bidID + " was declined and removed by store employee " + userID + ".";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }
@@ -1772,7 +1791,13 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                storeFacade.SetAuction(get_userid_from_session_id(session), productID, newPrice, auctionMinutesDuration);
+                string userID = get_userid_from_session_id(session);
+                storeFacade.SetAuction(userID, productID, newPrice, auctionMinutesDuration);
+
+                string storeID = GetStoreIdFromProductID(productID);
+                string msg = "New auction for product " + productID + " was added by store employee " + userID + ". The initial price is: " + newPrice + ".";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }
@@ -1781,7 +1806,13 @@ namespace Market_System.DomainLayer
         {
             try
             {
-                storeFacade.UpdateAuction(get_userid_from_session_id(session), productID, newPrice, card_number, month, year, holder, ccv, id);
+                string userID = get_userid_from_session_id(session);
+                storeFacade.UpdateAuction(userID, productID, newPrice, card_number, month, year, holder, ccv, id);
+
+                string storeID = GetStoreIdFromProductID(productID);
+                string msg = "Auction for product " + productID + " was updated. The new price is: " + newPrice + ".";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception ex) { throw ex; }
         }
@@ -1806,6 +1837,11 @@ namespace Market_System.DomainLayer
             {
                 string userID = get_userid_from_session_id(session);
                 storeFacade.SetNewLottery(GetStoreIdFromProductID(productID), userID, productID, durationInMinutes);
+
+                string storeID = GetStoreIdFromProductID(productID);
+                string msg = "Lottery for product " + productID + " was added by store employee " + userID + ".";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }
@@ -1816,6 +1852,11 @@ namespace Market_System.DomainLayer
             {
                 string userID = get_userid_from_session_id(session);
                 storeFacade.RemoveLottery(GetStoreIdFromProductID(productID), userID, productID);
+
+                string storeID = GetStoreIdFromProductID(productID);
+                string msg = "Lottery for product " + productID + " was removed by store employee " + userID + ".";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }
@@ -1837,7 +1878,21 @@ namespace Market_System.DomainLayer
             try
             {
                 string userID = get_userid_from_session_id(session);
-                storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id);
+                string storeID = GetStoreIdFromProductID(productID);
+                string msg;
+
+                bool winner = storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id);                
+
+                msg = "New lottery ticket with " + percentage + " percentage, for product " + productID + " was purchased.";
+                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+
+                if (winner)
+                {
+                    msg = "New winner in lottery for product " + productID + ". Automatic purchase was performed.";
+                    storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                    storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                }
             }
             catch (Exception e) { throw e; }
 
