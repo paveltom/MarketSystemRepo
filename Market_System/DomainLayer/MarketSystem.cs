@@ -1773,6 +1773,18 @@ namespace Market_System.DomainLayer
         }
 
 
+        public bool CheckCounterBid(string session, string productID)
+        {
+            string userID = get_userid_from_session_id(session); // regular user (not store employee)
+            string storeID = GetStoreIdFromProductID(productID);
+            string founderID = GetStore(storeID).FounderID;
+            try
+            {
+                return GetStoreBids(founderID, storeID).Any(b => b.ProductID == productID && b.UserID == userID && b.CounterOffer == true);
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public List<BidDTO> GetStoreBids(string session, string storeID)
         {

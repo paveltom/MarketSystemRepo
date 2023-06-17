@@ -7,6 +7,7 @@ using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 using System.Xml.Linq;
 using System.Timers;
+using System.EnterpriseServices;
 
 namespace Market_System.ServiceLayer
 {
@@ -298,6 +299,16 @@ namespace Market_System.ServiceLayer
             {
                 Market.CounterBid(this.SessionID, bidID, counterPrice);
                 return "Counter offer was placed.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public bool CheckCounterBid(string productID)
+        {
+            try
+            {
+                return Market.CheckCounterBid(this.SessionID, productID);
             }
             catch (Exception e) { throw e; }
         }
