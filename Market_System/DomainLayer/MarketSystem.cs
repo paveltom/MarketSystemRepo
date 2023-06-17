@@ -1835,7 +1835,7 @@ namespace Market_System.DomainLayer
             string founderID = GetStore(storeID).FounderID;
             try
             {
-                return GetStoreBids(founderID, storeID).Any(b => b.ProductID == productID && b.UserID == userID && b.CounterOffer == true);
+                return GetStoreBids_2(founderID, storeID).Any(b => b.ProductID == productID && b.UserID == userID && b.CounterOffer == true);
             }
             catch (Exception e) { throw e; }
         }
@@ -1847,6 +1847,17 @@ namespace Market_System.DomainLayer
             try
             {
                 return storeFacade.GetStoreBids(userID, storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public List<BidDTO> GetStoreBids_2(string session, string storeID)
+        {
+            string userID = get_userid_from_session_id(session);
+            try
+            {
+                string founderID = GetStore(storeID).FounderID;
+                return storeFacade.GetStoreBids(founderID, storeID);
             }
             catch (Exception e) { throw e; }
         }
