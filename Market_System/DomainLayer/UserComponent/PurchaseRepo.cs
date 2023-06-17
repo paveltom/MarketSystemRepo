@@ -131,8 +131,8 @@ namespace Market_System.DomainLayer.UserComponent
             using (StoreDataContext context = new StoreDataContext())
             {
                 List<PurchaseHistoryObj> ret = context.UserPurchases.Where(p => p.Username == username).ToList().Select(p => p.ModelToHistory()).ToList();
-                if(ret.Count == 0)
-                    throw new Exception("user never bought anything!");
+                if (ret.Count == 0)
+                    new List<PurchaseHistoryObj>();
                 return ret;
             }
             
