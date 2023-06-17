@@ -1,4 +1,5 @@
-﻿using Market_System.DomainLayer;
+﻿using Market_System.DAL;
+using Market_System.DomainLayer;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.ServiceLayer;
@@ -27,7 +28,8 @@ namespace Market_System.Tests.unit_tests
         {
             Logger.get_instance().change_logger_path_to_regular();
             ms.destroy_me();
-
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
+            StoreRepo.GetInstance().destroy();
         }
 
         [TestMethod]

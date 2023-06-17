@@ -1,4 +1,5 @@
-﻿using Microsoft.Ajax.Utilities;
+﻿using Market_System.DAL;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
@@ -190,14 +191,18 @@ namespace Market_System.DomainLayer.StoreComponent
          */
         public void AddAnEmpPermission(string userID, string storeID, Permission permission)
         {
-            getemployee(userID, storeID).addPermission(permission);
+            Employee emp = getemployee(userID, storeID);
+            emp.addPermission(permission);
+            EmployeeRepo.GetInstance().Save_Employee(emp);
         }
 
         /** remove the'permission' from a store employee.
        */
         public void removeAnEmpPermission(string userID, string storeID, Permission permission)
         {
-            getemployee(userID, storeID).removePermission(permission);
+            Employee emp = getemployee(userID, storeID);
+            emp.removePermission(permission);
+            EmployeeRepo.GetInstance().Save_Employee(emp);
         }
 
         /** add a list of permissions to a store employee.
@@ -212,7 +217,9 @@ namespace Market_System.DomainLayer.StoreComponent
 
         public void updateEmpPermissions(string userID, string storeID, List<Permission> permissions)
         {
-            this.getemployee(userID,storeID).Permissions = permissions;
+            Employee emp = this.getemployee(userID, storeID);
+            emp.Permissions = permissions;
+            EmployeeRepo.GetInstance().Save_Employee(emp);
         }
 
         /** remove a list of permissions from a store employee.

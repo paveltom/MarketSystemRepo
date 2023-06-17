@@ -196,7 +196,7 @@ namespace Market_System.DomainLayer.UserComponent
                 }
             }
 
-            throw new ArgumentException("user does not exists");
+            throw new ArgumentException("user does not exists or already logged out");
 
         }
 
@@ -671,13 +671,14 @@ namespace Market_System.DomainLayer.UserComponent
         internal User getUser(string username)
         {
             foreach(User user in users)
-            {
+            {                
                 if (user.GetUsername().Equals(username))
                 {
                     return user;
                 }
             }
-            return null;
+
+            return userRepo.GetUser(username);
         }
 
         /// <returns>empty string if 'userid not a member'.

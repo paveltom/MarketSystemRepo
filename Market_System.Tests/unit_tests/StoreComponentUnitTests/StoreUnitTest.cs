@@ -294,7 +294,7 @@ namespace Market_System.Tests.unit_tests
             List<string> retOwners = this.testStore.GetOwnersOfTheStore("testStoreFounderID326");
 
             // Assert
-            Assert.IsTrue(owners.Any(x => retOwners.Any(y => x == y)) && owners.Count == retOwners.Count);
+            Assert.IsTrue(owners.Any(x => retOwners.Any(y => x == y)) && owners.Count + 1 == retOwners.Count); // + 1 for founder
         }
 
         [TestMethod]

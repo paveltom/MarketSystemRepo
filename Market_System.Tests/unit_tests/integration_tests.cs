@@ -4,6 +4,7 @@ using Market_System.DomainLayer;
 using Market_System.ServiceLayer;
 using System.Collections.Generic;
 using Market_System.DomainLayer.UserComponent;
+using Market_System.DAL;
 
 namespace Market_System.Tests.unit_tests
 {
@@ -29,7 +30,8 @@ namespace Market_System.Tests.unit_tests
         {
             Logger.get_instance().change_logger_path_to_regular();
             ms.destroy_me();
-
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
+            StoreRepo.GetInstance().destroy();
         }
 
 

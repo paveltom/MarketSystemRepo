@@ -121,7 +121,7 @@ namespace Market_System.DomainLayer.UserComponent
 
                 }
                 // only update added product
-                model.Products = saveMe.get_products().Aggregate("", (acc, p) => acc += p.Key + "+" + p.Value, acc => acc);
+                model.Products = saveMe.get_products().Aggregate("", (acc, p) => acc += p.Key + "+" + p.Value + ";", acc => acc);
                 context.SaveChanges();
             }
         }

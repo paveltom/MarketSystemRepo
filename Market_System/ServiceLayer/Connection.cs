@@ -31,6 +31,7 @@ namespace Market_System.ServiceLayer
                     if (Instance == null)
                     {
                         Instance = new Connection();
+                        Instance.ConnectionString = BasicConnectionString; 
                     }
                 } //Critical Section End
 

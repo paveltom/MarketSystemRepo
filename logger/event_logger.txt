@@ -9553,3 +9553,9 @@ Saturday, 17 June 2023 : user with session ID : 963084932 requested profit for a
 Saturday, 17 June 2023 : user with session ID : 963084932 requested profit for a store 1046092505on date 18/06/2023 0:00:00
 Saturday, 17 June 2023 : 701811547Logged-out succesfully
 Saturday, 17 June 2023 : guest : guest62029652 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : guest : guest1582141445 has logged in
