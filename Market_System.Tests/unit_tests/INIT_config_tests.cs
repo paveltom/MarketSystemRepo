@@ -1,4 +1,5 @@
-﻿using Market_System.DomainLayer;
+﻿using Market_System.DAL;
+using Market_System.DomainLayer;
 using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.ServiceLayer;
@@ -27,7 +28,8 @@ namespace Market_System.Tests.unit_tests
         {
             Logger.get_instance().change_logger_path_to_regular();
             ms.destroy_me();
-
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
+            StoreRepo.GetInstance().destroy();
         }
 
         [TestMethod]
@@ -46,7 +48,7 @@ namespace Market_System.Tests.unit_tests
         {
             Service_Controller sv = new Service_Controller(3);
             sv.read_from_init_file("‏‏INIT_test_fail.txt");
-            Assert.IsTrue(sv.login_member("bayan", "pass").ErrorMessage.Equals("Incorrect login information has been provided")); // this checks that all action are undone
+            Assert.IsTrue(sv.login_member("bayan", "pass1").ErrorMessage.Equals("Incorrect login information has been provided")); // this checks that all action are undone
             Assert.IsTrue(Logger.get_instance().Read_Errors_Record().Contains(DateTime.Now.ToLongDateString() + " : " + "reading from init file failed due to: Incorrect login information has been provided starting system without any initialization")); // this checks that we record this in eror log
         }
 

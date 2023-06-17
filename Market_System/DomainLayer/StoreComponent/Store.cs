@@ -1215,7 +1215,10 @@ namespace Market_System.DomainLayer.StoreComponent
                 ItemDTO item = prod.GetProductDTO();
                 item.SetQuantity(1);
                 item.SetPrice(double.Parse(prod.Auction.Value[0]));
-                storeRepo.record_purchase(storeRepo.GetStore(this.Store_ID), item, userID);
+                storeRepo.record_purchase(storeRepo.GetStore(this.Store_ID), item, winner);
+
+                string msg = "You are the winner in auction for product " + productID + ". Automatic purchase was performed.";
+                NotificationFacade.GetInstance().AddNewMessage(winner, "Market", msg);
 
                 DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
             }

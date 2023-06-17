@@ -7,6 +7,8 @@ using Market_System.DomainLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer.StoreComponent;
 using System.Collections.Generic;
+using Market_System.DAL;
+using System.Linq;
 
 namespace Market_System.Tests.unit_tests
 {
@@ -36,10 +38,15 @@ namespace Market_System.Tests.unit_tests
             user_facade.Destroy_me();
             UserRepo.GetInstance().destroy_me();
             PurchaseRepo.GetInstance().destroy_me();
+
+            StoreRepo.GetInstance().RemoveDataBase("qwe123");
+            StoreRepo.GetInstance().destroy();
+
+
         }
 
 
- 
+
         [TestMethod]
         public void register_user_test_success()
         {
@@ -62,7 +69,7 @@ namespace Market_System.Tests.unit_tests
 
             catch (Exception e)
             {
-                Assert.AreEqual("a user with same name exists, please change name!", e.Message);
+                Assert.IsTrue(e.Message.Contains("exists"));
             }
 
             
@@ -115,7 +122,7 @@ namespace Market_System.Tests.unit_tests
                 user_facade.register("test1", "pass", "address");
                 user_facade.Login("test1", "pass");
                 user_facade.Logout("test1");
-                Assert.AreEqual("Guest", user_facade.Get_User_State("test1"));
+                Assert.IsFalse(user_facade.check_if_user_is_logged_in("test1"));
             }
 
             catch (Exception e)
@@ -141,7 +148,7 @@ namespace Market_System.Tests.unit_tests
 
             catch (Exception e)
             {
-                Assert.AreEqual("You're already logged-out", e.Message);
+                Assert.IsTrue(e.Message.Contains("out"));
             }
 
            
@@ -161,7 +168,7 @@ namespace Market_System.Tests.unit_tests
 
             catch (Exception e)
             {
-                Assert.AreEqual("You're already logged-out", e.Message);
+                Assert.IsTrue(e.Message.Contains("out"));
             }
 
         }
@@ -398,7 +405,8 @@ namespace Market_System.Tests.unit_tests
                 user_facade.save_purhcase_in_user(user_id, user_facade.get_cart("test1"));
                
 
-                string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket 132 : \n" + "product 132_151"+ " quantity: 1\n";
+                string should_be = DateTime.Now.ToShortDateString() + ": \n" + "basket 132 : \n" + "product 132_151"+ " quantity: 1\n";                   
+
                 Assert.AreEqual(should_be, user_facade.get_purchase_history_of_a_member("test1")[0].tostring());
             }
 

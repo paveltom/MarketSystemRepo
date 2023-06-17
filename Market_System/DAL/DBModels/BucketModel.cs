@@ -25,7 +25,9 @@ namespace Market_System.DAL.DBModels
             Bucket buck = new Bucket(this.StoreID);
             buck.SetID(this.BucketID);
             string[] pairs = this.Products.Split(';');
-            buck.SetProducts(pairs.Take(pairs.Length - 1).ToDictionary(p => p.Split('+')[0], p => int.Parse(p.Split('+')[1])));
+            if (pairs.Length > 1 && pairs[pairs.Length - 1] == "")
+                pairs = pairs.Take(pairs.Length - 1).ToArray();
+            buck.SetProducts(pairs.ToDictionary(p => p.Split('+')[0], p => int.Parse(p.Split('+')[1])));
             return buck;
         }
     }

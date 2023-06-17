@@ -357,7 +357,10 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        
+        public string GetFounderID()
+        {
+            return storeRepo.GetStore(this.StoreID).founderID;
+        }
 
 
         public string SetAuction(string userID, double newPrice, string newTransID)
@@ -369,7 +372,11 @@ namespace Market_System.DomainLayer.StoreComponent
                 string previousTransID = this.Auction.Value[1]; // transactionID
                 string previousUserID = this.Auction.Key;
                 this.Auction = new KeyValuePair<string, List<string>>(userID, new List<string>{ newPrice.ToString(), newTransID });
+                if (userID == GetFounderID() && newTransID == "") // new auction setted
+                    this.Reserve(1);
                 Save();
+
+
 
                 if (userID == this.Product_ID)
                 {

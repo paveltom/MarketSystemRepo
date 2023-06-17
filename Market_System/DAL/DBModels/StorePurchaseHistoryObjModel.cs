@@ -22,7 +22,7 @@ namespace Market_System.DAL.DBModels
         public override string ToString()
         {
             string return_me = "";
-            return_me = return_me + "product " + ProductId + " quantity: " + Quantity + "user: " + UserID + "\n";
+            return_me = return_me + "product " + ProductId + " quantity: " + Quantity + " user: " + UserID + "\n";
             return return_me;
         }
     }

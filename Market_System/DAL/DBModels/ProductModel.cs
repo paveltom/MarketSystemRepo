@@ -35,33 +35,6 @@ namespace Market_System.DAL.DBModels
         public virtual ICollection<LotteryModel> Lottery { get; set; }
 
 
-
-
-
-
-        public Product ModelToProduct()
-        {
-            double[] dimenssions = this.Dimenssions.Split('_').Select(s => double.Parse(s)).ToArray();
-            List<string> comments = this.Comments.Select(c => c.Comment).ToList();
-            ConcurrentDictionary<string, Purchase_Policy> policies = new ConcurrentDictionary<string, Purchase_Policy>(this.Policies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
-            ConcurrentDictionary<string, Purchase_Strategy> strategies = new ConcurrentDictionary<string, Purchase_Strategy>(this.Strategies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x));
-            Dictionary<string, List<string>> attributes = new Dictionary<string, List<string>>(this.ProductPurchaseAttributes.ToDictionary(keySelector: a => a.AttributeName, elementSelector: a => a.AttributeOptions.Split('_').ToList()));
-            Category category = new Category(this.ProductCategory);
-
-
-            List<string> auctionDetails = this.Auction.Split('_').ToList();
-            string auctionKey = auctionDetails[0];
-            string auctionValue = auctionDetails[1];
-            string transID = auctionDetails[2];
-            KeyValuePair<string, List<string>> auction = new KeyValuePair<string, List<string>>(auctionKey, new List<string> { auctionValue, transID});
-            ConcurrentDictionary<string, List<string>> lottery = new ConcurrentDictionary<string, List<string>>(this.Lottery.ToDictionary(l => l.UserID, l => new List<string> {l.Percantage.ToString(), l.TransactionID}));
-            Product ret = new Product(this.ProductID, this.Name, this.Description, this.Price, this.Quantity, this.ReservedQuantity, this.Rating, this.Sale, this.Weight, dimenssions, comments, policies, 
-                                                                                                                        strategies, attributes, this.timesBought, category, this.timesRated, auction, lottery);
-            return ret;
-
-        }
-
-
         public void UpdateWholeModel(Product updatedProduct) // called on Save()
         {
             this.Name = updatedProduct.Name;
