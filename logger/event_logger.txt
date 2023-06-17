@@ -8964,3 +8964,16 @@ Saturday, 17 June 2023 : guest : guest1944417582 has logged in
 Saturday, 17 June 2023 : 678028832Logged-out succesfully
 Saturday, 17 June 2023 : guest : guest1886072054 has logged in
 Saturday, 17 June 2023 : guest : guest885238973 has logged in
+Saturday, 17 June 2023 : guest : guest971644133 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : opening store with id: 1549365142 has failed
+Saturday, 17 June 2023 : Added the product:1549365142_1986206826to store: 1549365142 has been done successfully
+Saturday, 17 June 2023 : assigning new manager with username : nekola to the store with id: 1549365142
+Saturday, 17 June 2023 : assigning new owner with username : ben to the store with id: 1549365142
+Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 1549365142
+Saturday, 17 June 2023 : 1527358648Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest419636046 has logged in
