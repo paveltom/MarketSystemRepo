@@ -11,6 +11,9 @@ namespace Market_System.DomainLayer.StoreComponent
         
         private string product_id;
         private int quantity;
+        public DateTime PurchaseTime { get; set; }
+        public double TotalPrice { get; set; }
+        
 
         public Purchase_History_Obj_For_Store(ItemDTO item)
         {           
@@ -18,10 +21,22 @@ namespace Market_System.DomainLayer.StoreComponent
             this.product_id = item.GetID();
         }
 
-        public Purchase_History_Obj_For_Store(int quantity, string productID)
+        public Purchase_History_Obj_For_Store(int quantity, string productID, DateTime time, double totalPrice)
         {
             this.quantity = quantity;
             this.product_id = productID;
+            this.PurchaseTime = time;
+            this.TotalPrice = totalPrice;
+        }
+
+        public int GetQuantity()
+        {
+            return this.quantity;
+        }
+
+        public string GetProductID()
+        {
+            return this.product_id;
         }
 
 

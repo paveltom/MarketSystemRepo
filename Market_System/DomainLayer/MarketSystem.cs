@@ -109,9 +109,9 @@ namespace Market_System.DomainLayer
                         {
                             firstTime = context.Users.Count() == 0;
                         }
-                        userFacade = UserFacade.GetInstance();
-                        storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
+                        userFacade = UserFacade.GetInstance();
+                        storeFacade = StoreFacade.GetInstance();                        
                         Instance.first_time_running = firstTime;
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
@@ -1723,7 +1723,7 @@ namespace Market_System.DomainLayer
                     storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
-                    storeFacade.PurchaseBid(userID, bidID);
+                    storeFacade.PurchaseBid(bidderID, bidID);
                 }
             }
             catch (Exception e) { throw e; }
