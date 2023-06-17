@@ -1216,7 +1216,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 ItemDTO item = prod.GetProductDTO();
                 item.SetQuantity(1);
                 item.SetPrice(double.Parse(prod.Auction.Value[0]));
-                storeRepo.record_purchase(storeRepo.GetStore(this.Store_ID), item);
+                storeRepo.record_purchase(storeRepo.GetStore(this.Store_ID), item, userID);
 
                 DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
             }

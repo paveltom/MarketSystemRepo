@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer.StoreComponent;
 using Market_System.DomainLayer.PaymentComponent;
@@ -9,10 +8,8 @@ using Market_System.DomainLayer.DeliveryComponent;
 using Market_System.Domain_Layer.Communication_Component;
 using Microsoft.Ajax.Utilities;
 using System.Threading.Tasks;
-using Market_System.ServiceLayer;
-using System.Timers;
 using Market_System.DAL;
-using System.EnterpriseServices;
+using System.Management.Instrumentation;
 
 namespace Market_System.DomainLayer
 {
@@ -107,10 +104,15 @@ namespace Market_System.DomainLayer
                 { //Critical Section Start
                     if (Instance == null)
                     {
+                        bool firstTime = false;
+                        using (StoreDataContext context = new StoreDataContext())
+                        {
+                            firstTime = context.Users.Count() == 0;
+                        }
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
-                        Instance.first_time_running = true;
+                        Instance.first_time_running = firstTime;
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
@@ -121,10 +123,14 @@ namespace Market_System.DomainLayer
                                 Instance.register("admin", "admin", "address"); //registering an admin 
                                 Instance.AddNewAdmin(null, "admin");
                             }
+
+                            if (context.Stores.Count() == 0)
+                            {
+                                StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
+                                Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
+                                Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
+                            }
                         }
-                        StoreDTO first_store = Instance.initializing_store(new List<string> { "admin's_store" });
-                        Instance.initializing_product(first_store.StoreID, new List<string> { "boots", "nice_boots", "100", "80", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "shoes" });
-                        Instance.initializing_product(first_store.StoreID, new List<string> { "beer", "blue moon pub beer", "5", "800", "0", "5.0", "0", "2.0", "0.5_20.0_7.0", "attr", "drinks" });
 
 
                         // for tests only: delete!!!!!!!!!!!!!!!!!!!!!

@@ -308,7 +308,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         ItemDTO item = this.GetProductDTO();
                         item.SetQuantity(1);
                         item.SetPrice(double.Parse(this.Auction.Value[0]));
-                        storeRepo.record_purchase(storeRepo.GetStore(this.StoreID), item);
+                        storeRepo.record_purchase(storeRepo.GetStore(this.StoreID), item, userID);
                     }
                     Save();
                     return bid.NewPrice * bid.Quantity;
