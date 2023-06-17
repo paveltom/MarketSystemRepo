@@ -652,6 +652,7 @@
       <DependentUpon>StrategyBuilderPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLayer\Connection.cs" />
     <Compile Include="ServiceLayer\Logger.cs" />
     <Compile Include="ServiceLayer\Response.cs" />
     <Compile Include="ServiceLayer\ResponseT.cs" />

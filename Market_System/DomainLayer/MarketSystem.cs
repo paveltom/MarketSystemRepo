@@ -109,9 +109,9 @@ namespace Market_System.DomainLayer
                         {
                             firstTime = context.Users.Count() == 0;
                         }
-                        userFacade = UserFacade.GetInstance();
-                        storeFacade = StoreFacade.GetInstance();
                         Instance = new MarketSystem();
+                        userFacade = UserFacade.GetInstance();
+                        storeFacade = StoreFacade.GetInstance();                        
                         Instance.first_time_running = firstTime;
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();

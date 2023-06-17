@@ -1,12 +1,17 @@
 ﻿using Market_System.DAL.DBModels;
 using Market_System.Presentaion_Layer;
+using Market_System.ServiceLayer;
 using System.Data.Entity;
-
+using System.ServiceProcess.Design;
 
 namespace Market_System.DAL
 {
     public class StoreDataContext : DbContext
     {
+        public static string BasicConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True";
+        public static string RemoteLinuxConnectionString = "Data Source=192.168.1.65, 1433; Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=False";
+
+
         public virtual DbSet<StoreModel> Stores { get; set; }
         public virtual DbSet<ProductModel> Products{ get; set; }
         public virtual DbSet<EmployeeModel> Employees { get; set; }
@@ -53,7 +58,7 @@ namespace Market_System.DAL
         // public StoreDataContext() : base("Data Source=192.168.1.65, 1433; Initial Catalog=MarketDB; User Id=sa; Password=sadnaSQL123;Integrated Security=False")   ======= connection strng to linux sql server
 
 
-        public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
+        public StoreDataContext() : base(Connection.GetInstance().ConnectionString)
         {
 
         }

@@ -158,7 +158,8 @@ namespace Market_System.DAL
             using (StoreDataContext context = new StoreDataContext())
             {
                 List<StorePurchaseHistoryObjModel> models = context.Purchases.Where(p => p.UserID == userID).ToList();
-                return models.Select(m => new Purchase_History_Obj_For_Store(m.Quantity, m.ProductId)).ToList();
+                return models.Select(m => m).ToList().Select(m => 
+                new Purchase_History_Obj_For_Store(m.Quantity, m.ProductId, new DateTime(long.Parse(m.HistoryId.Substring(m.HistoryId.LastIndexOf('_') + 1))), m.TotalPrice)).ToList();
             }
         }
 
