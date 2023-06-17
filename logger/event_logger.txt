@@ -8977,3 +8977,15 @@ Saturday, 17 June 2023 : assigning new owner with username : ben to the store wi
 Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 1549365142
 Saturday, 17 June 2023 : 1527358648Logged-out succesfully
 Saturday, 17 June 2023 : guest : guest419636046 has logged in
+שבת 17 יוני 2023 : bayan has registered!
+שבת 17 יוני 2023 : nekola has registered!
+שבת 17 יוני 2023 : ben has registered!
+שבת 17 יוני 2023 : harold has registered!
+שבת 17 יוני 2023 : ben3 has registered!
+שבת 17 יוני 2023 : guest : guest1358139859 has logged in
+שבת 17 יוני 2023 : bayan has registered!
+שבת 17 יוני 2023 : nekola has registered!
+שבת 17 יוני 2023 : ben has registered!
+שבת 17 יוני 2023 : harold has registered!
+שבת 17 יוני 2023 : ben3 has registered!
+שבת 17 יוני 2023 : guest : guest497174973 has logged in

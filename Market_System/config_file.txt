@@ -1,3 +1,3 @@
-database connection string: Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True
+database connection string: Data Source=(localdb) \\ MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True
 external payment system URL: https://php-server-try.000webhostapp.com/
 external delivery system URL: https://php-server-try.000webhostapp.com/

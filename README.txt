@@ -2,6 +2,8 @@
          ** always do space after ':'
          add your databse connection string after "database connection string:", example:
          "database connection string: <your_connection_string>".
+          if you have \\ in your connection string please add space before and after // for example:
+          Data Source=(localdb)\\MSSQLLocalDB;   ==make it like this==>   Data Source=(localdb) \\ MSSQLLocalDB;
          
          add your URL for external payment system, after "external payment system URL:", example:
          "external payment system URL: <your_URL>", if you dont want to add any URL, just leave it like this: "external payment system URL:" ,

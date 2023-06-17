@@ -234,7 +234,15 @@ namespace Market_System.ServiceLayer
             string return_me = "";
             for(int i=3;i<command.Length;i++)
             {
-                return_me = return_me + command[i]+" ";
+                if (command[i].Equals("\\\\"))
+                {
+                    return_me = return_me.Substring(0, return_me.Length - 1);
+                    return_me = return_me + "\\";
+                }
+                else
+                {
+                    return_me = return_me + command[i] + " ";
+                }
             }
             return_me = return_me.Substring(0, return_me.Length - 1);
             return return_me;

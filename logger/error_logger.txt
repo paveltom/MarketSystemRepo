@@ -13352,3 +13352,9 @@ Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+שבת 17 יוני 2023 : error!!: ערך אינו יכול להיות Null.
+שם פרמטר: key in login_guest
+שבת 17 יוני 2023 : reading from init file failed due to: המפתח הנתון לא נמצא במילון. starting system without any initialization
+שבת 17 יוני 2023 : error!!: ערך אינו יכול להיות Null.
+שם פרמטר: key in login_guest
+שבת 17 יוני 2023 : reading from init file failed due to: המפתח הנתון לא נמצא במילון. starting system without any initialization
