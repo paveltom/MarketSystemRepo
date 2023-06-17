@@ -9493,3 +9493,63 @@ Saturday, 17 June 2023 : user with session ID : 1840426820 requested profit for 
 Saturday, 17 June 2023 : user with session ID : 1840426820 requested profit for a store 1363216960on date 18/06/2023 0:00:00
 Saturday, 17 June 2023 : 1018936002Logged-out succesfully
 Saturday, 17 June 2023 : guest : guest1209723735 has logged in
+Saturday, 17 June 2023 : guest : guest1816620433 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : opening store with id: 845165760 has failed
+Saturday, 17 June 2023 : Added the product:845165760_34953239to store: 845165760 has been done successfully
+Saturday, 17 June 2023 : assigning new manager with username : nekola to the store with id: 845165760
+Saturday, 17 June 2023 : assigning new owner with username : ben to the store with id: 845165760
+Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 845165760
+Saturday, 17 June 2023 : 651130275Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest75288645 has logged in
+Saturday, 17 June 2023 : amihai has registered!
+Saturday, 17 June 2023 : 529964775Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest185643909 has logged in
+Saturday, 17 June 2023 : 701811547Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1736558067 has logged in
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1589562692 got his Messages
+Saturday, 17 June 2023 : 529964775Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest293131364 has logged in
+Saturday, 17 June 2023 : getting store with id: 1046092505 was done successfully 
+Saturday, 17 June 2023 : getting store with id: 1046092505 was done successfully 
+Saturday, 17 June 2023 : getting store with id: 1046092505 was done successfully 
+Saturday, 17 June 2023 : getting store with id: 1046092505 was done successfully 
+Saturday, 17 June 2023 : user with session ID : 963084932 requested profit for a store 1046092505on date 16/06/2023 0:00:00
+Saturday, 17 June 2023 : user with session ID : 963084932 requested profit for a store 1046092505on date 17/06/2023 0:00:00
+Saturday, 17 June 2023 : user with session ID : 963084932 requested profit for a store 1046092505on date 18/06/2023 0:00:00
+Saturday, 17 June 2023 : 701811547Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest62029652 has logged in

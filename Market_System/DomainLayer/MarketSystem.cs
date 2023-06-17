@@ -1723,7 +1723,14 @@ namespace Market_System.DomainLayer
                     storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
-                    storeFacade.PurchaseBid(bidderID, bidID);
+                    ItemDTO pruchased_item = storeFacade.PurchaseBid(bidderID, bidID);
+
+                    //Send a notification to the user, regarding his purchase:
+                    var message = "New purhcase has been made by you: {";
+
+                    message += "[ " + pruchased_item.ToString() + " ] ";
+                    message += "}";
+                    sendMessageToUser(message, userID, "System");
                 }
             }
             catch (Exception e) { throw e; }
@@ -1746,17 +1753,13 @@ namespace Market_System.DomainLayer
                     storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
-                    storeFacade.PurchaseBid(bidderID, bidID);
+                   ItemDTO pruchased_item = storeFacade.PurchaseBid(bidderID, bidID);
 
                     //Send a notification to the user, regarding his purchase:
                     var message = "New purhcase has been made by you: {";
                     var userID = userFacade.get_userID_from_session(session);
-                    Cart cart = get_cart_of_userID(userID);
-                    List<ItemDTO> purchased_Products = cart.convert_to_item_DTO();
-                    foreach (ItemDTO item in purchased_Products)
-                    {
-                        message += "[ " + item.ToString() + " ] ";
-                    }
+
+                    message += "[ " + pruchased_item.ToString() + " ] ";
                     message += "}";
                     sendMessageToUser(message, userID, "System");
                 }
