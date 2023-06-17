@@ -1718,7 +1718,7 @@ namespace Market_System.DomainLayer
                     storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
-                    storeFacade.PurchaseBid(userID, bidID);
+                    storeFacade.PurchaseBid(bidderID, bidID);
                 }
             }
             catch (Exception e) { throw e; }
