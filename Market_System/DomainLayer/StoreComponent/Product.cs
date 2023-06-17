@@ -539,7 +539,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 int currPercentage = this.Lottery.Values.Aggregate(0, (acc, v) => acc += int.Parse(v[0]), acc => acc);
                 if (currPercentage >= 100)
                     throw new Exception("Lottery is full.");
-                if(currPercentage + percentage >= 100)
+                if(currPercentage + percentage > 100)
                     throw new Exception("Cannot exceed 100%.");
                 this.Lottery.TryAdd(userID, new List<string> { percentage.ToString(), transID});
                 Save();

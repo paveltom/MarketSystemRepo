@@ -788,6 +788,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 if (store.RemainingLotteryPercantage(userID, productID) == 0)
                 {
                     store.LotteryWinner(productID);
+                    ReleaseStore(storeID);
                     return true;
                 }
                 ReleaseStore(storeID);

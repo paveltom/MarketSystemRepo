@@ -1391,16 +1391,19 @@ namespace Market_System.DomainLayer.StoreComponent
                 double curr = 0.0;
                 refundPercantage.ForEach(p =>
                 {
-                    curr += p.Value / 100;
+                    double val = p.Value;
+                    curr += val / 100;
                     relativeChances.Add(new KeyValuePair<string, double>(p.Key, curr));
                 });
                 Random rand = new Random();
                 double r = rand.NextDouble();
                 string winner = "";
+                curr = 2; // previous
                 foreach (KeyValuePair<string, double> p in relativeChances)
                 {
-                    if (p.Value > r)
+                    if (p.Value > r && p.Value < curr)
                     {
+                        curr = p.Value;
                         winner = p.Key;
                         break;
                     }
