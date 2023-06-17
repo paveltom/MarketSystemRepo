@@ -1746,7 +1746,7 @@ namespace Market_System.DomainLayer
                     storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
-                    storeFacade.PurchaseBid(st.FounderID, bidID);
+                    storeFacade.PurchaseBid(bidderID, bidID);
                 }
             }
             catch (Exception e) { throw e; }
@@ -1853,7 +1853,6 @@ namespace Market_System.DomainLayer
 
         public List<BidDTO> GetStoreBids_2(string session, string storeID)
         {
-            string userID = get_userid_from_session_id(session);
             try
             {
                 string founderID = GetStore(storeID).FounderID;
