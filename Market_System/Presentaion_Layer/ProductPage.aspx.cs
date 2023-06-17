@@ -149,6 +149,22 @@ namespace Market_System.Presentaion_Layer
                     return;
                 }
 
+                try
+                {
+                    Response<bool> bidDTO = ((Service_Controller)Session["service_controller"]).checkIfBidPlacesAlready(product_id);
+                    if (bidDTO.Value)
+                    {
+                        bid_error_message.ForeColor = System.Drawing.Color.Red;
+                        bid_error_message.Text = "You've already placed a bid for this product! please wait for the store's reply.";
+                        return;
+                    }
+                }
+
+                catch (Exception ex2)
+                {
+                    //do nothing
+                }
+
                 Response<BidDTO> okay = ((Service_Controller)Session["service_controller"]).PlaceBid(product_id, price,quantity, bid_card_number.Text, bid_month.Text, bid_year.Text, bid_holder.Text, bid_ccv.Text, bid_id.Text);
                 if(okay.ErrorOccured)
                 {

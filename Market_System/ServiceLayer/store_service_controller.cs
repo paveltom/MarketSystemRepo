@@ -354,7 +354,14 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
-
+        internal Response<bool> checkIfBidPlacesAlready(string session_id, string product_id)
+        {
+            try
+            {
+                return Response<bool>.FromValue(Market.checkIfBidPlacesAlready(this.SessionID, product_id));
+            }
+            catch (Exception e) { throw e; }
+        }
 
         // ======= AUCTION =========
 

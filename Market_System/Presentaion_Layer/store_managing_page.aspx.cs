@@ -665,6 +665,23 @@ namespace Market_System.Presentaion_Layer
                 approve_bid_message.ForeColor = System.Drawing.Color.Red;
                 return;
             }
+
+            try
+            {
+                Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(approve_bid_text.Text);
+                if (bidDTO.Value.ApprovedByStore)
+                {
+                    approve_bid_message.ForeColor = System.Drawing.Color.Red;
+                    approve_bid_message.Text = "You've already approved this bid!";
+                    return;
+                }
+            }
+
+            catch (Exception ex2)
+            {
+                //do nothing
+            }
+
             Response<string> okay = ((Service_Controller)Session["service_controller"]).ApproveBid(approve_bid_text.Text);
             if(okay.ErrorOccured)
             {
@@ -689,6 +706,23 @@ namespace Market_System.Presentaion_Layer
             }
             try
             {
+                try
+                {
+                    Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(counter_bid_text.Text);
+                    if (bidDTO.Value.CounterOffer)
+                    {
+                        counter_bid_message.ForeColor = System.Drawing.Color.Red;
+                        counter_bid_message.Text = "You've already placed a counter bid for this product! please wait for the client's" +
+                            "response.";
+                        return;
+                    }
+                }
+
+                catch (Exception ex2)
+                {
+                    //do nothing
+                }
+
                 Response<string> okay = ((Service_Controller)Session["service_controller"]).CounterBid(counter_bid_text.Text,double.Parse(counter_price_text.Text));
                 if (okay.ErrorOccured)
                 {
@@ -719,6 +753,23 @@ namespace Market_System.Presentaion_Layer
                 remove_bid_message.ForeColor = System.Drawing.Color.Red;
                 return;
             }
+
+            try
+            {
+                Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(remove_bid_text.Text);
+                if (bidDTO.Value.DeclinedByStore)
+                {
+                    remove_bid_message.ForeColor = System.Drawing.Color.Red;
+                    remove_bid_message.Text = "You've already removed this bid!";
+                    return;
+                }
+            }
+
+            catch (Exception ex2)
+            {
+                //do nothing
+            }
+
             Response<string> okay = ((Service_Controller)Session["service_controller"]).RemoveBid(remove_bid_text.Text);
             if (okay.ErrorOccured)
             {
