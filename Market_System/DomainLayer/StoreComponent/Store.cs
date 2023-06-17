@@ -1153,7 +1153,7 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-        public void PurchaseBid(string userID, string bidID)
+        public ItemDTO PurchaseBid(string userID, string bidID)
         {
             try
             {
@@ -1179,8 +1179,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 
                 string transactionID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
                 storeRepo.AddPayment(userID, transactionID, bid.Quantity * bid.NewPrice, false);
-
-
+                return item;
             }
             catch (Exception e) { throw e; }
         }

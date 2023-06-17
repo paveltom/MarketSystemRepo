@@ -20,7 +20,7 @@ namespace Market_System.ServiceLayer
         private Store_Service_Controller ssc;
         private Random session_id_generator;
         private string store_id_config;// this is used only for the config file
-
+        private bool read_from_config;
         public Response<List<string>> get_stores_that_user_works_in()
         {
             try
@@ -91,22 +91,26 @@ namespace Market_System.ServiceLayer
 
         public Service_Controller()
         {
-            string initConnectionString = Connection.BasicConnectionString; // change it to read from initFile
-            Connection.GetInstance().SetConnectionString(initConnectionString);
+
+            // string initConnectionString = Connection.BasicConnectionString; // change it to read from initFile
+            // Connection.GetInstance().SetConnectionString(initConnectionString);
 
 
-
-            this.session_id_generator = new Random();
-            this.session_id = session_id_generator.Next().ToString();
+            read_from_config_file("config_file.txt");
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
+
+            this.session_id_generator = new Random();
+            this.session_id = session_id_generator.Next().ToString();
+     
             if (first_time_running_project())
             {
-                read_from_config_file("config_file.txt");
+                
                 read_from_init_file("init_file.txt");
                 set_first_time_running_to_false();
             }
+   
         }
 
         private void set_first_time_running_to_false()
@@ -163,7 +167,7 @@ namespace Market_System.ServiceLayer
             }
 
             StreamReader reader = new StreamReader(path);
-
+            bool read_database = false;
             string current_command;
             try
             {
@@ -199,12 +203,20 @@ namespace Market_System.ServiceLayer
 
                     if (command[0].Equals("database"))
                     {
-                        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        string initConnectionString = read_databsae_connection_string(command);
+                        Connection.GetInstance().SetConnectionString(initConnectionString);
+                        read_database = true;
                     }
 
                 }
 
                 reader.Close();
+                if(!read_database)
+                {
+                     string initConnectionString = Connection.BasicConnectionString; // change it to read from initFile
+                     Connection.GetInstance().SetConnectionString(initConnectionString);
+                }
+
             }
             catch (Exception e)
             {
@@ -217,7 +229,16 @@ namespace Market_System.ServiceLayer
             }
         }
 
-
+        private string read_databsae_connection_string(string[] command)
+        {
+            string return_me = "";
+            for(int i=3;i<command.Length;i++)
+            {
+                return_me = return_me + command[i]+" ";
+            }
+            return_me = return_me.Substring(0, return_me.Length - 1);
+            return return_me;
+        }
 
         public void read_from_init_file(string file_name)
         {
@@ -1833,6 +1854,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public Response<string> ApproveBid_2(string bidID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.ApproveBid_2(bidID));
+                return ret;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
 
         public Response<BidDTO> GetBid(string bidID)
         {
@@ -1873,6 +1907,19 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ret = Response<string>.FromValue(this.ssc.RemoveBid(bidID));
+                return ret;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> RemoveBid_2(string bidID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.RemoveBid_2(bidID));
                 return ret;
             }
             catch (Exception e)
