@@ -1792,7 +1792,24 @@ namespace Market_System.DomainLayer
             catch (Exception e) { throw e; }
         }
 
-
+        internal bool checkIfBidPlacesAlready(string sessionID, string product_id)
+        {
+            string userID = get_userid_from_session_id(sessionID);
+            try
+            {
+                string store_ID = getStoreIDFromProductID(product_id);
+                List<BidDTO> bidDTOs = GetStoreBids_2(sessionID, store_ID);
+                foreach(BidDTO bidDTO in bidDTOs)
+                {
+                    if(bidDTO.UserID.Equals(userID) && bidDTO.ProductID.Equals(product_id))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception e) { throw e; }
+        }
 
         public void CounterBid(string session, string bidID, double counterPrice)
         {
