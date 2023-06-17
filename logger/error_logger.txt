@@ -13372,3 +13372,56 @@ Parameter name: key in login_guest
 Saturday, 17 June 2023 : reading from init file failed due to: The given key was not present in the dictionary. starting system without any initialization
 Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Saturday, 17 June 2023 : error!!: Object reference not set to an instance of an object. in GetMemberInfo
+Saturday, 17 June 2023 : error!!: Value cannot be null.
+Parameter name: key in login_guest
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: User already exists.in register
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Saturday, 17 June 2023 : error!!: Value cannot be null.
+Parameter name: key in login_guest
+Saturday, 17 June 2023 : reading from init file failed due to: The given key was not present in the dictionary. starting system without any initialization
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: Value cannot be null.
+Parameter name: key in login_guest
+Saturday, 17 June 2023 : reading from init file failed due to: The given key was not present in the dictionary. starting system without any initialization
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: Value cannot be null.
+Parameter name: key in login_guest
+Saturday, 17 June 2023 : reading from init file failed due to: The given key was not present in the dictionary. starting system without any initialization
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions

@@ -189,22 +189,6 @@ namespace Market_System.Presentaion_Layer
         {
             try
             {
-                try
-                {
-                    Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(bid_id0.Text);
-                    if (bidDTO.Value.ApprovedByUser)
-                    {
-                        counter_bid_error_message.ForeColor = System.Drawing.Color.Red;
-                        counter_bid_error_message.Text = "You've already accepted the counter bid.";
-                        return;
-                    }
-                }
-
-                catch(Exception ex2)
-                {
-                    //do nothing
-                }
-
                 Response<string> okay = ((Service_Controller)Session["service_controller"]).ApproveBid_2(bid_id0.Text);
                 if (okay.ErrorOccured)
                 {
@@ -229,21 +213,6 @@ namespace Market_System.Presentaion_Layer
         {
             try
             {
-                try
-                {
-                    Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(bid_id0.Text);
-                    if (bidDTO.Value.DeclinedByUser)
-                    {
-                        counter_bid_error_message.ForeColor = System.Drawing.Color.Red;
-                        counter_bid_error_message.Text = "You've already rejected the counter bid.";
-                        return;
-                    }
-                }
-                catch(Exception ex3)
-                {
-                    //do nothing
-                }
-
                 Response<string> okay = ((Service_Controller)Session["service_controller"]).RemoveBid_2(bid_id0.Text);
                 if (okay.ErrorOccured)
                 {
