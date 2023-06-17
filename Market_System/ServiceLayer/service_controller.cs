@@ -1946,6 +1946,15 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
+        internal Response<bool> checkIfBidPlacesAlready(string product_id)
+        {
+            try
+            {
+                return ssc.checkIfBidPlacesAlready(session_id, product_id);
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
 
         // ======= AUCTION =========
