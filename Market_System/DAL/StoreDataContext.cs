@@ -32,6 +32,7 @@ namespace Market_System.DAL
         public virtual DbSet<CartModel> Carts { get; set; }
         public virtual DbSet<UserPurchaseHistoryObjModel> UserPurchases{ get; set; }
         public virtual DbSet<BucketModel> Buckets { get; set; }
+        public virtual DbSet<ContractModel> Contracts { get; set; }
 
         
 
@@ -53,7 +54,6 @@ namespace Market_System.DAL
 
 
         public StoreDataContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MarketDB;Integrated Security=True")
-
         {
 
         }

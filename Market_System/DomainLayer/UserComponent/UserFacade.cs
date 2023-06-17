@@ -1,8 +1,11 @@
-﻿using Market_System.Domain_Layer.Communication_Component;
+﻿using Market_System.DAL;
+using Market_System.Domain_Layer.Communication_Component;
+using Market_System.DomainLayer.StoreComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebGrease.Css.Extensions;
 
 namespace Market_System.DomainLayer.UserComponent
 {
@@ -38,7 +41,7 @@ namespace Market_System.DomainLayer.UserComponent
                         Instance = new UserFacade();
                         userID_sessionID_linker = new Dictionary<string, string>();
                         Admins = new List<string>();
-                        contracts = new Dictionary<string, KeyValuePair<List<string>, string>>();
+                        contracts = userRepo.GetContracts();                           
 
                         //Register an admin:
                         userRepo.AddFirstAdmin("admin");
@@ -705,7 +708,9 @@ namespace Market_System.DomainLayer.UserComponent
                     throw new Exception("Someone has already suggested this employee");
                 }
 
-                contracts.Add(key, new KeyValuePair<List<string>, string>(owners, userID));
+                KeyValuePair<string, KeyValuePair<List<string>, string>> pair = new KeyValuePair<string, KeyValuePair<List<string>, string>>(key, new KeyValuePair<List<string>, string>(owners, userID));
+                userRepo.AddContract(pair);
+                contracts.Add(pair.Key, pair.Value);                
             }
             catch(Exception e)
             {
@@ -719,8 +724,9 @@ namespace Market_System.DomainLayer.UserComponent
             {
                 var key = newOwner_ID + "_" + storeID;
                 if (contracts[key].Key.Contains(userID))
-                {
+                {                    
                     contracts[key].Key.Remove(userID);
+                    userRepo.AcceptContract(key, contracts[key].Key);
                 }
 
                 else
@@ -742,6 +748,7 @@ namespace Market_System.DomainLayer.UserComponent
                 var key = newOwner_ID + "_" + storeID;
                 if (contracts[key].Key.Contains(userID))
                 {
+                    userRepo.RemoveContract(key);
                     contracts.Remove(key);
                 }
 
@@ -765,6 +772,7 @@ namespace Market_System.DomainLayer.UserComponent
                 if(contracts[key].Key.Count == 0)
                 {
                     var temp = contracts[key].Value;
+                    userRepo.RemoveContract(key);
                     contracts.Remove(key);
                     return temp;
                 }
