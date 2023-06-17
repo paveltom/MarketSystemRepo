@@ -300,7 +300,7 @@ namespace Market_System.DAL
                     string ret = "";
                     StoreModel store;
                     if ((store = context.Stores.SingleOrDefault(x => x.StoreID == store_ID)) != null)
-                        store.PurchaseHistory.ForEach(x => ret = ret + x.ToString());
+                        store.PurchaseHistory.ForEach(x => ret = ret + x.ToString() + "\n");
                     return ret;
                 }
             }
@@ -563,16 +563,42 @@ namespace Market_System.DAL
         public Product getProduct(string product_id)
         {
             string store_id = GetStoreIdFromProductID(product_id);
+            
             using (StoreDataContext context = new StoreDataContext())
             {
+                ProductModel pm;
                 if (context.Stores.SingleOrDefault(s => s.StoreID == store_id) == null)
                     throw new Exception("store does not exists");
-                ProductModel pm;
-                if ((pm = context.Products.SingleOrDefault(p => p.ProductID == product_id)) != null)
-                    return pm.ModelToProduct();
-                else
+                
+                if ((pm = context.Products.SingleOrDefault(p => p.ProductID == product_id)) == null)                 
                     throw new Exception("product does not exists");
+
+                return ModelToProduct(pm);
             }
+            
+        }
+
+
+        public Product ModelToProduct(ProductModel model)
+        {
+            double[] dimenssions = model.Dimenssions.Split('_').Select(s => double.Parse(s)).ToArray();
+            List<string> comments = model.Comments.Select(c => c.Comment).ToList();
+            ConcurrentDictionary<string, Purchase_Policy> policies = new ConcurrentDictionary<string, Purchase_Policy>(model.Policies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.PolicyID, elementSelector: x => x));
+            ConcurrentDictionary<string, Purchase_Strategy> strategies = new ConcurrentDictionary<string, Purchase_Strategy>(model.Strategies.Select(p => p.ModelToPolicy()).ToDictionary(keySelector: x => x.StrategyID, elementSelector: x => x));
+            Dictionary<string, List<string>> attributes = new Dictionary<string, List<string>>(model.ProductPurchaseAttributes.ToDictionary(keySelector: a => a.AttributeName, elementSelector: a => a.AttributeOptions.Split('_').ToList()));
+            Category category = new Category(model.ProductCategory);
+
+
+            List<string> auctionDetails = model.Auction.Split('_').ToList();
+            string auctionKey = auctionDetails[0];
+            string auctionValue = auctionDetails[1];
+            string transID = auctionDetails[2];
+            KeyValuePair<string, List<string>> auction = new KeyValuePair<string, List<string>>(auctionKey, new List<string> { auctionValue, transID });
+            ConcurrentDictionary<string, List<string>> lottery = new ConcurrentDictionary<string, List<string>>(model.Lottery.ToDictionary(l => l.UserID, l => new List<string> { l.Percantage.ToString(), l.TransactionID }));
+            Product ret = new Product(model.ProductID, model.Name, model.Description, model.Price, model.Quantity, model.ReservedQuantity, model.Rating, model.Sale, model.Weight, dimenssions, comments, policies,
+                                                                                                                        strategies, attributes, model.timesBought, category, model.timesRated, auction, lottery);
+            return ret;
+
         }
 
 
@@ -581,10 +607,13 @@ namespace Market_System.DAL
         {
             lock (RemoveProductLock)
             {
+                List<ProductModel> list = new List<ProductModel> ();
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    return context.Products.Where(x => x.ProductCategory == category.CategoryName).Select(pm => pm.ModelToProduct()).Select(p => p.GetProductDTO()).ToList();
+                    list = context.Products.Where(x => x.ProductCategory == category.CategoryName).ToList();
+                    return list.Select(pm => ModelToProduct(pm)).Select(p => p.GetProductDTO()).ToList();
                 }
+                
             }
         }
 
@@ -607,10 +636,13 @@ namespace Market_System.DAL
         {
             lock (RemoveProductLock)
             {
+                List<ProductModel> list = new List<ProductModel>();
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    return context.Products.Where(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) || x.ProductCategory.Contains(keyword)).Select(pm => pm.ModelToProduct()).Select(p => p.GetProductDTO()).ToList();
+                    list = context.Products.Where(x => x.Name.Contains(keyword) || x.Description.Contains(keyword) || x.ProductCategory.Contains(keyword)).ToList();
+                    return list.Select(pm => ModelToProduct(pm)).Select(p => p.GetProductDTO()).ToList();
                 }
+                
             }
         }
 
@@ -623,7 +655,9 @@ namespace Market_System.DAL
             {
                 using (StoreDataContext context = new StoreDataContext())
                 {
-                    return context.Products.Where(x => x.Name.Contains(name)).Select(pm => pm.ModelToProduct()).Select(p => p.GetProductDTO()).ToList();
+                    List<ProductModel> list = context.Products.Where(x => x.Name.Contains(name)).ToList();
+                    return list.Select(pm => ModelToProduct(pm)).Select(p => p.GetProductDTO()).ToList();
+
                 }
             }
         }
@@ -705,13 +739,6 @@ namespace Market_System.DAL
         public Product GetProduct(string productID)
         {
             return getProduct(productID);
-            /*using (StoreDataContext context = new StoreDataContext())
-            {
-                ProductModel pm;
-                if ((pm = context.Products.SingleOrDefault(p => p.ProductID == productID)) != null)
-                    return pm.ModelToProduct();
-            }
-            throw new Exception("No such product in this store with the provided ID");*/
         }
 
 

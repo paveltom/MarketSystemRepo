@@ -48,7 +48,7 @@ namespace Market_System.Tests.unit_tests
         {
             Service_Controller sv = new Service_Controller(3);
             sv.read_from_init_file("‏‏INIT_test_fail.txt");
-            Assert.IsTrue(sv.login_member("bayan", "pass").ErrorMessage.Equals("Incorrect login information has been provided")); // this checks that all action are undone
+            Assert.IsTrue(sv.login_member("bayan", "pass1").ErrorMessage.Equals("Incorrect login information has been provided")); // this checks that all action are undone
             Assert.IsTrue(Logger.get_instance().Read_Errors_Record().Contains(DateTime.Now.ToLongDateString() + " : " + "reading from init file failed due to: Incorrect login information has been provided starting system without any initialization")); // this checks that we record this in eror log
         }
 
