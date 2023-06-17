@@ -17,12 +17,20 @@ namespace Market_System.Presentaion_Layer
         protected void Page_Load(object sender, EventArgs e)
         {
             this.product_id = Request.QueryString["product_id"];
-            
+            product_id_label.Text = product_id;
+            Response<ItemDTO> name_retriever = ((Service_Controller)Session["service_controller"]).get_product_by_productID(product_id);
+            product_name.Text = name_retriever.Value.Name;
 
-            
 
             Response<TimerPlus> timer = ((Service_Controller)Session["service_controller"]).get_timer_of_auciton(product_id + "_" + "lottery" + "_timer");
-            this.timer = timer.Value;
+            if (!timer.ErrorOccured)
+            {
+                this.timer = timer.Value;
+            }
+            else
+            {
+                Response.Redirect("/Presentaion_Layer/ProductsPage.aspx");
+            }
         }
 
         protected void lottery_Click(object sender, EventArgs e)

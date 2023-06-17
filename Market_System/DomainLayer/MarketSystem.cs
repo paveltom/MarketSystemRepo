@@ -1812,8 +1812,9 @@ namespace Market_System.DomainLayer
 
                 string storeID = GetStoreIdFromProductID(productID);
                 string msg = "Auction for product " + productID + " was updated. The new price is: " + newPrice + ".";
-                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
-                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception ex) { throw ex; }
         }
@@ -1885,14 +1886,15 @@ namespace Market_System.DomainLayer
                 bool winner = storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id);                
 
                 msg = "New lottery ticket with " + percentage + " percentage, for product " + productID + " was purchased.";
-                storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
-                storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
                 if (winner)
                 {
                     msg = "New winner in lottery for product " + productID + ". Automatic purchase was performed.";
-                    storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
-                    storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+                    storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                    storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
                 }
             }
             catch (Exception e) { throw e; }
