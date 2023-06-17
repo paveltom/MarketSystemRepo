@@ -78,7 +78,7 @@ namespace Market_System.ServiceLayer
         public Response<string> GetMarketProfitForDate(DateTime dateTime);
 
         // Bid
-        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity);
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity, string card_number, string month, string year, string holder, string ccv, string id);
         public Response<string> ApproveBid(string bidID);
         public Response<BidDTO> GetBid(string bidID);
         public Response<string> CounterBid(string bidID, double counterPrice);

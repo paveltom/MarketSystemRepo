@@ -22,8 +22,34 @@
         <asp:TextBox ID="new_price_text" runat="server"></asp:TextBox>
         <asp:Label ID="Label4" runat="server" Text="quantity"></asp:Label>
         <asp:TextBox ID="bid_quantity_text" runat="server"></asp:TextBox>
+
+
+
+         <br />
+        <asp:Label ID="Label5" runat="server" Text="  card_number:"></asp:Label>
+        <asp:TextBox ID="bid_card_number" runat="server"></asp:TextBox>
+
+        <asp:Label ID="Label6" runat="server" Text="  month:"></asp:Label>
+        <asp:TextBox ID="bid_month" runat="server"></asp:TextBox>
+
+        <asp:Label ID="Label7" runat="server" Text="  year:"></asp:Label>
+        <asp:TextBox ID="bid_year" runat="server"></asp:TextBox>
+         
+        <br />
+        <asp:Label ID="Label8" runat="server" Text="  holder:"></asp:Label>
+        <asp:TextBox ID="bid_holder" runat="server"></asp:TextBox>
+
+        <asp:Label ID="Label9" runat="server" Text="  ccv:"></asp:Label>
+        <asp:TextBox ID="bid_ccv" runat="server"></asp:TextBox>
+
+        <asp:Label ID="Label10" runat="server" Text="  id:"></asp:Label>
+        <asp:TextBox ID="bid_id" runat="server"></asp:TextBox>     
+
+
         <asp:Button ID="Button1" runat="server" Text="Bid"  CssClass="btn btn-primary" OnClick="bid_click"/>
         <asp:Label ID="bid_error_message" runat="server" ForeColor="Red" ></asp:Label>
+        <br />
+        <br />
     </div>
     <div></div>
 

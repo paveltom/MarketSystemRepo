@@ -461,35 +461,18 @@ namespace Market_System.DomainLayer.StoreComponent
                 string initErrorMSG = "Cannot purchase: ";
                 String cannotPurchase = initErrorMSG; // will look like "item#1ID_Name;item#2ID_Name;item#3IDName;..."
                 double price = 0.0;
+                List<ItemDTO> productsToPurchase = new List<ItemDTO>();
                 List<ItemDTO> purchased = new List<ItemDTO>(); // backup for an error so quantitie will be restored
+
                 try
                 {
-                    List<BidDTO> storeBids = this.GetStoreBids(this.founderID);
-                    List<ItemDTO> productsIncludingBids = productsToPurchaseFewInfo.Select(i =>
+                    productsToPurchase = productsToPurchaseFewInfo.Select(i =>
                     {
                         ItemDTO newItem = AcquireProduct(i.GetID()).GetProductDTO();
                         ReleaseProduct(i.GetID());
                         newItem.SetQuantity(i.GetQuantity());
                         return newItem;
                     }).ToList();
-                    
-                    List<ItemDTO> productsToPurchase = new List<ItemDTO>();                    
-
-                    // purchasing bid products
-                    foreach (ItemDTO item in productsIncludingBids)
-                    {
-                        BidDTO currBid;
-                        if ((currBid = storeBids.SingleOrDefault(b => b.BidID == userID + "_" + item.GetID() + "_bid" && (b.ApprovedByStore == true || b.ApprovedByUser == true))) != null)
-                        {
-                            price += this.BidPurchase(userID, currBid);
-                            purchased.Add(item);
-                        }
-                        else
-                            productsToPurchase.Add(item);
-                    }
-
-
-                    // purchasing no-bidded products
 
                     foreach (Purchase_Strategy ps in this.storeStrategies.Values)
                     {
@@ -1106,12 +1089,12 @@ namespace Market_System.DomainLayer.StoreComponent
 
 
 
-        public BidDTO PlaceBid(string userID, string productID, double newPrice, int quantity)
+        public BidDTO PlaceBid(string userID, string productID, double newPrice, int quantity, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
                 BidDTO ret;
-                ret = this.storeRepo.PlaceBid(this.Store_ID, userID, productID, newPrice, quantity);
+                ret = this.storeRepo.PlaceBid(this.Store_ID, userID, productID, newPrice, quantity, card_number, month, year, holder, ccv, id);
                 AcquireProduct(productID).Reserve(quantity);
                 ReleaseProduct(productID);
                 return ret;
@@ -1170,15 +1153,34 @@ namespace Market_System.DomainLayer.StoreComponent
             catch (Exception e) { throw e; }
         }
 
-
-        public double BidPurchase(string userID, BidDTO bid)
+        public void PurchaseBid(string userID, string bidID)
         {
             try
             {
-                double price = 0.0;
-                price = AcquireProduct(bid.ProductID).BidPurchase(userID, bid);
+                BidDTO bid = GetBid(this.founderID, bidID);
+                this.storeRepo.RemoveBid(bidID);
+
+                Product product = AcquireProduct(bid.ProductID);
+                product.Purchase(bid.Quantity);
+                ItemDTO item = product.GetProductDTO();
                 ReleaseProduct(bid.ProductID);
-                return price;
+
+                string[] details = bid.PayDetails.Split('_');
+                string card_number = details[0];
+                string month = details[1];
+                string year = details[2];
+                string holder = details[3];
+                string ccv = details[4];
+                string id = details[5];
+
+                item.SetQuantity(bid.Quantity);
+                item.SetPrice(bid.NewPrice);
+                storeRepo.record_purchase(this, item);  
+                
+                string transactionID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
+                storeRepo.AddPayment(userID, transactionID, bid.Quantity * bid.NewPrice, false);
+
+
             }
             catch (Exception e) { throw e; }
         }

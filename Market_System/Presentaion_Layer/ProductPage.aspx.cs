@@ -3,6 +3,7 @@ using Market_System.DomainLayer.StoreComponent;
 using Market_System.ServiceLayer;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -114,7 +115,15 @@ namespace Market_System.Presentaion_Layer
             {
                 int quantity = Int32.Parse(bid_quantity_text.Text);
                 double price = double.Parse(new_price_text.Text);
-                Response<BidDTO> okay = ((Service_Controller)Session["service_controller"]).PlaceBid(product_id, price,quantity);
+
+                if (bid_card_number.Text.Equals("") || bid_month.Text.Equals("") || bid_year.Text.Equals("") || bid_holder.Text.Equals("") || bid_ccv.Text.Equals("") || bid_id.Text.Equals(""))
+                {
+                    bid_error_message.ForeColor = System.Drawing.Color.Red;
+                    bid_error_message.Text = "Please fill in all fields.";
+                    return;
+                }
+
+                Response<BidDTO> okay = ((Service_Controller)Session["service_controller"]).PlaceBid(product_id, price,quantity, bid_card_number.Text, bid_month.Text, bid_year.Text, bid_holder.Text, bid_ccv.Text, bid_id.Text);
                 if(okay.ErrorOccured)
                 {
                     bid_error_message.ForeColor = System.Drawing.Color.Red;

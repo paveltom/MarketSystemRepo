@@ -262,11 +262,11 @@ namespace Market_System.ServiceLayer
 
 
         // ======= Bid =========
-        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity)
+        public Response<BidDTO> PlaceBid(string productID, double newPrice, int quantity, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
-                return Response<BidDTO>.FromValue(Market.PlaceBid(this.SessionID, productID, newPrice, quantity));
+                return Response<BidDTO>.FromValue(Market.PlaceBid(this.SessionID, productID, newPrice, quantity, card_number, month, year, holder, ccv, id));
             }
             catch (Exception e) { throw e; }
         }

@@ -21,6 +21,7 @@ namespace Market_System.DAL.DBModels
         public string ProductID { get; set; }
         public string UserID { get; set; }
         public int Quantity { get; set; }
+        public string PaymentDetails { get; set; } // cardNumber_month_year_holder_ccv_id
         public virtual StoreModel Store { get; set; }
 
 
@@ -29,7 +30,7 @@ namespace Market_System.DAL.DBModels
 
         public BidDTO ModelToBid()
         {
-            BidDTO ret = new BidDTO(this.UserID, this.ProductID, this.NewPrice, this.Quantity);
+            BidDTO ret = new BidDTO(this.UserID, this.ProductID, this.NewPrice, this.Quantity, this.PaymentDetails);
             ret.BidID = this.BidID;
             ret.ApprovedByUser = this.ApprovedByUser;
             ret.ApprovedByStore = this.ApprovedByStore;
