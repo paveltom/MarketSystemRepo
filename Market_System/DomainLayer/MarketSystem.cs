@@ -1747,6 +1747,18 @@ namespace Market_System.DomainLayer
                     storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
                     storeFacade.PurchaseBid(bidderID, bidID);
+
+                    //Send a notification to the user, regarding his purchase:
+                    var message = "New purhcase has been made by you: {";
+                    var userID = userFacade.get_userID_from_session(session);
+                    Cart cart = get_cart_of_userID(userID);
+                    List<ItemDTO> purchased_Products = cart.convert_to_item_DTO();
+                    foreach (ItemDTO item in purchased_Products)
+                    {
+                        message += "[ " + item.ToString() + " ] ";
+                    }
+                    message += "}";
+                    sendMessageToUser(message, userID, "System");
                 }
             }
             catch (Exception e) { throw e; }
