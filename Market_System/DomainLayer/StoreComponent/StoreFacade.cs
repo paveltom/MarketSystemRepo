@@ -62,7 +62,6 @@ namespace Market_System.DomainLayer.StoreComponent
             return Instance;
         }
 
-
         internal List<string> get_user_wokring_stores_id(string user_id)
         {
             List<string> return_me = new List<string>();
@@ -232,6 +231,19 @@ namespace Market_System.DomainLayer.StoreComponent
             try
             {
                 storeRepo.AddPayment(userID, transactionID, price, canceled);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        public List<Purchase_History_Obj_For_Store> GetPurchaseHistoryOfTheUser(string userID)
+        {
+            try
+            {
+                return storeRepo.GetPurchaseHistoryOfTheUser(userID);
             }
             catch (Exception e)
             {

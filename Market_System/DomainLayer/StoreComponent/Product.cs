@@ -25,7 +25,7 @@ namespace Market_System.DomainLayer.StoreComponent
         public String Name { get; private set; }
         public String Description { get; private set; }
         public Double Price { get; private set; }
-        public KeyValuePair<string, List<string>> Auction;
+        public KeyValuePair<string, List<string>> Auction; // <userID, {price, transactionID}>
         public ConcurrentDictionary<string, List<string>> Lottery;
         public int ReservedQuantity { get; private set; }
         public Double Rating { get; private set; } // between 1-10
@@ -304,6 +304,11 @@ namespace Market_System.DomainLayer.StoreComponent
                         this.Quantity -= bid.Quantity;
                         this.ReservedQuantity -= bid.Quantity;
                         this.timesBought += bid.Quantity;
+
+                        ItemDTO item = this.GetProductDTO();
+                        item.SetQuantity(1);
+                        item.SetPrice(double.Parse(this.Auction.Value[0]));
+                        storeRepo.record_purchase(storeRepo.GetStore(this.StoreID), item);
                     }
                     Save();
                     return bid.NewPrice * bid.Quantity;

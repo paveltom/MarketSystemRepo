@@ -153,6 +153,17 @@ namespace Market_System.DAL
 
 
 
+        public List<Purchase_History_Obj_For_Store> GetPurchaseHistoryOfTheUser(string userID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                List<StorePurchaseHistoryObjModel> models = context.Purchases.Where(p => p.UserID == userID).ToList();
+                return models.Select(m => new Purchase_History_Obj_For_Store(m.Quantity, m.ProductId)).ToList();
+            }
+        }
+
+
+
 
         // =====================================================
         // =================== Store Methods =================== 
@@ -333,7 +344,7 @@ namespace Market_System.DAL
         }
 
 
-        public void record_purchase(Store store, ItemDTO item)
+        public void record_purchase(Store store, ItemDTO item, string buyerID)
         {
             using (StoreDataContext context = new StoreDataContext())
             {
@@ -345,6 +356,7 @@ namespace Market_System.DAL
                     purchase.ProductId = item.GetID();
                     purchase.Store = model;
                     purchase.TotalPrice = item.Price * item.GetQuantity();
+                    purchase.UserID = buyerID;
                     DateTime dateTime = DateTime.Now;
                     string month = dateTime.Month.ToString();
                     if (month.Length == 1)
