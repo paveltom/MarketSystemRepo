@@ -49,6 +49,13 @@
         <asp:Button ID="Button1" runat="server" Text="Bid"  CssClass="btn btn-primary" OnClick="bid_click"/>
         <asp:Label ID="bid_error_message" runat="server" ForeColor="Red" ></asp:Label>
         <br />
+
+
+        <asp:Label ID="Label11" runat="server" Text="  Bid ID:"></asp:Label>
+        <asp:TextBox ID="bid_id0" runat="server"></asp:TextBox>     
+        <asp:Button ID="Button2" runat="server" Text="Accept Counter Bid"  CssClass="btn btn-primary" OnClick="approve_counter_bid"/>
+        <asp:Button ID="Button3" runat="server" Text="Reject Counter Bid"  CssClass="btn btn-primary" OnClick="reject_counter_bid"/>
+        <asp:Label ID="counter_bid_error_message" Text="" runat="server" ForeColor="Red" ></asp:Label>
         <br />
     </div>
     <div></div>

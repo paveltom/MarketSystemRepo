@@ -1862,6 +1862,19 @@ namespace Market_System.ServiceLayer
             }
         }
 
+        public Response<string> ApproveBid_2(string bidID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.ApproveBid_2(bidID));
+                return ret;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
 
         public Response<BidDTO> GetBid(string bidID)
         {
@@ -1902,6 +1915,19 @@ namespace Market_System.ServiceLayer
             try
             {
                 Response<string> ret = Response<string>.FromValue(this.ssc.RemoveBid(bidID));
+                return ret;
+            }
+            catch (Exception e)
+            {
+                return Response<string>.FromError(e.Message);
+            }
+        }
+
+        public Response<string> RemoveBid_2(string bidID)
+        {
+            try
+            {
+                Response<string> ret = Response<string>.FromValue(this.ssc.RemoveBid_2(bidID));
                 return ret;
             }
             catch (Exception e)

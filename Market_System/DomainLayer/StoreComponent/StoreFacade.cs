@@ -621,13 +621,14 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public void PurchaseBid(string userID, string bidID)
+        public ItemDTO PurchaseBid(string userID, string bidID)
         {
             try
             {
                 string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
-                AcquireStore(storeID).PurchaseBid(userID, bidID);
+                ItemDTO purcahsed_Item = AcquireStore(storeID).PurchaseBid(userID, bidID);
                 ReleaseStore(storeID);
+                return purcahsed_Item;
             }
             catch (Exception e) { throw e; }
         }
