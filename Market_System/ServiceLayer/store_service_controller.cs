@@ -282,6 +282,16 @@ namespace Market_System.ServiceLayer
             catch (Exception e) { throw e; }
         }
 
+        public string ApproveBid_2(string bidID)
+        {
+            try
+            {
+                Market.ApproveBid_2(this.SessionID, bidID);
+                return "Your approvement was accepted.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public Response<BidDTO> GetBid(string bidID)
         {
@@ -319,6 +329,16 @@ namespace Market_System.ServiceLayer
             try
             {
                 Market.RemoveBid(this.SessionID, bidID);
+                return "Bid was removed.";
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public string RemoveBid_2(string bidID)
+        {
+            try
+            {
+                Market.RemoveBid_2(this.SessionID, bidID);
                 return "Bid was removed.";
             }
             catch (Exception e) { throw e; }

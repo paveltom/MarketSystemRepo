@@ -608,9 +608,14 @@ namespace Market_System.DomainLayer
                 bool isAdmin = CheckIfAdmin(session_id, member_Username);
                 User otherUser = userFacade.getUser(member_Username);
                 List<PurchaseHistoryObj> pruchase_History = null;
+                List<Purchase_History_Obj_For_Store> purchase_History_in_stores;
                 try
                 {
                     pruchase_History = userFacade.get_purchase_history_of_other_member(session_id, member_Username);
+                    purchase_History_in_stores = storeFacade.GetPurchaseHistoryOfTheUser(user_ID);
+                    foreach(Purchase_History_Obj_For_Store obj in purchase_History_in_stores){
+
+                    }
                 }
 
                 catch(Exception e)
@@ -1718,7 +1723,45 @@ namespace Market_System.DomainLayer
                     storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
-                    storeFacade.PurchaseBid(bidderID, bidID);
+                    ItemDTO pruchased_item = storeFacade.PurchaseBid(bidderID, bidID);
+
+                    //Send a notification to the user, regarding his purchase:
+                    var message = "New purhcase has been made by you: {";
+
+                    message += "[ " + pruchased_item.ToString() + " ] ";
+                    message += "}";
+                    sendMessageToUser(message, userID, "System");
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void ApproveBid_2(string session, string bidID) //for counter bid
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                if (storeFacade.ApproveBid(st.FounderID, bidID))
+                {
+                    string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                    string msg = "The bid " + bidID + " was approved by store side. Automatic purchase will be performed.";
+                    notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+                    
+                    msg = "The bid " + bidID + " was approved by store employee " + st.FounderID + ".  Automatic purchase will be performed.";
+                    storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                    storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+
+                   ItemDTO pruchased_item = storeFacade.PurchaseBid(bidderID, bidID);
+
+                    //Send a notification to the user, regarding his purchase:
+                    var message = "New purhcase has been made by you: {";
+                    var userID = userFacade.get_userID_from_session(session);
+
+                    message += "[ " + pruchased_item.ToString() + " ] ";
+                    message += "}";
+                    sendMessageToUser(message, userID, "System");
                 }
             }
             catch (Exception e) { throw e; }
@@ -1746,7 +1789,8 @@ namespace Market_System.DomainLayer
                 string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
                 string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
                 string productID = trimmedBidID.Substring(bidderID.Length);
-                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. The new price is: " + counterPrice + ". User Approvement required.";
+                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. The new price is: " + counterPrice + ". User Approvement required." +
+                    "The Bidding ID is: " + bidID+".";
                 notificationFacade.AddNewMessage(bidderID, "Market", msg);
 
                 string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
@@ -1778,6 +1822,26 @@ namespace Market_System.DomainLayer
             catch (Exception e) { throw e; }
         }
 
+        public void RemoveBid_2(string session, string bidID) //for counter bid
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.RemoveBid(st.FounderID, bidID);
+                string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
+                string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
+                string productID = trimmedBidID.Substring(bidderID.Length + 1);
+                string msg = "The bid for product " + productID + " was declined and removed by store side.";
+                notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+                msg = "The bid " + bidID + " was declined and removed by store employee " + st.FounderID + ".";
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public bool CheckCounterBid(string session, string productID)
         {
@@ -1786,7 +1850,7 @@ namespace Market_System.DomainLayer
             string founderID = GetStore(storeID).FounderID;
             try
             {
-                return GetStoreBids(founderID, storeID).Any(b => b.ProductID == productID && b.UserID == userID && b.CounterOffer == true);
+                return GetStoreBids_2(founderID, storeID).Any(b => b.ProductID == productID && b.UserID == userID && b.CounterOffer == true);
             }
             catch (Exception e) { throw e; }
         }
@@ -1798,6 +1862,16 @@ namespace Market_System.DomainLayer
             try
             {
                 return storeFacade.GetStoreBids(userID, storeID);
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public List<BidDTO> GetStoreBids_2(string session, string storeID)
+        {
+            try
+            {
+                string founderID = GetStore(storeID).FounderID;
+                return storeFacade.GetStoreBids(founderID, storeID);
             }
             catch (Exception e) { throw e; }
         }
