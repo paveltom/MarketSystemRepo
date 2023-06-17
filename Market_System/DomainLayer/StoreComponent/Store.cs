@@ -493,7 +493,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         {
                             AcquireProduct(item.GetID()).Purchase(item.GetQuantity());
                             ReleaseProduct(item.GetID());
-                            this.storeRepo.record_purchase(this, item); // for purchase history
+                            this.storeRepo.record_purchase(this, item, userID); // for purchase history
                             price += item.GetQuantity() * item.Price;
                             purchased.Add(item);
                         }
@@ -1175,7 +1175,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
                 item.SetQuantity(bid.Quantity);
                 item.SetPrice(bid.NewPrice);
-                storeRepo.record_purchase(this, item);  
+                storeRepo.record_purchase(this, item, userID);  
                 
                 string transactionID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id);
                 storeRepo.AddPayment(userID, transactionID, bid.Quantity * bid.NewPrice, false);
@@ -1209,9 +1209,16 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                string winner = AcquireProduct(productID).AuctionPurchase(1);
+                Product prod = AcquireProduct(productID);
+                string winner = prod.AuctionPurchase(1);
                 ReleaseProduct(productID);
-                DeliveryComponent.DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
+
+                ItemDTO item = prod.GetProductDTO();
+                item.SetQuantity(1);
+                item.SetPrice(double.Parse(prod.Auction.Value[0]));
+                storeRepo.record_purchase(storeRepo.GetStore(this.Store_ID), item);
+
+                DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
             }
             catch (Exception e) { throw e; }
         }
@@ -1391,22 +1398,32 @@ namespace Market_System.DomainLayer.StoreComponent
                 double curr = 0.0;
                 refundPercantage.ForEach(p =>
                 {
-                    curr += p.Value / 100;
+                    double val = p.Value;
+                    curr += val / 100;
                     relativeChances.Add(new KeyValuePair<string, double>(p.Key, curr));
                 });
                 Random rand = new Random();
                 double r = rand.NextDouble();
                 string winner = "";
+                curr = 2; // previous
                 foreach (KeyValuePair<string, double> p in relativeChances)
                 {
-                    if (p.Value > r)
+                    if (p.Value > r && p.Value < curr)
                     {
+                        curr = p.Value;
                         winner = p.Key;
                         break;
                     }
                 }
-                AcquireProduct(productID).Purchase(1);
+                Product prod = AcquireProduct(productID);
+                prod.Purchase(1);
                 ReleaseProduct(productID);
+
+                ItemDTO item = prod.GetProductDTO();
+                item.SetQuantity(1);
+                item.SetPrice(double.Parse(prod.Auction.Value[0]));
+                storeRepo.record_purchase(storeRepo.GetStore(this.Store_ID), item, winner);
+
                 DeliveryProxy.get_instance().deliver(winner, winner + "_address", winner + "_city", winner + "_country", winner + "_zip");
 
                 string msg = "You are the winner in lottery for product " + productID + ". Automatic purchase was performed.";

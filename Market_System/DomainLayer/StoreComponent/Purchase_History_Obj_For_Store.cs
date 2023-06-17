@@ -18,6 +18,12 @@ namespace Market_System.DomainLayer.StoreComponent
             this.product_id = item.GetID();
         }
 
+        public Purchase_History_Obj_For_Store(int quantity, string productID)
+        {
+            this.quantity = quantity;
+            this.product_id = productID;
+        }
+
 
         public string tostring()
         {

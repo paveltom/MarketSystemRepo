@@ -15,12 +15,14 @@ namespace Market_System.DAL.DBModels
         public double TotalPrice { get; set; }
         public string Day_Month_Year { get; set; }
 
+        public string UserID { get; set; }
+
         public virtual StoreModel Store { get; set; }
 
         public override string ToString()
         {
             string return_me = "";
-            return_me = return_me + "product " + ProductId + " quantity: " + Quantity + "\n";
+            return_me = return_me + "product " + ProductId + " quantity: " + Quantity + "user: " + UserID + "\n";
             return return_me;
         }
     }

@@ -1773,6 +1773,18 @@ namespace Market_System.DomainLayer
         }
 
 
+        public bool CheckCounterBid(string session, string productID)
+        {
+            string userID = get_userid_from_session_id(session); // regular user (not store employee)
+            string storeID = GetStoreIdFromProductID(productID);
+            string founderID = GetStore(storeID).FounderID;
+            try
+            {
+                return GetStoreBids(founderID, storeID).Any(b => b.ProductID == productID && b.UserID == userID && b.CounterOffer == true);
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public List<BidDTO> GetStoreBids(string session, string storeID)
         {
@@ -1809,7 +1821,6 @@ namespace Market_System.DomainLayer
             {
                 string userID = get_userid_from_session_id(session);
                 storeFacade.UpdateAuction(userID, productID, newPrice, card_number, month, year, holder, ccv, id);
-
                 string storeID = GetStoreIdFromProductID(productID);
                 string msg = "Auction for product " + productID + " was updated. The new price is: " + newPrice + ".";
                 StoreDTO st = storeFacade.GetStore(storeID);
@@ -1882,6 +1893,7 @@ namespace Market_System.DomainLayer
                 string userID = get_userid_from_session_id(session);
                 string storeID = GetStoreIdFromProductID(productID);
                 string msg;
+                StoreDTO store = GetStore(GetStoreIdFromProductID(productID));
 
                 bool winner = storeFacade.AddLotteryTicket(GetStoreIdFromProductID(productID), userID, productID, percentage, card_number, month, year, holder, ccv, id);                
 

@@ -10,6 +10,7 @@ using System.IO;
 using System.Web.Hosting;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Market_System.ServiceLayer
 {
@@ -1849,6 +1850,16 @@ namespace Market_System.ServiceLayer
             {
                 return Response<string>.FromError(e.Message);
             }
+        }
+
+
+        public bool CheckCounterBid(string productID)
+        {
+            try
+            {
+                return ssc.CheckCounterBid(productID);
+            }
+            catch (Exception e) { throw e; }
         }
 
 

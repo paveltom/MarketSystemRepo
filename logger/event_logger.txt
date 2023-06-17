@@ -8735,3 +8735,16 @@ Friday, 16 June 2023 : guest : guest1738849591 has logged in
 Friday, 16 June 2023 : user with session ID : 420044596 requested profit for a store 1939177130on date 15/06/2023 0:00:00
 Friday, 16 June 2023 : user with session ID : 420044596 requested profit for a store 1939177130on date 16/06/2023 0:00:00
 Friday, 16 June 2023 : user with session ID : 420044596 requested profit for a store 1939177130on date 17/06/2023 0:00:00
+Saturday, 17 June 2023 : guest : guest2027163676 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : opening store with id: 1931979206 has failed
+Saturday, 17 June 2023 : Added the product:1931979206_987591488to store: 1931979206 has been done successfully
+Saturday, 17 June 2023 : assigning new manager with username : nekola to the store with id: 1931979206
+Saturday, 17 June 2023 : assigning new owner with username : ben to the store with id: 1931979206
+Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 1931979206
+Saturday, 17 June 2023 : 148882299Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest727429399 has logged in

@@ -87,6 +87,8 @@ namespace Market_System.DAL.DBModels
 
 
         updatedProduct.Lottery.ForEach(l => {
+            if (this.Lottery.Any(lot => lot.LotteryID == updatedProduct.Product_ID + "_" + l.Key + "_lottery"))
+                    return;
                 LotteryModel model = new LotteryModel();
                 model.LotteryID = updatedProduct.Product_ID + "_" + l.Key + "_lottery";
                 model.UserID = l.Key;
