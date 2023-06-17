@@ -8845,3 +8845,122 @@ Saturday, 17 June 2023 : user with session ID : 1613576213 got his Messages
 Saturday, 17 June 2023 : user with session ID : 1613576213 got his Messages
 Saturday, 17 June 2023 : user with session ID : 1613576213 got his Messages
 Saturday, 17 June 2023 : user with session ID : 1613576213 got his Messages
+Saturday, 17 June 2023 : guest : guest1277525409 has logged in
+Saturday, 17 June 2023 : pasha1 has registered!
+Saturday, 17 June 2023 : pasha2 has registered!
+Saturday, 17 June 2023 : guest : guest841239024 has logged in
+Saturday, 17 June 2023 : pasha1 has registered!
+Saturday, 17 June 2023 : pasha2 has registered!
+Saturday, 17 June 2023 : suggesting new owner with username : pasha1 to the store with id: 1192610915
+Saturday, 17 June 2023 : 1925617247Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest675978104 has logged in
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : guest : guest1015197454 has logged in
+Saturday, 17 June 2023 : pasha1 has registered!
+Saturday, 17 June 2023 : pasha2 has registered!
+Saturday, 17 June 2023 : suggesting new owner with username : pasha1 to the store with id: 1366569345
+Saturday, 17 June 2023 : 1748203786Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest2066556951 has logged in
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : accepted suggestion for new owner with username : pasha1 to the store with id: 1366569345
+Saturday, 17 June 2023 : 1748203786Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1222820320 has logged in
+Saturday, 17 June 2023 : suggesting new owner with username : pasha2 to the store with id: 1366569345
+Saturday, 17 June 2023 : 1992565032Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest838495966 has logged in
+Saturday, 17 June 2023 : guest : guest1041186006 has logged in
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1413494470 got his Messages
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : accepted suggestion for new owner with username : pasha2  to the store with id: 1366569345
+Saturday, 17 June 2023 : 1748203786Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1153394026 has logged in
+Saturday, 17 June 2023 : guest : guest1656808227 has logged in
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1715266396 got his Messages
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : accepted suggestion for new owner with username : pasha2 to the store with id: 1366569345
+Saturday, 17 June 2023 : 1992565032Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest200238263 has logged in
+Saturday, 17 June 2023 : guest : guest112478462 has logged in
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1854651712 got his Messages
+Saturday, 17 June 2023 : 1748203786Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1180026336 has logged in
+Saturday, 17 June 2023 : user with session ID : 1768239343 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1768239343 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1768239343 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1768239343 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1768239343 got his Messages
+Saturday, 17 June 2023 : guest : guest1072758853 has logged in
+Saturday, 17 June 2023 : guest : guest1802387706 has logged in
+Saturday, 17 June 2023 : pasha1 has registered!
+Saturday, 17 June 2023 : pasha2 has registered!
+Saturday, 17 June 2023 : suggesting new owner with username : pasha1 to the store with id: 1031859778
+Saturday, 17 June 2023 : 387910391Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1798924559 has logged in
+Saturday, 17 June 2023 : guest : guest561907597 has logged in
+Saturday, 17 June 2023 : guest : guest278110753 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : opening store with id: 101463632 has failed
+Saturday, 17 June 2023 : Added the product:101463632_627473339to store: 101463632 has been done successfully
+Saturday, 17 June 2023 : assigning new manager with username : nekola to the store with id: 101463632
+Saturday, 17 June 2023 : assigning new owner with username : ben to the store with id: 101463632
+Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 101463632
+Saturday, 17 June 2023 : 425848078Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest2121700845 has logged in
+Saturday, 17 June 2023 : pasha1 has registered!
+Saturday, 17 June 2023 : pasha2 has registered!
+Saturday, 17 June 2023 : suggesting new owner with username : pasha1 to the store with id: 884538544
+Saturday, 17 June 2023 : 1617544876Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest445552060 has logged in
+Saturday, 17 June 2023 : guest : guest600871037 has logged in
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : accepted suggestion for new owner with username : pasha1 to the store with id: 884538544
+Saturday, 17 June 2023 : 1617544876Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1293233315 has logged in
+Saturday, 17 June 2023 : suggesting new owner with username : pasha2 to the store with id: 884538544
+Saturday, 17 June 2023 : user with session ID : 1817570241 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1817570241 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1817570241 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1817570241 got his Messages
+Saturday, 17 June 2023 : user with session ID : 1817570241 got his Messages
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : accepted suggestion for new owner with username : pasha2 to the store with id: 884538544
+Saturday, 17 June 2023 : 1597509547Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1543906117 has logged in
+Saturday, 17 June 2023 : guest : guest111230247 has logged in
+Saturday, 17 June 2023 : check are there suggestions done succesfully
+Saturday, 17 June 2023 : accepted suggestion for new owner with username : pasha2 to the store with id: 884538544
+Saturday, 17 June 2023 : 1617544876Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1944417582 has logged in
+Saturday, 17 June 2023 : 678028832Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1886072054 has logged in
+Saturday, 17 June 2023 : guest : guest885238973 has logged in

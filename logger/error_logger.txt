@@ -13336,3 +13336,19 @@ Saturday, 17 June 2023 : error!!: User already exists.in register
 Saturday, 17 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
 Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: Contract already exists. in assign_new_owner
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: startIndex cannot be larger than length of string.
+Parameter name: startIndex in acceptSuggestion
+Saturday, 17 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Saturday, 17 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Saturday, 17 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Saturday, 17 June 2023 : error!!: nothing to show in CheckAreThereSuggestions

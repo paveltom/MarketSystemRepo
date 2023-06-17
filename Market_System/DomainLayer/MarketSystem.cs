@@ -9,6 +9,7 @@ using Market_System.Domain_Layer.Communication_Component;
 using Microsoft.Ajax.Utilities;
 using System.Threading.Tasks;
 using Market_System.DAL;
+using System.Management.Instrumentation;
 
 namespace Market_System.DomainLayer
 {
@@ -103,16 +104,20 @@ namespace Market_System.DomainLayer
                 { //Critical Section Start
                     if (Instance == null)
                     {
+                        bool firstTime = false;
+                        using (StoreDataContext context = new StoreDataContext())
+                        {
+                            firstTime = context.Users.Count() == 0;
+                        }
                         userFacade = UserFacade.GetInstance();
                         storeFacade = StoreFacade.GetInstance();
-                        Instance = new MarketSystem();                        
+                        Instance = new MarketSystem();
+                        Instance.first_time_running = firstTime;
                         Instance.guest_id_generator = new Random();
                         employeeRepo = EmployeeRepo.GetInstance();
                         notificationFacade = NotificationFacade.GetInstance();
                         using (StoreDataContext context = new StoreDataContext())
                         {
-                            Instance.first_time_running = context.Users.Count() == 0;
-
                             if (context.Users.Count() == 1)
                             {
                                 Instance.register("admin", "admin", "address"); //registering an admin 

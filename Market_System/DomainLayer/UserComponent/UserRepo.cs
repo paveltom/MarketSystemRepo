@@ -92,7 +92,8 @@ namespace Market_System.DomainLayer.UserComponent
                     context.Contracts.Add(model);
                     context.SaveChanges();
                 }
-                throw new Exception("Contract already exists.");
+                else
+                    throw new Exception("Contract already exists.");
             }
         }
 
@@ -104,7 +105,10 @@ namespace Market_System.DomainLayer.UserComponent
                 ContractModel model;
                 if ((model = context.Contracts.SingleOrDefault(c => c.ContractID == contractID)) != null)
                 {
-                    model.HaveToAccept = remains.Aggregate("", (acc, id) => acc += "_" + id, acc => acc.Substring(1));
+                    if (remains.Count > 0)
+                        model.HaveToAccept = remains.Aggregate("", (acc, id) => acc += "_" + id, acc => acc.Substring(1));
+                    else
+                        model.HaveToAccept = "";
                     context.SaveChanges();
                 }
             }
@@ -293,7 +297,7 @@ namespace Market_System.DomainLayer.UserComponent
         {
             foreach (KeyValuePair<string, string> entry in user_ID_username_linker)
             {
-                if(entry.Value.Equals(username))
+                if(entry.Value.Equals(username.Trim()))
                 {
                     return entry.Key;
                 }
