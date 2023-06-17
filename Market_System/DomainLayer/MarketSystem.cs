@@ -1729,6 +1729,29 @@ namespace Market_System.DomainLayer
             catch (Exception e) { throw e; }
         }
 
+        public void ApproveBid_2(string session, string bidID) //for counter bid
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                if (storeFacade.ApproveBid(st.FounderID, bidID))
+                {
+                    string bidderID = bidID.Substring(bidID.IndexOf('_'));
+                    string msg = "The bid " + bidID + " was approved by store side. Automatic purchase will be performed.";
+                    notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+                    
+                    msg = "The bid " + bidID + " was approved by store employee " + st.FounderID + ".  Automatic purchase will be performed.";
+                    storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                    storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+
+                    storeFacade.PurchaseBid(st.FounderID, bidID);
+                }
+            }
+            catch (Exception e) { throw e; }
+        }
+
 
         public BidDTO GetBid(string session, string bidID)
         {
@@ -1751,7 +1774,8 @@ namespace Market_System.DomainLayer
                 string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
                 string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
                 string productID = trimmedBidID.Substring(bidderID.Length);
-                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. The new price is: " + counterPrice + ". User Approvement required.";
+                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. The new price is: " + counterPrice + ". User Approvement required." +
+                    "The Bidding ID is: " + bidID+".";
                 notificationFacade.AddNewMessage(bidderID, "Market", msg);
 
                 string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
@@ -1779,6 +1803,26 @@ namespace Market_System.DomainLayer
                 msg = "The bid " + bidID + " was declined and removed by store employee " + userID + ".";
                 storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                 storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
+            }
+            catch (Exception e) { throw e; }
+        }
+
+        public void RemoveBid_2(string session, string bidID) //for counter bid
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
+                StoreDTO st = storeFacade.GetStore(storeID);
+                storeFacade.RemoveBid(st.FounderID, bidID);
+                string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
+                string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
+                string productID = trimmedBidID.Substring(bidderID.Length + 1);
+                string msg = "The bid for product " + productID + " was declined and removed by store side.";
+                notificationFacade.AddNewMessage(bidderID, "Market", msg);
+
+                msg = "The bid " + bidID + " was declined and removed by store employee " + st.FounderID + ".";
+                storeFacade.GetOwnersOfTheStore(st.FounderID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
+                storeFacade.GetManagersOfTheStore(st.FounderID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
             }
             catch (Exception e) { throw e; }
         }

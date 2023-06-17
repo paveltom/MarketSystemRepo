@@ -82,6 +82,22 @@ namespace Market_System.Presentaion_Layer
                 lottery_button.Visible = true;
             }
 
+            if (((Service_Controller)Session["service_controller"]).CheckCounterBid(product_id)) //Counter bidding buttons
+            {
+                Button2.Visible = true;
+                Button3.Visible = true;
+                bid_id0.Visible = true;
+                Label11.Visible = true;
+            }
+
+            else
+            {
+                Button2.Visible = false;
+                Button3.Visible = false;
+                bid_id0.Visible = false;
+                Label11.Visible = false;
+            }
+            counter_bid_error_message.Text = "";
 
         }
 
@@ -140,6 +156,54 @@ namespace Market_System.Presentaion_Layer
             {
                 bid_error_message.ForeColor = System.Drawing.Color.Red;
                 bid_error_message.Text = exe.Message;
+            }
+        }
+
+        protected void approve_counter_bid(object sender, EventArgs e)
+        {
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).ApproveBid_2(bid_id0.Text);
+                if (okay.ErrorOccured)
+                {
+                    counter_bid_error_message.ForeColor = System.Drawing.Color.Red;
+                    counter_bid_error_message.Text = okay.ErrorMessage;
+                }
+                else
+                {
+                    counter_bid_error_message.ForeColor = System.Drawing.Color.Green;
+                    counter_bid_error_message.Text = "You've accepted the counter bidding, and the payment was successful";
+                }
+
+            }
+            catch (Exception exe)
+            {
+                counter_bid_error_message.ForeColor = System.Drawing.Color.Red;
+                counter_bid_error_message.Text = exe.Message;
+            }
+        }
+
+        protected void reject_counter_bid(object sender, EventArgs e)
+        {
+            try
+            {
+                Response<string> okay = ((Service_Controller)Session["service_controller"]).RemoveBid_2(bid_id0.Text);
+                if (okay.ErrorOccured)
+                {
+                    counter_bid_error_message.ForeColor = System.Drawing.Color.Red;
+                    counter_bid_error_message.Text = okay.ErrorMessage;
+                }
+                else
+                {
+                    counter_bid_error_message.ForeColor = System.Drawing.Color.Green;
+                    counter_bid_error_message.Text = "You've rejected the counter bidding. If you wish to counter bid, please place a new bid.";
+                }
+
+            }
+            catch (Exception exe)
+            {
+                counter_bid_error_message.ForeColor = System.Drawing.Color.Red;
+                counter_bid_error_message.Text = exe.Message;
             }
         }
 
