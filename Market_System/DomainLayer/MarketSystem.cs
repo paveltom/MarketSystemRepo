@@ -602,9 +602,14 @@ namespace Market_System.DomainLayer
                 bool isAdmin = CheckIfAdmin(session_id, member_Username);
                 User otherUser = userFacade.getUser(member_Username);
                 List<PurchaseHistoryObj> pruchase_History = null;
+                List<Purchase_History_Obj_For_Store> purchase_History_in_stores;
                 try
                 {
                     pruchase_History = userFacade.get_purchase_history_of_other_member(session_id, member_Username);
+                    purchase_History_in_stores = storeFacade.GetPurchaseHistoryOfTheUser(user_ID);
+                    foreach(Purchase_History_Obj_For_Store obj in purchase_History_in_stores){
+
+                    }
                 }
 
                 catch(Exception e)
