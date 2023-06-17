@@ -1,10 +1,12 @@
 ﻿using Market_System.DAL;
 using Market_System.DAL.DBModels;
 using Market_System.Domain_Layer.Communication_Component;
+using Market_System.DomainLayer.StoreComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Market_System.DomainLayer.UserComponent
@@ -61,6 +63,69 @@ namespace Market_System.DomainLayer.UserComponent
             Instance = null;
             
         }
+
+
+
+        public Dictionary<string, KeyValuePair<List<string>, string>> GetContracts()
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                if(context.Contracts.Count() > 0)
+                    return context.Contracts.Select(c => c).ToList().ToDictionary(c => c.ContractID, c => new KeyValuePair<List<string>, string>(c.HaveToAccept.Split('_').ToList(), c.SuggestorID));
+                return new Dictionary<string, KeyValuePair<List<string>, string>>();
+            }
+        }
+
+        public void AddContract(KeyValuePair<string, KeyValuePair<List<string>, string>> pair)
+        {            
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                ContractModel model;
+                if (context.Contracts.SingleOrDefault(c => c.ContractID == pair.Key) == null)
+                {
+                    model = new ContractModel();
+                    model.ContractID = pair.Key;
+                    model.SuggestorID = pair.Value.Value;
+                    model.StoreID = pair.Key.Split('_')[1];
+                    model.NewOwnerID = pair.Key.Split('_')[0];
+                    model.HaveToAccept = pair.Value.Key.Aggregate("", (acc, id) => acc += "_" + id, acc => acc.Substring(1));
+                    context.Contracts.Add(model);
+                    context.SaveChanges();
+                }
+                throw new Exception("Contract already exists.");
+            }
+        }
+
+
+        public void AcceptContract(string contractID, List<string> remains)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                ContractModel model;
+                if ((model = context.Contracts.SingleOrDefault(c => c.ContractID == contractID)) != null)
+                {
+                    model.HaveToAccept = remains.Aggregate("", (acc, id) => acc += "_" + id, acc => acc.Substring(1));
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void RemoveContract(string contractID)
+        {
+            using (StoreDataContext context = new StoreDataContext())
+            {
+                ContractModel model;
+                if ((model = context.Contracts.SingleOrDefault(c => c.ContractID == contractID)) != null)
+                {
+                    context.Contracts.Remove(model);
+                    context.SaveChanges();
+                }
+                else
+                    throw new Exception("No such owner suggestion for this store.");
+
+            }
+        }
+                
 
         public bool checkIfExists(string username, string password)
         {

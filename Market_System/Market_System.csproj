@@ -402,6 +402,7 @@
     <Compile Include="DAL\DBModels\BucketModel.cs" />
     <Compile Include="DAL\DBModels\CartModel.cs" />
     <Compile Include="DAL\DBModels\CommentModel.cs" />
+    <Compile Include="DAL\DBModels\ContractModel.cs" />
     <Compile Include="DAL\DBModels\EmployeeModel.cs" />
     <Compile Include="DAL\DBModels\LotteryModel.cs" />
     <Compile Include="DAL\DBModels\MessageModel.cs" />
