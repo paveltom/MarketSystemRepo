@@ -13261,28 +13261,63 @@ Thursday, 15 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: User already exists.in register
 Friday, 16 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
 Friday, 16 June 2023 : error!!: LINQ to Entities does not recognize the method 'System.String GetID()' method, and this method cannot be translated into a store expression. in add_product_to_basket
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
+יום שישי 16 יוני 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
+Friday, 16 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Friday, 16 June 2023 : error!!: You have already accepted or rejected this user in acceptSuggestion
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: User already exists.in register
-Friday, 16 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: Someone has already suggested this employee in assign_new_owner
+Friday, 16 June 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
 Friday, 16 June 2023 : error!!: can't recive userID because username does not exists in acceptSuggestion
+Friday, 16 June 2023 : error!!: Cannot assign new manager: you are not an owner or this employee is already a manager or owner in this store. in assign_new_manager
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: User already exists.in register
-Friday, 16 June 2023 : reading from init file failed due to: User already exists. starting system without any initialization
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
-Friday, 16 June 2023 : error!!: Sequence contains more than one element in Remove_Store_Owner
+Friday, 16 June 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Friday, 16 June 2023 : error!!: Cannot remove owner: you are not an owner/assignneer of other owner in this store or the employee isn't an owner in the store in Remove_Store_Owner
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Friday, 16 June 2023 : error!!: Can't reserve: quantity too large. in add_product_to_basket
+Friday, 16 June 2023 : error!!: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details. in add_product_to_basket
+Friday, 16 June 2023 : error!!: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details. in add_product_to_basket
+Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
 Friday, 16 June 2023 : error!!: nothing to show in CheckAreThereSuggestions

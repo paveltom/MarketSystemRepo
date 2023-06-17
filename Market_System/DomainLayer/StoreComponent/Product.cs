@@ -359,8 +359,8 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {                
-                if (newPrice != -1 && newPrice < Double.Parse(this.Auction.Value[0]))
-                    throw new Exception("Cannot offer smaller price than current price.");
+                if (newPrice != -1 && newPrice <= Double.Parse(this.Auction.Value[0]))
+                    throw new Exception("Cannot offer smaller price than current price, or the current price.");
                 string previousTransID = this.Auction.Value[1]; // transactionID
                 string previousUserID = this.Auction.Key;
                 this.Auction = new KeyValuePair<string, List<string>>(userID, new List<string>{ newPrice.ToString(), newTransID });

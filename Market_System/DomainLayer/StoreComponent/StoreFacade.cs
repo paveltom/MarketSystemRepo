@@ -866,7 +866,7 @@ namespace Market_System.DomainLayer.StoreComponent
         private void AddTimer(Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded, string founderID, string productID, long minutesDuration, string type)
         {
             DateTime creationTime = DateTime.Now;
-            TimerPlus newTimer = new TimerPlus(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds, creationTime);
+            TimerPlus newTimer = new TimerPlus(TimeSpan.FromMinutes(minutesDuration).TotalMilliseconds, creationTime.AddMinutes(minutesDuration));
             newTimer.Elapsed += (sender, e) => methodWithTimerNeeded(sender, e, founderID, productID);            
             newTimer.Start();
             string timerID = productID + "_" + type + "_timer";

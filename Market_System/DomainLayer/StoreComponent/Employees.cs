@@ -129,7 +129,7 @@ namespace Market_System.DomainLayer.StoreComponent
         {
             try
             {
-                return getemployee(employeeID, storeID).isOwner();
+                return (getemployee(employeeID, storeID).isOwner() || getemployee(employeeID, storeID).isFounder());
             } catch (Exception e) { return false; }
         }
 

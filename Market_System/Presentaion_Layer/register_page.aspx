@@ -78,11 +78,8 @@
             <asp:RequiredFieldValidator runat="server" ID="address_validator" ControlToValidate="txt_address" ErrorMessage="Please enter an address" Font-Bold="true" ForeColor="Red"> </asp:RequiredFieldValidator>
         </div>
                 <div style="text-align: center; margin-bottom: 20px;">
-            <label>Your favorite product:</label>
-            <asp:DropDownList ID="ddlproduct" runat="server" >
-                <asp:ListItem Text="Beer" Value="Blue" />
-                <asp:ListItem Text="Meat" Value="Red" />
-            </asp:DropDownList>
+            
+            
         </div>
                  <div class="buttonBox">
                 <div style="text-align: center; margin-bottom: 20px;">

@@ -7,6 +7,9 @@
     <div style="text-align: left">
         <asp:Label ID="label2" runat="server" Text="product_id:"></asp:Label>
         <asp:Label ID="product_id_label" runat="server" Text=""></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label16" runat="server" Text="product name: "></asp:Label>
+        <asp:Label ID="product_name" runat="server" Text=""></asp:Label>
     </div>
     <div></div>
     <div style="text-align: left">
@@ -18,7 +21,7 @@
                 runat="server">
                 <ContentTemplate>
                   <div style="text-align: left">
-                    <asp:Label ID="time_left" runat="server" Text="time left:"></asp:Label>
+                    <asp:Label ID="time_left" runat="server" Text="time left in seconds:"></asp:Label>
                       <asp:Label ID="put_me_time" runat="server" Text=""></asp:Label>
                   </div>
 
