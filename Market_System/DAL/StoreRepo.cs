@@ -412,7 +412,7 @@ namespace Market_System.DAL
 
 
 
-        public BidDTO PlaceBid(string storeID, string userID, string productID, double newPrice, int quantity)
+        public BidDTO PlaceBid(string storeID, string userID, string productID, double newPrice, int quantity, string card_number, string month, string year, string holder, string ccv, string id)
         {
             using (StoreDataContext context = new StoreDataContext())
             {
@@ -436,6 +436,7 @@ namespace Market_System.DAL
                     bid.DeclinedByUser = false;
                     bid.NumOfApproves = 0;
                     bid.Quantity = quantity;
+                    bid.PaymentDetails = card_number + "_" + month + "_" + year + "_" + holder + "_" + ccv + "_" + id;
                     store.Bids.Add(bid);
 
                     context.Bids.Add(bid);

@@ -1677,13 +1677,13 @@ namespace Market_System.DomainLayer
 
 
         // ======= Bid =========
-        public BidDTO PlaceBid(string session, string productID, double newPrice, int quantity)
+        public BidDTO PlaceBid(string session, string productID, double newPrice, int quantity, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
                 string userID = get_userid_from_session_id(session);
                 string storeID = GetStoreIdFromProductID(productID);
-                BidDTO bid = storeFacade.PlaceBid(storeID, userID, productID, newPrice, quantity);              
+                BidDTO bid = storeFacade.PlaceBid(storeID, userID, productID, newPrice, quantity, card_number, month, year, holder, ccv, id);              
                 string msg = "New bid " + bid.BidID + " was placed. Approvement required.";
                 notificationFacade.AddNewMessage(userID, "Market", msg);
                 StoreDTO st = storeFacade.GetStore(storeID);
@@ -1703,15 +1703,16 @@ namespace Market_System.DomainLayer
                 if (storeFacade.ApproveBid(userID, bidID))
                 {
                     string bidderID = bidID.Substring(bidID.IndexOf('_'));
-                    string msg = "The bid " + bidID + " was approved by store side. The price is valid only for proposed quantity.";
+                    string msg = "The bid " + bidID + " was approved by store side. Automatic purchase will be performed.";
                     notificationFacade.AddNewMessage(bidderID, "Market", msg);
 
 
                     string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));
-                    msg = "The bid " + bidID + " was approved by store employee " + userID + ". The price is valid only for proposed quantity.";
+                    msg = "The bid " + bidID + " was approved by store employee " + userID + ".  Automatic purchase will be performed.";
                     storeFacade.GetOwnersOfTheStore(userID, storeID).ForEach(o => notificationFacade.AddNewMessage(o, "Market", msg));
                     storeFacade.GetManagersOfTheStore(userID, storeID).ForEach(m => notificationFacade.AddNewMessage(m, "Market", msg));
 
+                    storeFacade.PurchaseBid(userID, bidID);
                 }
             }
             catch (Exception e) { throw e; }
@@ -1739,7 +1740,7 @@ namespace Market_System.DomainLayer
                 string trimmedBidID = bidID.Substring(0, bidID.Length - 4);
                 string bidderID = bidID.Substring(0, bidID.IndexOf('_'));
                 string productID = trimmedBidID.Substring(bidderID.Length);
-                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. User Approvement required.";
+                string msg = "The bid for product " + productID + " was updated by store side - counter offer received. The new price is: " + counterPrice + ". User Approvement required.";
                 notificationFacade.AddNewMessage(bidderID, "Market", msg);
 
                 string storeID = GetStoreIdFromProductID(bidID.Substring(0, bidID.Length - 4).Substring(bidID.IndexOf('_') + 1));

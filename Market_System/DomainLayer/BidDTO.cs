@@ -18,9 +18,10 @@ namespace Market_System.DomainLayer
         public string ProductID { get; set; }
         public string UserID { get; set; }
         public int Quantity { get; set; }
+        public string PayDetails { get; set; }
 
 
-        public BidDTO(string userID, string productID, double newPrice, int quantity)
+        public BidDTO(string userID, string productID, double newPrice, int quantity, string payDetails)
         {          
             this.UserID = userID;
             this.ProductID = productID;
@@ -32,7 +33,8 @@ namespace Market_System.DomainLayer
             this.CounterOffer = false;
             this.DeclinedByStore = false;
             this.DeclinedByUser = false;
-            this.NumOfApproves = 0; 
+            this.NumOfApproves = 0;
+            this.PayDetails = payDetails;
         }
     }
 }

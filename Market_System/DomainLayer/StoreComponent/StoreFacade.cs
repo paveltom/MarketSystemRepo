@@ -162,7 +162,7 @@ namespace Market_System.DomainLayer.StoreComponent
                 }
                 catch (Exception e)
                 {
-                    PaymentComponent.PaymentProxy.get_instance().cancel_pay(transactionID);
+                    PaymentProxy.get_instance().cancel_pay(transactionID);
 
                     AddPayment(userID, transactionID, price, true);
                     throw e;
@@ -585,11 +585,11 @@ namespace Market_System.DomainLayer.StoreComponent
 
         //  BID 
 
-        public BidDTO PlaceBid(string storeID, string session, string productID, double newPrice, int quantity)
+        public BidDTO PlaceBid(string storeID, string userID, string productID, double newPrice, int quantity, string card_number, string month, string year, string holder, string ccv, string id)
         {
             try
             {
-                BidDTO ret = AcquireStore(storeID).PlaceBid(session, productID, newPrice, quantity);
+                BidDTO ret = AcquireStore(storeID).PlaceBid(userID, productID, newPrice, quantity, card_number, month, year, holder, ccv, id);
                 ReleaseStore(storeID);
                 return ret;
             }
@@ -604,6 +604,18 @@ namespace Market_System.DomainLayer.StoreComponent
                 bool ret = AcquireStore(storeID).ApproveBid(userID, bidID);
                 ReleaseStore(storeID);
                 return ret;
+            }
+            catch (Exception e) { throw e; }
+        }
+
+
+        public void PurchaseBid(string userID, string bidID)
+        {
+            try
+            {
+                string storeID = GetStoreIdFromProductID(storeRepo.GetBid(bidID).ProductID);
+                AcquireStore(storeID).PurchaseBid(userID, bidID);
+                ReleaseStore(storeID);
             }
             catch (Exception e) { throw e; }
         }
@@ -658,6 +670,9 @@ namespace Market_System.DomainLayer.StoreComponent
             }
             catch (Exception e) { throw e; }
         }
+
+
+
 
 
         // Auction:
