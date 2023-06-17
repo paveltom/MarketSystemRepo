@@ -82,7 +82,18 @@ namespace Market_System.Presentaion_Layer
                 lottery_button.Visible = true;
             }
 
-            if (((Service_Controller)Session["service_controller"]).CheckCounterBid(product_id)) //Counter bidding buttons
+
+            bool checkCounterBid = false;
+            try
+            {
+                checkCounterBid = ((Service_Controller)Session["service_controller"]).CheckCounterBid(product_id);
+            }
+            catch (Exception ex)
+            {
+                //Do nothing!
+            }
+
+            if (checkCounterBid) //Counter bidding buttons
             {
                 Button2.Visible = true;
                 Button3.Visible = true;
@@ -98,7 +109,6 @@ namespace Market_System.Presentaion_Layer
                 Label11.Visible = false;
             }
             counter_bid_error_message.Text = "";
-
         }
 
         protected void addToCart_Click(object sender, EventArgs e)

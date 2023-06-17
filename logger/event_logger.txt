@@ -8964,3 +8964,31 @@ Saturday, 17 June 2023 : guest : guest1944417582 has logged in
 Saturday, 17 June 2023 : 678028832Logged-out succesfully
 Saturday, 17 June 2023 : guest : guest1886072054 has logged in
 Saturday, 17 June 2023 : guest : guest885238973 has logged in
+Saturday, 17 June 2023 : guest : guest1322077515 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : opening store with id: 1743306843 has failed
+Saturday, 17 June 2023 : Added the product:1743306843_165224437to store: 1743306843 has been done successfully
+Saturday, 17 June 2023 : assigning new manager with username : nekola to the store with id: 1743306843
+Saturday, 17 June 2023 : assigning new owner with username : ben to the store with id: 1743306843
+Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 1743306843
+Saturday, 17 June 2023 : 1783707586Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest587392960 has logged in
+Saturday, 17 June 2023 : amihai has registered!
+Saturday, 17 June 2023 : guest : guest2132191760 has logged in
+Saturday, 17 June 2023 : bayan has registered!
+Saturday, 17 June 2023 : nekola has registered!
+Saturday, 17 June 2023 : ben has registered!
+Saturday, 17 June 2023 : harold has registered!
+Saturday, 17 June 2023 : ben3 has registered!
+Saturday, 17 June 2023 : opening store with id: 1787031063 has failed
+Saturday, 17 June 2023 : Added the product:1787031063_1349892208to store: 1787031063 has been done successfully
+Saturday, 17 June 2023 : assigning new manager with username : nekola to the store with id: 1787031063
+Saturday, 17 June 2023 : assigning new owner with username : ben to the store with id: 1787031063
+Saturday, 17 June 2023 : assigning new owner with username : harold to the store with id: 1787031063
+Saturday, 17 June 2023 : 223887218Logged-out succesfully
+Saturday, 17 June 2023 : guest : guest1560812894 has logged in
+Saturday, 17 June 2023 : amihai has registered!
