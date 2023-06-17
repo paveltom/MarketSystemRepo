@@ -708,11 +708,11 @@ namespace Market_System.Presentaion_Layer
             {
                 try
                 {
-                    Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(approve_bid_text.Text);
+                    Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(counter_bid_text.Text);
                     if (bidDTO.Value.CounterOffer)
                     {
-                        approve_bid_message.ForeColor = System.Drawing.Color.Red;
-                        approve_bid_message.Text = "You've already placed a counter bid for this product! please wait for the client's" +
+                        counter_bid_message.ForeColor = System.Drawing.Color.Red;
+                        counter_bid_message.Text = "You've already placed a counter bid for this product! please wait for the client's" +
                             "response.";
                         return;
                     }
@@ -756,11 +756,11 @@ namespace Market_System.Presentaion_Layer
 
             try
             {
-                Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(approve_bid_text.Text);
+                Response<BidDTO> bidDTO = ((Service_Controller)Session["service_controller"]).GetBid(remove_bid_text.Text);
                 if (bidDTO.Value.DeclinedByStore)
                 {
-                    approve_bid_message.ForeColor = System.Drawing.Color.Red;
-                    approve_bid_message.Text = "You've already removed this bid!";
+                    remove_bid_message.ForeColor = System.Drawing.Color.Red;
+                    remove_bid_message.Text = "You've already removed this bid!";
                     return;
                 }
             }
