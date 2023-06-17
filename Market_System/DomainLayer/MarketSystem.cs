@@ -614,7 +614,9 @@ namespace Market_System.DomainLayer
                     pruchase_History = userFacade.get_purchase_history_of_other_member(session_id, member_Username);
                     purchase_History_in_stores = storeFacade.GetPurchaseHistoryOfTheUser(user_ID);
                     foreach(Purchase_History_Obj_For_Store obj in purchase_History_in_stores){
-
+                        if(!Merging_Purhcase_History_Lists(pruchase_History, obj)){
+                            pruchase_History.Add(new PurchaseHistoryObj(member_Username, new List<Bucket>(), obj.TotalPrice));
+                        }
                     }
                 }
 
@@ -630,6 +632,18 @@ namespace Market_System.DomainLayer
             {
                 throw e;
             }
+        }
+
+        private bool Merging_Purhcase_History_Lists(List<PurchaseHistoryObj> pruchase_History, Purchase_History_Obj_For_Store obj2)
+        {
+            foreach(PurchaseHistoryObj obj in pruchase_History)
+            {
+                if(obj.PurchaseDateTime.Equals(obj2.PurchaseTime) && obj.GetTotalPrice().Equals(obj2.TotalPrice))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void ReserveProduct(ItemDTO itemDTO)
