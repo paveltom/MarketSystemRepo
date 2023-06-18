@@ -31,7 +31,10 @@ namespace Market_System.ServiceLayer
                     if (Instance == null)
                     {
                         Instance = new Connection();
-                        Instance.ConnectionString = BasicConnectionString; 
+                        // PAY ATTENTION!!!!!!!!!! -> uncomment SetConnectionString method 
+                        Instance.ConnectionString = BasicConnectionString;   
+                        //Instance.ConnectionString = RemoteLinuxConnectionString;
+
                     }
                 } //Critical Section End
 

@@ -95,14 +95,12 @@ namespace Market_System.ServiceLayer
             // string initConnectionString = Connection.BasicConnectionString; // change it to read from initFile
             // Connection.GetInstance().SetConnectionString(initConnectionString);
 
-
+            this.session_id_generator = new Random();
+            this.session_id = session_id_generator.Next().ToString();
             read_from_config_file("config_file.txt");
             this.usc = new User_Service_Controller();
             this.ssc = new Store_Service_Controller(session_id);
             new_guest_entered_the_website(session_id);
-
-            this.session_id_generator = new Random();
-            this.session_id = session_id_generator.Next().ToString();
      
             if (first_time_running_project())
             {

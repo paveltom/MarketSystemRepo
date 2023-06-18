@@ -91,7 +91,7 @@ namespace Market_System.DAL
                     TimeSpan ts = currDate - creationDate;
                     double remainedTime = TimeSpan.FromMinutes(Double.Parse(t.MinutesToCount)).TotalMilliseconds - ts.TotalMilliseconds;
                     if (remainedTime < 0)
-                        remainedTime = 0;
+                        remainedTime = 1;
                     TimerPlus newT = new TimerPlus(remainedTime, creationDate);
 
                     Action<object, System.Timers.ElapsedEventArgs, string, string> methodWithTimerNeeded;

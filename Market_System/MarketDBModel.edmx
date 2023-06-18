@@ -1,0 +1,1221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MarketDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BidModels">
+          <Key>
+            <PropertyRef Name="BidID" />
+          </Key>
+          <Property Name="BidID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NewPrice" Type="float" Nullable="false" />
+          <Property Name="ApprovedByStore" Type="bit" Nullable="false" />
+          <Property Name="ApprovedByUser" Type="bit" Nullable="false" />
+          <Property Name="CounterOffer" Type="bit" Nullable="false" />
+          <Property Name="DeclinedByStore" Type="bit" Nullable="false" />
+          <Property Name="DeclinedByUser" Type="bit" Nullable="false" />
+          <Property Name="NumOfApproves" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="PaymentDetails" Type="nvarchar(max)" />
+          <Property Name="Store_StoreID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="BucketModels">
+          <Key>
+            <PropertyRef Name="BucketID" />
+          </Key>
+          <Property Name="BucketID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StoreID" Type="nvarchar(max)" />
+          <Property Name="Purchased" Type="bit" Nullable="false" />
+          <Property Name="Products" Type="nvarchar(max)" />
+          <Property Name="Cart_CartID" Type="nvarchar" MaxLength="128" />
+          <Property Name="USerPurchase_HisstoryID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="CartModels">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TotalPrice" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommentModels">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Product_ProductID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ContractModels">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NewOwnerID" Type="nvarchar(max)" />
+          <Property Name="StoreID" Type="nvarchar(max)" />
+          <Property Name="SuggestorID" Type="nvarchar(max)" />
+          <Property Name="HaveToAccept" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EmployeeModels">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="StoreID" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar(max)" />
+          <Property Name="OwnerAssignner" Type="nvarchar(max)" />
+          <Property Name="ManagerAssigner" Type="nvarchar(max)" />
+          <Property Name="Permissions" Type="nvarchar(max)" />
+          <Property Name="StoreClosed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LotteryModels">
+          <Key>
+            <PropertyRef Name="LotteryID" />
+          </Key>
+          <Property Name="LotteryID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Percantage" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="TransactionID" Type="nvarchar(max)" />
+          <Property Name="Product_ProductID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="MessageModels">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="From" Type="nvarchar(max)" />
+          <Property Name="To" Type="nvarchar(max)" />
+          <Property Name="IsNewMessage" Type="bit" Nullable="false" />
+          <Property Name="DateAndTime" Type="nvarchar(max)" />
+          <Property Name="user_Username" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ProductAttributeModels">
+          <Key>
+            <PropertyRef Name="AttributeID" />
+          </Key>
+          <Property Name="AttributeID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AttributeName" Type="nvarchar(max)" />
+          <Property Name="AttributeOptions" Type="nvarchar(max)" />
+          <Property Name="Product_ProductID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ProductModels">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StoreID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Auction" Type="nvarchar(max)" />
+          <Property Name="ReservedQuantity" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Sale" Type="float" Nullable="false" />
+          <Property Name="timesBought" Type="bigint" Nullable="false" />
+          <Property Name="timesRated" Type="bigint" Nullable="false" />
+          <Property Name="ProductCategory" Type="nvarchar(max)" />
+          <Property Name="Dimenssions" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PurchasePolicyModels">
+          <Key>
+            <PropertyRef Name="PolicyID" />
+          </Key>
+          <Property Name="PolicyID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PolicyName" Type="nvarchar(max)" />
+          <Property Name="SalePercentage" Type="float" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="SalePolicyFormula" Type="nvarchar(max)" />
+          <Property Name="Target" Type="nvarchar(max)" />
+          <Property Name="TargetValue" Type="nvarchar(max)" />
+          <Property Name="isDefault" Type="bit" Nullable="false" />
+          <Property Name="MaximumPairs" Type="nvarchar(max)" />
+          <Property Name="Product_ProductID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Store_StoreID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="PurchaseStrategyModels">
+          <Key>
+            <PropertyRef Name="StrategyID" />
+          </Key>
+          <Property Name="StrategyID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StrategyName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="StrategyFormula" Type="nvarchar(max)" />
+          <Property Name="isDefault" Type="bit" Nullable="false" />
+          <Property Name="Product_ProductID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Store_StoreID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="StoreModels">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="founderID" Type="nvarchar(max)" />
+          <Property Name="temporaryClosed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StorePurchaseHistoryObjModels">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar(max)" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="float" Nullable="false" />
+          <Property Name="Day_Month_Year" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Store_StoreID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="TimerModels">
+          <Key>
+            <PropertyRef Name="TimerID" />
+          </Key>
+          <Property Name="TimerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MinutesToCount" Type="nvarchar(max)" />
+          <Property Name="CreationTimeStamp" Type="nvarchar(max)" />
+          <Property Name="FounderID" Type="nvarchar(max)" />
+          <Property Name="ProductID" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransactionModels">
+          <Key>
+            <PropertyRef Name="TransactioID" />
+          </Key>
+          <Property Name="TransactioID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Cancelled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserModels">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="HashedPassword" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Cart_CartID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="UserPurchaseHistoryObjModels">
+          <Key>
+            <PropertyRef Name="HisstoryID" />
+          </Key>
+          <Property Name="HisstoryID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="PurchaseDateTicks" Type="nvarchar(max)" />
+          <Property Name="TotalPrice" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_BidModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModels" Multiplicity="0..1" />
+          <End Role="BidModels" Type="Self.BidModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="BidModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BucketModels_dbo_CartModels_Cart_CartID">
+          <End Role="CartModels" Type="Self.CartModels" Multiplicity="0..1" />
+          <End Role="BucketModels" Type="Self.BucketModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartModels">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="BucketModels">
+              <PropertyRef Name="Cart_CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID">
+          <End Role="UserPurchaseHistoryObjModels" Type="Self.UserPurchaseHistoryObjModels" Multiplicity="0..1" />
+          <End Role="BucketModels" Type="Self.BucketModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserPurchaseHistoryObjModels">
+              <PropertyRef Name="HisstoryID" />
+            </Principal>
+            <Dependent Role="BucketModels">
+              <PropertyRef Name="USerPurchase_HisstoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModels" Multiplicity="0..1" />
+          <End Role="CommentModels" Type="Self.CommentModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="CommentModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModels" Multiplicity="0..1" />
+          <End Role="LotteryModels" Type="Self.LotteryModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="LotteryModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MessageModels_dbo_UserModels_user_Username">
+          <End Role="UserModels" Type="Self.UserModels" Multiplicity="0..1" />
+          <End Role="MessageModels" Type="Self.MessageModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserModels">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="MessageModels">
+              <PropertyRef Name="user_Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModels" Multiplicity="0..1" />
+          <End Role="ProductAttributeModels" Type="Self.ProductAttributeModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductAttributeModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProductModels_dbo_StoreModels_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModels" Multiplicity="0..1" />
+          <End Role="ProductModels" Type="Self.ProductModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="ProductModels">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModels" Multiplicity="0..1" />
+          <End Role="PurchasePolicyModels" Type="Self.PurchasePolicyModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchasePolicyModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModels" Multiplicity="0..1" />
+          <End Role="PurchasePolicyModels" Type="Self.PurchasePolicyModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="PurchasePolicyModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModels" Multiplicity="0..1" />
+          <End Role="PurchaseStrategyModels" Type="Self.PurchaseStrategyModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchaseStrategyModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModels" Multiplicity="0..1" />
+          <End Role="PurchaseStrategyModels" Type="Self.PurchaseStrategyModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="PurchaseStrategyModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModels" Multiplicity="0..1" />
+          <End Role="StorePurchaseHistoryObjModels" Type="Self.StorePurchaseHistoryObjModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StorePurchaseHistoryObjModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserModels_dbo_CartModels_Cart_CartID">
+          <End Role="CartModels" Type="Self.CartModels" Multiplicity="0..1" />
+          <End Role="UserModels" Type="Self.UserModels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartModels">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="UserModels">
+              <PropertyRef Name="Cart_CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketDBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BidModels" EntityType="Self.BidModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BucketModels" EntityType="Self.BucketModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartModels" EntityType="Self.CartModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentModels" EntityType="Self.CommentModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContractModels" EntityType="Self.ContractModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeModels" EntityType="Self.EmployeeModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LotteryModels" EntityType="Self.LotteryModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageModels" EntityType="Self.MessageModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttributeModels" EntityType="Self.ProductAttributeModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductModels" EntityType="Self.ProductModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchasePolicyModels" EntityType="Self.PurchasePolicyModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseStrategyModels" EntityType="Self.PurchaseStrategyModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreModels" EntityType="Self.StoreModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorePurchaseHistoryObjModels" EntityType="Self.StorePurchaseHistoryObjModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimerModels" EntityType="Self.TimerModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionModels" EntityType="Self.TransactionModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserModels" EntityType="Self.UserModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPurchaseHistoryObjModels" EntityType="Self.UserPurchaseHistoryObjModels" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_BidModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_BidModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="BidModels" EntitySet="BidModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BucketModels_dbo_CartModels_Cart_CartID" Association="Self.FK_dbo_BucketModels_dbo_CartModels_Cart_CartID">
+            <End Role="CartModels" EntitySet="CartModels" />
+            <End Role="BucketModels" EntitySet="BucketModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID" Association="Self.FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID">
+            <End Role="UserPurchaseHistoryObjModels" EntitySet="UserPurchaseHistoryObjModels" />
+            <End Role="BucketModels" EntitySet="BucketModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="CommentModels" EntitySet="CommentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="LotteryModels" EntitySet="LotteryModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MessageModels_dbo_UserModels_user_Username" Association="Self.FK_dbo_MessageModels_dbo_UserModels_user_Username">
+            <End Role="UserModels" EntitySet="UserModels" />
+            <End Role="MessageModels" EntitySet="MessageModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="ProductAttributeModels" EntitySet="ProductAttributeModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProductModels_dbo_StoreModels_StoreID" Association="Self.FK_dbo_ProductModels_dbo_StoreModels_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="ProductModels" EntitySet="ProductModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="PurchasePolicyModels" EntitySet="PurchasePolicyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="PurchasePolicyModels" EntitySet="PurchasePolicyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="PurchaseStrategyModels" EntitySet="PurchaseStrategyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="PurchaseStrategyModels" EntitySet="PurchaseStrategyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="StorePurchaseHistoryObjModels" EntitySet="StorePurchaseHistoryObjModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserModels_dbo_CartModels_Cart_CartID" Association="Self.FK_dbo_UserModels_dbo_CartModels_Cart_CartID">
+            <End Role="CartModels" EntitySet="CartModels" />
+            <End Role="UserModels" EntitySet="UserModels" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarketDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BidModel">
+          <Key>
+            <PropertyRef Name="BidID" />
+          </Key>
+          <Property Name="BidID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewPrice" Type="Double" Nullable="false" />
+          <Property Name="ApprovedByStore" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedByUser" Type="Boolean" Nullable="false" />
+          <Property Name="CounterOffer" Type="Boolean" Nullable="false" />
+          <Property Name="DeclinedByStore" Type="Boolean" Nullable="false" />
+          <Property Name="DeclinedByUser" Type="Boolean" Nullable="false" />
+          <Property Name="NumOfApproves" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Store_StoreID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StoreModel" Relationship="Self.FK_dbo_BidModels_dbo_StoreModels_Store_StoreID" FromRole="BidModels" ToRole="StoreModels" />
+        </EntityType>
+        <EntityType Name="BucketModel">
+          <Key>
+            <PropertyRef Name="BucketID" />
+          </Key>
+          <Property Name="BucketID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StoreID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Purchased" Type="Boolean" Nullable="false" />
+          <Property Name="Products" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cart_CartID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="USerPurchase_HisstoryID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CartModel" Relationship="Self.FK_dbo_BucketModels_dbo_CartModels_Cart_CartID" FromRole="BucketModels" ToRole="CartModels" />
+          <NavigationProperty Name="UserPurchaseHistoryObjModel" Relationship="Self.FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID" FromRole="BucketModels" ToRole="UserPurchaseHistoryObjModels" />
+        </EntityType>
+        <EntityType Name="CartModel">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="BucketModels" Relationship="Self.FK_dbo_BucketModels_dbo_CartModels_Cart_CartID" FromRole="CartModels" ToRole="BucketModels" />
+          <NavigationProperty Name="UserModels" Relationship="Self.FK_dbo_UserModels_dbo_CartModels_Cart_CartID" FromRole="CartModels" ToRole="UserModels" />
+        </EntityType>
+        <EntityType Name="CommentModel">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_ProductID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductModel" Relationship="Self.FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID" FromRole="CommentModels" ToRole="ProductModels" />
+        </EntityType>
+        <EntityType Name="ContractModel">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewOwnerID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SuggestorID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HaveToAccept" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EmployeeModel">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerAssignner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerAssigner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Permissions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreClosed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LotteryModel">
+          <Key>
+            <PropertyRef Name="LotteryID" />
+          </Key>
+          <Property Name="LotteryID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Percantage" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_ProductID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductModel" Relationship="Self.FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID" FromRole="LotteryModels" ToRole="ProductModels" />
+        </EntityType>
+        <EntityType Name="MessageModel">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="From" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsNewMessage" Type="Boolean" Nullable="false" />
+          <Property Name="DateAndTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_Username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserModel" Relationship="Self.FK_dbo_MessageModels_dbo_UserModels_user_Username" FromRole="MessageModels" ToRole="UserModels" />
+        </EntityType>
+        <EntityType Name="ProductAttributeModel">
+          <Key>
+            <PropertyRef Name="AttributeID" />
+          </Key>
+          <Property Name="AttributeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttributeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttributeOptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_ProductID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductModel" Relationship="Self.FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID" FromRole="ProductAttributeModels" ToRole="ProductModels" />
+        </EntityType>
+        <EntityType Name="ProductModel">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StoreID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Auction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReservedQuantity" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Sale" Type="Double" Nullable="false" />
+          <Property Name="timesBought" Type="Int64" Nullable="false" />
+          <Property Name="timesRated" Type="Int64" Nullable="false" />
+          <Property Name="ProductCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dimenssions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CommentModels" Relationship="Self.FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID" FromRole="ProductModels" ToRole="CommentModels" />
+          <NavigationProperty Name="LotteryModels" Relationship="Self.FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID" FromRole="ProductModels" ToRole="LotteryModels" />
+          <NavigationProperty Name="ProductAttributeModels" Relationship="Self.FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID" FromRole="ProductModels" ToRole="ProductAttributeModels" />
+          <NavigationProperty Name="StoreModel" Relationship="Self.FK_dbo_ProductModels_dbo_StoreModels_StoreID" FromRole="ProductModels" ToRole="StoreModels" />
+          <NavigationProperty Name="PurchasePolicyModels" Relationship="Self.FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID" FromRole="ProductModels" ToRole="PurchasePolicyModels" />
+          <NavigationProperty Name="PurchaseStrategyModels" Relationship="Self.FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID" FromRole="ProductModels" ToRole="PurchaseStrategyModels" />
+        </EntityType>
+        <EntityType Name="PurchasePolicyModel">
+          <Key>
+            <PropertyRef Name="PolicyID" />
+          </Key>
+          <Property Name="PolicyID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PolicyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SalePercentage" Type="Double" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SalePolicyFormula" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Target" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TargetValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isDefault" Type="Boolean" Nullable="false" />
+          <Property Name="MaximumPairs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_ProductID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Store_StoreID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductModel" Relationship="Self.FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID" FromRole="PurchasePolicyModels" ToRole="ProductModels" />
+          <NavigationProperty Name="StoreModel" Relationship="Self.FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID" FromRole="PurchasePolicyModels" ToRole="StoreModels" />
+        </EntityType>
+        <EntityType Name="PurchaseStrategyModel">
+          <Key>
+            <PropertyRef Name="StrategyID" />
+          </Key>
+          <Property Name="StrategyID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StrategyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StrategyFormula" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isDefault" Type="Boolean" Nullable="false" />
+          <Property Name="Product_ProductID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Store_StoreID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductModel" Relationship="Self.FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID" FromRole="PurchaseStrategyModels" ToRole="ProductModels" />
+          <NavigationProperty Name="StoreModel" Relationship="Self.FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID" FromRole="PurchaseStrategyModels" ToRole="StoreModels" />
+        </EntityType>
+        <EntityType Name="StoreModel">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="founderID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="temporaryClosed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BidModels" Relationship="Self.FK_dbo_BidModels_dbo_StoreModels_Store_StoreID" FromRole="StoreModels" ToRole="BidModels" />
+          <NavigationProperty Name="ProductModels" Relationship="Self.FK_dbo_ProductModels_dbo_StoreModels_StoreID" FromRole="StoreModels" ToRole="ProductModels" />
+          <NavigationProperty Name="PurchasePolicyModels" Relationship="Self.FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID" FromRole="StoreModels" ToRole="PurchasePolicyModels" />
+          <NavigationProperty Name="PurchaseStrategyModels" Relationship="Self.FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID" FromRole="StoreModels" ToRole="PurchaseStrategyModels" />
+          <NavigationProperty Name="StorePurchaseHistoryObjModels" Relationship="Self.FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID" FromRole="StoreModels" ToRole="StorePurchaseHistoryObjModels" />
+        </EntityType>
+        <EntityType Name="StorePurchaseHistoryObjModel">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <Property Name="Day_Month_Year" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Store_StoreID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StoreModel" Relationship="Self.FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID" FromRole="StorePurchaseHistoryObjModels" ToRole="StoreModels" />
+        </EntityType>
+        <EntityType Name="TimerModel">
+          <Key>
+            <PropertyRef Name="TimerID" />
+          </Key>
+          <Property Name="TimerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinutesToCount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTimeStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FounderID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TransactionModel">
+          <Key>
+            <PropertyRef Name="TransactioID" />
+          </Key>
+          <Property Name="TransactioID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cancelled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserModel">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HashedPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cart_CartID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CartModel" Relationship="Self.FK_dbo_UserModels_dbo_CartModels_Cart_CartID" FromRole="UserModels" ToRole="CartModels" />
+          <NavigationProperty Name="MessageModels" Relationship="Self.FK_dbo_MessageModels_dbo_UserModels_user_Username" FromRole="UserModels" ToRole="MessageModels" />
+        </EntityType>
+        <EntityType Name="UserPurchaseHistoryObjModel">
+          <Key>
+            <PropertyRef Name="HisstoryID" />
+          </Key>
+          <Property Name="HisstoryID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseDateTicks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="BucketModels" Relationship="Self.FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID" FromRole="UserPurchaseHistoryObjModels" ToRole="BucketModels" />
+        </EntityType>
+        <Association Name="FK_dbo_BidModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModel" Multiplicity="0..1" />
+          <End Role="BidModels" Type="Self.BidModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="BidModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BucketModels_dbo_CartModels_Cart_CartID">
+          <End Role="CartModels" Type="Self.CartModel" Multiplicity="0..1" />
+          <End Role="BucketModels" Type="Self.BucketModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartModels">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="BucketModels">
+              <PropertyRef Name="Cart_CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID">
+          <End Role="UserPurchaseHistoryObjModels" Type="Self.UserPurchaseHistoryObjModel" Multiplicity="0..1" />
+          <End Role="BucketModels" Type="Self.BucketModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserPurchaseHistoryObjModels">
+              <PropertyRef Name="HisstoryID" />
+            </Principal>
+            <Dependent Role="BucketModels">
+              <PropertyRef Name="USerPurchase_HisstoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserModels_dbo_CartModels_Cart_CartID">
+          <End Role="CartModels" Type="Self.CartModel" Multiplicity="0..1" />
+          <End Role="UserModels" Type="Self.UserModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartModels">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="UserModels">
+              <PropertyRef Name="Cart_CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModel" Multiplicity="0..1" />
+          <End Role="CommentModels" Type="Self.CommentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="CommentModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModel" Multiplicity="0..1" />
+          <End Role="LotteryModels" Type="Self.LotteryModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="LotteryModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MessageModels_dbo_UserModels_user_Username">
+          <End Role="UserModels" Type="Self.UserModel" Multiplicity="0..1" />
+          <End Role="MessageModels" Type="Self.MessageModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserModels">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="MessageModels">
+              <PropertyRef Name="user_Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModel" Multiplicity="0..1" />
+          <End Role="ProductAttributeModels" Type="Self.ProductAttributeModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductAttributeModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ProductModels_dbo_StoreModels_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModel" Multiplicity="0..1" />
+          <End Role="ProductModels" Type="Self.ProductModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="ProductModels">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModel" Multiplicity="0..1" />
+          <End Role="PurchasePolicyModels" Type="Self.PurchasePolicyModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchasePolicyModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID">
+          <End Role="ProductModels" Type="Self.ProductModel" Multiplicity="0..1" />
+          <End Role="PurchaseStrategyModels" Type="Self.PurchaseStrategyModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModels">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="PurchaseStrategyModels">
+              <PropertyRef Name="Product_ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModel" Multiplicity="0..1" />
+          <End Role="PurchasePolicyModels" Type="Self.PurchasePolicyModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="PurchasePolicyModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModel" Multiplicity="0..1" />
+          <End Role="PurchaseStrategyModels" Type="Self.PurchaseStrategyModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="PurchaseStrategyModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID">
+          <End Role="StoreModels" Type="Self.StoreModel" Multiplicity="0..1" />
+          <End Role="StorePurchaseHistoryObjModels" Type="Self.StorePurchaseHistoryObjModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreModels">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="StorePurchaseHistoryObjModels">
+              <PropertyRef Name="Store_StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="BidModels" EntityType="Self.BidModel" />
+          <EntitySet Name="BucketModels" EntityType="Self.BucketModel" />
+          <EntitySet Name="CartModels" EntityType="Self.CartModel" />
+          <EntitySet Name="CommentModels" EntityType="Self.CommentModel" />
+          <EntitySet Name="ContractModels" EntityType="Self.ContractModel" />
+          <EntitySet Name="EmployeeModels" EntityType="Self.EmployeeModel" />
+          <EntitySet Name="LotteryModels" EntityType="Self.LotteryModel" />
+          <EntitySet Name="MessageModels" EntityType="Self.MessageModel" />
+          <EntitySet Name="ProductAttributeModels" EntityType="Self.ProductAttributeModel" />
+          <EntitySet Name="ProductModels" EntityType="Self.ProductModel" />
+          <EntitySet Name="PurchasePolicyModels" EntityType="Self.PurchasePolicyModel" />
+          <EntitySet Name="PurchaseStrategyModels" EntityType="Self.PurchaseStrategyModel" />
+          <EntitySet Name="StoreModels" EntityType="Self.StoreModel" />
+          <EntitySet Name="StorePurchaseHistoryObjModels" EntityType="Self.StorePurchaseHistoryObjModel" />
+          <EntitySet Name="TimerModels" EntityType="Self.TimerModel" />
+          <EntitySet Name="TransactionModels" EntityType="Self.TransactionModel" />
+          <EntitySet Name="UserModels" EntityType="Self.UserModel" />
+          <EntitySet Name="UserPurchaseHistoryObjModels" EntityType="Self.UserPurchaseHistoryObjModel" />
+          <AssociationSet Name="FK_dbo_BidModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_BidModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="BidModels" EntitySet="BidModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BucketModels_dbo_CartModels_Cart_CartID" Association="Self.FK_dbo_BucketModels_dbo_CartModels_Cart_CartID">
+            <End Role="CartModels" EntitySet="CartModels" />
+            <End Role="BucketModels" EntitySet="BucketModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID" Association="Self.FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID">
+            <End Role="UserPurchaseHistoryObjModels" EntitySet="UserPurchaseHistoryObjModels" />
+            <End Role="BucketModels" EntitySet="BucketModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserModels_dbo_CartModels_Cart_CartID" Association="Self.FK_dbo_UserModels_dbo_CartModels_Cart_CartID">
+            <End Role="CartModels" EntitySet="CartModels" />
+            <End Role="UserModels" EntitySet="UserModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="CommentModels" EntitySet="CommentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="LotteryModels" EntitySet="LotteryModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MessageModels_dbo_UserModels_user_Username" Association="Self.FK_dbo_MessageModels_dbo_UserModels_user_Username">
+            <End Role="UserModels" EntitySet="UserModels" />
+            <End Role="MessageModels" EntitySet="MessageModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="ProductAttributeModels" EntitySet="ProductAttributeModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ProductModels_dbo_StoreModels_StoreID" Association="Self.FK_dbo_ProductModels_dbo_StoreModels_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="ProductModels" EntitySet="ProductModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="PurchasePolicyModels" EntitySet="PurchasePolicyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID" Association="Self.FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID">
+            <End Role="ProductModels" EntitySet="ProductModels" />
+            <End Role="PurchaseStrategyModels" EntitySet="PurchaseStrategyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="PurchasePolicyModels" EntitySet="PurchasePolicyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="PurchaseStrategyModels" EntitySet="PurchaseStrategyModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID" Association="Self.FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID">
+            <End Role="StoreModels" EntitySet="StoreModels" />
+            <End Role="StorePurchaseHistoryObjModels" EntitySet="StorePurchaseHistoryObjModels" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarketDBModelStoreContainer" CdmEntityContainer="MarketDBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="MarketDBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BidModels">
+            <EntityTypeMapping TypeName="MarketDBModel.BidModel">
+              <MappingFragment StoreEntitySet="BidModels">
+                <ScalarProperty Name="BidID" ColumnName="BidID" />
+                <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
+                <ScalarProperty Name="ApprovedByStore" ColumnName="ApprovedByStore" />
+                <ScalarProperty Name="ApprovedByUser" ColumnName="ApprovedByUser" />
+                <ScalarProperty Name="CounterOffer" ColumnName="CounterOffer" />
+                <ScalarProperty Name="DeclinedByStore" ColumnName="DeclinedByStore" />
+                <ScalarProperty Name="DeclinedByUser" ColumnName="DeclinedByUser" />
+                <ScalarProperty Name="NumOfApproves" ColumnName="NumOfApproves" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PaymentDetails" ColumnName="PaymentDetails" />
+                <ScalarProperty Name="Store_StoreID" ColumnName="Store_StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BucketModels">
+            <EntityTypeMapping TypeName="MarketDBModel.BucketModel">
+              <MappingFragment StoreEntitySet="BucketModels">
+                <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Purchased" ColumnName="Purchased" />
+                <ScalarProperty Name="Products" ColumnName="Products" />
+                <ScalarProperty Name="Cart_CartID" ColumnName="Cart_CartID" />
+                <ScalarProperty Name="USerPurchase_HisstoryID" ColumnName="USerPurchase_HisstoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartModels">
+            <EntityTypeMapping TypeName="MarketDBModel.CartModel">
+              <MappingFragment StoreEntitySet="CartModels">
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentModels">
+            <EntityTypeMapping TypeName="MarketDBModel.CommentModel">
+              <MappingFragment StoreEntitySet="CommentModels">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Product_ProductID" ColumnName="Product_ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContractModels">
+            <EntityTypeMapping TypeName="MarketDBModel.ContractModel">
+              <MappingFragment StoreEntitySet="ContractModels">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="NewOwnerID" ColumnName="NewOwnerID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="SuggestorID" ColumnName="SuggestorID" />
+                <ScalarProperty Name="HaveToAccept" ColumnName="HaveToAccept" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeModels">
+            <EntityTypeMapping TypeName="MarketDBModel.EmployeeModel">
+              <MappingFragment StoreEntitySet="EmployeeModels">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="OwnerAssignner" ColumnName="OwnerAssignner" />
+                <ScalarProperty Name="ManagerAssigner" ColumnName="ManagerAssigner" />
+                <ScalarProperty Name="Permissions" ColumnName="Permissions" />
+                <ScalarProperty Name="StoreClosed" ColumnName="StoreClosed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LotteryModels">
+            <EntityTypeMapping TypeName="MarketDBModel.LotteryModel">
+              <MappingFragment StoreEntitySet="LotteryModels">
+                <ScalarProperty Name="LotteryID" ColumnName="LotteryID" />
+                <ScalarProperty Name="Percantage" ColumnName="Percantage" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Product_ProductID" ColumnName="Product_ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageModels">
+            <EntityTypeMapping TypeName="MarketDBModel.MessageModel">
+              <MappingFragment StoreEntitySet="MessageModels">
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="IsNewMessage" ColumnName="IsNewMessage" />
+                <ScalarProperty Name="DateAndTime" ColumnName="DateAndTime" />
+                <ScalarProperty Name="user_Username" ColumnName="user_Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttributeModels">
+            <EntityTypeMapping TypeName="MarketDBModel.ProductAttributeModel">
+              <MappingFragment StoreEntitySet="ProductAttributeModels">
+                <ScalarProperty Name="AttributeID" ColumnName="AttributeID" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="AttributeOptions" ColumnName="AttributeOptions" />
+                <ScalarProperty Name="Product_ProductID" ColumnName="Product_ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModels">
+            <EntityTypeMapping TypeName="MarketDBModel.ProductModel">
+              <MappingFragment StoreEntitySet="ProductModels">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Auction" ColumnName="Auction" />
+                <ScalarProperty Name="ReservedQuantity" ColumnName="ReservedQuantity" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="timesBought" ColumnName="timesBought" />
+                <ScalarProperty Name="timesRated" ColumnName="timesRated" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+                <ScalarProperty Name="Dimenssions" ColumnName="Dimenssions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchasePolicyModels">
+            <EntityTypeMapping TypeName="MarketDBModel.PurchasePolicyModel">
+              <MappingFragment StoreEntitySet="PurchasePolicyModels">
+                <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+                <ScalarProperty Name="SalePercentage" ColumnName="SalePercentage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SalePolicyFormula" ColumnName="SalePolicyFormula" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="TargetValue" ColumnName="TargetValue" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="MaximumPairs" ColumnName="MaximumPairs" />
+                <ScalarProperty Name="Product_ProductID" ColumnName="Product_ProductID" />
+                <ScalarProperty Name="Store_StoreID" ColumnName="Store_StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseStrategyModels">
+            <EntityTypeMapping TypeName="MarketDBModel.PurchaseStrategyModel">
+              <MappingFragment StoreEntitySet="PurchaseStrategyModels">
+                <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
+                <ScalarProperty Name="StrategyName" ColumnName="StrategyName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StrategyFormula" ColumnName="StrategyFormula" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="Product_ProductID" ColumnName="Product_ProductID" />
+                <ScalarProperty Name="Store_StoreID" ColumnName="Store_StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreModels">
+            <EntityTypeMapping TypeName="MarketDBModel.StoreModel">
+              <MappingFragment StoreEntitySet="StoreModels">
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="founderID" ColumnName="founderID" />
+                <ScalarProperty Name="temporaryClosed" ColumnName="temporaryClosed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorePurchaseHistoryObjModels">
+            <EntityTypeMapping TypeName="MarketDBModel.StorePurchaseHistoryObjModel">
+              <MappingFragment StoreEntitySet="StorePurchaseHistoryObjModels">
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Day_Month_Year" ColumnName="Day_Month_Year" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Store_StoreID" ColumnName="Store_StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimerModels">
+            <EntityTypeMapping TypeName="MarketDBModel.TimerModel">
+              <MappingFragment StoreEntitySet="TimerModels">
+                <ScalarProperty Name="TimerID" ColumnName="TimerID" />
+                <ScalarProperty Name="MinutesToCount" ColumnName="MinutesToCount" />
+                <ScalarProperty Name="CreationTimeStamp" ColumnName="CreationTimeStamp" />
+                <ScalarProperty Name="FounderID" ColumnName="FounderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionModels">
+            <EntityTypeMapping TypeName="MarketDBModel.TransactionModel">
+              <MappingFragment StoreEntitySet="TransactionModels">
+                <ScalarProperty Name="TransactioID" ColumnName="TransactioID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Cancelled" ColumnName="Cancelled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserModels">
+            <EntityTypeMapping TypeName="MarketDBModel.UserModel">
+              <MappingFragment StoreEntitySet="UserModels">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Cart_CartID" ColumnName="Cart_CartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPurchaseHistoryObjModels">
+            <EntityTypeMapping TypeName="MarketDBModel.UserPurchaseHistoryObjModel">
+              <MappingFragment StoreEntitySet="UserPurchaseHistoryObjModels">
+                <ScalarProperty Name="HisstoryID" ColumnName="HisstoryID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PurchaseDateTicks" ColumnName="PurchaseDateTicks" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

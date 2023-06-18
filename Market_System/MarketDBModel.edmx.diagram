@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a300d953fed74ca690f499da238e1b52" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="MarketDBModel.C__MigrationHistory" Width="1.5" PointX="4.875" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.BidModel" Width="1.5" PointX="2.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.BucketModel" Width="1.5" PointX="11.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.CartModel" Width="1.5" PointX="11.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.CommentModel" Width="1.5" PointX="15.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.ContractModel" Width="1.5" PointX="6.625" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.EmployeeModel" Width="1.5" PointX="2.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.LotteryModel" Width="1.5" PointX="13.125" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.MessageModel" Width="1.5" PointX="7" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.ProductAttributeModel" Width="1.5" PointX="15.375" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.ProductModel" Width="1.5" PointX="13.125" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.PurchasePolicyModel" Width="1.5" PointX="8.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.PurchaseStrategyModel" Width="1.5" PointX="10.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.StoreModel" Width="1.5" PointX="4.875" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.StorePurchaseHistoryObjModel" Width="1.5" PointX="4.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.TimerModel" Width="1.5" PointX="6.875" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.TransactionModel" Width="1.5" PointX="8.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.UserModel" Width="1.5" PointX="8.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketDBModel.UserPurchaseHistoryObjModel" Width="1.5" PointX="14" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_BidModels_dbo_StoreModels_Store_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_BucketModels_dbo_CartModels_Cart_CartID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_BucketModels_dbo_UserPurchaseHistoryObjModels_USerPurchase_HisstoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_UserModels_dbo_CartModels_Cart_CartID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_CommentModels_dbo_ProductModels_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_LotteryModels_dbo_ProductModels_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_MessageModels_dbo_UserModels_user_Username" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_ProductAttributeModels_dbo_ProductModels_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_ProductModels_dbo_StoreModels_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_PurchasePolicyModels_dbo_ProductModels_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_PurchaseStrategyModels_dbo_ProductModels_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_PurchasePolicyModels_dbo_StoreModels_Store_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_PurchaseStrategyModels_dbo_StoreModels_Store_StoreID" ManuallyRouted="false" />
+        <AssociationConnector Association="MarketDBModel.FK_dbo_StorePurchaseHistoryObjModels_dbo_StoreModels_Store_StoreID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
