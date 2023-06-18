@@ -41,11 +41,12 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
         // returns items with saled price
-        public abstract List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes);
+        public abstract List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes, string userID);
 
         public Boolean Validate(List<ItemDTO> chosenProductsWithAttributes, string userID)
-        {
-            User currUser = UserFacade.GetInstance().getUser(userID);
+        {           
+
+            User currUser = UserFacade.GetInstance().getUser(UserFacade.GetInstance().get_username_from_user_id(userID));
             Dictionary<string, string> rellevantUserPolicyData = new Dictionary<string, string>();
             if (currUser != null)
                 rellevantUserPolicyData = new Dictionary<string, string>

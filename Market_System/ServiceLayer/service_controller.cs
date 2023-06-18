@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Market_System.ServiceLayer;
 using Market_System.DomainLayer.UserComponent;
 using Market_System.DomainLayer;
 using Market_System.DomainLayer.StoreComponent;
@@ -10,7 +7,6 @@ using System.IO;
 using System.Web.Hosting;
 using Market_System.DomainLayer.PaymentComponent;
 using Market_System.DomainLayer.DeliveryComponent;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Market_System.ServiceLayer
 {

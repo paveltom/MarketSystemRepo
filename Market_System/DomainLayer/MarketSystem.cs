@@ -194,7 +194,7 @@ namespace Market_System.DomainLayer
             Cart cart = get_cart_of_userID(user_id);
             ItemDTO item=    cart.get_basket(storeFacade.GetStoreIdFromProductID(product_id)).extract_item(product_id);
             dict_to_return.Add("quantity", item.GetQuantity().ToString());
-            double price = storeFacade.CalculatePrice(new List < ItemDTO > {item});
+            double price = storeFacade.CalculatePrice(new List < ItemDTO > {item}, user_id);
             dict_to_return.Add("price", price.ToString());
             return dict_to_return;
 
@@ -441,7 +441,7 @@ namespace Market_System.DomainLayer
 
                     userFacade.add_product_to_basket(product_id, usename, int.Parse(quantity));
                     Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(usename);
-                    double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
+                    double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO(), user_id);
                     //  price  =  storefacade.calcualte_total_price(cart);
 
                     userFacade.update_cart_total_price(usename, price);
@@ -662,7 +662,7 @@ namespace Market_System.DomainLayer
 
                         userFacade.remove_product_from_basket(product_id, username,quantity);
                         Market_System.DomainLayer.UserComponent.Cart cart = userFacade.get_cart(username);
-                        double  price  =  storeFacade.CalculatePrice(cart.convert_to_item_DTO());
+                        double  price  =  storeFacade.CalculatePrice(cart.convert_to_item_DTO(), user_id);
                       //  double price = 110;
                         userFacade.update_cart_total_price(username, price);
                         return "removed "+quantity+" of product id : " + product_id + " from " + userFacade.get_username_from_user_id(user_id) + "'s cart";
@@ -1260,7 +1260,7 @@ namespace Market_System.DomainLayer
                 string user_id = get_userid_from_session_id(session_id);
                 string username = userFacade.get_username_from_user_id(user_id);
                 Cart cart = userFacade.get_cart(username);
-                double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO());
+                double price = storeFacade.CalculatePrice(cart.convert_to_item_DTO(), user_id);
                 string transID = "";
                 var task = Task.Run(() => { transID = PaymentProxy.get_instance().pay(card_number, month, year, holder, ccv, id); });
                 var timeoutTask = Task.Delay(TimeSpan.FromSeconds(10)); 
@@ -1691,7 +1691,7 @@ namespace Market_System.DomainLayer
             {
                 string userId = get_userid_from_session_id(session_id);
                 Cart cart = get_cart_of_userID(userId);
-                return storeFacade.CalculatePrice(cart.convert_to_item_DTO()).ToString();
+                return storeFacade.CalculatePrice(cart.convert_to_item_DTO(), userId).ToString();
             }
             catch (Exception e)
             {

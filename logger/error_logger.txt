@@ -13687,3 +13687,35 @@ Sunday, 18 June 2023 : error!!: The given key was not present in the dictionary.
 Sunday, 18 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Sunday, 18 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
 Sunday, 18 June 2023 : error!!: The given key was not present in the dictionary. in HasNewMessages
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: An error occurred while updating the entries. See the inner exception for details.in register
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: No such user in add_product_to_basket
+Sunday, 18 June 2023 : error!!: can't recive username because userID does not exists in add_product_to_basket
+Sunday, 18 June 2023 : error!!: can't recive username because userID does not exists in add_product_to_basket
+Sunday, 18 June 2023 : error!!: can't recive username because userID does not exists in add_product_to_basket
+Sunday, 18 June 2023 : error!!: can't recive username because userID does not exists in add_product_to_basket
+Sunday, 18 June 2023 : error!!: can't recive username because userID does not exists in add_product_to_basket
+Sunday, 18 June 2023 : error!!: can't recive username because userID does not existsin check_out
+Sunday, 18 June 2023 : error!!: pay request denied by the servicein check_out
+Sunday, 18 June 2023 : error!!: unexpected error occured with payment system, please try again later.in check_out
+Sunday, 18 June 2023 : error!!: A member with roles in the system cannot be removed! You'll need to remove his roles first. in Remove_A_Member
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: nothing to show in CheckAreThereSuggestions
+Sunday, 18 June 2023 : error!!: Cannot purchase: in check_out

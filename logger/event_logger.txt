@@ -9683,3 +9683,955 @@ Sunday, 18 June 2023 : user with session ID : 907919119 got his Messages
 Sunday, 18 June 2023 : user with session ID : 907919119 got his Messages
 Sunday, 18 June 2023 : user with session ID : 907919119 got his Messages
 Sunday, 18 June 2023 : user with session ID : 907919119 got his Messages
+Sunday, 18 June 2023 : guest : guest1115683200 has logged in
+Sunday, 18 June 2023 : bayan has registered!
+Sunday, 18 June 2023 : nekola has registered!
+Sunday, 18 June 2023 : ben has registered!
+Sunday, 18 June 2023 : harold has registered!
+Sunday, 18 June 2023 : ben3 has registered!
+Sunday, 18 June 2023 : opening store with id: 600833842 has failed
+Sunday, 18 June 2023 : Added the product:600833842_1526129313to store: 600833842 has been done successfully
+Sunday, 18 June 2023 : assigning new manager with username : nekola to the store with id: 600833842
+Sunday, 18 June 2023 : assigning new owner with username : ben to the store with id: 600833842
+Sunday, 18 June 2023 : assigning new owner with username : harold to the store with id: 600833842
+Sunday, 18 June 2023 : 393458414Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1634836341 has logged in
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : user with session ID : 2077452171 got his Messages
+Sunday, 18 June 2023 : 659005567Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1454305111 has logged in
+Sunday, 18 June 2023 : pasha has registered!
+Sunday, 18 June 2023 : 702622921Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1925253253 has logged in
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1502082678 got his Messages
+Sunday, 18 June 2023 : 659005567Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1517663788 has logged in
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1855903465 got his Messages
+Sunday, 18 June 2023 : guest : guest2104223753 has logged in
+Sunday, 18 June 2023 : u2 has registered!
+Sunday, 18 June 2023 : u3 has registered!
+Sunday, 18 June 2023 : u4 has registered!
+Sunday, 18 June 2023 : u5 has registered!
+Sunday, 18 June 2023 : opening store with id: 1729566188 has failed
+Sunday, 18 June 2023 : Added the product:1729566188_777544404to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : 735855028Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1945112105 has logged in
+Sunday, 18 June 2023 : 2066702157Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest360834663 has logged in
+Sunday, 18 June 2023 : pasha has registered!
+Sunday, 18 June 2023 : 2141549459Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest473474848 has logged in
+Sunday, 18 June 2023 : assigning new manager with username : u3 to the store with id: 1729566188
+Sunday, 18 June 2023 : 735855028Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest2025028238 has logged in
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1882810923 got his Messages
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : 248559341Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest2128394314 has logged in
+Sunday, 18 June 2023 : getting store with id: 1333695825 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1333695825 was done successfully 
+Sunday, 18 June 2023 : guest : guest775048190 has logged in
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_1126420081to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_207776080to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : guest : guest936070508 has logged in
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_165542580to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_1468533287to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_673817266to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : user with session ID : 530760111 got his Messages
+Sunday, 18 June 2023 : user with session ID : 530760111 got his Messages
+Sunday, 18 June 2023 : user with session ID : 530760111 got his Messages
+Sunday, 18 June 2023 : user with session ID : 530760111 got his Messages
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : guest : guest1881946925 has logged in
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : guest : guest2130909771 has logged in
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_1360381843to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : Added the product:1729566188_844920967to store: 1729566188 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : add a purchase policy for a store, for store id: 1729566188
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : add a purchase strategy for a store, for store id: 1729566188
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1729566188 was done successfully 
+Sunday, 18 June 2023 : 735855028Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest189289660 has logged in
+Sunday, 18 June 2023 : guest : guest88406188 has logged in
+Sunday, 18 June 2023 : guest : guest1378563563 has logged in
+Sunday, 18 June 2023 : guest : guest908079066 has logged in
+Sunday, 18 June 2023 : guest : guest1503141926 has logged in
+Sunday, 18 June 2023 : checking deilvery for address: edgeville succefully done.
+Sunday, 18 June 2023 : guest : guest1180823397 has logged in
+Sunday, 18 June 2023 : u2 has registered!
+Sunday, 18 June 2023 : u3 has registered!
+Sunday, 18 June 2023 : u4 has registered!
+Sunday, 18 June 2023 : u5 has registered!
+Sunday, 18 June 2023 : opening store with id: 1198871376 has failed
+Sunday, 18 June 2023 : Added the product:1198871376_349847560to store: 1198871376 has been done successfully
+Sunday, 18 June 2023 : 562555037Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1643792918 has logged in
+Sunday, 18 June 2023 : 885099232 added product with id: 1198871376_349847560 to basket
+Sunday, 18 June 2023 : checking deilvery for address: edgeville succefully done.
+Sunday, 18 June 2023 : checkout completed by : u4
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : 885099232 added product with id: 1532195288_782052261 to basket
+Sunday, 18 June 2023 : checking deilvery for address: edgeville succefully done.
+Sunday, 18 June 2023 : checking deilvery for address: edgeville succefully done.
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : user with session ID : 1805623399 got his Messages
+Sunday, 18 June 2023 : a new comment for product id: 1198871376_349847560
+Sunday, 18 June 2023 : 885099232Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1940293972 has logged in
+Sunday, 18 June 2023 : ADMIN with session ID : 1124254563 requested profit for a market on date 17/06/2023 0:00:00
+Sunday, 18 June 2023 : ADMIN with session ID : 1124254563 requested profit for a market on date 18/06/2023 0:00:00
+Sunday, 18 June 2023 : ADMIN with session ID : 1124254563 requested profit for a market on date 19/06/2023 0:00:00
+Sunday, 18 June 2023 : got member info with username : u2 from market system
+Sunday, 18 June 2023 : removed member with username : u4 from market system
+Sunday, 18 June 2023 : 1913829729Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest1631898480 has logged in
+Sunday, 18 June 2023 : guest : guest563420645 has logged in
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : Added the product:1532195288_144264608to store: 1532195288 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : Added the product:1532195288_2075482637to store: 1532195288 has been done successfully
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : add a purchase strategy for a store, for store id: 1532195288
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : getting store with id: 1532195288 was done successfully 
+Sunday, 18 June 2023 : 1913829729Logged-out succesfully
+Sunday, 18 June 2023 : guest : guest134108340 has logged in
+Sunday, 18 June 2023 : 885099232 added product with id: 1532195288_144264608 to basket
+Sunday, 18 June 2023 : checking deilvery for address: edgeville succefully done.

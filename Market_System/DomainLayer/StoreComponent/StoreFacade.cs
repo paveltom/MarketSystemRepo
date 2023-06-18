@@ -120,7 +120,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
         
         private static object PrivateCalculatePriceLock = new object();
-        public double CalculatePrice(List<ItemDTO> products)
+        public double CalculatePrice(List<ItemDTO> products, string userID)
         {
             lock (PrivateCalculatePriceLock)
             {
@@ -129,7 +129,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     double totalPrice = 0;
                     foreach (KeyValuePair<string, List<ItemDTO>> entry in GatherStoresWithProductsByItems(products))
                     {
-                        totalPrice += AcquireStore(entry.Key).CalculatePrice(entry.Key, entry.Value);
+                        totalPrice += AcquireStore(entry.Key).CalculatePrice(userID, entry.Value);
                         ReleaseStore(entry.Key);
                     }
                     return totalPrice;

@@ -14,9 +14,9 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
             base(polID, polName, salePercentage, description, formula)
         { this.SaledProductID = productID; }
 
-        public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)
+        public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes, string userid)
         {
-            if (Validate(chosenProductsWithAttributes, ""))
+            if (Validate(chosenProductsWithAttributes, userid))
             {
                 List<ItemDTO> saledItems = new List<ItemDTO>();
                 foreach (ItemDTO item in chosenProductsWithAttributes)

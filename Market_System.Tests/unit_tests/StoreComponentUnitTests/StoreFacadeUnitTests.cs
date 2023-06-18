@@ -83,13 +83,13 @@ namespace Market_System.Tests.unit_tests
             double finalPrice = 0;
             List<ItemDTO> itemsToCalculate = new List<ItemDTO>() { item0, item1 };
             foreach (Purchase_Policy p in testStore.storePolicies.Values)
-                itemsToCalculate = p.ApplyPolicy(itemsToCalculate);
+                itemsToCalculate = p.ApplyPolicy(itemsToCalculate, "");
 
             finalPrice = itemsToCalculate.Aggregate(0.0, (acc, i) => acc += i.Price);
 
 
             // Act
-            double retPrice = this.facade.CalculatePrice(itemsToCalculate);
+            double retPrice = this.facade.CalculatePrice(itemsToCalculate, "");
 
             // Assert
             Assert.IsTrue((finalPrice - retPrice) < 0.01);    

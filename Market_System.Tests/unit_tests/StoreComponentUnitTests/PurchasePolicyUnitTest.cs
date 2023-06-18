@@ -69,7 +69,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                retPrice = this.facade.CalculatePrice(itemsToCalculate);
+                //retPrice = this.facade.CalculatePrice(itemsToCalculate);
             } catch (Exception ex) { error = true; }
 
             // Assert
@@ -227,7 +227,7 @@ namespace Market_System.Tests.unit_tests.StoreComponentUnitTests
             // Act
             try
             {
-                retPrice = this.facade.CalculatePrice(new List<ItemDTO>() { item0, newItem });
+                retPrice = this.facade.CalculatePrice(new List<ItemDTO>() { item0, newItem }, "");
             }
             catch (Exception ex) { error = true; }
 

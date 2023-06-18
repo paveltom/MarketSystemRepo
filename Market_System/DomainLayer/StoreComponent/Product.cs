@@ -231,14 +231,14 @@ namespace Market_System.DomainLayer.StoreComponent
         }
 
 
-        public double ImplementSale(ItemDTO item)
+        public double ImplementSale(ItemDTO item, string userID)
         {
             double saledPrice = this.Price - this.Price / 100 * this.Sale;
             item.SetPrice(saledPrice);
             List<ItemDTO> product = new List<ItemDTO>() { item };
             foreach (Purchase_Policy pp in this.PurchasePolicies.Values)
             {
-                product = pp.ApplyPolicy(product);
+                product = pp.ApplyPolicy(product, userID);
             }
 
             return product[0].Price * item.GetQuantity();
@@ -256,14 +256,14 @@ namespace Market_System.DomainLayer.StoreComponent
             }
         }
 
-        public double CalculatePrice(ItemDTO item) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
+        public double CalculatePrice(ItemDTO item, string userID) // maybe can receive some properties to coordinate the calculation (for exmpl - summer sale in whole MarketSystem)
         {
             //change later to - return ImplementSale(attributes) * quantity;
             try
             {
                 if (item.GetQuantity() < 1)
                     throw new Exception("Bad quantity!");
-                return Math.Round(ImplementSale(item), 2); // add chosen attributes functionality
+                return Math.Round(ImplementSale(item, userID), 2); // add chosen attributes functionality
             }
             catch (Exception e) { throw e; }
         }

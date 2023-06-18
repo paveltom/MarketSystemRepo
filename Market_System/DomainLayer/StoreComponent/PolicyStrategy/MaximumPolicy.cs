@@ -14,7 +14,7 @@ namespace Market_System.DomainLayer.StoreComponent.PolicyStrategy
             base(polID, polName, 0, description, "")
         { this.productsSale = productsIDsAndSale; }
 
-        public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes)
+        public override List<ItemDTO> ApplyPolicy(List<ItemDTO> chosenProductsWithAttributes, string userid)
         {
             List<ItemDTO> saledItems = new List<ItemDTO>();
             string productWithHighestSaleValue = "";

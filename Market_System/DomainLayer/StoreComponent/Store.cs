@@ -421,7 +421,7 @@ namespace Market_System.DomainLayer.StoreComponent
                     {
                         if (pp is MaximumPolicy)
                         {
-                            saledProducts = pp.ApplyPolicy(productsToCalculate);
+                            saledProducts = pp.ApplyPolicy(productsToCalculate, userID);
                             maxPolicy = true;
                         }
                     }
@@ -431,7 +431,7 @@ namespace Market_System.DomainLayer.StoreComponent
                         // Apply each Product Sale:
                         foreach (ItemDTO item in productsToCalculate)
                         {
-                            productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item);
+                            productSalePrice = AcquireProduct(item.GetID()).CalculatePrice(item, userID);
                             item.SetPrice(productSalePrice / item.GetQuantity());
                             saledProducts.Add(item);
                             quantity += item.GetQuantity();
@@ -440,7 +440,7 @@ namespace Market_System.DomainLayer.StoreComponent
 
                         // Apply Store Policy:
                         foreach (Purchase_Policy p in this.storePolicies.Values)
-                            saledProducts = p.ApplyPolicy(saledProducts);
+                            saledProducts = p.ApplyPolicy(saledProducts, userID);
                     }
 
                     return bidsTotalPrice + saledProducts.Aggregate(0.0, (acc, x) => acc += x.Price * x.GetQuantity());
